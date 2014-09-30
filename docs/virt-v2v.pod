@@ -167,11 +167,6 @@ Since F<guest-domain.xml> contains the path(s) to the guest disk
 image(s) you do not need to specify the name of the disk image on the
 command line.
 
-To convert a local disk image and immediately boot it in local
-qemu, do:
-
- virt-v2v -i disk disk.img -o qemu -os /var/tmp -oo qemu-boot
-
 =head1 OPTIONS
 
 =over 4
@@ -576,9 +571,6 @@ This is similar to I<-o local>, except that a shell script is written
 which you can use to boot the guest in qemu.  The converted disks and
 shell script are written to the directory specified by I<-os>.
 
-When using this output mode, you can also specify the I<-oo qemu-boot>
-option which boots the guest under qemu immediately.
-
 ifelse(ENABLE_OVIRT, yes, `
 =item B<-o> B<vdsm>
 
@@ -650,11 +642,6 @@ method of putting disks in the output storage path is used.
 For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, set a guest ID
 which is saved on each Cinder volume in the C<virt_v2v_guest_id>
 volume property.
-
-=item B<-oo qemu-boot>
-
-When using I<-o qemu> only, this boots the guest immediately after
-virt-v2v finishes.
 
 =item B<-oo os->*B<=>*
 
