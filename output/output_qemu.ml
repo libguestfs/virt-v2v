@@ -63,6 +63,9 @@ module QEMU = struct
       ) options.output_options;
     let qemu_boot = !qemu_boot in
 
+    if qemu_boot then
+      error (f_"-o qemu: the -oo qemu-boot option cannot be used in RHEL");
+
     (* -os must be set to a directory. *)
     let output_storage =
       match options.output_storage with
