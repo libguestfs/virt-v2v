@@ -83,13 +83,14 @@ let kvm_arch = function
 (* Does qemu support the given sound card? *)
 let qemu_supports_sound_card = function
   | Types.AC97
-  | Types.ES1370
   | Types.ICH6
   | Types.ICH9
   | Types.PCSpeaker
+    -> true
+  | Types.ES1370
   | Types.SB16
   | Types.USBAudio
-    -> true
+    -> false
 
 let compare_app2_versions app1 app2 =
   let i = compare app1.Guestfs.app2_epoch app2.Guestfs.app2_epoch in
