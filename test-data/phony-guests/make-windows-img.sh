@@ -49,6 +49,7 @@ fi
 
 # Create a disk image.
 guestfish <<EOF
+set-program virt-testing
 sparse $IMAGENAME-t 512M
 run
 
