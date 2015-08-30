@@ -51,6 +51,7 @@ let rec convert dir options source =
 
   message (f_"Opening the source");
   let g = open_guestfs ~identifier:"v2v" () in
+  g#set_program "virt-v2v";
   g#set_memsize (g#get_memsize () * 2);
   (* Setting the number of vCPUs allows parallel mkinitrd, but make
    * sure this is not too large because each vCPU consumes guest RAM.
