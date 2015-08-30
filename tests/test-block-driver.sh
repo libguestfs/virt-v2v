@@ -99,7 +99,11 @@ check_driver_presence ()
 
     local virtio_dir="/Windows/Drivers/VirtIO"
 
-    guestfish --ro -a "$img" -i >$response <<-EOM
+    guestfish >$response <<-EOM
+        add-ro $img
+        set-program virt-testing
+        run
+        mount-ro /dev/sda2 /
         is-dir $virtio_dir
         is-file $virtio_dir/$drv.cat
         is-file $virtio_dir/$drv.inf
