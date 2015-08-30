@@ -80,6 +80,12 @@ mktest ()
 :> "$script"
 :> "$expected"
 
+cat >> "$script" <<EOF
+  set-program virt-testing
+  run
+  mount /dev/sda2 /
+EOF
+
 firstboot_dir="/Program Files/Guestfs/Firstboot"
 mktest "is-dir \"$firstboot_dir\"" true
 mktest "is-file \"$firstboot_dir/firstboot.bat\"" true
@@ -92,5 +98,5 @@ for drv in netkvm vioscsi viostor; do
     done
 done
 
-guestfish --ro -a "$d/windows-sda" -i < "$script" > "$response"
+guestfish --ro -a "$d/windows-sda" < "$script" > "$response"
 diff -u "$expected" "$response"
