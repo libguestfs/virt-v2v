@@ -283,6 +283,7 @@ and copy_from_virtio_win g inspect srcdir destdir filter missing =
     let g2 =
       try
         let g2 = open_guestfs ~identifier:"virtio_win" () in
+        g#set_program "virt-v2v";
         g2#add_drive_opts virtio_win ~readonly:true;
         g2#launch ();
         g2
