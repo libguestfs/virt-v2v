@@ -55,6 +55,7 @@ let rec convert input_disks options source =
 
   message (f_"Opening the source");
   let g = open_guestfs ~identifier:"v2v" () in
+  g#set_program "virt-v2v";
   let memsize =
     match options.memsize with
     | None ->
