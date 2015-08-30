@@ -69,6 +69,17 @@ mktest ()
 :> "$script"
 :> "$expected"
 
+cat >> "$script" <<EOF
+  set-program virt-testing
+  run
+  inspect-os
+  mount /dev/sda2 /
+EOF
+
+cat >> "$expected" <<EOF
+/dev/sda2
+EOF
+
 firstboot_dir="/Program Files/Guestfs/Firstboot"
 mktest "is-dir \"$firstboot_dir\"" true
 mktest "is-file \"$firstboot_dir/firstboot.bat\"" true
@@ -78,7 +89,7 @@ mktest "ls \"$virtio_dir\"" "$(cat test-phony-$guestname-ls.txt)"
 osinfo_name="${guestname%-32}"
 mktest "inspect-get-osinfo /dev/sda2" "$osinfo_name"
 
-guestfish --ro -a "$d/$guestname-sda" -i < "$script" > "$response"
+guestfish --ro -a "$d/$guestname-sda" < "$script" > "$response"
 diff -u "$expected" "$response"
 
 # host osinfo-db may be too old for win2k25
