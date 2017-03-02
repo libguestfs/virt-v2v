@@ -77,7 +77,7 @@ module Disk = struct
       s_firmware = UnknownFirmware; (* causes virt-v2v to autodetect *)
       s_uefi_secureboot = false;
       s_display =
-        Some { s_display_type = Window; s_keymap = None; s_password = None;
+        Some { s_display_type = VNC; s_keymap = None; s_password = None;
                s_listen = LNoListen; s_port = None };
       s_sound = None;
       s_disks = s_disks;
