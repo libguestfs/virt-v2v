@@ -491,10 +491,8 @@ def create_disk(connection):
             # size, based on qemu-img measure of the overlay.
             initial_size=params['disk_size'],
             provisioned_size=params['disk_size'],
-            # XXX Ignores params['output_sparse'].
-            # Handling this properly will be complex, see:
             # https://www.redhat.com/archives/libguestfs/2018-March/msg00177.html
-            sparse=True,
+            sparse=params['output_sparse'],
             storage_domains=[
                 types.StorageDomain(
                     name=params['output_storage'],
