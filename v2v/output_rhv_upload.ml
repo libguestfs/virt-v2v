@@ -135,16 +135,9 @@ let error_unless_nbdkit_compiled_with_selinux config =
       error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
   )
 
-(* Output sparse must be sparse.  We may be able to
- * lift this limitation in future, but it requires changes on the
- * RHV side.  See TODO file for details.  XXX
- *)
+(* Output format must be raw. *)
 let error_current_limitation required_param =
   error (f_"rhv-upload: currently you must use ‘%s’.  This restriction will be loosened in a future version.") required_param
-
-let error_unless_output_alloc_sparse output_alloc =
-  if output_alloc <> Sparse then
-    error_current_limitation "-oa sparse"
 
 let json_optstring = function
   | Some s -> JSON.String s
@@ -247,7 +240,6 @@ object
     error_unless_nbdkit_min_version config;
     error_unless_nbdkit_python_plugin_working plugin_script;
     error_unless_nbdkit_compiled_with_selinux config;
-    error_unless_output_alloc_sparse output_alloc;
 
     (* Python code prechecks. *)
     let precheck_fn = tmpdir // "v2vprecheck.json" in
