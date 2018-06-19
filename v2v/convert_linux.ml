@@ -125,10 +125,25 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
 
     SELinux_relabel.relabel g;
 
-    (* XXX Look up this information in libosinfo in future. *)
+    (* Pivot on the year 2007.  Any Linux distro from earlier than
+     * 2007 should use i440fx, anything 2007 or newer should use q35.
+     * XXX Look up this information in libosinfo in future.
+     *)
     let machine =
-      match inspect.i_arch with
-      | "i386"|"x86_64" -> I440FX
+      match inspect.i_arch, inspect.i_distro, inspect.i_major_version with
+      | ("i386"|"x86_64"), "fedora", _ -> Q35
+      | ("i386"|"x86_64"), ("rhel"|"centos"|"scientificlinux"|
+                            "redhat-based"|"oraclelinux"), major ->
+         if major <= 4 then I440FX else Q35
+      | ("i386"|"x86_64"), ("sles"|"suse-based"|"opensuse"), major ->
+         if major < 10 then I440FX else Q35
+      | ("i386"|"x86_64"), ("debian"|"ubuntu"|"linuxmint"|
+                            "kalilinux"), major ->
+         if major < 4 then I440FX else Q35
+
+      (* reasonable default for all modern Linux kernels *)
+      | ("i386"|"x86_64"), _, _ -> Q35
+
       | _ -> Virt in
 
     (* Return guest capabilities from the convert () function. *)

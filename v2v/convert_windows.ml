@@ -244,10 +244,14 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
         warning (f_"this guest has Anti-Virus (AV) software and a new virtio block device driver was installed.  In some circumstances, AV may prevent new drivers from working (resulting in a 7B boot error).  If this happens, try disabling AV before doing the conversion.");
     );
 
-    (* XXX Look up this information in libosinfo in future. *)
+    (* Pivot on the year 2007.  Any Windows version from earlier than
+     * 2007 should use i440fx, anything 2007 or newer should use q35.
+     * Luckily this coincides almost exactly with the release of NT 6.
+     * XXX Look up this information in libosinfo in future.
+     *)
     let machine =
-      match inspect.i_arch with
-      | "i386"|"x86_64" -> I440FX
+      match inspect.i_arch, inspect.i_major_version with
+      | ("i386"|"x86_64"), major -> if major < 6 then I440FX else Q35
       | _ -> Virt in
 
     (* Return guest capabilities from the convert () function. *)

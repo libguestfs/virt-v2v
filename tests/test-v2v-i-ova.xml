@@ -15,7 +15,7 @@
     <apic/>
   </features>
   <os>
-    <type arch='x86_64' machine='pc'>hvm</type>
+    <type arch='x86_64' machine='q35'>hvm</type>
   </os>
   <on_poweroff>destroy</on_poweroff>
   <on_reboot>restart</on_reboot>
