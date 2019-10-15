@@ -220,12 +220,11 @@ XOBJECTS = $(BOBJECTS:.cmo=.cmx)
 # option to be passed to gcc, so we don't try linking against an
 # installed copy of libguestfs.
 OCAMLPACKAGES = \
-	-package str,unix \
+	-package str,unix,guestfs \
 	-I $(top_builddir)/common/utils/.libs \
 	-I $(top_builddir)/common/qemuopts/.libs \
 	-I $(top_builddir)/lib/.libs \
 	-I $(top_builddir)/gnulib/lib/.libs \
-	-I $(top_builddir)/ocaml \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlutils \
 	-I $(top_builddir)/common/mlgettext \
@@ -256,7 +255,6 @@ endif
 
 OCAMLLINKFLAGS = \
 	mlstdutils.$(MLARCHIVE) \
-	mlguestfs.$(MLARCHIVE) \
 	mlgettext.$(MLARCHIVE) \
 	mlpcre.$(MLARCHIVE) \
 	mlxml.$(MLARCHIVE) \
@@ -285,6 +283,7 @@ virt_v2v_copy_to_local_CFLAGS = \
 	$(LIBVIRT_CFLAGS)
 
 COPY_TO_LOCAL_BOBJECTS = \
+	config.cmo \
 	types.cmo \
 	uefi.cmo \
 	utils.cmo \
@@ -473,7 +472,6 @@ if HAVE_OCAML_PKG_OUNIT
 TESTS += v2v_unit_tests var_expander_tests
 endif
 
-if ENABLE_APPLIANCE
 TESTS += \
 	test-v2v-cdrom.sh \
 	test-v2v-floppy.sh \
@@ -503,11 +501,9 @@ TESTS += \
 	test-v2v-windows-conversion.sh \
 	$(SLOW_TESTS) \
 	$(ROOT_TESTS)
-endif ENABLE_APPLIANCE
 
 # The VMDK file is used for some -i ova tests.
 check_DATA = windows.vmdk
-if ENABLE_APPLIANCE
 windows.vmdk: ../test-data/phony-guests/windows.img
 	rm -f $@ $@-t
 	if [ -s $< ]; then \
@@ -516,10 +512,6 @@ windows.vmdk: ../test-data/phony-guests/windows.img
 	else \
 	    touch $@; \
 	fi
-else
-windows.vmdk:
-	touch $@
-endif
 
 DISTCLEANFILES += \
 	windows.vmdk
@@ -683,6 +675,7 @@ check_PROGRAMS += v2v_unit_tests var_expander_tests
 endif
 
 v2v_unit_tests_BOBJECTS = \
+	config.cmo \
 	types.cmo \
 	uefi.cmo \
 	utils.cmo \

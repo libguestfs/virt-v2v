@@ -1,0 +1,129 @@
+#!/bin/bash -
+# libguestfs 'run' programs locally script
+# Copyright (C) 2011-2019 Red Hat Inc.
+#
+# @configure_input@
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+
+#----------------------------------------------------------------------
+
+# With this script you can run all the virt tools without needing to
+# install them first.  You just have to do for example:
+#
+#   ./run virt-inspector [args ...]
+#
+# This works for any C program, virt tools, and most non-C bindings
+# and programs in the libguestfs distribution.
+#
+# For lots more ways to use this script, see the libguestfs
+# guestfs-building(1) man page.
+#
+# The script should also be used for tests like this:
+#
+#   TESTS_ENVIRONMENT = ... $(top_builddir)/run --test
+#
+# The --test parameter introduces a timeout, stopping tests from
+# running forever.
+
+#----------------------------------------------------------------------
+
+if [ "$1" = "--test" ]; then
+    timeout_mode=1
+    shift
+fi
+
+# Function to intelligently prepend a path to an environment variable.
+# See http://stackoverflow.com/a/9631350
+prepend()
+{
+    eval $1="$2\${$1:+:\$$1}"
+}
+
+# Source and build directories (absolute paths so this works from any
+# directory).
+s="$(cd @abs_srcdir@ && pwd)"
+b="$(cd @abs_builddir@ && pwd)"
+
+# Set T to current date & time (mainly for valgrind logfile name).
+T=`date +%Y%m%d.%H.%M.%S`
+export T
+
+# Set tmpdir and cachedir so the appliance doesn't conflict with
+# globally installed libguestfs.
+#
+# We set it to a subdirectory ('tmp') so that we can label this
+# subdirectory to make libvirt + sVirt + SELinux enforcing work.
+export LIBGUESTFS_TMPDIR="$b/tmp"
+export LIBGUESTFS_CACHEDIR="$b/tmp"
+mkdir -p "$b/tmp"
+chcon --reference=/tmp "$b/tmp" 2>/dev/null ||:
+
+# Set the PATH to contain the virt-v2v binary.
+prepend PATH "$b/v2v"
+export PATH
+
+# This is a cheap way to find some use-after-free and uninitialized
+# read problems when using glibc.
+random_val="$(@AWK@ 'BEGIN{srand(); print 1+int(255*rand())}' < /dev/null)"
+export MALLOC_PERTURB_=$random_val
+
+# Do we have libtool?  If we have it then we can use it to make
+# running valgrind simpler.  However don't depend on it.
+if libtool --help >/dev/null 2>&1; then
+    libtool="libtool --mode=execute"
+fi
+
+# Avoid GNOME keyring stupidity
+export GNOME_KEYRING_CONTROL=
+export GNOME_KEYRING_PID=
+
+# Run the program.
+if [ -z "$timeout_mode" ]; then
+    exec $libtool "$@"
+fi
+
+# For tests (./run --test):
+#  - timeout if the test takes too long to run
+
+# Originally 1h, but that is not long enough to run the C API
+# tests on Koji.
+timeout_period=4h
+timeout_kill=30s
+
+# Must use the --foreground option (RHBZ#1025269).
+if timeout --foreground 2 sleep 0 >/dev/null 2>&1; then
+    # Does this version of timeout have the -k option?  (Not on RHEL 6)
+    if timeout -k 10s 10s true >/dev/null 2>&1; then
+        timeout="timeout --foreground -k $timeout_kill $timeout_period"
+    fi
+fi
+
+$timeout $libtool "$@"
+fail=$?
+if [ "$fail" -eq 0 ]; then
+    # Test successful.
+    :
+elif [ "$fail" -eq 77 ]; then
+    # Tests return 77 to mean skipped.
+    :
+elif [ "$fail" -eq 124 ]; then
+    # Timed out.
+    echo "$b/run: command timed out after $timeout_period"
+else
+    # Test failed.
+    echo "$b/run: command failed with exit code $fail"
+fi
+exit $fail

@@ -36,11 +36,10 @@ if HAVE_OCAML
 # option to be passed to gcc, so we don't try linking against an
 # installed copy of libguestfs.
 OCAMLPACKAGES = \
-	-package str,unix \
+	-package str,unix,guestfs \
 	-I $(top_builddir)/common/utils/.libs \
 	-I $(top_builddir)/lib/.libs \
 	-I $(top_builddir)/gnulib/lib/.libs \
-	-I $(top_builddir)/ocaml \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
@@ -72,7 +71,7 @@ noinst_LIBRARIES = libv2vth.a
 
 libv2vth_a_CPPFLAGS = \
 	-DGUESTFS_PRIVATE=1 \
-	-I$(top_builddir) -I$(OCAMLLIB) -I$(top_srcdir)/ocaml \
+	-I$(top_builddir) -I$(OCAMLLIB) \
 	-I$(top_srcdir)/common/utils -I$(top_builddir)/common/utils \
 	-I$(top_srcdir)/lib -I$(top_builddir)/lib \
 	-I$(top_srcdir)/gnulib/lib -I$(top_builddir)/gnulib/lib
@@ -84,8 +83,6 @@ libv2vth_a_CFLAGS = \
 
 libv2vth_a_SOURCES = \
 	dummy.c
-
-v2v_test_harness.cmi: $(top_builddir)/ocaml/guestfs.cmi
 
 # Run ocamlfind to perform the install.  ocamlfind refuses to install
 # the package if it is already installed, so remove the old package

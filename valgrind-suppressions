@@ -1,0 +1,417 @@
+# libguestfs
+# Copyright (C) 2009-2019 Red Hat Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Valgrind suppressions used when testing only.  There are no known
+# resource leaks in libguestfs.  This file is only for leaks in
+# libraries that libguestfs uses.
+
+# libnuma
+{
+   libnuma_numa_node_size64_cond
+   Memcheck:Cond
+   fun:*
+   fun:numa_node_size64
+   fun:numa_init
+}
+{
+   libnuma_numa_node_size64_cond_2
+   Memcheck:Cond
+   fun:numa_node_size64
+   fun:numa_init
+}
+{
+   libnuma_numa_node_size64_cond_3
+   Memcheck:Cond
+   fun:*
+   fun:numa_node_size64
+   obj:/usr/lib64/libnuma.so.1
+}
+{
+   libnuma_numa_node_size64_cond_4
+   Memcheck:Cond
+   fun:numa_node_size64
+   obj:/usr/lib64/libnuma.so.1
+}
+{
+   libnuma_numa_node_size64_value8
+   Memcheck:Value8
+   fun:numa_node_size64
+   fun:numa_init
+}
+{
+   libnuma_numa_node_size64_value8_2
+   Memcheck:Value8
+   fun:numa_node_size64
+   obj:/usr/lib64/libnuma.so.1
+}
+
+# libnl
+{
+   libnl_add_routing_table_name_leak
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:add_routing_table_name
+}
+{
+   libnl_add_routing_table_name_leak_2
+   Memcheck:Leak
+   fun:calloc
+   fun:add_routing_table_name
+}
+{
+   libnl_add_proto_name_leak
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:add_proto_name
+}
+{
+   libnl_add_proto_name_leak_2
+   Memcheck:Leak
+   fun:calloc
+   fun:add_proto_name
+}
+{
+   libnl1_malloc_leak
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libnl.so.1.1
+}
+{
+   libnl1_malloc_leak_2
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/lib64/libnl.so.1.1
+}
+{
+   libnl1_malloc_leak_3
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib64/libnl.so.1.1
+}
+{
+   libnl1_calloc_leak
+   Memcheck:Leak
+   fun:calloc
+   obj:/usr/lib/libnl.so.1.1
+}
+{
+   libnl1_calloc_leak_2
+   Memcheck:Leak
+   fun:calloc
+   obj:/lib64/libnl.so.1.1
+}
+{
+   libnl1_calloc_leak_3
+   Memcheck:Leak
+   fun:calloc
+   obj:/usr/lib64/libnl.so.1.1
+}
+
+# OCaml, by design, doesn't bother to free the major heap before
+# calling exit.  Ignore that leak.
+{
+   ocaml_heap_leak
+   Memcheck:Leak
+   ...
+   fun:caml_alloc_for_heap
+}
+# On the other hand, these seem to be a real bugs in OCaml:
+{
+   ocaml_heap_leak_2
+   Memcheck:Leak
+   fun:malloc
+   fun:caml_thread_new_descriptor
+   fun:caml_thread_new
+}
+{
+   ocaml_heap_leak_3
+   Memcheck:Leak
+   fun:malloc
+   fun:caml_thread_new_descriptor
+   fun:caml_thread_initialize
+}
+{
+   ocaml_heap_leak_4
+   Memcheck:Leak
+   ...
+   fun:pthread_create*
+   ...
+   fun:caml_thread_new
+}
+{
+   ocaml_heap_leak_5
+   Memcheck:Leak
+   fun:malloc
+   fun:caml_stat_alloc
+}
+{
+   ocaml_heap_leak_6
+   Memcheck:Leak
+   fun:malloc
+   ...
+   fun:caml_build_primitive_table
+}
+
+# The OCaml PCRE.compile function calls pcre_compile2 which allocates
+# memory.  If these regexps are stored in a global variable then they
+# can never be freed.  This is not really a bug, so ignore it.
+{
+   ocaml_pcre_globals
+   Memcheck:Leak
+   fun:malloc
+   fun:pcre_compile2
+   ...
+}
+
+# glibc
+{
+   glibc_cond
+   Memcheck:Cond
+   fun:index
+   fun:expand_dynamic_string_token
+}
+
+# Not a real leak - glibc doesn't bother to free thread
+# data (TLS in this case).
+{
+   glibc_leak_1
+   Memcheck:Leak
+   fun:calloc
+   fun:allocate_dtv
+}
+
+# Not a real leak - same as above, but glibc renamed the function.
+{
+   glibc_leak_2
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_allocate_tls
+}
+
+# Not a real leak.
+{
+   glibc_leak_3
+   Memcheck:Leak
+   ...
+   fun:__add_to_environ
+   fun:setenv
+}
+
+# libvirt calls gnutls_global_init but doesn't call the
+# corresponding gnutls_global_deinit function because of
+# thread-safety issues (in GnuTLS).
+{
+   libvirt_leak_1
+   Memcheck:Leak
+   ...
+   fun:gnutls_global_init
+   fun:virInitialize
+}
+
+# RHBZ#847429
+{
+   libvirt_leak_2
+   Memcheck:Leak
+   ...
+   fun:tryLoadOne
+   fun:VBoxCGlueInit
+   fun:vboxRegister
+   fun:virInitialize
+}
+
+# Variant of RHBZ#847429 with libvirt 1.0.2
+{
+   libvirt_leak_3
+   Memcheck:Leak
+   ...
+   fun:tryLoadOne
+   fun:VBoxCGlueInit
+   fun:vboxRegister
+   fun:virGlobalInit
+}
+
+# RHBZ#913145
+{
+   libvirt_leak_4
+   Memcheck:Leak
+   ...
+   fun:virNetClientProgramCall
+}
+
+# RHBZ#1116427
+{
+   libvirt_leak_5
+   Memcheck:Leak
+   ...
+   fun:virFileFindResourceFull
+}
+# RHBZ#1135388
+{
+   libvirt_leak_6
+   Memcheck:Leak
+   ...
+   fun:testDomainGenerateIfnames
+}
+# Possibly RHBZ#1145649
+{
+   libvirt_leak_7
+   Memcheck:Leak
+   ...
+   fun:selabel_close
+   fun:virSecuritySELinuxSecurityDriverClose
+}
+# RHBZ#1215042
+{
+   libvirt_leak_8
+   Memcheck:Leak
+   ...
+   fun:virGetUserRuntimeDirectory
+   fun:virNetSocketNewConnectUNIX
+}
+
+# FUSE leaks the per-thread context (although the code looks
+# like it attempts to clean it up).  In older fuse, it uses
+# malloc.  In newer fuse it uses calloc.
+{
+   fuse_leak_1
+   Memcheck:Leak
+   fun:malloc
+   fun:fuse_get_context_internal
+}
+
+{
+   fuse_leak_2
+   Memcheck:Leak
+   fun:calloc
+   fun:fuse_get_context_internal
+}
+
+# ld-*.so
+{
+   ld_leak
+   Memcheck:Leak
+   ...
+   fun:_dl_init
+}
+
+# Memory leak in libmagic (RHBZ#919466).
+{
+   libmagic_leak
+   Memcheck:Leak
+   ...
+   fun:magic_getpath
+}
+
+# Another memory leak in libmagic.
+{
+   libmagic_leak_2
+   Memcheck:Leak
+   ...
+   fun:file_apprentice
+}
+
+# Gtk
+{
+   gtk_leak
+   Memcheck:Leak
+   ...
+   fun:gtk_init_check
+}
+
+{
+   gtk_leak_2
+   Memcheck:Leak
+   ...
+   fun:gdk_display_manager_get
+}
+
+{
+   gtk_leak_3
+   Memcheck:Leak
+   ...
+   fun:_gdk_x11_screen_new
+}
+
+{
+   glib_leak_1
+   Memcheck:Leak
+   ...
+   fun:g_type_register_static
+}
+
+{
+   glib_leak_2
+   Memcheck:Leak
+   ...
+   fun:g_type_class_ref
+}
+
+# Perl
+# note: Perl leaks memory by design, this just suppresses them.
+{
+   perl_leak_1
+   Memcheck:Leak
+   ...
+   fun:Perl_safesysmalloc
+}
+
+{
+   perl_leak_2
+   Memcheck:Leak
+   ...
+   fun:Perl_safesysrealloc
+}
+
+{
+   perl_leak_3
+   Memcheck:Leak
+   ...
+   fun:Perl_safesyscalloc
+}
+
+{
+   perl_leak_4
+   Memcheck:Leak
+   ...
+   fun:Perl_yyparse
+}
+
+{
+   perl_leak_5
+   Memcheck:Leak
+   ...
+   fun:Perl_re_compile
+}
+
+{
+   perl_leak_6
+   Memcheck:Leak
+   fun:malloc
+   fun:Perl_refcounted_he_new_pvn
+}
+
+{
+   perl_leak_7
+   Memcheck:Leak
+   ...
+   fun:Perl_re_op_compile
+}

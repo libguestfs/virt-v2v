@@ -1,0 +1,6 @@
+/.guestfs-*
+/guestfs.*
+/libguestfs??????/
+/run-*
+/v2vovl*.qcow2
+/valgrind-*.log
