@@ -33,6 +33,7 @@ export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
 # We don't want to upload to the real glance, so introduce a fake
 # glance binary.
 ln -sf "$(which echo)" glance
+export PATH=.:$PATH
 
 $VG virt-v2v --debug-gc \
     -i libvirt -ic "$libvirt_uri" windows \

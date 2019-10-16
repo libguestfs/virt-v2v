@@ -110,6 +110,8 @@ Makefile.in
 /test-data/phony-guests/windows-software
 /test-data/phony-guests/windows-system
 /tests/libvirt-is-version
+/tests/test-v2v-conversion-of-*.sh
+/tests/windows.vmdk
 /v2v/.depend
 /v2v/config.ml
 /v2v/oUnit-*
@@ -122,7 +124,6 @@ Makefile.in
 /v2v/test-harness/META
 /v2v/test-harness/stamp-virt-v2v-test-harness.pod
 /v2v/test-harness/virt-v2v-test-harness.1
-/v2v/test-v2v-conversion-of-*.sh
 /v2v/uefi.ml
 /v2v/uefi.mli
 /v2v/v2v_unit_tests
@@ -137,7 +138,6 @@ Makefile.in
 /v2v/virt-v2v-output-openstack.1
 /v2v/virt-v2v-output-rhv.1
 /v2v/virt-v2v-support.1
-/v2v/windows.vmdk
 /website/*.html
 /website/README.txt
 /website/TODO.txt
