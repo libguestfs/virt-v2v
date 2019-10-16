@@ -31,18 +31,14 @@ if ENABLE_GNULIB_TESTS
 SUBDIRS += gnulib/tests
 endif
 
-SUBDIRS += common/errnostring
 SUBDIRS += common/qemuopts
 SUBDIRS += common/utils
-SUBDIRS += common/structs
 SUBDIRS += common/mlutils
 SUBDIRS += common/mlaugeas
 SUBDIRS += common/mlpcre
 SUBDIRS += common/options
-SUBDIRS += common/visit
 SUBDIRS += common/windows
 SUBDIRS += common/mlgettext
-SUBDIRS += common/mlvisit
 SUBDIRS += common/mlxml
 SUBDIRS += common/mltools
 SUBDIRS += common/mlcustomize

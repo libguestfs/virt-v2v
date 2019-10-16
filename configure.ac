@@ -101,7 +101,6 @@ AC_CONFIG_FILES([run],
 dnl NB: Remove common/mlstdutils/guestfs_config.ml in future XXX
 AC_CONFIG_FILES([Makefile
                  bash/Makefile
-                 common/errnostring/Makefile
                  common/options/Makefile
                  common/mlaugeas/Makefile
                  common/mlcustomize/Makefile
@@ -113,12 +112,9 @@ AC_CONFIG_FILES([Makefile
                  common/mltools/Makefile
                  common/mlutils/Makefile
                  common/mlv2v/Makefile
-                 common/mlvisit/Makefile
                  common/mlxml/Makefile
                  common/qemuopts/Makefile
-                 common/structs/Makefile
                  common/utils/Makefile
-                 common/visit/Makefile
                  common/windows/Makefile
                  docs/Makefile
                  gnulib/lib/Makefile
