@@ -109,6 +109,10 @@ Makefile.in
 /test-data/phony-guests/windows.img
 /test-data/phony-guests/windows-software
 /test-data/phony-guests/windows-system
+/test-harness/.depend
+/test-harness/META
+/test-harness/stamp-virt-v2v-test-harness.pod
+/test-harness/virt-v2v-test-harness.1
 /tests/libvirt-is-version
 /tests/test-v2v-conversion-of-*.sh
 /tests/windows.vmdk
@@ -120,10 +124,6 @@ Makefile.in
 /v2v/real-*.img
 /v2v/real-*.xml
 /v2v/stamp-virt-v2v*.pod
-/v2v/test-harness/.depend
-/v2v/test-harness/META
-/v2v/test-harness/stamp-virt-v2v-test-harness.pod
-/v2v/test-harness/virt-v2v-test-harness.1
 /v2v/uefi.ml
 /v2v/uefi.mli
 /v2v/v2v_unit_tests

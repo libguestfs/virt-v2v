@@ -49,7 +49,7 @@ SUBDIRS += common/mlcustomize
 SUBDIRS += common/mlv2v
 SUBDIRS += common/mllibvirt
 SUBDIRS += v2v
-SUBDIRS += v2v/test-harness
+SUBDIRS += test-harness
 
 SUBDIRS += tests
 

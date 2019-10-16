@@ -134,11 +134,11 @@ AC_CONFIG_FILES([Makefile
                  test-data/files/Makefile
                  test-data/phony-guests/Makefile
                  test-data/phony-guests/guests.xml
+                 test-harness/Makefile
+                 test-harness/META
                  tests/Makefile
                  v2v/Makefile
-                 v2v/config.ml
-                 v2v/test-harness/Makefile
-                 v2v/test-harness/META])
+                 v2v/config.ml])
 
 AC_OUTPUT
 

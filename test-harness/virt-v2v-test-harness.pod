@@ -68,7 +68,7 @@ The OCaml module is C<V2v_test_harness>.
 
 The easiest way is to compile libguestfs from source (I<note> do not
 install it).  The test harness will be in
-C<libguestfs/v2v/test-harness>
+C<virt-v2v.git/test-harness>
 
 It is also possible to install test harness as an OCaml module.
 
@@ -77,7 +77,7 @@ It is also possible to install test harness as an OCaml module.
 Once you have checked out the freely redistributed test cases from the
 repository, do:
 
- ./configure [--with-test-harness=/path/to/libguestfs/v2v/test-harness]
+ ./configure [--with-test-harness=/path/to/virt-v2v/test-harness]
  make
  make check -k
 
