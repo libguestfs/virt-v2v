@@ -120,6 +120,7 @@ AC_CONFIG_FILES([Makefile
                  common/utils/Makefile
                  common/visit/Makefile
                  common/windows/Makefile
+                 docs/Makefile
                  gnulib/lib/Makefile
                  gnulib/tests/Makefile
                  po-docs/Makefile

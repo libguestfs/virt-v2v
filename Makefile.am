@@ -56,6 +56,9 @@ SUBDIRS += tests
 # bash-completion
 SUBDIRS += bash
 
+# Documentation
+SUBDIRS += docs
+
 # After all source files were used we can generate the translation strings
 SUBDIRS += po
 
