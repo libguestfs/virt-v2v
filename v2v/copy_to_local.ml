@@ -120,8 +120,8 @@ read the man page virt-v2v-copy-to-local(1).
 
   (* Print the version, easier than asking users to tell us. *)
   debug "%s: %s %s (%s)"
-        prog Guestfs_config.package_name
-        Guestfs_config.package_version Guestfs_config.host_cpu;
+        prog Config.package_name
+        Config.package_version Config.host_cpu;
 
   (* Get the remote libvirt XML. *)
   message (f_"Fetching the remote libvirt XML metadata ...");

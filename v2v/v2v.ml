@@ -56,8 +56,8 @@ let rec main () =
 
   (* Print the version, easier than asking users to tell us. *)
   debug "%s: %s %s (%s)"
-        prog Guestfs_config.package_name Guestfs_config.package_version_full
-        Guestfs_config.host_cpu;
+        prog Config.package_name Config.package_version_full
+        Config.host_cpu;
 
   (* Print the libvirt version if debugging. *)
   if verbose () then (

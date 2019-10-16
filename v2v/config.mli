@@ -16,7 +16,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *)
 
-val virt_v2v_nbdkit_python_plugin : string
+val package_name : string
+(** The configure value [@PACKAGE_NAME@] *)
+
+val package_version : string
+(** The configure value [@PACKAGE_VERSION@] *)
+
+val package_version_full : string
+(** The configure value [@PACKAGE_VERSION_FULL@] *)
+
+val prefix : string
+(** The configure value [@prefix@] *)
+
+val datadir : string
+(** The configure value [@datadir@] *)
+
+val host_cpu : string
+(** The configure value [@host_cpu@] *)
+
+val nbdkit_python_plugin : string
 (** Return the name of the nbdkit python plugin used by
     [virt-v2v -o rhv-upload].
 

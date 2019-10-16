@@ -86,7 +86,7 @@ let parse_output_options options =
 
   { rhv_cafile; rhv_cluster; rhv_direct; rhv_verifypeer; rhv_disk_uuids }
 
-let nbdkit_python_plugin = Config.virt_v2v_nbdkit_python_plugin
+let nbdkit_python_plugin = Config.nbdkit_python_plugin
 let pidfile_timeout = 30
 let finalization_timeout = 5*60
 

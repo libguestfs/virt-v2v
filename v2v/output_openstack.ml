@@ -477,7 +477,7 @@ object
                   source.s_name (i+1) nr_disks in
 
         let volume_properties = ref [
-          "virt_v2v_version", Guestfs_config.package_version_full;
+          "virt_v2v_version", Config.package_version_full;
           "virt_v2v_conversion_date", iso_time;
           "virt_v2v_guest_name", source.s_name;
           "virt_v2v_disk_index", sprintf "%d/%d" (i+1) nr_disks;

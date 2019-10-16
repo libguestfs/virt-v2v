@@ -17,4 +17,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *)
 
-let virt_v2v_nbdkit_python_plugin = "@VIRT_V2V_NBDKIT_PYTHON_PLUGIN@"
+let package_name = "@PACKAGE_NAME@"
+let package_version = "@PACKAGE_VERSION@"
+let package_version_full = "@PACKAGE_VERSION_FULL@"
+let prefix = "@prefix@"
+let datadir = prefix ^ "/share"
+let host_cpu = "@host_cpu@"
+let nbdkit_python_plugin = "@VIRT_V2V_NBDKIT_PYTHON_PLUGIN@"
