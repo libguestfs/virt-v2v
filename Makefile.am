@@ -68,6 +68,7 @@ EXTRA_DIST = \
 	.gitignore \
 	bootstrap \
 	autogen.sh \
+	cfg.mk \
 	check-mli.sh \
 	common/.gitignore \
 	common/README \
