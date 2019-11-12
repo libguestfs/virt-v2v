@@ -73,9 +73,7 @@ TESTS = \
 	test-v2v-it-vddk-io-query.sh \
 	test-v2v-o-rhv-upload-oo-query.sh \
 	test-v2v-o-vdsm-oo-query.sh \
-	test-v2v-bad-networks-and-bridges.sh
-
-TESTS += \
+	test-v2v-bad-networks-and-bridges.sh \
 	test-v2v-cdrom.sh \
 	test-v2v-floppy.sh \
 	test-v2v-i-disk.sh \
@@ -102,6 +100,7 @@ TESTS += \
 	test-v2v-sound.sh \
 	test-v2v-virtio-win-iso.sh \
 	test-v2v-windows-conversion.sh \
+	rhbz1232192.sh \
 	$(SLOW_TESTS) \
 	$(ROOT_TESTS)
 
@@ -267,4 +266,6 @@ EXTRA_DIST += \
 	test-v2v-sound.xml \
 	test-v2v-trim.sh \
 	test-v2v-virtio-win-iso.sh \
-	test-v2v-windows-conversion.sh
+	test-v2v-windows-conversion.sh \
+	rhbz1232192.sh \
+	rhbz1232192.xml
