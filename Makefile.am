@@ -77,6 +77,21 @@ EXTRA_DIST = \
 	podcheck.pl \
 	tmp/.gitignore \
 	valgrind-suppressions \
+	website/bugs.png \
+	website/communicate.png \
+	website/documentation.png \
+	website/download.png \
+	website/draft.png \
+	website/draft.svg \
+	website/easytoread.css \
+	website/feed.css \
+	website/fish-5yrs.svg \
+	website/fish.png \
+	website/git.png \
+	website/index.css \
+	website/index.html.in \
+	website/pod.css \
+	website/standard.css \
 	zanata.xml \
 	zanata-pull.sh
 
@@ -173,6 +188,15 @@ maintainer-check-extra-dist:
 	( git ls-files ; \
 	  cd common; git ls-files | sed 's,^,common/,' ) | \
 	  grep -v '^common$$' | \
+	  grep -v '^common/edit/' | \
+	  grep -v '^common/errnostring/' | \
+	  grep -v '^common/mlprogress/' | \
+	  grep -v '^common/mlvisit/' | \
+	  grep -v '^common/parallel/' | \
+	  grep -v '^common/progress/' | \
+	  grep -v '^common/protocol/' | \
+	  grep -v '^common/structs/' | \
+	  grep -v '^common/visit/' | \
 	  grep -v '^intltool-.*\.in' | \
 	  grep -v '^\.gitmodules' | \
 	  grep -v '^\.gnulib' | \
