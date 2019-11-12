@@ -46,6 +46,7 @@ Makefile.in
 /docs/stamp-virt-v2v*.pod
 /docs/virt-v2v.1
 /docs/virt-v2v-copy-to-local.1
+/docs/virt-v2v-hacking.1
 /docs/virt-v2v-input-vmware.1
 /docs/virt-v2v-input-xen.1
 /docs/virt-v2v-output-local.1
