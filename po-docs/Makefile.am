@@ -30,7 +30,7 @@ linguas = ja uk
 linguas_not_translated = cs de en_GB es eu fr nl pt_BR tg zh_CN
 
 EXTRA_DIST = \
-	libguestfs-docs.pot \
+	virt-v2v-docs.pot \
 	$(linguas:%=%.po) \
 	$(linguas_not_translated:%=%.po) \
 	podfiles
@@ -43,7 +43,7 @@ CLEANFILES += po4a.conf
 # XXX Is there a better way?
 SUBDIRS = $(linguas)
 
-update-po: libguestfs-docs.pot
+update-po: virt-v2v-docs.pot
 
 # Note: po4a puts the following junk at the top of every POD file it
 # generates:
@@ -51,7 +51,7 @@ update-po: libguestfs-docs.pot
 #  - a probably bogus =encoding line
 # Remove both.
 # XXX Fix po4a so it doesn't do this.
-libguestfs-docs.pot: po4a.conf
+virt-v2v-docs.pot: po4a.conf
 	$(PO4A) \
 	  -M utf-8 -L utf-8 -A utf-8 \
 	  -v \
