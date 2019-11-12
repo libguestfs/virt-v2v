@@ -75,6 +75,11 @@ v2v/output_openstack.ml
 v2v/output_qemu.ml
 v2v/output_rhv.ml
 v2v/output_rhv_upload.ml
+v2v/output_rhv_upload_createvm_source.ml
+v2v/output_rhv_upload_deletedisks_source.ml
+v2v/output_rhv_upload_plugin_source.ml
+v2v/output_rhv_upload_precheck_source.ml
+v2v/output_rhv_upload_vmcheck_source.ml
 v2v/output_vdsm.ml
 v2v/parse_libvirt_xml.ml
 v2v/parse_ova.ml
@@ -83,8 +88,8 @@ v2v/parse_vmx.ml
 v2v/python_script.ml
 v2v/qemuopts.ml
 v2v/target_bus_assignment.ml
-v2v/test-harness/v2v_test_harness.ml
 v2v/types.ml
+v2v/uefi.ml
 v2v/utils.ml
 v2v/v2v.ml
 v2v/v2v_unit_tests.ml
