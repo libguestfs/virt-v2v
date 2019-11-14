@@ -169,6 +169,13 @@ let common_create ?bandwidth plugin_name plugin_args plugin_env =
     )
     else [] in
 
+  (* Caching extents speeds up qemu-img, especially its consecutive
+     block_status requests with req_one=1.
+  *)
+  if probe_filter "cacheextents" then (
+    add_arg "--filter"; add_arg "cacheextents"
+  );
+
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
    *)
