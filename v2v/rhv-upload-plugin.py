@@ -565,9 +565,6 @@ def close(h):
 # (https://pypi.org/project/uhttplib/)
 # Ported to Python 3 by Irit Goihman.
 
-class UnsupportedError(Exception):
-    pass
-
 class UnixHTTPConnection(HTTPConnection):
     def __init__(self, path, timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
         self.path = path
