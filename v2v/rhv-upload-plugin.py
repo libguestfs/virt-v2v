@@ -553,7 +553,8 @@ def close(h):
         delete_disk_on_failure(h)
         raise
 
-    connection.close()
+    finally:
+        connection.close()
 
 # Modify http.client.HTTPConnection to work over a Unix domain socket.
 # Derived from uhttplib written by Erik van Zijst under an MIT license.
