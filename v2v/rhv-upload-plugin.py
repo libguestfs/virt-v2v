@@ -57,54 +57,6 @@ def debug(s):
         print(s, file=sys.stderr)
         sys.stderr.flush()
 
-def find_host(connection):
-    """Return the current host object or None."""
-    try:
-        with builtins.open("/etc/vdsm/vdsm.id") as f:
-            vdsm_id = f.readline().strip()
-    except Exception as e:
-        # This is most likely not an oVirt host.
-        debug("cannot read /etc/vdsm/vdsm.id, using any host: %s" % e)
-        return None
-
-    debug("hw_id = %r" % vdsm_id)
-
-    system_service = connection.system_service()
-    storage_name = params['output_storage']
-    data_centers = system_service.data_centers_service().list(
-        search='storage.name=%s' % storage_name,
-        case_sensitive=True,
-    )
-    if len(data_centers) == 0:
-        # The storage domain is not attached to a datacenter
-        # (shouldn't happen, would fail on disk creation).
-        debug("storange domain (%s) is not attached to a DC" % storage_name)
-        return None
-
-    datacenter = data_centers[0]
-    debug("datacenter = %s" % datacenter.name)
-
-    hosts_service = system_service.hosts_service()
-    hosts = hosts_service.list(
-        search="hw_id=%s and datacenter=%s and status=Up"
-               % (vdsm_id, datacenter.name),
-        case_sensitive=True,
-    )
-    if len(hosts) == 0:
-        # Couldn't find a host that's fulfilling the following criteria:
-        # - 'hw_id' equals to 'vdsm_id'
-        # - Its status is 'Up'
-        # - Belongs to the storage domain's datacenter
-        debug("cannot find a running host with hw_id=%r, "
-              "that belongs to datacenter '%s', "
-              "using any host" % (vdsm_id, datacenter.name))
-        return None
-
-    host = hosts[0]
-    debug("host.id = %r" % host.id)
-
-    return types.Host(id = host.id)
-
 def open(readonly):
     # Parse out the username from the output_conn URL.
     parsed = urlparse(params['output_conn'])
@@ -571,3 +523,53 @@ class UnixHTTPConnection(HTTPConnection):
         if self.timeout is not socket._GLOBAL_DEFAULT_TIMEOUT:
             self.sock.settimeout(timeout)
         self.sock.connect(self.path)
+
+# oVirt SDK operations
+
+def find_host(connection):
+    """Return the current host object or None."""
+    try:
+        with builtins.open("/etc/vdsm/vdsm.id") as f:
+            vdsm_id = f.readline().strip()
+    except Exception as e:
+        # This is most likely not an oVirt host.
+        debug("cannot read /etc/vdsm/vdsm.id, using any host: %s" % e)
+        return None
+
+    debug("hw_id = %r" % vdsm_id)
+
+    system_service = connection.system_service()
+    storage_name = params['output_storage']
+    data_centers = system_service.data_centers_service().list(
+        search='storage.name=%s' % storage_name,
+        case_sensitive=True,
+    )
+    if len(data_centers) == 0:
+        # The storage domain is not attached to a datacenter
+        # (shouldn't happen, would fail on disk creation).
+        debug("storange domain (%s) is not attached to a DC" % storage_name)
+        return None
+
+    datacenter = data_centers[0]
+    debug("datacenter = %s" % datacenter.name)
+
+    hosts_service = system_service.hosts_service()
+    hosts = hosts_service.list(
+        search="hw_id=%s and datacenter=%s and status=Up"
+               % (vdsm_id, datacenter.name),
+        case_sensitive=True,
+    )
+    if len(hosts) == 0:
+        # Couldn't find a host that's fulfilling the following criteria:
+        # - 'hw_id' equals to 'vdsm_id'
+        # - Its status is 'Up'
+        # - Belongs to the storage domain's datacenter
+        debug("cannot find a running host with hw_id=%r, "
+              "that belongs to datacenter '%s', "
+              "using any host" % (vdsm_id, datacenter.name))
+        return None
+
+    host = hosts[0]
+    debug("host.id = %r" % host.id)
+
+    return types.Host(id = host.id)
