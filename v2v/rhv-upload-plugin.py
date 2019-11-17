@@ -77,50 +77,10 @@ def open(readonly):
         insecure = params['insecure'],
     )
 
-    system_service = connection.system_service()
-
-    # Create the disk.
-    disks_service = system_service.disks_service()
-    if params['disk_format'] == "raw":
-        disk_format = types.DiskFormat.RAW
-    else:
-        disk_format = types.DiskFormat.COW
-    disk = disks_service.add(
-        disk = types.Disk(
-            # The ID is optional.
-            id = params.get('rhv_disk_uuid'),
-            name = params['disk_name'],
-            description = "Uploaded by virt-v2v",
-            format = disk_format,
-            initial_size = params['disk_size'],
-            provisioned_size = params['disk_size'],
-            # XXX Ignores params['output_sparse'].
-            # Handling this properly will be complex, see:
-            # https://www.redhat.com/archives/libguestfs/2018-March/msg00177.html
-            sparse = True,
-            storage_domains = [
-                types.StorageDomain(
-                    name = params['output_storage'],
-                )
-            ],
-        )
-    )
-
-    # Wait till the disk is up, as the transfer can't start if the
-    # disk is locked:
-    disk_service = disks_service.disk_service(disk.id)
-    debug("disk.id = %r" % disk.id)
-
-    endt = time.time() + timeout
-    while True:
-        time.sleep(1)
-        disk = disk_service.get()
-        if disk.status == types.DiskStatus.OK:
-            break
-        if time.time() > endt:
-            raise RuntimeError("timed out waiting for disk to become unlocked")
+    disk = create_disk(connection)
 
     # Get a reference to the transfer service.
+    system_service = connection.system_service()
     transfers_service = system_service.image_transfers_service()
 
     # Create a new image transfer, using the local host is possible.
@@ -566,3 +526,55 @@ def find_host(connection):
     debug("host.id = %r" % host.id)
 
     return types.Host(id = host.id)
+
+def create_disk(connection):
+    """
+    Create a new disk for the transfer and wait until the disk is ready.
+
+    Returns disk object.
+    """
+    system_service = connection.system_service()
+    disks_service = system_service.disks_service()
+
+    if params['disk_format'] == "raw":
+        disk_format = types.DiskFormat.RAW
+    else:
+        disk_format = types.DiskFormat.COW
+
+    disk = disks_service.add(
+        disk = types.Disk(
+            # The ID is optional.
+            id = params.get('rhv_disk_uuid'),
+            name = params['disk_name'],
+            description = "Uploaded by virt-v2v",
+            format = disk_format,
+            initial_size = params['disk_size'],
+            provisioned_size = params['disk_size'],
+            # XXX Ignores params['output_sparse'].
+            # Handling this properly will be complex, see:
+            # https://www.redhat.com/archives/libguestfs/2018-March/msg00177.html
+            sparse = True,
+            storage_domains = [
+                types.StorageDomain(
+                    name = params['output_storage'],
+                )
+            ],
+        )
+    )
+
+    debug("disk.id = %r" % disk.id)
+
+    # Wait till the disk moved from LOCKED state to OK state, as the transfer
+    # can't start if the disk is locked.
+
+    disk_service = disks_service.disk_service(disk.id)
+    endt = time.time() + timeout
+    while True:
+        time.sleep(1)
+        disk = disk_service.get()
+        if disk.status == types.DiskStatus.OK:
+            break
+        if time.time() > endt:
+            raise RuntimeError("timed out waiting for disk to become unlocked")
+
+    return disk
