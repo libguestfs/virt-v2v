@@ -242,7 +242,6 @@ def open(readonly):
         'can_zero': can_zero,
         'connection': connection,
         'disk': disk,
-        'disk_service': disk_service,
         'failed': False,
         'highestwrite': 0,
         'http': http,
@@ -479,11 +478,12 @@ def close(h):
         # falls through to the exception case and then we can
         # continue.
         disk_id = disk.id
+        disk_service = (
+            connection.system_service().disks_service().disk_service(disk.id))
         start = time.time()
         try:
             while True:
                 time.sleep(1)
-                disk_service = h['disk_service']
                 disk = disk_service.get()
                 if disk.status == types.DiskStatus.LOCKED:
                     if time.time() > start + timeout:
