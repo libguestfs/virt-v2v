@@ -513,11 +513,6 @@ def close(h):
         return
 
     try:
-        # Issue a flush request on close so that the data is written to
-        # persistent store before we create the VM.
-        if h['can_flush']:
-            flush(h)
-
         http.close()
 
         disk = h['disk']
