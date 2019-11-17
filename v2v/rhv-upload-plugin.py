@@ -506,6 +506,8 @@ def close(h):
     # plugin exits.
     sys.stderr.flush()
 
+    http.close()
+
     # If the connection failed earlier ensure we clean up the disk.
     if h['failed']:
         delete_disk_on_failure(h)
@@ -513,8 +515,6 @@ def close(h):
         return
 
     try:
-        http.close()
-
         disk = h['disk']
         transfer_service = h['transfer_service']
 
