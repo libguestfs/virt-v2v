@@ -132,6 +132,10 @@ def open(readonly):
             inactivity_timeout = 3600,
         )
     )
+
+    # At this point the transfer owns the disk and will delete the disk if the
+    # transfer is canceled, or if finalizing the transfer fails.
+
     debug("transfer.id = %r" % transfer.id)
 
     # Get a reference to the created transfer service.
@@ -260,15 +264,12 @@ def can_flush(h):
 def get_size(h):
     return params['disk_size']
 
-# Any unexpected HTTP response status from the server will end up
-# calling this function which logs the full error, pauses the
-# transfer, sets the failed state, and raises a RuntimeError
-# exception.
+# Any unexpected HTTP response status from the server will end up calling this
+# function which logs the full error, sets the failed state, and raises a
+# RuntimeError exception.
 def request_failed(h, r, msg):
-    # Setting the failed flag in the handle causes the disk to be
-    # cleaned up on close.
+    # Setting the failed flag in the handle will cancel the transfer on close.
     h['failed'] = True
-    h['transfer_service'].pause()
 
     status = r.status
     reason = r.reason
@@ -441,15 +442,10 @@ def flush(h):
 
     r.read()
 
-def delete_disk_on_failure(h):
-    transfer_service = h['transfer_service']
-    transfer_service.cancel()
-    disk_service = h['disk_service']
-    disk_service.remove()
-
 def close(h):
     http = h['http']
     connection = h['connection']
+    transfer_service = h['transfer_service']
 
     # This is sometimes necessary because python doesn't set up
     # sys.stderr to be line buffered and so debug, errors or
@@ -459,15 +455,17 @@ def close(h):
 
     http.close()
 
-    # If the connection failed earlier ensure we clean up the disk.
+    # If the connection failed earlier ensure we cancel the trasfer. Canceling
+    # the transfer will delete the disk.
     if h['failed']:
-        delete_disk_on_failure(h)
-        connection.close()
+        try:
+            transfer_service.cancel()
+        finally:
+            connection.close()
         return
 
     try:
         disk = h['disk']
-        transfer_service = h['transfer_service']
 
         transfer_service.finalize()
 
@@ -499,11 +497,6 @@ def close(h):
         # Write the disk ID file.  Only do this on successful completion.
         with builtins.open(params['diskid_file'], 'w') as fp:
             fp.write(disk.id)
-
-    except:
-        # Otherwise on any failure we must clean up the disk.
-        delete_disk_on_failure(h)
-        raise
 
     finally:
         connection.close()
