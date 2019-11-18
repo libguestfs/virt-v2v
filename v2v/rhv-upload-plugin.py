@@ -458,6 +458,11 @@ def close(h):
         with builtins.open(params['diskid_file'], 'w') as fp:
             fp.write(disk.id)
 
+    except:
+        # If oVirt engine fails to finalize the transfer, it will pause the
+        # transfer and keep the disk.
+        transfer_service.cancel()
+        raise
     finally:
         connection.close()
 
