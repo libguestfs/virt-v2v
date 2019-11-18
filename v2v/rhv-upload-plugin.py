@@ -57,21 +57,26 @@ def debug(s):
         print(s, file=sys.stderr)
         sys.stderr.flush()
 
-def open(readonly):
-    # Parse out the username from the output_conn URL.
-    parsed = urlparse(params['output_conn'])
-    username = parsed.username or "admin@internal"
-
-    # Read the password from file.
+def read_password():
+    """
+    Read the password from file.
+    """
     with builtins.open(params['output_password'], 'r') as fp:
-        password = fp.read()
-    password = password.rstrip()
+        data = fp.read()
+    return data.rstrip()
 
-    # Connect to the server.
+def parse_username():
+    """
+    Parse out the username from the output_conn URL.
+    """
+    parsed = urlparse(params['output_conn'])
+    return parsed.username or "admin@internal"
+
+def open(readonly):
     connection = sdk.Connection(
         url = params['output_conn'],
-        username = username,
-        password = password,
+        username = parse_username(),
+        password = read_password(),
         ca_file = params['rhv_cafile'],
         log = logging.getLogger(),
         insecure = params['insecure'],
