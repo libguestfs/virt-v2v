@@ -206,13 +206,12 @@ def open(readonly):
         'can_zero': can_zero,
         'connection': connection,
         'disk_id': disk.id,
+        'transfer': transfer,
         'failed': False,
         'highestwrite': 0,
         'http': http,
         'needs_auth': needs_auth,
         'path': destination_url.path,
-        'transfer': transfer,
-        'transfer_service': transfer_service,
     }
 
 def can_trim(h):
@@ -405,7 +404,11 @@ def flush(h):
 def close(h):
     http = h['http']
     connection = h['connection']
-    transfer_service = h['transfer_service']
+    transfer = h['transfer']
+
+    transfer_service = (connection.system_service()
+                            .image_transfers_service()
+                            .image_transfer_service(transfer.id))
 
     # This is sometimes necessary because python doesn't set up
     # sys.stderr to be line buffered and so debug, errors or
