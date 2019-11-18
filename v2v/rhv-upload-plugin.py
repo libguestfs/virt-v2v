@@ -86,6 +86,7 @@ def open(readonly):
         destination_url = parse_transfer_url(transfer)
         http = create_http(destination_url)
         options = get_options(http, destination_url)
+        http = optimize_http(http, host, options)
     except:
         transfer_service.cancel()
         raise
@@ -93,19 +94,6 @@ def open(readonly):
     debug("imageio features: flush=%(can_flush)r trim=%(can_trim)r "
           "zero=%(can_zero)r unix_socket=%(unix_socket)r"
           % options)
-
-    # If we are connected to imageio on the local host and the
-    # transfer features a unix_socket then we can reconnect to that.
-    if host is not None and options['unix_socket'] is not None:
-        try:
-            http = UnixHTTPConnection(options['unix_socket'])
-        except Exception as e:
-            # Very unlikely failure, but we can recover by using the https
-            # connection.
-            debug("cannot create unix socket connection, using https: %s" % e)
-        else:
-            debug("optimizing connection using unix socket %r"
-                  % options['unix_socket'])
 
     # Save everything we need to make requests in the handle.
     return {
@@ -609,3 +597,22 @@ def get_options(http, url):
     else:
         raise RuntimeError("could not use OPTIONS request: %d: %s" %
                            (r.status, r.reason))
+
+def optimize_http(http, host, options):
+    """
+    Return an optimized http connection using unix socket if we are connected
+    to imageio server on the local host and it features a unix socket.
+    """
+    unix_socket = options['unix_socket']
+
+    if host is not None and unix_socket is not None:
+        try:
+            http = UnixHTTPConnection(unix_socket)
+        except Exception as e:
+            # Very unlikely failure, but we can recover by using the https
+            # connection.
+            debug("cannot create unix socket connection, using https: %s" % e)
+        else:
+            debug("optimizing connection using unix socket %r" % unix_socket)
+
+    return http
