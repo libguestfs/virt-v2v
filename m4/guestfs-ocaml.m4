@@ -104,53 +104,6 @@ if test "x$OCAML_PKG_guestfs" = "xno"; then
     AC_MSG_ERROR([the OCaml module 'guestfs' is required])
 fi
 
-have_Hivex_OPEN_UNSAFE=no
-if test "x$enable_daemon" = "xyes"; then
-    OCAML_PKG_hivex=no
-    AC_CHECK_OCAML_PKG(hivex)
-    if test "x$OCAML_PKG_hivex" = "xno"; then
-        AC_MSG_ERROR([the OCaml module 'hivex' is required])
-    fi
-
-    # Check if Hivex has 'OPEN_UNSAFE' flag.
-    AC_MSG_CHECKING([for Hivex.OPEN_UNSAFE])
-    rm -f conftest.ml
-    echo 'let s = Hivex.OPEN_UNSAFE' > conftest.ml
-    if $OCAMLFIND ocamlc -package hivex -c conftest.ml >&5 2>&5 ; then
-        AC_MSG_RESULT([yes])
-        have_Hivex_OPEN_UNSAFE=yes
-    else
-        AC_MSG_RESULT([no])
-        have_Hivex_OPEN_UNSAFE=no
-    fi
-
-    dnl Check which OCaml runtime to link the daemon again.
-    dnl We can't use AC_CHECK_LIB here unfortunately because
-    dnl the other symbols are resolved by OCaml itself.
-    AC_MSG_CHECKING([which OCaml runtime we should link the daemon with])
-    if test "x$OCAMLOPT" != "xno"; then
-        for f in asmrun_pic asmrun; do
-            if test -f "$OCAMLLIB/lib$f.a"; then
-                CAMLRUN=$f
-                break
-            fi
-        done
-    else
-        for f in camlrun; do
-            if test -f "$OCAMLLIB/lib$f.a"; then
-                CAMLRUN=$f
-                break
-            fi
-        done
-    fi
-    if test "x$CAMLRUN" != "x"; then
-        AC_MSG_RESULT([$CAMLRUN])
-    else
-        AC_MSG_ERROR([could not find or link to libasmrun or libcamlrun])
-    fi
-    AC_SUBST([CAMLRUN])
-fi
-
 OCAML_PKG_gettext=no
 OCAML_PKG_oUnit=no
 ounit_is_v2=no
