@@ -80,41 +80,7 @@ def open(readonly):
     # Use the local host is possible.
     host = find_host(connection) if params['rhv_direct'] else None
     disk = create_disk(connection)
-
-    # Get a reference to the transfer service.
-    system_service = connection.system_service()
-    transfers_service = system_service.image_transfers_service()
-
-    # Create a new image transfer.
-    transfer = transfers_service.add(
-        types.ImageTransfer(
-            disk = types.Disk(id = disk.id),
-            host = host,
-            inactivity_timeout = 3600,
-        )
-    )
-
-    # At this point the transfer owns the disk and will delete the disk if the
-    # transfer is canceled, or if finalizing the transfer fails.
-
-    debug("transfer.id = %r" % transfer.id)
-
-    # Get a reference to the created transfer service.
-    transfer_service = transfers_service.image_transfer_service(transfer.id)
-
-    # After adding a new transfer for the disk, the transfer's status
-    # will be INITIALIZING.  Wait until the init phase is over. The
-    # actual transfer can start when its status is "Transferring".
-    endt = time.time() + timeout
-    while True:
-        transfer = transfer_service.get()
-        if transfer.phase != types.ImageTransferPhase.INITIALIZING:
-            break
-        if time.time() > endt:
-            transfer_service.cancel()
-            raise RuntimeError("timed out waiting for transfer status "
-                               "!= INITIALIZING")
-        time.sleep(1)
+    transfer = create_transfer(connection, disk, host)
 
     # Now we have permission to start the transfer.
     if params['rhv_direct']:
@@ -587,3 +553,44 @@ def create_disk(connection):
                 "timed out waiting for disk %s to become unlocked" % disk.id)
 
     return disk
+
+def create_transfer(connection, disk, host):
+    """
+    Create image transfer and wait until the transfer is ready.
+
+    Returns a transfer object.
+    """
+    system_service = connection.system_service()
+    transfers_service = system_service.image_transfers_service()
+
+    transfer = transfers_service.add(
+        types.ImageTransfer(
+            disk = types.Disk(id = disk.id),
+            host = host,
+            inactivity_timeout = 3600,
+        )
+    )
+
+    # At this point the transfer owns the disk and will delete the disk if the
+    # transfer is canceled, or if finalizing the transfer fails.
+
+    debug("transfer.id = %r" % transfer.id)
+
+    # Get a reference to the created transfer service.
+    transfer_service = transfers_service.image_transfer_service(transfer.id)
+
+    # After adding a new transfer for the disk, the transfer's status
+    # will be INITIALIZING.  Wait until the init phase is over. The
+    # actual transfer can start when its status is "Transferring".
+    endt = time.time() + timeout
+    while True:
+        transfer = transfer_service.get()
+        if transfer.phase != types.ImageTransferPhase.INITIALIZING:
+            break
+        if time.time() > endt:
+            transfer_service.cancel()
+            raise RuntimeError("timed out waiting for transfer status "
+                               "!= INITIALIZING")
+        time.sleep(1)
+
+    return transfer
