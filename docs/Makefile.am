@@ -152,4 +152,5 @@ stamp-virt-v2v-support.pod: virt-v2v-support.pod
 	  $<
 	touch $@
 
+TESTS_ENVIRONMENT = $(top_builddir)/run --test
 TESTS = test-v2v-docs.sh

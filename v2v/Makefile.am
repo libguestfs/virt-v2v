@@ -313,6 +313,7 @@ virt_v2v_copy_to_local_LINK = \
 virttoolsdatadir = $(datadir)/virt-tools
 
 # Unit tests.
+TESTS_ENVIRONMENT = $(top_builddir)/run --test
 TESTS = test-v2v-python-syntax.sh
 
 if HAVE_OCAML_PKG_OUNIT
