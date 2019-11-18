@@ -589,8 +589,10 @@ def create_transfer(connection, disk, host):
             break
         if time.time() > endt:
             transfer_service.cancel()
-            raise RuntimeError("timed out waiting for transfer status "
-                               "!= INITIALIZING")
+            raise RuntimeError(
+                "timed out waiting for transfer %s status != INITIALIZING"
+                % transfer.id)
+
         time.sleep(1)
 
     return transfer
