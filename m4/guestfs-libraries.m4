@@ -18,7 +18,7 @@
 dnl Any C libraries required by virt-v2v.
 
 dnl Of course we need libguestfs.
-PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.41.5])
+PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.40])
 
 dnl Define a C symbol for the host CPU architecture.
 AC_DEFINE_UNQUOTED([host_cpu],["$host_cpu"],[Host architecture.])

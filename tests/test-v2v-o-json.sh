@@ -51,11 +51,18 @@ test -f $disk
 test x$(jq -r '.name' $json) = xwindows
 test x$(jq -r '.inspect.type' $json) = xwindows
 test x$(jq -r '.inspect.distro' $json) = xwindows
-test x$(jq -r '.inspect.osinfo' $json) = xwin7
 test $(jq -r '.disks | length' $json) -eq 1
 test $(jq -r '.disks[0].file' $json) = $(realpath $disk)
 test $(jq -r '.nics | length' $json) -eq 1
 test $(jq -r '.removables | length' $json) -eq 0
+
+# libguestfs 1.40 didn't have osinfo inspection data, but we want this
+# test to work with 1.40, so ignore if jq returns this field as
+# "null".
+osinfo=$(jq -r '.inspect.osinfo' $json)
+if [ "x$osinfo" != "xnull" ]; then
+    test x$osinfo = xwin7
+fi
 
 # Clean up.
 rm -r $d
