@@ -85,73 +85,40 @@ def open(readonly):
     try:
         destination_url = parse_transfer_url(transfer)
         http = create_http(destination_url)
+        options = get_options(http, destination_url)
     except:
         transfer_service.cancel()
         raise
 
-    # The first request is to fetch the features of the server.
-
-    # Authentication was needed only for GET and PUT requests when
-    # communicating with old imageio-proxy.
-    needs_auth = not params['rhv_direct']
-
-    can_flush = False
-    can_trim = False
-    can_zero = False
-    unix_socket = None
-
-    http.request("OPTIONS", destination_url.path)
-    r = http.getresponse()
-    data = r.read()
-
-    if r.status == 200:
-        # New imageio never needs authentication.
-        needs_auth = False
-
-        j = json.loads(data)
-        can_flush = "flush" in j['features']
-        can_trim = "trim" in j['features']
-        can_zero = "zero" in j['features']
-        unix_socket = j.get('unix_socket')
-
-    # Old imageio servers returned either 405 Method Not Allowed or
-    # 204 No Content (with an empty body).  If we see that we leave
-    # all the features as False and they will be emulated.
-    elif r.status == 405 or r.status == 204:
-        pass
-
-    else:
-        transfer_service.cancel()
-        raise RuntimeError("could not use OPTIONS request: %d: %s" %
-                           (r.status, r.reason))
-
-    debug("imageio features: flush=%r trim=%r zero=%r unix_socket=%r" %
-          (can_flush, can_trim, can_zero, unix_socket))
+    debug("imageio features: flush=%(can_flush)r trim=%(can_trim)r "
+          "zero=%(can_zero)r unix_socket=%(unix_socket)r"
+          % options)
 
     # If we are connected to imageio on the local host and the
     # transfer features a unix_socket then we can reconnect to that.
-    if host is not None and unix_socket is not None:
+    if host is not None and options['unix_socket'] is not None:
         try:
-            http = UnixHTTPConnection(unix_socket)
+            http = UnixHTTPConnection(options['unix_socket'])
         except Exception as e:
             # Very unlikely failure, but we can recover by using the https
             # connection.
             debug("cannot create unix socket connection, using https: %s" % e)
         else:
-            debug("optimizing connection using unix socket %r" % unix_socket)
+            debug("optimizing connection using unix socket %r"
+                  % options['unix_socket'])
 
     # Save everything we need to make requests in the handle.
     return {
-        'can_flush': can_flush,
-        'can_trim': can_trim,
-        'can_zero': can_zero,
+        'can_flush': options['can_flush'],
+        'can_trim': options['can_trim'],
+        'can_zero': options['can_zero'],
+        'needs_auth': options['needs_auth'],
         'connection': connection,
         'disk_id': disk.id,
         'transfer': transfer,
         'failed': False,
         'highestwrite': 0,
         'http': http,
-        'needs_auth': needs_auth,
         'path': destination_url.path,
     }
 
@@ -606,3 +573,39 @@ def create_http(url):
         return HTTPConnection(url.hostname, url.port)
     else:
         raise RuntimeError("unknown URL scheme (%s)" % url.scheme)
+
+def get_options(http, url):
+    """
+    Send OPTIONS request to imageio server and return options dict.
+    """
+    http.request("OPTIONS", url.path)
+    r = http.getresponse()
+    data = r.read()
+
+    if r.status == 200:
+        j = json.loads(data)
+        features = j["features"]
+        return {
+            # New imageio never used authentication.
+            "needs_auth": False,
+            "can_flush": "flush" in features,
+            "can_trim": "trim" in features,
+            "can_zero": "zero" in features,
+            "unix_socket": j.get('unix_socket'),
+        }
+
+    elif r.status == 405 or r.status == 204:
+        # Old imageio servers returned either 405 Method Not Allowed or
+        # 204 No Content (with an empty body).
+        return {
+            # Authentication was required only when using old imageio proxy.
+            # Can be removed when dropping support for oVirt < 4.2.
+            "needs_auth": not params['rhv_direct'],
+            "can_flush": False,
+            "can_trim": False,
+            "can_zero": False,
+            "unix_socket": None,
+        }
+    else:
+        raise RuntimeError("could not use OPTIONS request: %d: %s" %
+                           (r.status, r.reason))
