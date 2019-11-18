@@ -80,40 +80,14 @@ def open(readonly):
     # Use the local host is possible.
     host = find_host(connection) if params['rhv_direct'] else None
     disk = create_disk(connection)
+
     transfer = create_transfer(connection, disk, host)
-
-    # Now we have permission to start the transfer.
-    if params['rhv_direct']:
-        if transfer.transfer_url is None:
-            transfer_service.cancel()
-            raise RuntimeError("direct upload to host not supported, "
-                               "requires ovirt-engine >= 4.2 and only works "
-                               "when virt-v2v is run within the oVirt/RHV "
-                               "environment, eg. on an oVirt node.")
-        destination_url = urlparse(transfer.transfer_url)
-    else:
-        destination_url = urlparse(transfer.proxy_url)
-
-    if destination_url.scheme == "https":
-        context = \
-            ssl.create_default_context(purpose = ssl.Purpose.SERVER_AUTH,
-                                       cafile = params['rhv_cafile'])
-        if params['insecure']:
-            context.check_hostname = False
-            context.verify_mode = ssl.CERT_NONE
-        http = HTTPSConnection(
-            destination_url.hostname,
-            destination_url.port,
-            context = context
-        )
-    elif destination_url.scheme == "http":
-        http = HTTPConnection(
-            destination_url.hostname,
-            destination_url.port,
-        )
-    else:
+    try:
+        destination_url = parse_transfer_url(transfer)
+        http = create_http(destination_url)
+    except:
         transfer_service.cancel()
-        raise RuntimeError("unknown URL scheme (%s)" % destination_url.scheme)
+        raise
 
     # The first request is to fetch the features of the server.
 
@@ -596,3 +570,39 @@ def create_transfer(connection, disk, host):
         time.sleep(1)
 
     return transfer
+
+# oVirt imageio operations
+
+def parse_transfer_url(transfer):
+    """
+    Returns a parsed transfer url, preferring direct transfer if possible.
+    """
+    if params['rhv_direct']:
+        if transfer.transfer_url is None:
+            raise RuntimeError("direct upload to host not supported, "
+                               "requires ovirt-engine >= 4.2 and only works "
+                               "when virt-v2v is run within the oVirt/RHV "
+                               "environment, eg. on an oVirt node.")
+        return urlparse(transfer.transfer_url)
+    else:
+        return urlparse(transfer.proxy_url)
+
+def create_http(url):
+    """
+    Create http connection for transfer url.
+
+    Returns HTTPConnction.
+    """
+    if url.scheme == "https":
+        context = \
+            ssl.create_default_context(purpose = ssl.Purpose.SERVER_AUTH,
+                                       cafile = params['rhv_cafile'])
+        if params['insecure']:
+            context.check_hostname = False
+            context.verify_mode = ssl.CERT_NONE
+
+        return HTTPSConnection(url.hostname, url.port, context = context)
+    elif url.scheme == "http":
+        return HTTPConnection(url.hostname, url.port)
+    else:
+        raise RuntimeError("unknown URL scheme (%s)" % url.scheme)
