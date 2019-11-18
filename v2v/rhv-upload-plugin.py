@@ -579,6 +579,7 @@ def create_disk(connection):
         if disk.status == types.DiskStatus.OK:
             break
         if time.time() > endt:
-            raise RuntimeError("timed out waiting for disk to become unlocked")
+            raise RuntimeError(
+                "timed out waiting for disk %s to become unlocked" % disk.id)
 
     return disk
