@@ -205,7 +205,7 @@ def open(readonly):
         'can_trim': can_trim,
         'can_zero': can_zero,
         'connection': connection,
-        'disk': disk,
+        'disk_id': disk.id,
         'failed': False,
         'highestwrite': 0,
         'http': http,
@@ -425,7 +425,7 @@ def close(h):
         return
 
     try:
-        disk = h['disk']
+        disk_id = h['disk_id']
 
         transfer_service.finalize()
 
@@ -435,9 +435,8 @@ def close(h):
         # waiting for the transfer object to cease to exist, which
         # falls through to the exception case and then we can
         # continue.
-        disk_id = disk.id
         disk_service = (
-            connection.system_service().disks_service().disk_service(disk.id))
+            connection.system_service().disks_service().disk_service(disk_id))
         start = time.time()
         try:
             while True:
@@ -456,7 +455,7 @@ def close(h):
 
         # Write the disk ID file.  Only do this on successful completion.
         with builtins.open(params['diskid_file'], 'w') as fp:
-            fp.write(disk.id)
+            fp.write(disk_id)
 
     except:
         # If oVirt engine fails to finalize the transfer, it will pause the
