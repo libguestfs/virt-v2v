@@ -97,6 +97,13 @@ else
 fi
 AC_SUBST([OCAMLDEP_ONE_LINE])
 
+dnl ocaml guestfs module is required.
+OCAML_PKG_guestfs=no
+AC_CHECK_OCAML_PKG(guestfs)
+if test "x$OCAML_PKG_guestfs" = "xno"; then
+    AC_MSG_ERROR([the OCaml module 'guestfs' is required])
+fi
+
 have_Hivex_OPEN_UNSAFE=no
 if test "x$enable_daemon" = "xyes"; then
     OCAML_PKG_hivex=no
