@@ -77,14 +77,15 @@ def open(readonly):
         insecure = params['insecure'],
     )
 
+    # Use the local host is possible.
+    host = find_host(connection) if params['rhv_direct'] else None
     disk = create_disk(connection)
 
     # Get a reference to the transfer service.
     system_service = connection.system_service()
     transfers_service = system_service.image_transfers_service()
 
-    # Create a new image transfer, using the local host is possible.
-    host = find_host(connection) if params['rhv_direct'] else None
+    # Create a new image transfer.
     transfer = transfers_service.add(
         types.ImageTransfer(
             disk = types.Disk(id = disk.id),
