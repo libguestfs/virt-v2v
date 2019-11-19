@@ -113,6 +113,8 @@ po/POTFILES-ml: configure.ac
 	rm -f $@ $@-t
 	cd $(srcdir); \
 	find common/ml* v2v -name '*.ml' | \
+	grep -v '^common/mlprogress/' | \
+	grep -v '^common/mlvisit/' | \
 	grep -v '^v2v/config.ml$$' | \
 	LC_ALL=C sort > $@-t
 	mv $@-t $@

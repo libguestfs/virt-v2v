@@ -6,7 +6,6 @@ common/mlgettext/common_gettext.ml
 common/mllibvirt/libvirt.ml
 common/mlpcre/PCRE.ml
 common/mlpcre/pcre_tests.ml
-common/mlprogress/progress.ml
 common/mlstdutils/guestfs_config.ml
 common/mlstdutils/std_utils.ml
 common/mlstdutils/std_utils_tests.ml
@@ -34,8 +33,6 @@ common/mlutils/c_utils.ml
 common/mlutils/c_utils_unit_tests.ml
 common/mlutils/unix_utils.ml
 common/mlv2v/uefi.ml
-common/mlvisit/visit.ml
-common/mlvisit/visit_tests.ml
 common/mlxml/xml.ml
 v2v/DOM.ml
 v2v/changeuid.ml
