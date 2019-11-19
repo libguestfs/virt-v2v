@@ -72,6 +72,7 @@ EXTRA_DIST = \
 	check-mli.sh \
 	common/.gitignore \
 	common/README \
+	COPYING \
 	lib/guestfs-internal-all.h \
 	m4/.gitignore \
 	ocaml-link.sh \
