@@ -15,7 +15,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-AC_INIT([virt-v2v],1.41.7)
+AC_INIT([virt-v2v],1.41.8)
 
 # Headings within the configure script output.
 m4_define([HEADING],

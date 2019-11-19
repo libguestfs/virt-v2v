@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 15:05+0000\n"
+"POT-Creation-Date: 2019-11-19 14:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -915,7 +915,7 @@ msgstr ""
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:212
+#: ../v2v/nbdkit.ml:219
 msgid "VDDK library path %s not found or not a directory.  See the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
@@ -1464,19 +1464,19 @@ msgstr ""
 msgid "nbdkit --dump-config: could not parse version: %s"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:240
+#: ../v2v/nbdkit.ml:247
 msgid "nbdkit VDDK plugin is not installed or not working.  It is required if you want to use VDDK.\n\nIt looks like you did not set the right path in the ‘-io vddk-libdir’ option, or your copy of the VDDK directory is incomplete.  There should be a library called ’<libdir>/%s/libvixDiskLib.so.?’.\n\nSee also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:234
+#: ../v2v/nbdkit.ml:241
 msgid "nbdkit VDDK plugin is not installed or not working.  It is required if you want to use VDDK.\n\nThe VDDK plugin is not enabled by default when you compile nbdkit.  You have to read the instructions in the nbdkit sources under ‘plugins/vddk/README.VDDK’ to find out how to enable the VDDK plugin.\n\nSee also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:396 ../v2v/nbdkit.ml:377
+#: ../v2v/output_rhv_upload.ml:396 ../v2v/nbdkit.ml:384
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:398 ../v2v/nbdkit.ml:379
+#: ../v2v/output_rhv_upload.ml:398 ../v2v/nbdkit.ml:386
 msgid "nbdkit did not start up.  There may be errors printed by nbdkit above.\n\nIf the messages above are not sufficient to diagnose the problem then add the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
@@ -2001,7 +2001,7 @@ msgstr ""
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:205
+#: ../v2v/nbdkit.ml:212
 msgid "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-vmware(1) manual."
 msgstr ""
 

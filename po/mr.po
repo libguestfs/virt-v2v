@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-12 14:47+0000\n"
+"POT-Creation-Date: 2019-11-19 14:53+0000\n"
 "PO-Revision-Date: 2015-02-21 10:51+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/libguestfs/"
@@ -1066,7 +1066,7 @@ msgstr ""
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:212
+#: ../v2v/nbdkit.ml:219
 msgid ""
 "VDDK library path %s not found or not a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
@@ -1770,7 +1770,7 @@ msgstr ""
 msgid "nbdkit --dump-config: could not parse version: %s"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:240
+#: ../v2v/nbdkit.ml:247
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1782,7 +1782,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:234
+#: ../v2v/nbdkit.ml:241
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1794,11 +1794,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:396 ../v2v/nbdkit.ml:377
+#: ../v2v/output_rhv_upload.ml:396 ../v2v/nbdkit.ml:384
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:398 ../v2v/nbdkit.ml:379
+#: ../v2v/output_rhv_upload.ml:398 ../v2v/nbdkit.ml:386
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -2501,7 +2501,7 @@ msgstr ""
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:205
+#: ../v2v/nbdkit.ml:212
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
