@@ -93,7 +93,7 @@ def open(readonly):
         options = get_options(http, destination_url)
         http = optimize_http(http, host, options)
     except:
-        transfer_service.cancel()
+        cancel_transfer(connection, transfer)
         raise
 
     debug("imageio features: flush=%(can_flush)r trim=%(can_trim)r "
@@ -530,6 +530,16 @@ def create_transfer(connection, disk, host):
         time.sleep(1)
 
     return transfer
+
+def cancel_transfer(connection, transfer):
+    """
+    Cancel a transfer, removing the transfer disk.
+    """
+    debug("canceling transfer %s" % transfer.id)
+    transfer_service = (connection.system_service()
+                            .image_transfers_service()
+                            .image_transfer_service(transfer.id))
+    transfer_service.cancel()
 
 # oVirt imageio operations
 
