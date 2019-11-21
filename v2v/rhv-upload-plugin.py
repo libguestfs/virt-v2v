@@ -551,7 +551,7 @@ def create_http(url):
     """
     Create http connection for transfer url.
 
-    Returns HTTPConnction.
+    Returns HTTPConnection.
     """
     if url.scheme == "https":
         context = \
