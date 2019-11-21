@@ -17,6 +17,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import builtins
+import functools
 import json
 import logging
 import socket
@@ -72,6 +73,22 @@ def parse_username():
     parsed = urlparse(params['output_conn'])
     return parsed.username or "admin@internal"
 
+def failing(func):
+    """
+    Decorator marking the handle as failed if any expection is raised in the
+    decorated function.  This is used in close() to cleanup properly after
+    failures.
+    """
+    @functools.wraps(func)
+    def wrapper(h, *args):
+        try:
+            return func(h, *args)
+        except:
+            h['failed'] = True
+            raise
+
+    return wrapper
+
 def open(readonly):
     connection = sdk.Connection(
         url = params['output_conn'],
@@ -115,22 +132,21 @@ def open(readonly):
         'path': destination_url.path,
     }
 
+@failing
 def can_trim(h):
     return h['can_trim']
 
+@failing
 def can_flush(h):
     return h['can_flush']
 
+@failing
 def get_size(h):
     return params['disk_size']
 
 # Any unexpected HTTP response status from the server will end up calling this
-# function which logs the full error, sets the failed state, and raises a
-# RuntimeError exception.
-def request_failed(h, r, msg):
-    # Setting the failed flag in the handle will cancel the transfer on close.
-    h['failed'] = True
-
+# function which logs the full error, and raises a RuntimeError exception.
+def request_failed(r, msg):
     status = r.status
     reason = r.reason
     try:
@@ -152,6 +168,7 @@ def request_failed(h, r, msg):
 # For examples of working code to read/write from the server, see:
 # https://github.com/oVirt/ovirt-imageio/blob/master/daemon/test/server_test.py
 
+@failing
 def pread(h, count, offset):
     http = h['http']
     transfer = h['transfer']
@@ -165,12 +182,13 @@ def pread(h, count, offset):
     r = http.getresponse()
     # 206 = HTTP Partial Content.
     if r.status != 206:
-        request_failed(h, r,
+        request_failed(r,
                        "could not read sector offset %d size %d" %
                        (offset, count))
 
     return r.read()
 
+@failing
 def pwrite(h, buf, offset):
     http = h['http']
     transfer = h['transfer']
@@ -194,12 +212,13 @@ def pwrite(h, buf, offset):
 
     r = http.getresponse()
     if r.status != 200:
-        request_failed(h, r,
+        request_failed(r,
                        "could not write sector offset %d size %d" %
                        (offset, count))
 
     r.read()
 
+@failing
 def zero(h, count, offset, may_trim):
     http = h['http']
 
@@ -223,7 +242,7 @@ def zero(h, count, offset, may_trim):
 
     r = http.getresponse()
     if r.status != 200:
-        request_failed(h, r,
+        request_failed(r,
                        "could not zero sector offset %d size %d" %
                        (offset, count))
 
@@ -257,12 +276,13 @@ def emulate_zero(h, count, offset):
 
         r = http.getresponse()
         if r.status != 200:
-            request_failed(h, r,
+            request_failed(r,
                            "could not write zeroes offset %d size %d" %
                            (offset, count))
 
         r.read()
 
+@failing
 def trim(h, count, offset):
     http = h['http']
 
@@ -279,12 +299,13 @@ def trim(h, count, offset):
 
     r = http.getresponse()
     if r.status != 200:
-        request_failed(h, r,
+        request_failed(r,
                        "could not trim sector offset %d size %d" %
                        (offset, count))
 
     r.read()
 
+@failing
 def flush(h):
     http = h['http']
 
@@ -298,7 +319,7 @@ def flush(h):
 
     r = http.getresponse()
     if r.status != 200:
-        request_failed(h, r, "could not flush")
+        request_failed(r, "could not flush")
 
     r.read()
 
