@@ -46,6 +46,7 @@ def config(key, value):
     if key == "params":
         with builtins.open(value, 'r') as fp:
             params = json.load(fp)
+        debug("using params: %s" % params)
     else:
         raise RuntimeError("unknown configuration key '%s'" % key)
 
