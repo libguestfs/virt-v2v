@@ -174,7 +174,7 @@ See also the virt-v2v-output-rhv(1) manual.")
       error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
   in
 
-  (* Output format/sparse must be raw/sparse.  We may be able to
+  (* Output sparse must be sparse.  We may be able to
    * lift this limitation in future, but it requires changes on the
    * RHV side.  See TODO file for details.  XXX
    *)
@@ -287,6 +287,8 @@ object
 
   method supported_firmware = [ TargetBIOS; TargetUEFI ]
 
+  method transfer_format t = "raw"
+
   (* rhev-apt.exe will be installed (if available). *)
   method install_rhev_apt = true
 
@@ -333,8 +335,7 @@ object
         let disk_format =
           match target_format with
           | "raw" as fmt -> fmt
-          | "qcow2" ->
-             error_current_limitation "-of raw"
+          | "qcow2" as fmt -> fmt
           | _ ->
              error (f_"rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If the input is in a different format then force one of these output formats by adding either ‘-of raw’ or ‘-of qcow2’ on the command line.")
                    target_format in

@@ -18,6 +18,7 @@
 
 import builtins
 import functools
+import inspect
 import json
 import logging
 import socket
@@ -448,6 +449,8 @@ def create_disk(connection):
             name = params['disk_name'],
             description = "Uploaded by virt-v2v",
             format = disk_format,
+            # XXX For qcow2 disk on block storage, we should use the estimated
+            # size, based on qemu-img measure of the overlay.
             initial_size = params['disk_size'],
             provisioned_size = params['disk_size'],
             # XXX Ignores params['output_sparse'].
@@ -489,11 +492,16 @@ def create_transfer(connection, disk, host):
     system_service = connection.system_service()
     transfers_service = system_service.image_transfers_service()
 
+    extra = {}
+    if transfer_supports_format():
+        extra["format"] = types.DiskFormat.RAW
+
     transfer = transfers_service.add(
         types.ImageTransfer(
             disk = types.Disk(id = disk.id),
             host = host,
             inactivity_timeout = 3600,
+            **extra,
         )
     )
 
@@ -590,6 +598,17 @@ def finalize_transfer(connection, transfer, disk_id):
             raise RuntimeError(
                 "timed out waiting for transfer %s to finalize"
                 % transfer.id)
+
+def transfer_supports_format():
+    """
+    Return True if transfer supports the "format" argument, enabing the NBD
+    bakend on imageio side, which allows uploading to qcow2 images.
+
+    This feature was added in ovirt 4.3. We assume that the SDK version matches
+    engine version.
+    """
+    sig = inspect.signature(types.ImageTransfer)
+    return "format" in sig.parameters
 
 # oVirt imageio operations
 
