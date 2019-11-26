@@ -529,6 +529,7 @@ class virtual output = object
   method virtual supported_firmware : target_firmware list
   method check_target_firmware (_ : guestcaps) (_ : target_firmware) = ()
   method override_output_format (_ : overlay) = (None : string option)
+  method transfer_format t = t.target_format
   method virtual prepare_targets : string -> (string * overlay) list -> target_file list
   method disk_create = (open_guestfs ())#disk_create
   method disk_copied (_ : target) (_ : int) (_ : int) = ()

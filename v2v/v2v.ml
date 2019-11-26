@@ -739,7 +739,7 @@ and copy_targets cmdline targets input output =
           | TargetURI uri -> uri in
         [ "qemu-img"; "convert" ] @
         (if not (quiet ()) then [ "-p" ] else []) @
-        [ "-n"; "-f"; "qcow2"; "-O"; t.target_format ] @
+        [ "-n"; "-f"; "qcow2"; "-O"; output#transfer_format t ] @
         (if cmdline.compressed then [ "-c" ] else []) @
         [ "-S"; "64k" ] @
         [ overlay_file; filename ] in
