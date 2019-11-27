@@ -39,7 +39,6 @@ OCAMLPACKAGES = \
 	-package str,unix,guestfs \
 	-I $(top_builddir)/common/utils/.libs \
 	-I $(top_builddir)/lib/.libs \
-	-I $(top_builddir)/gnulib/lib/.libs \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
@@ -73,8 +72,7 @@ libv2vth_a_CPPFLAGS = \
 	-DGUESTFS_PRIVATE=1 \
 	-I$(top_builddir) -I$(OCAMLLIB) \
 	-I$(top_srcdir)/common/utils -I$(top_builddir)/common/utils \
-	-I$(top_srcdir)/lib -I$(top_builddir)/lib \
-	-I$(top_srcdir)/gnulib/lib -I$(top_builddir)/gnulib/lib
+	-I$(top_srcdir)/lib -I$(top_builddir)/lib
 
 libv2vth_a_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
