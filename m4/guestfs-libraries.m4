@@ -26,17 +26,9 @@ AC_DEFINE_UNQUOTED([host_cpu],["$host_cpu"],[Host architecture.])
 dnl Headers.
 AC_CHECK_HEADERS([\
     byteswap.h \
-    endian.h \
-    sys/endian.h \
     errno.h \
-    linux/fs.h \
     linux/magic.h \
-    linux/raid/md_u.h \
-    linux/rtc.h \
-    printf.h \
-    sys/inotify.h \
     sys/mount.h \
-    sys/resource.h \
     sys/socket.h \
     sys/statfs.h \
     sys/statvfs.h \
@@ -45,63 +37,18 @@ AC_CHECK_HEADERS([\
     sys/un.h \
     sys/vfs.h \
     sys/wait.h \
-    windows.h \
-    sys/xattr.h])
+    windows.h])
 
 dnl Functions.
 AC_CHECK_FUNCS([\
-    be32toh \
     fsync \
-    futimens \
-    getxattr \
-    htonl \
-    htons \
-    inotify_init1 \
-    lgetxattr \
-    listxattr \
-    llistxattr \
-    lsetxattr \
-    lremovexattr \
-    mknod \
-    ntohl \
-    ntohs \
-    posix_fallocate \
     posix_fadvise \
-    removexattr \
-    setitimer \
-    setrlimit \
-    setxattr \
-    sigaction \
     statfs \
     statvfs \
     sync])
 
 dnl Which header file defines major, minor, makedev.
 AC_HEADER_MAJOR
-
-dnl Check for UNIX_PATH_MAX, creating a custom one if not available.
-AC_MSG_CHECKING([for UNIX_PATH_MAX])
-AC_COMPILE_IFELSE([
-  AC_LANG_PROGRAM([[
-#include <sys/un.h>
-  ]], [[
-#ifndef UNIX_PATH_MAX
-#error UNIX_PATH_MAX not defined
-#endif
-  ]])], [
-    AC_MSG_RESULT([yes])
-  ], [
-    AC_MSG_RESULT([no])
-    AC_MSG_CHECKING([for size of sockaddr_un.sun_path])
-    AC_COMPUTE_INT(unix_path_max, [sizeof (myaddr.sun_path)], [
-#include <sys/un.h>
-struct sockaddr_un myaddr;
-      ], [
-        AC_MSG_ERROR([cannot get it])
-      ])
-    AC_MSG_RESULT([$unix_path_max])
-    AC_DEFINE_UNQUOTED([UNIX_PATH_MAX], $unix_path_max, [Custom value for UNIX_PATH_MAX])
-  ])
 
 dnl GNU gettext tools (optional).
 AC_CHECK_PROG([XGETTEXT],[xgettext],[xgettext],[no])
@@ -123,22 +70,6 @@ AM_CONDITIONAL([HAVE_GNU_GETTEXT],
 dnl Check for gettext.
 AM_GNU_GETTEXT([external])
 
-dnl Check for libselinux (optional).
-AC_CHECK_HEADERS([selinux/selinux.h])
-AC_CHECK_LIB([selinux],[setexeccon],[
-    have_libselinux="$ac_cv_header_selinux_selinux_h"
-    SELINUX_LIBS="-lselinux"
-
-    old_LIBS="$LIBS"
-    LIBS="$LIBS $SELINUX_LIBS"
-    AC_CHECK_FUNCS([setcon getcon])
-    LIBS="$old_LIBS"
-],[have_libselinux=no])
-if test "x$have_libselinux" = "xyes"; then
-    AC_DEFINE([HAVE_LIBSELINUX],[1],[Define to 1 if you have libselinux.])
-fi
-AC_SUBST([SELINUX_LIBS])
-
 dnl Check for PCRE (required)
 PKG_CHECK_MODULES([PCRE], [libpcre], [], [
     AC_CHECK_PROGS([PCRE_CONFIG], [pcre-config pcre2-config], [no])
@@ -148,25 +79,6 @@ PKG_CHECK_MODULES([PCRE], [libpcre], [], [
     PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
     PCRE_LIBS=`$PCRE_CONFIG --libs`
 ])
-
-dnl Check for Augeas >= 1.2.0 (required).
-PKG_CHECK_MODULES([AUGEAS],[augeas >= 1.2.0])
-
-dnl Check for aug_source function, added in Augeas 1.8.0.
-old_LIBS="$LIBS"
-LIBS="$AUGEAS_LIBS"
-AC_CHECK_FUNCS([aug_source])
-LIBS="$old_LIBS"
-
-dnl libmagic (required)
-AC_CHECK_LIB([magic],[magic_file],[
-    AC_CHECK_HEADER([magic.h],[
-        AC_SUBST([MAGIC_LIBS], ["-lmagic"])
-    ], [])
-],[])
-AS_IF([test -z "$MAGIC_LIBS"],
-    [AC_MSG_ERROR([libmagic (part of the "file" command) is required.
-                   Please install the file devel package])])
 
 dnl libvirt (highly recommended)
 AC_ARG_WITH([libvirt],[

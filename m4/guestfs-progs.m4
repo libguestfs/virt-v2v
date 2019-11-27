@@ -48,12 +48,8 @@ dnl po4a for translating man pages and POD files (optional).
 AC_CHECK_PROG([PO4A],[po4a],[po4a],[no])
 AM_CONDITIONAL([HAVE_PO4A], [test "x$PO4A" != "xno"])
 
-dnl Check for db_dump, db_load (optional).
-GUESTFS_FIND_DB_TOOL([DB_DUMP], [dump])
+dnl Check for db_load (optional).
 GUESTFS_FIND_DB_TOOL([DB_LOAD], [load])
-if test "x$DB_DUMP" != "xno"; then
-    AC_DEFINE_UNQUOTED([DB_DUMP],["$DB_DUMP"],[Name of db_dump program.])
-fi
 if test "x$DB_LOAD" != "xno"; then
     AC_DEFINE_UNQUOTED([DB_LOAD],["$DB_LOAD"],[Name of db_load program.])
 fi
@@ -77,11 +73,3 @@ AS_IF([test "x$VALGRIND" != "xno"],[
 ])
 AC_SUBST([VG])
 AM_SUBST_NOTMAKE([VG])
-
-dnl Check for fuser (used in FUSE stuff).
-AC_PATH_PROGS([FUSER],[fuser],[/sbin/fuser])
-AC_DEFINE_UNQUOTED([FUSER],["$FUSER"],[Name of fuser program.])
-
-dnl Check for true (used in tests).
-AC_PATH_PROGS([TOOL_TRUE],[true],[/bin/true])
-AC_DEFINE_UNQUOTED([TOOL_TRUE],["$TOOL_TRUE"],[Name of 'true' program.])

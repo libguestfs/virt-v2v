@@ -138,18 +138,6 @@ AM_PROG_CC_C_O
 # deal with CPU architectures that do not exist.
 CFLAGS="$CFLAGS -fno-strict-overflow -Wno-strict-overflow"
 
-dnl Work out how to specify the linker script to the linker.
-VERSION_SCRIPT_FLAGS=-Wl,--version-script=
-`/usr/bin/ld --help 2>&1 | grep -- --version-script >/dev/null` || \
-    VERSION_SCRIPT_FLAGS="-Wl,-M -Wl,"
-AC_SUBST(VERSION_SCRIPT_FLAGS)
-
-dnl Use -fvisibility=hidden by default in the library.
-dnl http://gcc.gnu.org/wiki/Visibility
-AS_IF([test -n "$GCC"],
-    [AC_SUBST([GCC_VISIBILITY_HIDDEN], [-fvisibility=hidden])],
-    [AC_SUBST([GCC_VISIBILITY_HIDDEN], [:])])
-
 dnl Check support for 64 bit file offsets.
 AC_SYS_LARGEFILE
 

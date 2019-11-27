@@ -38,35 +38,10 @@ dnl Define the path to the podwrapper program.
 PODWRAPPER="\$(guestfs_am_v_podwrapper)$PERL $(pwd)/podwrapper.pl"
 AC_SUBST([PODWRAPPER])
 
-dnl Check for Perl for Perl bindings and Perl tools.
-AC_ARG_ENABLE([perl],
-    AS_HELP_STRING([--disable-perl], [disable Perl language bindings]),
-    [],
-    [enable_perl=yes])
-AS_IF([test "x$enable_perl" != "xno"],[
-    dnl Check for Perl modules that must be present to compile and
-    dnl test the Perl bindings.
-    missing_perl_modules=no
-    for pm in Test::More Module::Build; do
-        AC_MSG_CHECKING([for $pm])
-        if ! $PERL -M$pm -e1 >&AS_MESSAGE_LOG_FD 2>&1; then
-            AC_MSG_RESULT([no])
-            missing_perl_modules=yes
-        else
-            AC_MSG_RESULT([yes])
-        fi
-    done
-    if test "x$missing_perl_modules" = "xyes"; then
-        AC_MSG_WARN([some Perl modules required to compile or test the Perl bindings are missing])
-    fi
-])
-AM_CONDITIONAL([HAVE_PERL],
-    [test "x$enable_perl" != "xno" && test "x$PERL" != "xno" && test "x$missing_perl_modules" != "xyes"])
-
 dnl Check for Perl modules needed by Perl virt tools (virt-df, etc.)
 AS_IF([test "x$PERL" != "xno"],[
     missing_perl_modules=no
-    for pm in Pod::Usage Getopt::Long Sys::Virt Locale::TextDomain Win::Hivex Win::Hivex::Regedit ; do
+    for pm in Pod::Usage Getopt::Long ; do
         AC_MSG_CHECKING([for $pm])
         if ! $PERL -M$pm -e1 >&AS_MESSAGE_LOG_FD 2>&1; then
             AC_MSG_RESULT([no])

@@ -34,10 +34,8 @@ endif
 SUBDIRS += common/qemuopts
 SUBDIRS += common/utils
 SUBDIRS += common/mlutils
-SUBDIRS += common/mlaugeas
 SUBDIRS += common/mlpcre
 SUBDIRS += common/options
-SUBDIRS += common/windows
 SUBDIRS += common/mlgettext
 SUBDIRS += common/mlxml
 SUBDIRS += common/mltools
