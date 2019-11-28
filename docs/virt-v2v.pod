@@ -1353,6 +1353,9 @@ Minimum free space: 10 MB
 
 =back
 
+In addition to the actual free space, each filesystem is required to
+have at least 100 available inodes.
+
 =head3 Minimum free space check in the host
 
 You must have sufficient free space in the host directory used to

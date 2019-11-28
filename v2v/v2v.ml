@@ -375,6 +375,8 @@ and print_mpstat chan { mp_dev = dev; mp_path = path;
 (* Conversion can fail if there is no space on the guest filesystems
  * (RHBZ#1139543).  To avoid this situation, check there is some
  * headroom.  Mainly we care about the root filesystem.
+ *
+ * Also make sure filesystems have available inodes. (RHBZ#1764569)
  *)
 and check_guest_free_space mpstats =
   message (f_"Checking for sufficient free disk space in the guest");
@@ -399,14 +401,21 @@ and check_guest_free_space mpstats =
       10_000_000L
   in
 
+  (* Reasonable headroom for conversion operations. *)
+  let needed_inodes = 100L in
+
   List.iter (
-    fun { mp_path; mp_statvfs = { G.bfree; bsize } } ->
+    fun { mp_path; mp_statvfs = { G.bfree; bsize; files; ffree } } ->
       (* bfree = free blocks for root user *)
       let free_bytes = bfree *^ bsize in
       let needed_bytes = needed_bytes_for_mp mp_path in
       if free_bytes < needed_bytes then
         error (f_"not enough free space for conversion on filesystem ‘%s’.  %Ld bytes free < %Ld bytes needed")
-          mp_path free_bytes needed_bytes
+          mp_path free_bytes needed_bytes;
+      (* Not all the filesystems have inode counts. *)
+      if files > 0L && ffree < needed_inodes then
+        error (f_"not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes available < %Ld inodes needed")
+          mp_path ffree needed_inodes
   ) mpstats
 
 (* Perform the fstrim. *)
