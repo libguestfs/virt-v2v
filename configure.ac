@@ -97,6 +97,8 @@ AC_CONFIG_FILES([podwrapper.pl],
                 [chmod +x,-w podwrapper.pl])
 AC_CONFIG_FILES([run],
                 [chmod +x,-w run])
+AC_CONFIG_FILES([tests/test-v2v-o-rhv-upload.sh],
+                [chmod +x,-w tests/test-v2v-o-rhv-upload.sh])
 
 dnl NB: Remove common/mlstdutils/guestfs_config.ml in future XXX
 AC_CONFIG_FILES([Makefile

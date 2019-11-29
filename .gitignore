@@ -126,6 +126,7 @@ Makefile.in
 /test-harness/virt-v2v-test-harness.1
 /tests/libvirt-is-version
 /tests/test-v2v-conversion-of-*.sh
+/tests/test-v2v-o-rhv-upload.sh
 /tests/windows.vmdk
 /v2v/.depend
 /v2v/config.ml

@@ -90,7 +90,6 @@ TESTS = \
 	test-v2v-o-openstack.sh \
 	test-v2v-o-qemu.sh \
 	test-v2v-o-rhv.sh \
-	test-v2v-o-rhv-upload.sh \
 	test-v2v-o-vdsm-options.sh \
 	test-v2v-oa-option.sh \
 	test-v2v-of-option.sh \
