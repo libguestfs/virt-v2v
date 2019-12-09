@@ -43,8 +43,13 @@ let get_osinfo_id = function
       i_major_version = major; i_minor_version = minor } when major < 7 ->
     Some (sprintf "http://centos.org/centos/%d.%d" major minor)
 
-  | { i_type = "linux"; i_distro = "centos"; i_major_version = major } ->
+  | { i_type = "linux"; i_distro = "centos"; i_major_version = major }
+    when major = 7 ->
     Some (sprintf "http://centos.org/centos/%d.0" major)
+
+  | { i_type = "linux"; i_distro = "centos"; i_major_version = major }
+    when major >= 8 ->
+    Some (sprintf "http://centos.org/centos/%d" major)
 
   | { i_type = "linux"; i_distro = "sles";
       i_major_version = major; i_minor_version = 0;
