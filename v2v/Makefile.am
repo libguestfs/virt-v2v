@@ -18,7 +18,6 @@
 include $(top_srcdir)/subdir-rules.mk
 
 BUILT_SOURCES = \
-	config.ml \
 	output_rhv_upload_createvm_source.ml \
 	output_rhv_upload_deletedisks_source.ml \
 	output_rhv_upload_plugin_source.ml \
@@ -27,8 +26,13 @@ BUILT_SOURCES = \
 	uefi.ml \
 	uefi.mli
 
+CONFIGURE_GENERATED_ML = \
+	config.ml
+
 EXTRA_DIST = \
-	$(SOURCES_MLI) $(SOURCES_ML) $(SOURCES_C) \
+	$(SOURCES_MLI) \
+	$(filter-out $(CONFIGURE_GENERATED_ML),$(SOURCES_ML)) \
+	$(SOURCES_C) \
 	copy_to_local.ml \
 	copy_to_local.mli \
 	embed.sh \
@@ -103,7 +107,7 @@ SOURCES_MLI = \
 	windows_virtio.mli
 
 SOURCES_ML = \
-	config.ml \
+	$(CONFIGURE_GENERATED_ML) \
 	types.ml \
 	uefi.ml \
 	utils.ml \
