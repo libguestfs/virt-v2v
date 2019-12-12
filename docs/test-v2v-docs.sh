@@ -22,6 +22,7 @@ $TEST_FUNCTIONS
 skip_if_skipped
 
 $top_srcdir/podcheck.pl virt-v2v.pod virt-v2v \
+  --path $top_srcdir/common/options \
   --ignore=\
 --debug-overlay,\
 --ic,\
