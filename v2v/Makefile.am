@@ -177,8 +177,6 @@ output_rhv_upload_precheck_source.ml: $(srcdir)/rhv-upload-precheck.py
 output_rhv_upload_vmcheck_source.ml: $(srcdir)/rhv-upload-vmcheck.py
 	$(srcdir)/embed.sh code $^ $@
 
-if HAVE_OCAML
-
 bin_PROGRAMS = virt-v2v virt-v2v-copy-to-local
 
 virt_v2v_SOURCES = $(SOURCES_C)
@@ -395,5 +393,3 @@ var_expander_tests_LINK = \
 	output_rhv_upload_*_source.ml
 	$(top_builddir)/ocaml-dep.sh $^
 -include .depend
-
-endif

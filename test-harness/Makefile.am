@@ -30,8 +30,6 @@ SOURCES_MLI = \
 SOURCES_ML = \
 	v2v_test_harness.ml
 
-if HAVE_OCAML
-
 # -I $(top_builddir)/lib/.libs is a hack which forces corresponding -L
 # option to be passed to gcc, so we don't try linking against an
 # installed copy of libguestfs.
@@ -124,7 +122,5 @@ stamp-virt-v2v-test-harness.pod: virt-v2v-test-harness.pod
 .depend: $(srcdir)/*.mli $(srcdir)/*.ml
 	$(top_builddir)/ocaml-dep.sh -I .. $^
 -include .depend
-
-endif
 
 .PHONY: docs
