@@ -19,7 +19,6 @@ include $(top_srcdir)/subdir-rules.mk
 
 EXTRA_DIST = test-functions.sh
 
-if HAVE_LIBVIRT
 # Small utility to check for a needed libvirt version;
 # to be used in shell/script-based tests.
 noinst_PROGRAMS = libvirt-is-version
@@ -36,7 +35,6 @@ libvirt_is_version_CPPFLAGS = \
 libvirt_is_version_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBVIRT_CFLAGS)
-endif
 
 # Tests.
 

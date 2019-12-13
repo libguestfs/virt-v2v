@@ -80,26 +80,8 @@ PKG_CHECK_MODULES([PCRE], [libpcre], [], [
     PCRE_LIBS=`$PCRE_CONFIG --libs`
 ])
 
-dnl libvirt (highly recommended)
-AC_ARG_WITH([libvirt],[
-    AS_HELP_STRING([--without-libvirt],
-                   [disable libvirt support @<:@default=check@:>@])],
-    [],
-    [with_libvirt=check])
-AS_IF([test "$with_libvirt" != "no"],[
-    PKG_CHECK_MODULES([LIBVIRT], [libvirt >= 0.10.2],[
-        AC_SUBST([LIBVIRT_CFLAGS])
-        AC_SUBST([LIBVIRT_LIBS])
-        AC_DEFINE([HAVE_LIBVIRT],[1],[libvirt found at compile time.])
-    ],[
-        if test "$DEFAULT_BACKEND" = "libvirt"; then
-            AC_MSG_ERROR([Please install the libvirt devel package])
-        else
-            AC_MSG_WARN([libvirt not found, some core features will be disabled])
-        fi
-    ])
-])
-AM_CONDITIONAL([HAVE_LIBVIRT],[test "x$LIBVIRT_LIBS" != "x"])
+dnl libvirt (required)
+PKG_CHECK_MODULES([LIBVIRT], [libvirt >= 0.10.2])
 
 libvirt_ro_uri='qemu+unix:///system?socket=/var/run/libvirt/libvirt-sock-ro'
 AC_SUBST([libvirt_ro_uri])
