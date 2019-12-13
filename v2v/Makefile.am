@@ -29,7 +29,7 @@ CONFIGURE_GENERATED_ML = \
 
 EXTRA_DIST = \
 	$(SOURCES_MLI) \
-	$(filter-out $(CONFIGURE_GENERATED_ML),$(SOURCES_ML)) \
+	$(filter-out $(CONFIGURE_GENERATED_ML) $(BUILT_SOURCES),$(SOURCES_ML)) \
 	$(SOURCES_C) \
 	copy_to_local.ml \
 	copy_to_local.mli \
