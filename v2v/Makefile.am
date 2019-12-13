@@ -389,7 +389,7 @@ var_expander_tests_LINK = \
 .depend: \
 	$(srcdir)/*.mli \
 	$(srcdir)/*.ml \
-	config.ml \
-	output_rhv_upload_*_source.ml
+	$(CONFIGURE_GENERATED_ML) \
+	$(filter %.ml,$(BUILT_SOURCES))
 	$(top_builddir)/ocaml-dep.sh $^
 -include .depend
