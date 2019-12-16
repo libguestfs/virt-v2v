@@ -116,6 +116,7 @@ AC_CONFIG_FILES([Makefile
                  common/mlxml/Makefile
                  common/qemuopts/Makefile
                  common/utils/Makefile
+                 config.sh
                  docs/Makefile
                  gnulib/lib/Makefile
                  gnulib/tests/Makefile
