@@ -15,7 +15,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-AC_INIT([virt-v2v],1.41.8)
+# The major, minor, and release fields MUST be numbers.  Packagers can
+# add extra information using --with-extra="..." which may be any
+# freeform string.
+m4_define([v2v_major],   [1])
+m4_define([v2v_minor],   [41])
+m4_define([v2v_release], [8])
+
+AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 
 # Headings within the configure script output.
 m4_define([HEADING],
@@ -36,6 +43,25 @@ AC_CONFIG_MACRO_DIR([m4])
 
 dnl Initialize libtool.
 LT_INIT
+
+dnl Extra string, a freeform string defined by packagers.
+AC_ARG_WITH([extra],
+    [AS_HELP_STRING([--with-extra],
+                    [extra version string (for use by packagers)])],
+    [v2v_extra="$withval"],
+    [v2v_extra=]
+)
+
+AC_MSG_NOTICE([virt-v2v version v2v_major.v2v_minor.v2v_release$v2v_extra])
+
+dnl Split up the version string.
+AC_DEFINE([PACKAGE_VERSION_MAJOR],[v2v_major],[Major version number.])
+AC_DEFINE([PACKAGE_VERSION_MINOR],[v2v_minor],[Minor version number.])
+AC_DEFINE([PACKAGE_VERSION_RELEASE],[v2v_release],[Release number.])
+AC_DEFINE_UNQUOTED([PACKAGE_VERSION_EXTRA],["$v2v_extra"],[Extra version string.])
+PACKAGE_VERSION_FULL="v2v_major.v2v_minor.v2v_release${v2v_extra}"
+AC_DEFINE_UNQUOTED([PACKAGE_VERSION_FULL],["$PACKAGE_VERSION_FULL"],[Full version string.])
+AC_SUBST([PACKAGE_VERSION_FULL])
 
 dnl Early gnulib initialization.
 HEADING([Configuring Gnulib])
@@ -79,8 +105,6 @@ dnl These are required to get common/*/Makefile.am files
 dnl to work.  We should further decouple these in future XXX
 AM_CONDITIONAL([ENABLE_APPLIANCE],[true])
 AM_CONDITIONAL([HAVE_PYTHON],[false])  dnl Disables a test
-AC_DEFINE_UNQUOTED([PACKAGE_VERSION_FULL],["$PACKAGE_VERSION"],[Version string.])
-AC_SUBST([PACKAGE_VERSION_FULL], [$PACKAGE_VERSION])
 
 dnl Produce output files.
 HEADING([Generating output files])
