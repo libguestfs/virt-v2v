@@ -41,7 +41,7 @@ SUBDIRS += common/mlxml
 SUBDIRS += common/mltools
 SUBDIRS += common/mlcustomize
 SUBDIRS += common/mlv2v
-SUBDIRS += common/mllibvirt
+SUBDIRS += bundled/libvirt-ocaml
 SUBDIRS += v2v
 SUBDIRS += test-harness
 

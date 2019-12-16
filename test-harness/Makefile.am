@@ -40,7 +40,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
-	-I $(top_builddir)/common/mllibvirt \
+	-I $(top_builddir)/bundled/libvirt-ocaml \
 	-I $(top_builddir)/v2v
 
 OCAMLFLAGS = $(OCAML_FLAGS) $(OCAML_WARN_ERROR) -ccopt '$(CFLAGS)'

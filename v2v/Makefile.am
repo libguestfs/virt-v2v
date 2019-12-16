@@ -212,7 +212,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
-	-I $(top_builddir)/common/mllibvirt \
+	-I $(top_builddir)/bundled/libvirt-ocaml \
 	-I $(top_builddir)/common/mlcustomize \
 	-I $(top_builddir)/common/mlv2v
 if HAVE_OCAML_PKG_GETTEXT
@@ -289,7 +289,7 @@ virt_v2v_copy_to_local_DEPENDENCIES = \
 	../common/mlpcre/mlpcre.$(MLARCHIVE) \
 	../common/mlutils/mlcutils.$(MLARCHIVE) \
 	../common/mltools/mltools.$(MLARCHIVE) \
-	../common/mllibvirt/mllibvirt.$(MLARCHIVE) \
+	../bundled/libvirt-ocaml/mllibvirt.$(MLARCHIVE) \
 	../common/mlcustomize/mlcustomize.$(MLARCHIVE) \
 	../common/mlv2v/mlv2v.$(MLARCHIVE) \
 	$(top_srcdir)/ocaml-link.sh
