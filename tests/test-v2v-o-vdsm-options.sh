@@ -90,7 +90,7 @@ sed -i \
   "$OVF"
 
 
-diff -u test-v2v-o-vdsm-options.ovf.expected \
+diff -u "$srcdir/test-v2v-o-vdsm-options.ovf.expected" \
   "$OVF"
 
 rm -r $d

@@ -25,7 +25,7 @@ skip_if_skipped
 skip_if_backend uml
 skip_unless_phony_guest windows.img
 
-libvirt_uri="test://$abs_builddir/test-v2v-networks-and-bridges.xml"
+libvirt_uri="test://$abs_srcdir/test-v2v-networks-and-bridges.xml"
 f=$top_builddir/test-data/phony-guests/windows.img
 
 export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
@@ -55,6 +55,6 @@ sed -n '/interface/,/\/interface/p' $d/windows.xml |
   grep -v 'model type=' > $d/networks
 
 # Test that the output has mapped the networks and bridges correctly.
-diff -ur test-v2v-networks-and-bridges-expected.xml $d/networks
+diff -ur "$srcdir/test-v2v-networks-and-bridges-expected.xml" $d/networks
 
 rm -r $d

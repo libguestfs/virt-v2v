@@ -29,7 +29,7 @@ python=python3
 
 # Checks the files are syntactically correct, but not very much else.
 for f in $files; do
-    $python -m py_compile $f
+    $python -m py_compile "$srcdir/$f"
 done
 
 # Checks the files correspond to PEP8 coding style.
@@ -40,6 +40,6 @@ if $python-pep8 --version >/dev/null 2>&1; then
         # E226 missing whitespace around arithmetic operator
         # E251 unexpected spaces around keyword / parameter equals
         # E302 expected 2 blank lines, found 1
-        $python-pep8 --ignore=E226,E251,E302 $f
+        $python-pep8 --ignore=E226,E251,E302 "$srcdir/$f"
     done
 fi

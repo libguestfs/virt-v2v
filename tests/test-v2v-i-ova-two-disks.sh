@@ -43,7 +43,7 @@ echo -e "SHA1(disk1.vmdk)= $sha\r" > disk1.mf
 guestfish disk-create disk2.vmdk raw 100K
 sha=`do_sha1 disk2.vmdk`
 echo -e "SHA1(disk2.vmdk)= $sha\r" > disk2.mf
-cp ../test-v2v-i-ova-two-disks.ovf .
+cp "$abs_srcdir/test-v2v-i-ova-two-disks.ovf" .
 
 tar -cf test.ova test-v2v-i-ova-two-disks.ovf disk1.vmdk disk1.mf disk2.vmdk disk2.mf
 popd
@@ -61,11 +61,11 @@ if grep -sq json: $d/source ; then
     # Exact offset will vary because of tar.
     sed -i -e "s,\"[^\"]*/$d/,\"," \
            -e "s|\"offset\": [0-9]*,|\"offset\": x,|" $d/source
-    diff -u test-v2v-i-ova-two-disks.expected2 $d/source
+    diff -u "$srcdir/test-v2v-i-ova-two-disks.expected2" $d/source
 else
     # normalize the output
     sed -i -e 's,[^ \t]*\(disk.*.vmdk\),\1,' $d/source
-    diff -u test-v2v-i-ova-two-disks.expected $d/source
+    diff -u "$srcdir/test-v2v-i-ova-two-disks.expected" $d/source
 fi
 
 rm -rf $d

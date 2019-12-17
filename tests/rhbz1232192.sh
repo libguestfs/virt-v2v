@@ -30,4 +30,4 @@ skip_unless_phony_guest blank-disk.img
 
 export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
 
-virt-v2v -i libvirtxml rhbz1232192.xml -o null --no-copy
+virt-v2v -i libvirtxml "$srcdir/rhbz1232192.xml" -o null --no-copy

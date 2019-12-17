@@ -39,7 +39,7 @@ pushd $d
 guestfish disk-create disk1.vmdk raw 10k
 sha=`do_sha1 disk1.vmdk`
 echo -e "SHA1(disk1.vmdk)= $sha\r" > disk1.mf
-cp ../test-v2v-i-ova-tar.ovf .
+cp "$abs_srcdir/test-v2v-i-ova-tar.ovf" .
 tar -cf test-tar.ova test-v2v-i-ova-tar.ovf disk1.vmdk disk1.mf
 
 popd
@@ -56,11 +56,11 @@ if grep -sq json: $d/source ; then
     # Exact offset will vary because of tar.
     sed -i -e "s,\"[^\"]*/$d/,\"," \
            -e "s|\"offset\": [0-9]*,|\"offset\": x,|" $d/source
-    diff -u test-v2v-i-ova-tar.expected2 $d/source
+    diff -u "$srcdir/test-v2v-i-ova-tar.expected2" $d/source
 else
     # normalize the output
     sed -i -e 's,[^ \t]*\(disk.*.vmdk\),\1,' $d/source
-    diff -u test-v2v-i-ova-tar.expected $d/source
+    diff -u "$srcdir/test-v2v-i-ova-tar.expected" $d/source
 fi
 
 

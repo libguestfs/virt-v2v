@@ -39,7 +39,7 @@ mkdir $d
 pushd $d
 
 # Create the test OVA.
-cp ../test-v2v-i-ova-checksums.ovf test.ovf
+cp "$abs_srcdir/test-v2v-i-ova-checksums.ovf" test.ovf
 cp ../windows.vmdk disk.vmdk
 
 # Test all types of checksum supported by the OVA format.

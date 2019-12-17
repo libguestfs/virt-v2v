@@ -41,7 +41,7 @@ pushd $d
 guestfish disk-create disk1.vmdk raw 10K
 sha=`do_sha1 disk1.vmdk`
 echo -e "SHA1(disk1.vmdk)= $sha\r" > disk1.mf
-cp ../test-v2v-i-ova-formats.ovf .
+cp "$abs_srcdir/test-v2v-i-ova-formats.ovf" .
 
 for format in $formats; do
     case "$format" in
@@ -72,7 +72,7 @@ for format in $formats; do
     sed 's,[^ \t]*\(disk.*.vmdk\),\1,' > $d/source
 
     # Check the parsed source is what we expect.
-    diff -u test-v2v-i-ova-formats.expected $d/source
+    diff -u "$srcdir/test-v2v-i-ova-formats.expected" $d/source
 done
 
 rm -rf $d

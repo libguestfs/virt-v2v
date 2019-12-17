@@ -81,6 +81,6 @@ sed -i \
   -e 's/\<ovf:vm_snapshot_id='"'$RE_UUID'/ovf:vm_snapshot_id='#UUID#'/g" \
   "$OVF"
 
-diff -u test-v2v-o-rhv.ovf.expected "$OVF"
+diff -u "$srcdir/test-v2v-o-rhv.ovf.expected" "$OVF"
 
 rm -r $d

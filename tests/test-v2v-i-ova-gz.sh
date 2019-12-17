@@ -38,7 +38,7 @@ guestfish disk-create disk1.vmdk raw 10K
 gzip disk1.vmdk
 sha=`do_sha1 disk1.vmdk.gz`
 echo -e "SHA1(disk1.vmdk.gz)= $sha\r" > disk1.mf
-cp ../test-v2v-i-ova-gz.ovf .
+cp "$abs_srcdir/test-v2v-i-ova-gz.ovf" .
 
 tar -cf test.ova test-v2v-i-ova-gz.ovf disk1.vmdk.gz disk1.mf
 popd
@@ -51,6 +51,6 @@ $VG virt-v2v --debug-gc --quiet \
 sed 's,[^ \t]*\(\.vmdk\),\1,' > $d/source
 
 # Check the parsed source is what we expect.
-diff -u test-v2v-i-ova-gz.expected $d/source
+diff -u "$srcdir/test-v2v-i-ova-gz.expected" $d/source
 
 rm -rf $d

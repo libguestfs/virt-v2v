@@ -42,7 +42,7 @@ raw=TestOva-sda
 
 qemu-img convert $top_builddir/test-data/phony-guests/windows.img \
          -O vmdk $d/$vmdk
-cp $ovf $d/$ovf
+cp "$srcdir/$ovf" $d/$ovf
 sha1=`do_sha1 $d/$ovf`
 echo "SHA1($ovf)= $sha1" > $d/$mf
 sha256=`do_sha256 $d/$vmdk`
@@ -70,6 +70,6 @@ sed \
     < $d/TestOva.xml.old > $d/TestOva.xml
 
 # Check the libvirt XML output.
-diff -u test-v2v-i-ova.xml $d/TestOva.xml
+diff -u "$srcdir/test-v2v-i-ova.xml" $d/TestOva.xml
 
 rm -rf $d

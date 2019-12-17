@@ -39,7 +39,7 @@ mkdir $d
 pushd $d
 
 # Create the test OVA.
-cp ../test-v2v-i-ova-checksums.ovf test.ovf
+cp "$abs_srcdir/test-v2v-i-ova-checksums.ovf" test.ovf
 cp ../windows.vmdk disk.vmdk
 echo "SHA256(test.ovf)=" `do_sha256 test.ovf` > test.mf
 sha256=`do_sha256 disk.vmdk | tr '0-5a-f6789' 'a-f0-58967'`

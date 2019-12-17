@@ -29,7 +29,7 @@ rm -rf $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
-    -i libvirtxml test-v2v-print-source.xml \
+    -i libvirtxml "$srcdir/test-v2v-print-source.xml" \
     -o local -os $d \
     --print-source > $d/output
 
@@ -41,6 +41,6 @@ sed -e 's,/.*/windows.img,windows.img,' |
 grep -v '^$' \
 > $d/output
 
-diff -u test-v2v-print-source.expected $d/output
+diff -u "$srcdir/test-v2v-print-source.expected" $d/output
 
 rm -r $d

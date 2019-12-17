@@ -32,7 +32,7 @@ d=test-v2v-i-ova-subfolders.d
 rm -rf $d
 mkdir -p $d/subfolder
 
-cp test-v2v-i-ova-subfolders.ovf $d/subfolder/
+cp "$srcdir/test-v2v-i-ova-subfolders.ovf" $d/subfolder/
 
 pushd $d/subfolder
 
@@ -57,11 +57,11 @@ if grep -sq json: $d/source ; then
     # Exact offset will vary because of tar.
     sed -i -e "s,\"[^\"]*/$d/,\"," \
            -e "s|\"offset\": [0-9]*,|\"offset\": x,|" $d/source
-    diff -u test-v2v-i-ova-subfolders.expected2 $d/source
+    diff -u "$srcdir/test-v2v-i-ova-subfolders.expected2" $d/source
 else
     # normalize the output
     sed -i -e 's,[^ \t]*\(subfolder/disk.*\.vmdk\),\1,' $d/source
-    diff -u test-v2v-i-ova-subfolders.expected $d/source
+    diff -u "$srcdir/test-v2v-i-ova-subfolders.expected" $d/source
 fi
 
 rm -rf $d

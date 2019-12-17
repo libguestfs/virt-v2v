@@ -32,7 +32,7 @@ echo "Actual:"
 du -s -B 1 ../test-data/phony-guests/windows.img
 
 $VG virt-v2v --debug-gc \
-    -i libvirtxml test-v2v-print-source.xml \
+    -i libvirtxml "$srcdir/test-v2v-print-source.xml" \
     -o local -os $(pwd) \
     --print-estimate \
     --machine-readable=file:$f

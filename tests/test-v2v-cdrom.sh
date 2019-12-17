@@ -27,7 +27,7 @@ skip_if_backend uml
 skip_unless_phony_guest windows.img
 skip_unless_phony_guest blank-disk.img
 
-libvirt_uri="test://$abs_builddir/test-v2v-cdrom.xml"
+libvirt_uri="test://$abs_srcdir/test-v2v-cdrom.xml"
 export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
 export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
 
@@ -48,7 +48,7 @@ awk '/<disk /{p=1;print;next} p&&/<\/disk>/{p=0;print;next} ;p' \
     $d/windows.xml |
     grep -v '<source file' > $d/disks
 
-if ! diff -u test-v2v-cdrom.expected $d/disks; then
+if ! diff -u "$srcdir/test-v2v-cdrom.expected" $d/disks; then
     echo "$0: unexpected disk assignments"
     cat $d/disks
     exit 1

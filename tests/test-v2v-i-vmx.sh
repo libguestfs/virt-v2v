@@ -43,7 +43,7 @@ for i in 1 2 3 4 5; do
     rm test-v2v-i-vmx-$i.actual.old
 
     # Check the output.
-    diff -u test-v2v-i-vmx-$i.expected test-v2v-i-vmx-$i.actual
+    diff -u "$srcdir/test-v2v-i-vmx-$i.expected" test-v2v-i-vmx-$i.actual
 done
 
 rm test-v2v-i-vmx-*.actual
