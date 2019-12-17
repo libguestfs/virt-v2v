@@ -598,4 +598,4 @@ check_DATA = fake-virtio-win.iso
 CLEANFILES += fake-virtio-win.iso
 
 fake-virtio-win.iso: $(cd_files)
-	$(GENISOIMAGE) -J -r -o $@ cd
+	$(GENISOIMAGE) -J -r -o $@ $(srcdir)/cd
