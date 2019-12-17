@@ -96,6 +96,7 @@ SOURCES_MLI = \
 	qemuopts.mli \
 	target_bus_assignment.mli \
 	types.mli \
+	utils.mli \
 	v2v.mli \
 	vCenter.mli \
 	var_expander.mli \
