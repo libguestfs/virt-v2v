@@ -199,6 +199,7 @@ maintainer-check-extra-dist:
 	  grep -v '^common/protocol/' | \
 	  grep -v '^common/structs/' | \
 	  grep -v '^common/visit/' | \
+	  grep -v '^common/windows/' | \
 	  grep -v '^intltool-.*\.in' | \
 	  grep -v '^\.gitmodules' | \
 	  grep -v '^\.gnulib' | \
