@@ -77,12 +77,12 @@ guestfs_am_v_jar = $(guestfs_am_v_jar_@AM_V@)
 guestfs_am_v_jar_ = $(guestfs_am_v_jar_@AM_DEFAULT_V@)
 guestfs_am_v_jar_0 = @echo "  JAR     " $@;
 
-%.cmi: $(srcdir)/%.mli
+%.cmi: %.mli
 	$(guestfs_am_v_ocamlcmi)$(OCAMLFIND) ocamlc -package guestfs $(OCAMLFLAGS) $(OCAMLPACKAGES) -c $< -o $@
-%.cmo: $(srcdir)/%.ml
+%.cmo: %.ml
 	$(guestfs_am_v_ocamlc)$(OCAMLFIND) ocamlc -package guestfs $(OCAMLFLAGS) $(OCAMLPACKAGES) -c $< -o $@
 if HAVE_OCAMLOPT
-%.cmx: $(srcdir)/%.ml
+%.cmx: %.ml
 	$(guestfs_am_v_ocamlopt)$(OCAMLFIND) ocamlopt -package guestfs $(OCAMLFLAGS) $(OCAMLPACKAGES) -c $< -o $@
 endif
 
