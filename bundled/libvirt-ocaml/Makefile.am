@@ -30,6 +30,7 @@ SOURCES_ML = \
 	libvirt.ml
 
 SOURCES_C = \
+	libvirt_c.h \
 	libvirt_c_common.c \
 	libvirt_generated.c \
 	libvirt_c_oneoffs.c
