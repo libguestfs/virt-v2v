@@ -115,6 +115,7 @@ po/POTFILES-ml: configure.ac
 	grep -v '^common/mlprogress/' | \
 	grep -v '^common/mlvisit/' | \
 	grep -v '^v2v/config.ml$$' | \
+	grep -v -E '.*_tests\.ml$$' | \
 	LC_ALL=C sort > $@-t
 	mv $@-t $@
 
