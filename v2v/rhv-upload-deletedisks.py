@@ -19,9 +19,7 @@
 import json
 import logging
 import sys
-import time
 
-from http.client import HTTPSConnection
 from urllib.parse import urlparse
 
 import ovirtsdk4 as sdk
