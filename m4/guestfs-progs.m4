@@ -73,3 +73,6 @@ AS_IF([test "x$VALGRIND" != "xno"],[
 ])
 AC_SUBST([VG])
 AM_SUBST_NOTMAKE([VG])
+
+dnl pycodestyle, used to check the Python scripts.
+AC_CHECK_PROGS([PYCODESTYLE],[pycodestyle],[no])

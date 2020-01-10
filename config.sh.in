@@ -20,3 +20,4 @@
 # mostly used in other shell scripts.
 
 export VIRT_V2V_NBDKIT_PYTHON_PLUGIN="@VIRT_V2V_NBDKIT_PYTHON_PLUGIN@"
+export PYCODESTYLE="@PYCODESTYLE@"

@@ -34,12 +34,9 @@ done
 
 # Checks the files correspond to PEP8 coding style.
 # https://www.python.org/dev/peps/pep-0008/
-if $python-pep8 --version >/dev/null 2>&1; then
-    for f in $files; do
-        # Ignore:
-        # E226 missing whitespace around arithmetic operator
-        # E251 unexpected spaces around keyword / parameter equals
-        # E302 expected 2 blank lines, found 1
-        $python-pep8 --ignore=E226,E251,E302 "$f"
-    done
+if test "x$PYCODESTYLE" != xno; then
+    # Ignore:
+    # E501 line too long
+    # E722 do not use bare 'except'
+    $PYCODESTYLE --ignore=E501,E722 $files
 fi
