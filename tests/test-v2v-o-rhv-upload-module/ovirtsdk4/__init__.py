@@ -18,6 +18,10 @@
 # Fake ovirtsdk4 module used as a test harness.
 # See v2v/test-v2v-o-rhv-upload.sh
 
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
+
+
 class Error(Exception):
     pass
 class NotFoundError(Error):
@@ -130,9 +134,6 @@ class VmsService(object):
 
 # Create a background thread running a web server which is
 # simulating the imageio server.
-
-from http.server import HTTPServer, BaseHTTPRequestHandler
-import threading
 
 class RequestHandler(BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
