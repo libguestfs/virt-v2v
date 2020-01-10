@@ -24,8 +24,11 @@ import threading
 
 class Error(Exception):
     pass
+
+
 class NotFoundError(Error):
     pass
+
 
 class Connection(object):
     def __init__(
@@ -49,6 +52,7 @@ class Connection(object):
     def system_service(self):
         return SystemService()
 
+
 class SystemService(object):
     def clusters_service(self):
         return ClustersService()
@@ -68,17 +72,21 @@ class SystemService(object):
     def vms_service(self):
         return VmsService()
 
+
 class ClusterService(object):
     def get(self):
         return types.Cluster()
+
 
 class ClustersService(object):
     def cluster_service(self, id):
         return ClusterService()
 
+
 class DataCentersService(object):
     def list(self, search=None, case_sensitive=False):
         return [types.DataCenter()]
+
 
 class DiskService(object):
     def __init__(self, disk_id):
@@ -90,6 +98,7 @@ class DiskService(object):
     def remove(self):
         pass
 
+
 class DisksService(object):
     def add(self, disk=None):
         disk.id = "756d81b0-d5c0-41bc-9bbe-b343c3fa3490"
@@ -97,6 +106,7 @@ class DisksService(object):
 
     def disk_service(self, disk_id):
         return DiskService(disk_id)
+
 
 class ImageTransferService(object):
     def __init__(self):
@@ -114,6 +124,7 @@ class ImageTransferService(object):
     def finalize(self):
         self._finalized = True
 
+
 class ImageTransfersService(object):
     def add(self, transfer):
         return transfer
@@ -121,9 +132,11 @@ class ImageTransfersService(object):
     def image_transfer_service(self, id):
         return ImageTransferService()
 
+
 class StorageDomainsService(object):
     def list(self, search=None, case_sensitive=False):
         return [StorageDomain()]
+
 
 class VmsService(object):
     def add(self, vm):
@@ -132,8 +145,10 @@ class VmsService(object):
     def list(self, search=None):
         return []
 
+
 # Create a background thread running a web server which is
 # simulating the imageio server.
+
 
 class RequestHandler(BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
@@ -171,14 +186,17 @@ class RequestHandler(BaseHTTPRequestHandler):
             length = int(length)
             content = self.rfile.read(length)
 
+
 server_address = ("", 0)
 # XXX This should test HTTPS, not HTTP, because we are testing a
 # different path through the main code.
 httpd = HTTPServer(server_address, RequestHandler)
 imageio_port = httpd.server_address[1]
 
+
 def server():
     httpd.serve_forever()
+
 
 thread = threading.Thread(target=server, args=[], daemon=True)
 thread.start()

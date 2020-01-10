@@ -21,13 +21,16 @@
 from enum import Enum
 from ovirtsdk4 import imageio_port
 
+
 class Cluster(object):
     id = "2e97537b-a783-4706-af9e-75cb2e032dcd"
     name = "Default"
 
+
 class Configuration(object):
     def __init__(self, type=None, data=None):
         pass
+
 
 class ConfigurationType(Enum):
     OVA = 'ova'
@@ -39,6 +42,7 @@ class ConfigurationType(Enum):
     def __str__(self):
         return self._image
 
+
 class DiskFormat(Enum):
     COW = "cow"
     RAW = "raw"
@@ -48,6 +52,7 @@ class DiskFormat(Enum):
 
     def __str__(self):
         return self._image
+
 
 class DiskStatus(Enum):
     ILLEGAL = "illegal"
@@ -59,6 +64,7 @@ class DiskStatus(Enum):
 
     def __str__(self):
         return self._image
+
 
 class Disk(object):
     def __init__(
@@ -75,6 +81,7 @@ class Disk(object):
         self.id = id
 
     status = DiskStatus.OK
+
 
 class ImageTransferPhase(Enum):
     CANCELLED = 'cancelled'
@@ -95,6 +102,7 @@ class ImageTransferPhase(Enum):
     def __str__(self):
         return self._image
 
+
 class ImageTransfer(object):
     def __init__(
             self,
@@ -108,9 +116,11 @@ class ImageTransfer(object):
     phase = ImageTransferPhase.TRANSFERRING
     transfer_url = "http://localhost:" + str(imageio_port) + "/"
 
+
 class Initialization(object):
     def __init__(self, configuration):
         pass
+
 
 class StorageDomain(object):
     def __init__(self, name=None):
@@ -119,6 +129,7 @@ class StorageDomain(object):
     id = "ba87af68-b630-4211-a73a-694c1a689405"
     name = "Storage"
 
+
 class Vm(object):
     def __init__(
             self,
@@ -126,6 +137,7 @@ class Vm(object):
             initialization=None
     ):
         pass
+
 
 class DataCenter(object):
     id = "31d8c73b-554b-4958-bb04-9ce97f0849e1"

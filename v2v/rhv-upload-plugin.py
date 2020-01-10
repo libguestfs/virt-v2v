@@ -41,6 +41,7 @@ timeout = 5 * 60
 # is no formal API here.
 params = None
 
+
 def config(key, value):
     global params
 
@@ -51,14 +52,17 @@ def config(key, value):
     else:
         raise RuntimeError("unknown configuration key '%s'" % key)
 
+
 def config_complete():
     if params is None:
         raise RuntimeError("missing configuration parameters")
+
 
 def debug(s):
     if params['verbose']:
         print(s, file=sys.stderr)
         sys.stderr.flush()
+
 
 def read_password():
     """
@@ -68,12 +72,14 @@ def read_password():
         data = fp.read()
     return data.rstrip()
 
+
 def parse_username():
     """
     Parse out the username from the output_conn URL.
     """
     parsed = urlparse(params['output_conn'])
     return parsed.username or "admin@internal"
+
 
 def failing(func):
     """
@@ -90,6 +96,7 @@ def failing(func):
             raise
 
     return wrapper
+
 
 def open(readonly):
     connection = sdk.Connection(
@@ -134,17 +141,21 @@ def open(readonly):
         'path': destination_url.path,
     }
 
+
 @failing
 def can_trim(h):
     return h['can_trim']
+
 
 @failing
 def can_flush(h):
     return h['can_flush']
 
+
 @failing
 def get_size(h):
     return params['disk_size']
+
 
 # Any unexpected HTTP response status from the server will end up calling this
 # function which logs the full error, and raises a RuntimeError exception.
@@ -165,10 +176,12 @@ def request_failed(r, msg):
     # Only a short error is included in the exception.
     raise RuntimeError("%s: %d %s: %r" % (msg, status, reason, body[:200]))
 
+
 # For documentation see:
 # https://github.com/oVirt/ovirt-imageio/blob/master/docs/random-io.md
 # For examples of working code to read/write from the server, see:
 # https://github.com/oVirt/ovirt-imageio/blob/master/daemon/test/server_test.py
+
 
 @failing
 def pread(h, count, offset):
@@ -189,6 +202,7 @@ def pread(h, count, offset):
                        (offset, count))
 
     return r.read()
+
 
 @failing
 def pwrite(h, buf, offset):
@@ -220,6 +234,7 @@ def pwrite(h, buf, offset):
 
     r.read()
 
+
 @failing
 def zero(h, count, offset, may_trim):
     http = h['http']
@@ -249,6 +264,7 @@ def zero(h, count, offset, may_trim):
                        (offset, count))
 
     r.read()
+
 
 def emulate_zero(h, count, offset):
     http = h['http']
@@ -284,6 +300,7 @@ def emulate_zero(h, count, offset):
 
         r.read()
 
+
 @failing
 def trim(h, count, offset):
     http = h['http']
@@ -307,6 +324,7 @@ def trim(h, count, offset):
 
     r.read()
 
+
 @failing
 def flush(h):
     http = h['http']
@@ -324,6 +342,7 @@ def flush(h):
         request_failed(r, "could not flush")
 
     r.read()
+
 
 def close(h):
     http = h['http']
@@ -362,10 +381,12 @@ def close(h):
     finally:
         connection.close()
 
+
 # Modify http.client.HTTPConnection to work over a Unix domain socket.
 # Derived from uhttplib written by Erik van Zijst under an MIT license.
 # (https://pypi.org/project/uhttplib/)
 # Ported to Python 3 by Irit Goihman.
+
 
 class UnixHTTPConnection(HTTPConnection):
     def __init__(self, path, timeout=socket._GLOBAL_DEFAULT_TIMEOUT):
@@ -378,7 +399,9 @@ class UnixHTTPConnection(HTTPConnection):
             self.sock.settimeout(timeout)
         self.sock.connect(self.path)
 
+
 # oVirt SDK operations
+
 
 def find_host(connection):
     """Return the current host object or None."""
@@ -427,6 +450,7 @@ def find_host(connection):
     debug("host.id = %r" % host.id)
 
     return types.Host(id=host.id)
+
 
 def create_disk(connection):
     """
@@ -482,6 +506,7 @@ def create_disk(connection):
                 "timed out waiting for disk %s to become unlocked" % disk.id)
 
     return disk
+
 
 def create_transfer(connection, disk, host):
     """
@@ -553,6 +578,7 @@ def create_transfer(connection, disk, host):
 
     return transfer
 
+
 def cancel_transfer(connection, transfer):
     """
     Cancel a transfer, removing the transfer disk.
@@ -562,6 +588,7 @@ def cancel_transfer(connection, transfer):
                         .image_transfers_service()
                         .image_transfer_service(transfer.id))
     transfer_service.cancel()
+
 
 def finalize_transfer(connection, transfer, disk_id):
     """
@@ -621,6 +648,7 @@ def finalize_transfer(connection, transfer, disk_id):
                 "timed out waiting for transfer %s to finalize"
                 % transfer.id)
 
+
 def transfer_supports_format():
     """
     Return True if transfer supports the "format" argument, enabing the NBD
@@ -632,7 +660,9 @@ def transfer_supports_format():
     sig = inspect.signature(types.ImageTransfer)
     return "format" in sig.parameters
 
+
 # oVirt imageio operations
+
 
 def parse_transfer_url(transfer):
     """
@@ -647,6 +677,7 @@ def parse_transfer_url(transfer):
         return urlparse(transfer.transfer_url)
     else:
         return urlparse(transfer.proxy_url)
+
 
 def create_http(url):
     """
@@ -667,6 +698,7 @@ def create_http(url):
         return HTTPConnection(url.hostname, url.port)
     else:
         raise RuntimeError("unknown URL scheme (%s)" % url.scheme)
+
 
 def get_options(http, url):
     """
@@ -703,6 +735,7 @@ def get_options(http, url):
     else:
         raise RuntimeError("could not use OPTIONS request: %d: %s" %
                            (r.status, r.reason))
+
 
 def optimize_http(http, host, options):
     """
