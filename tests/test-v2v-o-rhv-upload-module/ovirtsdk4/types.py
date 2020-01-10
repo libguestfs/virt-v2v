@@ -63,14 +63,14 @@ class DiskStatus(Enum):
 class Disk(object):
     def __init__(
             self,
-            id = None,
-            name = None,
-            description = None,
-            format = None,
-            initial_size = None,
-            provisioned_size = None,
-            sparse = False,
-            storage_domains = None
+            id=None,
+            name=None,
+            description=None,
+            format=None,
+            initial_size=None,
+            provisioned_size=None,
+            sparse=False,
+            storage_domains=None
     ):
         self.id = id
 
@@ -98,9 +98,9 @@ class ImageTransferPhase(Enum):
 class ImageTransfer(object):
     def __init__(
             self,
-            disk = None,
-            host = None,
-            inactivity_timeout = None,
+            disk=None,
+            host=None,
+            inactivity_timeout=None,
     ):
         pass
 
@@ -113,7 +113,7 @@ class Initialization(object):
         pass
 
 class StorageDomain(object):
-    def __init__(self, name = None):
+    def __init__(self, name=None):
         pass
 
     id = "ba87af68-b630-4211-a73a-694c1a689405"
@@ -122,8 +122,8 @@ class StorageDomain(object):
 class Vm(object):
     def __init__(
             self,
-            cluster = None,
-            initialization = None
+            cluster=None,
+            initialization=None
     ):
         pass
 

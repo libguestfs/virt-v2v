@@ -34,7 +34,7 @@ import ovirtsdk4.types as types
 
 # Timeout to wait for oVirt disks to change status, or the transfer
 # object to finish initializing [seconds].
-timeout = 5*60
+timeout = 5 * 60
 
 # Parameters are passed in via a JSON doc from the OCaml code.
 # Because this Python code ships embedded inside virt-v2v there
@@ -93,12 +93,12 @@ def failing(func):
 
 def open(readonly):
     connection = sdk.Connection(
-        url = params['output_conn'],
-        username = parse_username(),
-        password = read_password(),
-        ca_file = params['rhv_cafile'],
-        log = logging.getLogger(),
-        insecure = params['insecure'],
+        url=params['output_conn'],
+        username=parse_username(),
+        password=read_password(),
+        ca_file=params['rhv_cafile'],
+        log=logging.getLogger(),
+        insecure=params['insecure'],
     )
 
     # Use the local host is possible.
@@ -175,7 +175,7 @@ def pread(h, count, offset):
     http = h['http']
     transfer = h['transfer']
 
-    headers = {"Range": "bytes=%d-%d" % (offset, offset+count-1)}
+    headers = {"Range": "bytes=%d-%d" % (offset, offset + count - 1)}
     if h['needs_auth']:
         headers["Authorization"] = transfer.signed_ticket
 
@@ -196,14 +196,14 @@ def pwrite(h, buf, offset):
     transfer = h['transfer']
 
     count = len(buf)
-    h['highestwrite'] = max(h['highestwrite'], offset+count)
+    h['highestwrite'] = max(h['highestwrite'], offset + count)
 
     http.putrequest("PUT", h['path'] + "?flush=n")
     if h['needs_auth']:
         http.putheader("Authorization", transfer.signed_ticket)
     # The oVirt server only uses the first part of the range, and the
     # content-length.
-    http.putheader("Content-Range", "bytes %d-%d/*" % (offset, offset+count-1))
+    http.putheader("Content-Range", "bytes %d-%d/*" % (offset, offset + count - 1))
     http.putheader("Content-Length", str(count))
     http.endheaders()
 
@@ -258,17 +258,17 @@ def emulate_zero(h, count, offset):
     # Since we've just created a new disk it's safe to ignore these
     # requests as long as they are smaller than the highest write seen.
     # After that we must emulate them with writes.
-    if offset+count < h['highestwrite']:
+    if offset + count < h['highestwrite']:
         http.putrequest("PUT", h['path'])
         if h['needs_auth']:
             http.putheader("Authorization", transfer.signed_ticket)
         http.putheader("Content-Range",
-                       "bytes %d-%d/*" % (offset, offset+count-1))
+                       "bytes %d-%d/*" % (offset, offset + count - 1))
         http.putheader("Content-Length", str(count))
         http.endheaders()
 
         try:
-            buf = bytearray(128*1024)
+            buf = bytearray(128 * 1024)
             while count > len(buf):
                 http.send(buf)
                 count -= len(buf)
@@ -426,7 +426,7 @@ def find_host(connection):
     host = hosts[0]
     debug("host.id = %r" % host.id)
 
-    return types.Host(id = host.id)
+    return types.Host(id=host.id)
 
 def create_disk(connection):
     """
@@ -443,23 +443,23 @@ def create_disk(connection):
         disk_format = types.DiskFormat.COW
 
     disk = disks_service.add(
-        disk = types.Disk(
+        disk=types.Disk(
             # The ID is optional.
-            id = params.get('rhv_disk_uuid'),
-            name = params['disk_name'],
-            description = "Uploaded by virt-v2v",
-            format = disk_format,
+            id=params.get('rhv_disk_uuid'),
+            name=params['disk_name'],
+            description="Uploaded by virt-v2v",
+            format=disk_format,
             # XXX For qcow2 disk on block storage, we should use the estimated
             # size, based on qemu-img measure of the overlay.
-            initial_size = params['disk_size'],
-            provisioned_size = params['disk_size'],
+            initial_size=params['disk_size'],
+            provisioned_size=params['disk_size'],
             # XXX Ignores params['output_sparse'].
             # Handling this properly will be complex, see:
             # https://www.redhat.com/archives/libguestfs/2018-March/msg00177.html
-            sparse = True,
-            storage_domains = [
+            sparse=True,
+            storage_domains=[
                 types.StorageDomain(
-                    name = params['output_storage'],
+                    name=params['output_storage'],
                 )
             ],
         )
@@ -498,9 +498,9 @@ def create_transfer(connection, disk, host):
 
     transfer = transfers_service.add(
         types.ImageTransfer(
-            disk = types.Disk(id = disk.id),
-            host = host,
-            inactivity_timeout = 3600,
+            disk=types.Disk(id=disk.id),
+            host=host,
+            inactivity_timeout=3600,
             **extra,
         )
     )
@@ -559,8 +559,8 @@ def cancel_transfer(connection, transfer):
     """
     debug("canceling transfer %s" % transfer.id)
     transfer_service = (connection.system_service()
-                            .image_transfers_service()
-                            .image_transfer_service(transfer.id))
+                        .image_transfers_service()
+                        .image_transfer_service(transfer.id))
     transfer_service.cancel()
 
 def finalize_transfer(connection, transfer, disk_id):
@@ -585,16 +585,16 @@ def finalize_transfer(connection, transfer, disk_id):
     """
     debug("finalizing transfer %s" % transfer.id)
     transfer_service = (connection.system_service()
-                            .image_transfers_service()
-                            .image_transfer_service(transfer.id))
+                        .image_transfers_service()
+                        .image_transfer_service(transfer.id))
 
     start = time.time()
 
     transfer_service.finalize()
 
     disk_service = (connection.system_service()
-                        .disks_service()
-                        .disk_service(disk_id))
+                    .disks_service()
+                    .disk_service(disk_id))
 
     while True:
         time.sleep(1)
@@ -656,13 +656,13 @@ def create_http(url):
     """
     if url.scheme == "https":
         context = \
-            ssl.create_default_context(purpose = ssl.Purpose.SERVER_AUTH,
-                                       cafile = params['rhv_cafile'])
+            ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH,
+                                       cafile=params['rhv_cafile'])
         if params['insecure']:
             context.check_hostname = False
             context.verify_mode = ssl.CERT_NONE
 
-        return HTTPSConnection(url.hostname, url.port, context = context)
+        return HTTPSConnection(url.hostname, url.port, context=context)
     elif url.scheme == "http":
         return HTTPConnection(url.hostname, url.port)
     else:

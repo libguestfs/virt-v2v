@@ -26,12 +26,12 @@ class NotFoundError(Error):
 class Connection(object):
     def __init__(
             self,
-            url = None,
-            username = None,
-            password = None,
-            ca_file = None,
-            log = None,
-            insecure = False,
+            url=None,
+            username=None,
+            password=None,
+            ca_file=None,
+            log=None,
+            insecure=False,
             debug=True,
     ):
         pass
@@ -119,7 +119,7 @@ class ImageTransfersService(object):
 
 class StorageDomainsService(object):
     def list(self, search=None, case_sensitive=False):
-        return [ StorageDomain() ]
+        return [StorageDomain()]
 
 class VmsService(object):
     def add(self, vm):
@@ -179,5 +179,5 @@ imageio_port = httpd.server_address[1]
 def server():
     httpd.serve_forever()
 
-thread = threading.Thread(target = server, args = [], daemon = True)
+thread = threading.Thread(target=server, args=[], daemon=True)
 thread.start()
