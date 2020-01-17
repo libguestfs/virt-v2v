@@ -36,8 +36,7 @@ type ovf_disk = {
 }
 
 let xpathctx_of_ovf ovf_filename =
-  let xml = read_whole_file ovf_filename in
-  let doc = Xml.parse_memory xml in
+  let doc = Xml.parse_file ovf_filename in
 
   (* Handle namespaces. *)
   let xpathctx = Xml.xpath_new_context doc in
