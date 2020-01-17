@@ -105,9 +105,8 @@ object (self)
     (* Connect to output libvirt instance and check that the pool exists
      * and dump out its XML.
      *)
-    let xml =
-      let pool = Libvirt_utils.get_pool self#conn output_pool in
-      Libvirt.Pool.get_xml_desc (Libvirt.Pool.const pool) in
+    let pool = Libvirt_utils.get_pool self#conn output_pool in
+    let xml = Libvirt.Pool.get_xml_desc (Libvirt.Pool.const pool) in
     let doc = Xml.parse_memory xml in
     let xpathctx = Xml.xpath_new_context doc in
     let xpath_string = xpath_string xpathctx in
@@ -125,12 +124,7 @@ object (self)
     (* Get the name of the pool, since we have to use that
      * (and not the UUID) in the XML of the guest.
      *)
-    let name =
-      match xpath_string "/pool/name/text()" with
-      | None ->
-         error (f_"-o libvirt: output pool ‘%s’ does not have /pool/name element.  See virt-v2v-output-local(1)") output_pool
-      | Some name -> name in
-    pool_name <- Some name;
+    pool_name <- Some (Libvirt.Pool.get_name (Libvirt.Pool.const pool));
 
     (* Set up the targets. *)
     List.map (
