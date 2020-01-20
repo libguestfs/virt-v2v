@@ -79,7 +79,7 @@ let rec map_source ?bandwidth ?password_file dcPath uri server path =
 
   let nbdkit =
     Nbdkit.create_curl ?bandwidth ?cookie:session_cookie ~password ~sslverify
-                       https_url in
+                       ?user:uri.uri_user https_url in
   let qemu_uri = Nbdkit.run nbdkit in
 
   (* Return the struct. *)
