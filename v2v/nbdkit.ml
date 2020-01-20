@@ -142,7 +142,7 @@ let common_create ?bandwidth plugin_name plugin_args plugin_env =
     let cmd =
       sprintf "%s nbdkit --dump-plugin --filter=%s null >/dev/null"
               env_as_string filter_name in
-    Sys.command cmd <> 0
+    Sys.command cmd == 0
   in
 
   (* Adding the readahead filter is always a win for our access
