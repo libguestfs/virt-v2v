@@ -297,10 +297,11 @@ and ddb_regedits inspect drv_name drv_pciid =
  * been copied.
  *)
 and copy_drivers g inspect driverdir =
-  [] <> copy_from_virtio_win g inspect "/" driverdir
-    virtio_iso_path_matches_guest_os
-    (fun () ->
-      error (f_"root directory ‘/’ is missing from the virtio-win directory or ISO.\n\nThis should not happen and may indicate that virtio-win or virt-v2v is broken in some way.  Please report this as a bug with a full debug log."))
+  [] <> copy_from_libosinfo g inspect driverdir ||
+    [] <> copy_from_virtio_win g inspect "/" driverdir
+      virtio_iso_path_matches_guest_os
+      (fun () ->
+        error (f_"root directory ‘/’ is missing from the virtio-win directory or ISO.\n\nThis should not happen and may indicate that virtio-win or virt-v2v is broken in some way.  Please report this as a bug with a full debug log."))
 
 and copy_qemu_ga g inspect =
   copy_from_virtio_win g inspect "/" "/"
@@ -458,6 +459,75 @@ and virtio_iso_path_matches_qemu_ga path inspect =
   | ("x86_64", "qemu-ga-x86_64.msi")
   | ("x86_64", "rhev-qga64.msi") -> true
   | _ -> false
+
+(* Look up in libosinfo for the OS, and copy all the locally
+ * available files specified as drivers for that OS to the [destdir].
+ *
+ * This function does nothing in case either:
+ * - the osinfo short ID is not found in the libosinfo DB
+ * - the OS does not have any driver for the architecture of the guest
+ * - the location of the drivers is not a local directory
+ *
+ * Files that do not exist are silently skipped.
+ *
+ * Returns list of copied files.
+ *)
+and copy_from_libosinfo g inspect destdir =
+  let { i_osinfo = osinfo; i_arch = arch } = inspect in
+  try
+    let os = Libosinfo_utils.get_os_by_short_id osinfo in
+    let drivers = os#get_device_drivers () in
+    (*
+     * Filter out drivers that we cannot use:
+     * - for a different architecture
+     * - non-pre-installable ones
+     * - location is an invalid URL, or a non-local one
+     *)
+    let drivers =
+      List.filter (
+        fun { Libosinfo.architecture; location; pre_installable } ->
+          if architecture <> arch || not pre_installable then
+            false
+          else
+            try
+              (match Xml.parse_uri location with
+              | { Xml.uri_scheme = Some scheme;
+                  Xml.uri_path = Some _ } when scheme = "file" -> true
+              | _ -> false
+              )
+            with Invalid_argument _ -> false
+      ) drivers in
+    (* Sort the drivers by priority, like libosinfo does. *)
+    let drivers =
+      List.sort (
+        fun { Libosinfo.priority = prioA } { Libosinfo.priority = prioB } ->
+          compare prioB prioA
+      ) drivers in
+    (* Any driver available? *)
+    if drivers = [] then
+      raise Not_found;
+    let driver = List.hd drivers in
+    let uri = Xml.parse_uri driver.Libosinfo.location in
+    let basedir =
+      match uri.Xml.uri_path with
+      | Some p -> p
+      | None -> assert false in
+    List.filter_map (
+      fun f ->
+        let source = basedir // f in
+        if not (Sys.file_exists source) then
+          None
+        else (
+          let target_name = String.lowercase_ascii (Filename.basename f) in
+          let target = destdir ^ "/" ^ target_name in
+          debug "windows: copying guest tools bits (via libosinfo): 'host:%s' -> '%s'"
+                source target;
+
+          g#write target (read_whole_file source);
+          Some target_name
+        )
+    ) driver.Libosinfo.files
+  with Not_found -> []
 
 (* The following function is only exported for unit tests. *)
 module UNIT_TESTS = struct
