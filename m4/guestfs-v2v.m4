@@ -17,6 +17,9 @@
 
 dnl Virt-v2v.
 
+dnl Check for libosinfo (mandatory)
+PKG_CHECK_MODULES([LIBOSINFO], [libosinfo-1.0])
+
 dnl nbdkit python plugin.
 AC_MSG_CHECKING([for the nbdkit python plugin name])
 AC_ARG_WITH([virt-v2v-nbdkit-python-plugin],

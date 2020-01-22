@@ -190,7 +190,8 @@ virt_v2v_CPPFLAGS = \
 	-I$(top_srcdir)/lib
 virt_v2v_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
-	$(LIBVIRT_CFLAGS)
+	$(LIBVIRT_CFLAGS) \
+	$(LIBOSINFO_CFLAGS)
 
 BOBJECTS = \
 	$(top_builddir)/common/mlcustomize/firstboot.cmo \
@@ -225,6 +226,7 @@ OCAMLCLIBS = \
 	$(LIBVIRT_LIBS) \
 	$(LIBXML2_LIBS) \
 	$(JANSSON_LIBS) \
+	$(LIBOSINFO_LIBS) \
 	$(LIBINTL) \
 	-lgnu
 
