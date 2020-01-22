@@ -63,6 +63,8 @@ SOURCES_MLI = \
 	input_ova.mli \
 	input_vmx.mli \
 	inspect_source.mli \
+	libosinfo.mli \
+	libosinfo_utils.mli \
 	libvirt_utils.mli \
 	linux.mli \
 	linux_bootloaders.mli \
@@ -112,6 +114,8 @@ SOURCES_ML = \
 	name_from_disk.ml \
 	nbdkit.ml \
 	vCenter.ml \
+	libosinfo.ml \
+	libosinfo_utils.ml \
 	libvirt_utils.ml \
 	DOM.ml \
 	changeuid.ml \
@@ -164,6 +168,7 @@ SOURCES_ML = \
 	v2v.ml
 
 SOURCES_C = \
+	libosinfo-c.c \
 	qemuopts-c.c
 
 # These files are generated and contain *.py embedded as an OCaml string.
@@ -322,6 +327,8 @@ v2v_unit_tests_BOBJECTS = \
 	config.cmo \
 	types.cmo \
 	utils.cmo \
+	libosinfo.cmo \
+	libosinfo_utils.cmo \
 	DOM.cmo \
 	create_ovf.cmo \
 	windows.cmo \
