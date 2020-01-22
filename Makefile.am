@@ -66,6 +66,7 @@ EXTRA_DIST = \
 	.gitignore \
 	bootstrap \
 	autogen.sh \
+	build-aux/config.rpath \
 	cfg.mk \
 	check-mli.sh \
 	common/.gitignore \
