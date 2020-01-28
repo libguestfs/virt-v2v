@@ -92,11 +92,16 @@ if len(clusters) == 0:
                        (params['rhv_cluster'], datacenter.name,
                         params['output_storage']))
 cluster = clusters[0]
+cpu = cluster.cpu
+if cpu.architecture == types.Architecture.UNDEFINED:
+    raise RuntimeError("The cluster ‘%s’ has an unknown architecture" %
+                       (params['rhv_cluster']))
 
 # Otherwise everything is OK, print a JSON with the results.
 results = {
     "rhv_storagedomain_uuid": storage_domain.id,
     "rhv_cluster_uuid": cluster.id,
+    "rhv_cluster_cpu_architecture": cpu.architecture.value,
 }
 
 json.dump(results, sys.stdout)

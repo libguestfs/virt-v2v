@@ -248,6 +248,8 @@ object
   val mutable rhv_storagedomain_uuid = None
   (* The cluster UUID. *)
   val mutable rhv_cluster_uuid = None
+  (* The cluster CPU architecture *)
+  val mutable rhv_cluster_cpu_architecture = None
   (* List of disk UUIDs. *)
   val mutable disks_uuids = []
   (* If we didn't finish successfully, delete on exit. *)
@@ -272,6 +274,8 @@ object
        Some (JSON_parser.object_get_string "rhv_storagedomain_uuid" json);
     rhv_cluster_uuid <-
        Some (JSON_parser.object_get_string "rhv_cluster_uuid" json);
+    rhv_cluster_cpu_architecture <-
+       Some (JSON_parser.object_get_string "rhv_cluster_cpu_architecture" json);
     if have_selinux then
       error_unless_nbdkit_compiled_with_selinux ()
 
@@ -290,7 +294,19 @@ object
   (* rhev-apt.exe will be installed (if available). *)
   method install_rhev_apt = true
 
-  method prepare_targets source_name overlays _ =
+  method prepare_targets source_name overlays guestcaps =
+    let rhv_cluster_name =
+      match List.assoc "rhv_cluster" json_params with
+      | JSON.String s -> s
+      | _ -> assert false in
+    (match rhv_cluster_cpu_architecture with
+    | None -> assert false
+    | Some arch ->
+      if arch <> guestcaps.gcaps_arch then
+        error (f_"the cluster ‘%s’ does not support the architecture %s but %s")
+          rhv_cluster_name guestcaps.gcaps_arch arch
+    );
+
     let uuids =
       match rhv_options.rhv_disk_uuids with
       | None ->

@@ -22,9 +22,25 @@ from enum import Enum
 from ovirtsdk4 import imageio_port
 
 
+class Architecture(Enum):
+    UNDEFINED = "undefined"
+    X86_64 = "x86_64"
+
+    def __init__(self, arch):
+        self._arch = arch
+
+    def __str__(self):
+        return self._arch
+
+
+class Cpu(object):
+    architecture = Architecture.X86_64
+
+
 class Cluster(object):
     id = "2e97537b-a783-4706-af9e-75cb2e032dcd"
     name = "Default"
+    cpu = Cpu()
 
 
 class Configuration(object):
