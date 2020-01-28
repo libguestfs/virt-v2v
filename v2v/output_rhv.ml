@@ -151,7 +151,7 @@ object
    * 'os' is the output storage (-os nfs:/export).  'targets' describes
    * the destination files.  We modify and return this list.
    *)
-  method prepare_targets _ overlays =
+  method prepare_targets _ overlays _ =
     let mp, uuid =
       mount_and_check_storage_domain (s_"Export Storage Domain") os in
     esd_mp <- mp;

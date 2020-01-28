@@ -89,7 +89,7 @@ object
   (* Force raw output, ignoring -of command line option. *)
   method override_output_format _ = Some "raw"
 
-  method prepare_targets _ overlays =
+  method prepare_targets _ overlays _ =
     if can_use_qemu_null_co_device () then (
       let json_params = [
         "file.driver", JSON.String "null-co";

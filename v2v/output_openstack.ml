@@ -400,7 +400,7 @@ object
   (* Create the Cinder volumes, wait for them to attach to the
    * appliance, and return the paths of the /dev devices.
    *)
-  method prepare_targets source_name overlays =
+  method prepare_targets source_name overlays _ =
     (* Set up an at-exit handler so we:
      * (1) Unconditionally detach volumes.
      * (2) Delete the volumes, but only if conversion was not successful.

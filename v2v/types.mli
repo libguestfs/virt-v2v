@@ -492,7 +492,7 @@ class virtual output : object
   (** Typically the transfer format is same as the target format, but
       some outputs may need to overide the transfer format, but create disk
       using target format. *)
-  method virtual prepare_targets : string -> (string * overlay) list -> target_file list
+  method virtual prepare_targets : string -> (string * overlay) list -> guestcaps -> target_file list
   (** Called after conversion but before copying to prepare (but {b not}
       create) the target file.  The [(string * overlay list)] parameter
       is a list of the (format, overlay) for each target disk.  If
