@@ -42,7 +42,7 @@ if ! virt-builder -l "$n"; then
 fi
 virt-builder "$n" --quiet -o "$f"
 
-qemu-img create -f qcow2 -b "$f" $d/fedora.qcow2
+qemu-img create -f qcow2 -b "$f" -F raw $d/fedora.qcow2
 
 guestfish -a $d/fedora.qcow2 -i <<EOF
 fill 1 500M /big
