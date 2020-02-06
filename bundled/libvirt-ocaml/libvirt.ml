@@ -731,8 +731,8 @@ struct
   external migrate : [>`W] t -> [>`W] Connect.t -> migrate_flag list -> ?dname:string -> ?uri:string -> ?bandwidth:int -> unit -> rw t = "ocaml_libvirt_domain_migrate_bytecode" "ocaml_libvirt_domain_migrate_native"
   external block_stats : [>`R] t -> string -> block_stats = "ocaml_libvirt_domain_block_stats"
   external interface_stats : [>`R] t -> string -> interface_stats = "ocaml_libvirt_domain_interface_stats"
-  external block_peek : [>`W] t -> string -> int64 -> int -> string -> int -> unit = "ocaml_libvirt_domain_block_peek_bytecode" "ocaml_libvirt_domain_block_peek_native"
-  external memory_peek : [>`W] t -> memory_flag list -> int64 -> int -> string -> int -> unit = "ocaml_libvirt_domain_memory_peek_bytecode" "ocaml_libvirt_domain_memory_peek_native"
+  external block_peek : [>`W] t -> string -> int64 -> int -> bytes -> int -> unit = "ocaml_libvirt_domain_block_peek_bytecode" "ocaml_libvirt_domain_block_peek_native"
+  external memory_peek : [>`W] t -> memory_flag list -> int64 -> int -> bytes -> int -> unit = "ocaml_libvirt_domain_memory_peek_bytecode" "ocaml_libvirt_domain_memory_peek_native"
 
   external get_all_domain_stats : [>`R] Connect.t -> stats_type list -> get_all_domain_stats_flag list -> domain_stats_record array = "ocaml_libvirt_domain_get_all_domain_stats"
 

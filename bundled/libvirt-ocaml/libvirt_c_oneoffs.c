@@ -394,7 +394,7 @@ ocaml_libvirt_connect_call_auth_default_callback (value listv)
       elemv = caml_alloc (2, 0);
       if (cred->result != NULL && cred->resultlen > 0) {
         v = caml_alloc_string (cred->resultlen);
-        memcpy (String_val (v), cred->result, cred->resultlen);
+        memcpy (Bytes_val (v), cred->result, cred->resultlen);
         optv = caml_alloc (1, 0);
         Store_field (optv, 0, v);
       } else
@@ -601,7 +601,7 @@ ocaml_libvirt_domain_set_scheduler_parameters (value domv, value paramsv)
   int nparams = Wosize_val (paramsv);
   virSchedParameterPtr params;
   int r, i;
-  char *name;
+  const char *name;
 
   params = malloc (sizeof (*params) * nparams);
   if (params == NULL)
@@ -715,7 +715,7 @@ ocaml_libvirt_domain_get_vcpus (value domv, value maxinfov, value maplenv)
 
   /* Copy the bitmap. */
   strv = caml_alloc_string (maxinfo * maplen);
-  memcpy (String_val (strv), cpumaps, maxinfo * maplen);
+  memcpy (Bytes_val (strv), cpumaps, maxinfo * maplen);
 
   /* Allocate the tuple and return it. */
   rv = caml_alloc_tuple (3);
@@ -900,7 +900,7 @@ ocaml_libvirt_domain_get_all_domain_stats (value connv,
      */
     v = caml_alloc_string (VIR_UUID_BUFLEN);
     virDomainGetUUID (rstats[i]->dom, uuid);
-    memcpy (String_val (v), uuid, VIR_UUID_BUFLEN);
+    memcpy (Bytes_val (v), uuid, VIR_UUID_BUFLEN);
     Store_field (dsv, 0, v);
 
     tpv = caml_alloc (rstats[i]->nparams, 0); /* typed_param array */
@@ -1005,7 +1005,7 @@ ocaml_libvirt_domain_block_stats (value domv, value pathv)
   CAMLparam2 (domv, pathv);
   CAMLlocal2 (rv,v);
   virDomainPtr dom = Domain_val (domv);
-  char *path = String_val (pathv);
+  const char *path = String_val (pathv);
   struct _virDomainBlockStats stats;
   int r;
 
@@ -1028,7 +1028,7 @@ ocaml_libvirt_domain_interface_stats (value domv, value pathv)
   CAMLparam2 (domv, pathv);
   CAMLlocal2 (rv,v);
   virDomainPtr dom = Domain_val (domv);
-  char *path = String_val (pathv);
+  const char *path = String_val (pathv);
   struct _virDomainInterfaceStats stats;
   int r;
 
@@ -1057,7 +1057,7 @@ ocaml_libvirt_domain_block_peek_native (value domv, value pathv, value offsetv, 
   const char *path = String_val (pathv);
   unsigned long long offset = Int64_val (offsetv);
   size_t size = Int_val (sizev);
-  char *buffer = String_val (bufferv);
+  unsigned char *buffer = Bytes_val (bufferv);
   int boff = Int_val (boffv);
   int r;
 
@@ -1089,7 +1089,7 @@ ocaml_libvirt_domain_memory_peek_native (value domv, value flagsv, value offsetv
   int flags = 0;
   unsigned long long offset = Int64_val (offsetv);
   size_t size = Int_val (sizev);
-  char *buffer = String_val (bufferv);
+  unsigned char *buffer = Bytes_val (bufferv);
   int boff = Int_val (boffv);
   int r;
 
@@ -1646,7 +1646,7 @@ ocaml_libvirt_secret_get_value (value secv)
   CHECK_ERROR (secval == NULL, "virSecretGetValue");
 
   rv = caml_alloc_string (size);
-  memcpy (String_val (rv), secval, size);
+  memcpy (Bytes_val (rv), secval, size);
   free (secval);
 
   CAMLreturn (rv);

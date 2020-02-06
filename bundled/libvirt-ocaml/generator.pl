@@ -440,7 +440,7 @@ sub gen_c_code
 
   /* UUIDs are byte arrays with a fixed length. */
   rv = caml_alloc_string (VIR_UUID_BUFLEN);
-  memcpy (String_val (rv), uuid, VIR_UUID_BUFLEN);
+  memcpy (Bytes_val (rv), uuid, VIR_UUID_BUFLEN);
   CAMLreturn (rv);
 "
     } elsif ($sig =~ /^(\w+) : uuid string$/) {
@@ -593,7 +593,7 @@ sub gen_c_code
     } elsif ($sig =~ /^(\w+), string : unit$/) {
 	"\
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   int r;
 
   NONBLOCKING (r = $c_name ($1, str));
@@ -605,7 +605,7 @@ sub gen_c_code
 	"\
   CAMLlocal1 (rv);
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   int r;
 
   NONBLOCKING (r = $c_name ($1, str, 0));
@@ -618,7 +618,7 @@ sub gen_c_code
 	"\
   CAMLlocal1 (rv);
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   $c_ret_type r;
 
   NONBLOCKING (r = $c_name ($1, str));
@@ -633,7 +633,7 @@ sub gen_c_code
 	"\
   CAMLlocal1 (rv);
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   $c_ret_type r;
 
   NONBLOCKING (r = $c_name ($1, str, 0));
@@ -648,7 +648,7 @@ sub gen_c_code
 	"\
   CAMLlocal1 (rv);
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   unsigned int u = Int_val (uv);
   $c_ret_type r;
 
@@ -735,7 +735,7 @@ sub gen_c_code
 	"\
   CAMLlocal2 (rv, connv);
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   $c_ret_type r;
 
   NONBLOCKING (r = $c_name ($1, str));
@@ -751,7 +751,7 @@ sub gen_c_code
 	"\
   CAMLlocal2 (rv, connv);
   " . gen_unpack_args ($1) . "
-  char *str = String_val (strv);
+  const char *str = String_val (strv);
   $c_ret_type r;
 
   NONBLOCKING (r = $c_name ($1, str, 0));

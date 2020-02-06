@@ -47,6 +47,13 @@
 #pragma GCC visibility push(hidden)
 #endif
 
+/* Bytes_val was added in OCaml 4.06.  In earlier versions we can
+ * simply cast String_val to the expected type.
+ */
+#ifndef Bytes_val
+#define Bytes_val(x) ((unsigned char *)String_val(x))
+#endif
+
 const char *Optstring_val (value strv);
 typedef value (*Val_ptr_t) (void *);
 value Val_opt (void *ptr, Val_ptr_t Val_ptr);

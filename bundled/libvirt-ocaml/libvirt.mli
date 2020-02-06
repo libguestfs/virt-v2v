@@ -708,7 +708,7 @@ sig
   val interface_stats : [>`R] t -> string -> interface_stats
     (** Returns network interface stats. *)
 
-  val block_peek : [>`W] t -> string -> int64 -> int -> string -> int -> unit
+  val block_peek : [>`W] t -> string -> int64 -> int -> bytes -> int -> unit
     (** [block_peek dom path offset size buf boff] reads [size] bytes at
 	[offset] in the domain's [path] block device.
 
@@ -717,7 +717,7 @@ sig
 
 	See also {!max_peek}. *)
   val memory_peek : [>`W] t -> memory_flag list -> int64 -> int ->
-    string -> int -> unit
+    bytes -> int -> unit
     (** [memory_peek dom Virtual offset size] reads [size] bytes
 	at [offset] in the domain's virtual memory.
 
