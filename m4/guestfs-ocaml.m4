@@ -165,13 +165,6 @@ EOF
 AM_CONDITIONAL([HAVE_BYTES_COMPAT_ML],
 	       [test "x$have_Bytes_module" = "xno"])
 
-AS_IF([test "x$have_Hivex_OPEN_UNSAFE" = "xno"],[
-    HIVEX_OPEN_UNSAFE_FLAG="None"
-],[
-    HIVEX_OPEN_UNSAFE_FLAG="Some Hivex.OPEN_UNSAFE"
-])
-AC_SUBST([HIVEX_OPEN_UNSAFE_FLAG])
-
 dnl Flags we want to pass to every OCaml compiler call.
 OCAML_WARN_ERROR="-warn-error CDEFLMPSUVYZX+52-3"
 AC_SUBST([OCAML_WARN_ERROR])
