@@ -1605,7 +1605,9 @@ distributed with virt-v2v.
 
 =item C<VIRTIO_WIN>
 
-This is where virtio drivers for Windows are searched for.
+This is where virtio drivers for Windows are searched for.  It can be
+a directory I<or> point to F<virtio-win.iso> (CD ROM image containing
+drivers).
 
 If unset, then we look for drivers in whichever of these paths
 is found first:
@@ -1622,9 +1624,6 @@ The exploded tree of virtio drivers for Windows.  This is
 usually incomplete, hence the ISO is preferred.
 
 =back
-
-(F<> if unset).  It can be a directory I<or>
-point to F<virtio-win.iso> (CD ROM image containing drivers).
 
 See L</Enabling virtio>.
 
