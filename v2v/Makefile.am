@@ -72,6 +72,7 @@ SOURCES_MLI = \
 	measure_disk.mli \
 	modules_list.mli \
 	name_from_disk.mli \
+	nbdkit.mli \
 	nbdkit_sources.mli \
 	networks.mli \
 	openstack_image_properties.mli \
@@ -112,6 +113,7 @@ SOURCES_ML = \
 	var_expander.ml \
 	python_script.ml \
 	name_from_disk.ml \
+	nbdkit.ml \
 	nbdkit_sources.ml \
 	vCenter.ml \
 	libosinfo.ml \
@@ -278,6 +280,7 @@ COPY_TO_LOCAL_BOBJECTS = \
 	types.cmo \
 	utils.cmo \
 	libvirt_utils.cmo \
+	nbdkit.cmo \
 	nbdkit_sources.cmo \
 	vCenter.cmo \
 	copy_to_local.cmo

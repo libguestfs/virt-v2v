@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2019 Red Hat Inc.
+ * Copyright (C) 2009-2020 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,6 @@
 
 (** nbdkit when used as a source. *)
 
-type t
-
 val create_vddk : ?bandwidth:Types.bandwidth ->
                   ?config:string ->
                   ?cookie:string ->
@@ -33,7 +31,7 @@ val create_vddk : ?bandwidth:Types.bandwidth ->
                   thumbprint:string ->
                   ?transports:string ->
                   ?user:string ->
-                  string -> t
+                  string -> Nbdkit.cmd
 (** Create a nbdkit object using the VDDK plugin.  The required
     string parameter is the disk remote path.
 
@@ -52,7 +50,7 @@ val create_ssh : ?bandwidth:Types.bandwidth ->
                  ?port:string ->
                  server:string ->
                  ?user:string ->
-                 string -> t
+                 string -> Nbdkit.cmd
 (** Create a nbdkit object using the SSH plugin.  The required
     string parameter is the remote path.
 
@@ -66,7 +64,7 @@ val create_curl : ?bandwidth:Types.bandwidth ->
                   password:password ->
                   ?sslverify:bool ->
                   ?user:string ->
-                  string -> t
+                  string -> Nbdkit.cmd
 (** Create a nbdkit object using the Curl plugin.  The required
     string parameter is the URL.
 
@@ -75,7 +73,8 @@ val create_curl : ?bandwidth:Types.bandwidth ->
 
     Note this doesn't run nbdkit yet, it just creates the object. *)
 
-val run : t -> string
-(** Start running nbdkit.
+val run : Nbdkit.cmd -> string
+(** Start running nbdkit.  This is a very thin wrapper around
+    {!Nbdkit.run_unix}.
 
     Returns the QEMU URI that you can use to connect to this instance. *)

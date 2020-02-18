@@ -84,9 +84,67 @@ let parse_output_options options =
 
   { rhv_cafile; rhv_cluster; rhv_direct; rhv_verifypeer; rhv_disk_uuids }
 
+(* In theory even very old versions of nbdkit might work, but as
+ * with [Nbdkit_sources] check for at least 1.12.
+ *)
+let nbdkit_min_version = (1, 12, 0)
+let nbdkit_min_version_string = "1.12.0"
+
 let nbdkit_python_plugin = Config.nbdkit_python_plugin
 let pidfile_timeout = 30
 let finalization_timeout = 5*60
+
+(* Check that the 'ovirtsdk4' Python module is available. *)
+let error_unless_ovirtsdk4_module_available () =
+  let res = run_command [ Python_script.python; "-c"; "import ovirtsdk4" ] in
+  if res <> 0 then
+    error (f_"the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See previous messages for problems.")
+
+(* Check that nbdkit is available and new enough. *)
+let error_unless_nbdkit_working () =
+  if not (Nbdkit.is_installed ()) then
+    error (f_"nbdkit is not installed or not working.  It is required to use ‘-o rhv-upload’.  See the virt-v2v-output-rhv(1) manual.")
+
+let error_unless_nbdkit_min_version config =
+  let version = Nbdkit.version config in
+  if version < nbdkit_min_version then
+    error (f_"nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s")
+      nbdkit_min_version_string
+
+(* Check that the python3 plugin is installed and working
+ * and can load the plugin script.
+ *)
+let error_unless_nbdkit_python_plugin_working plugin_script =
+  let cmd = sprintf "nbdkit %s %s --dump-plugin >/dev/null"
+              nbdkit_python_plugin
+              (quote (Python_script.path plugin_script)) in
+  debug "%s" cmd;
+  if Sys.command cmd <> 0 then
+    error (f_"nbdkit %s plugin is not installed or not working.  It is required if you want to use ‘-o rhv-upload’.
+
+See also the virt-v2v-output-rhv(1) manual.")
+      nbdkit_python_plugin
+
+(* Check that nbdkit was compiled with SELinux support (for the
+ * --selinux-label option).
+ *)
+let error_unless_nbdkit_compiled_with_selinux config =
+  if have_selinux then (
+    let selinux = try List.assoc "selinux" config with Not_found -> "no" in
+    if selinux = "no" then
+      error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
+  )
+
+(* Output sparse must be sparse.  We may be able to
+ * lift this limitation in future, but it requires changes on the
+ * RHV side.  See TODO file for details.  XXX
+ *)
+let error_current_limitation required_param =
+  error (f_"rhv-upload: currently you must use ‘%s’.  This restriction will be loosened in a future version.") required_param
+
+let error_unless_output_alloc_sparse output_alloc =
+  if output_alloc <> Sparse then
+    error_current_limitation "-oa sparse"
 
 let json_optstring = function
   | Some s -> JSON.String s
@@ -117,74 +175,6 @@ class output_rhv_upload output_alloc output_conn
   let deletedisks_script = py_create ~name:"rhv-upload-deletedisks.py"
                            Output_rhv_upload_deletedisks_source.code in
 
-  (* Check that the 'ovirtsdk4' Python module is available. *)
-  let error_unless_ovirtsdk4_module_available () =
-    let res = run_command [ Python_script.python; "-c"; "import ovirtsdk4" ] in
-    if res <> 0 then
-      error (f_"the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See previous messages for problems.")
-  in
-
-  (* Check that nbdkit is available and new enough. *)
-  let error_unless_nbdkit_working () =
-    let cmd = "nbdkit --version >/dev/null" in
-    debug "%s" cmd;
-    if 0 <> Sys.command "nbdkit --version >/dev/null" then
-      error (f_"nbdkit is not installed or not working.  It is required to use ‘-o rhv-upload’.  See the virt-v2v-output-rhv(1) manual.");
-
-    (* Check it's a new enough version.  The latest features we
-     * require are ‘--exit-with-parent’ and ‘--selinux-label’, both
-     * added in 1.1.14.  (We use 1.1.16 as the minimum here because
-     * it also adds the selinux=yes|no flag in --dump-config).
-     *)
-    let lines = external_command "nbdkit --help" in
-    let lines = String.concat " " lines in
-    if String.find lines "exit-with-parent" == -1 ||
-       String.find lines "selinux-label" == -1 then
-      error (f_"nbdkit is not new enough, you need to upgrade to nbdkit ≥ 1.1.16")
-  in
-
-  (* Check that the python3 plugin is installed and working
-   * and can load the plugin script.
-   *)
-  let error_unless_nbdkit_python_plugin_working () =
-    let cmd = sprintf "nbdkit %s %s --dump-plugin >/dev/null"
-                      nbdkit_python_plugin
-                      (quote (Python_script.path plugin_script)) in
-    debug "%s" cmd;
-    if Sys.command cmd <> 0 then
-      error (f_"nbdkit %s plugin is not installed or not working.  It is required if you want to use ‘-o rhv-upload’.
-
-See also the virt-v2v-output-rhv(1) manual.")
-            nbdkit_python_plugin
-  in
-
-  (* Check that nbdkit was compiled with SELinux support (for the
-   * --selinux-label option).
-   *)
-  let error_unless_nbdkit_compiled_with_selinux () =
-    let lines = external_command "nbdkit --dump-config" in
-    (* In nbdkit <= 1.1.15 the selinux attribute was not present
-     * at all in --dump-config output so there was no way to tell.
-     * Ignore this case because there will be an error later when
-     * we try to use the --selinux-label parameter.
-     *)
-    if List.mem "selinux=no" (List.map String.trim lines) then
-      error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
-  in
-
-  (* Output sparse must be sparse.  We may be able to
-   * lift this limitation in future, but it requires changes on the
-   * RHV side.  See TODO file for details.  XXX
-   *)
-  let error_current_limitation required_param =
-    error (f_"rhv-upload: currently you must use ‘%s’.  This restriction will be loosened in a future version.") required_param
-  in
-
-  let error_unless_output_alloc_sparse () =
-    if output_alloc <> Sparse then
-      error_current_limitation "-oa sparse"
-  in
-
   (* JSON parameters which are invariant between disks. *)
   let json_params = [
     "verbose", JSON.Bool (verbose ());
@@ -208,26 +198,20 @@ See also the virt-v2v-output-rhv(1) manual.")
     "insecure", JSON.Bool (not rhv_options.rhv_verifypeer);
   ] in
 
-  (* nbdkit command line args which are invariant between disks. *)
-  let nbdkit_args =
-    let args = [
-      "nbdkit";
+  (* nbdkit command line which is invariant between disks. *)
+  let nbdkit_cmd = Nbdkit.new_cmd in
+  let nbdkit_cmd = Nbdkit.set_exportname nbdkit_cmd "/" in
+  let nbdkit_cmd = Nbdkit.set_verbose nbdkit_cmd (verbose ()) in
+  let nbdkit_cmd = Nbdkit.set_plugin nbdkit_cmd nbdkit_python_plugin in
+  let nbdkit_cmd = Nbdkit.add_arg nbdkit_cmd "script" "Python_script.path" in
 
-      "--foreground";           (* run in foreground *)
-      "--exit-with-parent";     (* exit when virt-v2v exits *)
-      "--newstyle";             (* use newstyle NBD protocol *)
-      "--exportname"; "/";
-
-      nbdkit_python_plugin;     (* use the nbdkit Python plugin *)
-      Python_script.path plugin_script; (* Python plugin script *)
-    ] in
-    let args = if verbose () then args @ ["--verbose"] else args in
-    let args =
-      (* label the socket so qemu can open it *)
-      if have_selinux then
-        args @ ["--selinux-label"; "system_u:object_r:svirt_socket_t:s0"]
-      else args in
-    args in
+  let nbdkit_cmd =
+    if have_selinux then
+      (* Label the socket so qemu can open it. *)
+      Nbdkit.set_selinux_label nbdkit_cmd
+        (Some "system_u:object_r:svirt_socket_t:s0")
+    else
+      nbdkit_cmd in
 
   (* Delete disks.
    *
@@ -259,8 +243,12 @@ object
     Python_script.error_unless_python_interpreter_found ();
     error_unless_ovirtsdk4_module_available ();
     error_unless_nbdkit_working ();
-    error_unless_nbdkit_python_plugin_working ();
-    error_unless_output_alloc_sparse ();
+    let config = Nbdkit.config () in
+    error_unless_nbdkit_min_version config;
+    error_unless_nbdkit_python_plugin_working plugin_script;
+    error_unless_nbdkit_compiled_with_selinux config;
+    error_unless_output_alloc_sparse output_alloc;
+
     (* Python code prechecks. *)
     let precheck_fn = tmpdir // "v2vprecheck.json" in
     let fd = Unix.openfile precheck_fn [O_WRONLY; O_CREAT] 0o600 in
@@ -275,9 +263,7 @@ object
     rhv_cluster_uuid <-
        Some (JSON_parser.object_get_string "rhv_cluster_uuid" json);
     rhv_cluster_cpu_architecture <-
-       Some (JSON_parser.object_get_string "rhv_cluster_cpu_architecture" json);
-    if have_selinux then
-      error_unless_nbdkit_compiled_with_selinux ()
+       Some (JSON_parser.object_get_string "rhv_cluster_cpu_architecture" json)
 
   method as_options =
     "-o rhv-upload" ^
@@ -377,43 +363,9 @@ object
           json_param_file
           (fun chan -> output_string chan (JSON.string_of_doc json_params));
 
-        let sock = tmpdir // sprintf "nbdkit%d.sock" id in
-        let pidfile = tmpdir // sprintf "nbdkit%d.pid" id in
-
         (* Add common arguments to per-target arguments. *)
-        let args =
-          nbdkit_args @ [ "--pidfile"; pidfile;
-                          "--unix"; sock;
-                          sprintf "params=%s" json_param_file ] in
-
-        (* Print the full command we are about to run when debugging. *)
-        if verbose () then (
-          eprintf "running nbdkit:\n";
-          List.iter (fun arg -> eprintf " %s" (quote arg)) args;
-          prerr_newline ()
-        );
-
-        (* Start an nbdkit instance in the background.  By using
-         * --exit-with-parent we don't have to worry about clean-up.
-         *)
-        let args = Array.of_list args in
-        let pid = fork () in
-        if pid = 0 then (
-          (* Child process (nbdkit). *)
-          execvp "nbdkit" args
-        );
-
-        (* Wait for the pidfile to appear so we know that nbdkit
-         * is listening for requests.
-         *)
-        if not (wait_for_file pidfile pidfile_timeout) then (
-          if verbose () then
-            error (f_"nbdkit did not start up.  See previous debugging messages for problems.")
-          else
-            error (f_"nbdkit did not start up.  There may be errors printed by nbdkit above.
-
-If the messages above are not sufficient to diagnose the problem then add the ‘virt-v2v -v -x’ options and examine the debugging output carefully.")
-        );
+        let cmd = Nbdkit.add_arg nbdkit_cmd "params" json_param_file in
+        let sock, _ = Nbdkit.run_unix cmd in
 
         if have_selinux then (
           (* Note that Unix domain sockets have both a file label and
@@ -426,10 +378,6 @@ If the messages above are not sufficient to diagnose the problem then add the �
                            sock]
           );
         );
-        (* ... and the regular Unix permissions, in case qemu is
-         * running as another user.
-         *)
-        chmod sock 0o777;
 
         (* Tell ‘qemu-img convert’ to write to the nbd socket which is
          * connected to nbdkit.

@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2019 Red Hat Inc.
+ * Copyright (C) 2009-2020 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,176 +16,116 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-open Unix
 open Printf
 
 open Common_gettext.Gettext
 open Std_utils
 open Tools_utils
-open Unix_utils
 
 open Types
 open Utils
 
-let nbdkit_min_version = (1, 12)
-let nbdkit_min_version_string = "1.12"
+let nbdkit_min_version = (1, 12, 0)
+let nbdkit_min_version_string = "1.12.0"
 
 type password =
 | NoPassword                    (* no password option at all *)
 | AskForPassword                (* password=- *)
 | PasswordFile of string        (* password=+file *)
 
-type t = {
-  (* The nbdkit plugin name. *)
-  plugin_name : string;
-
-  (* Parameters (includes the plugin name). *)
-  args : string list;
-
-  (* Environment variables that may be needed for nbdkit to work. *)
-  env : (string * string) list;
-
-  (* nbdkit --dump-config output. *)
-  dump_config : (string * string) list;
-
-  (* nbdkit plugin_name --dump-plugin output. *)
-  dump_plugin : (string * string) list;
-}
-
 (* Check that nbdkit is available and new enough. *)
 let error_unless_nbdkit_working () =
-  if 0 <> Sys.command "nbdkit --version >/dev/null" then
+  if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working")
 
-(* Check that nbdkit is at or above the minimum version. *)
-let re_major_minor = PCRE.compile "(\\d+)\\.(\\d+)"
-
-let error_unless_nbdkit_min_version dump_config =
-  let version =
-    let version =
-      try List.assoc "version" dump_config
-      with Not_found ->
-        error (f_"nbdkit --dump-config did not print version.  This might be a very old or broken nbdkit binary.") in
-    debug "nbdkit version: %s" version;
-    if PCRE.matches re_major_minor version then
-      (int_of_string (PCRE.sub 1), int_of_string (PCRE.sub 2))
-    else
-      error (f_"nbdkit --dump-config: could not parse version: %s") version in
-
+let error_unless_nbdkit_min_version config =
+  let version = Nbdkit.version config in
   if version < nbdkit_min_version then
     error (f_"nbdkit is too old.  nbdkit >= %s is required.")
           nbdkit_min_version_string
 
+let error_unless_nbdkit_plugin_exists plugin =
+  if not (Nbdkit.probe_plugin plugin) then
+    error (f_"nbdkit plugin %s is not installed") plugin
+
 (* Check that nbdkit was compiled with SELinux support (for the
  * --selinux-label option).
  *)
-let error_unless_nbdkit_compiled_with_selinux dump_config =
+let error_unless_nbdkit_compiled_with_selinux config =
   if have_selinux then (
-    let selinux = try List.assoc "selinux" dump_config with Not_found -> "no" in
+    let selinux = try List.assoc "selinux" config with Not_found -> "no" in
     if selinux = "no" then
       error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
   )
 
-let common_create ?bandwidth plugin_name plugin_args plugin_env =
+let common_create ?bandwidth ?extra_env plugin_name plugin_args =
   error_unless_nbdkit_working ();
+  let config = Nbdkit.config () in
+  error_unless_nbdkit_min_version config;
+  error_unless_nbdkit_compiled_with_selinux config;
+
+  (* Construct the nbdkit command. *)
+  let cmd = Nbdkit.new_cmd in
+  let cmd = Nbdkit.set_plugin cmd plugin_name in
 
   (* Environment.  We always add LANG=C. *)
-  let env = ("LANG", "C") :: plugin_env in
-  let env_as_string =
-    String.concat " " (List.map (fun (k, v) -> sprintf "%s=%s" k (quote v))
-                                env) in
+  let cmd = Nbdkit.add_env cmd "LANG" "C" in
+  let cmd =
+    match extra_env with
+    | None -> cmd
+    | Some (name, value) -> Nbdkit.add_env cmd name value in
 
-  (* Get the nbdkit --dump-config output and check minimum
-   * required version of nbdkit.
-   *)
-  let dump_config =
-    let lines =
-      external_command (sprintf "%s nbdkit --dump-config" env_as_string) in
-    List.map (String.split "=") lines in
-
-  error_unless_nbdkit_min_version dump_config;
-  error_unless_nbdkit_compiled_with_selinux dump_config;
-
-  (* Get the nbdkit plugin_name --dump-plugin output, which also
-   * checks that the plugin is available and loadable.
-   *)
-  let dump_plugin =
-    let lines =
-      external_command (sprintf "%s nbdkit %s --dump-plugin"
-                                env_as_string plugin_name) in
-    List.map (String.split "=") lines in
-
-  (* Start constructing the parts of the incredibly long nbdkit
-   * command line which don't change between disks.
-   *)
-  let add_arg, get_args =
-    let args = ref [] in
-    let add_arg a = List.push_front a args in
-    let get_args () = List.rev !args in
-    add_arg, get_args in
-
-  add_arg "nbdkit";
-  if verbose () then add_arg "--verbose";
-  add_arg "--readonly";         (* important! readonly mode *)
-  add_arg "--foreground";       (* run in foreground *)
-  add_arg "--exit-with-parent"; (* exit when virt-v2v exits *)
-  add_arg "--newstyle";         (* use newstyle NBD protocol *)
-  add_arg "--exportname"; add_arg "/";
-  if have_selinux then (        (* label the socket so qemu can open it *)
-    add_arg "--selinux-label"; add_arg "system_u:object_r:svirt_socket_t:s0"
-  );
-
-  (* Probe to see if a filter is installed.  See nbdkit-probing(1)
-   * for recommended method.
-   *)
-  let probe_filter filter_name =
-    let cmd =
-      sprintf "%s nbdkit --dump-plugin --filter=%s null >/dev/null"
-              env_as_string filter_name in
-    Sys.command cmd == 0
-  in
-
-  (* Adding the readahead filter is always a win for our access
-   * patterns.  However if it doesn't exist don't worry.
-   *)
-  if probe_filter "readahead" then (
-    add_arg "--filter"; add_arg "readahead"
-  );
-
-  (* Add the rate filter. *)
-  let rate_args =
-    if probe_filter "rate" then (
-      match bandwidth with
-      | None -> []
-      | Some bandwidth ->
-         add_arg "--filter"; add_arg "rate";
-         match bandwidth with
-         | StaticBandwidth rate ->
-            [ "rate=" ^ rate ]
-         | DynamicBandwidth (None, filename) ->
-            [ "rate-file=" ^ filename ]
-         | DynamicBandwidth (Some rate, filename) ->
-            [ "rate=" ^ rate; "rate-file=" ^ filename ]
-    )
-    else [] in
-
-  (* Caching extents speeds up qemu-img, especially its consecutive
-     block_status requests with req_one=1.
-  *)
-  if probe_filter "cacheextents" then (
-    add_arg "--filter"; add_arg "cacheextents"
-  );
+  let cmd = Nbdkit.set_verbose cmd (verbose ()) in
+  let cmd = Nbdkit.set_readonly cmd true in (* important! readonly mode *)
+  let cmd = Nbdkit.set_exportname cmd "/" in
+  let cmd =
+    if have_selinux then
+      (* Label the socket so qemu can open it. *)
+      Nbdkit.set_selinux_label cmd (Some "system_u:object_r:svirt_socket_t:s0")
+    else cmd in
 
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
    *)
-  if probe_filter "retry" then (
-    add_arg "--filter"; add_arg "retry"
-  );
+  let cmd = Nbdkit.add_filter_if_available cmd "retry" in
 
-  let args = get_args () @ [ plugin_name ] @ plugin_args @ rate_args in
+  (* Adding the readahead filter is always a win for our access
+   * patterns.  However if it doesn't exist don't worry.
+   *)
+  let cmd = Nbdkit.add_filter_if_available cmd "readahead" in
 
-  { plugin_name; args; env; dump_config; dump_plugin }
+  (* Caching extents speeds up qemu-img, especially its consecutive
+   * block_status requests with req_one=1.
+   *)
+  let cmd = Nbdkit.add_filter_if_available cmd "cacheextents" in
+
+  (* Add the rate filter.  This must be furthest away so that
+   * we don't end up rate-limiting internal nbdkit operations.
+   *)
+  let cmd, rate_args =
+    if Nbdkit.probe_filter "rate" then (
+      match bandwidth with
+      | None -> cmd, []
+      | Some bandwidth ->
+         let cmd = Nbdkit.add_filter cmd "rate" in
+         let args =
+           match bandwidth with
+           | StaticBandwidth rate ->
+              [ "rate=", rate ]
+           | DynamicBandwidth (None, filename) ->
+              [ "rate-file=", filename ]
+           | DynamicBandwidth (Some rate, filename) ->
+              [ "rate=", rate; "rate-file=", filename ] in
+         cmd, args
+    )
+    else cmd, [] in
+
+  (* Adds the plugin and filter args. *)
+  let cmd =
+    List.fold_left (fun cmd (k, v) -> Nbdkit.add_arg cmd k v)
+      cmd (plugin_args @ rate_args) in
+
+  cmd
 
 (* VDDK libraries are located under lib32/ or lib64/ relative to the
  * libdir.  Note this is unrelated to Linux multilib or multiarch.
@@ -196,12 +136,14 @@ let libNN = sprintf "lib%d" Sys.word_size
 let create_vddk ?bandwidth ?config ?cookie ?libdir ~moref
                 ?nfchostport ?password_file ?port
                 ~server ?snapshot ~thumbprint ?transports ?user path =
+  error_unless_nbdkit_plugin_exists "vddk";
+
   (* Compute the LD_LIBRARY_PATH that we may have to pass to nbdkit. *)
   let ld_library_path = Option.map (fun libdir -> libdir // libNN) libdir in
   let env =
     match ld_library_path with
-    | None -> []
-    | Some ld_library_path -> ["LD_LIBRARY_PATH", ld_library_path] in
+    | None -> None
+    | Some ld_library_path -> Some ("LD_LIBRARY_PATH", ld_library_path) in
 
   (* Check that the VDDK path looks reasonable. *)
   let error_unless_vddk_libdir () =
@@ -226,14 +168,15 @@ let create_vddk ?bandwidth ?config ?cookie ?libdir ~moref
    *)
   let error_unless_nbdkit_vddk_working () =
     let env_as_string =
-      String.concat " " (List.map (fun (k, v) -> sprintf "%s=%s" k (quote v))
-                                  env) in
+      match env with
+      | None -> ""
+      | Some (k, v) -> sprintf "%s=%s " k (quote v) in
     let cmd =
-      sprintf "%s nbdkit vddk --dump-plugin >/dev/null" env_as_string in
+      sprintf "%snbdkit vddk --dump-plugin >/dev/null" env_as_string in
     if Sys.command cmd <> 0 then (
       (* See if we can diagnose why ... *)
       let cmd =
-        sprintf "LANG=C %s nbdkit vddk --dump-plugin 2>&1 |
+        sprintf "LANG=C %snbdkit vddk --dump-plugin 2>&1 |
                      grep -sq \"cannot open shared object file\""
                 env_as_string in
       let needs_library = Sys.command cmd = 0 in
@@ -260,7 +203,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
 
   let add_arg, get_args =
     let args = ref [] in
-    let add_arg a = List.push_front a args in
+    let add_arg (k, v) = List.push_front (k, v) args in
     let get_args () = List.rev !args in
     add_arg, get_args in
 
@@ -268,144 +211,86 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     match password_file with
     | None ->
        (* nbdkit asks for the password interactively *)
-       "password=-"
+       "password", "-"
     | Some password_file ->
        (* nbdkit reads the password from the file *)
-       "password=+" ^ password_file in
-  add_arg (sprintf "server=%s" server);
-  add_arg (sprintf "user=%s" user);
+       "password", "+" ^ password_file in
+  add_arg ("server", server);
+  add_arg ("user", user);
   add_arg password_param;
-  add_arg (sprintf "vm=moref=%s" moref);
-  add_arg (sprintf "file=%s" path);
+  add_arg ("vm", sprintf "moref=%s" moref);
+  add_arg ("file", path);
 
   (* The passthrough parameters. *)
-  Option.may (fun s -> add_arg (sprintf "config=%s" s)) config;
-  Option.may (fun s -> add_arg (sprintf "cookie=%s" s)) cookie;
-  Option.may (fun s -> add_arg (sprintf "libdir=%s" s)) libdir;
-  Option.may (fun s -> add_arg (sprintf "nfchostport=%s" s)) nfchostport;
-  Option.may (fun s -> add_arg (sprintf "port=%s" s)) port;
-  Option.may (fun s -> add_arg (sprintf "snapshot=%s" s)) snapshot;
-  add_arg (sprintf "thumbprint=%s" thumbprint);
-  Option.may (fun s -> add_arg (sprintf "transports=%s" s)) transports;
+  Option.may (fun s -> add_arg ("config", s)) config;
+  Option.may (fun s -> add_arg ("cookie", s)) cookie;
+  Option.may (fun s -> add_arg ("libdir", s)) libdir;
+  Option.may (fun s -> add_arg ("nfchostport", s)) nfchostport;
+  Option.may (fun s -> add_arg ("port", s)) port;
+  Option.may (fun s -> add_arg ("snapshot", s)) snapshot;
+  add_arg ("thumbprint", thumbprint);
+  Option.may (fun s -> add_arg ("transports", s)) transports;
 
-  common_create ?bandwidth "vddk" (get_args ()) env
+  common_create ?bandwidth ?extra_env:env "vddk" (get_args ())
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
 let create_ssh ?bandwidth ~password ?port ~server ?user path =
+  error_unless_nbdkit_plugin_exists "ssh";
+
   let add_arg, get_args =
     let args = ref [] in
-    let add_arg a = List.push_front a args in
+    let add_arg (k, v) = List.push_front (k, v) args in
     let get_args () = List.rev !args in
     add_arg, get_args in
 
-  add_arg (sprintf "host=%s" server);
-  Option.may (fun s -> add_arg (sprintf "port=%s" s)) port;
-  Option.may (fun s -> add_arg (sprintf "user=%s" s)) user;
+  add_arg ("host", server);
+  Option.may (fun s -> add_arg ("port", s)) port;
+  Option.may (fun s -> add_arg ("user", s)) user;
   (match password with
    | NoPassword -> ()
-   | AskForPassword -> add_arg "password=-"
-   | PasswordFile password_file ->
-      add_arg (sprintf "password=+%s" password_file)
+   | AskForPassword -> add_arg ("password", "-")
+   | PasswordFile password_file -> add_arg ("password", "+" ^ password_file)
   );
-  add_arg (sprintf "path=%s" path);
+  add_arg ("path", path);
 
-  common_create ?bandwidth "ssh" (get_args ()) []
+  common_create ?bandwidth "ssh" (get_args ())
 
 (* Create an nbdkit module specialized for reading from Curl sources. *)
 let create_curl ?bandwidth ?cookie ~password ?(sslverify=true) ?user url =
+  error_unless_nbdkit_plugin_exists "curl";
+
   let add_arg, get_args =
     let args = ref [] in
-    let add_arg a = List.push_front a args in
+    let add_arg (k, v) = List.push_front (k, v) args in
     let get_args () = List.rev !args in
     add_arg, get_args in
 
-  Option.may (fun s -> add_arg (sprintf "user=%s" s)) user;
+  Option.may (fun s -> add_arg ("user", s)) user;
   (match password with
    | NoPassword -> ()
-   | AskForPassword -> add_arg "password=-"
-   | PasswordFile password_file ->
-      add_arg (sprintf "password=+%s" password_file)
+   | AskForPassword -> add_arg ("password", "-")
+   | PasswordFile password_file -> add_arg ("password", "+" ^ password_file)
   );
   (* https://bugzilla.redhat.com/show_bug.cgi?id=1146007#c10 *)
-  add_arg "timeout=2000";
-  Option.may (fun s -> add_arg (sprintf "cookie=%s" s)) cookie;
-  if not sslverify then add_arg "sslverify=false";
-  add_arg (sprintf "url=%s" url);
+  add_arg ("timeout", "2000");
+  Option.may (fun s -> add_arg ("cookie", s)) cookie;
+  if not sslverify then add_arg ("sslverify", "false");
+  add_arg ("url", url);
 
-  common_create ?bandwidth "curl" (get_args ()) []
+  common_create ?bandwidth "curl" (get_args ())
 
-let run { args; env } =
-  (* Create a temporary directory where we place the sockets. *)
-  let tmpdir =
-    let base_dir = (open_guestfs ())#get_cachedir () in
-    let t = Mkdtemp.temp_dir ~base_dir "v2vnbdkit." in
-    (* tmpdir must be readable (but not writable) by "other" so that
-     * qemu can open the sockets.
-     *)
-    chmod t 0o755;
-    rmdir_on_exit t;
-    t in
-
-  let id = unique () in
-  let sock = tmpdir // sprintf "nbdkit%d.sock" id in
-  let qemu_uri = sprintf "nbd:unix:%s:exportname=/" sock in
-  let pidfile = tmpdir // sprintf "nbdkit%d.pid" id in
-
-  (* Construct the final command line with the "static" args
-   * above plus the pidfile and socket which vary for each run.
-   *)
-  let args = args @ [ "--pidfile"; pidfile; "--unix"; sock ] in
-
-  (* Print the full command we are about to run when debugging. *)
-  if verbose () then (
-    eprintf "running nbdkit:\n";
-    List.iter (fun (k, v) -> eprintf " %s=%s" k v) env;
-    List.iter (fun arg -> eprintf " %s" (quote arg)) args;
-    prerr_newline ()
-  );
-
-  (* Start an nbdkit instance in the background.  By using
-   * --exit-with-parent we don't have to worry about cleaning
-   * it up, hopefully.
-   *)
-  let args = Array.of_list args in
-  let pid = fork () in
-  if pid = 0 then (
-    (* Child process (nbdkit). *)
-    List.iter (fun (k, v) -> putenv k v) env;
-    execvp "nbdkit" args
-  );
-
-  (* Wait for the pidfile to appear so we know that nbdkit
-   * is listening for requests.
-   *)
-  if not (wait_for_file pidfile 30) then (
-    if verbose () then
-      error (f_"nbdkit did not start up.  See previous debugging messages for problems.")
-    else
-      error (f_"nbdkit did not start up.  There may be errors printed by nbdkit above.
-
-If the messages above are not sufficient to diagnose the problem then add the ‘virt-v2v -v -x’ options and examine the debugging output carefully.")
-         );
+let run cmd =
+  let sock, _ = Nbdkit.run_unix cmd in
 
   if have_selinux then (
     (* Note that Unix domain sockets have both a file label and
-     * a socket/process label.  Using --selinux-label above
-     * only set the socket label, but we must also set the file
-     * label.
+     * a socket/process label.  Using --selinux-label only set
+     * the socket label, but we must also set the file label.
      *)
     ignore (
         run_command ["chcon"; "system_u:object_r:svirt_image_t:s0"; sock]
       );
   );
-  (* ... and the regular Unix permissions, in case qemu is
-   * running as another user.
-   *)
-  chmod sock 0o777;
 
-  if verbose () then (
-    eprintf "nbdkit: tmpdir %s:\n%!" tmpdir;
-    ignore (Sys.command (sprintf "ls -laZ %s" (quote tmpdir)))
-  );
-
+  let qemu_uri = sprintf "nbd:unix:%s:exportname=/" sock in
   qemu_uri
