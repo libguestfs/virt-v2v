@@ -1,0 +1,18 @@
+Virt-v2v is a program that converts a single guest from a foreign
+hypervisor to run on KVM.  It can read Linux and Windows guests
+running on VMware, Xen, Hyper-V and some other hypervisors, and
+convert them to KVM managed by libvirt, OpenStack, oVirt, Red Hat
+Virtualisation (RHV) or several other targets.  It can modify the
+guest to make it bootable on KVM and install virtio drivers so it will
+run quickly.
+
+There is also a companion front-end called virt-p2v
+(https://github.com/libguestfs/virt-p2v) which comes as an ISO, CD or
+PXE image that can be booted on physical machines to virtualize those
+machines (physical to virtual, or p2v).
+
+Virt-v2v and virt-p2v have been in continuous development since 2007.
+
+For more information about virt-v2v and virt-p2v please read the
+respective manual pages.  For virt-v2v, see the docs/ subdirectory in
+the source tree.
