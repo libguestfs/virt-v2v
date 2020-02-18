@@ -243,12 +243,12 @@ and qemu_uri_of_filename ?bandwidth input_password vmx_source filename =
      let user = uri.Xml.uri_user in
      let password =
        match input_password with
-       | None -> Nbdkit.NoPassword
-       | Some ip -> Nbdkit.PasswordFile ip in
+       | None -> Nbdkit_sources.NoPassword
+       | Some ip -> Nbdkit_sources.PasswordFile ip in
 
-     let nbdkit = Nbdkit.create_ssh ?bandwidth ~password ~server
+     let nbdkit = Nbdkit_sources.create_ssh ?bandwidth ~password ~server
                                     ?port ?user abs_path in
-     let qemu_uri = Nbdkit.run nbdkit in
+     let qemu_uri = Nbdkit_sources.run nbdkit in
      qemu_uri, format
 
 and absolute_path_from_other_file other_filename filename =

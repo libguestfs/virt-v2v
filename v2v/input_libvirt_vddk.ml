@@ -183,11 +183,11 @@ object (self)
           * directly in this form to VDDK.
           *)
          let nbdkit =
-           Nbdkit.create_vddk ?bandwidth ?config ?cookie ?libdir ~moref
+           Nbdkit_sources.create_vddk ?bandwidth ?config ?cookie ?libdir ~moref
                               ?nfchostport ?password_file:input_password ?port
                               ~server ?snapshot ~thumbprint ?transports ?user
                               path in
-         let qemu_uri = Nbdkit.run nbdkit in
+         let qemu_uri = Nbdkit_sources.run nbdkit in
 
          (* nbdkit always presents us with the raw disk blocks from
           * the guest, so force the format to raw here.

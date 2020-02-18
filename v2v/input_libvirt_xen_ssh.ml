@@ -63,11 +63,11 @@ object (self)
       | { p_source_disk = disk; p_source = P_source_file path } ->
          let password =
            match input_password with
-           | None -> Nbdkit.NoPassword
-           | Some ip -> Nbdkit.PasswordFile ip in
-         let nbdkit = Nbdkit.create_ssh ?bandwidth ~password
+           | None -> Nbdkit_sources.NoPassword
+           | Some ip -> Nbdkit_sources.PasswordFile ip in
+         let nbdkit = Nbdkit_sources.create_ssh ?bandwidth ~password
                                         ?port ~server ?user path in
-         let qemu_uri = Nbdkit.run nbdkit in
+         let qemu_uri = Nbdkit_sources.run nbdkit in
         { disk with s_qemu_uri = qemu_uri }
     ) disks in
 

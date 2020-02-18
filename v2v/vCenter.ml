@@ -74,13 +74,13 @@ let rec map_source ?bandwidth ?password_file dcPath uri server path =
 
   let password =
     match password_file with
-    | None -> Nbdkit.NoPassword
-    | Some password_file -> Nbdkit.PasswordFile password_file in
+    | None -> Nbdkit_sources.NoPassword
+    | Some password_file -> Nbdkit_sources.PasswordFile password_file in
 
   let nbdkit =
-    Nbdkit.create_curl ?bandwidth ?cookie:session_cookie ~password ~sslverify
+    Nbdkit_sources.create_curl ?bandwidth ?cookie:session_cookie ~password ~sslverify
                        ?user:uri.uri_user https_url in
-  let qemu_uri = Nbdkit.run nbdkit in
+  let qemu_uri = Nbdkit_sources.run nbdkit in
 
   (* Return the struct. *)
   { https_url = https_url;
