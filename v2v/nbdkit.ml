@@ -134,6 +134,12 @@ let run_unix cmd =
   add_arg "--pidfile"; add_arg pidfile;
   add_arg "--unix"; add_arg sock;
 
+  (* Reduce verbosity in nbdkit >= 1.17.4. *)
+  let version = version (config ()) in
+  if version >= (1, 17, 4) then (
+    add_arg "-D"; add_arg "nbdkit.backend.datapath=0"
+  );
+
   List.iter (
     fun (name, value) ->
       add_arg "-D"; add_arg (sprintf "%s=%s" name value)

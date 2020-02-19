@@ -58,7 +58,7 @@ let error_unless_nbdkit_compiled_with_selinux config =
       error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
   )
 
-let common_create ?bandwidth ?extra_env plugin_name plugin_args =
+let common_create ?bandwidth ?extra_debug ?extra_env plugin_name plugin_args =
   error_unless_nbdkit_working ();
   let config = Nbdkit.config () in
   error_unless_nbdkit_min_version config;
@@ -75,6 +75,13 @@ let common_create ?bandwidth ?extra_env plugin_name plugin_args =
     | None -> cmd
     | Some (name, value) -> Nbdkit.add_env cmd name value in
 
+  (* Debug flags. *)
+  let cmd =
+    match extra_debug with
+    | None -> cmd
+    | Some (n, v) -> Nbdkit.add_debug_flag cmd n v in
+
+  (* Other flags. *)
   let cmd = Nbdkit.set_verbose cmd (verbose ()) in
   let cmd = Nbdkit.set_readonly cmd true in (* important! readonly mode *)
   let cmd = Nbdkit.set_exportname cmd "/" in
@@ -236,7 +243,12 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
   add_arg ("thumbprint", thumbprint);
   Option.may (fun s -> add_arg ("transports", s)) transports;
 
-  common_create ?bandwidth ?extra_env:env "vddk" (get_args ())
+  (* If nbdkit >= 1.17.10 then we can suppress datapath messages. *)
+  let debug_flag =
+    if version >= (1, 17, 10) then Some ("vddk.datapath", "0") else None in
+
+  common_create ?bandwidth ?extra_debug:debug_flag ?extra_env:env
+    "vddk" (get_args ())
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
 let create_ssh ?bandwidth ~password ?port ~server ?user path =
