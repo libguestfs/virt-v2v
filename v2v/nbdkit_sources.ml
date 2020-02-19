@@ -138,8 +138,13 @@ let create_vddk ?bandwidth ?config ?cookie ?libdir ~moref
                 ~server ?snapshot ~thumbprint ?transports ?user path =
   error_unless_nbdkit_plugin_exists "vddk";
 
+  let version = Nbdkit.version (Nbdkit.config ()) in
+
   (* Compute the LD_LIBRARY_PATH that we may have to pass to nbdkit. *)
-  let ld_library_path = Option.map (fun libdir -> libdir // libNN) libdir in
+  let ld_library_path =
+    (* LD_LIBRARY_PATH was only required by nbdkit < 1.17.10. *)
+    if version >= (1, 17, 10) then None
+    else Option.map (fun libdir -> libdir // libNN) libdir in
   let env =
     match ld_library_path with
     | None -> None
