@@ -203,7 +203,7 @@ class output_rhv_upload output_alloc output_conn
   let nbdkit_cmd = Nbdkit.set_exportname nbdkit_cmd "/" in
   let nbdkit_cmd = Nbdkit.set_verbose nbdkit_cmd (verbose ()) in
   let nbdkit_cmd = Nbdkit.set_plugin nbdkit_cmd nbdkit_python_plugin in
-  let nbdkit_cmd = Nbdkit.add_arg nbdkit_cmd "script" "Python_script.path" in
+  let nbdkit_cmd = Nbdkit.add_arg nbdkit_cmd "script" (Python_script.path plugin_script) in
 
   let nbdkit_cmd =
     if have_selinux then
