@@ -197,6 +197,7 @@ virt_v2v_CPPFLAGS = \
 	-I$(top_srcdir)/lib
 virt_v2v_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
+	$(LIBGUESTFS_CFLAGS) \
 	$(LIBVIRT_CFLAGS) \
 	$(LIBOSINFO_CFLAGS)
 
@@ -230,6 +231,7 @@ endif
 
 OCAMLCLIBS = \
 	-lqemuopts \
+	$(LIBGUESTFS_LIBS) \
 	$(LIBVIRT_LIBS) \
 	$(LIBXML2_LIBS) \
 	$(JANSSON_LIBS) \
