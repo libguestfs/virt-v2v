@@ -89,10 +89,6 @@ dnl Perl, used for running mllibvirt generator, and man pages.
 HEADING([Checking for Perl])
 m4_include([m4/guestfs-perl.m4])
 
-dnl XXX Check for libguestfs OCaml bindings.
-dnl XXX Check for libguestfs Sys::Guestfs (Perl), needed to build
-dnl phony images.
-
 dnl virt-v2v.
 HEADING([Checking the virt-v2v dependencies])
 m4_include([m4/guestfs-v2v.m4])
