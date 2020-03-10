@@ -38,7 +38,7 @@ msgstr ""
 #: ../common/mlcustomize/customize-options.pod:9 ../virt-v2v-1.41.8/common/mlcustomize/customize-options.pod:9
 #, no-wrap
 msgid ""
-" Copyright (C) 2009-2019 Red Hat Inc.\n"
+" Copyright (C) 2009-2020 Red Hat Inc.\n"
 "\n"
 msgstr ""
 
@@ -1133,7 +1133,7 @@ msgstr ""
 
 #. type: textblock
 #: ../docs/virt-v2v-copy-to-local.pod:126 ../docs/virt-v2v-hacking.pod:59 ../docs/virt-v2v-input-vmware.pod:628 ../docs/virt-v2v-input-xen.pod:127 ../docs/virt-v2v-output-local.pod:208 ../docs/virt-v2v-output-openstack.pod:222 ../docs/virt-v2v-output-rhv.pod:235 ../docs/virt-v2v-support.pod:154 ../docs/virt-v2v.pod:1720 ../virt-v2v-1.41.8/docs/virt-v2v-copy-to-local.pod:126 ../virt-v2v-1.41.8/docs/virt-v2v-hacking.pod:59 ../virt-v2v-1.41.8/docs/virt-v2v-input-vmware.pod:628 ../virt-v2v-1.41.8/docs/virt-v2v-input-xen.pod:127 ../virt-v2v-1.41.8/docs/virt-v2v-output-local.pod:208 ../virt-v2v-1.41.8/docs/virt-v2v-output-openstack.pod:222 ../virt-v2v-1.41.8/docs/virt-v2v-output-rhv.pod:235 ../virt-v2v-1.41.8/docs/virt-v2v-support.pod:154 ../virt-v2v-1.41.8/docs/virt-v2v.pod:1720
-msgid "Copyright (C) 2009-2019 Red Hat Inc."
+msgid "Copyright (C) 2009-2020 Red Hat Inc."
 msgstr ""
 
 #. type: textblock
@@ -8077,5 +8077,5 @@ msgstr ""
 
 #. type: textblock
 #: ../test-harness/virt-v2v-test-harness.pod:279 ../virt-v2v-1.41.8/test-harness/virt-v2v-test-harness.pod:279
-msgid "Copyright (C) 2014-2019 Red Hat Inc."
+msgid "Copyright (C) 2014-2020 Red Hat Inc."
 msgstr ""

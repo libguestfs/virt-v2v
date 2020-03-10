@@ -46,7 +46,7 @@ msgstr ""
 #: ../virt-v2v-1.41.8/common/mlcustomize/customize-options.pod:9
 #, no-wrap
 msgid ""
-" Copyright (C) 2009-2019 Red Hat Inc.\n"
+" Copyright (C) 2009-2020 Red Hat Inc.\n"
 "\n"
 msgstr ""
 
@@ -1492,7 +1492,7 @@ msgstr ""
 #: ../virt-v2v-1.41.8/docs/virt-v2v-output-rhv.pod:235
 #: ../virt-v2v-1.41.8/docs/virt-v2v-support.pod:154
 #: ../virt-v2v-1.41.8/docs/virt-v2v.pod:1720
-msgid "Copyright (C) 2009-2019 Red Hat Inc."
+msgid "Copyright (C) 2009-2020 Red Hat Inc."
 msgstr ""
 
 #. type: textblock
@@ -9038,7 +9038,7 @@ msgstr ""
 #. type: textblock
 #: ../test-harness/virt-v2v-test-harness.pod:279
 #: ../virt-v2v-1.41.8/test-harness/virt-v2v-test-harness.pod:279
-msgid "Copyright (C) 2014-2019 Red Hat Inc."
+msgid "Copyright (C) 2014-2020 Red Hat Inc."
 msgstr ""
 
 #, no-wrap
