@@ -1,5 +1,6 @@
 ../common/mlcustomize/customize-options.pod
 ../common/mlcustomize/customize-synopsis.pod
+../common/options/blocksize-option.pod
 ../common/options/key-option.pod
 ../docs/virt-v2v-copy-to-local.pod
 ../docs/virt-v2v-hacking.pod
