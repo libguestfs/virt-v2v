@@ -103,9 +103,12 @@ let add_filter_if_available cmd filter =
   if probe_filter filter then add_filter cmd filter else cmd
 
 let run_unix cmd =
-  (* Create a temporary directory where we place the socket and PID file. *)
+  (* Create a temporary directory where we place the socket and PID file.
+   * Use the libguestfs socket directory, so it is more likely the full path
+   * of the UNIX sockets will fit in the (limited) socket pathname.
+   *)
   let tmpdir =
-    let base_dir = (open_guestfs ())#get_cachedir () in
+    let base_dir = (open_guestfs ())#get_sockdir () in
     let t = Mkdtemp.temp_dir ~base_dir "v2vnbdkit." in
     (* tmpdir must be readable (but not writable) by "other" so that
      * qemu can open the sockets.
