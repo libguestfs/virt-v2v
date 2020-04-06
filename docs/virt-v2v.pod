@@ -1206,8 +1206,9 @@ possible.
 
 =head3 Disk space
 
-Virt-v2v places potentially large temporary files in C<$TMPDIR> (which
-is F</var/tmp> if you don't set it).  Using tmpfs is a bad idea.
+Virt-v2v places potentially large temporary files in
+C<$LIBGUESTFS_CACHEDIR> (which is F</var/tmp> if you don't set it).
+Using tmpfs is a bad idea.
 
 For each guest disk, an overlay is stored temporarily.  This stores
 the changes made during conversion, and is used as a cache.  The
@@ -1220,11 +1221,12 @@ and output methods may use disk space, as outlined in the table below.
 =item I<-i ova>
 
 This temporarily places a full copy of the uncompressed source disks
-in C<$TMPDIR>.
+in C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>).
 
 =item I<-o glance>
 
-This temporarily places a full copy of the output disks in C<$TMPDIR>.
+This temporarily places a full copy of the output disks in
+C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>).
 
 =item I<-o local>
 
@@ -1554,10 +1556,10 @@ conversion.
 
 =over 4
 
-=item C<TMPDIR>
+=item C<LIBGUESTFS_CACHEDIR>
 
 Location of the temporary directory used for the potentially large
-temporary overlay file.
+temporary overlay file.  If not set, F</var/tmp> is used.
 
 See the L</Disk space> section above.
 
