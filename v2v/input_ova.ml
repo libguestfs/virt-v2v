@@ -132,8 +132,8 @@ class input_ova ova = object
            (* The spec allows the file to be gzip-compressed, in
             * which case we must uncompress it into a temporary.
             *)
-           let temp_dir = (open_guestfs ())#get_cachedir () in
-           let new_filename = Filename.temp_file ~temp_dir "ova" ".vmdk" in
+           let new_filename =
+             Filename.temp_file ~temp_dir:Utils.large_tmpdir "ova" ".vmdk" in
            unlink_on_exit new_filename;
            let cmd =
              sprintf "zcat %s > %s" (quote filename) (quote new_filename) in

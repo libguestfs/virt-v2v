@@ -71,8 +71,7 @@ let rec parse_ova ova =
     if is_directory ova then ova, Directory
     else (
       let tmpdir =
-        let base_dir = (open_guestfs ())#get_cachedir () in
-        let t = Mkdtemp.temp_dir ~base_dir "ova." in
+        let t = Mkdtemp.temp_dir ~base_dir:large_tmpdir "ova." in
         rmdir_on_exit t;
         t in
 
@@ -221,8 +220,7 @@ and uncompress_head format file =
  *)
 and uncompressed_type format file =
   let head, headlen = uncompress_head format file in
-  let tmpfile, chan =
-    Filename.open_temp_file "ova.file." "" in
+  let tmpfile, chan = Filename.open_temp_file "ova.file." "" in
   output chan head 0 headlen;
   close_out chan;
   let ret = detect_file_type tmpfile in

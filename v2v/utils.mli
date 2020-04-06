@@ -18,6 +18,11 @@
 
 (** Utilities used in virt-v2v only. *)
 
+val large_tmpdir : string
+(** [VIRT_V2V_TMPDIR] or [/var/tmp].  Create all large temporary files
+    such as overlays in this directory.  Small temporary files can
+    use the default behaviour eg. of {!Filename.temp_file} *)
+
 val have_selinux : bool
 (** True if SELinux is enabled and enforcing on the host. *)
 

@@ -389,8 +389,7 @@ and find_nics vmx =
 
 class input_vmx input_password input_transport arg =
   let tmpdir =
-    let base_dir = (open_guestfs ())#get_cachedir () in
-    let t = Mkdtemp.temp_dir ~base_dir "vmx." in
+    let t = Mkdtemp.temp_dir "vmx." in
     rmdir_on_exit t;
     t in
 object
