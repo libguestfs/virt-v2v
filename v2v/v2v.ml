@@ -268,8 +268,6 @@ and set_source_networks_and_bridges cmdline source =
   let nics = List.map (Networks.map cmdline.network_map) source.s_nics in
   { source with s_nics = nics }
 
-and overlay_dir = (open_guestfs ())#get_cachedir ()
-
 (* Conversion can fail or hang if there is insufficient free space in
  * the temporary directory used to store overlays on the host
  * (RHBZ#1316479).  Although only a few hundred MB is actually
@@ -277,12 +275,12 @@ and overlay_dir = (open_guestfs ())#get_cachedir ()
  * guestfs appliance which is also stored here.
  *)
 and check_host_free_space () =
-  let free_space = StatVFS.free_space (StatVFS.statvfs overlay_dir) in
-  debug "check_host_free_space: overlay_dir=%s free_space=%Ld"
-        overlay_dir free_space;
+  let free_space = StatVFS.free_space (StatVFS.statvfs large_tmpdir) in
+  debug "check_host_free_space: large_tmpdir=%s free_space=%Ld"
+        large_tmpdir free_space;
   if free_space < 1_073_741_824L then
     error (f_"insufficient free space in the conversion server temporary directory %s (%s).\n\nEither free up space in that directory, or set the LIBGUESTFS_CACHEDIR environment variable to point to another directory with more than 1GB of free space.\n\nSee also the virt-v2v(1) manual, section \"Minimum free space check in the host\".")
-          overlay_dir (human_size free_space)
+          large_tmpdir (human_size free_space)
 
 (* Create a qcow2 v3 overlay to protect the source image(s). *)
 and create_overlays source_disks =
@@ -290,7 +288,7 @@ and create_overlays source_disks =
   List.mapi (
     fun i ({ s_qemu_uri = qemu_uri; s_format = format } as source) ->
       let overlay_file =
-        Filename.temp_file ~temp_dir:overlay_dir "v2vovl" ".qcow2" in
+        Filename.temp_file ~temp_dir:large_tmpdir "v2vovl" ".qcow2" in
       unlink_on_exit overlay_file;
 
       (* There is a specific reason to use the newer qcow2 variant:
@@ -836,7 +834,7 @@ and preserve_overlays overlays src_name =
   List.iter (
     fun ov ->
       let saved_filename =
-        sprintf "%s/%s-%s.qcow2" overlay_dir src_name ov.ov_sd in
+        sprintf "%s/%s-%s.qcow2" large_tmpdir src_name ov.ov_sd in
       rename ov.ov_overlay_file saved_filename;
       info (f_"Overlay saved as %s [--debug-overlays]") saved_filename
   ) overlays

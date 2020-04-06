@@ -75,8 +75,7 @@ class output_null =
    * the null-co device w/ a JSON URL.
    *)
   let tmpdir =
-    let base_dir = (open_guestfs ())#get_cachedir () in
-    let t = Mkdtemp.temp_dir ~base_dir "null." in
+    let t = Mkdtemp.temp_dir ~base_dir:large_tmpdir "null." in
     rmdir_on_exit t;
     t in
 object

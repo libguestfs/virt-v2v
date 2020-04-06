@@ -24,6 +24,10 @@ open Std_utils
 open Tools_utils
 open Common_gettext.Gettext
 
+let large_tmpdir =
+  try Sys.getenv "VIRT_V2V_TMPDIR"
+  with Not_found -> (open_guestfs ())#get_cachedir ()
+
 (* Is SELinux enabled and enforcing on the host? *)
 let have_selinux =
   0 = Sys.command "getenforce 2>/dev/null | grep -isq Enforcing"
@@ -113,6 +117,7 @@ let qemu_img_supports_offset_and_size () =
    * file that has an offset and size.
    *)
   let tmp = Filename.temp_file "v2vqemuimgtst" ".img" in
+  unlink_on_exit tmp;
   Unix.truncate tmp 1024;
 
   let json = [
@@ -132,7 +137,6 @@ let qemu_img_supports_offset_and_size () =
             (if verbose () then "" else " 2>&1") in
   debug "%s" cmd;
   let r = 0 = Sys.command cmd in
-  Unix.unlink tmp;
   debug "qemu-img supports \"offset\" and \"size\" in json URLs: %b" r;
   r
 

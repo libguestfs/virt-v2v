@@ -1206,8 +1206,8 @@ possible.
 =head3 Disk space
 
 Virt-v2v places potentially large temporary files in
-C<$LIBGUESTFS_CACHEDIR> (which is F</var/tmp> if you don't set it).
-Using tmpfs is a bad idea.
+C<$VIRT_V2V_TMPDIR> (usually F</var/tmp>, see also
+L</ENVIRONMENT VARIBLES> below).  Using tmpfs is a bad idea.
 
 For each guest disk, an overlay is stored temporarily.  This stores
 the changes made during conversion, and is used as a cache.  The
@@ -1220,12 +1220,12 @@ and output methods may use disk space, as outlined in the table below.
 =item I<-i ova>
 
 This temporarily places a full copy of the uncompressed source disks
-in C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>).
+in C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
 
 =item I<-o glance>
 
 This temporarily places a full copy of the output disks in
-C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>).
+C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
 
 =item I<-o local>
 
@@ -1345,17 +1345,20 @@ have at least 100 available inodes.
 =head3 Minimum free space check in the host
 
 You must have sufficient free space in the host directory used to
-store temporary overlays (except in I<--in-place> mode).  To find out
-which directory this is, use:
+store large temporary overlays (except in I<--in-place> mode).  To
+find out which directory this is, use:
 
  $ df -h "`guestfish get-cachedir`"
  Filesystem        Size  Used Avail Use% Mounted on
  /dev/mapper/root   50G   40G  6.8G  86% /
 
 and look under the C<Avail> column.  Virt-v2v will refuse to do the
-conversion at all unless at least 1GB is available there.
+conversion at all unless at least 1GB is available there.  You can
+change the directory that virt-v2v uses by setting
+C<$VIRT_V2V_TMPDIR>.
 
-See also L</Resource requirements> above.
+See also L</Resource requirements> above and L</ENVIRONMENT VARIABLES>
+below.
 
 =head2 Running virt-v2v as root or non-root
 
@@ -1588,10 +1591,18 @@ conversion.
 
 =over 4
 
+=item C<VIRT_V2V_TMPDIR>
+
 =item C<LIBGUESTFS_CACHEDIR>
 
 Location of the temporary directory used for the potentially large
-temporary overlay file.  If not set, F</var/tmp> is used.
+temporary overlay file.  If neither environment variable is set then
+F</var/tmp> is used.
+
+To reliably ensure large temporary files are cleaned up (for example
+in case virt-v2v crashes) you should create a randomly named directory
+under F</var/tmp>, set C<VIRT_V2V_TMPDIR> to point to this directory,
+then when virt-v2v exits remove the directory.
 
 See the L</Disk space> section above.
 
