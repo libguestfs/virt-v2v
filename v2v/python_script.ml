@@ -31,15 +31,9 @@ type script = {
   path : string;                (* Path to script. *)
 }
 
-let create ?(name = "script.py") ?tmpdir code =
-  let tmpdir =
-    match tmpdir with
-    | None ->
-      let base_dir = (open_guestfs ())#get_cachedir () in
-      let t = Mkdtemp.temp_dir ~base_dir "v2v." in
-      rmdir_on_exit t;
-      t
-    | Some dir -> dir in
+let create ?(name = "script.py") code =
+  let tmpdir = Mkdtemp.temp_dir "v2v." in
+  rmdir_on_exit tmpdir;
   let path = tmpdir // name in
   with_open_out path (fun chan -> output_string chan code);
   { tmpdir; path }

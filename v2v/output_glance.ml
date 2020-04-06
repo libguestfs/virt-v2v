@@ -33,8 +33,7 @@ class output_glance () =
    * to write to a temporary file.  XXX
    *)
   let tmpdir =
-    let base_dir = (open_guestfs ())#get_cachedir () in
-    let t = Mkdtemp.temp_dir ~base_dir "glance." in
+    let t = Mkdtemp.temp_dir ~base_dir:large_tmpdir "glance." in
     rmdir_on_exit t;
     t in
 object
