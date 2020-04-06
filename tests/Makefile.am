@@ -177,11 +177,9 @@ EXTRA_DIST += \
 	test-v2v-bad-networks-and-bridges.sh \
 	test-v2v-cdrom.expected \
 	test-v2v-cdrom.sh \
-	test-v2v-cdrom.xml \
 	test-v2v-copy-to-local.sh \
 	test-v2v-floppy.expected \
 	test-v2v-floppy.sh \
-	test-v2v-floppy.xml \
 	test-v2v-i-disk.sh \
 	test-v2v-i-ova-as-root.ovf \
 	test-v2v-i-ova-as-root.sh \
@@ -232,8 +230,6 @@ EXTRA_DIST += \
 	test-v2v-machine-readable.sh \
 	test-v2v-mac-expected.xml \
 	test-v2v-mac.sh \
-	test-v2v-mac.xml \
-	test-v2v-networks-and-bridges-expected.xml \
 	test-v2v-networks-and-bridges.sh \
 	test-v2v-networks-and-bridges.xml \
 	test-v2v-no-copy.sh \
@@ -258,12 +254,9 @@ EXTRA_DIST += \
 	test-v2v-print-estimate.sh \
 	test-v2v-print-source.expected \
 	test-v2v-print-source.sh \
-	test-v2v-print-source.xml \
 	test-v2v-conversion-of.sh \
 	test-v2v-sound.sh \
-	test-v2v-sound.xml \
 	test-v2v-trim.sh \
 	test-v2v-virtio-win-iso.sh \
 	test-v2v-windows-conversion.sh \
-	rhbz1232192.sh \
-	rhbz1232192.xml
+	rhbz1232192.sh

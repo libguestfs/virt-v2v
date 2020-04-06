@@ -128,7 +128,14 @@ Makefile.in
 /test-harness/stamp-virt-v2v-test-harness.pod
 /test-harness/virt-v2v-test-harness.1
 /tests/libvirt-is-version
+/tests/rhbz1232192.xml
+/tests/test-v2v-cdrom.xml
 /tests/test-v2v-conversion-of-*.sh
+/tests/test-v2v-floppy.xml
+/tests/test-v2v-mac.xml
+/tests/test-v2v-networks-and-bridges.xml
+/tests/test-v2v-print-source.xml
+/tests/test-v2v-sound.xml
 /tests/windows.vmdk
 /v2v/.depend
 /v2v/config.ml

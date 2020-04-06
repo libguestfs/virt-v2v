@@ -153,6 +153,13 @@ AC_CONFIG_FILES([Makefile
                  test-harness/Makefile
                  test-harness/META
                  tests/Makefile
+                 tests/rhbz1232192.xml
+                 tests/test-v2v-cdrom.xml
+                 tests/test-v2v-floppy.xml
+                 tests/test-v2v-mac.xml
+                 tests/test-v2v-networks-and-bridges.xml
+                 tests/test-v2v-print-source.xml
+                 tests/test-v2v-sound.xml
                  v2v/Makefile
                  v2v/config.ml])
 

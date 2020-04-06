@@ -27,7 +27,7 @@ skip_if_backend uml
 skip_unless_phony_guest windows.img
 skip_unless_phony_guest blank-disk.img
 
-libvirt_uri="test://$abs_srcdir/test-v2v-cdrom.xml"
+libvirt_uri="test://$abs_builddir/test-v2v-cdrom.xml"
 export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
 export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
 

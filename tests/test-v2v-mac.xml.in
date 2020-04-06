@@ -27,12 +27,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
     <devices>
       <disk type='file' device='disk'>
         <driver name='qemu' type='raw'/>
-        <source file='../test-data/phony-guests/windows.img'/>
+        <source file='@abs_top_builddir@/test-data/phony-guests/windows.img'/>
         <target dev='vda' bus='virtio'/>
       </disk>
-
-      <!-- various different networks and bridges which should
-           be renamed by the test -->
 
       <!-- standard ESX bridge -->
       <interface type='bridge'>
@@ -41,21 +38,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         <model type='e1000'/>
       </interface>
 
-      <!-- another bridge to be remapped -->
+      <!-- various different NICs which can be remapped -->
+
       <interface type='bridge'>
         <mac address='52:54:00:01:02:03'/>
         <source bridge='bob'/>
         <model type='e1000'/>
       </interface>
 
-      <!-- typical libvirt network -->
       <interface type='network'>
         <mac address='52:54:00:01:02:04'/>
         <source network='default'/>
         <model type='virtio'/>
       </interface>
 
-      <!-- some more random networks to map -->
       <interface type='network'>
         <mac address='52:54:00:01:02:05'/>
         <source network='john'/>
@@ -74,10 +70,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         <mac address='52:54:00:01:02:07'/>
       </interface>
 
-      <interface type='network'>
+      <interface type='bridge'>
         <mac address='52:54:00:01:02:08'/>
         <model type='virtio'/>
-        <source network='ringo'/>
+        <source bridge='ringo'/>
       </interface>
 
     </devices>

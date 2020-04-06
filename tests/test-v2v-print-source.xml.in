@@ -18,7 +18,7 @@
   <devices>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw'/>
-      <source file='../test-data/phony-guests/windows.img'/>
+      <source file='@abs_top_builddir@/test-data/phony-guests/windows.img'/>
       <target dev='vda' bus='virtio'/>
     </disk>
     <interface type='network'>

@@ -29,7 +29,7 @@ rm -rf $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
-    -i libvirtxml "$srcdir/test-v2v-print-source.xml" \
+    -i libvirtxml test-v2v-print-source.xml \
     -o local -os $d \
     --print-source > $d/output
 
