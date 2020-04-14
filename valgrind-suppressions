@@ -431,3 +431,12 @@
    ...
    fun:Perl_re_op_compile
 }
+
+# libosinfo database reference is deliberately leaked
+# see v2v/libosinfo_utils.ml:get_db
+{
+   libosinfo_leak_1
+   Memcheck:Leak
+   ...
+   fun:v2v_osinfo_db_load
+}
