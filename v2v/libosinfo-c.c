@@ -87,7 +87,7 @@ Val_OsinfoDb_t (OsinfoDb_t t)
 }
 
 static struct custom_operations os_custom_operations = {
-  (char *) "OsinfoDb_t_custom_operations",
+  (char *) "OsinfoOs_t_custom_operations",
   custom_finalize_default,
   custom_compare_default,
   custom_hash_default,
