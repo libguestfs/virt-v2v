@@ -56,6 +56,7 @@ Makefile.in
 /docs/virt-v2v-output-local.1
 /docs/virt-v2v-output-openstack.1
 /docs/virt-v2v-output-rhv.1
+/docs/virt-v2v-release-notes-1.42.1
 /docs/virt-v2v-support.1
 /.gitattributes
 /.git-module-status

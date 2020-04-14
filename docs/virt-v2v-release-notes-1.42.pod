@@ -1,0 +1,237 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v Release Notes
+
+=head1 DESCRIPTION
+
+These are the release notes for virt-v2v 1.42, released on B<XXXX-XX-XX>.
+
+=head2 New features
+
+This is the first release where virt-v2v lives in a separate
+repository from libguestfs.  The two projects are now broadly
+decoupled from one another.
+
+Add a new I<-o json> output mode.  Primarily this is used to do
+conversions to KubeVirt (Pino Toscano).
+
+Use new libvirt C<E<lt>firmwareE<gt>> feature to get the source guest
+firmware (Pino Toscano).
+
+virt-v2v I<-o rhv-upload> new option I<-oo rhv-disk-uuid> allows disk
+UUIDs to be specified.  Also I<-oo rhv-cafile> is now optional
+(Pino Toscano).
+
+Conversions over ssh now use L<nbdkit-ssh-plugin(1)> instead of the
+QEMU ssh driver.  Similarly L<nbdkit-curl-plugin(1)> is used instead
+of the QEMU curl driver.  This allowed us to add more flexible
+features such as password authentication, bandwidth throttling (new
+I<--bandwidth> option), readahead, and automatic retry on network
+failures.
+
+For Windows guests, QEMU Guest Agent MSI may now be installed
+(Tomáš Golembiovský).
+
+=head2 Other fixes
+
+In I<-o libvirt> mode, support Windows Server 2019 (Pino Toscano).
+
+Fix Ubuntu Server conversions (Pino Toscano).
+
+Fix installation of qemu-ga by only installing arch-specific
+files in the guest (Pino Toscano).
+
+Delay installation of qemu-ga until after virtio-win drivers have been
+installed and rebooted (Tomáš Golembiovský).
+
+Save the log from running RHEV-APT installer to allow
+debugging (Tomáš Golembiovský).
+
+Check RHV cluster exists before trying to convert when using
+I<-o rhv-upload> mode.  Also allows us to detect and reject various other
+conditions early.  (Pino Toscano).
+
+Label nbdkit sockets correctly for SELinux/sVirt
+(Martin Kletzander).
+
+You can use a block device as the Windows virtio driver ISO.
+
+Multiple fixes to RHV uploads: Set C<DISKTYPE> field correctly when
+converting to RHV and VDSM.  Properly clean up on failure.  Display
+disk ID in error messages, and log script parameters, to help with
+debugging.  Multiple code cleanups.  (Nir Soffer).
+
+Support conversions to RHV in qcow2 format (Nir Soffer).
+
+Fix detection of disk status and failures after conversion to RHV
+(Daniel Erez).
+
+Cancel disk transfer and remove uploaded disks on failure of
+conversion to RHV (Pino Toscano).
+
+Images containing small holes (sparse regions) should now
+convert faster (Nir Soffer).
+
+The L<nbdkit-cacheextents-filter(1)> is used to accelerate
+sources which have slow sparseness detection, primarily
+this means VMware sources using VDDK (Martin Kletzander).
+
+Require at least 100 free inodes on each guest filesystem before doing
+conversion, since lack of inodes could cause conversion failures
+(Pino Toscano).
+
+Fix osinfo output for CentOS 8 conversions (Pino Toscano).
+
+VMware tools are now removed from Windows guests automatically in most
+cases (Pino Toscano).
+
+I<-i ova> mode no longer reads the whole input OVF into memory, but
+parses it off disk (Pino Toscano).
+
+When converting to OpenStack, we now wait up to 5 minutes (instead of
+60 seconds) for the Cinder volume to get attached to the conversion
+appliance, since in some cases it was taking a long time.
+
+If using a new enough version of nbdkit, virt-v2v logs should be much
+less verbose.
+
+=head2 Security
+
+There were no security-related bugs found in this release.
+
+=head2 Build changes
+
+Libguestfs E<ge> 1.40 is required, it is now packaged and distributed
+separately from virt-v2v.  For developers you can use a locally built
+(and not installed) copy of libguestfs.
+
+Libvirt is now required to build virt-v2v.  Additionally you will
+require the OCaml bindings to libvirt (L<https://libvirt.org/ocaml/>),
+although a copy is bundled for now (it will be removed later).
+(Pino Toscano).
+
+Libosinfo is required to build virt-v2v.  It is used to query
+information about guest drivers.  (Pino Toscano).
+
+Fixes for OCaml E<ge> 4.10.  The minimum version of OCaml required is
+still 4.01, but may be increased to 4.05 in future.
+
+Test conversions of Debian 9 and Fedora 29 (Pino Toscano).
+
+Various fixes to srcdir != builddir (Pino Toscano).
+
+Remove gnulib modules not used by virt-v2v (Pino Toscano).
+
+=head2 Internals
+
+When converting SUSE guests, always try to install QXL driver (Mike
+Latimer).
+
+Two new modules (Nbdkit and Nbdkit_sources) factor out generic nbdkit
+operations and nbdkit source operations respectively.
+
+Format Python code to comply with PEP 8 / pycodestyle (Pino Toscano).
+
+Tests have been moved to the F<tests/> subdirectory, and manuals to
+the F<docs/> subdirectory.
+
+=head2 Bugs fixed
+
+=begin comment
+
+https_proxy= ./bugs-in-changelog.sh v1.40.0..
+
+=end comment
+
+=over 4
+
+=item L<https://bugzilla.redhat.com/1791802>
+
+virt-v2v does not install qemu-ga on EL8 guest
+
+=item L<https://bugzilla.redhat.com/1791257>
+
+update-crypto-policies command example is incorrect in virt-v2v-input-xen
+
+=item L<https://bugzilla.redhat.com/1791240>
+
+[RFE] Make the rhv-cafile optional
+
+=item L<https://bugzilla.redhat.com/1785528>
+
+Should remove info about "Remove VMware tools from Windows guests" in virt-v2v-input-vmware man page
+
+=item L<https://bugzilla.redhat.com/1746699>
+
+Can't import guest from export domain to data domain on rhv4.3 due to error "Invalid parameter: 'DiskType=1'"
+
+=item L<https://bugzilla.redhat.com/1733168>
+
+virt-v2v: Use scp -T in -i vmx -it ssh mode
+
+=item L<https://bugzilla.redhat.com/1723305>
+
+Delete info "export PATH=/path/to/nbdkit-1.1.x:$PATH" in virt-v2v-input-vmware manual page
+
+=item L<https://bugzilla.redhat.com/1691659>
+
+virt-v2v should show a message when qemu-guest-agent is installed in guest successfully during conversion
+
+=item L<https://bugzilla.redhat.com/1690574>
+
+virt-v2v fails to import a guest while cannot find `file_architecture` for a file
+
+=item L<https://bugzilla.redhat.com/1680361>
+
+[v2v][RHV][Scale] v2v Migration to RHV failed on timed out waiting for transfer to finalize
+
+=item L<https://bugzilla.redhat.com/1626503>
+
+Unable to maintain static IP address configuration post VM migration
+
+=item L<https://bugzilla.redhat.com/1612653>
+
+Guest has no disk after rhv-upload converting if target data domain has similar name with other data domain on rhv4.2
+
+=item L<https://bugzilla.redhat.com/1605242>
+
+Update nbdkit info for vddk in v2v man page
+
+=item L<https://bugzilla.redhat.com/1584678>
+
+On W2K12r2 rhev-apt does not run non-interactively, causing race when starting rhev-apt service from the command line
+
+=item L<https://bugzilla.redhat.com/1518539>
+
+Macvtap network will be lost during v2v conversion
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>.
+
+Previous release notes covering virt-v2v can be found in the
+libguestfs project: L<guestfs-release-notes-1.40(1)>.
+
+=head1 AUTHORS
+
+Daniel Erez
+
+Richard W.M. Jones
+
+Tomáš Golembiovský
+
+Martin Kletzander
+
+Mike Latimer
+
+Nir Soffer
+
+Pino Toscano
+
+Ming Xie
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2020 Red Hat Inc.

@@ -58,6 +58,8 @@ L<virt-v2v-output-rhv(1)> — Output to oVirt or RHV.
 
 L<virt-v2v-output-openstack(1)> — Output to OpenStack.
 
+L<virt-v2v-release-notes-1.42(1)> — Release notes for this release.
+
 L<virt-v2v-copy-to-local(1)> — Deprecated tool to handle Xen guests
 using host block device storage.
 

@@ -64,8 +64,9 @@ endif
 # lib/guestfs-internal-all.h is a hack, remove it XXX
 EXTRA_DIST = \
 	.gitignore \
-	bootstrap \
 	autogen.sh \
+	bootstrap \
+	bugs-in-changelog.sh \
 	build-aux/config.rpath \
 	cfg.mk \
 	check-mli.sh \
