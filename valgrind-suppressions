@@ -440,3 +440,11 @@
    ...
    fun:v2v_osinfo_db_load
 }
+
+# https://www.redhat.com/archives/libguestfs/2020-April/thread.html#00103
+{
+   libosinfo_leak_2
+   Memcheck:Leak
+   ...
+   fun:osinfo_*
+}
