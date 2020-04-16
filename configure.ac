@@ -44,6 +44,19 @@ AC_CONFIG_MACRO_DIR([m4])
 dnl Initialize libtool.
 LT_INIT
 
+dnl Stable or development version?
+BRANCH_NUMBER=v2v_major.v2v_minor
+AC_SUBST([BRANCH_NUMBER])
+AC_MSG_CHECKING([if $BRANCH_NUMBER is a stable or development branch of virt-v2v])
+AS_IF([test "$((v2v_minor % 2))" -eq 0 ],[
+    BRANCH_TYPE=stable
+    AC_MSG_RESULT([$BRANCH_TYPE])
+],[
+    BRANCH_TYPE=development
+    AC_MSG_RESULT([$BRANCH_TYPE])
+])
+AC_SUBST([BRANCH_TYPE])
+
 dnl Extra string, a freeform string defined by packagers.
 AC_ARG_WITH([extra],
     [AS_HELP_STRING([--with-extra],
