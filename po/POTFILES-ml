@@ -42,6 +42,8 @@ v2v/input_libvirtxml.ml
 v2v/input_ova.ml
 v2v/input_vmx.ml
 v2v/inspect_source.ml
+v2v/libosinfo.ml
+v2v/libosinfo_utils.ml
 v2v/libvirt_utils.ml
 v2v/linux.ml
 v2v/linux_bootloaders.ml
@@ -50,6 +52,7 @@ v2v/measure_disk.ml
 v2v/modules_list.ml
 v2v/name_from_disk.ml
 v2v/nbdkit.ml
+v2v/nbdkit_sources.ml
 v2v/networks.ml
 v2v/openstack_image_properties.ml
 v2v/output_glance.ml

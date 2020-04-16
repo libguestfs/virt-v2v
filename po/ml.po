@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-19 14:53+0000\n"
+"POT-Creation-Date: 2020-04-16 09:59+0000\n"
 "PO-Revision-Date: 2015-02-21 10:50+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/libguestfs/"
@@ -83,7 +83,7 @@ msgstr ""
 msgid "%s: %s: %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:378
+#: ../v2v/windows_virtio.ml:380
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
@@ -217,25 +217,19 @@ msgstr ""
 msgid "-o json: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:131
-msgid ""
-"-o libvirt: output pool ‘%s’ does not have /pool/name element.  See virt-v2v-"
-"output-local(1)"
-msgstr ""
-
-#: ../v2v/output_libvirt.ml:121
+#: ../v2v/output_libvirt.ml:120
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
 "virt-v2v-output-local(1)"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:123
+#: ../v2v/output_libvirt.ml:122
 msgid ""
 "-o libvirt: output pool ‘%s’ has type='dir' but the /pool/target/path "
 "element is not a local directory.  See virt-v2v-output-local(1)"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:117
+#: ../v2v/output_libvirt.ml:116
 msgid ""
 "-o libvirt: output pool ‘%s’ is not a directory (type='dir').  See virt-v2v-"
 "output-local(1)"
@@ -259,12 +253,6 @@ msgstr ""
 
 #: ../v2v/output_rhv_upload.ml:67
 msgid "-o rhv-upload: -oo rhv-cluster set more than once"
-msgstr ""
-
-#: ../v2v/output_rhv_upload.ml:85
-msgid ""
-"-o rhv-upload: must use ‘-oo rhv-cafile’ to supply the path to the oVirt or "
-"RHV user’s ‘ca.pem’ file"
 msgstr ""
 
 #: ../v2v/cmdline.ml:694
@@ -388,11 +376,11 @@ msgstr ""
 msgid "Change the permissions of a file"
 msgstr ""
 
-#: ../v2v/v2v.ml:380
+#: ../v2v/v2v.ml:383
 msgid "Checking for sufficient free disk space in the guest"
 msgstr ""
 
-#: ../v2v/v2v.ml:641
+#: ../v2v/v2v.ml:651
 msgid "Checking if the guest needs BIOS or UEFI to boot"
 msgstr ""
 
@@ -408,11 +396,11 @@ msgstr ""
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
-#: ../v2v/v2v.ml:558
+#: ../v2v/v2v.ml:568
 msgid "Converting %s to run on KVM"
 msgstr ""
 
-#: ../v2v/v2v.ml:556
+#: ../v2v/v2v.ml:566
 msgid "Converting the guest to run on KVM"
 msgstr ""
 
@@ -424,11 +412,11 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: ../v2v/v2v.ml:685
+#: ../v2v/v2v.ml:695
 msgid "Copying disk %d/%d to %s (%s)"
 msgstr ""
 
-#: ../v2v/v2v.ml:688
+#: ../v2v/v2v.ml:698
 msgid "Copying disk %d/%d to qemu URI %s (%s)"
 msgstr ""
 
@@ -444,11 +432,11 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: ../v2v/v2v.ml:284
+#: ../v2v/v2v.ml:285
 msgid "Creating an overlay to protect the source from being modified"
 msgstr ""
 
-#: ../v2v/v2v.ml:187
+#: ../v2v/v2v.ml:188
 msgid "Creating output metadata"
 msgstr ""
 
@@ -544,7 +532,7 @@ msgstr ""
 msgid "Fetching the remote libvirt XML metadata ..."
 msgstr ""
 
-#: ../v2v/v2v.ml:196 ../v2v/copy_to_local.ml:231
+#: ../v2v/v2v.ml:197 ../v2v/copy_to_local.ml:231
 msgid "Finishing off"
 msgstr ""
 
@@ -678,7 +666,7 @@ msgstr ""
 msgid "Opening the overlay"
 msgstr ""
 
-#: ../v2v/v2v.ml:199
+#: ../v2v/v2v.ml:200
 msgid "Opening the source %s"
 msgstr ""
 
@@ -732,7 +720,7 @@ msgid ""
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
 
-#: ../v2v/v2v.ml:818
+#: ../v2v/v2v.ml:828
 msgid "Overlay saved as %s [--debug-overlays]"
 msgstr ""
 
@@ -779,7 +767,7 @@ msgid ""
 "install the guest agent manually after conversion."
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:223
+#: ../v2v/windows_virtio.ml:224
 msgid "QEMU Guest Agent installed for this guest."
 msgstr ""
 
@@ -980,7 +968,7 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: ../v2v/v2v.ml:205
+#: ../v2v/v2v.ml:206
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -1002,11 +990,11 @@ msgid ""
 "installed in the guest.  X may not function correctly."
 msgstr ""
 
-#: ../v2v/v2v.ml:579
+#: ../v2v/v2v.ml:589
 msgid "This guest does not have virtio drivers installed."
 msgstr ""
 
-#: ../v2v/v2v.ml:577
+#: ../v2v/v2v.ml:587
 msgid "This guest has virtio drivers installed."
 msgstr ""
 
@@ -1017,7 +1005,7 @@ msgid ""
 "require a separate password to connect."
 msgstr ""
 
-#: ../v2v/v2v.ml:662
+#: ../v2v/v2v.ml:672
 msgid "This guest requires UEFI on the target to boot."
 msgstr ""
 
@@ -1065,7 +1053,7 @@ msgstr ""
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:219
+#: ../v2v/nbdkit_sources.ml:173
 msgid ""
 "VDDK library path %s not found or not a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
@@ -1206,11 +1194,11 @@ msgid ""
 "v2v (^C) and rerun it as root."
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:493
+#: ../common/mlcustomize/customize_cmdline.ml:494
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:510
+#: ../common/mlcustomize/customize_cmdline.ml:511
 msgid "command '%s' not valid, see the man page"
 msgstr ""
 
@@ -1232,7 +1220,7 @@ msgid ""
 "messages"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:201
+#: ../v2v/output_libvirt.ml:195
 msgid ""
 "could not define libvirt domain: %s.\n"
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
@@ -1247,7 +1235,7 @@ msgstr ""
 msgid "could not find bootloader mount point (%s): %s"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:625
+#: ../v2v/convert_windows.ml:628
 msgid ""
 "could not find registry key HKLM\\SOFTWARE\\Microsoft\\Windows"
 "\\CurrentVersion"
@@ -1267,7 +1255,7 @@ msgstr ""
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:169
+#: ../v2v/parse_ovf_from_ova.ml:168
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 
@@ -1288,7 +1276,7 @@ msgid ""
 "harmless.  Original error message: %s"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:163
+#: ../v2v/output_libvirt.ml:157
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr ""
 
@@ -1316,7 +1304,7 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: ../v2v/v2v.ml:601
+#: ../v2v/v2v.ml:611
 msgid ""
 "disk %s (%s) has no defined format.\n"
 "\n"
@@ -1390,7 +1378,7 @@ msgstr ""
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:142
+#: ../v2v/parse_ovf_from_ova.ml:141
 msgid "error parsing disk fileRef"
 msgstr ""
 
@@ -1444,11 +1432,11 @@ msgstr ""
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:269
+#: ../v2v/output_rhv_upload.ml:257
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:480
+#: ../v2v/output_rhv_upload.ml:443
 msgid "failed to create virtual machine, see earlier errors"
 msgstr ""
 
@@ -1456,7 +1444,7 @@ msgstr ""
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:225
+#: ../v2v/windows_virtio.ml:226
 msgid "failed to install QEMU Guest Agent: %s"
 msgstr ""
 
@@ -1464,7 +1452,7 @@ msgstr ""
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:312
+#: ../v2v/output_rhv_upload.ml:314
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
@@ -1496,7 +1484,7 @@ msgstr ""
 msgid "floppy disk"
 msgstr ""
 
-#: ../v2v/v2v.ml:432
+#: ../v2v/v2v.ml:442
 msgid ""
 "fstrim on guest filesystem %s failed.  Usually you can ignore this message.  "
 "To find out more read \"Trimming\" in virt-v2v(1).\n"
@@ -1519,7 +1507,7 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: ../v2v/v2v.ml:318
+#: ../v2v/v2v.ml:319
 msgid ""
 "guest disk %s appears to be zero bytes in size.\n"
 "\n"
@@ -1580,7 +1568,7 @@ msgid ""
 "No root device found in this operating system image."
 msgstr ""
 
-#: ../v2v/v2v.ml:279
+#: ../v2v/v2v.ml:280
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1613,11 +1601,11 @@ msgstr ""
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr ""
 
-#: ../v2v/v2v.ml:702
+#: ../v2v/v2v.ml:712
 msgid "internal error: qemu corrupted the overlay file"
 msgstr ""
 
-#: ../v2v/v2v.ml:308
+#: ../v2v/v2v.ml:309
 msgid "internal error: qemu-img did not create overlay with backing file"
 msgstr ""
 
@@ -1678,11 +1666,11 @@ msgstr ""
 msgid "invalid size returned by tar: %S"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:83
+#: ../v2v/parse_ovf_from_ova.ml:82
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:89
+#: ../v2v/parse_ovf_from_ova.ml:88
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr ""
 
@@ -1751,7 +1739,7 @@ msgid ""
 "option to change how virt-v2v handles this."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:157
+#: ../v2v/output_rhv_upload.ml:123
 msgid ""
 "nbdkit %s plugin is not installed or not working.  It is required if you "
 "want to use ‘-o rhv-upload’.\n"
@@ -1759,17 +1747,7 @@ msgid ""
 "See also the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:68
-msgid ""
-"nbdkit --dump-config did not print version.  This might be a very old or "
-"broken nbdkit binary."
-msgstr ""
-
-#: ../v2v/nbdkit.ml:73
-msgid "nbdkit --dump-config: could not parse version: %s"
-msgstr ""
-
-#: ../v2v/nbdkit.ml:247
+#: ../v2v/nbdkit_sources.ml:202
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1781,7 +1759,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:241
+#: ../v2v/nbdkit_sources.ml:196
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1793,11 +1771,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:396 ../v2v/nbdkit.ml:384
+#: ../v2v/nbdkit.ml:184
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:398 ../v2v/nbdkit.ml:386
+#: ../v2v/nbdkit.ml:186
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -1805,29 +1783,37 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:58
+#: ../v2v/nbdkit_sources.ml:39
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:134
+#: ../v2v/output_rhv_upload.ml:106
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
 "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:145
-msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ 1.1.16"
+#: ../v2v/output_rhv_upload.ml:111
+msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:76
+#: ../v2v/nbdkit_sources.ml:44
 msgid "nbdkit is too old.  nbdkit >= %s is required."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:174 ../v2v/nbdkit.ml:86
+#: ../v2v/nbdkit_sources.ml:49
+msgid "nbdkit plugin %s is not installed"
+msgstr ""
+
+#: ../v2v/output_rhv_upload.ml:135 ../v2v/nbdkit_sources.ml:58
 msgid ""
 "nbdkit was compiled without SELinux support.  You will have to recompile "
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
 "mode while doing the conversion."
+msgstr ""
+
+#: ../v2v/nbdkit.ml:50
+msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
 #: ../v2v/cmdline.ml:415
@@ -1850,7 +1836,7 @@ msgstr ""
 msgid "no displayName key found in VMX file"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:147
+#: ../v2v/parse_ovf_from_ova.ml:146
 msgid "no href in ovf:File (id=%s)"
 msgstr ""
 
@@ -1883,7 +1869,13 @@ msgid ""
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: ../v2v/v2v.ml:408
+#: ../v2v/v2v.ml:418
+msgid ""
+"not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes "
+"available < %Ld inodes needed"
+msgstr ""
+
+#: ../v2v/v2v.ml:414
 msgid ""
 "not enough free space for conversion on filesystem ‘%s’.  %Ld bytes free < "
 "%Ld bytes needed"
@@ -1953,7 +1945,7 @@ msgid ""
 "\""
 msgstr ""
 
-#: ../v2v/v2v.ml:611
+#: ../v2v/v2v.ml:621
 msgid ""
 "output format should be ‘raw’ or ‘qcow2’.\n"
 "\n"
@@ -1964,13 +1956,13 @@ msgid ""
 "considered in future."
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:264
+#: ../v2v/parse_ovf_from_ova.ml:263
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:261
+#: ../v2v/parse_ovf_from_ova.ml:260
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
@@ -1980,7 +1972,7 @@ msgstr ""
 msgid "package ‘%s’ contains no files"
 msgstr ""
 
-#: ../v2v/v2v.ml:748 ../v2v/v2v.ml:304
+#: ../v2v/v2v.ml:758 ../v2v/v2v.ml:305
 msgid "qemu-img command failed, see earlier errors"
 msgstr ""
 
@@ -2001,14 +1993,14 @@ msgid ""
 "Windows guest)."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:339
+#: ../v2v/output_rhv_upload.ml:340
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:182
+#: ../v2v/output_rhv_upload.ml:143
 msgid ""
 "rhv-upload: currently you must use ‘%s’.  This restriction will be loosened "
 "in a future version."
@@ -2018,7 +2010,7 @@ msgstr ""
 msgid "root device %s not found.  Roots found were: %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:309 ../v2v/windows_virtio.ml:303
+#: ../v2v/windows_virtio.ml:311 ../v2v/windows_virtio.ml:305
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2030,35 +2022,35 @@ msgstr ""
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr ""
 
-#: ../v2v/v2v.ml:829
+#: ../v2v/v2v.ml:839
 msgid "source has multiple hard disk types!"
 msgstr ""
 
-#: ../v2v/v2v.ml:845
+#: ../v2v/v2v.ml:855
 msgid "source has multiple network adapter model!"
 msgstr ""
 
-#: ../v2v/v2v.ml:827 ../v2v/v2v.ml:239
+#: ../v2v/v2v.ml:837 ../v2v/v2v.ml:240
 msgid "source has no hard disks!"
 msgstr ""
 
-#: ../v2v/v2v.ml:837
+#: ../v2v/v2v.ml:847
 msgid "source has unrecognized hard disk type"
 msgstr ""
 
-#: ../v2v/v2v.ml:835
+#: ../v2v/v2v.ml:845
 msgid "source has unsupported hard disk type ‘%s’"
 msgstr ""
 
-#: ../v2v/v2v.ml:851
+#: ../v2v/v2v.ml:861
 msgid "source has unsupported network adapter model ‘%s’"
 msgstr ""
 
-#: ../v2v/v2v.ml:859
+#: ../v2v/v2v.ml:869
 msgid "source has unsupported video adapter model ‘%s’"
 msgstr ""
 
-#: ../v2v/v2v.ml:234
+#: ../v2v/v2v.ml:235
 msgid ""
 "source sockets * cores * threads <> number of vCPUs.\n"
 "Sockets %d * cores per socket %d * threads %d = %d, but number of vCPUs = "
@@ -2088,7 +2080,7 @@ msgstr ""
 msgid "subprocess signalled or stopped by signal %d"
 msgstr ""
 
-#: ../v2v/v2v.ml:615
+#: ../v2v/v2v.ml:625
 msgid ""
 "the --compressed flag is only allowed when the output format is qcow2 (-of "
 "qcow2)"
@@ -2106,17 +2098,21 @@ msgstr ""
 msgid "the -ic parameter is required"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:126
+#: ../v2v/output_rhv_upload.ml:101
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
+msgstr ""
+
+#: ../v2v/output_rhv_upload.ml:292
+msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
 #: ../common/mltools/JSON_parser.ml:76
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:300
+#: ../v2v/output_rhv_upload.ml:302
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has "
 "to match the number of guest disk images (for this guest: %d)"
@@ -2240,13 +2236,13 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:447
+#: ../v2v/output_rhv_upload.ml:410
 msgid ""
 "there must be ‘-oo rhv-disk-uuid’ parameters passed on the command line to "
 "specify the UUIDs of guest disk images (for this guest: %d)"
 msgstr ""
 
-#: ../v2v/v2v.ml:653
+#: ../v2v/v2v.ml:663
 msgid ""
 "this guest cannot run on the target, because the target does not support %s "
 "firmware (supported firmware on target: %s)"
@@ -2290,7 +2286,7 @@ msgid ""
 "page."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:438
+#: ../v2v/output_rhv_upload.ml:401
 msgid "transfer of disk %d/%d failed, see earlier error messages"
 msgstr ""
 
@@ -2349,7 +2345,7 @@ msgstr ""
 msgid "unknown -oa option: %s"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:103
+#: ../v2v/parse_ovf_from_ova.ml:102
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 
@@ -2357,7 +2353,7 @@ msgstr ""
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
-#. ../v2v/create_libvirt_xml.ml:142
+#. ../v2v/create_libvirt_xml.ml:147
 #: ../v2v/create_ovf.ml:442 ../v2v/create_ovf.ml:245
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
@@ -2374,11 +2370,11 @@ msgstr ""
 msgid "unknown sound model %s ignored"
 msgstr ""
 
-#: ../v2v/v2v.ml:215
+#: ../v2v/v2v.ml:216
 msgid "unknown source hypervisor (‘%s’) in metadata"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:155
+#: ../v2v/parse_ovf_from_ova.ml:154
 msgid "unsupported compression in OVF: %s"
 msgstr ""
 
@@ -2459,7 +2455,7 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
-#: ../v2v/v2v.ml:564
+#: ../v2v/v2v.ml:574
 msgid "virt-v2v is unable to convert this guest type (%s/%s)"
 msgstr ""
 
@@ -2500,7 +2496,7 @@ msgstr ""
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: ../v2v/nbdkit.ml:212
+#: ../v2v/nbdkit_sources.ml:166
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."

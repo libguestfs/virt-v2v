@@ -19,8 +19,8 @@
 # add extra information using --with-extra="..." which may be any
 # freeform string.
 m4_define([v2v_major],   [1])
-m4_define([v2v_minor],   [41])
-m4_define([v2v_release], [8])
+m4_define([v2v_minor],   [42])
+m4_define([v2v_release], [0])
 
 AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 

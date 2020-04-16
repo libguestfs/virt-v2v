@@ -4,7 +4,8 @@ virt-v2v-release-notes - virt-v2v Release Notes
 
 =head1 DESCRIPTION
 
-These are the release notes for virt-v2v 1.42, released on B<XXXX-XX-XX>.
+These are the release notes for S<B<virt-v2v 1.42>>,
+released on S<B<16th April 2020>>.
 
 =head2 New features
 
