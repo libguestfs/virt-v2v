@@ -231,7 +231,7 @@ EXTRA_DIST += \
 	test-v2v-mac-expected.xml \
 	test-v2v-mac.sh \
 	test-v2v-networks-and-bridges.sh \
-	test-v2v-networks-and-bridges.xml \
+	test-v2v-networks-and-bridges-expected.xml \
 	test-v2v-no-copy.sh \
 	test-v2v-o-glance.sh \
 	test-v2v-o-json.sh \
