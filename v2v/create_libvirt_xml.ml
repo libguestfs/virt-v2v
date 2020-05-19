@@ -336,7 +336,6 @@ let create_libvirt_xml ?pool source targets target_buses guestcaps
           e "driver" [
             "name", "qemu";
             "type", t.target_format;
-            "cache", "none"
           ] [];
           (match pool with
           | None ->

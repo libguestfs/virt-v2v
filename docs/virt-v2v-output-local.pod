@@ -127,7 +127,7 @@ Edit F</var/tmp/NAME.xml> to change F</var/tmp/NAME-sda> to the pool
 name.  In other words, locate the following bit of XML:
 
  <disk type='file' device='disk'>
-   <driver name='qemu' type='raw' cache='none' />
+   <driver name='qemu' type='raw' />
    <source file='/var/tmp/NAME-sda' />
    <target dev='hda' bus='ide' />
  </disk>
