@@ -1,5 +1,5 @@
     <disk type='file' device='disk'>
-      <driver name='qemu' type='raw' cache='none'/>
+      <driver name='qemu' type='raw'/>
       <target dev='vda' bus='virtio'/>
     </disk>
     <disk device='cdrom' type='file'>
