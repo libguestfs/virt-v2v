@@ -127,7 +127,7 @@ and get_session_cookie password_file uri sslverify https_url =
 
   if status <> "200" then (
     dump_response stderr;
-    error (f_"vcenter: invalid response from server")
+    error (f_"vcenter: invalid response from server: %s") status
   );
 
   (* Get the cookie. *)
