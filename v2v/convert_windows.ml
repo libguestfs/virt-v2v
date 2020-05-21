@@ -459,6 +459,8 @@ echo uninstalling Xen PV driver
         let fb_script = "\
 @echo off
 
+REG DELETE HKLM\\System\\CurrentControlSet\\Services\\prl_strg\\DriverInfo /v RefCount /f
+
 echo uninstalling Parallels guest tools
 " ^ uninst ^
 (* ERROR_SUCCESS_REBOOT_REQUIRED == 3010 is OK too *)
