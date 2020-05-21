@@ -33,10 +33,14 @@ let auth_for_password_file ?password_file () =
     ) creds
   in
 
-  {
-    Libvirt.Connect.credtype = [ Libvirt.Connect.CredentialPassphrase ];
-    cb = auth_fn;
-  }
+  let base_auth = Libvirt.Connect.get_auth_default () in
+
+  if password_file = None then
+    base_auth
+  else
+    { base_auth with
+      cb = auth_fn;
+    }
 
 let get_domain conn name =
   let dom =
