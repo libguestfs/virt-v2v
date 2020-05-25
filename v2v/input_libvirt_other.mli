@@ -20,11 +20,11 @@
 
 val error_if_libvirt_does_not_support_json_backingfile : unit -> unit
 
-class virtual input_libvirt : Libvirt.rw Libvirt.Connect.t Lazy.t -> string -> object
+class virtual input_libvirt : Libvirt.rw Libvirt.Connect.t Lazy.t -> ?input_conn:string -> string -> object
   method precheck : unit -> unit
   method as_options : string
   method virtual source : ?bandwidth:Types.bandwidth -> unit -> Types.source * Types.source_disk list
   method private conn : Libvirt.rw Libvirt.Connect.t
 end
 
-val input_libvirt_other : Libvirt.rw Libvirt.Connect.t Lazy.t -> string -> Types.input
+val input_libvirt_other : Libvirt.rw Libvirt.Connect.t Lazy.t -> ?input_conn:string -> string -> Types.input

@@ -32,9 +32,9 @@ open Printf
 
 (* Subclass specialized for handling VMware vCenter over https. *)
 class input_libvirt_vcenter_https
-        libvirt_conn input_password parsed_uri server guest =
+        libvirt_conn input_conn input_password parsed_uri server guest =
 object (self)
-  inherit input_libvirt libvirt_conn guest
+  inherit input_libvirt libvirt_conn ~input_conn guest
 
   val mutable dcPath = ""
 

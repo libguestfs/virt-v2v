@@ -40,12 +40,16 @@ let error_if_libvirt_does_not_support_json_backingfile () =
     error (f_"because of libvirt bug https://bugzilla.redhat.com/1134878 you must EITHER upgrade to libvirt >= 2.1.0 OR set this environment variable:\n\nexport LIBGUESTFS_BACKEND=direct\n\nand then rerun the virt-v2v command.")
 
 (* Superclass. *)
-class virtual input_libvirt libvirt_conn guest =
+class virtual input_libvirt libvirt_conn ?input_conn guest =
 object (self)
   inherit input
 
   method as_options =
-    sprintf "-i libvirt -ic %s %s" (Libvirt.Connect.get_uri self#conn) guest
+    sprintf "-i libvirt%s %s"
+      (match input_conn with
+      | None -> ""
+      | Some uri -> " -ic " ^ uri)
+      guest
 
   method private conn : Libvirt.rw Libvirt.Connect.t =
     Lazy.force libvirt_conn
@@ -54,9 +58,9 @@ end
 (* Subclass specialized for handling anything that's *not* VMware vCenter
  * or Xen.
  *)
-class input_libvirt_other libvirt_conn guest =
+class input_libvirt_other libvirt_conn ?input_conn guest =
 object (self)
-  inherit input_libvirt libvirt_conn guest
+  inherit input_libvirt libvirt_conn ?input_conn guest
 
   method source ?bandwidth () =
     debug "input_libvirt_other: source ()";

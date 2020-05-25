@@ -53,22 +53,22 @@ let input_libvirt input_conn input_password input_transport guest =
 
     | Some _, None, _                   (* No scheme? *)
     | Some _, Some "", _ ->
-      Input_libvirt_other.input_libvirt_other libvirt_conn guest
+      Input_libvirt_other.input_libvirt_other libvirt_conn ?input_conn guest
 
     (* vCenter over https. *)
     | Some server, Some ("esx"|"gsx"|"vpx"), None ->
        Input_libvirt_vcenter_https.input_libvirt_vcenter_https
-         libvirt_conn input_password parsed_uri server guest
+         libvirt_conn orig_uri input_password parsed_uri server guest
 
     (* vCenter or ESXi using nbdkit vddk plugin *)
     | Some server, Some ("esx"|"gsx"|"vpx"), Some (`VDDK vddk_options) ->
        Input_libvirt_vddk.input_libvirt_vddk
-         libvirt_conn input_conn input_password vddk_options parsed_uri guest
+         libvirt_conn orig_uri input_password vddk_options parsed_uri guest
 
     (* Xen over SSH *)
     | Some server, Some "xen+ssh", _ ->
       Input_libvirt_xen_ssh.input_libvirt_xen_ssh
-        libvirt_conn input_password parsed_uri server guest
+        libvirt_conn orig_uri input_password parsed_uri server guest
 
     (* Old virt-v2v also supported qemu+ssh://.  However I am
      * deliberately not supporting this in new virt-v2v.  Don't
@@ -79,6 +79,6 @@ let input_libvirt input_conn input_password input_transport guest =
     | Some _, Some _, _ ->
       warning (f_"no support for remote libvirt connections to '-ic %s'.  The conversion may fail when it tries to read the source disks.")
         orig_uri;
-      Input_libvirt_other.input_libvirt_other libvirt_conn guest
+      Input_libvirt_other.input_libvirt_other libvirt_conn ?input_conn guest
 
 let () = Modules_list.register_input_module "libvirt"
