@@ -99,7 +99,7 @@ class input_libvirt_vddk libvirt_conn input_conn input_password vddk_options
   in
 
 object (self)
-  inherit input_libvirt libvirt_conn guest as super
+  inherit input_libvirt libvirt_conn ~input_conn guest as super
 
   method precheck () =
     error_unless_thumbprint ()
@@ -138,12 +138,7 @@ object (self)
       match parsed_uri.Xml.uri_server with
       | Some server -> server
       | None ->
-         match input_conn with
-         | Some input_conn ->
-            error (f_"‘-ic %s’ URL does not contain a host name field")
-                  input_conn
-         | None ->
-            error (f_"you must use the ‘-ic’ parameter.  See the virt-v2v-input-vmware(1) manual.") in
+         error (f_"‘-ic %s’ URL does not contain a host name field") input_conn in
 
     let user = parsed_uri.Xml.uri_user in
 

@@ -30,9 +30,9 @@ open Input_libvirt_other
 open Printf
 
 (* Subclass specialized for handling Xen over SSH. *)
-class input_libvirt_xen_ssh libvirt_conn input_password parsed_uri server guest =
+class input_libvirt_xen_ssh libvirt_conn input_conn input_password parsed_uri server guest =
 object (self)
-  inherit input_libvirt libvirt_conn guest
+  inherit input_libvirt libvirt_conn ~input_conn guest
 
   method precheck () =
     if backend_is_libvirt () then
