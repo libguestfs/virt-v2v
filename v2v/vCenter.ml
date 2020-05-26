@@ -189,7 +189,7 @@ and fetch_headers_from_url password_file uri sslverify https_url =
     match statuses with
     | [] ->
        dump_response stderr;
-       error (f_"vcenter: no status code in output of ‘curl’ command.  Is ‘curl’ installed?")
+       error (f_"vcenter: no status code in output of ‘curl’ command.")
     | ss ->
       let s = List.hd (List.rev ss) in
       String.sub s (String.index s ' ' + 1) 3 in

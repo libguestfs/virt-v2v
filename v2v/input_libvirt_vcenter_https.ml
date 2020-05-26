@@ -19,6 +19,7 @@
 (** [-i libvirt] when the source is VMware vCenter *)
 
 open Common_gettext.Gettext
+open Std_utils
 open Tools_utils
 open Unix_utils.Env
 
@@ -33,13 +34,23 @@ open Printf
 (* Subclass specialized for handling VMware vCenter over https. *)
 class input_libvirt_vcenter_https
         libvirt_conn input_conn input_password parsed_uri server guest =
+
+  let error_unless_curl_command_exists () =
+    let curl_binary = "curl" in
+    try ignore (which curl_binary)
+    with Executable_not_found _ ->
+      error (f_"the ‘%s’ program is not available.  It is needed to communicate with vCenter.")
+            curl_binary
+  in
+
 object (self)
   inherit input_libvirt libvirt_conn ~input_conn guest
 
   val mutable dcPath = ""
 
   method precheck () =
-    error_if_libvirt_does_not_support_json_backingfile ()
+    error_if_libvirt_does_not_support_json_backingfile ();
+    error_unless_curl_command_exists ()
 
   method source ?bandwidth () =
     debug "input_libvirt_vcenter_https: source: server %s" server;
