@@ -97,9 +97,13 @@ let common_create ?bandwidth ?extra_debug ?extra_env plugin_name plugin_args =
   let cmd = Nbdkit.add_filter_if_available cmd "retry" in
 
   (* Adding the readahead filter is always a win for our access
-   * patterns.  However if it doesn't exist don't worry.
+   * patterns.  If it doesn't exist don't worry.  However it
+   * breaks VMware servers (RHBZ#1832805).
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "readahead" in
+  let cmd =
+    if plugin_name <> "vddk" then
+      Nbdkit.add_filter_if_available cmd "readahead"
+    else cmd in
 
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.
