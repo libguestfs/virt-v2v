@@ -118,11 +118,11 @@ let common_create ?bandwidth ?extra_debug ?extra_env plugin_name plugin_args =
          let args =
            match bandwidth with
            | StaticBandwidth rate ->
-              [ "rate=", rate ]
+              [ "rate", rate ]
            | DynamicBandwidth (None, filename) ->
-              [ "rate-file=", filename ]
+              [ "rate-file", filename ]
            | DynamicBandwidth (Some rate, filename) ->
-              [ "rate=", rate; "rate-file=", filename ] in
+              [ "rate", rate; "rate-file", filename ] in
          cmd, args
     )
     else cmd, [] in
