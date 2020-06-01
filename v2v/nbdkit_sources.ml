@@ -58,7 +58,8 @@ let error_unless_nbdkit_compiled_with_selinux config =
       error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
   )
 
-let common_create ?bandwidth ?extra_debug ?extra_env plugin_name plugin_args =
+let common_create ?bandwidth ?extra_debug ?extra_env password
+      plugin_name plugin_args =
   error_unless_nbdkit_working ();
   let config = Nbdkit.config () in
   error_unless_nbdkit_min_version config;
@@ -135,6 +136,15 @@ let common_create ?bandwidth ?extra_debug ?extra_env plugin_name plugin_args =
   let cmd =
     List.fold_left (fun cmd (k, v) -> Nbdkit.add_arg cmd k v)
       cmd (plugin_args @ rate_args) in
+
+  (* Handle the password parameter specially. *)
+  let cmd =
+    match password with
+    | NoPassword -> cmd
+    | AskForPassword ->
+       Nbdkit.add_arg cmd "password" "-"
+    | PasswordFile password_file ->
+       Nbdkit.add_arg cmd "password" ("+" ^ password_file) in
 
   cmd
 
@@ -223,19 +233,15 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     let get_args () = List.rev !args in
     add_arg, get_args in
 
-  let password_param =
-    match password_file with
-    | None ->
-       (* nbdkit asks for the password interactively *)
-       "password", "-"
-    | Some password_file ->
-       (* nbdkit reads the password from the file *)
-       "password", "+" ^ password_file in
   add_arg ("server", server);
   add_arg ("user", user);
-  add_arg password_param;
   add_arg ("vm", sprintf "moref=%s" moref);
   add_arg ("file", path);
+
+  let password =
+    match password_file with
+    | None -> AskForPassword
+    | Some password_file -> PasswordFile password_file in
 
   (* The passthrough parameters. *)
   Option.may (fun s -> add_arg ("config", s)) config;
@@ -251,7 +257,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
   let debug_flag =
     if version >= (1, 17, 10) then Some ("vddk.datapath", "0") else None in
 
-  common_create ?bandwidth ?extra_debug:debug_flag ?extra_env:env
+  common_create ?bandwidth ?extra_debug:debug_flag ?extra_env:env password
     "vddk" (get_args ())
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
@@ -267,14 +273,9 @@ let create_ssh ?bandwidth ~password ?port ~server ?user path =
   add_arg ("host", server);
   Option.may (fun s -> add_arg ("port", s)) port;
   Option.may (fun s -> add_arg ("user", s)) user;
-  (match password with
-   | NoPassword -> ()
-   | AskForPassword -> add_arg ("password", "-")
-   | PasswordFile password_file -> add_arg ("password", "+" ^ password_file)
-  );
   add_arg ("path", path);
 
-  common_create ?bandwidth "ssh" (get_args ())
+  common_create ?bandwidth password "ssh" (get_args ())
 
 (* Create an nbdkit module specialized for reading from Curl sources. *)
 let create_curl ?bandwidth ?cookie ~password ?(sslverify=true) ?user url =
@@ -287,18 +288,13 @@ let create_curl ?bandwidth ?cookie ~password ?(sslverify=true) ?user url =
     add_arg, get_args in
 
   Option.may (fun s -> add_arg ("user", s)) user;
-  (match password with
-   | NoPassword -> ()
-   | AskForPassword -> add_arg ("password", "-")
-   | PasswordFile password_file -> add_arg ("password", "+" ^ password_file)
-  );
   (* https://bugzilla.redhat.com/show_bug.cgi?id=1146007#c10 *)
   add_arg ("timeout", "2000");
   Option.may (fun s -> add_arg ("cookie", s)) cookie;
   if not sslverify then add_arg ("sslverify", "false");
   add_arg ("url", url);
 
-  common_create ?bandwidth "curl" (get_args ())
+  common_create ?bandwidth password "curl" (get_args ())
 
 let run cmd =
   let sock, _ = Nbdkit.run_unix cmd in
