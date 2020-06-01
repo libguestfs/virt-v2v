@@ -44,7 +44,16 @@
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoFilter, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoLoader, g_object_unref)
+/*
+ * Because of a bug in OsinfoList in libosinfo 1.7.0 (fixed in 1.8.0),
+ * and a glib auto-cleanup addition for Module classes in 2.63.3,
+ * avoid declaring this when:
+ * - libosinfo is >= 1.7.0 and < 1.8.0
+ * - glib is >= 2.63.3
+ */
+#if !IS_LIBOSINFO_VERSION(1, 7, 0) || IS_LIBOSINFO_VERSION(1, 8, 0) || !GLIB_CHECK_VERSION(2, 63, 3)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoList, g_object_unref)
+#endif
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoOsList, g_object_unref)
 
 typedef OsinfoDb *OsinfoDb_t;
