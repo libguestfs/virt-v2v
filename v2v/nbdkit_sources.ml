@@ -142,7 +142,26 @@ let common_create ?bandwidth ?extra_debug ?extra_env password
     match password with
     | NoPassword -> cmd
     | AskForPassword ->
-       Nbdkit.add_arg cmd "password" "-"
+       (* Because we will start nbdkit in the background and then wait
+        * for 30 seconds for it to start up, we cannot use the
+        * password=- feature of nbdkit to read the password
+        * interactively (since in the words of the movie the user has
+        * only "30 seconds to comply").  In any case this feature broke
+        * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
+        * AskForPassword case we read the password here.
+        *)
+       printf "password: ";
+       let open Unix in
+       let orig = tcgetattr stdin in
+       let tios = { orig with c_echo = false } in
+       tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
+       let password = read_line () in
+       tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
+       printf "\n";
+       let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
+       unlink_on_exit password_file;
+       with_open_out password_file (fun chan -> output_string chan password);
+       Nbdkit.add_arg cmd "password" ("+" ^ password_file)
     | PasswordFile password_file ->
        Nbdkit.add_arg cmd "password" ("+" ^ password_file) in
 
