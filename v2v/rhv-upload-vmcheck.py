@@ -1,5 +1,5 @@
 # -*- python -*-
-# oVirt or RHV VM existance check used by ‘virt-v2v -o rhv-upload’
+# oVirt or RHV VM existence check used by ‘virt-v2v -o rhv-upload’
 # Copyright (C) 2018-2020 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify

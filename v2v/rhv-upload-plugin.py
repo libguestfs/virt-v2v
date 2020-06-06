@@ -83,7 +83,7 @@ def parse_username():
 
 def failing(func):
     """
-    Decorator marking the handle as failed if any expection is raised in the
+    Decorator marking the handle as failed if any exception is raised in the
     decorated function.  This is used in close() to cleanup properly after
     failures.
     """
@@ -358,7 +358,7 @@ def close(h):
 
     http.close()
 
-    # If the connection failed earlier ensure we cancel the trasfer. Canceling
+    # If the connection failed earlier ensure we cancel the transfer. Canceling
     # the transfer will delete the disk.
     if h['failed']:
         try:
