@@ -40,12 +40,18 @@
 #define V2V_LIBOSINFO_VERSION_HEX \
     MAKE_VERSION_HEX(OSINFO_MAJOR_VERSION, OSINFO_MINOR_VERSION, OSINFO_MICRO_VERSION)
 #define IS_LIBOSINFO_VERSION(maj, min, mic) \
-    V2V_LIBOSINFO_VERSION_HEX >= MAKE_VERSION_HEX(maj, min, mic)
+    (V2V_LIBOSINFO_VERSION_HEX >= MAKE_VERSION_HEX(maj, min, mic))
 
+/*
+ * libosinfo 1.8.0 provides auto-cleanup functions for all its classes,
+ * so avoid declaring our own.
+ */
+#if !IS_LIBOSINFO_VERSION(1, 8, 0)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoFilter, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoLoader, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoList, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoOsList, g_object_unref)
+#endif
 
 typedef OsinfoDb *OsinfoDb_t;
 typedef OsinfoOs *OsinfoOs_t;
