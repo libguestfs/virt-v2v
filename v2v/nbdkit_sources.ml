@@ -99,12 +99,12 @@ let common_create ?bandwidth ?extra_debug ?extra_env password
 
   (* Adding the readahead filter is always a win for our access
    * patterns.  If it doesn't exist don't worry.  However it
-   * breaks VMware servers (RHBZ#1832805).
+   * breaks VMware servers (RHBZ#1832805, RHBZ#1848862).
    *)
   let cmd =
-    if plugin_name <> "vddk" then
-      Nbdkit.add_filter_if_available cmd "readahead"
-    else cmd in
+    match plugin_name with
+    | "vddk" | "curl" -> cmd
+    | _ -> Nbdkit.add_filter_if_available cmd "readahead" in
 
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.
