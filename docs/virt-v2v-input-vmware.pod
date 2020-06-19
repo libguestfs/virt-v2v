@@ -331,8 +331,9 @@ To connect to vCenter:
    vi://USER:PASSWORD@vcenter.example.com/DATACENTER-NAME/vm/VM \
    VM.ova
 
-For Active Directory-aware authentication, you have to express the
-C<@> character in the form of its ascii hex-code (C<%5c>):
+For Active Directory-aware authentication using down-level logon names
+(C<DOMAIN\USER>), you have to express the C<\> character in the form
+of its ascii hex-code (C<%5c>):
 
  vi://DOMAIN%5cUSER:PASSWORD@...
 
