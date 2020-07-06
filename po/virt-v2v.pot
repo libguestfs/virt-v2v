@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-16 09:59+0000\n"
+"POT-Creation-Date: 2020-07-06 14:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -907,7 +907,7 @@ msgstr ""
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:173
+#: ../v2v/nbdkit_sources.ml:206
 msgid "VDDK library path %s not found or not a directory.  See the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
@@ -951,15 +951,15 @@ msgstr ""
 msgid "cannot find firmware for UEFI guests.\n\nYou probably need to install OVMF (x86-64), or AAVMF (aarch64)"
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:54
+#: ../v2v/libvirt_utils.ml:58
 msgid "cannot find libvirt domain ‘%s’: %s"
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:83
+#: ../v2v/libvirt_utils.ml:87
 msgid "cannot find libvirt pool ‘%s’: %s\n\nUse ‘virsh pool-list --all’ to list all available pools, and ‘virsh pool-dumpxml <pool>’ to display details about a particular pool.\n\nTo set the pool which virt-v2v uses, add the ‘-os <pool>’ option."
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:93
+#: ../v2v/libvirt_utils.ml:97
 msgid "cannot find libvirt volume ‘%s’: %s"
 msgstr ""
 
@@ -1031,7 +1031,7 @@ msgstr ""
 msgid "could not find bootloader mount point (%s): %s"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:628
+#: ../v2v/convert_windows.ml:630
 msgid "could not find registry key HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
 msgstr ""
 
@@ -1404,7 +1404,7 @@ msgstr ""
 msgid "libguestfs thinks this is not an installed operating system (it might be, for example, an installer disk or live CD).  If this is wrong, it is probably a bug in libguestfs.  root=%s fmt=%s"
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:64
+#: ../v2v/libvirt_utils.ml:68
 msgid "libvirt domain ‘%s’ is running or paused.  It must be shut down in order to perform virt-v2v conversion"
 msgstr ""
 
@@ -1448,11 +1448,11 @@ msgstr ""
 msgid "nbdkit %s plugin is not installed or not working.  It is required if you want to use ‘-o rhv-upload’.\n\nSee also the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:202
+#: ../v2v/nbdkit_sources.ml:235
 msgid "nbdkit VDDK plugin is not installed or not working.  It is required if you want to use VDDK.\n\nIt looks like you did not set the right path in the ‘-io vddk-libdir’ option, or your copy of the VDDK directory is incomplete.  There should be a library called ’<libdir>/%s/libvixDiskLib.so.?’.\n\nSee also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:196
+#: ../v2v/nbdkit_sources.ml:229
 msgid "nbdkit VDDK plugin is not installed or not working.  It is required if you want to use VDDK.\n\nThe VDDK plugin is not enabled by default when you compile nbdkit.  You have to read the instructions in the nbdkit sources under ‘plugins/vddk/README.VDDK’ to find out how to enable the VDDK plugin.\n\nSee also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
@@ -1640,7 +1640,7 @@ msgstr ""
 msgid "root directory ‘/’ is missing from the virtio-win directory or ISO.\n\nThis should not happen and may indicate that virtio-win or virt-v2v is broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:177
+#: ../v2v/input_libvirt_vddk.ml:172
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr ""
 
@@ -1762,6 +1762,10 @@ msgstr ""
 
 #: ../v2v/output_openstack.ml:166
 msgid "the ‘%s’ program is not available.  It is needed to communicate with OpenStack."
+msgstr ""
+
+#: ../v2v/input_libvirt_vcenter_https.ml:42
+msgid "the ‘%s’ program is not available.  It is needed to communicate with vCenter."
 msgstr ""
 
 #: ../v2v/output_rhv.ml:85
@@ -1921,7 +1925,7 @@ msgstr ""
 msgid "unsupported compression in OVF: %s"
 msgstr ""
 
-#: ../v2v/input_libvirt_vcenter_https.ml:72 ../v2v/copy_to_local.ml:151
+#: ../v2v/input_libvirt_vcenter_https.ml:83 ../v2v/copy_to_local.ml:151
 msgid "vcenter: <vmware:datacenterpath> was not found in the XML.  You need to upgrade to libvirt ≥ 1.2.20."
 msgstr ""
 
@@ -1942,11 +1946,11 @@ msgid "vcenter: incorrect username or password.  You might need to specify the u
 msgstr ""
 
 #: ../v2v/vCenter.ml:130
-msgid "vcenter: invalid response from server"
+msgid "vcenter: invalid response from server: %s"
 msgstr ""
 
 #: ../v2v/vCenter.ml:192
-msgid "vcenter: no status code in output of ‘curl’ command.  Is ‘curl’ installed?"
+msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr ""
 
 #: ../v2v/output_vdsm.ml:162
@@ -1993,15 +1997,11 @@ msgstr ""
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:146
-msgid "you must use the ‘-ic’ parameter.  See the virt-v2v-input-vmware(1) manual."
-msgstr ""
-
-#: ../v2v/input_libvirt_vddk.ml:143
+#: ../v2v/input_libvirt_vddk.ml:141
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:166
+#: ../v2v/nbdkit_sources.ml:199
 msgid "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
