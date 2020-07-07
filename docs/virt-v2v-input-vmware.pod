@@ -125,7 +125,9 @@ passwordless SSH on the ESXi hypervisor.
 
 You can use SSH password authentication, by supplying the name of a
 file containing the password to the I<-ip> option (note this option
-does I<not> take the password directly).
+does I<not> take the password directly).  You may need to adjust
+F</etc/ssh/sshd_config> on the VMware server to set
+C<PasswordAuthentication yes>.
 
 If you are not using password authentication, an alternative is to use
 ssh-agent, and add your ssh public key to
