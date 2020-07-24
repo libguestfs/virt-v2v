@@ -36,6 +36,7 @@ class virtual bootloader = object
   method virtual configure_console : unit -> unit
   method virtual remove_console : unit -> unit
   method update () = ()
+  method virtual get_config_file : unit -> string
 end
 
 (* Helper function for SUSE: remove (hdX,X) prefix from a path. *)
@@ -184,6 +185,9 @@ object
     loop paths;
 
     g#aug_save ()
+
+  method get_config_file () =
+    grub_config
 end
 
 (** The method used to get and set the default kernel in Grub2. *)
@@ -342,6 +346,9 @@ object (self)
 
   method update () =
     ignore (g#command [| grub2_mkconfig_cmd; "-o"; grub_config |])
+
+  method get_config_file () =
+    grub_config
 end
 
 (* Helper type used in detect_bootloader. *)

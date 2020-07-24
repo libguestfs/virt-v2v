@@ -44,6 +44,10 @@ class virtual bootloader : object
   (** Update the bootloader: For grub2 only this runs the
       [grub2-mkconfig] command to rebuild the configuration.  This
       is not necessary for grub-legacy. *)
+
+  method virtual get_config_file : unit -> string
+  (** Returns the path to the bootloader config file,
+      e.g /boot/grub/grub.cfg *)
 end
 (** Encapsulates a Linux boot loader as object. *)
 

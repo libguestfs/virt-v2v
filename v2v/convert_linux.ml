@@ -1096,6 +1096,121 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
       Linux.augeas_reload g
     );
 
+    (* Some linux uefi setups can't boot after conversion because of
+       lost uefi boot entries. The uefi boot entries are stored in uefi
+       NVRAM. The NVRAM content isn't a part of vm disk content and
+       usualy can't be converted alongside the vm.
+       If a vm doesn't have uefi fallback path (/EFI/BOOT/BOOT<arch>.efi)
+       the vm is unbootable after conversion.
+       The following code tries to make an uefi fallback path for
+       a uefi linux vm.
+    *)
+    (match inspect.i_firmware with
+    | I_BIOS -> ()
+    | I_UEFI _ ->
+      (* Standard uefi fallback path *)
+      let uefi_fallback_path = "/boot/efi/EFI/BOOT/" in
+
+      let cant_fix_uefi () =
+        info (f_"Can't fix UEFI bootloader. VM may not boot.")
+      in
+
+      let get_uefi_arch_suffix = function
+        | "x86_64" -> Some "X64"
+        | "x86_32" -> Some "X32"
+        | _ -> None
+      in
+
+      match get_uefi_arch_suffix inspect.i_arch with
+      | None -> cant_fix_uefi ()
+      | Some suffix -> (
+        let uefi_fallback_name =
+          sprintf "%sBOOT%s.EFI" uefi_fallback_path suffix in
+
+        let file_exists file =
+          if g#exists file then
+            true
+          else (
+            info (f_"Can't find file: '%s' needed for UEFI fixing")
+                 file;
+            false )
+        in
+
+        let grub_config = bootloader#get_config_file () in
+
+        let grub_path =
+          String.sub grub_config 0 (String.rindex grub_config '/') in
+
+        if g#exists uefi_fallback_name then
+          (* don't do anything if uefi fallback exists *)
+          ()
+        else (
+          info (f_"Fixing UEFI bootloader.");
+          match inspect.i_distro, inspect.i_major_version with
+            | "centos", 6 ->
+              (* to make a bootable uefi centos 6 we need to
+               * copy grub.efi and grub.conf to UEFI fallback path
+               * and rename them to BOOT<arch>.efi and BOOT<arch>.conf
+               * correspondingly *)
+              let uefi_grub_name = String.concat "" [grub_path; "/grub.efi"] in
+              let uefi_grub_conf = String.concat "" [
+                                     String.sub uefi_fallback_name 0
+                                     (String.rindex uefi_fallback_name '.');
+                                     ".conf" ] in
+              if file_exists uefi_grub_name && file_exists grub_config then (
+                g#mkdir_p uefi_fallback_path;
+                g#cp uefi_grub_name uefi_fallback_name;
+                g#cp grub_config uefi_grub_conf;
+                let fix_script = sprintf
+"#!/bin/bash
+efibootmgr -c -L \"CentOS 6\"
+rm -rf %s" uefi_fallback_path in
+                Firstboot.add_firstboot_script
+                  g inspect.i_root "fix uefi boot" fix_script)
+              else
+                cant_fix_uefi ()
+            | "ubuntu", 14 ->
+              (* to make a bootable uefi ubuntu 14 we need to
+               * copy shim<arch>.efi to UEFI fallback path
+               * and rename it to BOOT<arch>.efi, also we copy
+               * grub.efi and grub.cfg to UEFI fallback path without renaming *)
+              let arch_suffix = String.lowercase_ascii suffix in
+
+              let shim =
+                String.concat "" [grub_path; "/shim"; arch_suffix; ".efi"] in
+              let uefi_grub_name =
+                String.concat "" [grub_path; "/grub"; arch_suffix; ".efi"] in
+
+              if file_exists shim && file_exists uefi_grub_name
+                                  && file_exists grub_config then (
+                g#mkdir_p uefi_fallback_path;
+                g#cp shim uefi_fallback_name;
+                g#cp uefi_grub_name uefi_fallback_path;
+                g#cp grub_config uefi_fallback_path;
+                (* if the shim is at the standard path, clean up uefi fixing
+                 * if not, then just don't clean up and leave the temp loader
+                 * at UEFI fallback path for simplicity
+                 *)
+                if String.find shim "/boot/efi/EFI/ubuntu/shim" >= 0 then
+                  let fix_script = sprintf
+"#!/bin/bash
+sudo efibootmgr -c -L ubuntu -l \\\\EFI\\\\ubuntu\\\\shim%s.efi
+rm -rf %s" arch_suffix uefi_fallback_path in
+                  Firstboot.add_firstboot_script
+                    g inspect.i_root "fix uefi boot" fix_script
+                else
+                  ()
+              )
+              else
+                cant_fix_uefi ()
+          | _, _ ->
+            info (f_"No UEFI fix rule for %s %d")
+                 inspect.i_distro inspect.i_major_version;
+            cant_fix_uefi ()
+        )
+      )
+    ); (* inspect.i_firmware == I_UEFI *)
+
     (* Delete blkid caches if they exist, since they will refer to the old
      * device names.  blkid will rebuild these on demand.
      *
