@@ -81,7 +81,7 @@ podfiles: Makefile
 	rm -f $@ $@-t
 	find $(top_srcdir) -name '*.pod' | \
 	  grep -v /debian/ | \
-	  grep -v /libguestfs-1 | \
+	  grep -v /virt-v2v-1 | \
 	  grep -v /po-docs/ | \
 	  grep -v /stamp- \
 	  > $@-t
