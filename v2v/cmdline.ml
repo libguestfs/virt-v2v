@@ -47,6 +47,7 @@ type cmdline = {
 
 (* Matches --mac command line parameters. *)
 let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)"
+let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
 
 let parse_cmdline () =
   let bandwidth = ref None in
@@ -102,7 +103,7 @@ let parse_cmdline () =
 
   let network_map = Networks.create () in
   let static_ips = ref [] in
-  let add_network str =
+  let rec add_network str =
     match String.split ":" str with
     | "", "" ->
        error (f_"invalid -n/--network parameter")
@@ -110,8 +111,7 @@ let parse_cmdline () =
        Networks.add_default_network network_map out
     | in_, out ->
        Networks.add_network network_map in_ out
-  in
-  let add_bridge str =
+  and add_bridge str =
     match String.split ":" str with
     | "", "" ->
        error (f_"invalid -b/--bridge parameter")
@@ -119,8 +119,7 @@ let parse_cmdline () =
        Networks.add_default_bridge network_map out
     | in_, out ->
        Networks.add_bridge network_map in_ out
-  in
-  let add_mac str =
+  and add_mac str =
     if not (PCRE.matches mac_re str) then
       error (f_"cannot parse --mac \"%s\" parameter") str;
     let mac = PCRE.sub 1 and out = PCRE.sub 3 in
@@ -130,24 +129,40 @@ let parse_cmdline () =
     | "bridge" ->
        Networks.add_mac network_map mac Bridge out
     | "ip" ->
-       let add if_mac_addr if_ip_address if_default_gateway
-               if_prefix_length if_nameservers =
-         List.push_back static_ips
-                        { if_mac_addr; if_ip_address; if_default_gateway;
-                          if_prefix_length; if_nameservers }
-       in
        (match String.nsplit "," out with
-        | [] ->
-           error (f_"invalid --mac ip option")
-        | [ip] -> add mac ip None None []
-        | [ip; gw] -> add mac ip (Some gw) None []
+        | [] -> error (f_"invalid --mac ip option")
+        | [ip] -> add_static_ip mac ip None None []
+        | [ip; gw] -> add_static_ip mac ip (Some gw) None []
         | ip :: gw :: len :: nameservers ->
-           let len =
-             try int_of_string len with
-             | Failure _ -> error (f_"cannot parse --mac ip prefix length field as an integer: %s") len in
-           add mac ip (Some gw) (Some len) nameservers
-       );
+           add_static_ip mac ip (Some gw) (Some len) nameservers
+       )
     | _ -> assert false
+  and add_static_ip if_mac_addr if_ip_address if_default_gateway
+                    if_prefix_length_str if_nameservers =
+    (* Check the IP addresses and prefix length are sensible.  This
+     * is only a very simple test that they are sane, since IP addresses
+     * come in too many valid forms to check thoroughly.
+     *)
+    let rec error_unless_ip_addr what addr =
+      if not (PCRE.matches mac_ip_re addr) then
+        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” is an IP address") what addr
+    in
+    error_unless_ip_addr "ipaddr" if_ip_address;
+    Option.may (error_unless_ip_addr "gw") if_default_gateway;
+    List.iter (error_unless_ip_addr "nameserver") if_nameservers;
+    let if_prefix_length =
+      match if_prefix_length_str with
+      | None -> None
+      | Some len ->
+         let len =
+           try int_of_string len with
+           | Failure _ -> error (f_"cannot parse --mac ip prefix length field as an integer: %s") len in
+         if len < 0 || len > 128 then
+           error (f_"--mac ip prefix length field is out of range");
+         Some len in
+    List.push_back static_ips
+      { if_mac_addr; if_ip_address; if_default_gateway;
+        if_prefix_length; if_nameservers }
   in
 
   let no_trim_warning _ =
