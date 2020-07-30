@@ -382,14 +382,11 @@ through VDDK.
 
 __INCLUDE:key-option.pod__
 
-=item B<--keys-from-stdin>
+__INCLUDE:keys-from-stdin-option.pod__
 
-Read key or passphrase parameters from stdin.  The default is
-to try to read passphrases from the user by opening F</dev/tty>.
-
-Note this options only applies to keys and passphrases for encrypted
-devices and partitions, not for passwords used to connect to remote
-servers.
+Note I<--keys-from-stdin> only applies to keys and passphrases for
+encrypted devices and partitions, not for passwords used to connect to
+remote servers.
 
 =item B<--mac> aa:bb:cc:dd:ee:ffB<:network:>out
 
