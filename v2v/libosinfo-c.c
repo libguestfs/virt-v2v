@@ -49,17 +49,6 @@
 #if !IS_LIBOSINFO_VERSION(1, 8, 0)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoFilter, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoLoader, g_object_unref)
-/*
- * Because of a bug in OsinfoList in libosinfo 1.7.0 (fixed in 1.8.0),
- * and a glib auto-cleanup addition for Module classes in 2.63.3,
- * avoid declaring this when:
- * - libosinfo is >= 1.7.0 and < 1.8.0
- * - glib is >= 2.63.3
- * (the 1.8.0 check is not done, as already covered by the check above)
- */
-#if !IS_LIBOSINFO_VERSION(1, 7, 0) || !GLIB_CHECK_VERSION(2, 63, 3)
-G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoList, g_object_unref)
-#endif
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoOsList, g_object_unref)
 #endif
 
@@ -157,7 +146,7 @@ v2v_osinfo_os_find_os_by_short_id (value dbv, value osv)
   CAMLlocal1 (rv);
   g_autoptr(OsinfoFilter) filter = NULL;
   g_autoptr(OsinfoOsList) os_list = NULL;
-  g_autoptr(OsinfoList) list = NULL;
+  OsinfoList *list;
   OsinfoOs *os;
 
   os_list = osinfo_db_get_os_list (OsinfoDb_t_val (dbv));
@@ -165,11 +154,14 @@ v2v_osinfo_os_find_os_by_short_id (value dbv, value osv)
   osinfo_filter_add_constraint (filter, OSINFO_PRODUCT_PROP_SHORT_ID, String_val (osv));
   list = osinfo_list_new_filtered (OSINFO_LIST(os_list), filter);
 
-  if (osinfo_list_get_length (list) == 0)
+  if (osinfo_list_get_length (list) == 0) {
+    g_object_unref (list);
     caml_raise_not_found ();
+  }
 
   os = OSINFO_OS(osinfo_list_get_nth (list, 0));
   rv = Val_OsinfoOs_t (dbv, os);
+  g_object_unref (list);
 
   CAMLreturn (rv);
 }
