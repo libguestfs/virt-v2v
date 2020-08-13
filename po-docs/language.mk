@@ -46,6 +46,8 @@ EXTRA_DIST = \
 
 all-local: $(MANPAGES)
 
+virt-v2v.1: key-option.pod keys-from-stdin-option.pod
+
 %.1: %.pod
 	$(PODWRAPPER) \
 	  --no-strict-checks \
