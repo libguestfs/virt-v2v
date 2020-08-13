@@ -9,8 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 13:08+0000\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2020-08-13 13:16+0200\n"
 "PO-Revision-Date: 2017-02-24 07:33+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/libguestfs/"
@@ -22,25 +23,25 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Zanata 4.6.2\n"
 
-#: ../v2v/input_ova.ml:152 ../common/mltools/tools_utils.ml:187
+#: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:187
 msgid "%s"
 msgstr ""
 
-#: ../common/mltools/getopt.ml:73
+#: common/mltools/getopt.ml:73
 msgid ""
 "%s\n"
 "Options:\n"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:53 ../common/mltools/tools_utils.ml:640
+#: v2v/inspect_source.ml:53 common/mltools/tools_utils.ml:640
 msgid "%s (ignored)"
 msgstr ""
 
-#: ../common/mltools/checksums.ml:71
+#: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
 msgstr ""
 
-#: ../v2v/output_rhv.ml:93
+#: v2v/output_rhv.ml:93
 msgid ""
 "%s does not exist or is not a directory.\n"
 "\n"
@@ -54,42 +55,42 @@ msgid ""
 "this out through the RHV-M user interface."
 msgstr ""
 
-#: ../v2v/convert_windows.ml:285
+#: v2v/convert_windows.ml:285
 msgid ""
 "%s is missing, but the output hypervisor is oVirt or RHV.  Installing RHEV-"
 "APT in the guest would mean the guest is automatically updated with new "
 "drivers etc.  You may wish to install RHEV-APT manually after conversion."
 msgstr ""
 
-#: ../v2v/convert_windows.ml:276
+#: v2v/convert_windows.ml:276
 msgid "%s is missing.  Firstboot scripts may conflict with PnP."
 msgstr ""
 
-#. ../v2v/cmdline.ml:83
-#. ../v2v/cmdline.ml:75
-#: ../v2v/copy_to_local.ml:40 ../v2v/cmdline.ml:180 ../v2v/cmdline.ml:160
+#. v2v/cmdline.ml:84
+#. v2v/cmdline.ml:76
+#: v2v/copy_to_local.ml:40 v2v/cmdline.ml:195 v2v/cmdline.ml:175
 msgid "%s option used more than once on the command line"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:1038
+#: v2v/convert_linux.ml:1038
 msgid ""
 "%s references unknown device \"%s\".  You may have to fix this entry "
 "manually after conversion."
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:183 ../common/mltools/tools_utils.ml:155
+#: common/mltools/tools_utils.ml:183 common/mltools/tools_utils.ml:155
 msgid "%s: %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:185
+#: common/mltools/tools_utils.ml:185
 msgid "%s: %s: %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:380
+#: v2v/windows_virtio.ml:380
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
-#: ../v2v/cmdline.ml:309
+#: v2v/cmdline.ml:324
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -112,7 +113,7 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:57
+#: v2v/copy_to_local.ml:57
 msgid ""
 "%s: copy a remote guest to the local machine\n"
 "\n"
@@ -134,15 +135,15 @@ msgid ""
 "read the man page virt-v2v-copy-to-local(1).\n"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:125
+#: common/mltools/tools_utils.ml:125
 msgid "%s: error: %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:673
+#: common/mltools/tools_utils.ml:673
 msgid "%s: operation timed out"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:120 ../v2v/parse_ova.ml:116
+#: v2v/parse_ova.ml:120 v2v/parse_ova.ml:116
 msgid ""
 "%s: unsupported file format\n"
 "\n"
@@ -150,403 +151,421 @@ msgid ""
 "compress with gzip or xz), zip"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:144
+#: common/mltools/tools_utils.ml:144
 msgid "%s: warning: %s"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:240
-#: ../common/mlcustomize/customize_cmdline.ml:331
+#. common/mlcustomize/customize_cmdline.ml:240
+#: common/mlcustomize/customize_cmdline.ml:331
 msgid "'CMD+ARGS'"
 msgstr ""
 
-#: ../v2v/cmdline.ml:401
+#: v2v/cmdline.ml:416
 msgid "--in-place and --print-estimate cannot be used together"
 msgstr ""
 
-#: ../v2v/input_ova.ml:71
+#: v2v/cmdline.ml:161
+#, fuzzy
+#| msgid "credential index out of range"
+msgid "--mac ip prefix length field is out of range"
+msgstr "クレディンシャルのインデックスが範囲外です"
+
+#: v2v/input_ova.ml:71
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
 
-#: ../v2v/input_ova.ml:100
+#: v2v/input_ova.ml:100
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:338
+#: v2v/parse_ova.ml:338
 msgid ""
 "-i ova: invalid OVA file: path ‘%s’ references a file outside the archive"
 msgstr ""
 
-#: ../v2v/vCenter.ml:158
+#: v2v/vCenter.ml:158
 msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:89
+#: v2v/input_libvirt_vddk.ml:89
 msgid "-it vddk: duplicate -io options on the command line"
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:77
+#: v2v/input_libvirt_vddk.ml:77
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgstr ""
 
-#: ../v2v/cmdline.ml:563
+#: v2v/cmdline.ml:578
 msgid "-o %s: %s option cannot be used in this output mode"
 msgstr ""
 
-#: ../v2v/cmdline.ml:568
+#: v2v/cmdline.ml:583
 msgid "-o and --in-place cannot be used at the same time"
 msgstr ""
 
-#: ../v2v/output_json.ml:47
+#: v2v/output_json.ml:47
 msgid "-o json: -oo json-disks-pattern set more than once"
 msgstr ""
 
-#: ../v2v/output_json.ml:51
+#: v2v/output_json.ml:51
 msgid "-o json: -oo json-disks-pattern: invalid variable %%{%s}"
 msgstr ""
 
-#: ../v2v/output_json.ml:56
+#: v2v/output_json.ml:56
 msgid "-o json: -oo json-disks-pattern: unhandled variable %%{%s}"
 msgstr ""
 
-#: ../v2v/cmdline.ml:605
+#: v2v/cmdline.ml:620
 msgid "-o json: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: ../v2v/output_json.ml:61
+#: v2v/output_json.ml:61
 msgid "-o json: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:120
+#: v2v/output_libvirt.ml:120
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
 "virt-v2v-output-local(1)"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:122
+#: v2v/output_libvirt.ml:122
 msgid ""
 "-o libvirt: output pool ‘%s’ has type='dir' but the /pool/target/path "
 "element is not a local directory.  See virt-v2v-output-local(1)"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:116
+#: v2v/output_libvirt.ml:116
 msgid ""
 "-o libvirt: output pool ‘%s’ is not a directory (type='dir').  See virt-v2v-"
 "output-local(1)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:620
+#: v2v/cmdline.ml:635
 msgid "-o local: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:129
+#: v2v/output_openstack.ml:129
 msgid "-o openstack: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:652
+#: v2v/cmdline.ml:667
 msgid "-o qemu: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:63
+#: v2v/output_rhv_upload.ml:63
 msgid "-o rhv-upload: -oo rhv-cafile set more than once"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:67
+#: v2v/output_rhv_upload.ml:67
 msgid "-o rhv-upload: -oo rhv-cluster set more than once"
 msgstr ""
 
-#: ../v2v/cmdline.ml:694
+#: v2v/cmdline.ml:709
 msgid ""
 "-o rhv-upload: output password file was not specified, use ‘-op’ to point to "
 "a file which contains the password used to connect to the oVirt or RHV server"
 msgstr ""
 
-#: ../v2v/cmdline.ml:699
+#: v2v/cmdline.ml:714
 msgid "-o rhv-upload: output storage was not specified, use ‘-os’"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:76
+#: v2v/output_rhv_upload.ml:76
 msgid "-o rhv-upload: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:688
+#: v2v/cmdline.ml:703
 msgid ""
 "-o rhv-upload: use ‘-oc’ to point to the oVirt or RHV server REST API URL, "
 "which is usually https://servername/ovirt-engine/api"
 msgstr ""
 
-#: ../v2v/cmdline.ml:677
+#: v2v/cmdline.ml:692
 msgid "-o rhv: output storage was not specified, use ‘-os’"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:96
+#: v2v/output_vdsm.ml:96
 msgid "-o vdsm: -oo vdsm-image-uuid was not specified"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:76
+#: v2v/output_vdsm.ml:76
 msgid "-o vdsm: -oo vdsm-ovf-output set more than once"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:72
+#: v2v/output_vdsm.ml:72
 msgid "-o vdsm: -oo vdsm-vm-uuid set more than once"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:92
+#: v2v/output_vdsm.ml:92
 msgid "-o vdsm: either -oo vdsm-vol-uuid or -oo vdsm-vm-uuid was not specified"
 msgstr ""
 
-#: ../v2v/cmdline.ml:714
+#: v2v/cmdline.ml:729
 msgid "-o vdsm: output storage was not specified, use ‘-os’"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:85
+#: v2v/output_vdsm.ml:85
 msgid "-o vdsm: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:69
+#: v2v/output_vdsm.ml:69
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:654 ../v2v/cmdline.ml:622 ../v2v/cmdline.ml:607
+#: v2v/cmdline.ml:669 v2v/cmdline.ml:637 v2v/cmdline.ml:622
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
-#. ../v2v/copy_to_local.ml:313
-#: ../v2v/parse_libvirt_xml.ml:357 ../v2v/parse_libvirt_xml.ml:300
+#. v2v/copy_to_local.ml:313
+#: v2v/parse_libvirt_xml.ml:357 v2v/parse_libvirt_xml.ml:300
 msgid "<disk type='%s'> was ignored"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:327
+#: v2v/parse_libvirt_xml.ml:327
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:353
+#: v2v/parse_libvirt_xml.ml:353
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:282 ../v2v/copy_to_local.ml:295
+#: v2v/parse_libvirt_xml.ml:282 v2v/copy_to_local.ml:295
 msgid "<disk> element with no type attribute ignored"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:157
+#: v2v/parse_libvirt_xml.ml:157
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:400
+#: v2v/parse_libvirt_xml.ml:400
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:131
+#: v2v/input_libvirt_vddk.ml:131
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
 "3.7."
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:269
+#: common/mlcustomize/customize_cmdline.ml:269
 msgid "Add package(s) to install"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:252
+#: common/mlcustomize/customize_cmdline.ml:252
 msgid "Add package(s) to install at first boot"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:168
+#: common/mlcustomize/customize_cmdline.ml:168
 msgid "Append line(s) to the file"
 msgstr ""
 
-#: ../v2v/v2v.ml:161
+#: v2v/v2v.ml:161
 msgid "Assigning disks to buses"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:349
+#: common/mlcustomize/customize_cmdline.ml:349
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
-#: ../v2v/cmdline.ml:272
+#: v2v/cmdline.ml:287
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
-#: ../v2v/target_bus_assignment.ml:87
+#: v2v/target_bus_assignment.ml:87
 msgid "CD-ROM"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:179
+#: v2v/convert_linux.ml:1134
+msgid "Can't find file: '%s' needed for UEFI fixing"
+msgstr ""
+
+#: v2v/convert_linux.ml:1115
+msgid "Can't fix UEFI bootloader. VM may not boot."
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:179
 msgid "Change the permissions of a file"
 msgstr ""
 
-#: ../v2v/v2v.ml:383
+#: v2v/v2v.ml:383
 msgid "Checking for sufficient free disk space in the guest"
 msgstr ""
 
-#: ../v2v/v2v.ml:651
+#: v2v/v2v.ml:651
 msgid "Checking if the guest needs BIOS or UEFI to boot"
 msgstr ""
 
-#: ../v2v/v2v.ml:144
+#: v2v/v2v.ml:144
 msgid "Closing the overlay"
 msgstr ""
 
-#: ../v2v/v2v.ml:145
+#: v2v/v2v.ml:145
 msgid "Closing the source VM"
 msgstr ""
 
-#: ../v2v/cmdline.ml:225
+#: v2v/cmdline.ml:240
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
-#: ../v2v/v2v.ml:568
+#: v2v/v2v.ml:568
 msgid "Converting %s to run on KVM"
 msgstr ""
 
-#: ../v2v/v2v.ml:566
+#: v2v/v2v.ml:566
 msgid "Converting the guest to run on KVM"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:201
+#: common/mlcustomize/customize_cmdline.ml:201
 msgid "Copy files in disk image"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:212
+#: common/mlcustomize/customize_cmdline.ml:212
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: ../v2v/v2v.ml:695
+#: v2v/v2v.ml:695
 msgid "Copying disk %d/%d to %s (%s)"
 msgstr ""
 
-#: ../v2v/v2v.ml:698
+#: v2v/v2v.ml:698
 msgid "Copying disk %d/%d to qemu URI %s (%s)"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:179
+#: v2v/copy_to_local.ml:179
 msgid "Copying remote disk %d/%d to %s"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:286
+#: common/mlcustomize/customize_cmdline.ml:286
 msgid "Create a directory"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:280
+#: common/mlcustomize/customize_cmdline.ml:280
 msgid "Create symbolic links"
 msgstr ""
 
-#: ../v2v/v2v.ml:285
+#: v2v/v2v.ml:285
 msgid "Creating an overlay to protect the source from being modified"
 msgstr ""
 
-#: ../v2v/v2v.ml:188
+#: v2v/v2v.ml:188
 msgid "Creating output metadata"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:474
+#: common/mlcustomize/customize_cmdline.ml:474
 msgid "Credentials for subscription-manager"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:285
+#: common/mlcustomize/customize_cmdline.ml:285
 msgid "DIR"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:218
+#: common/mlcustomize/customize_cmdline.ml:218
 msgid "Delete a file or directory"
 msgstr ""
 
-#: ../common/mltools/getopt.ml:229
+#: common/mltools/getopt.ml:229
 msgid "Display brief help"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:332
+#: common/mltools/tools_utils.ml:332
 msgid "Display version and exit"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:336
+#: common/mltools/tools_utils.ml:336
 msgid "Don’t print progress messages"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:354
+#: common/mltools/tools_utils.ml:354
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:140
+#: v2v/inspect_source.ml:140
 msgid ""
 "Dual- or multi-boot operating system detected.  Choose the root filesystem\n"
 "that contains the main operating system from the list below:\n"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:229
+#: common/mlcustomize/customize_cmdline.ml:229
 msgid "Edit file using Perl expression"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:333
+#: common/mltools/tools_utils.ml:333
 msgid "Enable libguestfs debugging messages"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:334
+#: common/mltools/tools_utils.ml:334
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:153
+#: v2v/inspect_source.ml:153
 msgid "Enter a number between 1 and %d, or ‘exit’: "
 msgstr ""
 
-#: ../v2v/cmdline.ml:269
+#: v2v/cmdline.ml:284
 msgid "Estimate size of source and stop"
 msgstr ""
 
-#: ../v2v/v2v.ml:116
+#: v2v/v2v.ml:116
 msgid "Estimating space required on target for each disk"
 msgstr ""
 
-#: ../v2v/output_rhv.ml:156
+#: v2v/output_rhv.ml:156
 msgid "Export Storage Domain"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:384
-#. ../common/mlcustomize/customize_cmdline.ml:337
-#: ../common/mlcustomize/customize_cmdline.ml:402
+#. common/mlcustomize/customize_cmdline.ml:384
+#. common/mlcustomize/customize_cmdline.ml:337
+#: common/mlcustomize/customize_cmdline.ml:402
 msgid "FILE"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:437
+#: common/mlcustomize/customize_cmdline.ml:437
 msgid "FILE:CONTENT"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:426
+#: common/mlcustomize/customize_cmdline.ml:426
 msgid "FILE:DEST"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:224
+#: common/mlcustomize/customize_cmdline.ml:224
 msgid "FILE:EXPR"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:163
+#: common/mlcustomize/customize_cmdline.ml:163
 msgid "FILE:LINE"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:185
+#: common/mlcustomize/customize_cmdline.ml:185
 msgid "FILENAME"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:127
+#: v2v/copy_to_local.ml:127
 msgid "Fetching the remote libvirt XML metadata ..."
 msgstr ""
 
-#: ../v2v/v2v.ml:197 ../v2v/copy_to_local.ml:231
+#: v2v/v2v.ml:197 v2v/copy_to_local.ml:231
 msgid "Finishing off"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:257
+#: v2v/convert_linux.ml:1148
+msgid "Fixing UEFI bootloader."
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:257
 msgid "HOSTNAME"
 msgstr ""
 
-#: ../v2v/cmdline.ml:274
+#: v2v/cmdline.ml:289
 msgid "How to choose root filesystem"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:130
+#: common/mltools/tools_utils.ml:130
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -554,23 +573,23 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: ../v2v/cmdline.ml:304 ../v2v/cmdline.ml:249
+#: v2v/cmdline.ml:319 v2v/cmdline.ml:264
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
-#: ../v2v/v2v.ml:170
+#: v2v/v2v.ml:170
 msgid "Initializing the target %s"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:379
+#: common/mlcustomize/customize_cmdline.ml:379
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: ../v2v/cmdline.ml:233
+#: v2v/cmdline.ml:248
 msgid "Input format (for -i disk)"
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:48
+#: v2v/input_libvirt_vddk.ml:48
 msgid ""
 "Input options (-io) which can be used with -it vddk:\n"
 "\n"
@@ -593,101 +612,105 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: ../v2v/cmdline.ml:239
+#: v2v/cmdline.ml:254
 msgid "Input transport"
 msgstr ""
 
-#: ../v2v/v2v.ml:105
+#: v2v/v2v.ml:105
 msgid "Inspecting the overlay"
 msgstr ""
 
-#: ../v2v/v2v.ml:106
+#: v2v/v2v.ml:106
 msgid "Inspecting the source VM"
 msgstr ""
 
-#: ../v2v/cmdline.ml:247
+#: v2v/cmdline.ml:262
 msgid "Just write the metadata"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:207
+#: common/mlcustomize/customize_cmdline.ml:207
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:48 ../v2v/cmdline.ml:231
+#: v2v/copy_to_local.ml:48 v2v/cmdline.ml:246
 msgid "Libvirt URI"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:361
+#: common/mltools/tools_utils.ml:361
 msgid "Make output machine readable"
 msgstr ""
 
-#: ../v2v/cmdline.ml:243
+#: v2v/cmdline.ml:258
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: ../v2v/cmdline.ml:223
+#: v2v/cmdline.ml:238
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:245
+#: v2v/cmdline.ml:260
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
-#: ../v2v/v2v.ml:139
+#: v2v/v2v.ml:139
 msgid "Mapping filesystem data to avoid copying unused and blank areas"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:297
+#: common/mlcustomize/customize_cmdline.ml:297
 msgid "Move files in disk image"
 msgstr ""
 
-#: ../v2v/cmdline.ml:411
+#: v2v/cmdline.ml:426
 msgid "No -io (input options) are supported with this input transport.\n"
 msgstr ""
 
-#: ../v2v/cmdline.ml:438
+#: v2v/cmdline.ml:453
 msgid "No -oo (output options) are supported in this output mode.\n"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:181
+#: v2v/convert_linux.ml:1207
+msgid "No UEFI fix rule for %s %d"
+msgstr ""
+
+#: v2v/output_vdsm.ml:181
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
 msgstr ""
 
-#: ../common/mlcustomize/firstboot.ml:253
+#: common/mlcustomize/firstboot.ml:253
 msgid ""
 "One of rhsrvany.exe or pvvxsvc.exe is missing in %s.  One of them is "
 "required in order to install Windows firstboot scripts.  You can get one by "
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:241
+#: v2v/cmdline.ml:256
 msgid "Only tune the guest in the input VM"
 msgstr ""
 
-#: ../v2v/v2v.ml:85
+#: v2v/v2v.ml:85
 msgid "Opening the overlay"
 msgstr ""
 
-#: ../v2v/v2v.ml:200
+#: v2v/v2v.ml:200
 msgid "Opening the source %s"
 msgstr ""
 
-#: ../v2v/v2v.ml:86
+#: v2v/v2v.ml:86
 msgid "Opening the source VM"
 msgstr ""
 
-#: ../v2v/cmdline.ml:255
+#: v2v/cmdline.ml:270
 msgid "Output hypervisor connection"
 msgstr ""
 
-#: ../v2v/output_json.ml:33
+#: v2v/output_json.ml:33
 msgid ""
 "Output options (-oo) which can be used with -o json:\n"
 "\n"
 "  -oo json-disks-pattern=PATTERN   Pattern for the disks.\n"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:39
+#: v2v/output_rhv_upload.ml:39
 msgid ""
 "Output options (-oo) which can be used with -o rhv-upload:\n"
 "\n"
@@ -704,7 +727,7 @@ msgid ""
 "  -oo rhv-disk-uuid=UUID          Disk UUID\n"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:41
+#: v2v/output_vdsm.ml:41
 msgid ""
 "Output options (-oo) which can be used with -o vdsm:\n"
 "\n"
@@ -722,373 +745,373 @@ msgid ""
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
 
-#: ../v2v/v2v.ml:828
+#: v2v/v2v.ml:828
 msgid "Overlay saved as %s [--debug-overlays]"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:217
-#: ../common/mlcustomize/customize_cmdline.ml:390
+#. common/mlcustomize/customize_cmdline.ml:217
+#: common/mlcustomize/customize_cmdline.ml:390
 msgid "PATH"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:174
+#: common/mlcustomize/customize_cmdline.ml:174
 msgid "PERMISSIONS:FILE"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:264
-#. ../common/mlcustomize/customize_cmdline.ml:247
-#: ../common/mlcustomize/customize_cmdline.ml:409
+#. common/mlcustomize/customize_cmdline.ml:264
+#. common/mlcustomize/customize_cmdline.ml:247
+#: common/mlcustomize/customize_cmdline.ml:409
 msgid "PKG,PKG.."
 msgstr ""
 
-#: ../v2v/convert_linux.ml:491
+#: v2v/convert_linux.ml:491
 msgid ""
 "Parallels tools was detected, but uninstallation failed. The error message "
 "was: %s (ignored)"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:138
+#: v2v/copy_to_local.ml:138
 msgid "Parsing the remote libvirt XML metadata ..."
 msgstr ""
 
-#: ../v2v/inspect_source.ml:180
+#: v2v/inspect_source.ml:180
 msgid "Picked %s because '--root %s' was used."
 msgstr ""
 
-#: ../v2v/inspect_source.ml:171
+#: v2v/inspect_source.ml:171
 msgid "Picked %s because '--root first' was used."
 msgstr ""
 
-#: ../v2v/cmdline.ml:271
+#: v2v/cmdline.ml:286
 msgid "Print source and stop"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:301
+#: v2v/convert_windows.ml:301
 msgid ""
 "QEMU Guest Agent MSI not found on tools ISO/directory. You may want to "
 "install the guest agent manually after conversion."
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:224
+#: v2v/windows_virtio.ml:224
 msgid "QEMU Guest Agent installed for this guest."
 msgstr ""
 
-#: ../v2v/create_ovf.ml:829 ../v2v/create_ovf.ml:495
+#: v2v/create_ovf.ml:829 v2v/create_ovf.ml:495
 msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:190
+#: common/mlcustomize/customize_cmdline.ml:190
 msgid "Read customize commands from file"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:355
+#: common/mltools/tools_utils.ml:355
 msgid "Read passphrases from stdin"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:391
+#: common/mlcustomize/customize_cmdline.ml:391
 msgid "Recursively truncate all files in directory"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:355
+#: common/mlcustomize/customize_cmdline.ml:355
 msgid "Register using subscription-manager"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:464
+#: common/mlcustomize/customize_cmdline.ml:464
 msgid "Relabel files with correct SELinux labels"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:361
+#: common/mlcustomize/customize_cmdline.ml:361
 msgid "Remove all the subscriptions"
 msgstr ""
 
-#: ../v2v/cmdline.ml:259
+#: v2v/cmdline.ml:274
 msgid "Rename guest when converting"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:241
+#: common/mlcustomize/customize_cmdline.ml:241
 msgid "Run command at first guest boot"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:332
+#: common/mlcustomize/customize_cmdline.ml:332
 msgid "Run command in disk image"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:235
+#: common/mlcustomize/customize_cmdline.ml:235
 msgid "Run script at first guest boot"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:326
+#: common/mlcustomize/customize_cmdline.ml:326
 msgid "Run script in disk image"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:403
+#: common/mlcustomize/customize_cmdline.ml:403
 msgid "Run touch on a file"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:234
-#: ../common/mlcustomize/customize_cmdline.ml:325
+#. common/mlcustomize/customize_cmdline.ml:234
+#: common/mlcustomize/customize_cmdline.ml:325
 msgid "SCRIPT"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:470
-#. ../common/mlcustomize/customize_cmdline.ml:344
-#. ../common/mlcustomize/customize_cmdline.ml:315
-#: ../common/mltools/tools_utils.ml:356
+#. common/mlcustomize/customize_cmdline.ml:344
+#. common/mlcustomize/customize_cmdline.ml:315
+#: common/mltools/tools_utils.ml:356
+#: common/mlcustomize/customize_cmdline.ml:470
 msgid "SELECTOR"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:196
-#: ../common/mlcustomize/customize_cmdline.ml:292
+#. common/mlcustomize/customize_cmdline.ml:196
+#: common/mlcustomize/customize_cmdline.ml:292
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: ../v2v/cmdline.ml:276
+#: v2v/cmdline.ml:291
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:278
+#: v2v/cmdline.ml:293
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:280
+#: v2v/cmdline.ml:295
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:282
+#: v2v/cmdline.ml:297
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:284
+#: v2v/cmdline.ml:299
 msgid "Same as ‘-io vddk-port=port’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:286
+#: v2v/cmdline.ml:301
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:288
+#: v2v/cmdline.ml:303
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:290
+#: v2v/cmdline.ml:305
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:267
+#: v2v/cmdline.ml:282
 msgid "Same as ‘-ip filename’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:292
+#: v2v/cmdline.ml:307
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:294
+#: v2v/cmdline.ml:309
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:302
+#: v2v/cmdline.ml:317
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:300
+#: v2v/cmdline.ml:315
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:298
+#: v2v/cmdline.ml:313
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:296
+#: v2v/cmdline.ml:311
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:227
+#: v2v/cmdline.ml:242
 msgid "Save overlay files"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:338
+#: common/mlcustomize/customize_cmdline.ml:338
 msgid "Scrub a file"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:448
+#: common/mlcustomize/customize_cmdline.ml:448
 msgid "Scrub build log file"
 msgstr ""
 
-#: ../v2v/cmdline.ml:221
+#: v2v/cmdline.ml:236
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: ../v2v/cmdline.ml:219
+#: v2v/cmdline.ml:234
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: ../v2v/cmdline.ml:229
+#: v2v/cmdline.ml:244
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:235
+#: v2v/cmdline.ml:250
 msgid "Set option for input mode"
 msgstr ""
 
-#: ../v2v/cmdline.ml:261
+#: v2v/cmdline.ml:276
 msgid "Set option for output mode"
 msgstr ""
 
-#: ../v2v/cmdline.ml:253
+#: v2v/cmdline.ml:268
 msgid "Set output allocation mode"
 msgstr ""
 
-#: ../v2v/cmdline.ml:257
+#: v2v/cmdline.ml:272
 msgid "Set output format"
 msgstr ""
 
-#: ../v2v/cmdline.ml:251
+#: v2v/cmdline.ml:266
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:265
+#: v2v/cmdline.ml:280
 msgid "Set output storage location"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:458
+#: common/mlcustomize/customize_cmdline.ml:458
 msgid "Set password crypto"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:320
+#: common/mlcustomize/customize_cmdline.ml:320
 msgid "Set root password"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:397
+#: common/mlcustomize/customize_cmdline.ml:397
 msgid "Set the default timezone"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:258
+#: common/mlcustomize/customize_cmdline.ml:258
 msgid "Set the hostname"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:309
+#: common/mlcustomize/customize_cmdline.ml:309
 msgid "Set user password"
 msgstr ""
 
-#: ../v2v/v2v.ml:206
+#: v2v/v2v.ml:206
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:356
+#: common/mltools/tools_utils.ml:356
 msgid "Specify a LUKS key"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:275
+#: common/mlcustomize/customize_cmdline.ml:275
 msgid "TARGET:LINK[:LINK..]"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:396
+#: common/mlcustomize/customize_cmdline.ml:396
 msgid "TIMEZONE"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:833
+#: v2v/convert_linux.ml:833
 msgid ""
 "The display driver was updated to ‘%s’, but X11 does not seem to be "
 "installed in the guest.  X may not function correctly."
 msgstr ""
 
-#: ../v2v/v2v.ml:589
+#: v2v/v2v.ml:589
 msgid "This guest does not have virtio drivers installed."
 msgstr ""
 
-#: ../v2v/v2v.ml:587
+#: v2v/v2v.ml:587
 msgid "This guest has virtio drivers installed."
 msgstr ""
 
-#: ../v2v/create_ovf.ml:737
+#: v2v/create_ovf.ml:737
 msgid ""
 "This guest required a password for connection to its display, but this is "
 "not supported by RHV.  Therefore the converted guest’s display will not "
 "require a separate password to connect."
 msgstr ""
 
-#: ../v2v/v2v.ml:672
+#: v2v/v2v.ml:672
 msgid "This guest requires UEFI on the target to boot."
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:385
+#: common/mlcustomize/customize_cmdline.ml:385
 msgid "Truncate a file to zero size"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:303
+#: common/mlcustomize/customize_cmdline.ml:303
 msgid "USER:SELECTOR"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:373
+#: common/mlcustomize/customize_cmdline.ml:373
 msgid "USER[:SELECTOR]"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:414
+#: common/mlcustomize/customize_cmdline.ml:414
 msgid "Uninstall package(s)"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:367
+#: common/mlcustomize/customize_cmdline.ml:367
 msgid "Unregister using subscription-manager"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:420
+#: common/mlcustomize/customize_cmdline.ml:420
 msgid "Update packages"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:431
+#: common/mlcustomize/customize_cmdline.ml:431
 msgid "Upload local file to destination"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:338
+#: common/mltools/tools_utils.ml:338
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:52 ../v2v/copy_to_local.ml:50
+#: v2v/copy_to_local.ml:52 v2v/copy_to_local.ml:50
 msgid "Use password from file"
 msgstr ""
 
-#: ../v2v/cmdline.ml:237
+#: v2v/cmdline.ml:252
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: ../v2v/cmdline.ml:263
+#: v2v/cmdline.ml:278
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:206
+#: v2v/nbdkit_sources.ml:206
 msgid ""
 "VDDK library path %s not found or not a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
 msgstr ""
 
-#: ../v2v/convert_linux.ml:413
+#: v2v/convert_linux.ml:413
 msgid ""
 "VMware tools was detected, but uninstallation failed.  The error message "
 "was: %s (ignored)"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:275
+#: v2v/convert_linux.ml:275
 msgid ""
 "VirtualBox Guest Additions were detected, but uninstallation failed.  The "
 "error message was: %s (ignored)"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:442
+#: common/mlcustomize/customize_cmdline.ml:442
 msgid "Write file"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:227
+#: v2v/copy_to_local.ml:227
 msgid "Writing libvirt XML metadata to %s ..."
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:98
+#: v2v/input_libvirt_vddk.ml:98
 msgid ""
 "You must pass the ‘-io vddk-thumbprint’ option with the SSL thumbprint of "
 "the VMware server.  To find the thumbprint, see the nbdkit-vddk-plugin(1) "
 "manual.  See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:102
+#: v2v/output_libvirt.ml:102
 msgid ""
 "a libvirt domain called ‘%s’ already exists on the target.\n"
 "\n"
@@ -1100,7 +1123,7 @@ msgid ""
 "delete the existing domain on the target using the ‘virsh undefine’ command."
 msgstr ""
 
-#: ../v2v/input_libvirt_other.ml:40
+#: v2v/input_libvirt_other.ml:40
 msgid ""
 "because of libvirt bug https://bugzilla.redhat.com/1134878 you must EITHER "
 "upgrade to libvirt >= 2.1.0 OR set this environment variable:\n"
@@ -1110,7 +1133,7 @@ msgid ""
 "and then rerun the virt-v2v command."
 msgstr ""
 
-#: ../v2v/input_libvirt_xen_ssh.ml:39
+#: v2v/input_libvirt_xen_ssh.ml:39
 msgid ""
 "because of libvirt bug https://bugzilla.redhat.com/1140166 you must set this "
 "environment variable:\n"
@@ -1120,22 +1143,22 @@ msgid ""
 "and then rerun the virt-v2v command."
 msgstr ""
 
-#: ../v2v/input_disk.ml:61
+#: v2v/input_disk.ml:61
 msgid "cannot detect the input disk format; use the -if parameter"
 msgstr ""
 
-#: ../v2v/utils.ml:78
+#: v2v/utils.ml:78
 msgid ""
 "cannot find firmware for UEFI guests.\n"
 "\n"
 "You probably need to install OVMF (x86-64), or AAVMF (aarch64)"
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:58
+#: v2v/libvirt_utils.ml:58
 msgid "cannot find libvirt domain ‘%s’: %s"
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:87
+#: v2v/libvirt_utils.ml:87
 msgid ""
 "cannot find libvirt pool ‘%s’: %s\n"
 "\n"
@@ -1145,42 +1168,46 @@ msgid ""
 "To set the pool which virt-v2v uses, add the ‘-os <pool>’ option."
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:97
+#: v2v/libvirt_utils.ml:97
 msgid "cannot find libvirt volume ‘%s’: %s"
 msgstr ""
 
-#: ../common/mlcustomize/firstboot.ml:235
+#: common/mlcustomize/firstboot.ml:235
 msgid ""
 "cannot finish firstboot installation by running ‘%s’ because host cpu (%s) "
 "and guest arch (%s) are not compatible.  The firstboot service may not run "
 "at boot."
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:85
+#: v2v/output_libvirt.ml:85
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: ../v2v/cmdline.ml:125
+#: v2v/cmdline.ml:124
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: ../v2v/cmdline.ml:147
+#: v2v/cmdline.ml:148
+msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
+msgstr ""
+
+#: v2v/cmdline.ml:159
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:166
+#: v2v/convert_windows.ml:166
 msgid ""
 "cannot uninstall %s: registry key ‘HKLM\\SOFTWARE\\%s\\%s’ with DisplayName "
 "‘%s’ doesn't contain value ‘%s’"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:110
+#: v2v/convert_windows.ml:110
 msgid ""
 "cannot uninstall Xen PV drivers: registry key ‘HKLM\\SOFTWARE\\Microsoft"
 "\\Windows\\CurrentVersion\\Uninstall\\%s’ does not contain an ‘%s’ key"
 msgstr ""
 
-#: ../v2v/output_rhv.ml:171
+#: v2v/output_rhv.ml:171
 msgid ""
 "cannot write files to the NFS server as %d:%d, even though we appear to be "
 "running as root. This probably means the NFS client or idmapd is not "
@@ -1190,123 +1217,123 @@ msgid ""
 "otherwise RHV-M will not be able to import the VM."
 msgstr ""
 
-#: ../v2v/output_rhv.ml:173
+#: v2v/output_rhv.ml:173
 msgid ""
 "cannot write files to the NFS server as %d:%d. You might want to stop virt-"
 "v2v (^C) and rerun it as root."
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:494
+#: common/mlcustomize/customize_cmdline.ml:494
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:511
+#: common/mlcustomize/customize_cmdline.ml:511
 msgid "command '%s' not valid, see the man page"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:160
+#: v2v/inspect_source.ml:160
 msgid "connection closed"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:223
+#: v2v/copy_to_local.ml:223
 msgid "copy command failed, see earlier errors"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:317
+#: v2v/linux_bootloaders.ml:321
 msgid "could not add grub2 serial console (ignored)"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:95
+#: v2v/input_vmx.ml:95
 msgid ""
 "could not copy the VMX file from the remote server, see earlier error "
 "messages"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:195
+#: v2v/output_libvirt.ml:195
 msgid ""
 "could not define libvirt domain: %s.\n"
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
 "%s’ yourself instead."
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:220
+#: v2v/linux_bootloaders.ml:224
 msgid "could not determine a way to update the configuration of Grub2"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:365
+#: v2v/linux_bootloaders.ml:372
 msgid "could not find bootloader mount point (%s): %s"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:630
+#: v2v/convert_windows.ml:630
 msgid ""
 "could not find registry key HKLM\\SOFTWARE\\Microsoft\\Windows"
 "\\CurrentVersion"
 msgstr ""
 
-#: ../common/mlcustomize/firstboot.ml:232
+#: common/mlcustomize/firstboot.ml:232
 msgid ""
 "could not finish firstboot installation by running ‘%s’ because the command "
 "failed: %s"
 msgstr ""
 
-#: ../v2v/input_libvirt.ml:47 ../v2v/copy_to_local.ml:95
+#: v2v/input_libvirt.ml:47 v2v/copy_to_local.ml:95
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:394 ../v2v/parse_libvirt_xml.ml:46
+#: v2v/parse_libvirt_xml.ml:394 v2v/parse_libvirt_xml.ml:46
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:168
+#: v2v/parse_ovf_from_ova.ml:168
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 
-#: ../v2v/input_ova.ml:118
+#: v2v/input_ova.ml:118
 msgid "could not parse ovf:Name from OVF document"
 msgstr ""
 
-#: ../v2v/output_rhv.ml:71
+#: v2v/output_rhv.ml:71
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt or RHV-M %s?  The original error is: %s"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:335
+#: v2v/linux_bootloaders.ml:339
 msgid ""
 "could not rebuild grub2 configuration file (%s).  This may mean that grub "
 "output will not be sent to the serial port, but otherwise should be "
 "harmless.  Original error message: %s"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:157
+#: v2v/output_libvirt.ml:157
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:319
+#: v2v/linux_bootloaders.ml:323
 msgid "could not remove grub2 serial console (ignored)"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:67
+#: v2v/inspect_source.ml:67
 msgid "could not write to the guest filesystem: %s"
 msgstr ""
 
-#: ../common/mltools/registry.ml:95
+#: common/mltools/registry.ml:95
 msgid ""
 "decode_utf16le: Windows UTF16-LE string contains non-7-bit characters.  This "
 "is a bug in %s, please report it."
 msgstr ""
 
-#: ../common/mltools/registry.ml:89
+#: common/mltools/registry.ml:89
 msgid ""
 "decode_utf16le: Windows string does not appear to be in UTF16-LE encoding.  "
 "This could be a bug in %s."
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:128
+#: v2v/linux_bootloaders.ml:129
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: ../v2v/v2v.ml:611
+#: v2v/v2v.ml:611
 msgid ""
 "disk %s (%s) has no defined format.\n"
 "\n"
@@ -1320,153 +1347,153 @@ msgid ""
 "format."
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:181
+#: v2v/parse_libvirt_xml.ml:181
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: ../v2v/utils.ml:74
+#: v2v/utils.ml:74
 msgid "don’t know how to convert UEFI guests for architecture %s"
 msgstr ""
 
-#: ../v2v/linux.ml:176
+#: v2v/linux.ml:176
 msgid "don’t know how to find file owner using %s"
 msgstr ""
 
-#: ../v2v/linux.ml:130
+#: v2v/linux.ml:130
 msgid "don’t know how to get list of files from package using %s"
 msgstr ""
 
-#: ../v2v/linux.ml:44
+#: v2v/linux.ml:44
 msgid "don’t know how to install packages using %s: packages: %s"
 msgstr ""
 
-#: ../v2v/linux.ml:71
+#: v2v/linux.ml:71
 msgid "don’t know how to remove packages using %s: packages: %s"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:938
+#: v2v/convert_linux.ml:938
 msgid "don’t know how to update %s which loads the %s module"
 msgstr ""
 
-#: ../v2v/linux.ml:201
+#: v2v/linux.ml:201
 msgid "don’t know what is the architecture string of %s using %s on %s"
 msgstr ""
 
-#: ../v2v/linux.ml:188
+#: v2v/linux.ml:188
 msgid "don’t know what is the extension of binary packages using %s"
 msgstr ""
 
-#: ../v2v/networks.ml:110
+#: v2v/networks.ml:110
 msgid ""
 "duplicate --mac parameter.  Duplicate mappings specified for MAC address %s."
 msgstr ""
 
-#: ../v2v/networks.ml:125
+#: v2v/networks.ml:125
 msgid ""
 "duplicate -b/--bridge parameter.  Duplicate mappings specified for bridge %s."
 msgstr ""
 
-#: ../v2v/networks.ml:130
+#: v2v/networks.ml:130
 msgid "duplicate -b/--bridge parameter.  Only one default mapping is allowed."
 msgstr ""
 
-#: ../v2v/networks.ml:115
+#: v2v/networks.ml:115
 msgid ""
 "duplicate -n/--network parameter.  Duplicate mappings specified for network "
 "%s."
 msgstr ""
 
-#: ../v2v/networks.ml:120
+#: v2v/networks.ml:120
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:141
+#: v2v/parse_ovf_from_ova.ml:141
 msgid "error parsing disk fileRef"
 msgstr ""
 
-#: ../v2v/input_ova.ml:141
+#: v2v/input_ova.ml:141
 msgid "error uncompressing %s, see earlier error messages"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:191 ../v2v/parse_ova.ml:107
+#: v2v/parse_ova.ml:191 v2v/parse_ova.ml:107
 msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:200
+#: common/mltools/tools_utils.ml:200
 msgid "exception: %s"
 msgstr ""
 
-#: ../common/mltools/xpath_helpers.ml:36
+#: common/mltools/xpath_helpers.ml:36
 msgid ""
 "expecting XML expression to return an integer (expression: %s, matching "
 "string: %s)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:506
+#: v2v/cmdline.ml:521
 msgid "expecting a disk image (filename) on the command line"
 msgstr ""
 
-#: ../v2v/cmdline.ml:534
+#: v2v/cmdline.ml:549
 msgid "expecting a libvirt XML file name on the command line"
 msgstr ""
 
-#: ../v2v/cmdline.ml:518
+#: v2v/cmdline.ml:533
 msgid "expecting a libvirt guest name on the command line"
 msgstr ""
 
-#: ../v2v/cmdline.ml:552
+#: v2v/cmdline.ml:567
 msgid "expecting a single VMX file name or SSH remote path on the command line"
 msgstr ""
 
-#: ../v2v/cmdline.ml:543
+#: v2v/cmdline.ml:558
 msgid "expecting an OVA file name on the command line"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:382
+#: common/mltools/tools_utils.ml:382
 msgid "external command ‘%s’ exited with error %d"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:463 ../common/mltools/tools_utils.ml:384
+#: common/mltools/tools_utils.ml:463 common/mltools/tools_utils.ml:384
 msgid "external command ‘%s’ killed by signal %d"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:465 ../common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:465 common/mltools/tools_utils.ml:386
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:257
+#: v2v/output_rhv_upload.ml:257
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:443
+#: v2v/output_rhv_upload.ml:443
 msgid "failed to create virtual machine, see earlier errors"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:207
+#: v2v/linux_bootloaders.ml:211
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:226
+#: v2v/windows_virtio.ml:226
 msgid "failed to install QEMU Guest Agent: %s"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:432
+#: v2v/parse_ova.ml:432
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:314
+#: v2v/output_rhv_upload.ml:314
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:191
+#: common/mltools/tools_utils.ml:191
 msgid "failure: %s"
 msgstr ""
 
-#: ../v2v/input_ova.ml:151
+#: v2v/input_ova.ml:151
 msgid "file ‘%s’ not found in the ova"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:65
+#: v2v/inspect_source.ml:65
 msgid ""
 "filesystem was mounted read-only, even though we asked for it to be mounted "
 "read-write.  This usually means that the filesystem was not cleanly "
@@ -1476,17 +1503,17 @@ msgid ""
 "Original error message: %s"
 msgstr ""
 
-#: ../common/mlcustomize/firstboot.ml:144
+#: common/mlcustomize/firstboot.ml:144
 msgid ""
 "firstboot: unknown version for old firstboot.service file %s (md5=%s), it "
 "will not be removed"
 msgstr ""
 
-#: ../v2v/target_bus_assignment.ml:88
+#: v2v/target_bus_assignment.ml:88
 msgid "floppy disk"
 msgstr ""
 
-#: ../v2v/v2v.ml:442
+#: v2v/v2v.ml:442
 msgid ""
 "fstrim on guest filesystem %s failed.  Usually you can ignore this message.  "
 "To find out more read \"Trimming\" in virt-v2v(1).\n"
@@ -1494,22 +1521,22 @@ msgid ""
 "Original message: %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:210
+#: common/mltools/tools_utils.ml:210
 msgid "generated by %s %s"
 msgstr ""
 
-#: ../v2v/output_glance.ml:50
+#: v2v/output_glance.ml:50
 msgid ""
 "glance: glance client is not installed or set up correctly.  You may need to "
 "set environment variables or source a script to enable authentication.  See "
 "preceding messages for details."
 msgstr ""
 
-#: ../v2v/output_glance.ml:103
+#: v2v/output_glance.ml:103
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: ../v2v/v2v.ml:319
+#: v2v/v2v.ml:319
 msgid ""
 "guest disk %s appears to be zero bytes in size.\n"
 "\n"
@@ -1524,31 +1551,31 @@ msgid ""
 "workaround."
 msgstr ""
 
-#: ../common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: ../common/mlcustomize/firstboot.ml:367
+#: common/mlcustomize/firstboot.ml:367
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
-#: ../v2v/linux_kernels.ml:316
+#: v2v/linux_kernels.ml:316
 msgid "ignoring kernel %s in bootloader, as it does not exist."
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:175
+#: v2v/output_vdsm.ml:175
 msgid "image directory (%s) does not exist or is not a directory"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:72
+#: v2v/parse_libvirt_xml.ml:72
 msgid "in the libvirt XML metadata, <domain type='...'> is missing or empty"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:77
+#: v2v/parse_libvirt_xml.ml:77
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:234
+#: v2v/inspect_source.ml:234
 msgid ""
 "inspection could not detect the source guest (or physical machine).\n"
 "\n"
@@ -1559,7 +1586,7 @@ msgid ""
 "Inspection field ‘%s’ was ‘unknown’."
 msgstr ""
 
-#: ../v2v/inspect_source.ml:130
+#: v2v/inspect_source.ml:130
 msgid ""
 "inspection could not detect the source guest (or physical machine).\n"
 "\n"
@@ -1570,7 +1597,7 @@ msgid ""
 "No root device found in this operating system image."
 msgstr ""
 
-#: ../v2v/v2v.ml:280
+#: v2v/v2v.ml:280
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1583,151 +1610,151 @@ msgid ""
 "host\"."
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:198
+#: common/mltools/tools_utils.ml:198
 msgid "internal error: Not_found exception was thrown"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:195
+#: common/mltools/tools_utils.ml:195
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:193
+#: common/mltools/tools_utils.ml:193
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
-#: ../v2v/linux.ml:146
+#: v2v/linux.ml:146
 msgid "internal error: is_file_owned: dpkg command returned no output"
 msgstr ""
 
-#: ../v2v/linux.ml:151
+#: v2v/linux.ml:151
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr ""
 
-#: ../v2v/v2v.ml:712
+#: v2v/v2v.ml:712
 msgid "internal error: qemu corrupted the overlay file"
 msgstr ""
 
-#: ../v2v/v2v.ml:309
+#: v2v/v2v.ml:309
 msgid "internal error: qemu-img did not create overlay with backing file"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:132
+#: v2v/linux_bootloaders.ml:133
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:141
+#: v2v/cmdline.ml:133
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: ../v2v/cmdline.ml:117
+#: v2v/cmdline.ml:117
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: ../v2v/cmdline.ml:108
+#: v2v/cmdline.ml:109
 msgid "invalid -n/--network parameter"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:462
+#: v2v/input_vmx.ml:462
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
-#. ../common/mlcustomize/customize_cmdline.ml:143
-#: ../common/mlcustomize/customize_cmdline.ml:154
+#. common/mlcustomize/customize_cmdline.ml:143
+#: common/mlcustomize/customize_cmdline.ml:154
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:308
+#: common/mltools/tools_utils.ml:308
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
-#: ../v2v/name_from_disk.ml:40
+#: v2v/name_from_disk.ml:40
 msgid "invalid input filename (%s)"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:416
+#: v2v/parse_ova.ml:416
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:323
+#: common/mltools/tools_utils.ml:323
 msgid "invalid output fd for --machine-readable: %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:325
+#: common/mltools/tools_utils.ml:325
 msgid "invalid output for --machine-readable: %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:317
+#: common/mltools/tools_utils.ml:317
 msgid "invalid output stream for --machine-readable: %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:351
+#: common/mltools/tools_utils.ml:351
 msgid "invalid selector string for --key: %s"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:421
+#: v2v/parse_ova.ml:421
 msgid "invalid size returned by tar: %S"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:82
+#: v2v/parse_ovf_from_ova.ml:82
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:88
+#: v2v/parse_ovf_from_ova.ml:88
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:116
+#: v2v/linux_bootloaders.ml:117
 msgid "kernel %s is not under grub tree %s"
 msgstr ""
 
-#: ../common/mltools/tools_utils.ml:189
+#: common/mltools/tools_utils.ml:189
 msgid "libguestfs error: %s"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:187
+#: v2v/inspect_source.ml:187
 msgid ""
 "libguestfs thinks this is not an installed operating system (it might be, "
 "for example, an installer disk or live CD).  If this is wrong, it is "
 "probably a bug in libguestfs.  root=%s fmt=%s"
 msgstr ""
 
-#: ../v2v/libvirt_utils.ml:68
+#: v2v/libvirt_utils.ml:68
 msgid ""
 "libvirt domain ‘%s’ is running or paused.  It must be shut down in order to "
 "perform virt-v2v conversion"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:131
+#: v2v/parse_ova.ml:131
 msgid ""
 "making OVA directory public readable to work around libvirt bug https://"
 "bugzilla.redhat.com/1045069"
 msgstr ""
 
-#: ../v2v/input_ova.ml:107
+#: v2v/input_ova.ml:107
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 
-#: ../common/mlcustomize/customize_cmdline.ml:454
+#: common/mlcustomize/customize_cmdline.ml:454
 msgid "md5|sha256|sha512"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:116
+#: v2v/copy_to_local.ml:116
 msgid "missing guest name.  See the virt-v2v-copy-to-local(1) manual page."
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:36
+#: common/mltools/JSON_parser.ml:36
 msgid "missing value for the key ‘%s’"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:253
+#: v2v/parse_ova.ml:253
 msgid "more than one .ovf file was found in %s"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:31
+#: common/mltools/JSON_parser.ml:31
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
-#: ../v2v/output_rhv.ml:49
+#: v2v/output_rhv.ml:49
 msgid ""
 "mount command failed, see earlier errors.\n"
 "\n"
@@ -1735,13 +1762,13 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: ../v2v/inspect_source.ml:167
+#: v2v/inspect_source.ml:167
 msgid ""
 "multi-boot operating systems are not supported by virt-v2v. Use the --root "
 "option to change how virt-v2v handles this."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:123
+#: v2v/output_rhv_upload.ml:123
 msgid ""
 "nbdkit %s plugin is not installed or not working.  It is required if you "
 "want to use ‘-o rhv-upload’.\n"
@@ -1749,7 +1776,7 @@ msgid ""
 "See also the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:235
+#: v2v/nbdkit_sources.ml:235
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1761,7 +1788,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:229
+#: v2v/nbdkit_sources.ml:229
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1773,11 +1800,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:184
+#: v2v/nbdkit.ml:184
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:186
+#: v2v/nbdkit.ml:186
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -1785,75 +1812,75 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:39
+#: v2v/nbdkit_sources.ml:39
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:106
+#: v2v/output_rhv_upload.ml:106
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
 "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:111
+#: v2v/output_rhv_upload.ml:111
 msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s"
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:44
+#: v2v/nbdkit_sources.ml:44
 msgid "nbdkit is too old.  nbdkit >= %s is required."
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:49
+#: v2v/nbdkit_sources.ml:49
 msgid "nbdkit plugin %s is not installed"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:135 ../v2v/nbdkit_sources.ml:58
+#: v2v/output_rhv_upload.ml:135 v2v/nbdkit_sources.ml:58
 msgid ""
 "nbdkit was compiled without SELinux support.  You will have to recompile "
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
 "mode while doing the conversion."
 msgstr ""
 
-#: ../v2v/nbdkit.ml:50
+#: v2v/nbdkit.ml:50
 msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
-#: ../v2v/cmdline.ml:415
+#: v2v/cmdline.ml:430
 msgid "no -io (input options) are allowed here"
 msgstr ""
 
-#: ../v2v/cmdline.ml:442
+#: v2v/cmdline.ml:457
 msgid "no -oo (output options) are allowed here"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:250
+#: v2v/parse_ova.ml:250
 msgid "no .ovf file was found in %s"
 msgstr ""
 
-#: ../v2v/linux_bootloaders.ml:380
+#: v2v/linux_bootloaders.ml:387
 msgid "no bootloader detected"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:418
+#: v2v/input_vmx.ml:418
 msgid "no displayName key found in VMX file"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:146
+#: v2v/parse_ovf_from_ova.ml:146
 msgid "no href in ovf:File (id=%s)"
 msgstr ""
 
-#: ../v2v/linux_kernels.ml:173
+#: v2v/linux_kernels.ml:173
 msgid "no initrd was found in /boot matching %s %s."
 msgstr ""
 
-#: ../v2v/linux_kernels.ml:291
+#: v2v/linux_kernels.ml:291
 msgid ""
 "no installed kernel packages were found.\n"
 "\n"
 "This probably indicates that %s was unable to inspect this guest properly."
 msgstr ""
 
-#: ../v2v/linux_kernels.ml:328
+#: v2v/linux_kernels.ml:328
 msgid ""
 "no kernels were found in the bootloader configuration.\n"
 "\n"
@@ -1861,35 +1888,35 @@ msgid ""
 "configuration of this guest."
 msgstr ""
 
-#: ../v2v/python_script.ml:61
+#: v2v/python_script.ml:61
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: ../v2v/input_libvirt.ml:80
+#: v2v/input_libvirt.ml:80
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: ../v2v/v2v.ml:418
+#: v2v/v2v.ml:418
 msgid ""
 "not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes "
 "available < %Ld inodes needed"
 msgstr ""
 
-#: ../v2v/v2v.ml:414
+#: v2v/v2v.ml:414
 msgid ""
 "not enough free space for conversion on filesystem ‘%s’.  %Ld bytes free < "
 "%Ld bytes needed"
 msgstr ""
 
-#: ../v2v/create_ovf.ml:985
+#: v2v/create_ovf.ml:985
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
 msgstr ""
 
-#: ../v2v/convert_linux.ml:514
+#: v2v/convert_linux.ml:514
 msgid ""
 "only Xen kernels are installed in this guest.\n"
 "\n"
@@ -1897,57 +1924,57 @@ msgid ""
 "to do."
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:110
+#: v2v/copy_to_local.ml:110
 msgid ""
 "only copies from VMware ESXi or Xen over SSH are supported.  See the virt-"
 "v2v-copy-to-local(1) manual page."
 msgstr ""
 
-#: ../v2v/cmdline.ml:558
+#: v2v/cmdline.ml:573
 msgid "only ‘-it ssh’ can be used here"
 msgstr ""
 
-#: ../v2v/cmdline.ml:524
+#: v2v/cmdline.ml:539
 msgid "only ‘-it vddk’ can be used here"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:134
+#: v2v/output_openstack.ml:134
 msgid "openstack: -oo server-id=<NAME|UUID> not present"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:319
+#: v2v/output_openstack.ml:319
 msgid ""
 "openstack: failed to attach cinder volume to VM, see earlier error messages"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:238
+#: v2v/output_openstack.ml:238
 msgid "openstack: failed to create a cinder volume, see earlier error messages"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:250
+#: v2v/output_openstack.ml:250
 msgid ""
 "openstack: failed to query cinder volume status, see earlier error messages"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:309
+#: v2v/output_openstack.ml:309
 msgid ""
 "openstack: failed to set image properties on cinder volume, see earlier "
 "error messages"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:382
+#: v2v/output_openstack.ml:382
 msgid ""
 "openstack: precheck failed, there may be a problem with authentication, see "
 "earlier error messages"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:256
+#: v2v/output_openstack.ml:256
 msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or \"available"
 "\""
 msgstr ""
 
-#: ../v2v/v2v.ml:621
+#: v2v/v2v.ml:621
 msgid ""
 "output format should be ‘raw’ or ‘qcow2’.\n"
 "\n"
@@ -1958,35 +1985,35 @@ msgid ""
 "considered in future."
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:263
+#: v2v/parse_ovf_from_ova.ml:263
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:260
+#: v2v/parse_ovf_from_ova.ml:260
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
 msgstr ""
 
-#: ../v2v/linux_kernels.ml:102
+#: v2v/linux_kernels.ml:102
 msgid "package ‘%s’ contains no files"
 msgstr ""
 
-#: ../v2v/v2v.ml:758 ../v2v/v2v.ml:305
+#: v2v/v2v.ml:758 v2v/v2v.ml:305
 msgid "qemu-img command failed, see earlier errors"
 msgstr ""
 
-#: ../v2v/measure_disk.ml:45
+#: v2v/measure_disk.ml:45
 msgid "qemu-img measure failed, see earlier errors"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:45
+#: v2v/input_vmx.ml:45
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr ""
 
-#: ../v2v/target_bus_assignment.ml:85
+#: v2v/target_bus_assignment.ml:85
 msgid ""
 "removable %s device in slot %d clashes with another disk, so it has been "
 "moved to a higher numbered slot on the same bus.  This may mean that this "
@@ -1995,24 +2022,24 @@ msgid ""
 "Windows guest)."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:340
+#: v2v/output_rhv_upload.ml:340
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:143
+#: v2v/output_rhv_upload.ml:143
 msgid ""
 "rhv-upload: currently you must use ‘%s’.  This restriction will be loosened "
 "in a future version."
 msgstr ""
 
-#: ../v2v/inspect_source.ml:178
+#: v2v/inspect_source.ml:178
 msgid "root device %s not found.  Roots found were: %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:311 ../v2v/windows_virtio.ml:305
+#: v2v/windows_virtio.ml:311 v2v/windows_virtio.ml:305
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2020,39 +2047,39 @@ msgid ""
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:172
+#: v2v/input_libvirt_vddk.ml:172
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr ""
 
-#: ../v2v/v2v.ml:839
+#: v2v/v2v.ml:839
 msgid "source has multiple hard disk types!"
 msgstr ""
 
-#: ../v2v/v2v.ml:855
+#: v2v/v2v.ml:855
 msgid "source has multiple network adapter model!"
 msgstr ""
 
-#: ../v2v/v2v.ml:837 ../v2v/v2v.ml:240
+#: v2v/v2v.ml:837 v2v/v2v.ml:240
 msgid "source has no hard disks!"
 msgstr ""
 
-#: ../v2v/v2v.ml:847
+#: v2v/v2v.ml:847
 msgid "source has unrecognized hard disk type"
 msgstr ""
 
-#: ../v2v/v2v.ml:845
+#: v2v/v2v.ml:845
 msgid "source has unsupported hard disk type ‘%s’"
 msgstr ""
 
-#: ../v2v/v2v.ml:861
+#: v2v/v2v.ml:861
 msgid "source has unsupported network adapter model ‘%s’"
 msgstr ""
 
-#: ../v2v/v2v.ml:869
+#: v2v/v2v.ml:869
 msgid "source has unsupported video adapter model ‘%s’"
 msgstr ""
 
-#: ../v2v/v2v.ml:235
+#: v2v/v2v.ml:235
 msgid ""
 "source sockets * cores * threads <> number of vCPUs.\n"
 "Sockets %d * cores per socket %d * threads %d = %d, but number of vCPUs = "
@@ -2063,99 +2090,99 @@ msgid ""
 "target."
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:201
+#: v2v/copy_to_local.ml:201
 msgid "ssh copy command failed, see earlier errors"
 msgstr ""
 
-#: ../v2v/utils.ml:151
+#: v2v/utils.ml:151
 msgid ""
 "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
 "man page for more information."
 msgstr ""
 
-#: ../v2v/changeuid.ml:58
+#: v2v/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
 msgstr ""
 
-#: ../v2v/changeuid.ml:60
+#: v2v/changeuid.ml:60
 msgid "subprocess signalled or stopped by signal %d"
 msgstr ""
 
-#: ../v2v/v2v.ml:625
+#: v2v/v2v.ml:625
 msgid ""
 "the --compressed flag is only allowed when the output format is qcow2 (-of "
 "qcow2)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:154
+#: v2v/cmdline.ml:169
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 
-#: ../v2v/cmdline.ml:208
+#: v2v/cmdline.ml:223
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:88
+#: v2v/copy_to_local.ml:88
 msgid "the -ic parameter is required"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:101
+#: v2v/output_rhv_upload.ml:101
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:292
+#: v2v/output_rhv_upload.ml:292
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:76
+#: common/mltools/JSON_parser.ml:76
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:302
+#: v2v/output_rhv_upload.ml:302
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has "
 "to match the number of guest disk images (for this guest: %d)"
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:150
+#: v2v/output_vdsm.ml:150
 msgid ""
 "the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters "
 "passed on the command line has to match the number of guest disk images (for "
 "this guest: %d)"
 msgstr ""
 
-#: ../v2v/output_libvirt.ml:51
+#: v2v/output_libvirt.ml:51
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:70
+#: common/mltools/JSON_parser.ml:70
 msgid "the value for key ‘%s’ is not a string as expected"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:42
+#: common/mltools/JSON_parser.ml:42
 msgid "the value for the key ‘%s’ is not a string"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:62
+#: common/mltools/JSON_parser.ml:62
 msgid "the value for the key ‘%s’ is not an integer"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:47
+#: common/mltools/JSON_parser.ml:47
 msgid "the value for the key ‘%s’ is not an object"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:51
+#: common/mltools/JSON_parser.ml:51
 msgid "the value is not an object"
 msgstr ""
 
-#: ../common/mltools/JSON_parser.ml:32
+#: common/mltools/JSON_parser.ml:32
 msgid "the value of the key ‘%s’ is not an object"
 msgstr ""
 
-#: ../v2v/create_ovf.ml:485
+#: v2v/create_ovf.ml:485
 msgid ""
 "the virtual size of the input disk %s is not an exact multiple of 512 "
 "bytes.  The virtual size is: %Ld.\n"
@@ -2164,34 +2191,34 @@ msgid ""
 "about this issue."
 msgstr ""
 
-#: ../v2v/output_openstack.ml:166
+#: v2v/output_openstack.ml:166
 msgid ""
 "the ‘%s’ program is not available.  It is needed to communicate with "
 "OpenStack."
 msgstr ""
 
-#: ../v2v/input_libvirt_vcenter_https.ml:42
+#: v2v/input_libvirt_vcenter_https.ml:42
 msgid ""
 "the ‘%s’ program is not available.  It is needed to communicate with vCenter."
 msgstr ""
 
-#: ../v2v/output_rhv.ml:85
+#: v2v/output_rhv.ml:85
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
 msgstr ""
 
-#: ../v2v/output_rhv.ml:83
+#: v2v/output_rhv.ml:83
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:57
+#: v2v/windows_virtio.ml:57
 msgid ""
 "there are no virtio drivers available for this version of Windows (%d.%d %s "
 "%s).  virt-v2v looks for drivers in %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:64
+#: v2v/windows_virtio.ml:64
 msgid ""
 "there are no virtio drivers available for this version of Windows (%d.%d %s "
 "%s).  virt-v2v looks for drivers in %s\n"
@@ -2199,13 +2226,13 @@ msgid ""
 "The guest will be configured to use slower emulated devices."
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:161
+#: v2v/windows_virtio.ml:161
 msgid ""
 "there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v "
 "looks for this driver in %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:166
+#: v2v/windows_virtio.ml:166
 msgid ""
 "there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v "
 "looks for this driver in %s\n"
@@ -2213,7 +2240,7 @@ msgid ""
 "The guest will be configured to use a basic VGA display driver."
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:94
+#: v2v/windows_virtio.ml:94
 msgid ""
 "there is no vioscsi (virtio SCSI) driver for this version of Windows (%d.%d "
 "%s).  virt-v2v looks for this driver in %s\n"
@@ -2221,7 +2248,7 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:99 ../v2v/windows_virtio.ml:89
+#: v2v/windows_virtio.ml:99 v2v/windows_virtio.ml:89
 msgid ""
 "there is no virtio block device driver for this version of Windows (%d.%d "
 "%s).  virt-v2v looks for this driver in %s\n"
@@ -2229,13 +2256,13 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:140
+#: v2v/windows_virtio.ml:140
 msgid ""
 "there is no virtio network driver for this version of Windows (%d.%d %s).  "
 "virt-v2v looks for this driver in %s"
 msgstr ""
 
-#: ../v2v/windows_virtio.ml:145
+#: v2v/windows_virtio.ml:145
 msgid ""
 "there is no virtio network driver for this version of Windows (%d.%d %s).  "
 "virt-v2v looks for this driver in %s\n"
@@ -2243,19 +2270,19 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:410
+#: v2v/output_rhv_upload.ml:410
 msgid ""
 "there must be ‘-oo rhv-disk-uuid’ parameters passed on the command line to "
 "specify the UUIDs of guest disk images (for this guest: %d)"
 msgstr ""
 
-#: ../v2v/v2v.ml:663
+#: v2v/v2v.ml:663
 msgid ""
 "this guest cannot run on the target, because the target does not support %s "
 "firmware (supported firmware on target: %s)"
 msgstr ""
 
-#: ../v2v/convert_windows.ml:244
+#: v2v/convert_windows.ml:244
 msgid ""
 "this guest has Anti-Virus (AV) software and a new virtio block device driver "
 "was installed.  In some circumstances, AV may prevent new drivers from "
@@ -2263,7 +2290,7 @@ msgid ""
 "before doing the conversion."
 msgstr ""
 
-#: ../v2v/convert_windows.ml:242
+#: v2v/convert_windows.ml:242
 msgid ""
 "this guest has Windows Group Policy Objects (GPO) and a new virtio block "
 "device driver was installed.  In some circumstances, Group Policy may "
@@ -2271,37 +2298,37 @@ msgid ""
 "happens, try disabling Group Policy before doing the conversion."
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:514
+#: v2v/parse_libvirt_xml.ml:514
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
 
-#: ../v2v/parse_libvirt_xml.ml:496
+#: v2v/parse_libvirt_xml.ml:496
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
 
-#: ../v2v/parse_libvirt_xml.ml:255 ../v2v/copy_to_local.ml:284
+#: v2v/parse_libvirt_xml.ml:255 v2v/copy_to_local.ml:284
 msgid "this guest has no non-removable disks"
 msgstr ""
 
-#: ../v2v/copy_to_local.ml:119
+#: v2v/copy_to_local.ml:119
 msgid ""
 "too many command line parameters.  See the virt-v2v-copy-to-local(1) manual "
 "page."
 msgstr ""
 
-#: ../v2v/output_rhv_upload.ml:401
+#: v2v/output_rhv_upload.ml:401
 msgid "transfer of disk %d/%d failed, see earlier error messages"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:872
+#: v2v/convert_linux.ml:872
 msgid ""
 "unable to find any valid modprobe configuration file such as /etc/modprobe."
 "conf"
 msgstr ""
 
-#: ../v2v/inspect_source.ml:48
+#: v2v/inspect_source.ml:48
 msgid ""
 "unable to mount the disk image for writing. This has probably happened "
 "because Windows Hibernation or Fast Restart is being used in this guest. You "
@@ -2310,118 +2337,117 @@ msgid ""
 "Original error message: %s"
 msgstr ""
 
-#: ../v2v/parse_ova.ml:295
+#: v2v/parse_ova.ml:295
 msgid "unable to parse line from manifest file: %S"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:722
+#: v2v/convert_linux.ml:722
 msgid ""
 "unable to rebuild initrd (%s) because mkinitrd or dracut was not found in "
 "the guest"
 msgstr ""
 
-#: ../v2v/convert_linux.ml:639
+#: v2v/convert_linux.ml:639
 msgid ""
 "unable to rebuild initrd (%s) because update-initramfs was not found in the "
 "guest"
 msgstr ""
 
-#: ../common/mltools/urandom.ml:37
+#: common/mltools/urandom.ml:37
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr ""
 
-#: ../common/mltools/checksums.ml:58
+#: common/mltools/checksums.ml:58
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: ../v2v/cmdline.ml:204
+#: v2v/cmdline.ml:219
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: ../v2v/cmdline.ml:91
+#: v2v/cmdline.ml:92
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: ../v2v/cmdline.ml:174
+#: v2v/cmdline.ml:189
 msgid "unknown -o option: %s"
 msgstr ""
 
-#: ../v2v/cmdline.ml:185
+#: v2v/cmdline.ml:200
 msgid "unknown -oa option: %s"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:102
+#: v2v/parse_ovf_from_ova.ml:102
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:475
+#: v2v/input_vmx.ml:475
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
-#. ../v2v/create_libvirt_xml.ml:147
-#: ../v2v/create_ovf.ml:442 ../v2v/create_ovf.ml:245
+#: v2v/create_ovf.ml:442 v2v/create_ovf.ml:245 v2v/create_libvirt_xml.ml:147
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: ../v2v/cmdline.ml:354
+#: v2v/cmdline.ml:369
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:491
+#: v2v/input_vmx.ml:491
 msgid "unknown sound device '%s' ignored"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:222
+#: v2v/parse_libvirt_xml.ml:222
 msgid "unknown sound model %s ignored"
 msgstr ""
 
-#: ../v2v/v2v.ml:216
+#: v2v/v2v.ml:216
 msgid "unknown source hypervisor (‘%s’) in metadata"
 msgstr ""
 
-#: ../v2v/parse_ovf_from_ova.ml:154
+#: v2v/parse_ovf_from_ova.ml:154
 msgid "unsupported compression in OVF: %s"
 msgstr ""
 
-#: ../v2v/input_libvirt_vcenter_https.ml:83 ../v2v/copy_to_local.ml:151
+#: v2v/input_libvirt_vcenter_https.ml:83 v2v/copy_to_local.ml:151
 msgid ""
 "vcenter: <vmware:datacenterpath> was not found in the XML.  You need to "
 "upgrade to libvirt ≥ 1.2.20."
 msgstr ""
 
-#: ../v2v/vCenter.ml:125
+#: v2v/vCenter.ml:125
 msgid "vcenter: URL not found: %s"
 msgstr ""
 
-#: ../v2v/vCenter.ml:137
+#: v2v/vCenter.ml:137
 msgid ""
 "vcenter: could not read session cookie from the vCenter Server, conversion "
 "may consume all sessions on the server and fail part way through"
 msgstr ""
 
-#: ../v2v/vCenter.ml:118
+#: v2v/vCenter.ml:118
 msgid "vcenter: incorrect username or password"
 msgstr ""
 
-#: ../v2v/vCenter.ml:120
+#: v2v/vCenter.ml:120
 msgid ""
 "vcenter: incorrect username or password.  You might need to specify the "
 "username in the URI like this: [vpx|esx|..]://USERNAME@[etc]"
 msgstr ""
 
-#: ../v2v/vCenter.ml:130
+#: v2v/vCenter.ml:130
 msgid "vcenter: invalid response from server: %s"
 msgstr ""
 
-#: ../v2v/vCenter.ml:192
+#: v2v/vCenter.ml:192
 msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr ""
 
-#: ../v2v/output_vdsm.ml:162
+#: v2v/output_vdsm.ml:162
 msgid "vdsm: invalid -os parameter does not contain a valid UUID: %s"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:73
+#: v2v/output_openstack.ml:73
 msgid ""
 "virt-v2v -oo server-id=<NAME|UUID> [os-*=...]\n"
 "\n"
@@ -2453,2676 +2479,230 @@ msgid ""
 "The os-* parameters and environment variables are optional.\n"
 msgstr ""
 
-#: ../v2v/parse_libvirt_xml.ml:178
+#: v2v/parse_libvirt_xml.ml:178
 msgid ""
 "virt-v2v does not support local displays, so <graphics type='%s'> in the "
 "input libvirt XML was ignored"
 msgstr ""
 
-#: ../v2v/v2v.ml:574
+#: v2v/v2v.ml:574
 msgid "virt-v2v is unable to convert this guest type (%s/%s)"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:51
+#: v2v/input_vmx.ml:51
 msgid "vmx URI path component looks incorrect"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:49
+#: v2v/input_vmx.ml:49
 msgid "vmx URI remote server name omitted"
 msgstr ""
 
-#: ../v2v/input_vmx.ml:47
+#: v2v/input_vmx.ml:47
 msgid "vmx URI start with ‘ssh://...’"
 msgstr ""
 
-#: ../v2v/parse_vmx.ml:302
+#: v2v/parse_vmx.ml:302
 msgid "vmx parser: cannot parse this line, ignoring: %s"
 msgstr ""
 
-#: ../v2v/parse_vmx.ml:335
+#: v2v/parse_vmx.ml:335
 msgid "vmx parser: duplicate key '%s' ignored"
 msgstr ""
 
-#: ../v2v/output_openstack.ml:245
+#: v2v/output_openstack.ml:245
 msgid "wait for cinder volume status to change to \"available\""
 msgstr ""
 
-#: ../v2v/output_openstack.ml:340
+#: v2v/output_openstack.ml:340
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr ""
 
-#: ../v2v/input_libvirt_vddk.ml:141
+#: v2v/input_libvirt_vddk.ml:141
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: ../v2v/nbdkit_sources.ml:199
+#: v2v/nbdkit_sources.ml:199
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
 msgstr ""
 
-#~ msgid "alignment < 4K"
-#~ msgstr "アライメント < 4K"
-
-#~ msgid "alignment < 64K"
-#~ msgstr "アライメント < 64K"
-
-#, c-format
-#~ msgid ""
-#~ "%s: list filesystems, partitions, block devices, LVM in a VM\n"
-#~ "Copyright (C) 2010 Red Hat Inc.\n"
-#~ "Usage:\n"
-#~ "  %s [--options] -d domname\n"
-#~ "  %s [--options] -a disk.img [-a disk.img ...]\n"
-#~ "Options:\n"
-#~ "  -a|--add image       Add image\n"
-#~ "  --all                Display everything\n"
-#~ "  --blkdevs|--block-devices\n"
-#~ "                       Display block devices\n"
-#~ "  -c|--connect uri     Specify libvirt URI for -d option\n"
-#~ "  --csv                Output as Comma-Separated Values\n"
-#~ "  -d|--domain guest    Add disks from libvirt guest\n"
-#~ "  --echo-keys          Don't turn off echo for passphrases\n"
-#~ "  --extra              Display swap and data filesystems\n"
-#~ "  --filesystems        Display mountable filesystems\n"
-#~ "  --format[=raw|..]    Force disk format for -a option\n"
-#~ "  -h|--human-readable  Human-readable sizes in --long output\n"
-#~ "  --help               Display brief help\n"
-#~ "  --keys-from-stdin    Read passphrases from stdin\n"
-#~ "  -l|--long            Long output\n"
-#~ "  --lvs|--logvols|--logical-volumes\n"
-#~ "                       Display LVM logical volumes\n"
-#~ "  --no-title           No title in --long output\n"
-#~ "  --parts|--partitions Display partitions\n"
-#~ "  --pvs|--physvols|--physical-volumes\n"
-#~ "                       Display LVM physical volumes\n"
-#~ "  --uuid|--uuids       Add UUIDs to --long output\n"
-#~ "  -v|--verbose         Verbose messages\n"
-#~ "  -V|--version         Display version and exit\n"
-#~ "  --vgs|--volgroups|--volume-groups\n"
-#~ "                       Display LVM volume groups\n"
-#~ "  -x                   Trace libguestfs API calls\n"
-#~ "For more information, see the manpage %s(1).\n"
-#~ msgstr ""
-#~ "%s: 仮想マシン内のファイルシステム、パーティション、ブロックデバイス、LVM"
-#~ "の一覧を表示します。\n"
-#~ "Copyright (C) 2010 Red Hat Inc.\n"
-#~ "使い方:\n"
-#~ "  %s [--options] -d domname\n"
-#~ "  %s [--options] -a disk.img [-a disk.img ...]\n"
-#~ "Options:\n"
-#~ "  -a|--add image       ディスクイメージの追加します。\n"
-#~ "  --all                すべて表示します。\n"
-#~ "  --blkdevs|--block-devices\n"
-#~ "                       ブロックデバイスの一覧を表示します。\n"
-#~ "  -c|--connect uri     -d オプションのための任意のlibvirt URI\n"
-#~ "  --csv                出力結果をカンマ区切りの値(CSV形式)で表示します。\n"
-#~ "  -d|--domain guest    libvirtゲストからディスクイメージを追加します。\n"
-#~ "  --echo-keys          パスフレーズのエコーバックをオフにしません。\n"
-#~ "  --extra              スワップとデータのファイルシステムの一覧を表示しま"
-#~ "す。\n"
-#~ "  --filesystems        マウント可能なファイルシステムの一覧を表示しま"
-#~ "す。\n"
-#~ "  --format[=raw|..]    -a オプションのディスク形式を強制します。\n"
-#~ "  -h|--human-readable  --long の出力結果を人間が読みやすいサイズに合わせま"
-#~ "す。\n"
-#~ "  --help               簡易ヘルプを表示します。\n"
-#~ "  --keys-from-stdin    標準入力からパスフレーズを読み込みます。\n"
-#~ "  -l|--long            長い結果を表示します。\n"
-#~ "  --lvs|--logvols|--logical-volumes\n"
-#~ "                       LVMの論理ボリュームを表示します。\n"
-#~ "  --no-title           --long の出力結果にタイトルを表示しません。\n"
-#~ "  --parts|--partitions パーティションの一覧を表示します。\n"
-#~ "  --pvs|--physvols|--physical-volumes\n"
-#~ "                       LVMの物理ボリュームの一覧を表示します。\n"
-#~ "  --uuid|--uuids       --long の出力結果に UUID を追加します。\n"
-#~ "  -v|--verbose         詳細なメッセージ\n"
-#~ "  -V|--version         バージョンを表示し終了します。\n"
-#~ "  --vgs|--volgroups|--volume-groups\n"
-#~ "                       LVMのボリュームグループの一覧を表示します。\n"
-#~ "  -x                   libguestfs APIの呼び出しをトレースします。\n"
-#~ "より詳しい情報は manpage %s(1) をご覧ください。\n"
-
-#, c-format
-#~ msgid "%s: %s: integer out of range\n"
-#~ msgstr "%s: %s: 範囲外の整数\n"
-
-#, c-format
-#~ msgid "%s: some filesystems could not be mounted (ignored)\n"
-#~ msgstr ""
-#~ "%s: いくつかのファイルシステムがマウントできませんでした（無視されまし"
-#~ "た）\n"
-
-#, c-format
-#~ msgid "Operating system: %s\n"
-#~ msgstr "オペレーティングシステム: %s\n"
-
-#, c-format
-#~ msgid "%s mounted on %s\n"
-#~ msgstr "%s を %s にマウントしました\n"
-
-#, c-format
-#~ msgid "Enter key or passphrase (\"%s\"): "
-#~ msgstr "キーかパスフレーズを入力してください。(\"%s\"): "
-
-#, c-format
-#~ msgid "%s: Did you mean to mount one of these filesystems?\n"
-#~ msgstr ""
-#~ "%s: これらのファイルシステムのどれかをマウントしたいということですか?\n"
-
-#, c-format
-#~ msgid "%s: %s: scheme of URI is NULL or empty\n"
-#~ msgstr "%s: %s: URI のスキーマが NULL または空です\n"
-
-#, c-format
-#~ msgid "%s: %s: cannot both a server name and a socket query parameter\n"
-#~ msgstr ""
-#~ "%s: %s: サーバー名とソケットクエリーパラメーターをどちらも指定することはで"
-#~ "きません \n"
-
-#, c-format
-#~ msgid "could not connect to libvirt (code %d, domain %d): %s"
-#~ msgstr "libvirt に接続できませんでした (コード %d, ドメイン %d): %s"
-
-#, c-format
-#~ msgid "%s exited successfully"
-#~ msgstr "%s が正常に終了しました"
-
-#, c-format
-#~ msgid "%s exited with error status %d"
-#~ msgstr "%s がエラーステータス %d で終了しました"
-
-#, c-format
-#~ msgid "%s killed by signal %d (%s)"
-#~ msgstr "%s がシグナル %d (%s) によりキルされました"
-
-#, c-format
-#~ msgid "%s stopped by signal %d (%s)"
-#~ msgstr "%s がシグナル %d (%s) により停止しました"
-
-#, c-format
-#~ msgid "%s exited for an unknown reason (status %d)"
-#~ msgstr "%s が未知の理由で終了しました (ステータス %d)"
-
-#, c-format
-#~ msgid "%s: error getting extended attrs for %s %s\n"
-#~ msgstr "%s: %s %s に対する拡張属性を取得中にエラーが発生しました\n"
-
-#, c-format
-#~ msgid "%s: error: cannot parse xattr count for %s %s\n"
-#~ msgstr ""
-#~ "%s: error: %s %s に対する xattr カウントを構文解析中にエラーが発生しまし"
-#~ "た\n"
-
-#~ msgid "VirtualMachine"
-#~ msgstr "仮想マシン"
-
-#~ msgid "Filesystem"
-#~ msgstr "ファイルシステム"
-
-#~ msgid "1K-blocks"
-#~ msgstr "1K-ブロック"
-
-#~ msgid "Size"
-#~ msgstr "容量"
-
-#~ msgid "Used"
-#~ msgstr "使用"
-
-#~ msgid "Available"
-#~ msgstr "使用可能"
-
-#~ msgid "Use%"
-#~ msgstr "使用%"
-
-#~ msgid "Inodes"
-#~ msgstr "Iノード"
-
-#~ msgid "IUsed"
-#~ msgstr "I使用"
-
-#~ msgid "IFree"
-#~ msgstr "I残り"
-
-#~ msgid "IUse%"
-#~ msgstr "I使用%"
-
-#, c-format
-#~ msgid "use 'alloc file size' to create an image\n"
-#~ msgstr "イメージを作成するには 'alloc file size' を使用します\n"
-
-#, c-format
-#~ msgid "use 'sparse file size' to create a sparse image\n"
-#~ msgstr "スパースなイメージを作成するには 'sparse file size' を使用します\n"
-
-#, c-format
-#~ msgid "%s: unknown command\n"
-#~ msgstr "%s: 未知のコマンド\n"
-
-#~ msgid "Command"
-#~ msgstr "コマンド"
-
-#~ msgid "Description"
-#~ msgstr "説明"
-
-#~ msgid "delete the default POSIX ACL of a directory"
-#~ msgstr "ディレクトリーの標準 POSIX ACL を削除する"
-
-#~ msgid "get the POSIX ACL attached to a file"
-#~ msgstr "ファイルに接続する POSIX ACL を取得する"
-
-#~ msgid "set the POSIX ACL attached to a file"
-#~ msgstr "ファイルに接続する POSIX ACL を設定する"
-
-#~ msgid "add a CD-ROM disk image to examine"
-#~ msgstr "調査するために CD-ROM ディスクイメージを追加する"
-
-#~ msgid "add the disk(s) from a named libvirt domain"
-#~ msgstr "名前付き libvirt ドメインからディスクを追加する"
-
-#~ msgid "add an image to examine or modify"
-#~ msgstr "調査または修正するためにイメージを追加する"
-
-#~ msgid "add a drive in snapshot mode (read-only)"
-#~ msgstr "スナップショットモード（読み込み専用）でドライブを追加する"
-
-#~ msgid "add a drive read-only specifying the QEMU block emulation to use"
-#~ msgstr ""
-#~ "QEMU ブロックエミュレーションを使用するよう指定されたドライブを読み込み専"
-#~ "用で追加する"
-
-#~ msgid "add a temporary scratch drive"
-#~ msgstr "空の一時的なディスクを追加する"
-
-#~ msgid "add a drive specifying the QEMU block emulation to use"
-#~ msgstr ""
-#~ "QEMU ブロックエミュレーションを使用するよう指定されたドライブを追加する"
-
-#~ msgid "allocate and add a disk file"
-#~ msgstr "ディスクイメージのファイルを割り当てて追加する"
-
-#~ msgid "clear Augeas path"
-#~ msgstr "Augeas パスを消去する"
-
-#~ msgid "close the current Augeas handle"
-#~ msgstr "現在の Augeas ハンドルを閉じる"
-
-#~ msgid "define an Augeas node"
-#~ msgstr "Augeas ノードを定義する"
-
-#~ msgid "define an Augeas variable"
-#~ msgstr "Augeas 変数を定義する"
-
-#~ msgid "look up the value of an Augeas path"
-#~ msgstr "Augeas パスの値を検索する"
-
-#~ msgid "create a new Augeas handle"
-#~ msgstr "新しい Augeas ハンドルを作成する"
-
-#~ msgid "insert a sibling Augeas node"
-#~ msgstr "兄弟関係の Augeas ノードを挿入する"
-
-#~ msgid "return the label from an Augeas path expression"
-#~ msgstr "Augeas パス表現からラベルを返す"
-
-#~ msgid "load files into the tree"
-#~ msgstr "ツリーにファイルを読み込む"
-
-#~ msgid "list Augeas nodes under augpath"
-#~ msgstr "augpath 下の Augeas ノードを一覧表示する"
-
-#~ msgid "return Augeas nodes which match augpath"
-#~ msgstr "augpath に一致する Augeas ノードを返す"
-
-#~ msgid "move Augeas node"
-#~ msgstr "Augeas ノードを移動する"
-
-#~ msgid "remove an Augeas path"
-#~ msgstr "Augeas パスを削除する"
-
-#~ msgid "write all pending Augeas changes to disk"
-#~ msgstr "保留になっているすべての Augeas の変更をディスクに書き込む"
-
-#~ msgid "set Augeas path to value"
-#~ msgstr "Augeas パスを値に設定する"
-
-#~ msgid "set multiple Augeas nodes"
-#~ msgstr "複数の Augeas ノードを設定する"
-
-#~ msgid "test availability of some parts of the API"
-#~ msgstr "API のいくつかの部分が利用可能かを確認する"
-
-#~ msgid "return a list of all optional groups"
-#~ msgstr "すべてのオプショングループの一覧を返す"
-
-#~ msgid "upload base64-encoded data to file"
-#~ msgstr "base64 エンコードされたデータをファイルへアップロードする"
-
-#~ msgid "download file and encode as base64"
-#~ msgstr "ファイルをダウンロードして base64 エンコードする"
-
-#~ msgid "print block device attributes"
-#~ msgstr "ブロックデバイス属性を出力する"
-
-#~ msgid "flush device buffers"
-#~ msgstr "デバイスのバッファーをフラッシュする"
-
-#~ msgid "get blocksize of block device"
-#~ msgstr "ブロックデバイスのブロック容量を取得する"
-
-#~ msgid "is block device set to read-only"
-#~ msgstr "ブロックデバイスが読み込み専用に設定されているかを確認する"
-
-#~ msgid "get total size of device in bytes"
-#~ msgstr "デバイスの合計容量をバイト単位で取得する"
-
-#~ msgid "get sectorsize of block device"
-#~ msgstr "ブロックデバイスのセクター容量を取得する"
-
-#~ msgid "get total size of device in 512-byte sectors"
-#~ msgstr "デバイスの合計容量を 512 バイトセクターで取得する"
-
-#~ msgid "reread partition table"
-#~ msgstr "パーティションテーブルを再読み込みする"
-
-#~ msgid "set blocksize of block device"
-#~ msgstr "ブロックデバイスのブロック容量を設定する"
-
-#~ msgid "set block device to read-only"
-#~ msgstr "ブロックデバイスを読み込み専用に設定する"
-
-#~ msgid "set block device to read-write"
-#~ msgstr "ブロックデバイスを読み書き可能に設定する"
-
-#~ msgid "add devices to a btrfs filesystem"
-#~ msgstr "デバイスを btrfs ファイルシステムに追加する"
-
-#~ msgid "remove devices from a btrfs filesystem"
-#~ msgstr "btrfs ファイルシステムからデバイスを削除する"
-
-#~ msgid "balance a btrfs filesystem"
-#~ msgstr "btrfs ファイルシステムを再バランスする"
-
-#~ msgid "resize a btrfs filesystem"
-#~ msgstr "Btrfs ファイルシステムの容量を変更する"
-
-#~ msgid "sync a btrfs filesystem"
-#~ msgstr "btrfs ファイルシステムを同期する"
-
-#~ msgid "check a btrfs filesystem"
-#~ msgstr "btrfs ファイルシステムを確認する"
-
-#~ msgid "enable or disable the seeding feature of device"
-#~ msgstr "デバイスのシード機能を有効化または無効化する"
-
-#~ msgid "list btrfs snapshots and subvolumes"
-#~ msgstr "btrfs のスナップショットとサブボリュームを表示する"
-
-#~ msgid "set default btrfs subvolume"
-#~ msgstr "初期状態の btrfs サブボリュームを設定する"
-
-#~ msgid "create a btrfs snapshot"
-#~ msgstr "btrfs スナップショットを作成する"
-
-#~ msgid "return canonical device name"
-#~ msgstr "正規デバイス名を返す"
-
-#~ msgid "get the Linux capabilities attached to a file"
-#~ msgstr "ファイルに接続する Linux ケイパビリティを取得する"
-
-#~ msgid "set the Linux capabilities attached to a file"
-#~ msgstr "ファイルに接続する Linux ケイパビリティを設定する"
-
-#~ msgid "return true path on case-insensitive filesystem"
-#~ msgstr "大文字小文字を区別しないファイルシステムの実パスを返す"
-
-#~ msgid "list the contents of a file"
-#~ msgstr "ファイルの内容を表示する"
-
-#~ msgid "compute MD5, SHAx or CRC checksum of file"
-#~ msgstr "ファイルの MD5, SHAx または CRC チェックサムを計算する"
-
-#~ msgid "compute MD5, SHAx or CRC checksum of the contents of a device"
-#~ msgstr "デバイスの内容の MD5, SHAx または CRC チェックサムを計算する"
-
-#~ msgid "compute MD5, SHAx or CRC checksum of files in a directory"
-#~ msgstr ""
-#~ "ディレクトリにあるファイルの MD5, SHAx または CRC チェックサムを計算する"
-
-#~ msgid "change file mode"
-#~ msgstr "ファイルのモードを変更する"
-
-#~ msgid "change file owner and group"
-#~ msgstr "ファイルの所有者とグループを変更する"
-
-#~ msgid "run a command from the guest filesystem"
-#~ msgstr "ゲストのファイルシステムからコマンドを実行する"
-
-#~ msgid "run a command, returning lines"
-#~ msgstr "コマンドを実行して行を返す"
-
-#~ msgid "output compressed device"
-#~ msgstr "圧縮されたデバイスを出力する"
-
-#~ msgid "output compressed file"
-#~ msgstr "圧縮されたファイルを出力する"
-
-#~ msgid "add hypervisor parameters"
-#~ msgstr "ハイパーバイザーのパラメーターを追加する"
-
-#~ msgid "copy from source device to destination device"
-#~ msgstr "ソースデバイスから宛先デバイスにコピーする"
-
-#~ msgid "copy from source device to destination file"
-#~ msgstr "ソースデバイスから宛先ファイルにコピーする"
-
-#~ msgid "copy from source file to destination device"
-#~ msgstr "ソースファイルから宛先デバイスにコピーする"
-
-#~ msgid "copy from source file to destination file"
-#~ msgstr "ソースファイルから宛先ファイルにコピーする"
-
-#~ msgid "copy local files or directories into an image"
-#~ msgstr "ローカルファイルまたはディレクトリをイメージの中にコピーする"
-
-#~ msgid "copy remote files or directories out of an image"
-#~ msgstr "リモートファイルまたはディレクトリをイメージの外にコピーする"
-
-#~ msgid "copy size bytes from source to destination using dd"
-#~ msgstr "dd を使用して size バイトをソースからターゲットにコピーする"
-
-#~ msgid "copy a file"
-#~ msgstr "ファイルをコピーする"
-
-#~ msgid "copy a file or directory recursively"
-#~ msgstr "ファイルもしくはディレクトリーを再帰的にコピーする"
-
-#~ msgid "copy from source to destination using dd"
-#~ msgstr "dd コマンドを使用して転送元から転送先へコピーする"
-
-#~ msgid "debugging and internals"
-#~ msgstr "デバッグおよび内部情報"
-
-#~ msgid "debug the drives (internal use only)"
-#~ msgstr "ドライブをデバッグする（内部利用専用）"
-
-#~ msgid "upload a file to the appliance (internal use only)"
-#~ msgstr "ファイルをアプライアンスにアップロードする（内部利用専用）"
-
-#~ msgid "delete a previously registered event handler"
-#~ msgstr "前に登録したイベントハンドラーを削除する"
-
-#~ msgid "convert device to index"
-#~ msgstr "デバイスをインデックスに変換する"
-
-#~ msgid "report file system disk space usage"
-#~ msgstr "ファイルシステムのディスク使用量を報告する"
-
-#~ msgid "report file system disk space usage (human readable)"
-#~ msgstr "ファイルシステムのディスク使用量を（読みやすく）報告する"
-
-#~ msgid "detect the disk format of a disk image"
-#~ msgstr "ディスクイメージのディスク形式を検知する"
-
-#~ msgid "return whether disk has a backing file"
-#~ msgstr "ディスクがバッキングファイルを持つかどうかを返す"
-
-#~ msgid "return virtual size of a disk"
-#~ msgstr "ディスクの仮想容量を返す"
-
-#~ msgid "display an image"
-#~ msgstr "イメージを表示する"
-
-#~ msgid "return kernel messages"
-#~ msgstr "カーネルメッセージを戻す"
-
-#~ msgid "download a file to the local machine"
-#~ msgstr "ローカルマシンにファイルをダウンロードする"
-
-#~ msgid "download a file to the local machine with offset and size"
-#~ msgstr "オフセットと容量を用いてファイルをローカルマシンにダウンロードする"
-
-#~ msgid "drop kernel page cache, dentries and inodes"
-#~ msgstr "カーネルのページキャッシュ、dentry および inode を破棄する"
-
-#~ msgid "estimate file space usage"
-#~ msgstr "ファイル使用量を見積もる"
-
-#~ msgid "check an ext2/ext3 filesystem"
-#~ msgstr "ext2/ext3 ファイルシステムを確認する"
-
-#~ msgid "display a line of text"
-#~ msgstr "一連のテキストを表示する"
-
-#~ msgid "echo arguments back to the client"
-#~ msgstr "引数をクライアントにエコーバックする"
-
-#~ msgid "edit a file"
-#~ msgstr "ファイルを編集する"
-
-#~ msgid "return lines matching a pattern"
-#~ msgstr "パターンに一致する行を返す"
-
-#~ msgid "test if two files have equal contents"
-#~ msgstr "2つのファイルが同じ内容かを確認する"
-
-#~ msgid "register a handler for an event or events"
-#~ msgstr "イベント用のハンドラーを登録する"
-
-#~ msgid "test if file or directory exists"
-#~ msgstr "ファイルまたはディレクトリが存在するかを確認する"
-
-#~ msgid "install the SYSLINUX bootloader on an ext2/3/4 or btrfs filesystem"
-#~ msgstr ""
-#~ "ext2/3/4 または btrfs ファイルシステムに SYSLINUX ブートローダーをインス"
-#~ "トールします"
-
-#~ msgid "preallocate a file in the guest filesystem"
-#~ msgstr "仮想マシンのファイルシステムにファイルを事前に割り当てる"
-
-#~ msgid "determine file type"
-#~ msgstr "ファイル形式を決定する"
-
-#~ msgid "detect the architecture of a binary file"
-#~ msgstr "バイナリファイルのアーキテクチャーを検知する"
-
-#~ msgid "return the size of the file in bytes"
-#~ msgstr "ファイル容量をバイト単位で返す"
-
-#~ msgid "check if filesystem is available"
-#~ msgstr "ファイルシステムが利用可能ならばチェックする"
-
-#~ msgid "fill a file with octets"
-#~ msgstr "8 進値でファイルを埋める"
-
-#~ msgid "fill a directory with empty files"
-#~ msgstr "ディレクトリーを空のファイルで埋める"
-
-#~ msgid "fill a file with a repeating pattern of bytes"
-#~ msgstr "バイトのパターンの繰り返しでファイルを埋める"
-
-#~ msgid "find all files and directories"
-#~ msgstr "すべてのファイルおよびディレクトリーを検索する"
-
-#~ msgid "find all files and directories, returning NUL-separated list"
-#~ msgstr ""
-#~ "すべてのファイルおよびディレクトリーを検索して NULL 区切り一覧を返す"
-
-#~ msgid "find a filesystem by label"
-#~ msgstr "ファイルシステムをラベルにより検索する"
-
-#~ msgid "find a filesystem by UUID"
-#~ msgstr "ファイルシステムを UUID により検索する"
-
-#~ msgid "run the filesystem checker"
-#~ msgstr "ファイルシステムのチェッカーを実行する"
-
-#~ msgid "trim free space in a filesystem"
-#~ msgstr "ファイルシステムにある空き領域を取り除く"
-
-#~ msgid "get the additional kernel options"
-#~ msgstr "追加のカーネルオプションを取得する"
-
-#~ msgid "get the backend"
-#~ msgstr "バックエンドを取得する"
-
-#~ msgid "get autosync mode"
-#~ msgstr "自動同期モードを取得する"
-
-#~ msgid "get the appliance cache directory"
-#~ msgstr "アプライアンスのキャッシュディレクトリーを取得する"
-
-#~ msgid "get direct appliance mode flag"
-#~ msgstr "直接アプライアンスモードのフラグを取得する"
-
-#~ msgid "get ext2 file attributes of a file"
-#~ msgstr "ファイルの ext2 ファイル属性を取得する"
-
-#~ msgid "get ext2 file generation of a file"
-#~ msgstr "ファイルの ext2 ファイル世代を取得する"
-
-#~ msgid "get the ext2/3/4 filesystem label"
-#~ msgstr "ext2/3/4 ファイルシステムのラベルを取得する"
-
-#~ msgid "get the ext2/3/4 filesystem UUID"
-#~ msgstr "ext2/3/4 ファイルシステムの UUID を取得する"
-
-#~ msgid "get the hypervisor binary"
-#~ msgstr "ハイパーバイザーのバイナリを取得する"
-
-#~ msgid "challenge of i'th requested credential"
-#~ msgstr "i 番目の要求されたクレディンシャルのチャレンジ"
-
-#~ msgid "default result of i'th requested credential"
-#~ msgstr "i 番目の要求されたクレディンシャルの標準の結果"
-
-#~ msgid "prompt of i'th requested credential"
-#~ msgstr "i 番目の要求されたクレディンシャルのプロンプト"
-
-#~ msgid "get list of credentials requested by libvirt"
-#~ msgstr "libvirt により要求されたクレディンシャルの一覧を取得する"
-
-#~ msgid "get memory allocated to the hypervisor"
-#~ msgstr "ハイパーバイザーに割り当てられたメモリを取得する"
-
-#~ msgid "get enable network flag"
-#~ msgstr "有効なネットワークフラグを取得する"
-
-#~ msgid "get the search path"
-#~ msgstr "検索パスを取得する"
-
-#~ msgid "get process group flag"
-#~ msgstr "プロセスグループのフラグを取得する"
-
-#~ msgid "get PID of hypervisor"
-#~ msgstr "ハイパーバイザーの PID を取得する"
-
-#~ msgid "get the program name"
-#~ msgstr "プログラム名を取得する"
-
-#~ msgid "get the hypervisor binary (usually qemu)"
-#~ msgstr "ハイパーバイザーのバイナリ (通常は QEMU) を取得する"
-
-#~ msgid "get recovery process enabled flag"
-#~ msgstr "リカバリープロセス有効化のフラグを取得する"
-
-#~ msgid "get SELinux enabled flag"
-#~ msgstr "SELinux 有効化フラグを取得する"
-
-#~ msgid "get number of virtual CPUs in appliance"
-#~ msgstr "アプライアンスの仮想 CPU 数を取得する"
-
-#~ msgid "get the temporary directory"
-#~ msgstr "一時的なディレクトリーを取得する"
-
-#~ msgid "get command trace enabled flag"
-#~ msgstr "コマンドトレースの有効化フラグを取得する"
-
-#~ msgid "get the current umask"
-#~ msgstr "現在の umask を取得する"
-
-#~ msgid "get verbose mode"
-#~ msgstr "冗長化のモードを取得する"
-
-#~ msgid "get SELinux security context"
-#~ msgstr "SELinux のセキュリティコンテキストを取得する"
-
-#~ msgid "get a single extended attribute"
-#~ msgstr "単一の拡張属性を取得する"
-
-#~ msgid "list extended attributes of a file or directory"
-#~ msgstr "ファイルまたはディレクトリの拡張属性を一覧表示する"
-
-#~ msgid "expand wildcards in command"
-#~ msgstr "コマンドにあるワイルドカードを展開する"
-
-#~ msgid "expand a wildcard path"
-#~ msgstr "ワイルドカードのあるパスを展開する"
-
-#~ msgid "install GRUB 1"
-#~ msgstr "GRUB 1 をインストールする"
-
-#~ msgid "return first 10 lines of a file"
-#~ msgstr "ファイルの先頭 10 行を返す"
-
-#~ msgid "return first N lines of a file"
-#~ msgstr "ファイルの先頭 N 行を返す"
-
-#~ msgid "dump a file in hexadecimal"
-#~ msgstr "ファイルを 16 進でダンプする"
-
-#~ msgid "edit with a hex editor"
-#~ msgstr "16 進エディターで編集する"
-
-#~ msgid "close the current hivex handle"
-#~ msgstr "現在の hivex ハンドルを閉じる"
-
-#~ msgid "commit (write) changes back to the hive"
-#~ msgstr "ハイブに変更を (書き込み) コミットする"
-
-#~ msgid "add a child node"
-#~ msgstr "子ノードを追加する"
-
-#~ msgid "return list of nodes which are subkeys of node"
-#~ msgstr "ノードのサブキーであるノードの一覧を返す"
-
-#~ msgid "delete a node (recursively)"
-#~ msgstr "ノードを削除する (再帰的)"
-
-#~ msgid "return the named child of node"
-#~ msgstr "ノードの名前つき子ノードを返す"
-
-#~ msgid "return the named value"
-#~ msgstr "名前つき値を返す"
-
-#~ msgid "return the name of the node"
-#~ msgstr "ノードの名前を返す"
-
-#~ msgid "return the parent of node"
-#~ msgstr "ノードの親を返す"
-
-#~ msgid "set or replace a single value in a node"
-#~ msgstr "ノードにおいて単一の値を設定または置換する"
-
-#~ msgid "return list of values attached to node"
-#~ msgstr "ノードに接続されている値の一覧を返す"
-
-#~ msgid "open a Windows Registry hive file"
-#~ msgstr "Windows レジストリのハイブファイルを開く"
-
-#~ msgid "return the root node of the hive"
-#~ msgstr "ハイブのルートノードを返す"
-
-#~ msgid "return the key field from the (key, datatype, data) tuple"
-#~ msgstr "(キー、データ形式、データ) の組からキーの項目を返す"
-
-#~ msgid "return the data type from the (key, datatype, data) tuple"
-#~ msgstr "(キー、データ形式、データ) の組からデータ形式の項目を返す"
-
-#~ msgid "return the data field from the (key, datatype, data) tuple"
-#~ msgstr "(キー、データ形式、データ) の組からデータの項目を返す"
-
-#~ msgid "list the contents of a single file in an initrd"
-#~ msgstr "initrd にある一つのファイルの内容を表示する"
-
-#~ msgid "list files in an initrd"
-#~ msgstr "initrd にあるファイルを一覧表示する"
-
-#~ msgid "add an inotify watch"
-#~ msgstr "inotify watch を追加する"
-
-#~ msgid "close the inotify handle"
-#~ msgstr "inotify ハンドルを閉じる"
-
-#~ msgid "return list of watched files that had events"
-#~ msgstr "イベントのあったウォッチ中のファイルの一覧を返す"
-
-#~ msgid "create an inotify handle"
-#~ msgstr "inotify ハンドルを作成する"
-
-#~ msgid "return list of inotify events"
-#~ msgstr "inotify イベントの一覧を返す"
-
-#~ msgid "remove an inotify watch"
-#~ msgstr "inotify watch を削除する"
-
-#~ msgid "get architecture of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムのアーキテクチャーを取得する"
-
-#~ msgid "get distro of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムのディストリビューションを取得する"
-
-#~ msgid "get drive letter mappings"
-#~ msgstr "ドライブレターのマッピングを取得する"
-
-#~ msgid "get filesystems associated with inspected operating system"
-#~ msgstr ""
-#~ "検査したオペレーティングシステムに関連するファイルシステムを取得する"
-
-#~ msgid "get format of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムのフォーマットを取得する"
-
-#~ msgid "get hostname of the operating system"
-#~ msgstr "オペレーティングシステムのホスト名を取得する"
-
-#~ msgid "get the icon corresponding to this operating system"
-#~ msgstr "このオペレーティングシステムに対応するアイコンを取得する"
-
-#~ msgid "get major version of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムのメジャーバージョンを取得する"
-
-#~ msgid "get minor version of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムのマイナーバージョンを取得する"
-
-#~ msgid "get mountpoints of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムのマウントポイントを取得する"
-
-#~ msgid "get package format used by the operating system"
-#~ msgstr "オペレーティングシステムにより使用されるパッケージ形式を取得する"
-
-#~ msgid "get package management tool used by the operating system"
-#~ msgstr ""
-#~ "オペレーティングシステムにより使用されるパッケージ管理ツールを取得する"
-
-#~ msgid "get product name of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムの製品名を取得する"
-
-#~ msgid "get product variant of inspected operating system"
-#~ msgstr "検査するオペレーティングシステムの製品種別を取得する"
-
-#~ msgid "return list of operating systems found by last inspection"
-#~ msgstr "最後の検査により見つかったオペレーティングシステムの一覧を返す"
-
-#~ msgid "get type of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムの種類を取得する"
-
-#~ msgid "get Windows CurrentControlSet of inspected operating system"
-#~ msgstr ""
-#~ "検出されたオペレーティングシステムの Windows CurrentControlSet を取得する"
-
-#~ msgid "get Windows systemroot of inspected operating system"
-#~ msgstr "検査したオペレーティングシステムの Windows システムルートを取得する"
-
-#~ msgid "get live flag for install disk"
-#~ msgstr "インストールディスクの live フラグを取得する"
-
-#~ msgid "get multipart flag for install disk"
-#~ msgstr "インストールディスクの multipart フラグを取得する"
-
-#~ msgid "get netinst (network installer) flag for install disk"
-#~ msgstr ""
-#~ "インストールディスクの netinst (ネットワークインストーラー) フラグを取得す"
-#~ "る"
-
-#~ msgid "get list of applications installed in the operating system"
-#~ msgstr ""
-#~ "オペレーティングシステムにインストールされているアプリケーションの一覧を取"
-#~ "得する"
-
-#~ msgid "inspect disk and return list of operating systems found"
-#~ msgstr "ディスクを検査して、見つかったオペレーティングシステムの一覧を返す"
-
-#~ msgid "test if block device"
-#~ msgstr "ブロックデバイスかを確認する"
-
-#~ msgid "test if character device"
-#~ msgstr "キャラクターデバイスかを確認する"
-
-#~ msgid "is in configuration state"
-#~ msgstr "設定状態にあるかを確認する"
-
-#~ msgid "test if a directory"
-#~ msgstr "ディレクトリーかを確認する"
-
-#~ msgid "test if FIFO (named pipe)"
-#~ msgstr "FIFO (名前付きパイプ) かを確認する"
-
-#~ msgid "test if a regular file"
-#~ msgstr "通常のファイルかを確認する"
-
-#~ msgid "test if socket"
-#~ msgstr "ソケットかを確認する"
-
-#~ msgid "test if symbolic link"
-#~ msgstr "シンボリックリンクかを確認する"
-
-#~ msgid "test if a device is a whole device"
-#~ msgstr "デバイスがデバイス全体かを確認する"
-
-#~ msgid "test if a file contains all zero bytes"
-#~ msgstr "ファイルがすべて 0 のバイトを含むかを確認する"
-
-#~ msgid "test if a device contains all zero bytes"
-#~ msgstr "デバイスがすべて 0 のバイトであるかを確認する"
-
-#~ msgid "get ISO information from primary volume descriptor of ISO file"
-#~ msgstr "ISO ファイルの主ボリューム記述子から ISO の情報を取得する"
-
-#~ msgid "get ISO information from primary volume descriptor of device"
-#~ msgstr "デバイスの主ボリューム記述子から ISO の情報を取得する"
-
-#~ msgid "close the systemd journal"
-#~ msgstr "systemd ジャーナルを閉じる"
-
-#~ msgid "read the current journal entry"
-#~ msgstr "現在のジャーナル項目を読み込む"
-
-#~ msgid "get the data threshold for reading journal entries"
-#~ msgstr "ジャーナル項目の読み込み用のデータ閾値を取得する"
-
-#~ msgid "move to the next journal entry"
-#~ msgstr "次のジャーナル項目に移動する"
-
-#~ msgid "open the systemd journal"
-#~ msgstr "systemd ジャーナルを開く"
-
-#~ msgid "set the data threshold for reading journal entries"
-#~ msgstr "ジャーナル項目の読み込み用のデータ閾値を設定する"
-
-#~ msgid "skip forwards or backwards in the journal"
-#~ msgstr "ジャーナルで前または後へスキップする"
-
-#~ msgid "kill the hypervisor"
-#~ msgstr "ハイパーバイザーを強制停止する"
-
-#~ msgid "launch the backend"
-#~ msgstr "バックエンドを起動する"
-
-#~ msgid "change working directory"
-#~ msgstr "作業ディレクトリを変更する"
-
-#~ msgid "scan and create Windows dynamic disk volumes"
-#~ msgstr "Windows ダイナミックディスクのボリュームをスキャンおよび作成する"
-
-#~ msgid "return the disks in a Windows dynamic disk group"
-#~ msgstr "Windows ダイナミックディスクのグループにあるディスクを返す"
-
-#~ msgid "return the name of a Windows dynamic disk group"
-#~ msgstr "Windows ダイナミックディスクのグループの名前を返す"
-
-#~ msgid "return the volumes in a Windows dynamic disk group"
-#~ msgstr "Windows ダイナミックディスクのグループにあるボリュームを返す"
-
-#~ msgid "remove all Windows dynamic disk volumes"
-#~ msgstr "すべての Windows ダイナミックディスクのボリュームを削除する"
-
-#~ msgid "scan for Windows dynamic disks"
-#~ msgstr "Windows ダイナミックディスクをスキャンする"
-
-#~ msgid "return the hint field of a Windows dynamic disk volume"
-#~ msgstr "Windows ダイナミックディスクのボリュームのヒント項目を返す"
-
-#~ msgid "return the partitions in a Windows dynamic disk volume"
-#~ msgstr "Windows ダイナミックディスクのボリュームにあるパーティションを返す"
-
-#~ msgid "return the type of a Windows dynamic disk volume"
-#~ msgstr "Windows ダイナミックディスクのボリュームの形式を返す"
-
-#~ msgid "list 9p filesystems"
-#~ msgstr "9p ファイルシステムを一覧表示する"
-
-#~ msgid "list the block devices"
-#~ msgstr "ブロックデバイスを一覧表示する"
-
-#~ msgid "mapping of disk labels to devices"
-#~ msgstr "ディスクラベルからデバイスにマッピングする"
-
-#~ msgid "list device mapper devices"
-#~ msgstr "デバイスマッパーデバイスを一覧表示する"
-
-#~ msgid "list event handlers"
-#~ msgstr "イベントハンドラーを一覧表示する"
-
-#~ msgid "list filesystems"
-#~ msgstr "ファイルシステムを一覧表示する"
-
-#~ msgid "list all Windows dynamic disk partitions"
-#~ msgstr "すべての Windows ダイナミックディスクのパーティションを一覧表示する"
-
-#~ msgid "list all Windows dynamic disk volumes"
-#~ msgstr "すべての Windows ダイナミックディスクのボリュームを一覧表示する"
-
-#~ msgid "list Linux md (RAID) devices"
-#~ msgstr "Linux md (RAID) デバイスを一覧表示する"
-
-#~ msgid "list the partitions"
-#~ msgstr "パーティションを一覧表示する"
-
-#~ msgid "list the files in a directory (long format)"
-#~ msgstr "ディレクトリにあるファイルを一覧表示する（ロング形式）"
-
-#~ msgid "list the files in a directory (long format with SELinux contexts)"
-#~ msgstr ""
-#~ "ディレクトリーにあるファイルを（SELinux コンテキストを用いたロング形式で）"
-#~ "一覧表示する"
-
-#~ msgid "create a hard link"
-#~ msgstr "ハードリンクを作成する"
-
-#~ msgid "create a symbolic link"
-#~ msgstr "シンボリックリンクを作成する"
-
-#~ msgid "remove extended attribute of a file or directory"
-#~ msgstr "ファイルまたはディレクトリの拡張属性を削除する"
-
-#~ msgid "list the files in a directory"
-#~ msgstr "ディレクトリにあるファイルを一覧表示する"
-
-#~ msgid "get list of files in a directory"
-#~ msgstr "ディレクトリーにあるファイルの一覧を取得する"
-
-#~ msgid "set extended attribute of a file or directory"
-#~ msgstr "ファイルまたはディレクトリの拡張属性を取得する"
-
-#~ msgid "get file information for a symbolic link"
-#~ msgstr "シンボリックリンクのファイル情報を取得する"
-
-#~ msgid "lstat on multiple files"
-#~ msgstr "複数のファイルにおいて lstat する"
-
-#~ msgid "add a key on a LUKS encrypted device"
-#~ msgstr "LUKS 暗号デバイスにキーを追加する"
-
-#~ msgid "close a LUKS device"
-#~ msgstr "LUKS デバイスを閉じる"
-
-#~ msgid "format a block device as a LUKS encrypted device"
-#~ msgstr "ブロックデバイスを LUKS 暗号化デバイスとしてフォーマットする"
-
-#~ msgid "remove a key from a LUKS encrypted device"
-#~ msgstr "LUKS 暗号化デバイスからキーを削除する"
-
-#~ msgid "open a LUKS-encrypted block device"
-#~ msgstr "LUKS 暗号化ブロックデバイスを開く"
-
-#~ msgid "open a LUKS-encrypted block device read-only"
-#~ msgstr "LUKS 暗号化ブロックデバイスを読み込み専用で開く"
-
-#~ msgid "create an LVM logical volume"
-#~ msgstr "LVM 論理ボリュームを作成する"
-
-#~ msgid "create an LVM logical volume in % remaining free space"
-#~ msgstr "% 残り空き領域 に LVM 論理ボリュームを作成する"
-
-#~ msgid "get canonical name of an LV"
-#~ msgstr "論理ボリュームの正規名を取得する"
-
-#~ msgid "clear LVM device filter"
-#~ msgstr "LVM デバイスフィルターを解除する"
-
-#~ msgid "remove all LVM LVs, VGs and PVs"
-#~ msgstr "LVM のすべての LV, VG および PV を削除する"
-
-#~ msgid "set LVM device filter"
-#~ msgstr "LVM デバイスフィルターを設定する"
-
-#~ msgid "remove an LVM logical volume"
-#~ msgstr "LVM 論理ボリュームを削除する"
-
-#~ msgid "rename an LVM logical volume"
-#~ msgstr "LVM 論理ボリュームの名前を変更する"
-
-#~ msgid "resize an LVM logical volume"
-#~ msgstr "LVM 論理ボリュームの容量を変更する"
-
-#~ msgid "expand an LV to fill free space"
-#~ msgstr "LV を空き領域を埋めるよう拡張する"
-
-#~ msgid "list the LVM logical volumes (LVs)"
-#~ msgstr "LVM 論理ボリューム (LV) を一覧表示する"
-
-#~ msgid "get the UUID of a logical volume"
-#~ msgstr "論理ボリュームの UUID を取得する"
-
-#~ msgid "lgetxattr on multiple files"
-#~ msgstr "複数のファイルにおいて lgetxattr する"
-
-#~ msgid "open the manual"
-#~ msgstr "マニュアルを開く"
-
-#~ msgid "maximum number of disks that may be added"
-#~ msgstr "追加されるディスクの最大数"
-
-#~ msgid "create a Linux md (RAID) device"
-#~ msgstr "Linux MD (RAID) デバイスを作成する"
-
-#~ msgid "obtain metadata for an MD device"
-#~ msgstr "MD デバイスのメタ情報を取得する"
-
-#~ msgid "get underlying devices from an MD device"
-#~ msgstr "MD デバイスから基礎となるデバイスを取得する"
-
-#~ msgid "stop a Linux md (RAID) device"
-#~ msgstr "Linux MD (RAID) デバイスを停止する"
-
-#~ msgid "create a directory"
-#~ msgstr "ディレクトリーを作成する"
-
-#~ msgid "create a directory with a particular mode"
-#~ msgstr "特定モードでディレクトリーを作成する"
-
-#~ msgid "create a directory and parents"
-#~ msgstr "ディレクトリーとその親ディレクトリーを作成する"
-
-#~ msgid "create a temporary directory"
-#~ msgstr "作業用ディレクトリーを作成する"
-
-#~ msgid "create an ext2/ext3/ext4 filesystem on device"
-#~ msgstr "デバイスに ext2/ext3/ext4 ファイルシステムを作成する"
-
-#~ msgid "make ext2/3/4 filesystem with external journal"
-#~ msgstr "外部ジャーナルとともに ext2/3/4 ファイルシステムを作成する"
-
-#~ msgid "make ext2/3/4 external journal"
-#~ msgstr "ext2/3/4 の外部ジャーナルを作成する"
-
-#~ msgid "make ext2/3/4 external journal with label"
-#~ msgstr "ext2/3/4 の外部ジャーナルをラベル付きで作成する"
-
-#~ msgid "make ext2/3/4 external journal with UUID"
-#~ msgstr "UUID を指定して ext2/3/4 の外部ジャーナルを作成する"
-
-#~ msgid "make FIFO (named pipe)"
-#~ msgstr "FIFO (名前付きパイプ) を作成する"
-
-#~ msgid "make a filesystem"
-#~ msgstr "ファイルシステムを作成する"
-
-#~ msgid "make a filesystem with block size"
-#~ msgstr "ブロックサイズを指定してファイルシステムを作成する"
-
-#~ msgid "create a btrfs filesystem"
-#~ msgstr "btrfs ファイルシステムを作成する"
-
-#~ msgid "make lost+found directory on an ext2/3/4 filesystem"
-#~ msgstr "ext2/3/4 ファイルシステムに lost+found ディレクトリーを作成する"
-
-#~ msgid "create a mountpoint"
-#~ msgstr "マウントポイントを作成する"
-
-#~ msgid "make block, character or FIFO devices"
-#~ msgstr "ブロック、キャラクター、FIFO デバイスを作成する"
-
-#~ msgid "make block device node"
-#~ msgstr "ブロックデバイスのノードを作成する"
-
-#~ msgid "make char device node"
-#~ msgstr "キャラクターデバイスのノードを作成する"
-
-#~ msgid "create a swap partition"
-#~ msgstr "スワップパーティションを作成する"
-
-#~ msgid "create a swap partition with a label"
-#~ msgstr "スワップパーティションをラベル付きで作成する"
-
-#~ msgid "create a swap partition with an explicit UUID"
-#~ msgstr "UUID を指定してスワップパーティションを作成する"
-
-#~ msgid "create a swap file"
-#~ msgstr "スワップファイルを作成する"
-
-#~ msgid "create a temporary file"
-#~ msgstr "一時的なファイルを作成する"
-
-#~ msgid "load a kernel module"
-#~ msgstr "カーネルモジュールを読み込む"
-
-#~ msgid "view a file"
-#~ msgstr "ファイルを表示する"
-
-#~ msgid "mount a guest disk at a position in the filesystem"
-#~ msgstr ""
-#~ "ファイルシステムのポジションにおいて仮想マシンのディスクをマウントする"
-
-#~ msgid "mount 9p filesystem"
-#~ msgstr "9p ファイルシステムをマウントする"
-
-#~ msgid "mount on the local filesystem"
-#~ msgstr "ローカルファイルシステムにマウントする"
-
-#~ msgid "run main loop of mount on the local filesystem"
-#~ msgstr "ローカルファイルシステムにマウントのメインループを実行する"
-
-#~ msgid "mount a file using the loop device"
-#~ msgstr "ループデバイスを使用してファイルをマウントする"
-
-#~ msgid "mount a guest disk with mount options"
-#~ msgstr "マウントオプションでゲストディスクをマウントする"
-
-#~ msgid "mount a guest disk, read-only"
-#~ msgstr "ゲストのディスクを読み込み専用でマウントする"
-
-#~ msgid "mount a guest disk with mount options and vfstype"
-#~ msgstr ""
-#~ "マウントオプションと仮想ファイルシステムでゲストディスクをマウントする"
-
-#~ msgid "show mountpoints"
-#~ msgstr "マウントポイントの一覧を表示する"
-
-#~ msgid "show mounted filesystems"
-#~ msgstr "マウントされたファイルシステムの一覧を表示する"
-
-#~ msgid "move a file"
-#~ msgstr "ファイルを移動する"
-
-#~ msgid "return number of whole block devices (disks) added"
-#~ msgstr "追加されたブロックデバイス (ディスク) の全体数を返す"
-
-#~ msgid "probe NTFS volume"
-#~ msgstr "NTFS ボリュームを検出する"
-
-#~ msgid "restore NTFS from backup file"
-#~ msgstr "バックアップファイルから NTFS を復元する"
-
-#~ msgid "save NTFS to backup file"
-#~ msgstr "バックアップファイルに NTFS を保存する"
-
-#~ msgid "fix common errors and force Windows to check NTFS"
-#~ msgstr ""
-#~ "一般的なエラーを修正する、また強制的に Windows に NTFS をチェックさせる"
-
-#~ msgid "resize an NTFS filesystem"
-#~ msgstr "NTFS ファイルシステムを容量を変更する"
-
-#~ msgid "resize an NTFS filesystem (with size)"
-#~ msgstr "NTFS ファイルシステムをサイズを指定して容量を変更する"
-
-#~ msgid "parse the environment and set handle flags accordingly"
-#~ msgstr "環境を解析し、それに応じたハンドルフラグを設定する"
-
-#~ msgid "add a partition to the device"
-#~ msgstr "デバイスにパーティションを追加する"
-
-#~ msgid "delete a partition"
-#~ msgstr "パーティションを削除する"
-
-#~ msgid "partition whole disk with a single primary partition"
-#~ msgstr "ディスク全体を単一のパーティションにする"
-
-#~ msgid "return true if a partition is bootable"
-#~ msgstr "パーティションがブート可能ならば真を返す"
-
-#~ msgid "get the type GUID of a GPT partition"
-#~ msgstr "GPT パーティションの種別 GUID を取得する"
-
-#~ msgid "get the MBR type byte (ID byte) from a partition"
-#~ msgstr "パーティションから MBR 形式バイト（ID バイト）を取得する"
-
-#~ msgid "get the partition table type"
-#~ msgstr "パーティションテーブル形式を取得する"
-
-#~ msgid "create an empty partition table"
-#~ msgstr "空のパーティションテーブルを作成する"
-
-#~ msgid "list partitions on a device"
-#~ msgstr "デバイスにあるパーティションを一覧表示する"
-
-#~ msgid "make a partition bootable"
-#~ msgstr "パーティションをブート可能にする"
-
-#~ msgid "set the type GUID of a GPT partition"
-#~ msgstr "GPT パーティションの種別 GUID を設定する"
-
-#~ msgid "set the MBR type byte (ID byte) of a partition"
-#~ msgstr "パーティションの MBR 形式バイト（ID バイト）を設定する"
-
-#~ msgid "set partition name"
-#~ msgstr "パーティション名を設定する"
-
-#~ msgid "convert partition name to device name"
-#~ msgstr "パーティション名をデバイス名に変換する"
-
-#~ msgid "convert partition name to partition number"
-#~ msgstr "パーティション名をパーティション番号に変換する"
-
-#~ msgid "ping the guest daemon"
-#~ msgstr "ゲストデーモンに ping する"
-
-#~ msgid "read part of a file"
-#~ msgstr "ファイルの中の一部を読み込む"
-
-#~ msgid "read part of a device"
-#~ msgstr "デバイスの中の一部を読み込む"
-
-#~ msgid "generate a new random UUID for a physical volume"
-#~ msgstr "物理ボリュームに対する新しいランダムな UUID を生成する"
-
-#~ msgid "generate new random UUIDs for all physical volumes"
-#~ msgstr "すべての物理ボリュームに対する新しいランダムな UUID を生成する"
-
-#~ msgid "create an LVM physical volume"
-#~ msgstr "LVM 物理ボリュームを作成する"
-
-#~ msgid "remove an LVM physical volume"
-#~ msgstr "LVM 物理ボリュームを削除する"
-
-#~ msgid "resize an LVM physical volume"
-#~ msgstr "LVM 物理ボリュームの容量を変更する"
-
-#~ msgid "resize an LVM physical volume (with size)"
-#~ msgstr "LVM 物理ボリュームの容量を（指定した容量に）変更する"
-
-#~ msgid "list the LVM physical volumes (PVs)"
-#~ msgstr "LVM 物理ボリューム (PV) を一覧表示する"
-
-#~ msgid "get the UUID of a physical volume"
-#~ msgstr "物理ボリュームの UUID を取得する"
-
-#~ msgid "write to part of a file"
-#~ msgstr "ファイルの一部に書き込む"
-
-#~ msgid "write to part of a device"
-#~ msgstr "デバイスの一部に書き込む"
-
-#~ msgid "read a file"
-#~ msgstr "ファイルを読み込む"
-
-#~ msgid "read file as lines"
-#~ msgstr "ファイルを行として読み込む"
-
-#~ msgid "read directories entries"
-#~ msgstr "ディレクトリのエントリーを読み込む"
-
-#~ msgid "read the target of a symbolic link"
-#~ msgstr "シンボリックリンクのターゲットを読み込む"
-
-#~ msgid "readlink on multiple files"
-#~ msgstr "複数のファイルにおいて readlink する"
-
-#~ msgid "canonicalized absolute pathname"
-#~ msgstr "正規化された絶対パス名"
-
-#~ msgid "remount a filesystem with different options"
-#~ msgstr "ファイルシステムを他のオプションで再マウントする"
-
-#~ msgid "remove a disk image"
-#~ msgstr "ディスクイメージを削除する"
-
-#~ msgid "rename a file on the same filesystem"
-#~ msgstr "同じファイルシステムにあるファイルの名前を変更する"
-
-#~ msgid "close and reopen libguestfs handle"
-#~ msgstr "libguestfs ハンドルを閉じて開きなおす"
-
-#~ msgid "resize an ext2, ext3 or ext4 filesystem"
-#~ msgstr "ext2, ext3 または ext4 ファイルシステムの容量を変更する"
-
-#~ msgid "resize an ext2, ext3 or ext4 filesystem to the minimum size"
-#~ msgstr "ext2, ext3 または ext4 ファイルシステムの容量を最小容量に変更する"
-
-#~ msgid "resize an ext2, ext3 or ext4 filesystem (with size)"
-#~ msgstr ""
-#~ "ext2, ext3 または ext4 ファイルシステムの容量を（指定した容量に）変更する"
-
-#~ msgid "remove a file"
-#~ msgstr "ファイルを削除する"
-
-#~ msgid "remove a file ignoring errors"
-#~ msgstr "エラーを無視してファイルを削除する"
-
-#~ msgid "remove a file or directory recursively"
-#~ msgstr "ファイルまたはディレクトリを再帰的に削除する"
-
-#~ msgid "remove a directory"
-#~ msgstr "ディレクトリを削除する"
-
-#~ msgid "remove a mountpoint"
-#~ msgstr "マウントポイントを削除する"
-
-#~ msgid "synchronize the contents of two directories"
-#~ msgstr "二つのディレクトリーの内容を同期する"
-
-#~ msgid "synchronize host or remote filesystem with filesystem"
-#~ msgstr "ホストまたはリモートのファイルシステムをファイルシステムと同期する"
-
-#~ msgid "synchronize filesystem with host or remote filesystem"
-#~ msgstr "ホストまたはリモートのファイルシステムと同期する"
-
-#~ msgid "scrub (securely wipe) a device"
-#~ msgstr "デバイスを（セキュアに）完全消去する"
-
-#~ msgid "scrub (securely wipe) a file"
-#~ msgstr "ファイルを（セキュアに）完全消去する"
-
-#~ msgid "scrub (securely wipe) free space"
-#~ msgstr "空き領域を（セキュアに）完全消去する"
-
-#~ msgid "add options to kernel command line"
-#~ msgstr "カーネルのコマンド行にオプションを追加する"
-
-#~ msgid "set the backend"
-#~ msgstr "バックエンドを設定する"
-
-#~ msgid "set autosync mode"
-#~ msgstr "自動同期モードを設定する"
-
-#~ msgid "set the appliance cache directory"
-#~ msgstr "アプライアンスのキャッシュディレクトリーを設定する"
-
-#~ msgid "enable or disable direct appliance mode"
-#~ msgstr "直接アプライアンスモードを有効化または無効化する"
-
-#~ msgid "set ext2 file attributes of a file"
-#~ msgstr "ファイルの ext2 ファイル属性を設定する"
-
-#~ msgid "set ext2 file generation of a file"
-#~ msgstr "ファイルの ext2 ファイル世代を設定する"
-
-#~ msgid "set the ext2/3/4 filesystem label"
-#~ msgstr "ext2/3/4 ファイルシステムのラベルを設定する"
-
-#~ msgid "set the ext2/3/4 filesystem UUID"
-#~ msgstr "ext2/3/4 ファイルシステムの UUID を設定する"
-
-#~ msgid "set the hypervisor binary"
-#~ msgstr "ハイパーバイザーのバイナリを設定する"
-
-#~ msgid "set filesystem label"
-#~ msgstr "ファイルシステムのラベルを設定する"
-
-#~ msgid "pass requested credential back to libvirt"
-#~ msgstr "要求されたクレディンシャルを libvirt に渡す"
-
-#~ msgid "set libvirt credentials supported by calling program"
-#~ msgstr ""
-#~ "呼び出されたプログラムによりサポートされる libvirt クレディンシャルを設定"
-#~ "する"
-
-#~ msgid "set memory allocated to the hypervisor"
-#~ msgstr "ハイパーバイザーに割り当てるメモリを設定する"
-
-#~ msgid "set enable network flag"
-#~ msgstr "network フラグを有効に設定する"
-
-#~ msgid "set the search path"
-#~ msgstr "検索パスを設定する"
-
-#~ msgid "set process group flag"
-#~ msgstr "プロセスグループのフラグを設定する"
-
-#~ msgid "set the program name"
-#~ msgstr "プログラム名を設定する"
-
-#~ msgid "set the hypervisor binary (usually qemu)"
-#~ msgstr "ハイパーバイザーのバイナリ (通常は QEMU) を設定する"
-
-#~ msgid "enable or disable the recovery process"
-#~ msgstr "リカバリープロセスを有効化または無効化する"
-
-#~ msgid "set SELinux enabled or disabled at appliance boot"
-#~ msgstr "アプライアンスの起動時に SELinux を有効または無効に設定する"
-
-#~ msgid "set number of virtual CPUs in appliance"
-#~ msgstr "アプライアンスの仮想 CPU 数を設定する"
-
-#~ msgid "set the temporary directory"
-#~ msgstr "一時的なディレクトリーを設定する"
-
-#~ msgid "enable or disable command traces"
-#~ msgstr "コマンドのトレースを有効化または無効化する"
-
-#~ msgid "set the filesystem UUID"
-#~ msgstr "ファイルシステム UUID を設定する"
-
-#~ msgid "set verbose mode"
-#~ msgstr "冗長モードを設定する"
-
-#~ msgid "set SELinux security context"
-#~ msgstr "SELinux セキュリティコンテキストを設定する"
-
-#~ msgid "set an environment variable"
-#~ msgstr "環境変数を設定する"
-
-#~ msgid "create partitions on a block device"
-#~ msgstr "ブロックデバイスにパーティションを作成する"
-
-#~ msgid "modify a single partition on a block device"
-#~ msgstr "ブロックデバイスの単一パーティションを変更する"
-
-#~ msgid "display the disk geometry from the partition table"
-#~ msgstr "パーティションテーブルからディスク配置を表示する"
-
-#~ msgid "display the kernel geometry"
-#~ msgstr "カーネル配置を表示する"
-
-#~ msgid "display the partition table"
-#~ msgstr "パーティションテーブルを表示する"
-
-#~ msgid "run a command via the shell"
-#~ msgstr "シェル経由でコマンドを実行する"
-
-#~ msgid "run a command via the shell returning lines"
-#~ msgstr "シェル経由でコマンドを実行して行を返す"
-
-#~ msgid "shutdown the hypervisor"
-#~ msgstr "ハイパーバイザーをシャットダウンする"
-
-#~ msgid "sleep for some seconds"
-#~ msgstr "数秒間スリープする"
-
-#~ msgid "create a sparse disk image and add"
-#~ msgstr "スパースなディスクイメージを作成して追加する"
-
-#~ msgid "get file information"
-#~ msgstr "ファイルの情報を取得する"
-
-#~ msgid "get file system statistics"
-#~ msgstr "ファイルシステムの統計情報を取得する"
-
-#~ msgid "print the printable strings in a file"
-#~ msgstr "ファイルにある表示可能な文字を表示する"
-
-#~ msgid "list supported groups of commands"
-#~ msgstr "サポートされるコマンドのグループを一覧表示する"
-
-#~ msgid "disable swap on device"
-#~ msgstr "デバイスにおけるスワップを無効にする"
-
-#~ msgid "disable swap on file"
-#~ msgstr "ファイルにおけるスワップを無効にする"
-
-#~ msgid "disable swap on labeled swap partition"
-#~ msgstr "ラベル付き swap パーティションにおけるスワップを無効にする"
-
-#~ msgid "disable swap on swap partition by UUID"
-#~ msgstr "UUID による swap パーティションにおけるスワップを無効にする"
-
-#~ msgid "enable swap on device"
-#~ msgstr "デバイスにおけるスワップを有効にする"
-
-#~ msgid "enable swap on file"
-#~ msgstr "ファイルにおけるスワップを有効にする"
-
-#~ msgid "enable swap on labeled swap partition"
-#~ msgstr "ラベル付き swap パーティションにおけるスワップを有効にする"
-
-#~ msgid "enable swap on swap partition by UUID"
-#~ msgstr "UUID による swap パーティションにおけるスワップを有効にする"
-
-#~ msgid "sync disks, writes are flushed through to the disk image"
-#~ msgstr "ディスクを同期する、書き込みをディスクイメージにフラッシュする"
-
-#~ msgid "install the SYSLINUX bootloader"
-#~ msgstr "SYSLINUX ブートローダーをインストールする"
-
-#~ msgid "return last 10 lines of a file"
-#~ msgstr "ファイルの末尾 10 行を返す"
-
-#~ msgid "return last N lines of a file"
-#~ msgstr "ファイルの末尾 N 行を返す"
-
-#~ msgid "unpack tarfile to directory"
-#~ msgstr "tar ファイルをディレクトリに展開する"
-
-#~ msgid "pack directory into tarfile"
-#~ msgstr "ディレクトリを tar ファイルに圧縮する"
-
-#~ msgid "unpack compressed tarball to directory"
-#~ msgstr "圧縮 tar ファイルをディレクトリに展開する"
-
-#~ msgid "pack directory into compressed tarball"
-#~ msgstr "ディレクトリを圧縮 tar ファイルに圧縮する"
-
-#~ msgid "print elapsed time taken to run a command"
-#~ msgstr "コマンドの実行にかかった経過時間を表示する"
-
-#~ msgid "update file timestamps or create a new file"
-#~ msgstr "ファイルのタイムスタンプを更新する、または新しいファイルを作成する"
-
-#~ msgid "truncate a file to zero size"
-#~ msgstr "ファイルをゼロまで切り詰める"
-
-#~ msgid "truncate a file to a particular size"
-#~ msgstr "ファイルを特定の容量まで切り詰める"
-
-#~ msgid "adjust ext2/ext3/ext4 filesystem parameters"
-#~ msgstr "ext2/ext3/ext4 ファイルシステムのパラメーターを調整する"
-
-#~ msgid "get ext2/ext3/ext4 superblock details"
-#~ msgstr "ext2/ext3/ext4 スーパーブロックの詳細を取得する"
-
-#~ msgid "set file mode creation mask (umask)"
-#~ msgstr "ファイルモードの作成マスク（umask）を設定する"
-
-#~ msgid "unmount a filesystem"
-#~ msgstr "ファイルシステムをアンマウントする"
-
-#~ msgid "unmount all filesystems"
-#~ msgstr "すべてのファイルシステムをアンマウントする"
-
-#~ msgid "unmount a locally mounted filesystem"
-#~ msgstr "ローカルにマウントされたファイルシステムをアンマウントする"
-
-#~ msgid "unset an environment variable"
-#~ msgstr "環境変数を設定解除する"
-
-#~ msgid "upload a file from the local machine"
-#~ msgstr "ローカルマシンからファイルをアップロードする"
-
-#~ msgid "upload a file from the local machine with offset"
-#~ msgstr "ローカルマシンからファイルをオフセット付きでアップロードする"
-
-#~ msgid "cancel the current upload or download operation"
-#~ msgstr "現在のアップロードまたはダウンロード操作を取り消す"
-
-#~ msgid "set timestamp of a file with nanosecond precision"
-#~ msgstr "ファイルのタイムスタンプをナノ秒単位で設定する"
-
-#~ msgid "appliance kernel version"
-#~ msgstr "アプライアンスのカーネルバージョン"
-
-#~ msgid "get the library version number"
-#~ msgstr "ライブラリのバージョン番号を取得する"
-
-#~ msgid "get the filesystem label"
-#~ msgstr "ファイルシステムのラベルを取得する"
-
-#~ msgid "get the Linux VFS type corresponding to a mounted device"
-#~ msgstr "マウント済みデバイスに対応する Linux VFS 形式を取得する"
-
-#~ msgid "get the filesystem UUID"
-#~ msgstr "ファイルシステムの UUID を取得する"
-
-#~ msgid "activate or deactivate some volume groups"
-#~ msgstr "いくつかのボリュームグループを活性化または非活性化する"
-
-#~ msgid "activate or deactivate all volume groups"
-#~ msgstr "すべてのボリュームグループを活性化または非活性化する"
-
-#~ msgid "generate a new random UUID for a volume group"
-#~ msgstr "ボリュームグループに対するランダムな新規 UUID を生成する"
-
-#~ msgid "generate new random UUIDs for all volume groups"
-#~ msgstr "すべてのボリュームグループに対するランダムな新規 UUID を生成する"
-
-#~ msgid "create an LVM volume group"
-#~ msgstr "LVM ボリュームグループを作成する"
-
-#~ msgid "get the LV UUIDs of all LVs in the volume group"
-#~ msgstr "ボリュームグループにあるすべての論理ボリュームの UUID を取得する"
-
-#~ msgid "get volume group metadata"
-#~ msgstr "ボリュームグループのメタ情報を取得する"
-
-#~ msgid "get the PV UUIDs containing the volume group"
-#~ msgstr "ボリュームグループを含む物理ボリュームの UUID を取得する"
-
-#~ msgid "remove an LVM volume group"
-#~ msgstr "LVM ボリュームグループを削除する"
-
-#~ msgid "rename an LVM volume group"
-#~ msgstr "LVM ボリュームグループの名前を変更する"
-
-#~ msgid "list the LVM volume groups (VGs)"
-#~ msgstr "LVM ボリュームグループ (VG) を一覧表示する"
-
-#~ msgid "rescan for LVM physical volumes, volume groups and logical volumes"
-#~ msgstr ""
-#~ "LVM 物理ボリューム、ボリュームグループおよび論理ボリュームを再スキャンする"
-
-#~ msgid "get the UUID of a volume group"
-#~ msgstr "ボリュームグループの UUID を取得する"
-
-#~ msgid "count characters in a file"
-#~ msgstr "ファイルにある文字数を数える"
-
-#~ msgid "count lines in a file"
-#~ msgstr "ファイルにある行数を数える"
-
-#~ msgid "count words in a file"
-#~ msgstr "ファイルにある単語数を数える"
-
-#~ msgid "wipe a filesystem signature from a device"
-#~ msgstr "デバイスからファイルシステムのシグネチャーを完全消去する"
-
-#~ msgid "create a new file"
-#~ msgstr "新規ファイルを作成する"
-
-#~ msgid "append content to end of file"
-#~ msgstr "コンテンツをファイルの最後に追加する"
-
-#~ msgid "create a file"
-#~ msgstr "ファイルを作成する"
-
-#~ msgid "change parameters of an XFS filesystem"
-#~ msgstr "XFS ファイルシステムのパラメーターを変更する"
-
-#~ msgid "expand an existing XFS filesystem"
-#~ msgstr "既存の XFS ファイルシステムを拡張する"
-
-#~ msgid "get geometry of XFS filesystem"
-#~ msgstr "XFS ファイルシステムのジオメトリーを取得する"
-
-#~ msgid "repair an XFS filesystem"
-#~ msgstr "XFS ファイルシステムを修復する"
-
-#~ msgid "write zeroes to the device"
-#~ msgstr "デバイスにゼロを書き込む"
-
-#~ msgid "write zeroes to an entire device"
-#~ msgstr "デバイス全体にゼロを書き込む"
-
-#~ msgid "zero free space in a filesystem"
-#~ msgstr "ファイルシステムの空き領域をゼロで埋める"
-
-#~ msgid "zero unused inodes and disk blocks on ext2/3 filesystem"
-#~ msgstr ""
-#~ "ext2/3 ファイルシステムにある未使用の inode およびディスクブロックをゼロで"
-#~ "埋める"
-
-#~ msgid "determine file type inside a compressed file"
-#~ msgstr "圧縮ファイルの中にあるファイルの形式を決定する"
-
-#~ msgid "Use -h <cmd> / help <cmd> to show detailed help for a command."
-#~ msgstr ""
-#~ "コマンドの詳細なヘルプを表示するには -h <cmd> / help <cmd> を使用します。"
-
-#, c-format
-#~ msgid ""
-#~ "use 'copy-in <local> [<local>...] <remotedir>' to copy files into the "
-#~ "image\n"
-#~ msgstr ""
-#~ "ファイルをイメージの中にコピーするには 'copy-in <local> [<local>...] "
-#~ "<remotedir>' を使用します。\n"
-
-#, c-format
-#~ msgid ""
-#~ "use 'copy-out <remote> [<remote>...] <localdir>' to copy files out of the "
-#~ "image\n"
-#~ msgstr ""
-#~ "ファイルをイメージの外にコピーするには 'copy-out <remote> [<remote>...] "
-#~ "<localdir>' を使用します\n"
-
-#, c-format
-#~ msgid "display filename\n"
-#~ msgstr "ファイル名の表示\n"
-
-#, c-format
-#~ msgid "use '%s filename' to edit a file\n"
-#~ msgstr "ファイルを編集するには '%s filename' を使用します\n"
-
-#, c-format
-#~ msgid "unknown event name: %s\n"
-#~ msgstr "未知のイベント名: %s\n"
-
-#, c-format
-#~ msgid ""
-#~ "use 'event <name> <eventset> <script>' to register an event handler\n"
-#~ msgstr ""
-#~ "イベントハンドラーを登録するには 'event <name> <eventset> <script>' を使用"
-#~ "します\n"
-
-#, c-format
-#~ msgid "use 'delete-event <name>' to delete an event handler\n"
-#~ msgstr ""
-#~ "イベントハンドラーを削除するには 'delete-event <name>' を使用します\n"
-
-#, c-format
-#~ msgid "delete-event: %s: no such event handler\n"
-#~ msgstr "delete-event: %s: そのようなイベントハンドラーはありません\n"
-
-#, c-format
-#~ msgid "%s: command arguments not separated by whitespace\n"
-#~ msgstr "%s: コマンド引数が空白により分離されていません\n"
-
-#, c-format
-#~ msgid "%s: unterminated single quote\n"
-#~ msgstr "%s: 終了していない引用符\n"
-
-#, c-format
-#~ msgid "%s: too many arguments\n"
-#~ msgstr "%s: 引数が多すぎます\n"
-
-#, c-format
-#~ msgid "%s: invalid escape sequence in string (starting at offset %d)\n"
-#~ msgstr ""
-#~ "%s: 文字列に無効なエスケープシーケンス（オフセット %d から始まります）\n"
-
-#, c-format
-#~ msgid "%s: unterminated double quote\n"
-#~ msgstr "%s: 二重引用符が終了していません\n"
-
-#~ msgid "display a list of commands or help on a command"
-#~ msgstr "コマンドの一覧またはコマンドのヘルプを表示します"
-
-#~ msgid "quit guestfish"
-#~ msgstr "guestfish を終了する"
-
-#, c-format
-#~ msgid ""
-#~ "quit - quit guestfish\n"
-#~ "     quit\n"
-#~ msgstr ""
-#~ "quit - guestfishを終了します。\n"
-#~ "     quit\n"
-
-#, c-format
-#~ msgid ""
-#~ "Did you mean to open a disk image?  guestfish -a disk.img\n"
-#~ "For a list of commands:             guestfish -h\n"
-#~ "For complete documentation:         man guestfish\n"
-#~ msgstr ""
-#~ "ディスクイメージを開きたいですか？  guestfish -a disk.img\n"
-#~ "コマンドの一覧には:                 guestfish -h\n"
-#~ "完全なドキュメントには:             man guestfish\n"
-
-#, c-format
-#~ msgid "%s:%d: libguestfs: error: %s\n"
-#~ msgstr "%s:%d: libguestfs: エラー: %s\n"
-
-#, c-format
-#~ msgid "Runaway quote in string \"%s\"\n"
-#~ msgstr ""
-#~ "文字列 \"%s\"\n"
-#~ " にある引用符を取り外します\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: to use Windows drive letters, you must inspect the guest (\"-i\" "
-#~ "option or run \"inspect-os\" command)\n"
-#~ msgstr ""
-#~ "%s: Windows ドライブレターを使用するには、仮想マシンを検査する必要がありま"
-#~ "す (\"-i\" オプションの使用または \"inspect-os\" コマンドの実行)\n"
-
-#, c-format
-#~ msgid "%s: to use Windows drive letters, this must be a Windows guest\n"
-#~ msgstr ""
-#~ "%s: Windows ドライブレターを使用するには、Windows ゲストでなければいけませ"
-#~ "ん\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: drive '%c:' not found.  To list available drives do:\n"
-#~ "  inspect-get-drive-mappings %s\n"
-#~ msgstr ""
-#~ "%s: ドライブ '%c:' がありません。利用可能なドライブを一覧表示するには:\n"
-#~ "  inspect-get-drive-mappings %s\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: to access '%c:', mount %s first.  One way to do this is:\n"
-#~ "  umount-all\n"
-#~ "  mount %s /\n"
-#~ msgstr ""
-#~ "%s: '%c:' にアクセスするには、まず %s をマウントします。このための方法の一"
-#~ "つは:\n"
-#~ "  umount-all\n"
-#~ "  mount %s /\n"
-
-#, c-format
-#~ msgid "use 'glob command [args...]'\n"
-#~ msgstr "'glob command [args...]' を使用します\n"
-
-#, c-format
-#~ msgid "glob: guestfs_glob_expand call failed: %s\n"
-#~ msgstr "glob: guestfs_glob_expand の呼び出しに失敗しました: %s\n"
-
-#, c-format
-#~ msgid "hexedit (device|filename) [max | start max]\n"
-#~ msgstr "hexedit (デバイス|ファイル名) [max | start max]\n"
-
-#, c-format
-#~ msgid "hexedit: %s is a zero length file or device\n"
-#~ msgstr "hexedit: %s は長さが 0 のファイルまたはデバイスです\n"
-
-#, c-format
-#~ msgid ""
-#~ "hexedit: %s is larger than %s. You must supply a limit using\n"
-#~ "  'hexedit %s <max>' (eg. 'hexedit %s 1M') or a range using\n"
-#~ "  'hexedit %s <start> <max>'.\n"
-#~ msgstr ""
-#~ "hexedit: %s が %s よりも大きいです。以下を指定する必要があります。\n"
-#~ "  'hexedit %s <max>' (例: 'hexedit %s 1M') を使用して制限、\n"
-#~ "  または 'hexedit %s <start> <max>' を使用して範囲\n"
-
-#, c-format
-#~ msgid "hexedit: invalid range\n"
-#~ msgstr "hexedit: 無効な範囲\n"
-
-#, c-format
-#~ msgid "use 'lcd directory' to change local directory\n"
-#~ msgstr ""
-#~ "ローカルディレクトリを変更するには 'lcd directory' を使用してください\n"
-
-#, c-format
-#~ msgid "use '%s filename' to page a file\n"
-#~ msgstr "ファイルを表示するには '%s filename' を使用します\n"
-
-#~ msgid "failed to allocate disk"
-#~ msgstr "ディスクの割り当てに失敗しました"
-
-#~ msgid "could not parse boot size"
-#~ msgstr "ブートサイズを解析できません"
-
-#, c-format
-#~ msgid "failed to get sector size of disk: %s"
-#~ msgstr "ディスクのセクターサイズの取得に失敗しました: %s"
-
-#, c-format
-#~ msgid "failed to partition disk: %s"
-#~ msgstr "ディスクのパーティションに失敗しました: %s"
-
-#, c-format
-#~ msgid "failed to add boot partition: %s"
-#~ msgstr "ブートパーティションの追加に失敗しました: %s"
-
-#, c-format
-#~ msgid "failed to add root partition: %s"
-#~ msgstr "ルートパーティションの追加に失敗しました: %s"
-
-#, c-format
-#~ msgid "failed to create boot filesystem: %s"
-#~ msgstr "ブートファイルシステムの作成に失敗しました: %s"
-
-#, c-format
-#~ msgid "failed to create root filesystem: %s"
-#~ msgstr "ルートファイルシステムの作成に失敗しました: %s"
-
-#~ msgid "incorrect format for LV name, use '/dev/VG/LV'"
-#~ msgstr "不正な形式の論理ボリューム名です、'/dev/VG/LV' を使用してください"
-
-#, c-format
-#~ msgid "failed to create PV: %s: %s"
-#~ msgstr "物理ボリュームの作成に失敗しました: %s: %s"
-
-#, c-format
-#~ msgid "failed to create VG: %s: %s"
-#~ msgstr "ボリュームグループの作成に失敗しました: %s: %s"
-
-#, c-format
-#~ msgid "failed to create LV: /dev/%s/%s: %s"
-#~ msgstr "論理ボリュームの作成に失敗しました: /dev/%s/%s: %s"
-
-#, c-format
-#~ msgid "failed to create filesystem (%s): %s"
-#~ msgstr "ファイルシステムの作成に失敗しました (%s): %s"
-
-#, c-format
-#~ msgid ""
-#~ "List of available prepared disk images:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "利用可能な準備済みディスクイメージの一覧:\n"
-#~ "\n"
-
-#, c-format
-#~ msgid ""
-#~ "guestfish -N %-8s - %s\n"
-#~ "\n"
-#~ "%s\n"
-#~ msgstr ""
-#~ "guestfish -N %-8s - %s\n"
-#~ "\n"
-#~ "%s\n"
-
-#, c-format
-#~ msgid "  Optional parameters:\n"
-#~ msgstr "  オプションのパラメーター:\n"
-
-#, c-format
-#~ msgid "<%s> %s (default: %s)\n"
-#~ msgstr "<%s> %s (デフォルト: %s)\n"
-
-#, c-format
-#~ msgid ""
-#~ "Prepared disk images are written to file \"test1.img\" in the local\n"
-#~ "directory.  (\"test2.img\" etc if -N option is given multiple times).\n"
-#~ "You can override the name by providing a filename before the type, eg:\n"
-#~ "\n"
-#~ "  guestfish -N blank.img=fs\n"
-#~ "\n"
-#~ "For more information see the guestfish(1) manual.\n"
-#~ msgstr ""
-#~ "準備済みのディスクイメージがローカルディレクトリの \"test1.img\" に書き込"
-#~ "まれます。\n"
-#~ " (-N オプションが複数指定されていると、\"test2.img\" などに書き込まれま"
-#~ "す)。\n"
-#~ "タイプの前にファイル名を指定することにより、名前を上書きできます。例:\n"
-#~ "\n"
-#~ "  guestfish -N blank.img=fs\n"
-#~ "\n"
-#~ "詳細は guestfish(1) マニュアルを参照してください。\n"
-
-#, c-format
-#~ msgid "guestfish: remote: looks like the server is not running\n"
-#~ msgstr "guestfish: remote: サーバーが稼働していないように思われます。\n"
-
-#, c-format
-#~ msgid ""
-#~ "guestfish: protocol error: could not send initial greeting to server\n"
-#~ msgstr ""
-#~ "guestfish: プロトコルエラー: 初期メッセージをサーバーに送信できませんでし"
-#~ "た\n"
-
-#, c-format
-#~ msgid "guestfish: protocol error: could not decode reply from server\n"
-#~ msgstr ""
-#~ "guestfish: プロトコルエラー: サーバーからの応答を解読できませんでした\n"
-
-#, c-format
-#~ msgid "reopen: guestfs_create: failed to create handle\n"
-#~ msgstr "reopen: guestfs_create: ハンドルの作成に失敗しました\n"
-
-#, c-format
-#~ msgid "%s: '%s': invalid boolean value, use 'true' or 'false'\n"
-#~ msgstr "%s: '%s': 無効な論理値、'true' または 'false' を使用してください\n"
-
-#, c-format
-#~ msgid "%s: unknown optional argument \"%s\"\n"
-#~ msgstr "%s: 未知のオプション引数 \"%s\"\n"
-
-#, c-format
-#~ msgid "use '%s VAR value' to set an environment variable\n"
-#~ msgstr "環境変数を設定するには '%s VAR value' を使用します\n"
-
-#, c-format
-#~ msgid "use '%s VAR' to unset an environment variable\n"
-#~ msgstr "環境変数を設定解除するには '%s VAR' を使用します\n"
-
-#~ msgid "yes"
-#~ msgstr "はい"
-
-#~ msgid "no"
-#~ msgstr "いいえ"
-
-#, c-format
-#~ msgid "use 'time command [args...]'\n"
-#~ msgstr "'time command [args...]' を使用します\n"
-
-#~ msgid "IMPORTANT NOTE: This program ERASES ALL DATA on disks."
-#~ msgstr ""
-#~ "重要: このプログラムはディスクにある「すべてのデータを削除」します。"
-
-#, c-format
-#~ msgid ""
-#~ "%s: clean up a mounted filesystem\n"
-#~ "Copyright (C) 2013 Red Hat Inc.\n"
-#~ "Usage:\n"
-#~ "  %s [--fd=FD] mountpoint\n"
-#~ "Options:\n"
-#~ "  --fd=FD              Pipe file descriptor to monitor\n"
-#~ "  --help               Display help message and exit\n"
-#~ "  -q|--quiet           Don't print fusermount errors\n"
-#~ "  --no-retry           Don't retry fusermount\n"
-#~ "  --retry=N            Retry fusermount N times (default: 5)\n"
-#~ "  -v|--verbose         Verbose messages\n"
-#~ "  -V|--version         Display version and exit\n"
-#~ msgstr ""
-#~ "%s: マウント済みファイルシステムのクリーンアップ\n"
-#~ "Copyright (C) 2013 Red Hat Inc.\n"
-#~ "使用法:\n"
-#~ "  %s [--fd=FD] mountpoint\n"
-#~ "オプション:\n"
-#~ "  --fd=FD              モニターするパイプファイル記述子\n"
-#~ "  --help               ヘルプメッセージの表示および終了\n"
-#~ "  -q|--quiet           fusermount エラーを表示しない\n"
-#~ "  --no-retry           fusermount を再試行しない\n"
-#~ "  --retry=N            fusermount を N 回試行する (初期値: 5)\n"
-#~ "  -v|--verbose         メッセージの冗長化\n"
-#~ "  -V|--version         バージョンの表示および終了\n"
-
-#, c-format
-#~ msgid "%s: failed to unmount %s: %s\n"
-#~ msgstr "%s: %s のアンマウントに失敗しました: %s\n"
-
-#, c-format
-#~ msgid "%s: %s is not mounted: %s\n"
-#~ msgstr "%s: %s がマウントされていません: %s\n"
-
-#, c-format
-#~ msgid "unable to create new XPath context"
-#~ msgstr "新規 XPath コンテキストを作成できません"
-
-#, c-format
-#~ msgid "unable to evaluate XPath expression"
-#~ msgstr "XPath 表現を評価できません"
-
-#, c-format
-#~ msgid ""
-#~ "cannot find any suitable libguestfs supermin, fixed or old-style "
-#~ "appliance on LIBGUESTFS_PATH (search path: %s)"
-#~ msgstr ""
-#~ "LIBGUESTFS_PATH (検索パス: %s) において適切な libguestfs supermin、修正さ"
-#~ "れたまたは旧形式のアプライアンスを検索できません"
-
-#~ msgid "accept_connection called twice"
-#~ msgstr "accept_connection が 2 回呼び出されました"
-
-#~ msgid "read_data: socket not connected"
-#~ msgstr "read_data: ソケットに接続されていません"
-
-#~ msgid "can_read_data: socket not connected"
-#~ msgstr "can_read_data: ソケットに接続されていません"
-
-#~ msgid "write_data: socket not connected"
-#~ msgstr "write_data: "
-
-#~ msgid "error reading console messages from the appliance"
-#~ msgstr ""
-#~ "アプライアンスからコンソールメッセージを読み込み中にエラーが発生しました"
-
-#, c-format
-#~ msgid "%s: unexpected error or end of output"
-#~ msgstr "%s: 予期しないエラーまたは出力の終了"
-
-#~ msgid "unexpected line from db_dump command, no space prefix"
-#~ msgstr "db_dump コマンドからの予期しない行です、スペース接頭辞がありません"
-
-#~ msgid "unexpected non-hex digits in output of db_dump command"
-#~ msgstr "db_dump コマンドの出力において予期しない非 16 進値がありました"
-
-#~ msgid "curl: you must specify exactly one server"
-#~ msgstr "curl: サーバーを一つだけ指定する必要があります"
-
-#~ msgid "curl: only tcp transport is supported"
-#~ msgstr "curl: TCP 転送のみがサポートされます"
-
-#~ msgid "curl: pathname should not be an empty string"
-#~ msgstr "curl: パス名を空文字列にできません"
-
-#~ msgid "curl: pathname must begin with a '/'"
-#~ msgstr "curl: パス名を '/' で始める必要があります"
-
-#~ msgid "gluster: you cannot specify a username with this protocol"
-#~ msgstr "gluster: このプロトコルでユーザー名を指定できません"
-
-#~ msgid "gluster: you cannot specify a secret with this protocol"
-#~ msgstr "gluster: このプロトコルでシークレットを指定できません"
-
-#~ msgid "gluster: you must specify exactly one server"
-#~ msgstr "gluster: ちょうど 1 つのサーバーを指定する必要があります"
-
-#~ msgid "gluster: volume name parameter should not be an empty string"
-#~ msgstr "gluster: ボリューム名パラメーターを空文字列にできません"
-
-#~ msgid "nbd: you cannot specify a username with this protocol"
-#~ msgstr "nbd: このプロトコルでユーザー名を指定できません"
-
-#~ msgid "nbd: you cannot specify a secret with this protocol"
-#~ msgstr "nbd: このプロトコルでシークレットを指定できません"
-
-#~ msgid "nbd: you must specify exactly one server"
-#~ msgstr "nbd: ちょうど 1 つのサーバーを指定する必要があります"
-
-#~ msgid "rbd: only tcp transport is supported"
-#~ msgstr "rbd: TCP 転送のみがサポートされます"
-
-#~ msgid "rbd: port number must be specified"
-#~ msgstr "rbd: ポート番号を指定する必要があります"
-
-#~ msgid "rbd: image name parameter should not be an empty string"
-#~ msgstr "rbd: イメージ名のパラメーターを空文字列にできません"
-
-#~ msgid "sheepdog: you cannot specify a username with this protocol"
-#~ msgstr "sheepdog: このプロトコルでユーザー名を指定できません"
-
-#~ msgid "sheepdog: you cannot specify a secret with this protocol"
-#~ msgstr "sheepdog: このプロトコルでシークレットを指定できません"
-
-#~ msgid "sheepdog: only tcp transport is supported"
-#~ msgstr "sheepdog: TCP 転送のみがサポートされます"
-
-#~ msgid "sheepdog: port number must be specified"
-#~ msgstr "sheepdog: ポート番号を指定する必要があります"
-
-#~ msgid "sheepdog: volume parameter should not be an empty string"
-#~ msgstr "sheepdog: ボリュームパラメーターを空文字列にできません"
-
-#~ msgid "ssh: you must specify exactly one server"
-#~ msgstr "ssh: ちょうど一つのサーバーを指定する必要があります"
-
-#~ msgid "ssh: only tcp transport is supported"
-#~ msgstr "ssh: TCP 転送のみがサポートされます"
-
-#~ msgid "ssh: pathname should not be an empty string"
-#~ msgstr "ssh: パス名を空文字列にできません"
-
-#~ msgid "ssh: pathname must begin with a '/'"
-#~ msgstr "ssh: パス名は '/' から始まる必要があります"
-
-#~ msgid "ssh: username should not be an empty string"
-#~ msgstr "ssh: ユーザー名を空文字列にできません"
-
-#~ msgid "iscsi: you must specify exactly one server"
-#~ msgstr "iscsi: ちょうど一つのサーバーを指定する必要があります"
-
-#~ msgid "iscsi: only tcp transport is supported"
-#~ msgstr "iscsi: TCP 転送のみがサポートされます"
-
-#~ msgid "iscsi: target name should not be an empty string"
-#~ msgstr "iscsi: ターゲット名を空文字列にできません"
-
-#~ msgid "missing Unix domain socket path"
-#~ msgstr "Unix ドメインのソケットパスがありません"
-
-#, c-format
-#~ msgid "%s parameter is empty or contains disallowed characters"
-#~ msgstr "%s パラメーターが空です。もしくは、許可できない文字を含んでいます。"
-
-#~ msgid ""
-#~ "label parameter is empty, too long, or contains disallowed characters"
-#~ msgstr ""
-#~ "ラベルパラメーターが空白、長すぎます、または許可されない文字を含んでいます"
-
-#~ msgid "you cannot specify a server with file-backed disks"
-#~ msgstr "ファイル形式のディスクと同時にサーバーを指定できません"
-
-#~ msgid "you cannot specify a username with file-backed disks"
-#~ msgstr "ファイル形式のディスクと同時にユーザー名を指定できません"
-
-#~ msgid "you cannot specify a secret with file-backed disks"
-#~ msgstr "ファイル形式のディスクと同時にシークレットを指定できません"
-
-#~ msgid "the current backend does not support hotplugging drives"
-#~ msgstr "現在のバックエンドはホットプラグドライブをサポートしません"
-
-#, c-format
-#~ msgid "libguestfs: error: %s\n"
-#~ msgstr "libguestfs: エラー: %s\n"
-
+#: common/mltools/getopt-c.c:73
 #, c-format
-#~ msgid "<truncated, original size %zu bytes>"
-#~ msgstr "<切り詰められました、元の容量は %zu バイトです>"
+msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
+msgstr ""
 
-#~ msgid "guestfs_launch failed, see earlier error messages"
-#~ msgstr ""
-#~ "guestfs_launch に失敗しました、前のエラーメッセージを参照してください"
-
-#~ msgid ""
-#~ "appliance closed the connection unexpectedly, see earlier error messages"
-#~ msgstr ""
-#~ "アプライアンスが予期せず接続を閉じました。これまでのエラーメッセージを参照"
-#~ "してください。"
-
-#~ msgid "appliance launch timed out, see earlier error messages"
-#~ msgstr ""
-#~ "アプライアンスの起動がタイムアウトしました。以前のエラーメッセージを参照し"
-#~ "てください。"
-
-#, c-format
-#~ msgid "%s, see debug messages above"
-#~ msgstr "%s, 上のデバッグメッセージを確認してください"
-
-#, c-format
-#~ msgid "%s: %s: %s, see debug messages above"
-#~ msgstr "%s: %s: %s, 上のデバッグメッセージを確認してください"
-
-#~ msgid "filesystem is already mounted in another thread"
-#~ msgstr "ファイルシステムがすでに他のスレッドにおいてマウントされています"
-
+#: common/mltools/getopt-c.c:192
 #, c-format
-#~ msgid "fuse_opt_add_arg: %s"
-#~ msgstr "fuse_opt_add_arg: %s"
+msgid "%s: ‘%s’ is not a numeric value.\n"
+msgstr ""
 
+#: common/mltools/getopt-c.c:198
 #, c-format
-#~ msgid "fuse_new: %s"
-#~ msgstr "fuse_new: %s"
+msgid "%s: %s: integer out of range\n"
+msgstr "%s: %s: 範囲外の整数\n"
 
-#~ msgid "you must call guestfs_mount_local first"
-#~ msgstr "まず guestfs_mount_local を呼び出す必要があります"
-
+#: common/mltools/getopt-c.c:385
 #, c-format
-#~ msgid "fuse_loop: %s"
-#~ msgstr "fuse_loop: %s"
-
-#~ msgid "no filesystem is mounted"
-#~ msgstr "ファイルシステムがマウントされていません"
-
-#~ msgid "could not initialize dir cache hashtables"
-#~ msgstr "ディレクトリーキャッシュのハッシュ表を初期化できませんでした"
-
-#~ msgid ""
-#~ "FUSE is not supported in this build of libguestfs because libfuse was not "
-#~ "found when libguestfs was compiled"
-#~ msgstr ""
-#~ "libguestfs がコンパイルされたときに、libfuse が見当たらなかったため、FUSE "
-#~ "がこのビルドの libguestfs においてサポートされません。"
+msgid "%s: ‘%s’ is not allowed for -%c; allowed values are:\n"
+msgstr ""
 
+#: common/mltools/getopt-c.c:388
 #, c-format
-#~ msgid "guestfs_close: called twice on the same handle\n"
-#~ msgstr "guestfs_close: 同じハンドルにおいて 2 回呼び出されました\n"
+msgid "%s: ‘%s’ is not allowed for %s%s; allowed values are:\n"
+msgstr ""
 
-#~ msgid "qemu-img info: JSON output was not an object"
-#~ msgstr "qemu-img info: JSON 出力がオブジェクトではありませんでした"
-
-#~ msgid ""
-#~ "qemu-img info command produced no output, but didn't return an error "
-#~ "status code"
-#~ msgstr ""
-#~ "qemu-img info コマンドが何も出力しませんでしたが、エラー状態コードを返しま"
-#~ "せんでした"
-
+#: common/mltools/getopt-c.c:423
 #, c-format
-#~ msgid "qemu-img info: JSON parse error: %s"
-#~ msgstr "qemu-img info: JSON 構文解析エラー: %s"
+msgid "Extra parameter on the command line: ‘%s’.\n"
+msgstr ""
 
-#~ msgid "qemu-img info: unknown JSON parse error"
-#~ msgstr "qemu-img info: 未知の JSON 構文解析エラー"
-
+#: common/options/config.c:72
 #, c-format
-#~ msgid "size of %s is unreasonably large (%<PRIi64> bytes)"
-#~ msgstr "%s の容量が不当に大きいです (%<PRIi64> バイト)"
-
-#~ msgid "you must call guestfs_add_drive before guestfs_launch"
-#~ msgstr "guestfs_launch の前に guestfs_add_drive を呼び出す必要があります"
+msgid "%s: line %d: error parsing configuration file: %s"
+msgstr ""
 
-#~ msgid "qemu launched and contacted daemon, but state != READY"
-#~ msgstr "QEMU が起動され、デーモンに接続されましたが、state != READY です"
-
-#~ msgid "direct mode flag is not supported yet for libvirt backend"
-#~ msgstr ""
-#~ "ダイレクトモードフラグは libvirt バックエンドに対してまだサポートされてい"
-#~ "ません"
-
+#: common/options/decrypt.c:110
 #, c-format
-#~ msgid "could not connect to libvirt (URI = %s)"
-#~ msgstr "libvirt (URI = %s) に接続できませんでした"
-
-#~ msgid "could not get libvirt capabilities"
-#~ msgstr "libvirt ケイパビリティを取得できませんでした"
-
-#~ msgid "unable to parse capabilities XML returned by libvirt"
-#~ msgstr "libvirt により返されたケイパビリティ XML を構文解析できません"
+msgid ""
+"could not find key to open LUKS encrypted %s.\n"
+"\n"
+"Try using --key on the command line.\n"
+"\n"
+"Original error: %s (%d)"
+msgstr ""
 
+#: common/options/inspect.c:71
 #, c-format
-#~ msgid "unable to evaluate XPath expression: %s"
-#~ msgstr "XPath 表現を評価できません: %s"
+msgid "don’t use --live and -i options together"
+msgstr ""
 
-#~ msgid ""
-#~ "libvirt does not support the qemu curl driver protocols (ftp, http, "
-#~ "etc.); try setting LIBGUESTFS_BACKEND=direct"
-#~ msgstr ""
-#~ "libvirt が qemu curl ドライバープロトコル (ftp, http など) をサポートしま"
-#~ "せん; LIBGUESTFS_BACKEND=direct の設定を試してください"
-
-#~ msgid "could not destroy libvirt domain"
-#~ msgstr "libvirt 仮想マシンを強制停止できませんでした"
-
+#: common/options/inspect.c:81
 #, c-format
-#~ msgid "%s: internal error forming error message"
-#~ msgstr "%s: エラーメッセージを形成している内部エラー"
-
-#~ msgid "could not attach disk to libvirt domain"
-#~ msgstr "libvirt 仮想マシンにディスクを接続できませんでした"
-
-#~ msgid "could not detach disk from libvirt domain"
-#~ msgstr "libvirt 仮想マシンからディスクを切断できませんでした"
-
-#~ msgid "uml backend does not support networking"
-#~ msgstr "uml バックエンドはネットワークをサポートしません"
-
-#~ msgid "uml backend does not support SMP"
-#~ msgstr "uml バックエンドは SMP をサポートしません"
-
-#~ msgid "uml backend does not support remote drives"
-#~ msgstr "uml バックエンドはリモートドライブをサポートしません"
-
-#~ msgid "uml backend does not support non-raw-format drives"
-#~ msgstr "uml バックエンドは raw 形式以外のドライブをサポートしません"
-
-#~ msgid "guestfs_launch failed, unexpected initial message from guestfsd"
-#~ msgstr ""
-#~ "guestfs_launch に失敗しました、guestfsd から予期しない初期メッセージ"
-
-#~ msgid "contacted guestfsd, but state != READY"
-#~ msgstr "guestfsd に接続しましたが、state != READY です"
-
-#~ msgid "the libguestfs handle has already been launched"
-#~ msgstr "libguestfs ハンドルがすでに開始されています"
-
-#~ msgid "get-pid can only be called after launch"
-#~ msgstr "get-pid は launch 後にのみ呼び出せます"
+msgid ""
+"%s: no operating system was found on this disk\n"
+"\n"
+"If using guestfish ‘-i’ option, remove this option and instead\n"
+"use the commands ‘run’ followed by ‘list-filesystems’.\n"
+"You can then mount filesystems you want by hand using the\n"
+"‘mount’ or ‘mount-ro’ command.\n"
+"\n"
+"If using guestmount ‘-i’, remove this option and choose the\n"
+"filesystem(s) you want to see by manually adding ‘-m’ option(s).\n"
+"Use ‘virt-filesystems’ to see what filesystems are available.\n"
+"\n"
+"If using other virt tools, this disk image won’t work\n"
+"with these tools.  Use the guestfish equivalent commands\n"
+"(see the virt tool manual page).\n"
+msgstr ""
 
-#~ msgid "the current backend does not allow max disks to be queried"
-#~ msgstr "現在のバックエンドが最大ディスクを問い合わせできません"
-
-#~ msgid "qemu has not been launched yet"
-#~ msgstr "QEMU がまだ開始されていません"
-
-#~ msgid "list of supported credentials is too long"
-#~ msgstr "サポートされるクレディンシャルの一覧が長すぎます"
-
+#: common/options/inspect.c:102
 #, c-format
-#~ msgid ""
-#~ "%s should only be called from within the GUESTFS_EVENT_LIBVIRT_AUTH event "
-#~ "handler"
-#~ msgstr ""
-#~ "%s は GUESTFS_EVENT_LIBVIRT_AUTH イベントハンドラーに中からのみ呼び出され"
-#~ "ます"
-
-#~ msgid "credential index out of range"
-#~ msgstr "クレディンシャルのインデックスが範囲外です"
+msgid ""
+"%s: multi-boot operating systems are not supported\n"
+"\n"
+"If using guestfish ‘-i’ option, remove this option and instead\n"
+"use the commands ‘run’ followed by ‘list-filesystems’.\n"
+"You can then mount filesystems you want by hand using the\n"
+"‘mount’ or ‘mount-ro’ command.\n"
+"\n"
+"If using guestmount ‘-i’, remove this option and choose the\n"
+"filesystem(s) you want to see by manually adding ‘-m’ option(s).\n"
+"Use ‘virt-filesystems’ to see what filesystems are available.\n"
+"\n"
+"If using other virt tools, multi-boot operating systems won’t work\n"
+"with these tools.  Use the guestfish equivalent commands\n"
+"(see the virt tool manual page).\n"
+msgstr ""
 
-#~ msgid ""
-#~ "libvirt authentication APIs not available since this version of "
-#~ "libguestfs was compiled without libvirt"
-#~ msgstr ""
-#~ "このバージョンの libguestfs が libvirt なしでコンパイルされたため、"
-#~ "libvirt 認証 API を利用できません"
-
-#~ msgid "you cannot set both live and readonly flags"
-#~ msgstr "live と readonly フラグをどちらも設定することはできません"
-
-#~ msgid "unknown readonlydisk parameter"
-#~ msgstr "読み込み専用ディスクに未知のパラメーターがあります"
-
+#: common/options/inspect.c:164
 #, c-format
-#~ msgid "error getting domain info: %s"
-#~ msgstr "ドメイン情報の取得中にエラーが発生しました: %s"
-
-#~ msgid ""
-#~ "error: domain is a live virtual machine.\n"
-#~ "Writing to the disks of a running virtual machine can cause disk "
-#~ "corruption.\n"
-#~ "Either use read-only access, or if the guest is running the guestfsd "
-#~ "daemon\n"
-#~ "specify live access.  In most libguestfs tools these options are --ro or\n"
-#~ "--live respectively.  Consult the documentation for further information."
-#~ msgstr ""
-#~ "エラー: 仮想マシンが実行中です。\n"
-#~ "実行中の仮想マシンのディスクに書き込むことは、ディスク破損を\n"
-#~ "引き起こす可能性があります。読み込み専用アクセスを使用する、\n"
-#~ "もしくは、仮想マシンが実行中ならば guestfsd デーモンが live \n"
-#~ "アクセスを指定します。多くの libguestfs ツールにおいて、これらの\n"
-#~ "オプションはそれぞれ --ro または --live です。\n"
-#~ "詳細はドキュメントを参照してください。"
+msgid "%s: some filesystems could not be mounted (ignored)\n"
+msgstr ""
+"%s: いくつかのファイルシステムがマウントできませんでした（無視されました）\n"
 
+#: common/options/inspect.c:181
 #, c-format
-#~ msgid ""
-#~ "%s: disk is marked <readonly/> in libvirt XML, and readonlydisk was set "
-#~ "to \"error\""
-#~ msgstr ""
-#~ "%s: ディスクが libvirt XML において <readonly/> にされています、読み込み専"
-#~ "用ディスクは \"error\" に設定されました"
+msgid "Operating system: %s\n"
+msgstr "オペレーティングシステム: %s\n"
 
-#~ msgid "expected <seclabel/> to be an XML element"
-#~ msgstr "XML 要素となることが期待される <seclabel/>"
-
-#~ msgid "libvirt domain has no disks"
-#~ msgstr "libvirt ドメインにディスクがありません"
-
-#~ msgid ""
-#~ "this guest has no libvirt <channel> definition for guestfsd\n"
-#~ "See ATTACHING TO RUNNING DAEMONS in guestfs(3) for further information."
-#~ msgstr ""
-#~ "この仮想マシンは guestfsd に対する libvirt <channel> 定義がありません\n"
-#~ "詳細は guestfs(3) の 実行中のデーモンへの接続方法 を参照してください。"
-
+#: common/options/inspect.c:199
 #, c-format
-#~ msgid "error reading libvirt XML information: %s"
-#~ msgstr "libvirt XML 情報の読み込み中にエラーが発生しました: %s"
-
-#~ msgid "unable to parse XML information returned by libvirt"
-#~ msgstr "libvirt により返された XML 情報を構文解析できません"
+msgid "%s mounted on %s\n"
+msgstr "%s を %s にマウントしました\n"
 
-#~ msgid ""
-#~ "add-domain API not available since this version of libguestfs was "
-#~ "compiled without libvirt"
-#~ msgstr ""
-#~ "このバージョンの libguestfs が libvirt なしでコンパイルされたため、add-"
-#~ "domain API を利用できません"
-
+#: common/options/keys.c:62
 #, c-format
-#~ msgid ""
-#~ "check_daemon_socket: read 0x%x from daemon, expected 0x%x.  Lost protocol "
-#~ "synchronization (bad!)\n"
-#~ msgstr ""
-#~ "check_daemon_socket: デーモンから 0x%x を読み込みましたが、0x%x を期待され"
-#~ "ます。プロトコルの同期が失われました (不良!)\n"
-
-#~ msgid "xdr_guestfs_message_header failed"
-#~ msgstr "xdr_guestfs_message_header に失敗しました"
+msgid "Enter key or passphrase (\"%s\"): "
+msgstr "キーかパスフレーズを入力してください。(\"%s\"): "
 
-#~ msgid "dispatch failed to marshal args"
-#~ msgstr "マーシャル引数の割り当てに失敗しました"
+#: common/options/keys.c:173
+#, fuzzy, c-format
+#| msgid "could not parse boot size"
+msgid "could not read key from user"
+msgstr "ブートサイズを解析できません"
 
-#~ msgid "operation cancelled by user"
-#~ msgstr "操作がユーザーにより取り消されました"
-
+#: common/options/options.c:283
 #, c-format
-#~ msgid "xdr_guestfs_chunk failed (buf = %p, buflen = %zu)"
-#~ msgstr "xdr_guestfs_chunk に失敗しました (buf = %p, buflen = %zu)"
+msgid "%s: ‘%s’ could not be mounted.\n"
+msgstr ""
 
+#: common/options/options.c:287
 #, c-format
-#~ msgid "received magic signature from guestfsd, but in state %d"
-#~ msgstr ""
-#~ "guestfsd からマジックシグネチャーを受け取りましたが、状態は %d です。"
+msgid ""
+"%s: Check mount(8) man page to ensure options ‘%s’\n"
+"%s: are supported by the filesystem that is being mounted.\n"
+msgstr ""
 
+#: common/options/options.c:291
 #, c-format
-#~ msgid "message length (%u) > maximum possible size (%d)"
-#~ msgstr "メッセージの長さ (%u) > 最大許容サイズ (%d)"
-
-#~ msgid "write to daemon socket"
-#~ msgstr "デーモンのソケットに書き込みます"
+msgid "%s: Did you mean to mount one of these filesystems?\n"
+msgstr ""
+"%s: これらのファイルシステムのどれかをマウントしたいということですか?\n"
 
-#~ msgid "receive_file_data: unexpected flag received when reading file chunks"
-#~ msgstr ""
-#~ "receive_file_data: ファイルのチャンクの読み込み中に予期しないフラグを受信"
-#~ "しました"
-
-#~ msgid "failed to parse file chunk"
-#~ msgstr "ファイルのチャンクの解析に失敗しました"
-
-#~ msgid "file receive cancelled by daemon"
-#~ msgstr "ファイルの受信がデーモンにより取り消されました"
-
+#: common/options/options.c:304
 #, c-format
-#~ msgid "%s: cannot create temporary directory"
-#~ msgstr "%s: 一時ディレクトリを作成できません"
+msgid "cannot determine the subvolume for %s: %s (%d)"
+msgstr ""
 
+#: common/options/uri.c:119
 #, c-format
-#~ msgid "security: cached appliance %s is not a directory (mode %o)"
-#~ msgstr ""
-#~ "security: キャッシュされたアプライアンス %s がディレクトリではありません"
-#~ "（モード %o）"
+msgid "%s: --add: could not parse URI ‘%s’\n"
+msgstr ""
 
+#: common/options/uri.c:130
 #, c-format
-#~ msgid ""
-#~ "security: cached appliance %s is writable by group or other (mode %o)"
-#~ msgstr ""
-#~ "security: キャッシュされたアプライアンス %s がグループまたは全体に対して書"
-#~ "き込み可能ではありません（モード %o）"
+msgid "%s: %s: scheme of URI is NULL or empty\n"
+msgstr "%s: %s: URI のスキーマが NULL または空です\n"
 
+#: common/options/uri.c:138
 #, c-format
-#~ msgid "could not parse integer in version number: %s"
-#~ msgstr "バージョン番号のいて整数を構文解析できませんでした: %s"
+msgid "%s: %s: cannot both a server name and a socket query parameter\n"
+msgstr ""
+"%s: %s: サーバー名とソケットクエリーパラメーターをどちらも指定することはでき"
+"ません \n"
 
+#: common/utils/utils.c:107
 #, c-format
-#~ msgid "read: %s: unexpected end of file"
-#~ msgstr "read: %s: 予期しない EOF がありました"
+msgid "%s exited successfully"
+msgstr "%s が正常に終了しました"
 
+#: common/utils/utils.c:110
 #, c-format
-#~ msgid ""
-#~ "Inspecting the virtual machine or disk image ...\n"
-#~ "\n"
-#~ msgstr ""
-#~ "仮想マシンまたはディスクイメージを検査しています ...\n"
-#~ "\n"
+msgid "%s exited with error status %d"
+msgstr "%s がエラーステータス %d で終了しました"
 
+#: common/utils/utils.c:114
 #, c-format
-#~ msgid ""
-#~ "This disk contains one or more operating systems.  You can use these "
-#~ "mount\n"
-#~ "commands in virt-rescue (at the ><rescue> prompt) to mount the "
-#~ "filesystems.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "このディスクは複数のオペレーティングシステムを含んでいます。\n"
-#~ "ファイルシステムをマウントするために、 virt-rescue (の ><rescue> \n"
-#~ "プロンプト) においてこれらのマウントのコマンドを使用できます。\n"
-#~ "\n"
+msgid "%s killed by signal %d (%s)"
+msgstr "%s がシグナル %d (%s) によりキルされました"
 
+#: common/utils/utils.c:118
 #, c-format
-#~ msgid ""
-#~ "# %s is the root of a %s operating system\n"
-#~ "# type: %s, distro: %s, version: %d.%d\n"
-#~ "# %s\n"
-#~ "\n"
-#~ msgstr ""
-#~ "# %s は %s オペレーティングシステムのルートです\n"
-#~ "# 種別: %s, ディストリビューション: %s, バージョン: %d.%d\n"
-#~ "# %s\n"
-#~ "\n"
+msgid "%s stopped by signal %d (%s)"
+msgstr "%s がシグナル %d (%s) により停止しました"
 
+#: common/utils/utils.c:122
 #, c-format
-#~ msgid ""
-#~ "This disk contains no mountable filesystems that we recognize.\n"
-#~ "\n"
-#~ "However you can still use virt-rescue on the disk image, to try to mount\n"
-#~ "filesystems that are not recognized by libguestfs, or to create "
-#~ "partitions,\n"
-#~ "logical volumes and filesystems on a blank disk.\n"
-#~ msgstr ""
-#~ "このディスクは認識できるマウント可能なファイルシステムを含んでいません。\n"
-#~ "\n"
-#~ "しかしながら、libguestfs により認識できないファイルシステムのマウントを試"
-#~ "行\n"
-#~ "するため、または空のディスクにパーティション、論理ボリュームおよびファイ"
-#~ "ル\n"
-#~ "システムを作成するために、ディスクイメージにおいて virt-rescue を使用でき"
-#~ "ます。\n"
-
-#~ msgid "virt-list-filesystems: no image or VM name given"
-#~ msgstr ""
-#~ "virt-list-filesystems: イメージまたは仮想マシン名が与えられていません"
-
-#~ msgid "virt-list-partitions: no image or VM name given"
-#~ msgstr ""
-#~ "virt-list-partitions: イメージまたは仮想マシン名が与えられていません"
-
-#~ msgid "virt-tar: no image, VM names, directory or filename given"
-#~ msgstr ""
-#~ "virt-tar: イメージ、仮想マシン名、ディレクトリまたはファイル名が与えられて"
-#~ "いません"
-
-#~ msgid "virt-tar: either -x or -u must be specified on the command line\n"
-#~ msgstr ""
-#~ "virt-tar: コマンドラインにおいて -x または -u が指定されなければいけませ"
-#~ "ん\n"
-
-#, perl-brace-format
-#~ msgid "virt-tar: {tarball}: file not found\n"
-#~ msgstr "virt-tar: {tarball}: ファイルが見つかりません\n"
-
-#, perl-brace-format
-#~ msgid "virt-tar: {dir}: directory name must start with '/' character\n"
-#~ msgstr ""
-#~ "virt-tar: {dir}: ディレクトリ名は '/' 記号で始まらなければいけません\n"
-
-#, perl-brace-format
-#~ msgid ""
-#~ "{prog}: No operating system could be detected inside this disk image.\n"
-#~ "\n"
-#~ "This may be because the file is not a disk image, or is not a virtual "
-#~ "machine\n"
-#~ "image, or because the OS type is not understood by libguestfs.\n"
-#~ "\n"
-#~ "If you feel this is an error, please file a bug report including as much\n"
-#~ "information about the disk image as possible.\n"
-#~ msgstr ""
-#~ "{prog}: オペレーティングシステムがこのディスクイメージの中に検知できません"
-#~ "でした。\n"
-#~ "\n"
-#~ "ファイルシステムがディスクイメージではない、または仮想マシンイメージではな"
-#~ "い\n"
-#~ "ことが理由です。もしくは OS 種別が libguesfs により認識できないためで"
-#~ "す。\n"
-#~ "\n"
-#~ "これがエラーであると思うならば、ディスクイメージに関する情報できる限り\n"
-#~ "含めてバグ報告を提出してください。\n"
-
-#, perl-brace-format
-#~ msgid "{prog}: multiboot operating systems are not supported.\n"
-#~ msgstr ""
-#~ "{prog}: 複数ブートのオペレーティングシステムはサポートされません。\n"
-
-#~ msgid "no libvirt domain name or disk image given\n"
-#~ msgstr "与えられた libvirt ドメイン名またはディスクイメージがありません\n"
-
-#~ msgid ""
-#~ "expecting 1 or 2 more parameters, subkey path and optionally the value to "
-#~ "export\n"
-#~ msgstr ""
-#~ "1 か 2 つ以上のパラメーター、サブキーのパス、およびオプションのエクスポー"
-#~ "トする値が期待されます\n"
-
-#, perl-brace-format
-#~ msgid "virt-win-reg: {p}: cannot find user directory\n"
-#~ msgstr "virt-win-reg: {p}: ユーザー・ディレクトリを見つけられません\n"
-
-#, perl-brace-format
-#~ msgid "virt-win-reg: {p}: not a supported Windows Registry path\n"
-#~ msgstr ""
-#~ "virt-win-reg: {p}: サポートされる Windows レジストリのパスではありません\n"
-
-#, perl-brace-format
-#~ msgid "virt-win-reg: {p}: could not download registry file: {err}\n"
-#~ msgstr ""
-#~ "virt-win-reg: {p}: レジストリ・ファイルをダウンロードできませんでした: "
-#~ "{err}\n"
-
-#, perl-brace-format
-#~ msgid "virt-win-reg: {p}: could not upload registry file: {err}\n"
-#~ msgstr ""
-#~ "virt-win-reg: {p}: レジストリ・ファイルをアップロードできませんでした: "
-#~ "{err}\n"
+msgid "%s exited for an unknown reason (status %d)"
+msgstr "%s が未知の理由で終了しました (ステータス %d)"
