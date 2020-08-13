@@ -41,24 +41,24 @@ EXTRA_DIST = \
 SUBDIRS = $(linguas_translated)
 
 virt-v2v-docs.pot:
-	$(PO4A_GETTEXTIZE) \
+	cd $(top_srcdir) && $(PO4A_GETTEXTIZE) \
 	  -f pod \
 	  -M utf-8 -L utf-8 \
 	  --package-name $(PACKAGE_NAME) \
 	  --package-version $(PACKAGE_VERSION) \
 	  --msgid-bugs-address libguestfs@redhat.com \
 	  --copyright-holder "Red Hat Inc." \
-	  -p $@ \
+	  -p $(abs_srcdir)/$@ \
 	  $(patsubst %,-m %,$(shell cat $(srcdir)/podfiles))
 
 podfiles: Makefile
 	rm -f $@ $@-t
-	find $(top_srcdir) -name '*.pod' | \
-	  grep -v /debian/ | \
-	  grep -v /virt-v2v-1 | \
-	  grep -v /po-docs/ | \
+	cd $(top_srcdir) && find . -name '*.pod' -printf '%P\n'| \
+	  grep -v ^debian/ | \
+	  grep -v ^virt-v2v-1 | \
+	  grep -v ^po-docs/ | \
+	  grep -v ^stamp- | \
 	  grep -v /stamp- \
-	  > $@-t
-	for f in `cat $(top_srcdir)/po/POTFILES-pl`; do echo $(top_srcdir)/$$f; done >> $@-t
+	  > $(abs_srcdir)/$@-t
 	LC_ALL=C sort -o $@-t $@-t
 	mv $@-t $@
