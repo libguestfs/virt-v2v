@@ -98,14 +98,26 @@ EXTRA_DIST = \
 # When doing 'make dist' update a few files automatically.
 #
 #  ChangeLog      - changelog (created from git)
+#  po/POTFILES    - files with ordinary extensions, but not OCaml files
 #  po/POTFILES-ml - OCaml files, which need a special tool to translate
 
-dist-hook: ChangeLog po/POTFILES-ml
+dist-hook: ChangeLog po/POTFILES po/POTFILES-ml
 	cp ChangeLog $(distdir)/ChangeLog
 
 ChangeLog: configure.ac
 	rm -f $@ $@-t
 	git log --decorate=false > $@-t
+	mv $@-t $@
+
+# For more information about translations, see po/Makefile.am.
+po/POTFILES: configure.ac
+	rm -f $@ $@-t
+	cd $(srcdir); \
+	find $(DIST_SUBDIRS) -name '*.c' | \
+	grep -v -E '^(gnulib|po-docs|tests|test-data|bundled)/' | \
+	grep -v -E '/(dummy\.c)$$' | \
+	grep -v -E '.*-(tests)\.c$$' | \
+	LC_ALL=C sort -u > $@-t
 	mv $@-t $@
 
 po/POTFILES-ml: configure.ac

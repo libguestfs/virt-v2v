@@ -25,13 +25,14 @@ MSGID_BUGS_ADDRESS = https://bugzilla.redhat.com/enter_bug.cgi?component=libgues
 # Don't use LINGUAS (uppercase) as Gentoo defines it (RHBZ#804464).
 linguas     := $(shell cat $(srcdir)/LINGUAS)
 
+POTFILES    := $(shell $(SED) 's,^,$(top_srcdir)/,' $(srcdir)/POTFILES)
 POTFILES_ML := $(shell $(SED) 's,^,$(top_srcdir)/,' $(srcdir)/POTFILES-ml)
 POFILES     := $(linguas:%=%.po)
 GMOFILES    := $(linguas:%=%.gmo)
 
 EXTRA_DIST = \
 	LINGUAS \
-	POTFILES-ml \
+	POTFILES POTFILES-ml \
 	$(DOMAIN).pot \
 	$(POFILES) \
 	$(GMOFILES)
@@ -59,7 +60,7 @@ XGETTEXT_ARGS = \
 FIX_CHARSET = \
 	$(SED) -i 's|text/plain; charset=CHARSET|text/plain; charset=utf-8|g'
 
-$(DOMAIN).pot: Makefile POTFILES-ml $(POTFILES_ML)
+$(DOMAIN).pot: Makefile POTFILES $(POTFILES) POTFILES-ml $(POTFILES_ML)
 	rm -f $@-t
 	touch $@-t
 if HAVE_OCAML_GETTEXT
@@ -67,6 +68,9 @@ if HAVE_OCAML_GETTEXT
 	 \
 	$(FIX_CHARSET) $@-t
 endif
+	$(XGETTEXT) -j -o $@-t $(XGETTEXT_ARGS) \
+	  --files-from=$(abs_srcdir)/POTFILES
+	$(FIX_CHARSET) $@-t
 	mv $@-t $@
 
 .po.gmo:
