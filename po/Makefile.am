@@ -63,7 +63,7 @@ $(DOMAIN).pot: Makefile POTFILES-ml $(POTFILES_ML)
 	rm -f $@-t
 	touch $@-t
 if HAVE_OCAML_GETTEXT
-	$(OCAML_GETTEXT) --action extract --extract-pot $@-t $(POTFILES_ML)
+	cd $(top_srcdir) && $(OCAML_GETTEXT) --action extract --extract-pot $(abs_srcdir)/$@-t $(shell cat $(abs_srcdir)/POTFILES-ml)
 	 \
 	$(FIX_CHARSET) $@-t
 endif
