@@ -93,9 +93,7 @@ EXTRA_DIST = \
 	website/index.css \
 	website/index.html.in \
 	website/pod.css \
-	website/standard.css \
-	zanata.xml \
-	zanata-pull.sh
+	website/standard.css
 
 # When doing 'make dist' update a few files automatically.
 #
