@@ -21,18 +21,17 @@ include $(top_srcdir)/subdir-rules.mk
 # into the po/ directory and the translations into the usual
 # libguestfs.pot file.
 
-# Languages that we translate.
+# Languages.
 # Don't use LINGUAS (uppercase) as Gentoo defines it (RHBZ#804464).
-linguas = ja uk
+linguas     := $(shell cat $(srcdir)/LINGUAS)
 
-# Languages that we have PO files for, but we don't translate
-# because there is insufficient coverage.
-linguas_not_translated = cs de en_GB es eu fr nl pt_BR tg zh_CN
+# Languages that we translate, as they have enough coverage.
+linguas_translated = ja uk
 
 EXTRA_DIST = \
+	LINGUAS \
 	virt-v2v-docs.pot \
 	$(linguas:%=%.po) \
-	$(linguas_not_translated:%=%.po) \
 	podfiles
 
 CLEANFILES += po4a.conf
@@ -41,7 +40,7 @@ CLEANFILES += po4a.conf
 # language directory contains a Makefile.am that we need to keep up to
 # date (note each $lang/Makefile.am should be identical).
 # XXX Is there a better way?
-SUBDIRS = $(linguas)
+SUBDIRS = $(linguas_translated)
 
 update-po: virt-v2v-docs.pot
 
@@ -61,7 +60,7 @@ virt-v2v-docs.pot: po4a.conf
 	  --msgid-bugs-address libguestfs@redhat.com \
 	  --copyright-holder "Red Hat Inc." \
 	  po4a.conf
-	for f in `cd $(srcdir); find $(linguas) -name '*.pod'`; do \
+	for f in `cd $(srcdir); find $(linguas_translated) -name '*.pod'`; do \
 	  $(SED) '0,/^=encoding/d' < $$f > $$f.new; \
 	  mv $$f.new $$f; \
 	done
