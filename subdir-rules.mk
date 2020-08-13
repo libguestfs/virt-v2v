@@ -76,6 +76,9 @@ guestfs_am_v_podwrapper_0 = @echo "  POD     " $@;
 guestfs_am_v_jar = $(guestfs_am_v_jar_@AM_V@)
 guestfs_am_v_jar_ = $(guestfs_am_v_jar_@AM_DEFAULT_V@)
 guestfs_am_v_jar_0 = @echo "  JAR     " $@;
+guestfs_am_v_po4a_translate = $(guestfs_am_v_po4a_translate_@AM_V@)
+guestfs_am_v_po4a_translate_ = $(guestfs_am_v_po4a_translate_@AM_DEFAULT_V@)
+guestfs_am_v_po4a_translate_0 = @echo "  PO4A-T  " $@;
 
 %.cmi: %.mli
 	$(guestfs_am_v_ocamlcmi)$(OCAMLFIND) ocamlc -package guestfs $(OCAMLFLAGS) $(OCAMLPACKAGES) -c $< -o $@

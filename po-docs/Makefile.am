@@ -34,47 +34,22 @@ EXTRA_DIST = \
 	$(linguas:%=%.po) \
 	podfiles
 
-CLEANFILES += po4a.conf
-
 # Build the final man pages from the translated POD files.  Each
 # language directory contains a Makefile.am that we need to keep up to
 # date (note each $lang/Makefile.am should be identical).
 # XXX Is there a better way?
 SUBDIRS = $(linguas_translated)
 
-update-po: virt-v2v-docs.pot
-
-# Note: po4a puts the following junk at the top of every POD file it
-# generates:
-#  - a warning
-#  - a probably bogus =encoding line
-# Remove both.
-# XXX Fix po4a so it doesn't do this.
-virt-v2v-docs.pot: po4a.conf
-	$(PO4A) \
-	  -M utf-8 -L utf-8 -A utf-8 \
-	  -v \
-	  -k 0 \
+virt-v2v-docs.pot:
+	$(PO4A_GETTEXTIZE) \
+	  -f pod \
+	  -M utf-8 -L utf-8 \
 	  --package-name $(PACKAGE_NAME) \
 	  --package-version $(PACKAGE_VERSION) \
 	  --msgid-bugs-address libguestfs@redhat.com \
 	  --copyright-holder "Red Hat Inc." \
-	  po4a.conf
-	for f in `cd $(srcdir); find $(linguas_translated) -name '*.pod'`; do \
-	  $(SED) '0,/^=encoding/d' < $$f > $$f.new; \
-	  mv $$f.new $$f; \
-	done
-
-po4a.conf: podfiles
-	rm -f $@-t
-	echo "[po_directory] $(srcdir)" >> $@-t
-	echo >> $@-t
-	for f in `cat podfiles`; do \
-	  out=`basename -- $$f .pod`.pod; \
-	  echo "[type: pod] $$f \$$lang:\$$lang/$$out" >> $@-t; \
-	  echo >> $@-t; \
-	done;
-	mv $@-t $@
+	  -p $@ \
+	  $(patsubst %,-m %,$(shell cat $(srcdir)/podfiles))
 
 podfiles: Makefile
 	rm -f $@ $@-t
