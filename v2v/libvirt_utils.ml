@@ -24,8 +24,8 @@ open Common_gettext.Gettext
     module. *)
 
 let auth_for_password_file ?password_file () =
+  let password = Option.map read_first_line_from_file password_file in
   let auth_fn creds =
-    let password = Option.map read_first_line_from_file password_file in
     List.map (
       function
       | { Libvirt.Connect.typ = Libvirt.Connect.CredentialPassphrase } -> password
