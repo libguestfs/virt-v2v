@@ -52,6 +52,7 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
     | "rhel" | "centos" | "scientificlinux" | "redhat-based"
     | "oraclelinux" -> `RHEL_family
     | "sles" | "suse-based" | "opensuse" -> `SUSE_family
+    | "altlinux" -> `ALT_family
     | "debian" | "ubuntu" | "linuxmint" | "kalilinux" -> `Debian_family
     | _ -> assert false in
 
@@ -372,6 +373,9 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
             );
         ) libraries
       )
+      else if family = `ALT_family then (
+        remove := libraries
+      )
     );
 
     let remove = !remove in
@@ -656,6 +660,50 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
         );
 
         run_update_initramfs_command ()
+      )
+      else if family = `ALT_family then (
+        (* ALT utilities to work with initrd does not support adding modules
+         * to an existing initrd
+         *)
+        let kver = kernel.ki_version in
+        let kmodpath = kernel.ki_modpath in
+
+        (* find module files *)
+        let files = g#find kmodpath |> Array.to_list in
+        let test f =
+          let r m = sprintf ".*/%s\\.ko$" m |> Str.regexp in
+          let rmodules = List.map r modules in
+          let fold_f acc mr = acc || Str.string_match mr f 0 in
+          List.fold_left fold_f false rmodules in
+        let files = List.filter test files in
+
+        (* create new initrd with contents of old initrd *)
+        let tmpdir = g#mkdtemp "/tmp/new_initrd-XXXXXX" in
+        let old_initrd = initrd ^ ".pre-v2v" in
+        let cmd = sprintf "gzip -cd %s | cpio -imd --quiet -D %s"
+          old_initrd tmpdir in
+        ignore (g#sh cmd);
+
+        (* copy module files to new initrd *)
+        List.iter (fun file ->
+          let dir_name = Filename.dirname file in
+          let dir_name = sprintf "%s%s%s" tmpdir kmodpath dir_name in
+          g#mkdir_p dir_name;
+          g#cp (sprintf "%s/%s" kmodpath file) dir_name
+        ) files;
+
+        (* find module dependencies *)
+        let cmd = [|"/sbin/depmod"; "-a"; "-F"; "/boot/System.map-" ^ kver;
+                    "-b";  tmpdir; kver|] in
+        ignore (g#command cmd);
+
+        (* archive files to initrd *)
+        let cmd =
+          sprintf "cd %s; find . | cpio --quiet -H newc -o | gzip -9 -n > %s"
+            tmpdir initrd in
+        ignore (g#sh cmd);
+
+        g#rm_rf tmpdir;
       )
       else if g#is_file ~followsymlinks:true "/sbin/mkinitrd" then (
         let module_args = List.map (sprintf "--with=%s") modules in
@@ -1233,6 +1281,7 @@ let () =
                     | "rhel" | "centos" | "scientificlinux" | "redhat-based"
                     | "oraclelinux"
                     | "sles" | "suse-based" | "opensuse"
+                    | "altlinux"
                     | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } -> true
     | _ -> false
   in
