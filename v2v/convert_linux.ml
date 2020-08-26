@@ -658,6 +658,17 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
 
         run_update_initramfs_command ()
       )
+      else if g#is_file ~followsymlinks:true "/usr/sbin/make-initrd" then (
+        ignore (
+          g#command [|
+            (* by default make-initrd running in vm add virtio and other
+             * needed to boot modules
+             *)
+            "/usr/sbin/make-initrd";
+             "-k"; kernel.ki_version;
+          |]
+        )
+      )
       else if g#is_file ~followsymlinks:true "/sbin/mkinitrd" then (
         let module_args = List.map (sprintf "--with=%s") modules in
         let args =
