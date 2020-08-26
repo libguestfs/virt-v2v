@@ -1117,7 +1117,7 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
 
       let get_uefi_arch_suffix = function
         | "x86_64" -> Some "X64"
-        | "x86_32" -> Some "X32"
+        | "i386" -> Some "X32"
         | _ -> None
       in
 
