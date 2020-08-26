@@ -1234,6 +1234,7 @@ let () =
                     | "rhel" | "centos" | "scientificlinux" | "redhat-based"
                     | "oraclelinux"
                     | "sles" | "suse-based" | "opensuse"
+                    | "altlinux"
                     | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } -> true
     | _ -> false
   in
