@@ -51,6 +51,7 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
     | "fedora"
     | "rhel" | "centos" | "scientificlinux" | "redhat-based"
     | "oraclelinux" -> `RHEL_family
+    | "altlinux" -> `ALT_family
     | "sles" | "suse-based" | "opensuse" -> `SUSE_family
     | "debian" | "ubuntu" | "linuxmint" | "kalilinux" -> `Debian_family
     | _ -> assert false in
