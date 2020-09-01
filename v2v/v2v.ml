@@ -681,7 +681,10 @@ and copy_targets cmdline targets input output =
         fun t ->
           match t.target_file with
           | TargetURI _ -> ()
-          | TargetFile s -> try unlink s with _ -> ()
+          | TargetFile filename ->
+             if not (is_block_device filename) then (
+               try unlink filename with _ -> ()
+             )
       ) targets
     )
   );
@@ -711,27 +714,33 @@ and copy_targets cmdline targets input output =
 
       (match t.target_file with
        | TargetFile filename ->
-          (* It turns out that libguestfs's disk creation code is
-           * considerably more flexible and easier to use than
-           * qemu-img, so create the disk explicitly using libguestfs
-           * then pass the 'qemu-img convert -n' option so qemu reuses
-           * the disk.
-           *
-           * Also we allow the output mode to actually create the disk
-           * image.  This lets the output mode set ownership and
-           * permissions correctly if required.
+          (* As a special case, allow output to a block device or
+           * symlink to a block device.  In this case we don't
+           * create/overwrite the block device.  (RHBZ#1868690).
            *)
-          (* What output preallocation mode should we use? *)
-          let preallocation =
-            match t.target_format, cmdline.output_alloc with
-            | ("raw"|"qcow2"), Sparse -> Some "sparse"
-            | ("raw"|"qcow2"), Preallocated -> Some "full"
-            | _ -> None (* ignore -oa flag for other formats *) in
-          let compat =
-            match t.target_format with "qcow2" -> Some "1.1" | _ -> None in
-          output#disk_create filename t.target_format
-                             t.target_overlay.ov_virtual_size
-                             ?preallocation ?compat
+          if not (is_block_device filename) then (
+            (* It turns out that libguestfs's disk creation code is
+             * considerably more flexible and easier to use than
+             * qemu-img, so create the disk explicitly using libguestfs
+             * then pass the 'qemu-img convert -n' option so qemu reuses
+             * the disk.
+             *
+             * Also we allow the output mode to actually create the disk
+             * image.  This lets the output mode set ownership and
+             * permissions correctly if required.
+             *)
+            (* What output preallocation mode should we use? *)
+            let preallocation =
+              match t.target_format, cmdline.output_alloc with
+              | ("raw"|"qcow2"), Sparse -> Some "sparse"
+              | ("raw"|"qcow2"), Preallocated -> Some "full"
+              | _ -> None (* ignore -oa flag for other formats *) in
+            let compat =
+              match t.target_format with "qcow2" -> Some "1.1" | _ -> None in
+            output#disk_create filename t.target_format
+                               t.target_overlay.ov_virtual_size
+                               ?preallocation ?compat
+          )
 
        | TargetURI _ ->
           (* XXX For the moment we assume that qemu URI outputs

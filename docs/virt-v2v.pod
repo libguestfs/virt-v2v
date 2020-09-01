@@ -1378,7 +1378,40 @@ require either a special user and/or for you to source a script that
 sets authentication environment variables.  Consult the Glance
 documentation.
 
+=item Writing to block devices
+
+This normally requires root.  See the next section.
+
 =back
+
+=head2 Writing to block devices
+
+Some output modes write to local files.  In general these modes also
+let you write to block devices, but before you run virt-v2v you may
+have to arrange for symbolic links to the desired block devices in the
+output directory.
+
+For example if using I<-o local -os /dir> then virt-v2v would normally
+create files called:
+
+ /dir/name-sda     # first disk
+ /dir/name-sdb     # second disk
+ ...
+ /dir/name.xml     # metadata
+
+If you wish the disks to be written to block devices then you would
+need to create F</dir/I<name>-sda> (etc) as symlinks to the block
+devices:
+
+ # lvcreate -L 10G -n VolumeForDiskA VG
+ # lvcreate -L 6G -n VolumeForDiskB VG
+ # ln -sf /dev/VG/VolumeForDiskA /dir/name-sda
+ # ln -sf /dev/VG/VolumeForDiskB /dir/name-sdb
+
+Note that you must precreate the correct number of block devices of
+the correct size.  Typically I<-of raw> has to be used too, but other
+formats such as qcow2 can be useful occasionally so virt-v2v does not
+force you to use raw on block devices.
 
 =head2 Minimal XML for -i libvirtxml option
 
