@@ -88,6 +88,10 @@ let rec main () =
 
   let g = open_guestfs ~identifier:"v2v" () in
   g#set_memsize (g#get_memsize () * 14 / 5);
+  (* Setting the number of vCPUs allows parallel mkinitrd, but make
+   * sure this is not too large because each vCPU consumes guest RAM.
+   *)
+  g#set_smp (min 8 (Sysconf.nr_processors_online ()));
   (* The network is only used by the unconfigure_vmware () function. *)
   g#set_network true;
   (match conversion_mode with
