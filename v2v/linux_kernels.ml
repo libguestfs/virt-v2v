@@ -89,11 +89,19 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
         PCRE.compile "^initrd.img-.*$"
       else
         PCRE.compile "^initr(?:d|amfs)-.*(?:\\.img)?$" in
+    let kernel_pkgs = List.filter (
+      fun { G.app2_name = name } ->
+        name = "kernel"
+          || String.is_prefix name "kernel-"
+          || String.is_prefix name "linux-image-"
+    ) inspect.i_apps in
+    if verbose () then (
+      let names = List.map (fun { G.app2_name = name } -> name) kernel_pkgs in
+      eprintf "candidate kernel packages in this guest: %s%!\n"
+        (String.concat " " names)
+    );
     List.filter_map (
-      function
-      | { G.app2_name = name } as app
-          when name = "kernel" || String.is_prefix name "kernel-"
-               || String.is_prefix name "linux-image-" ->
+      fun ({ G.app2_name = name } as app) ->
         (try
            (* For each kernel, list the files directly owned by the kernel. *)
            let files = Linux.file_list_of_package g inspect app in
@@ -277,9 +285,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
 
          with Not_found -> None
         )
-
-      | _ -> None
-    ) inspect.i_apps in
+    ) kernel_pkgs in
 
   if verbose () then (
     eprintf "installed kernel packages in this guest:\n";
