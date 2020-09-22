@@ -92,7 +92,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
     let kernel_pkgs = List.filter (
       fun { G.app2_name = name } ->
         name = "kernel"
-          || String.is_prefix name "kernel-"
+          || (String.is_prefix name "kernel-" && not (String.is_suffix name "-devel"))
           || String.is_prefix name "linux-image-"
     ) inspect.i_apps in
     if verbose () then (
