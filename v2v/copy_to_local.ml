@@ -28,7 +28,7 @@ open Getopt.OptionName
 open Utils
 open Xpath_helpers
 
-type source_t = Xen_ssh of string | ESXi of string | Test
+type source_t = Xen_ssh of string | Test
 
 let rec main () =
   let input_conn = ref None in
@@ -60,8 +60,6 @@ let rec main () =
 Copy the remote guest:
 
   virt-v2v-copy-to-local -ic xen+ssh://root@xen.example.com guest
-
-  virt-v2v-copy-to-local -ic esx://esxi.example.com guest
 
 Then perform the conversion step:
 
@@ -98,8 +96,6 @@ read the man page virt-v2v-copy-to-local(1).
     match parsed_uri.Xml.uri_server, parsed_uri.Xml.uri_scheme with
     | Some server, Some "xen+ssh" -> (* Xen over SSH *)
        Xen_ssh server
-    | Some server, Some "esx" -> (* esxi over https *)
-       ESXi server
 
     (* This is just for testing, and is not documented. *)
     | None, Some "test" ->
@@ -107,7 +103,7 @@ read the man page virt-v2v-copy-to-local(1).
 
     (* We can probably extend this list in future. *)
     | _ ->
-       error (f_"only copies from VMware ESXi or Xen over SSH are supported.  See the virt-v2v-copy-to-local(1) manual page.") in
+       error (f_"only copies from Xen over SSH are supported.  See the virt-v2v-copy-to-local(1) manual page.") in
 
   (* We expect a single extra argument, which is the guest name. *)
   let guest_name =
@@ -140,25 +136,9 @@ read the man page virt-v2v-copy-to-local(1).
 
   debug "libvirt XML after modifying for local disks:\n%s" xml;
 
-  (* For VMware ESXi source, we have to massage the disk path. *)
   let disks =
-    match source with
-    | ESXi server ->
-       let dcpath =
-         match dcpath with
-         | Some dcpath -> dcpath
-         | None ->
-            error (f_"vcenter: <vmware:datacenterpath> was not found in the XML.  You need to upgrade to libvirt ≥ 1.2.20.") in
-       List.map (
-         fun (remote_disk, local_disk) ->
-           let { VCenter.https_url; sslverify; session_cookie } =
-             VCenter.map_source dcpath parsed_uri server remote_disk in
-           debug "esxi: source disk %s (sslverify=%b)" https_url sslverify;
-           (https_url, local_disk, sslverify, session_cookie)
-       ) disks
-    | Test | Xen_ssh _ ->
-       List.map (fun (remote_disk, local_disk) ->
-                 (remote_disk, local_disk, false, None)) disks in
+    List.map (fun (remote_disk, local_disk) ->
+                (remote_disk, local_disk, false, None)) disks in
 
   (* Delete the disks on exit, unless we finish everything OK. *)
   let delete_on_exit = ref true in
@@ -199,23 +179,6 @@ read the man page virt-v2v-copy-to-local(1).
                  (quote local_disk) in
        if shell_command cmd <> 0 then
          error (f_"ssh copy command failed, see earlier errors");
-
-    | ESXi _ ->
-       let curl_args = ref [
-         "url", Some remote_disk;
-         "output", Some local_disk;
-       ] in
-       if not sslverify then List.push_back curl_args ("insecure", None);
-       (match cookie with
-        | None -> ()
-        | Some cookie -> List.push_back curl_args ("cookie", Some cookie)
-       );
-       if quiet () then List.push_back curl_args ("silent", None);
-
-       let curl_h = Curl.create !curl_args in
-       if verbose () then
-         Curl.print stderr curl_h;
-       ignore (Curl.run curl_h)
 
     | Test ->
        let cmd = [ "cp"; remote_disk; local_disk ] in
