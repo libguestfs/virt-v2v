@@ -26,7 +26,6 @@ open Types
 open Utils
 
 let nbdkit_min_version = (1, 12, 0)
-let nbdkit_min_version_string = "1.12.0"
 
 type password =
 | NoPassword                    (* no password option at all *)
@@ -38,11 +37,16 @@ let error_unless_nbdkit_working () =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working")
 
-let error_unless_nbdkit_min_version config =
+let error_unless_nbdkit_version_ge config min_version =
   let version = Nbdkit.version config in
-  if version < nbdkit_min_version then
-    error (f_"nbdkit is too old.  nbdkit >= %s is required.")
-          nbdkit_min_version_string
+  if version < min_version then (
+    let min_major, min_minor, min_release = min_version in
+    error (f_"nbdkit is too old.  nbdkit >= %d.%d.%d is required.")
+          min_major min_minor min_release
+  )
+
+let error_unless_nbdkit_min_version config =
+  error_unless_nbdkit_version_ge config nbdkit_min_version
 
 let error_unless_nbdkit_plugin_exists plugin =
   if not (Nbdkit.probe_plugin plugin) then
@@ -297,8 +301,15 @@ let create_ssh ?bandwidth ~password ?port ~server ?user path =
   common_create ?bandwidth password "ssh" (get_args ())
 
 (* Create an nbdkit module specialized for reading from Curl sources. *)
-let create_curl ?bandwidth ?cookie ~password ?(sslverify=true) ?user url =
+let create_curl ?bandwidth ?cookie_script ?cookie_script_renew
+                ?(sslverify=true) url =
   error_unless_nbdkit_plugin_exists "curl";
+
+  (* The cookie* parameters require nbdkit 1.22, so check that early. *)
+  if cookie_script <> None || cookie_script_renew <> None then (
+    let config = Nbdkit.config () in
+    error_unless_nbdkit_version_ge config (1, 22, 0)
+  );
 
   let add_arg, get_args =
     let args = ref [] in
@@ -306,14 +317,19 @@ let create_curl ?bandwidth ?cookie ~password ?(sslverify=true) ?user url =
     let get_args () = List.rev !args in
     add_arg, get_args in
 
-  Option.may (fun s -> add_arg ("user", s)) user;
   (* https://bugzilla.redhat.com/show_bug.cgi?id=1146007#c10 *)
   add_arg ("timeout", "2000");
-  Option.may (fun s -> add_arg ("cookie", s)) cookie;
+  Option.may (fun s -> add_arg ("cookie-script", s)) cookie_script;
+  Option.may (fun i -> add_arg ("cookie-script-renew", string_of_int i))
+             cookie_script_renew;
   if not sslverify then add_arg ("sslverify", "false");
   add_arg ("url", url);
 
-  common_create ?bandwidth password "curl" (get_args ())
+  (* For lots of extra debugging, uncomment one or both lines. *)
+  (*add_arg ("--debug", "curl.verbose=1");*)
+  (*add_arg ("--debug", "curl.scripts=1");*)
+
+  common_create ?bandwidth NoPassword "curl" (get_args ())
 
 let run cmd =
   let sock, _ = Nbdkit.run_unix cmd in
