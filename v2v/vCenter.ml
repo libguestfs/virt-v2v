@@ -25,17 +25,10 @@ open Common_gettext.Gettext
 open Xml
 open Utils
 
-type remote_resource = {
-  https_url : string;
-  qemu_uri : string;
-  session_cookie : string option;
-  sslverify : bool;
-}
-
 let source_re = PCRE.compile "^\\[(.*)\\] (.*)\\.vmdk$"
 let snapshot_re = PCRE.compile "^(.*)-\\d{6}(\\.vmdk)$"
 
-let rec map_source ?bandwidth ?password_file dcPath uri server path =
+let rec qemu_uri_of_path ?bandwidth ?password_file dcPath uri server path =
   (* If no_verify=1 was passed in the libvirt URI, then we have to
    * turn off certificate verification here too.
    *)
@@ -82,11 +75,8 @@ let rec map_source ?bandwidth ?password_file dcPath uri server path =
                        ?user:uri.uri_user https_url in
   let qemu_uri = Nbdkit_sources.run nbdkit in
 
-  (* Return the struct. *)
-  { https_url = https_url;
-    qemu_uri = qemu_uri;
-    session_cookie = session_cookie;
-    sslverify = sslverify }
+  (* Return the QEMU URI. *)
+  qemu_uri
 
 and get_https_url dcPath uri server path =
   if not (PCRE.matches source_re path) then

@@ -88,9 +88,9 @@ object (self)
       | { p_source = P_source_dev _ } -> assert false
       | { p_source_disk = disk; p_source = P_dont_rewrite } -> disk
       | { p_source_disk = disk; p_source = P_source_file path } ->
-        let { VCenter.qemu_uri } =
-          VCenter.map_source ?bandwidth ?password_file:input_password
-                             dcPath parsed_uri server path in
+        let qemu_uri =
+          VCenter.qemu_uri_of_path ?bandwidth ?password_file:input_password
+                                   dcPath parsed_uri server path in
 
         (* The libvirt ESX driver doesn't normally specify a format, but
          * the format of the -flat file is *always* raw, so force it here.
