@@ -123,8 +123,16 @@ let file_list_of_package (g : Guestfs.guestfs) inspect app =
     let cmd = [| "rpm"; "-ql"; pkg_name |] in
     debug "%s" (String.concat " " (Array.to_list cmd));
     let files = g#command_lines cmd in
-    let files = Array.to_list files in
-    List.sort compare files
+    (* RPM prints "(contains no files)" on stdout when a package
+     * has no files in it:
+     * https://github.com/rpm-software-management/rpm/issues/962
+     *)
+    if files = [| "(contains no files)" |] then
+      []
+    else (
+      let files = Array.to_list files in
+      List.sort compare files
+    )
 
   | format ->
     error (f_"don’t know how to get list of files from package using %s")
