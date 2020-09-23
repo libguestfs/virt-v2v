@@ -60,10 +60,9 @@ val create_ssh : ?bandwidth:Types.bandwidth ->
     Note this doesn't run nbdkit yet, it just creates the object. *)
 
 val create_curl : ?bandwidth:Types.bandwidth ->
-                  ?cookie:string ->
-                  password:password ->
+                  ?cookie_script:string ->
+                  ?cookie_script_renew:int ->
                   ?sslverify:bool ->
-                  ?user:string ->
                   string -> Nbdkit.cmd
 (** Create a nbdkit object using the Curl plugin.  The required
     string parameter is the URL.

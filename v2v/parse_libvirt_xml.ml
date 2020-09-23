@@ -319,8 +319,7 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
                | _, Some port ->
                   invalid_arg "invalid port number in libvirt XML" in
              sprintf "%s://%s%s%s" driver host port (uri_quote path) in
-           let nbdkit = Nbdkit_sources.create_curl ?bandwidth ~password:NoPassword
-                                           url in
+           let nbdkit = Nbdkit_sources.create_curl ?bandwidth url in
            let qemu_uri = Nbdkit_sources.run nbdkit in
            add_disk qemu_uri format controller P_dont_rewrite
         | Some protocol, _, _ ->

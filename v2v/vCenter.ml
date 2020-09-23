@@ -46,11 +46,12 @@ let rec map_source ?bandwidth ?password_file dcPath uri server path =
        (* XXX only works if the query string is not URI-quoted *)
        String.find query "no_verify=1" = -1 in
 
+  (* Check the URL exists and authentication info is correct. *)
   let https_url =
     let https_url = get_https_url dcPath uri server path in
-    (* Check the URL exists. *)
-    let status, _, _ =
+    let status, _, dump_response =
       fetch_headers_from_url password_file uri sslverify https_url in
+
     (* If a disk is actually a snapshot image it will have '-00000n'
      * appended to its name, e.g.:
      *   [yellow:storage1] RHEL4-X/RHEL4-X-000003.vmdk
@@ -58,28 +59,71 @@ let rec map_source ?bandwidth ?password_file dcPath uri server path =
      * a 404 and the vmdk name looks like it might be a snapshot, try
      * again without the snapshot suffix.
      *)
-    if status = "404" && PCRE.matches snapshot_re path then (
-      let path = PCRE.sub 1 ^ PCRE.sub 2 in
-      get_https_url dcPath uri server path
-    )
-    else
-      (* Note that other non-200 status errors will be handled
-       * in get_session_cookie below, so we don't have to worry
-       * about them here.
-       *)
-      https_url in
+    let https_url, status, dump_response =
+      if status = "404" && PCRE.matches snapshot_re path then (
+        let path = PCRE.sub 1 ^ PCRE.sub 2 in
+        let https_url = get_https_url dcPath uri server path in
+        let status, _, dump_response =
+          fetch_headers_from_url password_file uri sslverify https_url in
+        https_url, status, dump_response
+      )
+      else (https_url, status, dump_response) in
+
+    if status = "401" then (
+      dump_response stderr;
+      if uri.uri_user <> None then
+        error (f_"vcenter: incorrect username or password")
+      else
+        error (f_"vcenter: incorrect username or password.  You might need to specify the username in the URI like this: [vpx|esx|..]://USERNAME@[etc]")
+    );
+
+    if status = "404" then (
+      dump_response stderr;
+      error (f_"vcenter: URL not found: %s") https_url
+    );
+
+    if status <> "200" then (
+      dump_response stderr;
+      error (f_"vcenter: invalid response from server: %s") status
+    );
+
+    https_url in
 
   let session_cookie =
     get_session_cookie password_file uri sslverify https_url in
 
-  let password =
-    match password_file with
-    | None -> Nbdkit_sources.NoPassword
-    | Some password_file -> Nbdkit_sources.PasswordFile password_file in
+  (* Write a cookie script to retrieve the session cookie.
+   * See nbdkit-curl-plugin(1) "Example: VMware ESXi cookies"
+   *)
+  let cookie_script, chan =
+    Filename.open_temp_file ~perms:0o700 "v2vcs" ".sh" in
+  unlink_on_exit cookie_script;
+  let fpf fs = fprintf chan fs in
+  fpf "#!/bin/sh -\n";
+  fpf "\n";
+  fpf "curl --head -s";
+  if not sslverify then fpf " --insecure";
+  (match uri.uri_user, password_file with
+   | None, None -> ()
+   | Some user, None -> fpf " -u %s" (quote user)
+   | None, Some password_file ->
+      fpf " -u \"$LOGNAME\":\"$(cat %s)\"" (quote password_file)
+   | Some user, Some password_file ->
+      fpf " -u %s:\"$(cat %s)\"" (quote user) (quote password_file)
+  );
+  fpf " %s" (quote https_url);
+  fpf " |\n";
+  fpf "\tsed -ne %s\n" (quote "{ s/^Set-Cookie: \\([^;]*\\);.*/\\1/ip }");
+  close_out chan;
+
+  (* VMware authentication expires after 30 minutes so we must renew
+   * after < 30 minutes.
+   *)
+  let cookie_script_renew = 25*60 in
 
   let nbdkit =
-    Nbdkit_sources.create_curl ?bandwidth ?cookie:session_cookie ~password ~sslverify
-                       ?user:uri.uri_user https_url in
+    Nbdkit_sources.create_curl ?bandwidth ~cookie_script ~cookie_script_renew
+                               ~sslverify https_url in
   let qemu_uri = Nbdkit_sources.run nbdkit in
 
   (* Return the struct. *)
