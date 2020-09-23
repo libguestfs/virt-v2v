@@ -107,7 +107,6 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
            let files = Linux.file_list_of_package g inspect app in
 
            if files = [] then (
-             warning (f_"package ‘%s’ contains no files") name;
              None
            )
            else (
