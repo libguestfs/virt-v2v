@@ -121,15 +121,27 @@ value
 v2v_osinfo_db_load (value unitv)
 {
   CAMLparam1 (unitv);
-  CAMLlocal1 (rv);
+  CAMLlocal2 (rv, errv);
   g_autoptr(OsinfoLoader) loader = NULL;
   OsinfoDb *db = NULL;
   g_autoptr(GError) error = NULL;
 
   loader = osinfo_loader_new ();
   osinfo_loader_process_default_path (loader, &error);
-  if (error != NULL)
-    caml_failwith (error->message);
+  if (error != NULL) {
+    char *err;
+
+    if (asprintf (&err, "libosinfo error: "
+                  "osinfo_loader_process_default_path: %s",
+                  error->message) >= 0) {
+      errv = caml_copy_string (err);
+      free (err);
+    }
+    else
+      errv = caml_copy_string ("osinfo_loader_process_default_path failed");
+
+    caml_failwith_value (errv);
+  }
 
   db = osinfo_loader_get_db (loader);
   g_object_ref (db);
