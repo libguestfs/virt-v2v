@@ -582,6 +582,18 @@ a stable IP address.  After that log in to the vCenter server’s admin
 console at C<https://vcenter:5480/>.  Under the C<Admin> tab, select
 C<Certificate regeneration enabled> and then reboot it.
 
+=head2 vCenter: "Out of HTTP sessions: Limited to ..."
+
+VMware vCenter appears to limit HTTP sessions and in some
+circumstances virt-v2v may exceed this number.  You can adjust or
+remove the limit by editing F</etc/vmware-vpx/vpxd.cfg> on the vCenter
+server.  Increase the C<E<lt>maxSessionCountE<gt>> field, or set it to
+C<0> which makes it unlimited:
+
+ <soap>
+   <maxSessionCount>0</maxSessionCount>
+ </soap>
+
 =head1 SEE ALSO
 
 L<virt-v2v(1)>.
