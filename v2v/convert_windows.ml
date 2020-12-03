@@ -267,8 +267,8 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
     if Sys.file_exists tool_path then
       configure_wait_pnp tool_path
     else
-      warning (f_"%s is missing.  Firstboot scripts may conflict with PnP.")
-              tool_path;
+      debug (f_"%s is missing.  Firstboot scripts may conflict with PnP.")
+        tool_path;
 
     (* Install RHEV-APT only if appropriate for the output hypervisor. *)
     if output#install_rhev_apt then (
