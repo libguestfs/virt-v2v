@@ -316,7 +316,7 @@ let create_libvirt_xml ?pool source targets target_buses guestcaps
   let devices = ref [] in
 
   (* Fixed and removable disks. *)
-  let disks =
+  let () =
     let make_disk bus_name drive_prefix i = function
     | BusSlotEmpty -> Comment (sprintf "%s slot %d is empty" bus_name i)
 
@@ -372,21 +372,31 @@ let create_libvirt_xml ?pool source targets target_buses guestcaps
         ]
     in
 
-    List.flatten [
-      Array.to_list
-        (Array.mapi (make_disk "virtio" "vd")
-                    target_buses.target_virtio_blk_bus);
-      Array.to_list
-        (Array.mapi (make_disk "ide" "hd")
-                    target_buses.target_ide_bus);
-      Array.to_list
-        (Array.mapi (make_disk "scsi" "sd")
-                    target_buses.target_scsi_bus);
-      Array.to_list
-        (Array.mapi (make_disk "floppy" "fd")
-                    target_buses.target_floppy_bus)
-    ] in
-  List.push_back_list devices disks;
+    List.push_back_list devices
+      (List.mapi (make_disk "virtio" "vd")
+                 (Array.to_list target_buses.target_virtio_blk_bus));
+    let ide_disks =
+      match guestcaps.gcaps_machine with
+      | I440FX ->
+         List.mapi (make_disk "ide" "hd")
+                   (Array.to_list target_buses.target_ide_bus)
+      | Q35 ->
+         List.mapi (make_disk "sata" "sd")
+                   (Array.to_list target_buses.target_ide_bus)
+      | Virt ->
+         (* mach_virt doesn't support legacy devices like IDE and SATA,
+          * so target_ide_bus must be empty, otherwise we give a warning.
+          *)
+         if Array.length target_buses.target_ide_bus > 0 then
+           warning "machine type virt does not support IDE and SATA legacy devices, some legacy devices of this guest have been dropped from the libvirt output";
+         [] in
+    List.push_back_list devices ide_disks;
+    List.push_back_list devices
+      (List.mapi (make_disk "scsi" "sd")
+                 (Array.to_list target_buses.target_scsi_bus));
+    List.push_back_list devices
+      (List.mapi (make_disk "floppy" "fd")
+                 (Array.to_list target_buses.target_floppy_bus)) in
 
   let nics =
     let net_model =
