@@ -462,13 +462,18 @@ let origin_of_source_hypervisor = function
    *)
   | _ -> None
 
-(* Set the <BiosType> element. Other possible values:
- *   1  q35 + SeaBIOS
- *   3  q35 + UEFI + Secure Boot
+(* Set the <BiosType> element.
+ * https://github.com/oVirt/ovirt-engine/blob/master/backend/manager/modules/common/src/main/java/org/ovirt/engine/core/common/businessentities/BiosType.java#L10
  *)
-let get_ovirt_biostype = function
-  | TargetBIOS -> 0  (* i440fx + SeaBIOS *)
-  | TargetUEFI -> 2  (* q35 + UEFI *)
+let get_ovirt_biostype arch machine firmware =
+  if arch <> "x86_64" then
+    1
+  else
+    match machine, firmware with
+    | I440FX, TargetBIOS -> 1 (* i440fx + SeaBIOS *)
+    | Q35, TargetBIOS -> 2    (* q35 + SeaBIOS *)
+    | Q35, TargetUEFI -> 3    (* q35 + UEFI *)
+    | _ -> 0                  (* who knows! try cluster default *)
 
 (* Generate the .meta file associated with each volume. *)
 let create_meta_files output_alloc sd_uuid image_uuids overlays =
@@ -523,7 +528,9 @@ let rec create_ovf source targets guestcaps inspect target_firmware
   let vmtype = get_vmtype inspect in
   let vmtype = match vmtype with `Desktop -> "0" | `Server -> "1" in
   let ostype = get_ostype inspect in
-  let biostype = get_ovirt_biostype target_firmware in
+  let biostype =
+    get_ovirt_biostype guestcaps.gcaps_arch guestcaps.gcaps_machine
+                       target_firmware in
 
   let ovf : doc =
     doc "ovf:Envelope" [
@@ -611,8 +618,6 @@ let rec create_ovf source targets guestcaps inspect target_firmware
         e "Info" [] [PCData (sprintf "%d CPU, %Ld Memory"
                                      source.s_vcpu memsize_mb)]
       ] in
-
-      (* XXX How to set machine type for Q35? *)
 
       List.push_back virtual_hardware_section_items (
         e "Item" [] ([
