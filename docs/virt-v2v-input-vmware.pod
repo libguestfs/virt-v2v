@@ -304,6 +304,13 @@ The VDDK library can be operated in a verbose mode where it gives
 (very) verbose messages.  Use ‘virt-v2v -v -x’ as usual to enable
 verbose messages.
 
+=head2 VDDK: Slow imports and repeated NBD_ClientOpen messages
+
+If imports over VDDK are slow, and ‘virt-v2v -v -x’ shows many
+C<NBD_ClientOpen> messages, then you are hitting an apparent bug in
+S<VDDK 6.7> (https://bugzilla.redhat.com/1901489).  Upgrade to at
+least S<VDDK 7> to resolve the issue.
+
 =head1 INPUT FROM VMWARE OVA
 
 Virt-v2v is able to import guests from VMware’s OVA (Open
