@@ -135,7 +135,7 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
   (* Locate and retrieve all the uninstallation commands for installed
    * applications.
    *)
-  let uninstallation_commands pretty_name matchfn extra_uninstall_params =
+  let uninstallation_commands pretty_name matchfn modfn extra_uninstall_params =
     let path = ["Microsoft"; "Windows"; "CurrentVersion"; "Uninstall"] in
     let uninstval = "UninstallString" in
     let ret = ref [] in
@@ -155,6 +155,7 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
                    let valueh = g#hivex_node_get_value uninstnode uninstval in
                    if valueh <> 0L then (
                      let reg_cmd = g#hivex_value_string valueh in
+                     let reg_cmd = modfn reg_cmd in
                      let cmd =
                        sprintf "%s /quiet /norestart /l*v+ \"%%~dpn0.log\" REBOOT=ReallySuppress REMOVE=ALL %s"
                          reg_cmd extra_uninstall_params in
@@ -183,14 +184,22 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
      *)
     let extra_uninstall_params =
       "PREVENT_REBOOT=Yes LAUNCHED_BY_SETUP_EXE=Yes" in
-    uninstallation_commands "Parallels Tools" matchfn extra_uninstall_params in
+    uninstallation_commands "Parallels Tools" matchfn identity
+      extra_uninstall_params in
 
   (* Locate and retrieve all uninstallation commands for VMware Tools. *)
   let vmwaretools_uninst =
     let matchfn s =
       String.find s "VMware Tools" != -1
     in
-    uninstallation_commands "VMware Tools" matchfn "" in
+    (* VMware Tools writes the install command (MsiExec /I) into the
+     * UninstallString key in the registry, rather than the uninstall
+     * command.  Try to spot this and rewrite.  (RHBZ#1917760).
+     *)
+    let re1 = PCRE.compile ~caseless:true "msiexec" in
+    let re2 = PCRE.compile ~caseless:true "/i" in
+    let msifn s = if PCRE.matches re1 s then PCRE.replace re2 "/x" s else s in
+    uninstallation_commands "VMware Tools" matchfn msifn "" in
 
   (*----------------------------------------------------------------------*)
   (* Perform the conversion of the Windows guest. *)
