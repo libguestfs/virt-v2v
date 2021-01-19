@@ -135,7 +135,7 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
   (* Locate and retrieve all the uninstallation commands for installed
    * applications.
    *)
-  let unistallation_commands pretty_name matchfn extra_uninstall_string =
+  let uninstallation_commands pretty_name matchfn extra_uninstall_string =
     let uninsts = ref [] in
 
     Registry.with_hive_readonly g inspect.i_windows_software_hive
@@ -198,14 +198,14 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
      *)
     let extra_uninstall_string =
       Some "PREVENT_REBOOT=Yes LAUNCHED_BY_SETUP_EXE=Yes" in
-    unistallation_commands "Parallels Tools" matchfn extra_uninstall_string in
+    uninstallation_commands "Parallels Tools" matchfn extra_uninstall_string in
 
   (* Locate and retrieve all uninstallation commands for VMware Tools. *)
   let vmwaretools_uninst =
     let matchfn s =
       String.find s "VMware Tools" != -1
     in
-    unistallation_commands "VMware Tools" matchfn None in
+    uninstallation_commands "VMware Tools" matchfn None in
 
   (*----------------------------------------------------------------------*)
   (* Perform the conversion of the Windows guest. *)
