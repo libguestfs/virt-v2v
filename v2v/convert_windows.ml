@@ -135,56 +135,41 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
   (* Locate and retrieve all the uninstallation commands for installed
    * applications.
    *)
-  let uninstallation_commands pretty_name matchfn extra_uninstall_string =
-    let uninsts = ref [] in
+  let uninstallation_commands pretty_name matchfn extra_uninstall_params =
+    let path = ["Microsoft"; "Windows"; "CurrentVersion"; "Uninstall"] in
+    let uninstval = "UninstallString" in
+    let ret = ref [] in
 
-    Registry.with_hive_readonly g inspect.i_windows_software_hive
-      (fun reg ->
-       try
-         let path = ["Microsoft"; "Windows"; "CurrentVersion"; "Uninstall"] in
-         let node =
-           match Registry.get_node reg path with
-           | None -> raise Not_found
-           | Some node -> node in
-         let uninstnodes = g#hivex_node_children node in
-
-         Array.iter (
-           fun { G.hivex_node_h = uninstnode } ->
-             try
+    Registry.with_hive_readonly g inspect.i_windows_software_hive (
+      fun reg ->
+        match Registry.get_node reg path with
+        | None -> ()
+        | Some node ->
+           let uninstnodes = g#hivex_node_children node in
+           Array.iter (
+             fun { G.hivex_node_h = uninstnode } ->
                let valueh = g#hivex_node_get_value uninstnode "DisplayName" in
-               if valueh = 0L then
-                 raise Not_found;
-
-               let dispname = g#hivex_value_string valueh in
-               if not (matchfn dispname) then
-                 raise Not_found;
-
-               let uninstval = "UninstallString" in
-               let valueh = g#hivex_node_get_value uninstnode uninstval in
-               if valueh = 0L then (
-                 let name = g#hivex_node_name uninstnode in
-                 warning (f_"cannot uninstall %s: registry key ‘HKLM\\SOFTWARE\\%s\\%s’ with DisplayName ‘%s’ doesn't contain value ‘%s’")
-                    pretty_name (String.concat "\\" path) name dispname uninstval;
-                 raise Not_found
-               );
-
-               let uninst = (g#hivex_value_string valueh) ^
-                     " /quiet /norestart /l*v+ \"%~dpn0.log\"" ^
-                     " REBOOT=ReallySuppress REMOVE=ALL" in
-               let uninst =
-                 match extra_uninstall_string with
-                 | None -> uninst
-                 | Some s -> uninst ^ " " ^ s in
-
-               List.push_front uninst uninsts
-             with
-               Not_found -> ()
-         ) uninstnodes
-       with
-         Not_found -> ()
-      );
-
-    !uninsts
+               if valueh <> 0L then (
+                 let dispname = g#hivex_value_string valueh in
+                 if matchfn dispname then (
+                   let valueh = g#hivex_node_get_value uninstnode uninstval in
+                   if valueh <> 0L then (
+                     let reg_cmd = g#hivex_value_string valueh in
+                     let cmd =
+                       sprintf "%s /quiet /norestart /l*v+ \"%%~dpn0.log\" REBOOT=ReallySuppress REMOVE=ALL %s"
+                         reg_cmd extra_uninstall_params in
+                     List.push_front cmd ret
+                   )
+                   else
+                     let name = g#hivex_node_name uninstnode in
+                     warning (f_"cannot uninstall %s: registry key ‘HKLM\\SOFTWARE\\%s\\%s’ with DisplayName ‘%s’ doesn't contain value ‘%s’")
+                       pretty_name (String.concat "\\" path) name
+                       dispname uninstval
+                 )
+               )
+             ) uninstnodes
+    ) (* with_hive_readonly *);
+    !ret
   in
 
   (* Locate and retrieve all uninstallation commands for Parallels Tools. *)
@@ -196,16 +181,16 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
     (* Without these custom Parallels-specific MSI properties the
      * uninstaller still shows a no-way-out reboot dialog.
      *)
-    let extra_uninstall_string =
-      Some "PREVENT_REBOOT=Yes LAUNCHED_BY_SETUP_EXE=Yes" in
-    uninstallation_commands "Parallels Tools" matchfn extra_uninstall_string in
+    let extra_uninstall_params =
+      "PREVENT_REBOOT=Yes LAUNCHED_BY_SETUP_EXE=Yes" in
+    uninstallation_commands "Parallels Tools" matchfn extra_uninstall_params in
 
   (* Locate and retrieve all uninstallation commands for VMware Tools. *)
   let vmwaretools_uninst =
     let matchfn s =
       String.find s "VMware Tools" != -1
     in
-    uninstallation_commands "VMware Tools" matchfn None in
+    uninstallation_commands "VMware Tools" matchfn "" in
 
   (*----------------------------------------------------------------------*)
   (* Perform the conversion of the Windows guest. *)
