@@ -16,3 +16,22 @@ Virt-v2v and virt-p2v have been in continuous development since 2007.
 For more information about virt-v2v and virt-p2v please read the
 respective manual pages.  For virt-v2v, see the docs/ subdirectory in
 the source tree.
+
+To build from git:
+
+  git submodule update --init
+  ./autogen.sh
+  make
+
+To build from tarball:
+
+  ./configure
+  make
+
+You can run virt-v2v without installing it:
+
+  ./run virt-v2v ...
+
+To run the tests:
+
+  make check
