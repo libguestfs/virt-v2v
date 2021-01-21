@@ -143,7 +143,6 @@ def open(readonly):
         'disk_id': disk.id,
         'transfer': transfer,
         'failed': False,
-        'highestwrite': 0,
         'http': http,
         'path': destination_url.path,
     }
@@ -212,7 +211,6 @@ def pwrite(h, buf, offset):
     http = h['http']
 
     count = len(buf)
-    h['highestwrite'] = max(h['highestwrite'], offset + count)
 
     http.putrequest("PUT", h['path'] + "?flush=n")
     # The oVirt server only uses the first part of the range, and the
@@ -269,33 +267,28 @@ def zero(h, count, offset, may_trim):
 def emulate_zero(h, count, offset):
     http = h['http']
 
-    # qemu-img convert starts by trying to zero/trim the whole device.
-    # Since we've just created a new disk it's safe to ignore these
-    # requests as long as they are smaller than the highest write seen.
-    # After that we must emulate them with writes.
-    if offset + count < h['highestwrite']:
-        http.putrequest("PUT", h['path'])
-        http.putheader("Content-Range",
-                       "bytes %d-%d/*" % (offset, offset + count - 1))
-        http.putheader("Content-Length", str(count))
-        http.endheaders()
+    http.putrequest("PUT", h['path'])
+    http.putheader("Content-Range",
+                   "bytes %d-%d/*" % (offset, offset + count - 1))
+    http.putheader("Content-Length", str(count))
+    http.endheaders()
 
-        try:
-            buf = bytearray(128 * 1024)
-            while count > len(buf):
-                http.send(buf)
-                count -= len(buf)
-            http.send(memoryview(buf)[:count])
-        except BrokenPipeError:
-            pass
+    try:
+        buf = bytearray(128 * 1024)
+        while count > len(buf):
+            http.send(buf)
+            count -= len(buf)
+        http.send(memoryview(buf)[:count])
+    except BrokenPipeError:
+        pass
 
-        r = http.getresponse()
-        if r.status != 200:
-            request_failed(r,
-                           "could not write zeroes offset %d size %d" %
-                           (offset, count))
+    r = http.getresponse()
+    if r.status != 200:
+        request_failed(r,
+                       "could not write zeroes offset %d size %d" %
+                       (offset, count))
 
-        r.read()
+    r.read()
 
 
 @failing
