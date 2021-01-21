@@ -117,6 +117,15 @@ def open(readonly):
         destination_url = parse_transfer_url(transfer)
         http = create_http(destination_url)
         options = get_options(http, destination_url)
+
+        # Close the initial connection to imageio server. When qemu-img will
+        # try to access the server, HTTPConnection will reconnect
+        # automatically. If we keep this connection idle and qemu-img is too
+        # slow getting image extents, imageio server may close the connection,
+        # and the import will fail on the first write.
+        # See https://bugzilla.redhat.com/1916176.
+        http.close()
+
         http = optimize_http(http, host, options)
     except:
         cancel_transfer(connection, transfer)
