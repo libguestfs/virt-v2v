@@ -140,7 +140,6 @@ def open(readonly):
         'can_flush': options['can_flush'],
         'can_trim': options['can_trim'],
         'can_zero': options['can_zero'],
-        'needs_auth': options['needs_auth'],
         'connection': connection,
         'disk_id': disk.id,
         'transfer': transfer,
@@ -195,12 +194,8 @@ def request_failed(r, msg):
 @failing
 def pread(h, count, offset):
     http = h['http']
-    transfer = h['transfer']
 
     headers = {"Range": "bytes=%d-%d" % (offset, offset + count - 1)}
-    if h['needs_auth']:
-        headers["Authorization"] = transfer.signed_ticket
-
     http.request("GET", h['path'], headers=headers)
 
     r = http.getresponse()
@@ -216,14 +211,11 @@ def pread(h, count, offset):
 @failing
 def pwrite(h, buf, offset):
     http = h['http']
-    transfer = h['transfer']
 
     count = len(buf)
     h['highestwrite'] = max(h['highestwrite'], offset + count)
 
     http.putrequest("PUT", h['path'] + "?flush=n")
-    if h['needs_auth']:
-        http.putheader("Authorization", transfer.signed_ticket)
     # The oVirt server only uses the first part of the range, and the
     # content-length.
     http.putheader("Content-Range", "bytes %d-%d/*" % (offset, offset + count - 1))
@@ -277,7 +269,6 @@ def zero(h, count, offset, may_trim):
 
 def emulate_zero(h, count, offset):
     http = h['http']
-    transfer = h['transfer']
 
     # qemu-img convert starts by trying to zero/trim the whole device.
     # Since we've just created a new disk it's safe to ignore these
@@ -285,8 +276,6 @@ def emulate_zero(h, count, offset):
     # After that we must emulate them with writes.
     if offset + count < h['highestwrite']:
         http.putrequest("PUT", h['path'])
-        if h['needs_auth']:
-            http.putheader("Authorization", transfer.signed_ticket)
         http.putheader("Content-Range",
                        "bytes %d-%d/*" % (offset, offset + count - 1))
         http.putheader("Content-Length", str(count))
@@ -721,8 +710,6 @@ def get_options(http, url):
         j = json.loads(data)
         features = j["features"]
         return {
-            # New imageio never used authentication.
-            "needs_auth": False,
             "can_flush": "flush" in features,
             "can_trim": "trim" in features,
             "can_zero": "zero" in features,
@@ -733,9 +720,6 @@ def get_options(http, url):
         # Old imageio servers returned either 405 Method Not Allowed or
         # 204 No Content (with an empty body).
         return {
-            # Authentication was required only when using old imageio proxy.
-            # Can be removed when dropping support for oVirt < 4.2.
-            "needs_auth": not params['rhv_direct'],
             "can_flush": False,
             "can_trim": False,
             "can_zero": False,
