@@ -131,14 +131,13 @@ def open(readonly):
         cancel_transfer(connection, transfer)
         raise
 
-    debug("imageio features: flush=%(can_flush)r trim=%(can_trim)r "
+    debug("imageio features: flush=%(can_flush)r "
           "zero=%(can_zero)r unix_socket=%(unix_socket)r"
           % options)
 
     # Save everything we need to make requests in the handle.
     return {
         'can_flush': options['can_flush'],
-        'can_trim': options['can_trim'],
         'can_zero': options['can_zero'],
         'connection': connection,
         'disk_id': disk.id,
@@ -152,7 +151,7 @@ def open(readonly):
 
 @failing
 def can_trim(h):
-    return h['can_trim']
+    return False
 
 
 @failing
@@ -297,30 +296,6 @@ def emulate_zero(h, count, offset):
                            (offset, count))
 
         r.read()
-
-
-@failing
-def trim(h, count, offset):
-    http = h['http']
-
-    # Construct the JSON request for trimming.
-    buf = json.dumps({'op': "trim",
-                      'offset': offset,
-                      'size': count,
-                      'flush': False}).encode()
-
-    headers = {"Content-Type": "application/json",
-               "Content-Length": str(len(buf))}
-
-    http.request("PATCH", h['path'], body=buf, headers=headers)
-
-    r = http.getresponse()
-    if r.status != 200:
-        request_failed(r,
-                       "could not trim sector offset %d size %d" %
-                       (offset, count))
-
-    r.read()
 
 
 @failing
@@ -711,7 +686,6 @@ def get_options(http, url):
         features = j["features"]
         return {
             "can_flush": "flush" in features,
-            "can_trim": "trim" in features,
             "can_zero": "zero" in features,
             "unix_socket": j.get('unix_socket'),
         }
@@ -721,7 +695,6 @@ def get_options(http, url):
         # 204 No Content (with an empty body).
         return {
             "can_flush": False,
-            "can_trim": False,
             "can_zero": False,
             "unix_socket": None,
         }
