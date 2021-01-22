@@ -56,6 +56,7 @@ val add_debug_flag : cmd -> string -> string -> cmd
 val set_exportname : cmd -> string -> cmd
 val set_readonly : cmd -> bool -> cmd
 val set_selinux_label : cmd -> string option -> cmd
+val set_threads : cmd -> int -> cmd
 val set_verbose : cmd -> bool -> cmd
 (** Set various command line flags. *)
 

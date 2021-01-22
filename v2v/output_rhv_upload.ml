@@ -208,6 +208,9 @@ class output_rhv_upload output_alloc output_conn
   let nbdkit_cmd = Nbdkit.set_plugin nbdkit_cmd nbdkit_python_plugin in
   let nbdkit_cmd = Nbdkit.add_arg nbdkit_cmd "script" (Python_script.path plugin_script) in
 
+  (* Match number of parallel coroutines in qemu-img *)
+  let nbdkit_cmd = Nbdkit.set_threads nbdkit_cmd 8 in
+
   let nbdkit_cmd =
     if have_selinux then
       (* Label the socket so qemu can open it. *)

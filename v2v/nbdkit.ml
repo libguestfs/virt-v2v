@@ -72,6 +72,7 @@ type cmd = {
   exportname : string option;
   readonly : bool;
   selinux_label : string option;
+  threads : int;
   verbose : bool;
 }
 
@@ -84,6 +85,7 @@ let new_cmd = {
   exportname = None;
   readonly = false;
   selinux_label = None;
+  threads = 16;
   verbose = false;
 }
 
@@ -93,6 +95,7 @@ let add_debug_flag cmd name value =
 let set_exportname cmd v = { cmd with exportname = Some v }
 let set_readonly cmd v = { cmd with readonly = v }
 let set_selinux_label cmd v = { cmd with selinux_label = v }
+let set_threads cmd v = { cmd with threads = v }
 let set_verbose cmd v = { cmd with verbose = v }
 let set_plugin cmd v = { cmd with plugin = Some v }
 let add_filter cmd v = { cmd with filters = v :: cmd.filters }
@@ -136,6 +139,7 @@ let run_unix cmd =
   add_arg "--newstyle";
   add_arg "--pidfile"; add_arg pidfile;
   add_arg "--unix"; add_arg sock;
+  add_arg "--threads"; add_arg (string_of_int cmd.threads);
 
   (* Reduce verbosity in nbdkit >= 1.17.4. *)
   let version = version (config ()) in
