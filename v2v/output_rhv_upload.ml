@@ -84,11 +84,11 @@ let parse_output_options options =
 
   { rhv_cafile; rhv_cluster; rhv_direct; rhv_verifypeer; rhv_disk_uuids }
 
-(* In theory even very old versions of nbdkit might work, but as
- * with [Nbdkit_sources] check for at least 1.12.
+(* We need nbdkit >= 1.22 for API_VERSION 2 and parallel threading model
+ * in the python plugin.
  *)
-let nbdkit_min_version = (1, 12, 0)
-let nbdkit_min_version_string = "1.12.0"
+let nbdkit_min_version = (1, 22, 0)
+let nbdkit_min_version_string = "1.22.0"
 
 let nbdkit_python_plugin = Config.nbdkit_python_plugin
 let pidfile_timeout = 30
