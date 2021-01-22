@@ -110,9 +110,8 @@ dnl Bash completion.
 HEADING([Checking for bash completion])
 m4_include([m4/guestfs-bash-completion.m4])
 
-dnl These are required to get common/*/Makefile.am files
-dnl to work.  We should further decouple these in future XXX
-AM_CONDITIONAL([ENABLE_APPLIANCE],[true])
+dnl This are required to get common/*/Makefile.am files to work.  We
+dnl should further decouple these in future XXX
 AM_CONDITIONAL([HAVE_PYTHON],[false])  dnl Disables a test
 
 dnl Produce output files.
