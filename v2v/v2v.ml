@@ -763,6 +763,7 @@ and copy_targets cmdline targets input output =
         [ "-n"; "-f"; "qcow2"; "-O"; output#transfer_format t ] @
         (if cmdline.compressed then [ "-c" ] else []) @
         [ "-S"; "64k" ] @
+        (if output#write_out_of_order then [ "-W" ] else []) @
         [ overlay_file; filename ] in
       let start_time = gettimeofday () in
       if run_command cmd <> 0 then

@@ -283,6 +283,8 @@ object
   (* rhev-apt.exe will be installed (if available). *)
   method install_rhev_apt = true
 
+  method write_out_of_order = true
+
   method prepare_targets source_name overlays guestcaps =
     let rhv_cluster_name =
       match List.assoc "rhv_cluster" json_params with
