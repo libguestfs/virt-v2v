@@ -135,7 +135,8 @@ def open(readonly):
         raise
 
     debug("imageio features: flush=%(can_flush)r "
-          "zero=%(can_zero)r unix_socket=%(unix_socket)r"
+          "zero=%(can_zero)r unix_socket=%(unix_socket)r "
+          "max_readers=%(max_readers)r max_writers=%(max_writers)r"
           % options)
 
     # Save everything we need to make requests in the handle.
@@ -712,6 +713,8 @@ def get_options(http, url):
             "can_flush": "flush" in features,
             "can_zero": "zero" in features,
             "unix_socket": j.get('unix_socket'),
+            "max_readers": j.get("max_readers", 1),
+            "max_writers": j.get("max_writers", 1),
         }
 
     elif r.status == 405 or r.status == 204:
@@ -721,6 +724,8 @@ def get_options(http, url):
             "can_flush": False,
             "can_zero": False,
             "unix_socket": None,
+            "max_readers": 1,
+            "max_writers": 1,
         }
     else:
         raise RuntimeError("could not use OPTIONS request: %d: %s" %
