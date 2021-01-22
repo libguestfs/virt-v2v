@@ -32,6 +32,9 @@ from urllib.parse import urlparse
 import ovirtsdk4 as sdk
 import ovirtsdk4.types as types
 
+# Using version 2 supporting the buffer protocol for better performance.
+API_VERSION = 2
+
 # Timeout to wait for oVirt disks to change status, or the transfer
 # object to finish initializing [seconds].
 timeout = 5 * 60
@@ -190,7 +193,8 @@ def request_failed(r, msg):
 
 
 @failing
-def pread(h, count, offset):
+def pread(h, buf, offset, flags):
+    count = len(buf)
     http = h['http']
 
     headers = {"Range": "bytes=%d-%d" % (offset, offset + count - 1)}
@@ -203,11 +207,26 @@ def pread(h, count, offset):
                        "could not read sector offset %d size %d" %
                        (offset, count))
 
-    return r.read()
+    content_length = int(r.getheader("content-length"))
+    if content_length != count:
+        # Should never happen.
+        request_failed(r,
+                       "unexpected Content-Length offset %d size %d got %d" %
+                       (offset, count, content_length))
+
+    with memoryview(buf) as view:
+        got = 0
+        while got < count:
+            n = r.readinto(view[got:])
+            if n == 0:
+                request_failed(r,
+                               "short read offset %d size %d got %d" %
+                               (offset, count, got))
+            got += n
 
 
 @failing
-def pwrite(h, buf, offset):
+def pwrite(h, buf, offset, flags):
     http = h['http']
 
     count = len(buf)
@@ -234,7 +253,7 @@ def pwrite(h, buf, offset):
 
 
 @failing
-def zero(h, count, offset, may_trim):
+def zero(h, count, offset, flags):
     http = h['http']
 
     # Unlike the trim and flush calls, there is no 'can_zero' method
@@ -292,7 +311,7 @@ def emulate_zero(h, count, offset):
 
 
 @failing
-def flush(h):
+def flush(h, flags):
     http = h['http']
 
     # Construct the JSON request for flushing.
