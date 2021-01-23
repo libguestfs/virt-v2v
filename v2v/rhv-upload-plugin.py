@@ -162,6 +162,12 @@ def can_flush(h):
 
 
 @failing
+def can_fua(h):
+    # imageio flush feature is is compatible with NBD_CMD_FLAG_FUA.
+    return h['can_flush']
+
+
+@failing
 def get_size(h):
     return params['disk_size']
 
@@ -231,7 +237,9 @@ def pwrite(h, buf, offset, flags):
 
     count = len(buf)
 
-    http.putrequest("PUT", h['path'] + "?flush=n")
+    flush = "y" if (h['can_flush'] and (flags & nbdkit.FLAG_FUA)) else "n"
+
+    http.putrequest("PUT", h['path'] + "?flush=" + flush)
     # The oVirt server only uses the first part of the range, and the
     # content-length.
     http.putheader("Content-Range", "bytes %d-%d/*" % (offset, offset + count - 1))
@@ -260,14 +268,16 @@ def zero(h, count, offset, flags):
     # so nbdkit could call this even if the server doesn't support
     # zeroing.  If this is the case we must emulate.
     if not h['can_zero']:
-        emulate_zero(h, count, offset)
+        emulate_zero(h, count, offset, flags)
         return
+
+    flush = bool(h['can_flush'] and (flags & nbdkit.FLAG_FUA))
 
     # Construct the JSON request for zeroing.
     buf = json.dumps({'op': "zero",
                       'offset': offset,
                       'size': count,
-                      'flush': False}).encode()
+                      'flush': flush}).encode()
 
     headers = {"Content-Type": "application/json",
                "Content-Length": str(len(buf))}
@@ -283,10 +293,12 @@ def zero(h, count, offset, flags):
     r.read()
 
 
-def emulate_zero(h, count, offset):
+def emulate_zero(h, count, offset, flags):
     http = h['http']
 
-    http.putrequest("PUT", h['path'])
+    flush = "y" if (h['can_flush'] and (flags & nbdkit.FLAG_FUA)) else "n"
+
+    http.putrequest("PUT", h['path'] + "?flush=" + flush)
     http.putheader("Content-Range",
                    "bytes %d-%d/*" % (offset, offset + count - 1))
     http.putheader("Content-Length", str(count))
