@@ -32,3 +32,13 @@ let get_os_by_short_id os =
   let os = (get_db ())#find_os_by_short_id os in
   debug "libosinfo: loaded OS: %s" (os#get_id ());
   os
+
+let string_of_osinfo_device_driver { Libosinfo.architecture; location;
+                                     pre_installable; signed; priority;
+                                     files } =
+  Printf.sprintf "%s: [%s, %s, %s, priority %Ld] %s"
+    location architecture
+    (if pre_installable then "pre-installable" else "not pre-installable")
+    (if signed then "signed" else "unsigned")
+    priority
+    (String.concat " " files)

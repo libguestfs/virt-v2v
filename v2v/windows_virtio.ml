@@ -474,10 +474,17 @@ and virtio_iso_path_matches_qemu_ga path inspect =
  * Returns list of copied files.
  *)
 and copy_from_libosinfo g inspect destdir =
+  let debug_drivers =
+    List.iter (
+      fun d ->
+        debug "\t%s" (Libosinfo_utils.string_of_osinfo_device_driver d)
+    )
+  in
   let { i_osinfo = osinfo; i_arch = arch } = inspect in
   try
     let os = Libosinfo_utils.get_os_by_short_id osinfo in
     let drivers = os#get_device_drivers () in
+    debug "libosinfo drivers before filtering:"; debug_drivers drivers;
     (*
      * Filter out drivers that we cannot use:
      * - for a different architecture
@@ -498,6 +505,7 @@ and copy_from_libosinfo g inspect destdir =
               )
             with Invalid_argument _ -> false
       ) drivers in
+    debug "libosinfo drivers after filtering:"; debug_drivers drivers;
     (* Sort the drivers by priority, like libosinfo does. *)
     let drivers =
       List.sort (

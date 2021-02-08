@@ -24,3 +24,6 @@ val get_os_by_short_id : string -> Libosinfo.osinfo_os
 
     Raise [Not_found] in case there is no matching OS.
  *)
+
+val string_of_osinfo_device_driver : Libosinfo.osinfo_device_driver -> string
+(** Convert a [osinfo_device_driver] to a printable string for debugging. *)
