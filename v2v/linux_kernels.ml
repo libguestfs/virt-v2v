@@ -44,6 +44,7 @@ type kernel_info = {
   ki_supports_virtio_rng : bool;
   ki_supports_virtio_balloon : bool;
   ki_supports_isa_pvpanic : bool;
+  ki_supports_virtio_socket : bool;
   ki_is_xen_pv_only_kernel : bool;
   ki_is_debug : bool;
   ki_config_file : string option;
@@ -246,6 +247,8 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
              kernel_supports "virtio_balloon" "VIRTIO_BALLOON" in
            let supports_isa_pvpanic =
              kernel_supports "pvpanic" "PVPANIC" in
+           let supports_virtio_socket =
+               kernel_supports "virtio_socket" "VIRTIO_SOCKET" in
            let is_xen_pv_only_kernel =
              check_config "X86_XEN" config_file ||
              check_config "X86_64_XEN" config_file in
@@ -272,6 +275,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
              ki_supports_virtio_rng = supports_virtio_rng;
              ki_supports_virtio_balloon = supports_virtio_balloon;
              ki_supports_isa_pvpanic = supports_isa_pvpanic;
+             ki_supports_virtio_socket = supports_virtio_socket;
              ki_is_xen_pv_only_kernel = is_xen_pv_only_kernel;
              ki_is_debug = is_debug;
              ki_config_file = config_file;

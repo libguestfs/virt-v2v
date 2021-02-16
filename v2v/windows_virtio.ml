@@ -68,7 +68,7 @@ let rec install_drivers ((g, _) as reg) inspect rcaps =
         match net_type with
         | Some model -> model
         | None -> RTL8139 in
-      (IDE, net_type, Cirrus, false, false, false)
+      (IDE, net_type, Cirrus, false, false, false, false)
   )
   else (
     (* Can we install the block driver? *)
@@ -178,9 +178,10 @@ let rec install_drivers ((g, _) as reg) inspect rcaps =
     let virtio_rng_supported = g#exists (driverdir // "viorng.inf") in
     let virtio_ballon_supported = g#exists (driverdir // "balloon.inf") in
     let isa_pvpanic_supported = g#exists (driverdir // "pvpanic.inf") in
+    let virtio_socket_supported = g#exists (driverdir // "viosock.inf") in
 
     (block, net, video,
-     virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported)
+     virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported, virtio_socket_supported)
   )
 
 and install_linux_tools g inspect =

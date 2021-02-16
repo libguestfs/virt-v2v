@@ -20,7 +20,7 @@
 
 val install_drivers
     : Registry.t -> Types.inspect -> Types.requested_guestcaps ->
-      Types.guestcaps_block_type * Types.guestcaps_net_type * Types.guestcaps_video_type * bool * bool * bool
+      Types.guestcaps_block_type * Types.guestcaps_net_type * Types.guestcaps_video_type * bool * bool * bool * bool
 (** [install_drivers reg inspect rcaps]
     installs virtio drivers from the driver directory or driver
     ISO into the guest driver directory and updates the registry

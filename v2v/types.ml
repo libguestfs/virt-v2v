@@ -411,6 +411,7 @@ type guestcaps = {
   gcaps_virtio_rng : bool;
   gcaps_virtio_balloon : bool;
   gcaps_isa_pvpanic : bool;
+  gcaps_virtio_socket : bool;
   gcaps_machine : guestcaps_machine;
   gcaps_arch : string;
   gcaps_acpi : bool;

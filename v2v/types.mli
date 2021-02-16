@@ -252,7 +252,7 @@ type guestcaps = {
   gcaps_virtio_rng : bool;      (** Guest supports virtio-rng. *)
   gcaps_virtio_balloon : bool;  (** Guest supports virtio balloon. *)
   gcaps_isa_pvpanic : bool;     (** Guest supports ISA pvpanic device. *)
-
+  gcaps_virtio_socket : bool;   (** Guest supports virtio socket. *)
   gcaps_machine : guestcaps_machine; (** Machine model. *)
   gcaps_arch : string;          (** Architecture that KVM must emulate. *)
   gcaps_acpi : bool;            (** True if guest supports acpi. *)

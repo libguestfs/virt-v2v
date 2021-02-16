@@ -154,6 +154,7 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
       gcaps_virtio_rng = kernel.ki_supports_virtio_rng;
       gcaps_virtio_balloon = kernel.ki_supports_virtio_balloon;
       gcaps_isa_pvpanic = kernel.ki_supports_isa_pvpanic;
+      gcaps_virtio_socket = kernel.ki_supports_virtio_socket;
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = acpi;

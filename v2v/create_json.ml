@@ -229,6 +229,7 @@ let create_json_metadata source targets target_buses
       "virtio-rng", JSON.Bool guestcaps.gcaps_virtio_rng;
       "virtio-balloon", JSON.Bool guestcaps.gcaps_virtio_balloon;
       "isa-pvpanic", JSON.Bool guestcaps.gcaps_isa_pvpanic;
+      "virtio-socket", JSON.Bool guestcaps.gcaps_virtio_socket;
       "acpi", JSON.Bool guestcaps.gcaps_acpi;
     ] in
   List.push_back doc ("guestcaps", JSON.Dict guestcaps_dict);

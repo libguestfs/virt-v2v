@@ -521,6 +521,12 @@ let create_libvirt_xml ?pool source targets target_buses guestcaps
         e "address" ["type", "isa"; "iobase", "0x505"] []
       ]
     );
+  List.push_back devices (
+    e "viosock"
+      ["model",
+        if guestcaps.gcaps_virtio_socket then "virtio" else "none"]
+       []
+  );
 
   (* Standard devices added to every guest. *)
   List.push_back_list devices [

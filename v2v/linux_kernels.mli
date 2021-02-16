@@ -33,6 +33,7 @@ type kernel_info = {
   ki_supports_virtio_rng : bool;   (** Kernel supports virtio-rng? *)
   ki_supports_virtio_balloon : bool; (** Kernel supports memory balloon? *)
   ki_supports_isa_pvpanic : bool;  (** Kernel supports ISA pvpanic device? *)
+  ki_supports_virtio_socket : bool; (** Kernel supports virtio-socket? *)
   ki_is_xen_pv_only_kernel : bool; (** Is a Xen paravirt-only kernel? *)
   ki_is_debug : bool;              (** Is debug kernel? *)
   ki_config_file : string option;  (** Path of config file, if found. *)

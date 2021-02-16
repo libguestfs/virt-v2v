@@ -214,7 +214,8 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
         video_driver,
         virtio_rng_supported,
         virtio_ballon_supported,
-        isa_pvpanic_supported =
+        isa_pvpanic_supported,
+        virtio_socket_supported =
       Registry.with_hive_write g inspect.i_windows_system_hive
                                update_system_hive in
 
@@ -256,6 +257,7 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
       gcaps_virtio_rng = virtio_rng_supported;
       gcaps_virtio_balloon = virtio_ballon_supported;
       gcaps_isa_pvpanic = isa_pvpanic_supported;
+      gcaps_virtio_socket = virtio_socket_supported;
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = true;
