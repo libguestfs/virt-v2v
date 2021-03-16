@@ -70,14 +70,14 @@ AM_CONDITIONAL([HAVE_GNU_GETTEXT],
 dnl Check for gettext.
 AM_GNU_GETTEXT([external])
 
-dnl Check for PCRE (required)
-PKG_CHECK_MODULES([PCRE], [libpcre], [], [
-    AC_CHECK_PROGS([PCRE_CONFIG], [pcre-config pcre2-config], [no])
-    AS_IF([test "x$PCRE_CONFIG" = "xno"], [
-        AC_MSG_ERROR([Please install the pcre devel package])
+dnl Check for PCRE2 (required)
+PKG_CHECK_MODULES([PCRE2], [libpcre2-8], [], [
+    AC_CHECK_PROGS([PCRE2_CONFIG], [pcre2-config], [no])
+    AS_IF([test "x$PCRE2_CONFIG" = "xno"], [
+        AC_MSG_ERROR([Please install the pcre2 devel package])
     ])
-    PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
-    PCRE_LIBS=`$PCRE_CONFIG --libs`
+    PCRE_CFLAGS=`$PCRE2_CONFIG --cflags`
+    PCRE_LIBS=`$PCRE2_CONFIG --libs8`
 ])
 
 dnl libvirt (required)
