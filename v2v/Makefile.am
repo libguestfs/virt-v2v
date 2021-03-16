@@ -196,6 +196,7 @@ virt_v2v_CPPFLAGS = \
 	-I$(top_srcdir)/common/qemuopts \
 	-I$(top_srcdir)/lib
 virt_v2v_CFLAGS = \
+	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
 	$(LIBVIRT_CFLAGS) \
@@ -230,6 +231,7 @@ OCAMLPACKAGES += -package gettext-stub
 endif
 
 OCAMLCLIBS = \
+	-pthread \
 	-lqemuopts \
 	$(LIBGUESTFS_LIBS) \
 	$(LIBVIRT_LIBS) \
