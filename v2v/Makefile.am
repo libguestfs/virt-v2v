@@ -361,16 +361,16 @@ var_expander_tests_CFLAGS = $(virt_v2v_CFLAGS)
 if !HAVE_OCAMLOPT
 # Can't call this v2v_unit_tests_OBJECTS because automake gets confused.
 v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_BOBJECTS)
-v2v_unit_tests.cmo: OCAMLPACKAGES += -package oUnit
+v2v_unit_tests.cmo: OCAMLPACKAGES += -package ounit2
 
 var_expander_tests_THEOBJECTS = $(var_expander_tests_BOBJECTS)
-var_expander_tests.cmo: OCAMLPACKAGES += -package oUnit
+var_expander_tests.cmo: OCAMLPACKAGES += -package ounit2
 else
 v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_XOBJECTS)
-v2v_unit_tests.cmx: OCAMLPACKAGES += -package oUnit
+v2v_unit_tests.cmx: OCAMLPACKAGES += -package ounit2
 
 var_expander_tests_THEOBJECTS = $(var_expander_tests_XOBJECTS)
-var_expander_tests.cmx: OCAMLPACKAGES += -package oUnit
+var_expander_tests.cmx: OCAMLPACKAGES += -package ounit2
 endif
 
 v2v_unit_tests_DEPENDENCIES = \
@@ -387,7 +387,7 @@ v2v_unit_tests_DEPENDENCIES = \
 v2v_unit_tests_LINK = \
 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) \
-	  $(OCAMLPACKAGES) -package oUnit \
+	  $(OCAMLPACKAGES) -package ounit2 \
 	  $(OCAMLLINKFLAGS) \
 	  $(v2v_unit_tests_THEOBJECTS) -o $@
 
@@ -398,7 +398,7 @@ var_expander_tests_DEPENDENCIES = \
 var_expander_tests_LINK = \
 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) \
-	  $(OCAMLPACKAGES) -package oUnit \
+	  $(OCAMLPACKAGES) -package ounit2 \
 	  $(OCAMLLINKFLAGS) \
 	  $(var_expander_tests_THEOBJECTS) -o $@
 
