@@ -76,11 +76,6 @@ PACKAGE_VERSION_FULL="v2v_major.v2v_minor.v2v_release${v2v_extra}"
 AC_DEFINE_UNQUOTED([PACKAGE_VERSION_FULL],["$PACKAGE_VERSION_FULL"],[Full version string.])
 AC_SUBST([PACKAGE_VERSION_FULL])
 
-dnl Early gnulib initialization.
-HEADING([Configuring Gnulib])
-gl_EARLY
-gl_INIT
-
 dnl Check for external programs required to either build or run
 dnl virt-v2v.
 HEADING([Checking for external programs])
@@ -149,7 +144,6 @@ AC_CONFIG_FILES([Makefile
                  config.sh
                  docs/Makefile
                  gnulib/lib/Makefile
-                 gnulib/tests/Makefile
                  po-docs/Makefile
                  po-docs/ja/Makefile
                  po-docs/uk/Makefile

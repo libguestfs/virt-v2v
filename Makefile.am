@@ -25,11 +25,7 @@ SUBDIRS = common/mlstdutils
 # tests run, except tests/qemu.
 SUBDIRS += test-data
 
-# Gnulib - must be built and tested before the program.
 SUBDIRS += gnulib/lib
-if ENABLE_GNULIB_TESTS
-SUBDIRS += gnulib/tests
-endif
 
 SUBDIRS += common/qemuopts
 SUBDIRS += common/utils
@@ -64,8 +60,6 @@ endif
 # lib/guestfs-internal-all.h is a hack, remove it XXX
 EXTRA_DIST = \
 	.gitignore \
-	autogen.sh \
-	bootstrap \
 	bugs-in-changelog.sh \
 	build-aux/config.rpath \
 	cfg.mk \
@@ -74,7 +68,6 @@ EXTRA_DIST = \
 	common/README \
 	COPYING \
 	lib/guestfs-internal-all.h \
-	m4/.gitignore \
 	ocaml-link.sh \
 	podcheck.pl \
 	tmp/.gitignore \
@@ -114,7 +107,7 @@ po/POTFILES: configure.ac
 	rm -f $@ $@-t
 	cd $(srcdir); \
 	find $(DIST_SUBDIRS) -name '*.c' | \
-	grep -v -E '^(gnulib|po-docs|tests|test-data|bundled)/' | \
+	grep -v -E '^(po-docs|tests|test-data|bundled)/' | \
 	grep -v -E '/(dummy\.c)$$' | \
 	grep -v -E '.*-(tests)\.c$$' | \
 	LC_ALL=C sort -u > $@-t
@@ -215,7 +208,6 @@ maintainer-check-extra-dist:
 	  grep -v '^common/windows/' | \
 	  grep -v '^intltool-.*\.in' | \
 	  grep -v '^\.gitmodules' | \
-	  grep -v '^\.gnulib' | \
 	  sort > tmp/gitfiles
 	comm -13 tmp/tarfiles tmp/gitfiles > tmp/comm-out
 	@echo Checking for differences between EXTRA_DIST and git ...

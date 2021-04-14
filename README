@@ -20,7 +20,8 @@ the source tree.
 To build from git:
 
   git submodule update --init
-  ./autogen.sh
+  autoreconf -i
+  ./configure
   make
 
 To build from tarball:

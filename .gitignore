@@ -60,16 +60,11 @@ Makefile.in
 /docs/virt-v2v-support.1
 /.gitattributes
 /.git-module-status
-/gnulib
-/GNUmakefile
 /installcheck.sh
 /install-sh
 /libtool
 /local*
 /ltmain.sh
-/m4/ChangeLog
-/m4/gnulib-cache.m4
-/m4/intmax.m4
 /m4/libtool.m4
 /m4/lt~obsolete.m4
 /m4/ltoptions.m4
