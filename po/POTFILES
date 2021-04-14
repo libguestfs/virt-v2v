@@ -18,6 +18,7 @@ common/qemuopts/qemuopts.c
 common/utils/cleanups.c
 common/utils/gnulib-cleanups.c
 common/utils/libxml2-cleanups.c
+common/utils/pcre2-cleanups.c
 common/utils/stringlists-utils.c
 common/utils/utils.c
 gnulib/lib/hash.c
