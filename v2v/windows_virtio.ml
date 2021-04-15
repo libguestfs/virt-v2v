@@ -351,34 +351,38 @@ and copy_from_virtio_win g inspect srcdir destdir filter missing =
   else if is_regular_file virtio_win || is_block_device virtio_win then (
     debug "windows: copy_from_virtio_win: guest tools source ISO %s" virtio_win;
 
-    try
-      let g2 = open_guestfs ~identifier:"virtio_win" () in
-      g2#add_drive_opts virtio_win ~readonly:true;
-      g2#launch ();
-      let vio_root = "/" in
-      g2#mount_ro "/dev/sda" vio_root;
-      let srcdir = vio_root ^ "/" ^ srcdir in
-      if not (g2#is_dir srcdir) then missing ()
-      else (
-        let paths = g2#find srcdir in
-        Array.iter (
-          fun path ->
-            let source = srcdir ^ "/" ^ path in
-            if g2#is_file source ~followsymlinks:false &&
-                filter path inspect then (
-              let target_name = String.lowercase_ascii (Filename.basename path) in
-              let target = destdir ^ "/" ^ target_name in
-              debug "windows: copying guest tools bits: '%s:%s' -> '%s'"
-                    virtio_win path target;
+    let g2 =
+      try
+        let g2 = open_guestfs ~identifier:"virtio_win" () in
+        g2#add_drive_opts virtio_win ~readonly:true;
+        g2#launch ();
+        g2
+      with Guestfs.Error msg ->
+        error (f_"%s: cannot open virtio-win ISO file: %s") virtio_win msg in
+    (* Note we are mounting this as root on the *second*
+     * handle, not the main handle containing the guest.
+     *)
+    g2#mount_ro "/dev/sda" "/";
+    let srcdir = "/" ^ srcdir in
+    if not (g2#is_dir srcdir) then missing ()
+    else (
+      let paths = g2#find srcdir in
+      Array.iter (
+        fun path ->
+          let source = srcdir ^ "/" ^ path in
+          if g2#is_file source ~followsymlinks:false &&
+               filter path inspect then (
+            let target_name = String.lowercase_ascii (Filename.basename path) in
+            let target = destdir ^ "/" ^ target_name in
+            debug "windows: copying guest tools bits: '%s:%s' -> '%s'"
+              virtio_win path target;
 
-              g#write target (g2#read_file source);
-              List.push_front target_name ret
-            )
-        ) paths;
-      );
-      g2#close()
-    with Guestfs.Error msg ->
-      error (f_"%s: cannot open virtio-win ISO file: %s") virtio_win msg
+            g#write target (g2#read_file source);
+            List.push_front target_name ret
+          )
+      ) paths;
+    );
+    g2#close()
   );
   !ret
 
