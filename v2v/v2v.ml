@@ -112,7 +112,7 @@ let rec main () =
   let inspect = Inspect_source.inspect_source cmdline.root_choice g in
 
   let mpstats = get_mpstats g in
-  check_guest_free_space mpstats;
+  check_guest_free_space inspect mpstats;
 
   (* Estimate space required on target for each disk.  Note this is a max. *)
   (match conversion_mode with
@@ -381,27 +381,28 @@ and print_mpstat chan { mp_dev = dev; mp_path = path;
  *
  * Also make sure filesystems have available inodes. (RHBZ#1764569)
  *)
-and check_guest_free_space mpstats =
+and check_guest_free_space inspect mpstats =
   message (f_"Checking for sufficient free disk space in the guest");
 
   (* Check whether /boot has its own mount point. *)
   let has_boot = List.exists (fun { mp_path } -> mp_path = "/boot") mpstats in
+  let is_windows = inspect.i_distro = "windows" in
 
-  let needed_bytes_for_mp = function
-    | "/boot"
-    | "/" when not has_boot ->
-      (* We usually regenerate the initramfs, which has a
-       * typical size of 20-30MB.  Hence:
-       *)
-      50_000_000L
-    | "/" ->
-      (* We may install some packages, and they would usually go
-       * on the root filesystem.
-       *)
-      20_000_000L
-    | _ ->
-      (* For everything else, just make sure there is some free space. *)
-      10_000_000L
+  let needed_megabytes_for_mp = function
+    (* We usually regenerate the initramfs, which has a
+     * typical size of 20-30MB.  Hence:
+     *)
+    | "/boot" | "/" when not has_boot && not is_windows -> 50
+    (* We may install some packages, and they would usually go
+     * on the root filesystem.
+     *)
+    | "/" when not is_windows -> 20
+    (* Windows requires copying in many device drivers and possibly
+     * guest agents, so we need more space.  (RHBZ#1949147).
+     *)
+    | "/" (* when is_windows *) -> 100
+    (* For everything else, just make sure there is some free space. *)
+    | _ -> 10
   in
 
   (* Reasonable headroom for conversion operations. *)
@@ -411,10 +412,13 @@ and check_guest_free_space mpstats =
     fun { mp_path; mp_statvfs = { G.bfree; bsize; files; ffree } } ->
       (* bfree = free blocks for root user *)
       let free_bytes = bfree *^ bsize in
-      let needed_bytes = needed_bytes_for_mp mp_path in
-      if free_bytes < needed_bytes then
-        error (f_"not enough free space for conversion on filesystem ‘%s’.  %Ld bytes free < %Ld bytes needed")
-          mp_path free_bytes needed_bytes;
+      let needed_megabytes = needed_megabytes_for_mp mp_path in
+      let needed_bytes = Int64.of_int needed_megabytes *^ 1024L *^ 1024L in
+      if free_bytes < needed_bytes then (
+        let mb i = Int64.to_float i /. 1024. /. 1024. in
+        error (f_"not enough free space for conversion on filesystem ‘%s’.  %.1f MB free < %d MB needed")
+          mp_path (mb free_bytes) needed_megabytes
+      );
       (* Not all the filesystems have inode counts. *)
       if files > 0L && ffree < needed_inodes then
         error (f_"not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes available < %Ld inodes needed")

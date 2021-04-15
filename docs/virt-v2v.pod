@@ -1322,7 +1322,7 @@ to perform the conversion.  Currently it checks:
 
 =over 4
 
-=item Linux root filesystem or Windows C<C:> drive
+=item Linux root filesystem
 
 Minimum free space: 20 MB
 
@@ -1332,6 +1332,12 @@ Minimum free space: 50 MB
 
 This is because we need to build a new initramfs for some Enterprise
 Linux conversions.
+
+=item Windows C<C:> drive
+
+Minimum free space: 100 MB
+
+We may have to copy in many virtio drivers and guest agents.
 
 =item Any other mountable filesystem
 
