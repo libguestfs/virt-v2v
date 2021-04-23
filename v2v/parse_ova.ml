@@ -378,7 +378,9 @@ let ws = PCRE.compile "\\s+"
 let re_tar_message = PCRE.compile "\\*\\* [^*]+ \\*\\*$"
 
 let get_tar_offet_and_size tar filename =
-  let lines = external_command (sprintf "tar tRvf %s" (Filename.quote tar)) in
+  let cmd =
+    sprintf "LANG=C tar --no-auto-compress -tRvf %s" (Filename.quote tar) in
+  let lines = external_command cmd in
   let rec loop lines =
     match lines with
     | [] -> raise Not_found
