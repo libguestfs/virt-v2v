@@ -155,7 +155,9 @@ let rec install_drivers ((g, _) as reg) inspect rcaps =
 
     (* Can we install the QXL driver? *)
     let video : guestcaps_video_type =
-      let has_qxl = g#exists (driverdir // "qxl.inf") in
+      let has_qxl =
+        g#exists (driverdir // "qxl.inf") ||
+        g#exists (driverdir // "qxldod.inf") in
       match rcaps.rcaps_video, has_qxl with
       | Some QXL, false ->
         error (f_"there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s")
