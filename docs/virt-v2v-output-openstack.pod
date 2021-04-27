@@ -89,8 +89,8 @@ endpoints.  You will need to either set up your C<$OS_*> environment
 variables or use output options on the virt-v2v command line to
 authenticate with OpenStack.
 
-Normally there is a file called something like C<stackrc>,
-C<overcloudrc> etc which you can simply C<source> to set everything up.
+Normally there is a file called C<overcloudrc> or C<keystonerc_admin>
+which you can simply C<source> to set everything up.
 
 For example:
 
@@ -179,8 +179,10 @@ To output to OpenStack Glance, use the I<-o glance> option.
 
 This runs the L<glance(1)> CLI program which must be installed on the
 virt-v2v conversion host.  For authentication to work, you will need
-to set C<OS_*> environment variables.  In most cases you can do this
-by sourcing a file called something like F<keystonerc_admin>.
+to set C<OS_*> environment variables.
+
+Normally there is a file called C<overcloudrc> or C<keystonerc_admin>
+which you can simply C<source> to set everything up.
 
 Virt-v2v adds metadata for the guest to Glance, describing such things
 as the guest operating system and what drivers it requires.  The
