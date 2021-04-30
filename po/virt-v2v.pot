@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 1.43.5\n"
+"Project-Id-Version: virt-v2v 1.44.0\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-04-14 12:30+0100\n"
+"POT-Creation-Date: 2021-04-30 15:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,7 +82,7 @@ msgstr ""
 msgid "%s: %s: %s"
 msgstr ""
 
-#: v2v/windows_virtio.ml:381
+#: v2v/windows_virtio.ml:363
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
@@ -389,7 +389,7 @@ msgstr ""
 msgid "Checking for sufficient free disk space in the guest"
 msgstr ""
 
-#: v2v/v2v.ml:653
+#: v2v/v2v.ml:657
 msgid "Checking if the guest needs BIOS or UEFI to boot"
 msgstr ""
 
@@ -405,11 +405,11 @@ msgstr ""
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
-#: v2v/v2v.ml:570
+#: v2v/v2v.ml:574
 msgid "Converting %s to run on KVM"
 msgstr ""
 
-#: v2v/v2v.ml:568
+#: v2v/v2v.ml:572
 msgid "Converting the guest to run on KVM"
 msgstr ""
 
@@ -421,11 +421,11 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:700
+#: v2v/v2v.ml:704
 msgid "Copying disk %d/%d to %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:703
+#: v2v/v2v.ml:707
 msgid "Copying disk %d/%d to qemu URI %s (%s)"
 msgstr ""
 
@@ -737,7 +737,7 @@ msgid ""
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
 
-#: v2v/v2v.ml:840
+#: v2v/v2v.ml:844
 msgid "Overlay saved as %s [--debug-overlays]"
 msgstr ""
 
@@ -784,7 +784,7 @@ msgid ""
 "install the guest agent manually after conversion."
 msgstr ""
 
-#: v2v/windows_virtio.ml:225
+#: v2v/windows_virtio.ml:227
 msgid "QEMU Guest Agent installed for this guest."
 msgstr ""
 
@@ -1007,11 +1007,11 @@ msgid ""
 "installed in the guest.  X may not function correctly."
 msgstr ""
 
-#: v2v/v2v.ml:591
+#: v2v/v2v.ml:595
 msgid "This guest does not have virtio drivers installed."
 msgstr ""
 
-#: v2v/v2v.ml:589
+#: v2v/v2v.ml:593
 msgid "This guest has virtio drivers installed."
 msgstr ""
 
@@ -1022,7 +1022,7 @@ msgid ""
 "require a separate password to connect."
 msgstr ""
 
-#: v2v/v2v.ml:674
+#: v2v/v2v.ml:678
 msgid "This guest requires UEFI on the target to boot."
 msgstr ""
 
@@ -1315,7 +1315,7 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: v2v/v2v.ml:613
+#: v2v/v2v.ml:617
 msgid ""
 "disk %s (%s) has no defined format.\n"
 "\n"
@@ -1455,11 +1455,11 @@ msgstr ""
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
 
-#: v2v/windows_virtio.ml:227
+#: v2v/windows_virtio.ml:229
 msgid "failed to install QEMU Guest Agent: %s"
 msgstr ""
 
-#: v2v/parse_ova.ml:430
+#: v2v/parse_ova.ml:432
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
@@ -1495,7 +1495,7 @@ msgstr ""
 msgid "floppy disk"
 msgstr ""
 
-#: v2v/v2v.ml:444
+#: v2v/v2v.ml:448
 msgid ""
 "fstrim on guest filesystem %s failed.  Usually you can ignore this message.  "
 "To find out more read \"Trimming\" in virt-v2v(1).\n"
@@ -1612,7 +1612,7 @@ msgstr ""
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr ""
 
-#: v2v/v2v.ml:717
+#: v2v/v2v.ml:721
 msgid "internal error: qemu corrupted the overlay file"
 msgstr ""
 
@@ -1653,7 +1653,7 @@ msgstr ""
 msgid "invalid input filename (%s)"
 msgstr ""
 
-#: v2v/parse_ova.ml:414
+#: v2v/parse_ova.ml:416
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
@@ -1673,7 +1673,7 @@ msgstr ""
 msgid "invalid selector string for --key: %s"
 msgstr ""
 
-#: v2v/parse_ova.ml:419
+#: v2v/parse_ova.ml:421
 msgid "invalid size returned by tar: %S"
 msgstr ""
 
@@ -1880,16 +1880,16 @@ msgid ""
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: v2v/v2v.ml:420
+#: v2v/v2v.ml:424
 msgid ""
 "not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes "
 "available < %Ld inodes needed"
 msgstr ""
 
-#: v2v/v2v.ml:416
+#: v2v/v2v.ml:419
 msgid ""
-"not enough free space for conversion on filesystem ‘%s’.  %Ld bytes free < "
-"%Ld bytes needed"
+"not enough free space for conversion on filesystem ‘%s’.  %.1f MB free < %d "
+"MB needed"
 msgstr ""
 
 #: v2v/create_ovf.ml:1007
@@ -1956,7 +1956,7 @@ msgid ""
 "\""
 msgstr ""
 
-#: v2v/v2v.ml:623
+#: v2v/v2v.ml:627
 msgid ""
 "output format should be ‘raw’ or ‘qcow2’.\n"
 "\n"
@@ -1979,7 +1979,7 @@ msgid ""
 "*.ovf file extracted from the ova"
 msgstr ""
 
-#: v2v/v2v.ml:770 v2v/v2v.ml:307
+#: v2v/v2v.ml:774 v2v/v2v.ml:307
 msgid "qemu-img command failed, see earlier errors"
 msgstr ""
 
@@ -2017,7 +2017,7 @@ msgstr ""
 msgid "root device %s not found.  Roots found were: %s"
 msgstr ""
 
-#: v2v/windows_virtio.ml:312 v2v/windows_virtio.ml:306
+#: v2v/windows_virtio.ml:314 v2v/windows_virtio.ml:308
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2029,31 +2029,31 @@ msgstr ""
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr ""
 
-#: v2v/v2v.ml:851
+#: v2v/v2v.ml:855
 msgid "source has multiple hard disk types!"
 msgstr ""
 
-#: v2v/v2v.ml:867
+#: v2v/v2v.ml:871
 msgid "source has multiple network adapter model!"
 msgstr ""
 
-#: v2v/v2v.ml:849 v2v/v2v.ml:244
+#: v2v/v2v.ml:853 v2v/v2v.ml:244
 msgid "source has no hard disks!"
 msgstr ""
 
-#: v2v/v2v.ml:859
+#: v2v/v2v.ml:863
 msgid "source has unrecognized hard disk type"
 msgstr ""
 
-#: v2v/v2v.ml:857
+#: v2v/v2v.ml:861
 msgid "source has unsupported hard disk type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:873
+#: v2v/v2v.ml:877
 msgid "source has unsupported network adapter model ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:881
+#: v2v/v2v.ml:885
 msgid "source has unsupported video adapter model ‘%s’"
 msgstr ""
 
@@ -2087,7 +2087,7 @@ msgstr ""
 msgid "subprocess signalled or stopped by signal %d"
 msgstr ""
 
-#: v2v/v2v.ml:627
+#: v2v/v2v.ml:631
 msgid ""
 "the --compressed flag is only allowed when the output format is qcow2 (-of "
 "qcow2)"
@@ -2204,13 +2204,13 @@ msgid ""
 "The guest will be configured to use slower emulated devices."
 msgstr ""
 
-#: v2v/windows_virtio.ml:161
+#: v2v/windows_virtio.ml:163
 msgid ""
 "there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v "
 "looks for this driver in %s"
 msgstr ""
 
-#: v2v/windows_virtio.ml:166
+#: v2v/windows_virtio.ml:168
 msgid ""
 "there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v "
 "looks for this driver in %s\n"
@@ -2254,7 +2254,7 @@ msgid ""
 "specify the UUIDs of guest disk images (for this guest: %d)"
 msgstr ""
 
-#: v2v/v2v.ml:665
+#: v2v/v2v.ml:669
 msgid ""
 "this guest cannot run on the target, because the target does not support %s "
 "firmware (supported firmware on target: %s)"
@@ -2459,7 +2459,7 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
-#: v2v/v2v.ml:576
+#: v2v/v2v.ml:580
 msgid "virt-v2v is unable to convert this guest type (%s/%s)"
 msgstr ""
 
