@@ -97,6 +97,16 @@ if cpu.architecture == types.Architecture.UNDEFINED:
     raise RuntimeError("The cluster ‘%s’ has an unknown architecture" %
                        (params['rhv_cluster']))
 
+# Find if any disk already exists with specified UUID.
+disks_service = system_service.disks_service()
+
+for uuid in params.get('rhv_disk_uuids', []):
+    try:
+        disk_service = disks_service.disk_service(uuid).get()
+        raise RuntimeError("Disk with the UUID '%s' already exists" % uuid)
+    except sdk.NotFoundError:
+        pass
+
 # Otherwise everything is OK, print a JSON with the results.
 results = {
     "rhv_storagedomain_uuid": storage_domain.id,
