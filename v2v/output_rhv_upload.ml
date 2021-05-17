@@ -49,6 +49,16 @@ after their uploads (if you do, you must supply one for each disk):
   -oo rhv-disk-uuid=UUID          Disk UUID
 ")
 
+let is_nonnil_uuid uuid =
+  let nil_uuid = "00000000-0000-0000-0000-000000000000" in
+  let rex_uuid = lazy (
+    let hex = "[a-fA-F0-9]" in
+    let str = sprintf "^%s{8}-%s{4}-%s{4}-%s{4}-%s{12}$" hex hex hex hex hex in
+    PCRE.compile str
+  ) in
+  if uuid = nil_uuid then false
+  else PCRE.matches (Lazy.force rex_uuid) uuid
+
 let parse_output_options options =
   let rhv_cafile = ref None in
   let rhv_cluster = ref None in
@@ -71,6 +81,8 @@ let parse_output_options options =
     | "rhv-verifypeer", "" -> rhv_verifypeer := true
     | "rhv-verifypeer", v -> rhv_verifypeer := bool_of_string v
     | "rhv-disk-uuid", v ->
+       if not (is_nonnil_uuid v) then
+         error (f_"-o rhv-upload: invalid UUID for -oo rhv-disk-uuid");
        rhv_disk_uuids := Some (v :: (Option.default [] !rhv_disk_uuids))
     | k, _ ->
        error (f_"-o rhv-upload: unknown output option ‘-oo %s’") k
@@ -256,6 +268,12 @@ object
     error_unless_output_alloc_sparse output_alloc;
 
     (* Python code prechecks. *)
+    let json_params = match rhv_options.rhv_disk_uuids with
+    | None -> json_params
+    | Some uuids ->
+        let ids = List.map (fun uuid -> JSON.String uuid) uuids in
+        ("rhv_disk_uuids", JSON.List ids) :: json_params
+    in
     let precheck_fn = tmpdir // "v2vprecheck.json" in
     let fd = Unix.openfile precheck_fn [O_WRONLY; O_CREAT] 0o600 in
     if Python_script.run_command ~stdout_fd:fd
