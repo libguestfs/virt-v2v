@@ -39,7 +39,6 @@ SUBDIRS += common/mlcustomize
 SUBDIRS += common/mlv2v
 SUBDIRS += bundled/libvirt-ocaml
 SUBDIRS += v2v
-SUBDIRS += test-harness
 
 SUBDIRS += tests
 
