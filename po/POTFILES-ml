@@ -28,7 +28,6 @@ v2v/changeuid.ml
 v2v/cmdline.ml
 v2v/convert_linux.ml
 v2v/convert_windows.ml
-v2v/copy_to_local.ml
 v2v/create_json.ml
 v2v/create_libvirt_xml.ml
 v2v/create_ovf.ml

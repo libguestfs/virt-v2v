@@ -60,9 +60,6 @@ L<virt-v2v-output-openstack(1)> — Output to OpenStack.
 
 L<virt-v2v-release-notes-1.42(1)> — Release notes for this release.
 
-L<virt-v2v-copy-to-local(1)> — Deprecated tool to handle Xen guests
-using host block device storage.
-
 =head1 EXAMPLES
 
 =head2 Convert from VMware vCenter server to local libvirt
@@ -1686,14 +1683,6 @@ For other environment variables, see L<guestfs(3)/ENVIRONMENT VARIABLES>.
 
 =over 4
 
-=item L<virt-v2v-copy-to-local(1)>
-
-There are some special cases where virt-v2v cannot directly access the
-remote hypervisor.  In that case you have to use
-L<virt-v2v-copy-to-local(1)> to make a local copy of the guest first,
-followed by running C<virt-v2v -i libvirtxml> to perform the
-conversion.
-
 =item L<engine-image-uploader(8)>
 
 Variously called C<engine-image-uploader>, C<ovirt-image-uploader> or
@@ -1723,7 +1712,6 @@ L<virt-sysprep(1)>,
 L<guestfs(3)>,
 L<guestfish(1)>,
 L<qemu-img(1)>,
-L<virt-v2v-copy-to-local(1)>,
 L<virt-v2v-test-harness(1)>,
 L<engine-image-uploader(8)>,
 L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-ovirt.git>,

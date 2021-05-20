@@ -31,8 +31,6 @@ EXTRA_DIST = \
 	$(SOURCES_MLI) \
 	$(filter-out $(CONFIGURE_GENERATED_ML) $(BUILT_SOURCES),$(SOURCES_ML)) \
 	$(SOURCES_C) \
-	copy_to_local.ml \
-	copy_to_local.mli \
 	embed.sh \
 	rhv-upload-createvm.py \
 	rhv-upload-deletedisks.py \
@@ -185,7 +183,7 @@ output_rhv_upload_precheck_source.ml: $(srcdir)/rhv-upload-precheck.py
 output_rhv_upload_vmcheck_source.ml: $(srcdir)/rhv-upload-vmcheck.py
 	$(srcdir)/embed.sh code $^ $@
 
-bin_PROGRAMS = virt-v2v virt-v2v-copy-to-local
+bin_PROGRAMS = virt-v2v
 
 virt_v2v_SOURCES = $(SOURCES_C)
 virt_v2v_CPPFLAGS = \
@@ -266,52 +264,6 @@ virt_v2v_LINK = \
 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \
 	  $(OBJECTS) -o $@
-
-virt_v2v_copy_to_local_SOURCES = \
-	dummy.c
-virt_v2v_copy_to_local_CPPFLAGS = \
-	-DCAML_NAME_SPACE \
-	-I. \
-	-I$(top_builddir) \
-	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib
-virt_v2v_copy_to_local_CFLAGS = \
-	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
-	$(LIBVIRT_CFLAGS)
-
-COPY_TO_LOCAL_BOBJECTS = \
-	config.cmo \
-	types.cmo \
-	utils.cmo \
-	libvirt_utils.cmo \
-	nbdkit.cmo \
-	nbdkit_sources.cmo \
-	vCenter.cmo \
-	copy_to_local.cmo
-COPY_TO_LOCAL_XOBJECTS = $(COPY_TO_LOCAL_BOBJECTS:.cmo=.cmx)
-
-if !HAVE_OCAMLOPT
-COPY_TO_LOCAL_OBJECTS = $(COPY_TO_LOCAL_BOBJECTS)
-else
-COPY_TO_LOCAL_OBJECTS = $(COPY_TO_LOCAL_XOBJECTS)
-endif
-
-virt_v2v_copy_to_local_DEPENDENCIES = \
-	$(COPY_TO_LOCAL_OBJECTS) \
-	../common/mlstdutils/mlstdutils.$(MLARCHIVE) \
-	../common/mlxml/mlxml.$(MLARCHIVE) \
-	../common/mlgettext/mlgettext.$(MLARCHIVE) \
-	../common/mlpcre/mlpcre.$(MLARCHIVE) \
-	../common/mlutils/mlcutils.$(MLARCHIVE) \
-	../common/mltools/mltools.$(MLARCHIVE) \
-	../bundled/libvirt-ocaml/mllibvirt.$(MLARCHIVE) \
-	../common/mlcustomize/mlcustomize.$(MLARCHIVE) \
-	../common/mlv2v/mlv2v.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
-virt_v2v_copy_to_local_LINK = \
-	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
-	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \
-	  $(COPY_TO_LOCAL_OBJECTS) -o $@
 
 # Data directory.
 

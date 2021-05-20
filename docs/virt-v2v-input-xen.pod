@@ -105,15 +105,6 @@ This happens because the qemu ssh block driver that we use to access
 remote disks uses the ssh sftp protocol, and this protocol cannot
 correctly detect the size of host block devices.
 
-The workaround is to copy the guest over to the conversion server,
-using the separate L<virt-v2v-copy-to-local(1)> tool, followed by
-running virt-v2v.  You will need sufficient space on the conversion
-server to store a full copy of the guest.
-
- virt-v2v-copy-to-local -ic xen+ssh://root@xen.example.com guest
- virt-v2v -i libvirtxml guest.xml -o local -os /var/tmp
- rm guest.xml guest-disk*
-
 =head1 SEE ALSO
 
 L<virt-v2v(1)>.

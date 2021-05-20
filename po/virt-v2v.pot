@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.44.0\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-04-30 15:49+0100\n"
+"POT-Creation-Date: 2021-05-20 11:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,9 +62,7 @@ msgstr ""
 msgid "%s is missing.  Firstboot scripts may conflict with PnP."
 msgstr ""
 
-#. v2v/cmdline.ml:84
-#. v2v/cmdline.ml:76
-#: v2v/copy_to_local.ml:40 v2v/cmdline.ml:195 v2v/cmdline.ml:175
+#: v2v/cmdline.ml:195 v2v/cmdline.ml:175 v2v/cmdline.ml:84 v2v/cmdline.ml:76
 msgid "%s option used more than once on the command line"
 msgstr ""
 
@@ -107,26 +105,6 @@ msgid ""
 "\n"
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v(1).\n"
-msgstr ""
-
-#: v2v/copy_to_local.ml:57
-msgid ""
-"%s: copy a remote guest to the local machine\n"
-"\n"
-"Copy the remote guest:\n"
-"\n"
-"  virt-v2v-copy-to-local -ic xen+ssh://root@xen.example.com guest\n"
-"\n"
-"Then perform the conversion step:\n"
-"\n"
-"  virt-v2v -i libvirtxml guest.xml -o local -os /var/tmp\n"
-"\n"
-"To clean up:\n"
-"\n"
-"  rm guest.xml guest-disk*\n"
-"\n"
-"A short summary of the options is given below.  For detailed help please\n"
-"read the man page virt-v2v-copy-to-local(1).\n"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:125
@@ -312,7 +290,6 @@ msgstr ""
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
-#. v2v/copy_to_local.ml:276
 #: v2v/parse_libvirt_xml.ml:356 v2v/parse_libvirt_xml.ml:300
 msgid "<disk type='%s'> was ignored"
 msgstr ""
@@ -325,7 +302,7 @@ msgstr ""
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:282 v2v/copy_to_local.ml:258
+#: v2v/parse_libvirt_xml.ml:282
 msgid "<disk> element with no type attribute ignored"
 msgstr ""
 
@@ -389,7 +366,7 @@ msgstr ""
 msgid "Checking for sufficient free disk space in the guest"
 msgstr ""
 
-#: v2v/v2v.ml:657
+#: v2v/v2v.ml:655
 msgid "Checking if the guest needs BIOS or UEFI to boot"
 msgstr ""
 
@@ -405,11 +382,11 @@ msgstr ""
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
-#: v2v/v2v.ml:574
+#: v2v/v2v.ml:572
 msgid "Converting %s to run on KVM"
 msgstr ""
 
-#: v2v/v2v.ml:572
+#: v2v/v2v.ml:570
 msgid "Converting the guest to run on KVM"
 msgstr ""
 
@@ -421,16 +398,12 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:704
+#: v2v/v2v.ml:702
 msgid "Copying disk %d/%d to %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:707
+#: v2v/v2v.ml:705
 msgid "Copying disk %d/%d to qemu URI %s (%s)"
-msgstr ""
-
-#: v2v/copy_to_local.ml:159
-msgid "Copying remote disk %d/%d to %s"
 msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:286
@@ -537,11 +510,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/copy_to_local.ml:123
-msgid "Fetching the remote libvirt XML metadata ..."
-msgstr ""
-
-#: v2v/v2v.ml:201 v2v/copy_to_local.ml:194
+#: v2v/v2v.ml:201
 msgid "Finishing off"
 msgstr ""
 
@@ -624,7 +593,7 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/copy_to_local.ml:48 v2v/cmdline.ml:246
+#: v2v/cmdline.ml:246
 msgid "Libvirt URI"
 msgstr ""
 
@@ -737,7 +706,7 @@ msgid ""
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
 
-#: v2v/v2v.ml:844
+#: v2v/v2v.ml:842
 msgid "Overlay saved as %s [--debug-overlays]"
 msgstr ""
 
@@ -760,10 +729,6 @@ msgstr ""
 msgid ""
 "Parallels tools was detected, but uninstallation failed. The error message "
 "was: %s (ignored)"
-msgstr ""
-
-#: v2v/copy_to_local.ml:134
-msgid "Parsing the remote libvirt XML metadata ..."
 msgstr ""
 
 #: v2v/inspect_source.ml:180
@@ -1007,11 +972,11 @@ msgid ""
 "installed in the guest.  X may not function correctly."
 msgstr ""
 
-#: v2v/v2v.ml:595
+#: v2v/v2v.ml:593
 msgid "This guest does not have virtio drivers installed."
 msgstr ""
 
-#: v2v/v2v.ml:593
+#: v2v/v2v.ml:591
 msgid "This guest has virtio drivers installed."
 msgstr ""
 
@@ -1022,7 +987,7 @@ msgid ""
 "require a separate password to connect."
 msgstr ""
 
-#: v2v/v2v.ml:678
+#: v2v/v2v.ml:676
 msgid "This guest requires UEFI on the target to boot."
 msgstr ""
 
@@ -1058,10 +1023,6 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/copy_to_local.ml:52 v2v/copy_to_local.ml:50
-msgid "Use password from file"
-msgstr ""
-
 #: v2v/cmdline.ml:252
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
@@ -1090,10 +1051,6 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:442
 msgid "Write file"
-msgstr ""
-
-#: v2v/copy_to_local.ml:190
-msgid "Writing libvirt XML metadata to %s ..."
 msgstr ""
 
 #: v2v/input_libvirt_vddk.ml:98
@@ -1217,10 +1174,6 @@ msgstr ""
 msgid "connection closed"
 msgstr ""
 
-#: v2v/copy_to_local.ml:186
-msgid "copy command failed, see earlier errors"
-msgstr ""
-
 #: v2v/linux_bootloaders.ml:321
 msgid "could not add grub2 serial console (ignored)"
 msgstr ""
@@ -1258,7 +1211,7 @@ msgid ""
 "failed: %s"
 msgstr ""
 
-#: v2v/input_libvirt.ml:47 v2v/copy_to_local.ml:93
+#: v2v/input_libvirt.ml:47
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1315,7 +1268,7 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: v2v/v2v.ml:617
+#: v2v/v2v.ml:615
 msgid ""
 "disk %s (%s) has no defined format.\n"
 "\n"
@@ -1495,7 +1448,7 @@ msgstr ""
 msgid "floppy disk"
 msgstr ""
 
-#: v2v/v2v.ml:448
+#: v2v/v2v.ml:446
 msgid ""
 "fstrim on guest filesystem %s failed.  Usually you can ignore this message.  "
 "To find out more read \"Trimming\" in virt-v2v(1).\n"
@@ -1612,7 +1565,7 @@ msgstr ""
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr ""
 
-#: v2v/v2v.ml:721
+#: v2v/v2v.ml:719
 msgid "internal error: qemu corrupted the overlay file"
 msgstr ""
 
@@ -1718,10 +1671,6 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:454
 msgid "md5|sha256|sha512"
-msgstr ""
-
-#: v2v/copy_to_local.ml:112
-msgid "missing guest name.  See the virt-v2v-copy-to-local(1) manual page."
 msgstr ""
 
 #: common/mltools/JSON_parser.ml:36
@@ -1880,13 +1829,13 @@ msgid ""
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: v2v/v2v.ml:424
+#: v2v/v2v.ml:422
 msgid ""
 "not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes "
 "available < %Ld inodes needed"
 msgstr ""
 
-#: v2v/v2v.ml:419
+#: v2v/v2v.ml:417
 msgid ""
 "not enough free space for conversion on filesystem ‘%s’.  %.1f MB free < %d "
 "MB needed"
@@ -1904,12 +1853,6 @@ msgid ""
 "\n"
 "Read the %s(1) manual, section \"Xen paravirtualized guests\", to see what "
 "to do."
-msgstr ""
-
-#: v2v/copy_to_local.ml:106
-msgid ""
-"only copies from Xen over SSH are supported.  See the virt-v2v-copy-to-"
-"local(1) manual page."
 msgstr ""
 
 #: v2v/cmdline.ml:573
@@ -1956,7 +1899,7 @@ msgid ""
 "\""
 msgstr ""
 
-#: v2v/v2v.ml:627
+#: v2v/v2v.ml:625
 msgid ""
 "output format should be ‘raw’ or ‘qcow2’.\n"
 "\n"
@@ -1979,7 +1922,7 @@ msgid ""
 "*.ovf file extracted from the ova"
 msgstr ""
 
-#: v2v/v2v.ml:774 v2v/v2v.ml:307
+#: v2v/v2v.ml:772 v2v/v2v.ml:307
 msgid "qemu-img command failed, see earlier errors"
 msgstr ""
 
@@ -2029,31 +1972,31 @@ msgstr ""
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr ""
 
-#: v2v/v2v.ml:855
+#: v2v/v2v.ml:853
 msgid "source has multiple hard disk types!"
 msgstr ""
 
-#: v2v/v2v.ml:871
+#: v2v/v2v.ml:869
 msgid "source has multiple network adapter model!"
 msgstr ""
 
-#: v2v/v2v.ml:853 v2v/v2v.ml:244
+#: v2v/v2v.ml:851 v2v/v2v.ml:244
 msgid "source has no hard disks!"
 msgstr ""
 
-#: v2v/v2v.ml:863
+#: v2v/v2v.ml:861
 msgid "source has unrecognized hard disk type"
 msgstr ""
 
-#: v2v/v2v.ml:861
+#: v2v/v2v.ml:859
 msgid "source has unsupported hard disk type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:877
+#: v2v/v2v.ml:875
 msgid "source has unsupported network adapter model ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:885
+#: v2v/v2v.ml:883
 msgid "source has unsupported video adapter model ‘%s’"
 msgstr ""
 
@@ -2066,10 +2009,6 @@ msgid ""
 "This is a problem with either the source metadata or the virt-v2v input "
 "module.  In some circumstances this could stop the guest from booting on the "
 "target."
-msgstr ""
-
-#: v2v/copy_to_local.ml:181
-msgid "ssh copy command failed, see earlier errors"
 msgstr ""
 
 #: v2v/utils.ml:155
@@ -2087,7 +2026,7 @@ msgstr ""
 msgid "subprocess signalled or stopped by signal %d"
 msgstr ""
 
-#: v2v/v2v.ml:631
+#: v2v/v2v.ml:629
 msgid ""
 "the --compressed flag is only allowed when the output format is qcow2 (-of "
 "qcow2)"
@@ -2099,10 +2038,6 @@ msgstr ""
 
 #: v2v/cmdline.ml:223
 msgid "the --vmtype option has been removed and now does nothing"
-msgstr ""
-
-#: v2v/copy_to_local.ml:86
-msgid "the -ic parameter is required"
 msgstr ""
 
 #: v2v/output_rhv_upload.ml:101
@@ -2254,7 +2189,7 @@ msgid ""
 "specify the UUIDs of guest disk images (for this guest: %d)"
 msgstr ""
 
-#: v2v/v2v.ml:669
+#: v2v/v2v.ml:667
 msgid ""
 "this guest cannot run on the target, because the target does not support %s "
 "firmware (supported firmware on target: %s)"
@@ -2288,14 +2223,8 @@ msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
 msgstr[1] ""
 
-#: v2v/parse_libvirt_xml.ml:255 v2v/copy_to_local.ml:247
+#: v2v/parse_libvirt_xml.ml:255
 msgid "this guest has no non-removable disks"
-msgstr ""
-
-#: v2v/copy_to_local.ml:115
-msgid ""
-"too many command line parameters.  See the virt-v2v-copy-to-local(1) manual "
-"page."
 msgstr ""
 
 #: v2v/output_rhv_upload.ml:409
@@ -2459,7 +2388,7 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
-#: v2v/v2v.ml:580
+#: v2v/v2v.ml:578
 msgid "virt-v2v is unable to convert this guest type (%s/%s)"
 msgstr ""
 

@@ -48,7 +48,6 @@ Makefile.in
 /depcomp
 /docs/stamp-virt-v2v*.pod
 /docs/virt-v2v.1
-/docs/virt-v2v-copy-to-local.1
 /docs/virt-v2v-hacking.1
 /docs/virt-v2v-input-vmware.1
 /docs/virt-v2v-input-xen.1
@@ -140,7 +139,6 @@ Makefile.in
 /v2v/v2v_unit_tests
 /v2v/var_expander_tests
 /v2v/virt-v2v
-/v2v/virt-v2v-copy-to-local
 /virt-v2v-*.tar.gz
 /website/*.html
 /website/README.txt

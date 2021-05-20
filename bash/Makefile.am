@@ -18,8 +18,7 @@
 include $(top_srcdir)/subdir-rules.mk
 
 scripts = \
-	virt-v2v \
-	virt-v2v-copy-to-local
+	virt-v2v
 
 EXTRA_DIST = \
 	README \
