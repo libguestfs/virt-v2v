@@ -1290,7 +1290,7 @@ to perform the conversion.  Currently it checks:
 
 =item Linux root filesystem
 
-Minimum free space: 20 MB
+Minimum free space: 100 MB
 
 =item Linux F</boot>
 

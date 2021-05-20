@@ -389,14 +389,12 @@ and check_guest_free_space inspect mpstats =
      * typical size of 20-30MB.  Hence:
      *)
     | "/boot" | "/" when not has_boot && not is_windows -> 50
-    (* We may install some packages, and they would usually go
-     * on the root filesystem.
+    (* Both Linux and Windows require installation of files,
+     * device drivers and guest agents.
+     * https://bugzilla.redhat.com/1949147
+     * https://bugzilla.redhat.com/1764569#c16
      *)
-    | "/" when not is_windows -> 20
-    (* Windows requires copying in many device drivers and possibly
-     * guest agents, so we need more space.  (RHBZ#1949147).
-     *)
-    | "/" (* when is_windows *) -> 100
+    | "/" -> 100
     (* For everything else, just make sure there is some free space. *)
     | _ -> 10
   in
