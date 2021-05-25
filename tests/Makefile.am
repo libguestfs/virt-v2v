@@ -57,6 +57,7 @@ TESTS_ENVIRONMENT = $(top_builddir)/run --test
 TESTS = \
 	test-v2v-i-ova-bad-sha1.sh \
 	test-v2v-i-ova-bad-sha256.sh \
+	test-v2v-i-ova-directory.sh \
 	test-v2v-i-ova-formats.sh \
 	test-v2v-i-ova-good-checksums.sh \
 	test-v2v-i-ova-gz.sh \
@@ -184,6 +185,7 @@ EXTRA_DIST += \
 	test-v2v-i-ova-bad-sha1.sh \
 	test-v2v-i-ova-bad-sha256.sh \
 	test-v2v-i-ova-checksums.ovf \
+	test-v2v-i-ova-directory.sh \
 	test-v2v-i-ova-formats.expected \
 	test-v2v-i-ova-formats.ovf \
 	test-v2v-i-ova-formats.sh \
