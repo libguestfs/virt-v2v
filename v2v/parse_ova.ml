@@ -57,6 +57,13 @@ and ova_type =
    *)
   | TarOptimized of string (* tarball *)
 
+let string_of_t { orig_ova; top_dir; ova_type } =
+  sprintf "orig_ova = %s, top_dir = %s, ova_type = %s"
+    orig_ova top_dir
+    (match ova_type with
+     | Directory -> "Directory"
+     | TarOptimized tarball -> "TarOptimized " ^ tarball)
+
 type file_ref =
   | LocalFile of string
   | TarFile of string * string
@@ -122,6 +129,13 @@ let rec parse_ova ova =
   (* Exploded path must be absolute (RHBZ#1155121). *)
   let top_dir = absolute_path top_dir in
 
+  (* top_dir must not end with / except if it == "/" (which is
+   * likely not what you want).  (RHBZ#1964324)
+   *)
+  let top_dir =
+    if top_dir = "/" || not (String.is_suffix top_dir "/") then top_dir
+    else String.sub top_dir 0 (String.length top_dir - 1) in
+
   (* If virt-v2v is running as root, and the backend is libvirt, then
    * we have to chmod the directory to 0755 and files to 0644
    * so it is readable by qemu.qemu.  This is libvirt bug RHBZ#890291.
@@ -136,7 +150,9 @@ let rec parse_ova ova =
     ignore (run_command cmd)
   );
 
-  { orig_ova = ova; top_dir; ova_type }
+  let ova = { orig_ova = ova; top_dir; ova_type } in
+  debug "ova: %s" (string_of_t ova);
+  ova
 
 (* Return true if [libvirt] supports ["json:"] pseudo-URLs and accepts the
  * ["raw"] driver. Function also returns true if [libvirt] backend is not
