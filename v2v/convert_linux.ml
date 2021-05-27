@@ -58,6 +58,14 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
 
   assert (inspect.i_package_format = "rpm" || inspect.i_package_format = "deb");
 
+  (* Fail early if i_apps is empty.  Certain steps such as kernel
+   * detection won't work without this.  If the list is empty it
+   * likely indicates that libguestfs inspection is broken for
+   * this guest.  See for example RHBZ#1965147.
+   *)
+  if inspect.i_apps = [] then
+    error (f_"inspection of the package database failed for this Linux guest.  Rerun virt-v2v with -v -x and see earlier errors.  This is an internal error which probably means that this guest is not supported by libguestfs inspection.  If the guest should work with virt-v2v (see virt-v2v docs) then a fix will be required in libguestfs.");
+
   (* We use Augeas for inspection and conversion, so initialize it early.
    * Calling debug_augeas_errors will display any //error nodes in
    * debugging output if verbose (but otherwise it does nothing).
