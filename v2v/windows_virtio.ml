@@ -192,11 +192,11 @@ and install_linux_tools g inspect =
     | "fedora" -> Some "fc28"
     | "rhel" | "centos" | "scientificlinux" | "redhat-based"
     | "oraclelinux" ->
-      (match inspect.i_major_version with
-       | 6 -> Some "el6"
-       | 7 -> Some "el7"
-       | 8 -> Some "el8"
-       | _ -> None)
+       (* map 6 -> "el6" etc. *)
+       if inspect.i_major_version >= 6 then
+         Some (sprintf "el%d" inspect.i_major_version)
+       else
+         None
     | "sles" | "suse-based" | "opensuse" -> Some "lp151"
     | _ -> None in
 
