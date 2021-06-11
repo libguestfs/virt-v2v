@@ -194,9 +194,7 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
       Xml.xpathctx_set_current_context xpathctx node;
       match xpath_string "model/@type" with
       | None -> None
-      | Some "qxl" | Some "virtio" -> Some Source_QXL
-      | Some "cirrus" | Some "vga" -> Some Source_Cirrus
-      | Some model -> Some (Source_other_video model)
+      | Some model -> Some (source_video_of_string model)
     ) in
 
   (* Sound card. *)
@@ -211,16 +209,12 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
       Xml.xpathctx_set_current_context xpathctx node;
       match xpath_string "@model" with
       | None -> None
-      | Some "ac97"   -> Some { s_sound_model = AC97 }
-      | Some "es1370" -> Some { s_sound_model = ES1370 }
-      | Some "ich6"   -> Some { s_sound_model = ICH6 }
-      | Some "ich9"   -> Some { s_sound_model = ICH9 }
-      | Some "pcspk"  -> Some { s_sound_model = PCSpeaker }
-      | Some "sb16"   -> Some { s_sound_model = SB16 }
-      | Some "usb"    -> Some { s_sound_model = USBAudio }
       | Some model ->
-         warning (f_"unknown sound model %s ignored") model;
-         None
+         match source_sound_model_of_string model with
+         | Some s_sound_model -> Some { s_sound_model }
+         | None ->
+            warning (f_"unknown sound model %s ignored") model;
+            None
     ) in
 
   (* Presence of virtio-scsi controller. *)

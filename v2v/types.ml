@@ -266,6 +266,11 @@ and string_of_source_video = function
   | Source_Cirrus -> "cirrus"
   | Source_other_video video -> video
 
+and source_video_of_string = function
+  | "qxl" -> Source_QXL
+  | "cirrus" -> Source_Cirrus
+  | video -> Source_other_video video
+
 and string_of_source_sound { s_sound_model = model } =
   string_of_source_sound_model model
 
@@ -281,6 +286,16 @@ and string_of_source_sound_model = function
   | PCSpeaker -> "pcspk"
   | SB16      -> "sb16"
   | USBAudio  -> "usb"
+
+and source_sound_model_of_string = function
+  | "ac97"    -> Some AC97
+  | "es1370"  -> Some ES1370
+  | "ich6"    -> Some ICH6
+  | "ich9"    -> Some ICH9
+  | "pcspk"   -> Some PCSpeaker
+  | "sb16"    -> Some SB16
+  | "usb"     -> Some USBAudio
+  | _         -> None
 
 and string_of_source_cpu_topology { s_cpu_sockets; s_cpu_cores;
                                     s_cpu_threads } =
