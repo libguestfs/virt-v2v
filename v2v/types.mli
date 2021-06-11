@@ -175,7 +175,9 @@ val string_of_controller : s_controller -> string
 val string_of_nic_model : s_nic_model -> string
 val string_of_vnet_type : vnet_type -> string
 val string_of_source_sound_model : source_sound_model -> string
+val source_sound_model_of_string : string -> source_sound_model option
 val string_of_source_video : source_video -> string
+val source_video_of_string : string -> source_video
 val string_of_source_cpu_topology : source_cpu_topology -> string
 
 val string_of_source_hypervisor : source_hypervisor -> string
