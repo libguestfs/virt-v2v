@@ -522,6 +522,10 @@ Enable (check) the following objects:
    Provisioning:
      - Allow disk access
      - Allow read-only disk access
+ 
+ Cryptographic operations:
+  - Decrypt
+  - Direct Access
 
 =back
 
