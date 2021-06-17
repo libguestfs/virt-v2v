@@ -245,6 +245,12 @@ and string_of_nic_model = function
   | Source_rtl8139 -> "rtl8139"
   | Source_other_nic model -> model
 
+and nic_model_of_string = function
+  | "virtio" -> Source_virtio_net
+  | "e1000" -> Source_e1000
+  | "rtl8139" -> Source_rtl8139
+  | model -> Source_other_nic model
+
 and string_of_source_display { s_display_type = typ;
                                s_keymap = keymap; s_password = password;
                                s_listen = listen } =

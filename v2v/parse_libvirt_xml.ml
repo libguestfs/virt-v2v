@@ -435,10 +435,7 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
       let model =
         match xpath_string "model/@type" with
         | None -> None
-        | Some "virtio" -> Some Source_virtio_net
-        | Some "e1000" -> Some Source_e1000
-        | Some "rtl8139" -> Some Source_rtl8139
-        | Some model -> Some (Source_other_nic model) in
+        | Some model -> Some (nic_model_of_string model) in
 
       let vnet_type =
         match xpath_string "@type" with

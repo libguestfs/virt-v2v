@@ -173,6 +173,7 @@ val string_of_source : source -> source_disk list -> string
 val string_of_source_disk : source_disk -> string
 val string_of_controller : s_controller -> string
 val string_of_nic_model : s_nic_model -> string
+val nic_model_of_string : string -> s_nic_model
 val string_of_vnet_type : vnet_type -> string
 val string_of_source_sound_model : source_sound_model -> string
 val source_sound_model_of_string : string -> source_sound_model option
