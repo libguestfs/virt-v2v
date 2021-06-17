@@ -168,7 +168,7 @@ and string_of_source_hypervisor = function
   | Parallels -> "parallels"
   | Bhyve -> "bhyve"
   | Physical -> "physical"
-  | UnknownHV -> "unknown"
+  | UnknownHV -> "unknownhv"
   | OtherHV s -> s
 
 and source_hypervisor_of_string = function
@@ -187,7 +187,7 @@ and source_hypervisor_of_string = function
   | "parallels" -> Parallels
   | "bhyve" -> Bhyve
   | "physical" -> Physical
-  | "unknown" -> OtherHV "unknown" (* because `UnknownHV is for internal use *)
+  | "unknownhv" -> UnknownHV
   | s -> OtherHV s
 
 and string_of_source_firmware = function
