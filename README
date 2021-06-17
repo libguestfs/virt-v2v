@@ -17,6 +17,10 @@ For more information about virt-v2v and virt-p2v please read the
 respective manual pages.  For virt-v2v, see the docs/ subdirectory in
 the source tree.
 
+
+BUILDING FROM SOURCE
+======================================================================
+
 To build from git:
 
   git submodule update --init
@@ -36,3 +40,48 @@ You can run virt-v2v without installing it:
 To run the tests:
 
   make check
+
+
+REQUIREMENTS
+======================================================================
+
+* libguestfs (https://libguestfs.org)
+
+* OCaml bindings for libguestfs
+
+* libnbd >= 1.9.3 (https://gitlab.com/nbdkit/libnbd)
+
+* OCaml bindings for libnbd
+
+* nbdkit >= 1.27.4 (https://gitlab.com/nbdkit/nbdkit)
+
+* These nbdkit plugins and filters:
+
+  + nbdkit-curl-plugin
+  + nbdkit-file-plugin
+  + nbdkit-nbd-plugin
+  + nbdkit-null-plugin
+  + nbdkit-python-plugin
+  + nbdkit-ssh-plugin
+  + nbdkit-vddk-plugin
+
+  + nbdkit-cacheextents-filter
+  + nbdkit-cow-filter
+  + nbdkit-readahead-filter
+  + nbdkit-retry-filter
+
+* qemu-nbd
+
+* qemu-img
+
+Optional, for enhancements to the basic program:
+
+* OCaml gettext
+
+* virtio-win (Windows virtio device drivers)
+
+Optional, used by the test suite:
+
+* guestfish
+
+* OCaml oUnit2

@@ -104,6 +104,13 @@ if test "x$OCAML_PKG_guestfs" = "xno"; then
     AC_MSG_ERROR([the OCaml module 'guestfs' is required])
 fi
 
+dnl ocaml nbd (libnbd) module is required.
+OCAML_PKG_nbd=no
+AC_CHECK_OCAML_PKG(nbd)
+if test "x$OCAML_PKG_nbd" = "xno"; then
+    AC_MSG_ERROR([the OCaml module 'nbd' (from libnbd) is required])
+fi
+
 OCAML_PKG_gettext=no
 OCAML_PKG_ounit2=no
 ounit_is_v2=no

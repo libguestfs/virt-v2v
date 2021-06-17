@@ -33,7 +33,7 @@ f=test-v2v-it-vddk-io-query.actual
 rm -f $f
 
 $VG virt-v2v --debug-gc \
-    -it vddk -io "?" > $f
+    -ic vpx://example.com -it vddk -io "?" > $f
 
 grep -- "-io vddk-config" $f
 grep -- "-io vddk-thumbprint" $f

@@ -144,7 +144,7 @@ command line.
 To convert a local disk image and immediately boot it in local
 qemu, do:
 
- virt-v2v -i disk disk.img -o qemu -os /var/tmp --qemu-boot
+ virt-v2v -i disk disk.img -o qemu -os /var/tmp -oo qemu-boot
 
 =head1 OPTIONS
 
@@ -215,9 +215,7 @@ option.
 
 =item B<--compressed>
 
-Write a compressed output file.  This is only allowed if the output
-format is qcow2 (see I<-of> below), and is equivalent to the I<-c>
-option of L<qemu-img(1)>.
+This is the same as I<-oo compressed>.
 
 =item B<--echo-keys>
 
@@ -437,16 +435,14 @@ See L</Networks and bridges> below.
 
 =item B<--no-copy>
 
-Don’t copy the disks.  Instead, conversion is performed (and thrown
-away), and metadata is written, but no disks are created.  See
-also discussion of S<I<-o null>> below.
+Don’t copy the disks.  Instead, conversion is performed and metadata
+is written, but no disks are copied.  Depending on the output mode, an
+empty disk or disks may be created.  It is almost always better to use
+S<I<-o null>>, see below.
 
 This is useful in two cases: Either you want to test if conversion is
 likely to succeed, without the long copying process.  Or you are only
 interested in looking at the metadata.
-
-This option is not compatible with I<-o libvirt> since it would create
-a faulty guest (one with no disks).
 
 This option is not compatible with I<-o glance> for technical reasons.
 
@@ -528,7 +524,7 @@ This is similar to I<-o local>, except that a shell script is written
 which you can use to boot the guest in qemu.  The converted disks and
 shell script are written to the directory specified by I<-os>.
 
-When using this output mode, you can also specify the I<--qemu-boot>
+When using this output mode, you can also specify the I<-oo qemu-boot>
 option which boots the guest under qemu immediately.
 
 =item B<-o> B<rhev>
@@ -597,11 +593,22 @@ To display short help on what options are available you can use:
 
  virt-v2v -o rhv-upload -oo "?"
 
+=item B<-oo compressed>
+
+For outputs which support qcow2 format (I<-of qcow2>), this writes a
+compressed qcow2 file.  It is the equivalent to the I<-c> option of
+L<qemu-img(1)>.
+
 =item B<-oo guest-id=>C<ID>
 
 For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, set a guest ID
 which is saved on each Cinder volume in the C<virt_v2v_guest_id>
 volume property.
+
+=item B<-oo qemu-boot>
+
+When using I<-o qemu> only, this boots the guest immediately after
+virt-v2v finishes.
 
 =item B<-oo verify-server-certificate>
 
@@ -777,8 +784,7 @@ See L</Networks and bridges>.
 
 =item B<--qemu-boot>
 
-When using I<-o qemu> only, this boots the guest immediately after
-virt-v2v finishes.
+This is the same as I<-oo qemu-boot>.
 
 =item B<-q>
 

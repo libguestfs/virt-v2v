@@ -14,7 +14,7 @@ hypervisor type: vmware
           video: 
           sound: 
 disks:
-	subfolder/disk1.vmdk (vmdk) [scsi]
+	0 [scsi]
 removable media:
 	CD-ROM [ide] in slot 0
 NICs:

@@ -142,8 +142,13 @@ AC_CONFIG_FILES([Makefile
                  common/qemuopts/Makefile
                  common/utils/Makefile
                  config.sh
+                 convert/Makefile
                  docs/Makefile
                  gnulib/lib/Makefile
+                 input/Makefile
+                 lib/Makefile
+                 lib/config.ml
+                 output/Makefile
                  po-docs/Makefile
                  po-docs/ja/Makefile
                  po-docs/uk/Makefile
@@ -165,8 +170,7 @@ AC_CONFIG_FILES([Makefile
                  tests/test-v2v-networks-and-bridges.xml
                  tests/test-v2v-print-source.xml
                  tests/test-v2v-sound.xml
-                 v2v/Makefile
-                 v2v/config.ml])
+                 v2v/Makefile])
 
 AC_OUTPUT
 

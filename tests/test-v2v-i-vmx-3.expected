@@ -1,4 +1,3 @@
-
 Source guest information (--print-source option):
 
     source name: RHEL 7.1 UEFI
@@ -15,7 +14,7 @@ hypervisor type: vmware
           video: vmvga
           sound: 
 disks:
-	/RHEL 7.1 UEFI.vmdk (vmdk) [scsi]
+	0 [scsi]
 removable media:
 	CD-ROM [ide] in slot 2
 NICs:

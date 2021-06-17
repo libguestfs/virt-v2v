@@ -1,4 +1,3 @@
-
 Source guest information (--print-source option):
 
     source name: Windows 7 x64
@@ -15,7 +14,7 @@ hypervisor type: vmware
           video: vmvga
           sound: 
 disks:
-	/Windows 7 x64.vmdk (vmdk) [scsi]
+	0 [scsi]
 removable media:
 	CD-ROM [ide] in slot 2
 NICs:

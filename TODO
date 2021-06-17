@@ -1,3 +1,26 @@
+virt-v2v --in-place support
+---------------------------
+
+This was temporarily dropped when I modularized virt-v2v.  It is
+intended to add this back, but with some changes.  I would like to get
+rid of the idea of configuring the guest based on the "input" libvirt
+XML, since that was and is a hack.  Instead we should have a new top
+level "virt-v2v-in-place" program (compare v2v/v2v.ml) which would
+parse new command line arguments and use the existing input and
+convert helpers to modify a local disk image.  We might also consider
+writing a new, simple input helper just for in-place which only works
+for local files and does not use the COW filter.
+
+virt-v2v -o disk|qemu -oo compressed
+------------------------------------
+
+This was temporarily dropped when I modularized virt-v2v.  It would
+not be too difficult to add it back.  The following is the qemu-nbd
+command required (to be run as the output helper) which creates a
+compressed qcow2 disk image:
+
+$ qemu-nbd --image-opts driver=compress,file.driver=qcow2,file.file.driver=file,file.file.filename=new.qcow2
+
 virt-v2v -o rhv-upload
 ----------------------
 

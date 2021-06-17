@@ -59,7 +59,8 @@ if ! $VG virt-v2v --debug-gc --quiet \
 fi
 cat test.out
 
-if ! grep -sq "warning: unable to parse line.*garbage" test.out; then
+if ! ( grep -sq "warning: unable to parse line" test.out &&
+       grep -sq "garbage line" test.out ) ; then
     echo "$0: did not see the expected warning in the output of virt-v2v"
     exit 1
 fi

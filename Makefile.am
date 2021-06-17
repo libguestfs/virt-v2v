@@ -38,6 +38,10 @@ SUBDIRS += common/mltools
 SUBDIRS += common/mlcustomize
 SUBDIRS += common/mlv2v
 SUBDIRS += bundled/libvirt-ocaml
+SUBDIRS += lib
+SUBDIRS += input
+SUBDIRS += output
+SUBDIRS += convert
 SUBDIRS += v2v
 
 SUBDIRS += tests
@@ -56,7 +60,6 @@ if HAVE_PO4A
 SUBDIRS += po-docs
 endif
 
-# lib/guestfs-internal-all.h is a hack, remove it XXX
 EXTRA_DIST = \
 	.gitignore \
 	bugs-in-changelog.sh \
@@ -66,7 +69,6 @@ EXTRA_DIST = \
 	common/.gitignore \
 	common/README \
 	COPYING \
-	lib/guestfs-internal-all.h \
 	ocaml-link.sh \
 	podcheck.pl \
 	tmp/.gitignore \

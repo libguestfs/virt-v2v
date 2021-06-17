@@ -39,7 +39,6 @@ v2v/input_libvirt_vddk.ml
 v2v/input_libvirt_xen_ssh.ml
 v2v/input_libvirtxml.ml
 v2v/input_ova.ml
-v2v/input_vmx.ml
 v2v/inspect_source.ml
 v2v/libosinfo.ml
 v2v/libosinfo_utils.ml

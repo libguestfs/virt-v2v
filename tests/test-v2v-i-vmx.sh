@@ -1,6 +1,6 @@
 #!/bin/bash -
 # libguestfs virt-v2v test script
-# Copyright (C) 2017 Red Hat Inc.
+# Copyright (C) 2017-2021 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# Test -i ova option.
+# Test -i vmx option.
+#
+# This test is fairly terrible.  It doesn't test SSH at all (which has
+# been broken since 1.42).  It doesn't test copying at all.
 
 set -e
 
@@ -30,6 +33,16 @@ export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 rm -f test-v2v-i-vmx-*.actual
+
+# For the tests to succeed we need at least the fileName (VMDK input
+# files) to exist.
+
+fns="BZ1308535_21disks.vmdk Fedora-20.vmdk RHEL-7.1-UEFI.vmdk Windows-7-x64.vmdk MSEdge-Win10_preview.vmdk"
+for fn in BZ1308535_21disks_{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}.vmdk; do
+    fns="$fns $fn"
+done
+
+for fn in $fns; do qemu-img create -f vmdk $fn 512; done
 
 for i in 1 2 3 4 5; do
     $VG virt-v2v --debug-gc \
@@ -49,3 +62,4 @@ for i in 1 2 3 4 5; do
 done
 
 rm test-v2v-i-vmx-*.actual
+for fn in $fns; do rm $fn; done

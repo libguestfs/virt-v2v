@@ -43,8 +43,9 @@ $VG virt-v2v --debug-gc --no-copy \
 # Test the libvirt XML metadata was created.
 test -f $d/windows.xml
 
-# Test the disk was NOT created.
-! test -f $d/windows-sda
+# The target disk is still created, but it will have zero size on disk
+# (assuming the local filesystem supports sparse disks).
+ls -s $d/windows-sda | grep '^0 '
 
 # --no-copy with -o rhv.
 mkdir $d/12345678-1234-1234-1234-123456789abc

@@ -42,6 +42,7 @@ common/mlutils
 common/mlv2v
 common/mlvisit
 common/mlxml
+lib
 "
 
 # Output file is always created in the current directory.

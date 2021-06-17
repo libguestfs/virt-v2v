@@ -29,20 +29,27 @@ skip_if_skipped
 
 # We expect all of these to print an error.  NB: LANG=C is set.
 
-virt-v2v -i disk -b b1 -b b1 |& grep "duplicate -b"
-virt-v2v -i disk -n n1 -n n1 |& grep "duplicate -n"
-virt-v2v -i disk -b b1 -n b1 -b b1 |& grep "duplicate -b"
-virt-v2v -i disk -b b1 -n b1 -n b2 |& grep "duplicate -n"
+file=test-v2v-bad-networks-and-bridges.img
+touch $file
 
-virt-v2v -i disk -b b1:r1 -b b1:r2 |& grep "duplicate -b"
-virt-v2v -i disk -n n1:r1 -n n1:r2 |& grep "duplicate -n"
+cmd="virt-v2v -i disk -o null $file"
+
+$cmd -b b1 -b b1 |& grep "duplicate -b"
+$cmd -n n1 -n n1 |& grep "duplicate -n"
+$cmd -b b1 -n b1 -b b1 |& grep "duplicate -b"
+$cmd -b b1 -n b1 -n b2 |& grep "duplicate -n"
+
+$cmd -b b1:r1 -b b1:r2 |& grep "duplicate -b"
+$cmd -n n1:r1 -n n1:r2 |& grep "duplicate -n"
+
+rm $file
 
 # The -b and -n parameters are OK in these tests, but because we
 # didn't specify a disk image name on the command line it will give
 # a different error.
 
-virt-v2v -i disk |& grep "expecting a disk image"
-virt-v2v -i disk -b b1 |& grep "expecting a disk image"
-virt-v2v -i disk -n n1 |& grep "expecting a disk image"
-virt-v2v -i disk -b b1 -n n1 |& grep "expecting a disk image"
-virt-v2v -i disk -b b1:r1 -b b2 -n n1:r1 -n n2 |& grep "expecting a disk image"
+virt-v2v -i disk -o null |& grep "expecting a disk image"
+virt-v2v -i disk -o null -b b1 |& grep "expecting a disk image"
+virt-v2v -i disk -o null -n n1 |& grep "expecting a disk image"
+virt-v2v -i disk -o null -b b1 -n n1 |& grep "expecting a disk image"
+virt-v2v -i disk -o null -b b1:r1 -b b2 -n n1:r1 -n n2 |& grep "expecting a disk image"
