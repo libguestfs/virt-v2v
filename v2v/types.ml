@@ -559,5 +559,3 @@ class virtual output = object
   method keep_serial_console = true
   method write_out_of_order = false
 end
-
-type output_settings = < keep_serial_console : bool >

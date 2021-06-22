@@ -34,7 +34,7 @@ open Linux_kernels
 module G = Guestfs
 
 (* The conversion function. *)
-let convert (g : G.guestfs) inspect source_disks output rcaps _ =
+let convert (g : G.guestfs) inspect source_disks keep_serial_console rcaps _ =
   (*----------------------------------------------------------------------*)
   (* Inspect the guest first.  We already did some basic inspection in
    * the common v2v.ml code, but that has to deal with generic guests
@@ -101,7 +101,7 @@ let convert (g : G.guestfs) inspect source_disks output rcaps _ =
 
     let kernel = configure_kernel () in
 
-    if output#keep_serial_console then (
+    if keep_serial_console then (
       configure_console ();
       bootloader#configure_console ();
     ) else (
