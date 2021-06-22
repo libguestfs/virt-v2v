@@ -1636,19 +1636,6 @@ This is a Windows binary shipped with SUSE VMDP, used to install a "firstboot"
 script in Windows guests.  It is required if you intend to use the
 I<--firstboot> or I<--firstboot-command> options with Windows guests.
 
-=item F<rhev-apt.exe>
-
-(Optional)
-
-The RHV Application Provisioning Tool (RHEV APT).  If this file is
-present, then RHEV APT will be installed in the Windows guest during
-conversion.  This tool is a guest agent which ensures that the virtio
-drivers remain up to date when the guest is running on Red Hat
-Virtualization (RHV).
-
-This file comes from Red Hat Virtualization (RHV), and is not
-distributed with virt-v2v.
-
 =back
 
 =item C<VIRTIO_WIN>

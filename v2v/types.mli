@@ -513,14 +513,11 @@ class virtual output : object
       do any finalization. *)
   method keep_serial_console : bool
   (** Whether this output supports serial consoles (RHV does not). *)
-  method install_rhev_apt : bool
-  (** If [rhev-apt.exe] should be installed (only for RHV). *)
   method write_out_of_order : bool
   (** Whether this output supports out of order writes. *)
 end
 (** Encapsulates all [-o], etc output arguments as an object. *)
 
-type output_settings = < keep_serial_console : bool;
-                         install_rhev_apt : bool >
+type output_settings = < keep_serial_console : bool >
 (** This is a subtype of {!output} containing only the settings
     which have an influence over conversion modules. *)

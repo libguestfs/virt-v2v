@@ -301,9 +301,6 @@ object
 
   method transfer_format t = "raw"
 
-  (* rhev-apt.exe will be installed (if available). *)
-  method install_rhev_apt = true
-
   method write_out_of_order = true
 
   method prepare_targets source_name overlays guestcaps =

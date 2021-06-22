@@ -38,7 +38,7 @@ module G = Guestfs
  * time the Windows VM is booted on KVM.
  *)
 
-let convert (g : G.guestfs) inspect _ output rcaps static_ips =
+let convert (g : G.guestfs) inspect _ _ rcaps static_ips =
   (*----------------------------------------------------------------------*)
   (* Inspect the Windows guest. *)
 
@@ -276,16 +276,6 @@ let convert (g : G.guestfs) inspect _ output rcaps static_ips =
       debug (f_"%s is missing.  Firstboot scripts may conflict with PnP.")
         tool_path;
 
-    (* Install RHEV-APT only if appropriate for the output hypervisor. *)
-    if output#install_rhev_apt then (
-      let tool_path = virt_tools_data_dir () // "rhev-apt.exe" in
-      if Sys.file_exists tool_path then
-        configure_rhev_apt tool_path
-      else
-        warning (f_"%s is missing, but the output hypervisor is oVirt or RHV.  Installing RHEV-APT in the guest would mean the guest is automatically updated with new drivers etc.  You may wish to install RHEV-APT manually after conversion.")
-                tool_path
-    );
-
     (* Install VMDP unconditionally, if available, but don't
      * warn about it if not.
      *)
@@ -376,24 +366,6 @@ echo Wait for PnP to complete
     Firstboot.add_firstboot_script g inspect.i_root "wait pnp" fb_script;
     (* add_firstboot_script has created the path already. *)
     g#upload tool_path (g#case_sensitive_path pnp_wait_path)
-
-  and configure_rhev_apt tool_path =
-    (* Configure RHEV-APT (the RHV guest agent).  However if it doesn't
-     * exist just warn about it and continue.
-     *)
-    g#upload tool_path "/rhev-apt.exe"; (* XXX *)
-
-    let fb_script = "\
-@echo off
-
-echo installing rhev-apt
-\"\\rhev-apt.exe\" /S /v/qn /v/l*vx \"/v\\\"%cd%\\rhev-apt.log\\\"\"
-
-echo starting rhev-apt
-net start rhev-apt
-" in
-    Firstboot.add_firstboot_script g inspect.i_root
-      "configure rhev-apt" fb_script
 
   and configure_vmdp tool_path =
     (* Configure VMDP if possible *)
