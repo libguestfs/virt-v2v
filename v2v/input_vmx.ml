@@ -499,7 +499,6 @@ object
       s_hypervisor = VMware;
       s_name = name;
       s_genid = genid;
-      s_orig_name = name;
       s_memory = memory;
       s_vcpu = vcpu;
       s_cpu_vendor = None;

@@ -259,9 +259,6 @@ and open_source cmdline input =
 and set_source_name cmdline source =
   match cmdline.output_name with
   | None -> source
-  (* Note the s_orig_name field retains the original name in case we
-   * need it for some reason.
-   *)
   | Some name -> { source with s_name = name }
 
 (* Map networks and bridges. *)

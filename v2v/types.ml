@@ -27,7 +27,6 @@ open Common_gettext.Gettext
 type source = {
   s_hypervisor : source_hypervisor;
   s_name : string;
-  s_orig_name : string;
   s_genid : string option;
   s_memory : int64;
   s_vcpu : int;

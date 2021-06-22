@@ -510,7 +510,7 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
 
   ({
     s_hypervisor = hypervisor;
-    s_name = name; s_orig_name = name;
+    s_name = name;
     s_genid = genid;
     s_memory = memory;
     s_vcpu = vcpu;
