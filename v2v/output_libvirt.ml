@@ -144,7 +144,7 @@ object (self)
         *)
        error_unless_uefi_firmware guestcaps.gcaps_arch
 
-  method create_metadata source targets
+  method create_metadata output_name source targets
                          target_buses guestcaps inspect target_firmware =
     (* We copied directly into the final pool directory.  However we
      * have to tell libvirt.
@@ -173,7 +173,7 @@ object (self)
 
     (* Create the metadata. *)
     let doc =
-      create_libvirt_xml ~pool:pool_name source targets target_buses
+      create_libvirt_xml ~pool:pool_name output_name source targets target_buses
                          guestcaps target_features target_firmware inspect in
 
     let tmpfile, chan = Filename.open_temp_file "v2vlibvirt" ".xml" in

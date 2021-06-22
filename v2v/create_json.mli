@@ -18,7 +18,7 @@
 
 (** Create JSON metadata for [-o json]. *)
 
-val create_json_metadata : Types.source -> Types.target list ->
+val create_json_metadata : string -> Types.source -> Types.target list ->
                            Types.target_buses ->
                            Types.guestcaps ->
                            Types.inspect ->

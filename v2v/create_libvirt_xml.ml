@@ -148,14 +148,14 @@ let get_osinfo_id = function
       typ distro major minor arch product;
     None
 
-let create_libvirt_xml ?pool source targets target_buses guestcaps
+let create_libvirt_xml ?pool output_name source targets target_buses guestcaps
                        target_features target_firmware inspect =
   (* The main body of the libvirt XML document. *)
   let body = ref [] in
 
   List.push_back_list body [
     Comment generated_by;
-    e "name" [] [PCData source.s_name];
+    e "name" [] [PCData output_name];
   ];
 
   (match source.s_genid with

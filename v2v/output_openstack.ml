@@ -450,7 +450,7 @@ object
         TargetFile dev
     ) volume_ids
 
-  method create_metadata source targets
+  method create_metadata output_name source targets
                          target_buses guestcaps inspect target_firmware =
     let nr_disks = List.length targets in
     assert (nr_disks = List.length volume_ids);
@@ -474,12 +474,12 @@ object
       fun i id ->
         let description =
           sprintf "%s disk %d/%d converted by virt-v2v"
-                  source.s_name (i+1) nr_disks in
+                  output_name (i+1) nr_disks in
 
         let volume_properties = ref [
           "virt_v2v_version", Config.package_version_full;
           "virt_v2v_conversion_date", iso_time;
-          "virt_v2v_guest_name", source.s_name;
+          "virt_v2v_guest_name", output_name;
           "virt_v2v_disk_index", sprintf "%d/%d" (i+1) nr_disks;
         ] in
         (match source.s_genid with

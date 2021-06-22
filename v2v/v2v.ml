@@ -70,7 +70,7 @@ let rec main () =
   output#precheck ();
 
   let source, source_disks = open_source cmdline input in
-  let source = set_source_name cmdline source in
+  let output_name = Option.default source.s_name cmdline.output_name in
   let source = set_source_networks_and_bridges cmdline source in
 
   let conversion_mode =
@@ -177,7 +177,7 @@ let rec main () =
         (* Decide the format for each output disk. *)
         let target_formats = get_target_formats cmdline output overlays in
         let target_files =
-          output#prepare_targets source.s_name
+          output#prepare_targets output_name
             (List.combine target_formats overlays)
             guestcaps in
         List.map (
@@ -191,11 +191,11 @@ let rec main () =
 
       (* Create output metadata. *)
       message (f_"Creating output metadata");
-      output#create_metadata source targets
+      output#create_metadata output_name source targets
                              target_buses guestcaps
                              inspect target_firmware;
 
-      if cmdline.debug_overlays then preserve_overlays overlays source.s_name;
+      if cmdline.debug_overlays then preserve_overlays overlays output_name;
 
       delete_target_on_exit := false  (* Don't delete target on exit. *)
   );
@@ -254,12 +254,6 @@ and open_source cmdline input =
     ) source_disks in
 
   source, source_disks
-
-(* Map source name. *)
-and set_source_name cmdline source =
-  match cmdline.output_name with
-  | None -> source
-  | Some name -> { source with s_name = name }
 
 (* Map networks and bridges. *)
 and set_source_networks_and_bridges cmdline source =

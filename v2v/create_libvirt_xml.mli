@@ -18,7 +18,8 @@
 
 (** Create libvirt XML for [-o libvirt] and [-o local]. *)
 
-val create_libvirt_xml : ?pool:string -> Types.source -> Types.target list ->
+val create_libvirt_xml : ?pool:string -> string -> Types.source ->
+                         Types.target list ->
                          Types.target_buses ->
                          Types.guestcaps -> string list ->
                          Types.target_firmware ->

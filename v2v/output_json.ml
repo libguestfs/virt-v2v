@@ -89,10 +89,10 @@ class output_json dir json_options = object
 
   method supported_firmware = [ TargetBIOS; TargetUEFI ]
 
-  method create_metadata source targets
+  method create_metadata output_name source targets
                          target_buses guestcaps inspect target_firmware =
     let doc =
-      Create_json.create_json_metadata source targets target_buses
+      Create_json.create_json_metadata output_name source targets target_buses
                                        guestcaps inspect target_firmware in
     let doc_string = JSON.string_of_doc ~fmt:JSON.Indented doc in
 
@@ -102,8 +102,7 @@ class output_json dir json_options = object
       eprintf "\n\n%!";
     );
 
-    let name = source.s_name in
-    let file = dir // name ^ ".json" in
+    let file = dir // output_name ^ ".json" in
 
     with_open_out file (
       fun chan ->

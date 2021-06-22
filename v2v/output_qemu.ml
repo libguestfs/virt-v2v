@@ -49,10 +49,9 @@ object
     | TargetBIOS -> ()
     | TargetUEFI -> error_unless_uefi_firmware guestcaps.gcaps_arch
 
-  method create_metadata source targets target_buses guestcaps inspect
-                         target_firmware =
-    let name = source.s_name in
-    let file = dir // name ^ ".sh" in
+  method create_metadata output_name source targets target_buses guestcaps
+                         inspect target_firmware =
+    let file = dir // output_name ^ ".sh" in
 
     let uefi_firmware =
       match target_firmware with
@@ -89,7 +88,7 @@ object
     and arg_list = Qemuopts.arg_list cmd in
 
     flag "-no-user-config"; flag "-nodefaults";
-    arg "-name" source.s_name;
+    arg "-name" output_name;
 
     (match source.s_genid with
      | None -> ()

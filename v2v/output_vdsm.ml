@@ -228,9 +228,10 @@ object
       ?clustersize path format size
 
   (* This is called after conversion to write the OVF metadata. *)
-  method create_metadata source targets _ guestcaps inspect target_firmware =
+  method create_metadata output_name source targets _
+                         guestcaps inspect target_firmware =
     (* Create the metadata. *)
-    let ovf = Create_ovf.create_ovf source targets guestcaps inspect
+    let ovf = Create_ovf.create_ovf output_name source targets guestcaps inspect
       target_firmware
       output_alloc dd_uuid
       vdsm_options.image_uuids

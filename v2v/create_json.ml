@@ -47,11 +47,11 @@ let find_target_disk targets { s_disk_id = id } =
   try List.find (fun t -> t.target_overlay.ov_source.s_disk_id = id) targets
   with Not_found -> assert false
 
-let create_json_metadata source targets target_buses
+let create_json_metadata output_name source targets target_buses
                          guestcaps inspect target_firmware =
   let doc = ref [
     "version", JSON.Int 1L;
-    "name", JSON.String source.s_name;
+    "name", JSON.String output_name;
     "memory", JSON.Int source.s_memory;
     "vcpu", JSON.Int (Int64.of_int source.s_vcpu);
   ] in

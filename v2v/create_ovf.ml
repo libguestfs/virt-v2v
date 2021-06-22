@@ -528,7 +528,7 @@ let create_meta_files output_alloc sd_uuid image_uuids overlays =
   ) (List.combine overlays image_uuids)
 
 (* Create the OVF file. *)
-let rec create_ovf source targets guestcaps inspect target_firmware
+let rec create_ovf output_name source targets guestcaps inspect target_firmware
     output_alloc sd_uuid image_uuids vol_uuids vm_uuid ovf_flavour =
   assert (List.length targets = List.length vol_uuids);
 
@@ -574,7 +574,7 @@ let rec create_ovf source targets guestcaps inspect target_firmware
       );
 
       let content_subnodes = ref [
-        e "Name" [] [PCData source.s_name];
+        e "Name" [] [PCData output_name];
         e "TemplateId" [] [PCData "00000000-0000-0000-0000-000000000000"];
         e "TemplateName" [] [PCData "Blank"];
         e "Description" [] [PCData generated_by];
