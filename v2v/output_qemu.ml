@@ -50,7 +50,7 @@ object
     | TargetUEFI -> error_unless_uefi_firmware guestcaps.gcaps_arch
 
   method create_metadata output_name source targets target_buses guestcaps
-                         inspect target_firmware =
+                         inspect target_firmware target_nics =
     let file = dir // output_name ^ ".sh" in
 
     let uefi_firmware =
@@ -195,7 +195,7 @@ object
                              (match nic.s_mac with
                               | None -> []
                               | Some mac -> ["mac=" ^ mac]))
-    ) source.s_nics;
+    ) target_nics;
 
     (* Add a display. *)
     (match source.s_display with

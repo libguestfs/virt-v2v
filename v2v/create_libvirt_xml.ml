@@ -149,7 +149,7 @@ let get_osinfo_id = function
     None
 
 let create_libvirt_xml ?pool output_name source targets target_buses guestcaps
-                       target_features target_firmware inspect =
+                       target_features target_firmware target_nics inspect =
   (* The main body of the libvirt XML document. *)
   let body = ref [] in
 
@@ -421,7 +421,7 @@ let create_libvirt_xml ?pool output_name source targets target_buses guestcaps
           append_child (e "mac" [ "address", mac ] []) nic);
 
         nic
-    ) source.s_nics in
+    ) target_nics in
   List.push_back_list devices nics;
 
   (* Same as old virt-v2v, we always add a display here even if it was

@@ -22,7 +22,7 @@ val create_json_metadata : string -> Types.source -> Types.target list ->
                            Types.target_buses ->
                            Types.guestcaps ->
                            Types.inspect ->
-                           Types.target_firmware ->
+                           Types.target_firmware -> Types.target_nics ->
                            JSON.doc
 (** [create_json_metadata source targets target_buses guestcaps
     inspect target_firmware] creates the JSON with the majority

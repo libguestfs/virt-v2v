@@ -71,7 +71,7 @@ let rec main () =
 
   let source, source_disks = open_source cmdline input in
   let output_name = Option.default source.s_name cmdline.output_name in
-  let source = set_source_networks_and_bridges cmdline source in
+  let target_nics = List.map (Networks.map cmdline.network_map) source.s_nics in
 
   let conversion_mode =
     if not cmdline.in_place then (
@@ -193,7 +193,7 @@ let rec main () =
       message (f_"Creating output metadata");
       output#create_metadata output_name source targets
                              target_buses guestcaps
-                             inspect target_firmware;
+                             inspect target_firmware target_nics;
 
       if cmdline.debug_overlays then preserve_overlays overlays output_name;
 
@@ -254,11 +254,6 @@ and open_source cmdline input =
     ) source_disks in
 
   source, source_disks
-
-(* Map networks and bridges. *)
-and set_source_networks_and_bridges cmdline source =
-  let nics = List.map (Networks.map cmdline.network_map) source.s_nics in
-  { source with s_nics = nics }
 
 (* Conversion can fail or hang if there is insufficient free space in
  * the temporary directory used to store overlays on the host

@@ -233,6 +233,10 @@ type i_firmware =
   | I_BIOS
   | I_UEFI of string list
 
+(** {2 Target NICs} *)
+
+type target_nics = source_nic list
+
 (** {2 Guest capabilities} *)
 
 type guestcaps = {
@@ -501,7 +505,7 @@ class virtual output : object
   (** Called after a disk was successfully copied on the target.
       The second parameter is the index of the copied disk (starting
       from 0), and the third is the number of disks in total. *)
-  method virtual create_metadata : string -> source -> target list -> target_buses -> guestcaps -> inspect -> target_firmware -> unit
+  method virtual create_metadata : string -> source -> target list -> target_buses -> guestcaps -> inspect -> target_firmware -> target_nics -> unit
   (** Called after conversion and copying to create metadata and
       do any finalization. *)
   method keep_serial_console : bool

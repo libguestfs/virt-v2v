@@ -528,8 +528,9 @@ let create_meta_files output_alloc sd_uuid image_uuids overlays =
   ) (List.combine overlays image_uuids)
 
 (* Create the OVF file. *)
-let rec create_ovf output_name source targets guestcaps inspect target_firmware
-    output_alloc sd_uuid image_uuids vol_uuids vm_uuid ovf_flavour =
+let rec create_ovf output_name source targets guestcaps inspect
+          target_firmware target_nics
+          output_alloc sd_uuid image_uuids vol_uuids vm_uuid ovf_flavour =
   assert (List.length targets = List.length vol_uuids);
 
   let memsize_mb = source.s_memory /^ 1024L /^ 1024L in
@@ -744,7 +745,7 @@ let rec create_ovf output_name source targets guestcaps inspect target_firmware
   (* Old virt-v2v ignored removable media. XXX *)
 
   (* Add networks to the OVF XML. *)
-  add_networks source.s_nics guestcaps ovf_flavour ovf;
+  add_networks target_nics guestcaps ovf_flavour ovf;
 
   (* Add sound card to the OVF XML. *)
   add_sound_card source.s_sound ovf_flavour ovf;

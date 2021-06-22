@@ -90,10 +90,12 @@ class output_json dir json_options = object
   method supported_firmware = [ TargetBIOS; TargetUEFI ]
 
   method create_metadata output_name source targets
-                         target_buses guestcaps inspect target_firmware =
+                         target_buses guestcaps inspect
+                         target_firmware target_nics =
     let doc =
       Create_json.create_json_metadata output_name source targets target_buses
-                                       guestcaps inspect target_firmware in
+                                       guestcaps inspect target_firmware
+                                       target_nics in
     let doc_string = JSON.string_of_doc ~fmt:JSON.Indented doc in
 
     if verbose () then (

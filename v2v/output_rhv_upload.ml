@@ -427,7 +427,7 @@ object
     disks_uuids <- disks_uuids @ [diskid];
 
   method create_metadata output_name source targets _
-                         guestcaps inspect target_firmware =
+                         guestcaps inspect target_firmware target_nics =
     let image_uuids =
       match rhv_options.rhv_disk_uuids, disks_uuids with
       | None, [] ->
@@ -450,7 +450,7 @@ object
     (* Create the metadata. *)
     let ovf =
       Create_ovf.create_ovf output_name source targets guestcaps inspect
-                            target_firmware output_alloc
+                            target_firmware target_nics output_alloc
                             sd_uuid image_uuids vol_uuids vm_uuid
                             OVirt in
     let ovf = DOM.doc_to_string ovf in

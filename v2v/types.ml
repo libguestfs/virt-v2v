@@ -364,6 +364,8 @@ type i_firmware =
   | I_BIOS
   | I_UEFI of string list
 
+type target_nics = source_nic list
+
 type inspect = {
   i_root : string;
   i_type : string;
@@ -553,7 +555,7 @@ class virtual output = object
   method virtual prepare_targets : string -> (string * overlay) list -> guestcaps -> target_file list
   method disk_create = (open_guestfs ())#disk_create
   method disk_copied (_ : target) (_ : int) (_ : int) = ()
-  method virtual create_metadata : string -> source -> target list -> target_buses -> guestcaps -> inspect -> target_firmware -> unit
+  method virtual create_metadata : string -> source -> target list -> target_buses -> guestcaps -> inspect -> target_firmware -> target_nics -> unit
   method keep_serial_console = true
   method write_out_of_order = false
 end

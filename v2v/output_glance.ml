@@ -63,7 +63,7 @@ object
     List.map (fun (_, ov) -> TargetFile (tmpdir // ov.ov_sd)) overlays
 
   method create_metadata output_name source targets
-                         target_buses guestcaps inspect target_firmware =
+                         target_buses guestcaps inspect target_firmware _ =
     let min_ram = source.s_memory /^ 1024L /^ 1024L in
 
     (* Get the image properties. *)

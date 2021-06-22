@@ -22,7 +22,7 @@ val create_libvirt_xml : ?pool:string -> string -> Types.source ->
                          Types.target list ->
                          Types.target_buses ->
                          Types.guestcaps -> string list ->
-                         Types.target_firmware ->
+                         Types.target_firmware -> Types.target_nics -> 
                          Types.inspect ->
                          DOM.doc
 (** [create_libvirt_xml ?pool source targets target_buses guestcaps

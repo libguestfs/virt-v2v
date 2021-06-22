@@ -451,7 +451,8 @@ object
     ) volume_ids
 
   method create_metadata output_name source targets
-                         target_buses guestcaps inspect target_firmware =
+                         target_buses guestcaps inspect
+                         target_firmware target_nics =
     let nr_disks = List.length targets in
     assert (nr_disks = List.length volume_ids);
     assert (nr_disks >= 1);

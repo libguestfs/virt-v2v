@@ -48,7 +48,7 @@ let find_target_disk targets { s_disk_id = id } =
   with Not_found -> assert false
 
 let create_json_metadata output_name source targets target_buses
-                         guestcaps inspect target_firmware =
+                         guestcaps inspect target_firmware target_nics =
   let doc = ref [
     "version", JSON.Int 1L;
     "name", JSON.String output_name;
@@ -196,7 +196,7 @@ let create_json_metadata output_name source targets target_buses
         push_optional_string nic "mac" mac;
 
         JSON.Dict !nic
-    ) source.s_nics in
+    ) target_nics in
   List.push_back doc ("nics", JSON.List nics);
 
   let guestcaps_dict =
