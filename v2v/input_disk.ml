@@ -73,8 +73,7 @@ class input_disk input_format disk = object
       s_mac = None;
       s_nic_model = None;
       s_vnet = "default";
-      s_vnet_type = Network;
-      s_mapping_explanation = None
+      s_vnet_type = Network
     } in
 
     let source = {

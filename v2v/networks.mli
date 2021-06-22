@@ -54,7 +54,4 @@ val map : t -> Types.source_nic -> Types.source_nic
 
     MAC address mappings take precedence, followed by network
     and bridge mappings if no MAC address mapping for the NIC can
-    be found.
-
-    [s_mapping_explanation] is set in the output with an
-    informational message about what was done. *)
+    be found. *)

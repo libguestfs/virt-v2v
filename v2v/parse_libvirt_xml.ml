@@ -450,8 +450,7 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
              s_mac = mac;
              s_nic_model = model;
              s_vnet = vnet;
-             s_vnet_type = vnet_type;
-             s_mapping_explanation = None
+             s_vnet_type = vnet_type
            } in
            List.push_front nic nics
          in

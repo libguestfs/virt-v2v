@@ -403,8 +403,7 @@ let create_libvirt_xml ?pool output_name source targets target_buses guestcaps
       match guestcaps.gcaps_net_bus with
       | Virtio_net -> "virtio" | E1000 -> "e1000" | RTL8139 -> "rtl8139" in
     List.map (
-      fun { s_mac = mac; s_vnet_type = vnet_type;
-            s_vnet = vnet; s_mapping_explanation = explanation } ->
+      fun { s_mac = mac; s_vnet_type = vnet_type; s_vnet = vnet } ->
         let vnet_type_str =
           match vnet_type with
           | Bridge -> "bridge" | Network -> "network" in
@@ -414,10 +413,6 @@ let create_libvirt_xml ?pool output_name source targets target_buses guestcaps
             e "source" [ vnet_type_str, vnet ] [];
             e "model" [ "type", net_model ] [];
           ] in
-          let children =
-            match explanation with
-            | Some explanation -> Comment explanation :: children
-            | None -> children in
           e "interface" [ "type", vnet_type_str ] children in
 
         (match mac with

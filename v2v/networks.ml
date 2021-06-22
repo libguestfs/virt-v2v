@@ -46,54 +46,28 @@ let map t nic =
     let mac = match nic.s_mac with None -> raise Not_found | Some mac -> mac in
     let mac = String.lowercase_ascii mac in
     let vnet_type, vnet = StringMap.find mac t.macs in
-    { nic with
-      s_vnet_type = vnet_type;
-      s_vnet = vnet;
-      s_mapping_explanation =
-        Some (sprintf "NIC mapped by MAC address to %s:%s"
-                      (string_of_vnet_type vnet_type) vnet)
-    }
+    { nic with s_vnet_type = vnet_type; s_vnet = vnet }
   with Not_found ->
        match nic.s_vnet_type with
        | Network ->
           (try
              let vnet = StringMap.find nic.s_vnet t.network_map in
-             { nic with
-               s_vnet = vnet;
-               s_mapping_explanation =
-                 Some (sprintf "network mapped from %S to %S"
-                               nic.s_vnet vnet)
-             }
+             { nic with s_vnet = vnet }
            with Not_found ->
              match t.default_network with
              | None -> nic (* no mapping done *)
              | Some default_network ->
-                { nic with
-                  s_vnet = default_network;
-                  s_mapping_explanation =
-                    Some (sprintf "network mapped from %S to default %S"
-                                  nic.s_vnet default_network)
-                }
+                { nic with s_vnet = default_network }
           )
        | Bridge ->
           (try
              let vnet = StringMap.find nic.s_vnet t.bridge_map in
-             { nic with
-               s_vnet = vnet;
-               s_mapping_explanation =
-                 Some (sprintf "bridge mapped from %S to %S"
-                               nic.s_vnet vnet)
-             }
+             { nic with s_vnet = vnet }
            with Not_found ->
              match t.default_bridge with
              | None -> nic (* no mapping done *)
              | Some default_bridge ->
-                { nic with
-                  s_vnet = default_bridge;
-                  s_mapping_explanation =
-                    Some (sprintf "bridge mapped from %S to default %S"
-                                  nic.s_vnet default_bridge)
-                }
+                { nic with s_vnet = default_bridge }
           )
 
 let create () = {
