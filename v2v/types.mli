@@ -177,6 +177,41 @@ val string_of_source_cpu_topology : source_cpu_topology -> string
 val string_of_source_hypervisor : source_hypervisor -> string
 val source_hypervisor_of_string : string -> source_hypervisor
 
+(** {2 Inspection data} *)
+
+type inspect = {
+  i_root : string;                      (** Root device. *)
+  i_type : string;                      (** Usual inspection fields. *)
+  i_distro : string;
+  i_osinfo : string;
+  i_arch : string;
+  i_major_version : int;
+  i_minor_version : int;
+  i_package_format : string;
+  i_package_management : string;
+  i_product_name : string;
+  i_product_variant : string;
+  i_mountpoints : (string * string) list;
+  i_apps : Guestfs.application2 list;   (** List of packages installed. *)
+  i_apps_map : Guestfs.application2 list StringMap.t;
+    (** This is a map from the app name to the application object.
+        Since RPM allows multiple packages with the same name to be
+        installed, the value is a list. *)
+  i_firmware : i_firmware;
+    (** The list of EFI system partitions for the guest with UEFI,
+        otherwise the BIOS identifier. *)
+  i_windows_systemroot : string;
+  i_windows_software_hive : string;
+  i_windows_system_hive : string;
+  i_windows_current_control_set : string;
+}
+and i_firmware =
+  | I_BIOS
+  | I_UEFI of string list
+(** Inspection information. *)
+
+val string_of_inspect : inspect -> string
+
 (** {2 Disk stats}
 
     Note that the estimate is filled in by core v2v.ml code before
@@ -228,10 +263,6 @@ val string_of_target : target -> string
 type target_firmware = TargetBIOS | TargetUEFI
 
 val string_of_target_firmware : target_firmware -> string
-
-type i_firmware =
-  | I_BIOS
-  | I_UEFI of string list
 
 (** {2 Target NICs} *)
 
@@ -319,38 +350,6 @@ and target_bus_slot =
 | BusSlotRemovable of source_removable (** Contains a removable CD/floppy. *)
 
 val string_of_target_buses : target_buses -> string
-
-(** {2 Inspection data} *)
-
-type inspect = {
-  i_root : string;                      (** Root device. *)
-  i_type : string;                      (** Usual inspection fields. *)
-  i_distro : string;
-  i_osinfo : string;
-  i_arch : string;
-  i_major_version : int;
-  i_minor_version : int;
-  i_package_format : string;
-  i_package_management : string;
-  i_product_name : string;
-  i_product_variant : string;
-  i_mountpoints : (string * string) list;
-  i_apps : Guestfs.application2 list;   (** List of packages installed. *)
-  i_apps_map : Guestfs.application2 list StringMap.t;
-    (** This is a map from the app name to the application object.
-        Since RPM allows multiple packages with the same name to be
-        installed, the value is a list. *)
-  i_firmware : i_firmware;
-    (** The list of EFI system partitions for the guest with UEFI,
-        otherwise the BIOS identifier. *)
-  i_windows_systemroot : string;
-  i_windows_software_hive : string;
-  i_windows_system_hive : string;
-  i_windows_current_control_set : string;
-}
-(** Inspection information. *)
-
-val string_of_inspect : inspect -> string
 
 (** {2 Command line parameters} *)
 

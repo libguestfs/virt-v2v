@@ -306,6 +306,68 @@ and string_of_source_cpu_topology { s_cpu_sockets; s_cpu_cores;
   sprintf "sockets: %d cores/socket: %d threads/core: %d"
     s_cpu_sockets s_cpu_cores s_cpu_threads
 
+type inspect = {
+  i_root : string;
+  i_type : string;
+  i_distro : string;
+  i_osinfo : string;
+  i_arch : string;
+  i_major_version : int;
+  i_minor_version : int;
+  i_package_format : string;
+  i_package_management : string;
+  i_product_name : string;
+  i_product_variant : string;
+  i_mountpoints : (string * string) list;
+  i_apps : Guestfs.application2 list;
+  i_apps_map : Guestfs.application2 list StringMap.t;
+  i_firmware : i_firmware;
+  i_windows_systemroot : string;
+  i_windows_software_hive : string;
+  i_windows_system_hive : string;
+  i_windows_current_control_set : string;
+}
+and i_firmware =
+  | I_BIOS
+  | I_UEFI of string list
+
+let string_of_inspect inspect =
+  sprintf "\
+i_root = %s
+i_type = %s
+i_distro = %s
+i_osinfo = %s
+i_arch = %s
+i_major_version = %d
+i_minor_version = %d
+i_package_format = %s
+i_package_management = %s
+i_product_name = %s
+i_product_variant = %s
+i_firmware = %s
+i_windows_systemroot = %s
+i_windows_software_hive = %s
+i_windows_system_hive = %s
+i_windows_current_control_set = %s
+" inspect.i_root
+  inspect.i_type
+  inspect.i_distro
+  inspect.i_osinfo
+  inspect.i_arch
+  inspect.i_major_version
+  inspect.i_minor_version
+  inspect.i_package_format
+  inspect.i_package_management
+  inspect.i_product_name
+  inspect.i_product_variant
+  (match inspect.i_firmware with
+   | I_BIOS -> "BIOS"
+   | I_UEFI devices -> sprintf "UEFI [%s]" (String.concat ", " devices))
+  inspect.i_windows_systemroot
+  inspect.i_windows_software_hive
+  inspect.i_windows_system_hive
+  inspect.i_windows_current_control_set
+
 type disk_stats = {
   mutable target_estimated_size : int64 option;
   mutable target_actual_size : int64 option;
@@ -360,70 +422,7 @@ let string_of_target_firmware = function
   | TargetBIOS -> "bios"
   | TargetUEFI -> "uefi"
 
-type i_firmware =
-  | I_BIOS
-  | I_UEFI of string list
-
 type target_nics = source_nic list
-
-type inspect = {
-  i_root : string;
-  i_type : string;
-  i_distro : string;
-  i_osinfo : string;
-  i_arch : string;
-  i_major_version : int;
-  i_minor_version : int;
-  i_package_format : string;
-  i_package_management : string;
-  i_product_name : string;
-  i_product_variant : string;
-  i_mountpoints : (string * string) list;
-  i_apps : Guestfs.application2 list;
-  i_apps_map : Guestfs.application2 list StringMap.t;
-  i_firmware : i_firmware;
-  i_windows_systemroot : string;
-  i_windows_software_hive : string;
-  i_windows_system_hive : string;
-  i_windows_current_control_set : string;
-}
-
-let string_of_inspect inspect =
-  sprintf "\
-i_root = %s
-i_type = %s
-i_distro = %s
-i_osinfo = %s
-i_arch = %s
-i_major_version = %d
-i_minor_version = %d
-i_package_format = %s
-i_package_management = %s
-i_product_name = %s
-i_product_variant = %s
-i_firmware = %s
-i_windows_systemroot = %s
-i_windows_software_hive = %s
-i_windows_system_hive = %s
-i_windows_current_control_set = %s
-" inspect.i_root
-  inspect.i_type
-  inspect.i_distro
-  inspect.i_osinfo
-  inspect.i_arch
-  inspect.i_major_version
-  inspect.i_minor_version
-  inspect.i_package_format
-  inspect.i_package_management
-  inspect.i_product_name
-  inspect.i_product_variant
-  (match inspect.i_firmware with
-   | I_BIOS -> "BIOS"
-   | I_UEFI devices -> sprintf "UEFI [%s]" (String.concat ", " devices))
-  inspect.i_windows_systemroot
-  inspect.i_windows_software_hive
-  inspect.i_windows_system_hive
-  inspect.i_windows_current_control_set
 
 type guestcaps = {
   gcaps_block_bus : guestcaps_block_type;
