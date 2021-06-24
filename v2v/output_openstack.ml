@@ -450,9 +450,7 @@ object
         TargetFile dev
     ) volume_ids
 
-  method create_metadata output_name source targets
-                         target_buses guestcaps inspect
-                         target_firmware target_nics =
+  method create_metadata source inspect target_meta targets =
     let nr_disks = List.length targets in
     assert (nr_disks = List.length volume_ids);
     assert (nr_disks >= 1);
@@ -463,8 +461,7 @@ object
      * (XXX see RHBZ#1308535 for why this is wrong).
      *)
     let image_properties =
-      Openstack_image_properties.create source target_buses
-                                        guestcaps inspect target_firmware in
+      Openstack_image_properties.create source inspect target_meta in
     update_cinder_volume_metadata ~bootable:true ~image_properties
                                   (List.hd volume_ids);
 
@@ -475,12 +472,12 @@ object
       fun i id ->
         let description =
           sprintf "%s disk %d/%d converted by virt-v2v"
-                  output_name (i+1) nr_disks in
+                  target_meta.output_name (i+1) nr_disks in
 
         let volume_properties = ref [
           "virt_v2v_version", Config.package_version_full;
           "virt_v2v_conversion_date", iso_time;
-          "virt_v2v_guest_name", output_name;
+          "virt_v2v_guest_name", target_meta.output_name;
           "virt_v2v_disk_index", sprintf "%d/%d" (i+1) nr_disks;
         ] in
         (match source.s_genid with

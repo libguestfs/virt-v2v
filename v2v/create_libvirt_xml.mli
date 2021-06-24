@@ -18,13 +18,9 @@
 
 (** Create libvirt XML for [-o libvirt] and [-o local]. *)
 
-val create_libvirt_xml : ?pool:string -> string -> Types.source ->
-                         Types.target list ->
-                         Types.target_buses ->
-                         Types.guestcaps -> string list ->
-                         Types.target_firmware -> Types.target_nics -> 
-                         Types.inspect ->
-                         DOM.doc
+val create_libvirt_xml : ?pool:string -> Types.source ->
+                         Types.inspect -> Types.target_meta ->
+                         string list -> Types.target list -> DOM.doc
 (** [create_libvirt_xml ?pool source targets target_buses guestcaps
     target_features target_firmware] creates the final libvirt XML
     for the output hypervisor. *)

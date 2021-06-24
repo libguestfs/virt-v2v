@@ -144,9 +144,7 @@ object (self)
         *)
        error_unless_uefi_firmware guestcaps.gcaps_arch
 
-  method create_metadata output_name source targets
-                         target_buses guestcaps inspect
-                         target_firmware target_nics =
+  method create_metadata source inspect target_meta targets =
     (* We copied directly into the final pool directory.  However we
      * have to tell libvirt.
      *)
@@ -170,13 +168,13 @@ object (self)
       | None -> assert false
       | Some doc -> doc in
     let target_features =
-      target_features_of_capabilities_doc doc guestcaps.gcaps_arch in
+      target_features_of_capabilities_doc doc
+        target_meta.guestcaps.gcaps_arch in
 
     (* Create the metadata. *)
     let doc =
-      create_libvirt_xml ~pool:pool_name output_name source targets target_buses
-                         guestcaps target_features target_firmware target_nics
-                         inspect in
+      create_libvirt_xml ~pool:pool_name source inspect target_meta
+        target_features targets in
 
     let tmpfile, chan = Filename.open_temp_file "v2vlibvirt" ".xml" in
     DOM.doc_to_chan chan doc;

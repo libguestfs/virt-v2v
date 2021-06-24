@@ -101,7 +101,7 @@ object
       List.map (fun (_, ov) -> TargetFile (tmpdir // ov.ov_sd)) overlays
     )
 
-  method create_metadata _ _ _ _ _ _ _ _ = ()
+  method create_metadata _ _ _ _ = ()
 end
 
 let output_null () = new output_null

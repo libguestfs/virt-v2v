@@ -426,8 +426,7 @@ object
     let diskid = read_whole_file diskid_file in
     disks_uuids <- disks_uuids @ [diskid];
 
-  method create_metadata output_name source targets _
-                         guestcaps inspect target_firmware target_nics =
+  method create_metadata source inspect target_meta targets =
     let image_uuids =
       match rhv_options.rhv_disk_uuids, disks_uuids with
       | None, [] ->
@@ -449,10 +448,9 @@ object
 
     (* Create the metadata. *)
     let ovf =
-      Create_ovf.create_ovf output_name source targets guestcaps inspect
-                            target_firmware target_nics output_alloc
-                            sd_uuid image_uuids vol_uuids vm_uuid
-                            OVirt in
+      Create_ovf.create_ovf source inspect target_meta targets
+        output_alloc sd_uuid image_uuids vol_uuids vm_uuid
+        OVirt in
     let ovf = DOM.doc_to_string ovf in
 
     let json_params =

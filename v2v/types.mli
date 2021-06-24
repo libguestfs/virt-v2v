@@ -351,6 +351,19 @@ and target_bus_slot =
 
 val string_of_target_buses : target_buses -> string
 
+(** {2 Target metadata super-struct}
+
+    This contains all target-related metadata in a single struct
+    to simplify calling [output#create_metadata] *)
+
+type target_meta = {
+  guestcaps : guestcaps;
+  output_name : string;
+  target_buses : target_buses;
+  target_firmware : target_firmware;
+  target_nics : target_nics
+}
+
 (** {2 Command line parameters} *)
 
 type root_choice = AskRoot | SingleRoot | FirstRoot | RootDev of string
@@ -504,7 +517,7 @@ class virtual output : object
   (** Called after a disk was successfully copied on the target.
       The second parameter is the index of the copied disk (starting
       from 0), and the third is the number of disks in total. *)
-  method virtual create_metadata : string -> source -> target list -> target_buses -> guestcaps -> inspect -> target_firmware -> target_nics -> unit
+  method virtual create_metadata : source -> inspect -> target_meta -> target list -> unit
   (** Called after conversion and copying to create metadata and
       do any finalization. *)
   method keep_serial_console : bool

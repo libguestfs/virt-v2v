@@ -22,7 +22,8 @@
     Note for Cinder there is a difference between properties and
     image properties (this module implements the latter). *)
 
-val create : Types.source -> Types.target_buses -> Types.guestcaps -> Types.inspect -> Types.target_firmware -> (string * string) list
+val create : Types.source -> Types.inspect -> Types.target_meta ->
+             (string * string) list
 (** [create source target_buses guestcaps inspect target_firmware]
     translates the metadata into a list of image properties suitable
     for OpenStack.

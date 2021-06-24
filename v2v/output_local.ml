@@ -48,25 +48,20 @@ class output_local dir = object
         *)
        error_unless_uefi_firmware guestcaps.gcaps_arch
 
-  method create_metadata output_name source targets
-                         target_buses guestcaps inspect
-                         target_firmware target_nics =
+  method create_metadata source inspect target_meta targets =
     (* We don't know what target features the hypervisor supports, but
      * assume a common set that libvirt supports.
      *)
     let target_features =
-      match guestcaps.gcaps_arch with
+      match target_meta.guestcaps.gcaps_arch with
       | "i686" -> [ "acpi"; "apic"; "pae" ]
       | "x86_64" -> [ "acpi"; "apic" ]
       | _ -> [] in
 
-    let doc =
-      create_libvirt_xml output_name source targets target_buses
-                         guestcaps target_features target_firmware target_nics
-                         inspect in
+    let doc = create_libvirt_xml source inspect target_meta
+                target_features targets in
 
-    let file = dir // output_name ^ ".xml" in
-
+    let file = dir // target_meta.output_name ^ ".xml" in
     with_open_out file (fun chan -> DOM.doc_to_chan chan doc);
 
     if verbose () then (

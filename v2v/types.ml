@@ -522,6 +522,14 @@ let string_of_target_buses buses =
   string_of_target_bus_slots "ide" buses.target_ide_bus ^
   string_of_target_bus_slots "scsi" buses.target_scsi_bus
 
+type target_meta = {
+  guestcaps : guestcaps;
+  output_name : string;
+  target_buses : target_buses;
+  target_firmware : target_firmware;
+  target_nics : target_nics
+}
+
 type root_choice = AskRoot | SingleRoot | FirstRoot | RootDev of string
 
 type output_allocation = Sparse | Preallocated
@@ -554,7 +562,7 @@ class virtual output = object
   method virtual prepare_targets : string -> (string * overlay) list -> guestcaps -> target_file list
   method disk_create = (open_guestfs ())#disk_create
   method disk_copied (_ : target) (_ : int) (_ : int) = ()
-  method virtual create_metadata : string -> source -> target list -> target_buses -> guestcaps -> inspect -> target_firmware -> target_nics -> unit
+  method virtual create_metadata : source -> inspect -> target_meta -> target list -> unit
   method keep_serial_console = true
   method write_out_of_order = false
 end

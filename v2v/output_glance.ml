@@ -62,14 +62,12 @@ object
     (* Write targets to a temporary local file - see above for reason. *)
     List.map (fun (_, ov) -> TargetFile (tmpdir // ov.ov_sd)) overlays
 
-  method create_metadata output_name source targets
-                         target_buses guestcaps inspect target_firmware _ =
+  method create_metadata source inspect target_meta targets =
     let min_ram = source.s_memory /^ 1024L /^ 1024L in
 
     (* Get the image properties. *)
     let properties =
-      Openstack_image_properties.create source target_buses guestcaps
-                                        inspect target_firmware in
+      Openstack_image_properties.create source inspect target_meta in
     let properties =
       List.flatten (
         List.map (
@@ -85,8 +83,8 @@ object
     List.iteri (
       fun i { target_file; target_format } ->
         let name =
-          if i == 0 then output_name
-          else sprintf "%s-disk%d" output_name (i+1) in
+          if i == 0 then target_meta.output_name
+          else sprintf "%s-disk%d" target_meta.output_name (i+1) in
 
         let target_file =
           match target_file with

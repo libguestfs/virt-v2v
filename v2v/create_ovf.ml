@@ -528,8 +528,9 @@ let create_meta_files output_alloc sd_uuid image_uuids overlays =
   ) (List.combine overlays image_uuids)
 
 (* Create the OVF file. *)
-let rec create_ovf output_name source targets guestcaps inspect
-          target_firmware target_nics
+let rec create_ovf source inspect
+          { output_name; guestcaps; target_firmware; target_nics }
+          targets
           output_alloc sd_uuid image_uuids vol_uuids vm_uuid ovf_flavour =
   assert (List.length targets = List.length vol_uuids);
 

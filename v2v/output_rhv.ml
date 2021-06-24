@@ -257,12 +257,10 @@ object
     )
 
   (* This is called after conversion to write the OVF metadata. *)
-  method create_metadata output_name source targets _
-                         guestcaps inspect target_firmware target_nics =
+  method create_metadata source inspect target_meta targets =
 
     (* Create the metadata. *)
-    let ovf = Create_ovf.create_ovf output_name source targets guestcaps inspect
-      target_firmware target_nics
+    let ovf = Create_ovf.create_ovf source inspect target_meta targets
       output_alloc esd_uuid image_uuids vol_uuids vm_uuid
       Create_ovf.RHVExportStorageDomain in
 

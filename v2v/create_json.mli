@@ -18,11 +18,8 @@
 
 (** Create JSON metadata for [-o json]. *)
 
-val create_json_metadata : string -> Types.source -> Types.target list ->
-                           Types.target_buses ->
-                           Types.guestcaps ->
-                           Types.inspect ->
-                           Types.target_firmware -> Types.target_nics ->
+val create_json_metadata : Types.source -> Types.inspect ->
+                           Types.target_meta -> Types.target list ->
                            JSON.doc
 (** [create_json_metadata source targets target_buses guestcaps
     inspect target_firmware] creates the JSON with the majority

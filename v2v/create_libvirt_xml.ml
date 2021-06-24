@@ -148,8 +148,9 @@ let get_osinfo_id = function
       typ distro major minor arch product;
     None
 
-let create_libvirt_xml ?pool output_name source targets target_buses guestcaps
-                       target_features target_firmware target_nics inspect =
+let create_libvirt_xml ?pool source inspect
+      { output_name; guestcaps; target_buses; target_firmware; target_nics }
+      target_features targets =
   (* The main body of the libvirt XML document. *)
   let body = ref [] in
 

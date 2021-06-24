@@ -24,7 +24,7 @@ open Std_utils
 
 open Types
 
-let create source target_buses guestcaps inspect target_firmware =
+let create source inspect { target_buses; guestcaps; target_firmware } =
   let properties = ref [] in
 
   List.push_back_list properties [

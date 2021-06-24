@@ -49,8 +49,9 @@ object
     | TargetBIOS -> ()
     | TargetUEFI -> error_unless_uefi_firmware guestcaps.gcaps_arch
 
-  method create_metadata output_name source targets target_buses guestcaps
-                         inspect target_firmware target_nics =
+  method create_metadata source inspect
+           { guestcaps; output_name;
+             target_buses; target_firmware; target_nics } targets =
     let file = dir // output_name ^ ".sh" in
 
     let uefi_firmware =
