@@ -115,8 +115,6 @@ object
 
   method as_options = sprintf "-o rhv -os %s" os
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   (* RHV doesn't support serial consoles.  This causes the conversion
    * step to remove it.
    *)

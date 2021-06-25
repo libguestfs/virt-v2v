@@ -36,8 +36,6 @@ class output_local dir = object
       fun (_, ov) -> TargetFile (dir // source_name ^ "-" ^ ov.ov_sd)
     ) overlays
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   method check_target_firmware guestcaps target_firmware =
     match target_firmware with
     | TargetBIOS -> ()

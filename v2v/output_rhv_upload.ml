@@ -297,8 +297,6 @@ object
     sprintf " -oc %s -op %s -os %s"
             output_conn output_password output_storage
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   method transfer_format t = "raw"
 
   method write_out_of_order = true

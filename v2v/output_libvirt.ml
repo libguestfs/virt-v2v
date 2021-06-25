@@ -132,8 +132,6 @@ object (self)
         TargetFile (target_path // source_name ^ "-" ^ ov.ov_sd)
     ) overlays
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   method check_target_firmware guestcaps target_firmware =
     match target_firmware with
     | TargetBIOS -> ()

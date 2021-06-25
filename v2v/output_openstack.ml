@@ -390,8 +390,6 @@ object
      | None -> ""
      | Some op -> " -op " ^ op)
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   (* List of Cinder volume IDs. *)
   val mutable volume_ids = []
   (* If we didn't finish successfully, delete on exit. *)

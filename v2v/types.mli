@@ -484,9 +484,6 @@ class virtual output : object
   method virtual as_options : string
   (** Converts the output object back to the equivalent command line options.
       This is just used for pretty-printing log messages. *)
-  method virtual supported_firmware : target_firmware list
-  (** Does this output method support UEFI?  Allows us to abort early if
-      conversion is impossible. *)
   method check_target_firmware : guestcaps -> target_firmware -> unit
   (** Called before conversion once the guest’s target firmware is known.
       Can be used as an additional check that the target firmware is

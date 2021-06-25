@@ -87,8 +87,6 @@ class output_json dir json_options = object
         TargetFile destname
     ) overlays
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   method create_metadata source inspect target_meta targets =
     let doc =
       Create_json.create_json_metadata source inspect target_meta targets in

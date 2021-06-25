@@ -123,8 +123,6 @@ object
        | flav -> sprintf "-oo vdsm-ovf-flavour=%s"
                          (Create_ovf.ovf_flavour_to_string flav))
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   (* RHV doesn't support serial consoles.  This causes the conversion
    * step to remove it.
    *)

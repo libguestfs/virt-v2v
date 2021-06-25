@@ -83,8 +83,6 @@ object
 
   method as_options = "-o null"
 
-  method supported_firmware = [ TargetBIOS; TargetUEFI ]
-
   (* Force raw output, ignoring -of command line option. *)
   method override_output_format _ = Some "raw"
 
