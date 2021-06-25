@@ -21,7 +21,6 @@
 type cmdline = {
   bandwidth : Types.bandwidth option;
   compressed : bool;
-  debug_overlays : bool;
   do_copy : bool;
   in_place : bool;
   network_map : Networks.t;

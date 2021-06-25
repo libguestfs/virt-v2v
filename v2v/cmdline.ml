@@ -31,7 +31,6 @@ open Utils
 type cmdline = {
   bandwidth : bandwidth option;
   compressed : bool;
-  debug_overlays : bool;
   do_copy : bool;
   in_place : bool;
   network_map : Networks.t;
@@ -52,7 +51,6 @@ let parse_cmdline () =
   let bandwidth = ref None in
   let bandwidth_file = ref None in
   let compressed = ref false in
-  let debug_overlays = ref false in
   let do_copy = ref true in
   let print_source = ref false in
   let qemu_boot = ref false in
@@ -236,8 +234,6 @@ let parse_cmdline () =
                                     s_"Map bridge ‘in’ to ‘out’";
     [ L"compressed" ], Getopt.Set compressed,
                                     s_"Compress output file (-of qcow2 only)";
-    [ L"debug-overlay"; L"debug-overlays" ], Getopt.Set debug_overlays,
-                                    s_"Save overlay files";
     [ S 'i' ],       Getopt.String (i_options, set_input_mode),
                                     s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
@@ -349,7 +345,6 @@ read the man page virt-v2v(1).
     | Some rate, None -> Some (StaticBandwidth rate)
     | rate, Some filename -> Some (DynamicBandwidth (rate, filename)) in
   let compressed = !compressed in
-  let debug_overlays = !debug_overlays in
   let do_copy = !do_copy in
   let input_conn = !input_conn in
   let input_format = !input_format in
@@ -723,7 +718,7 @@ read the man page virt-v2v(1).
       output_format, output_alloc in
 
   {
-    bandwidth; compressed; debug_overlays; do_copy; in_place;
+    bandwidth; compressed; do_copy; in_place;
     network_map; output_alloc; output_format; output_name;
     print_source; root_choice; static_ips;
     ks = opthandle.ks;

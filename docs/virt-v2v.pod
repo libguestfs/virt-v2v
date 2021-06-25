@@ -219,12 +219,6 @@ Write a compressed output file.  This is only allowed if the output
 format is qcow2 (see I<-of> below), and is equivalent to the I<-c>
 option of L<qemu-img(1)>.
 
-=item B<--debug-overlays>
-
-Save the overlay file(s) created during conversion.  This option is
-only used for debugging virt-v2v and may be removed in a future
-version.
-
 =item B<--echo-keys>
 
 When prompting for keys and passphrases, virt-v2v normally turns

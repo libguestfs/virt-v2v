@@ -128,7 +128,7 @@ let rec main () =
 
   g#umount_all ();
 
-  if cmdline.do_copy || cmdline.debug_overlays then (
+  if cmdline.do_copy then (
     (* Doing fstrim on all the filesystems reduces the transfer size
      * because unused blocks are marked in the overlay and thus do
      * not have to be copied.
@@ -180,8 +180,6 @@ let rec main () =
       let target_meta = { guestcaps; output_name;
                           target_buses; target_firmware; target_nics } in
       output#create_metadata source inspect target_meta targets;
-
-      if cmdline.debug_overlays then preserve_overlays overlays output_name;
 
       delete_target_on_exit := false  (* Don't delete target on exit. *)
   );
@@ -642,16 +640,6 @@ and actual_target_size target_file disk_stats =
        with Failure _ | Invalid_argument _ -> None in
      disk_stats.target_actual_size <- size
   | TargetURI _ -> ()
-
-(* Save overlays if --debug-overlays option was used. *)
-and preserve_overlays overlays src_name =
-  List.iter (
-    fun ov ->
-      let saved_filename =
-        sprintf "%s/%s-%s.qcow2" large_tmpdir src_name ov.ov_sd in
-      rename ov.ov_overlay_file saved_filename;
-      info (f_"Overlay saved as %s [--debug-overlays]") saved_filename
-  ) overlays
 
 (* Request guest caps based on source configuration. *)
 and rcaps_from_source source =
