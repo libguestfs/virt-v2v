@@ -34,7 +34,7 @@ open Linux_kernels
 module G = Guestfs
 
 (* The conversion function. *)
-let convert (g : G.guestfs) inspect source_disks keep_serial_console rcaps _ =
+let convert (g : G.guestfs) source inspect keep_serial_console rcaps _ =
   (*----------------------------------------------------------------------*)
   (* Inspect the guest first.  We already did some basic inspection in
    * the common v2v.ml code, but that has to deal with generic guests
@@ -1020,7 +1020,7 @@ let convert (g : G.guestfs) inspect source_disks keep_serial_console rcaps _ =
           let source_dev = block_prefix_before_conversion ^ drive_name i in
           let target_dev = block_prefix_after_conversion ^ drive_name i in
           source_dev, target_dev
-      ) source_disks in
+      ) source.s_disks in
 
     (* If a Xen guest has non-PV devices, Xen also simultaneously
      * presents these as xvd devices. i.e. hdX and xvdX both exist and
@@ -1034,7 +1034,7 @@ let convert (g : G.guestfs) inspect source_disks keep_serial_console rcaps _ =
       List.mapi (
         fun i disk ->
           "xvd" ^ drive_name i, block_prefix_after_conversion ^ drive_name i
-      ) source_disks in
+      ) source.s_disks in
 
     if verbose () then (
       eprintf "block device map:\n";

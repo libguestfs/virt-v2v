@@ -114,7 +114,8 @@ object (self)
             pt_options
 
   method source ?bandwidth () =
-    let source, disks, xml = parse_libvirt_domain ?bandwidth self#conn guest in
+    let source, parsed_disks, xml =
+      parse_libvirt_domain ?bandwidth self#conn guest in
 
     (* Find the <vmware:moref> element from the XML.  This was added
      * in libvirt >= 3.7 and is required.
@@ -188,9 +189,9 @@ object (self)
           * the guest, so force the format to raw here.
           *)
          { disk with s_qemu_uri = qemu_uri; s_format = Some "raw" }
-    ) disks in
+    ) parsed_disks in
 
-    source, disks
+    { source with s_disks = disks }
 end
 
 let input_libvirt_vddk = new input_libvirt_vddk

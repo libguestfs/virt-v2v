@@ -37,7 +37,7 @@ and output_modules () = List.sort compare !output_modules
 type inspection_fn = Types.inspect -> bool
 
 type conversion_fn =
-  Guestfs.guestfs -> Types.inspect -> Types.source_disk list ->
+  Guestfs.guestfs -> Types.source -> Types.inspect ->
   bool -> Types.requested_guestcaps ->
   Types.static_ip list -> Types.guestcaps
 

@@ -69,14 +69,14 @@ let rec main () =
   input#precheck ();
   output#precheck ();
 
-  let source, source_disks = open_source cmdline input in
+  let source = open_source cmdline input in
   let output_name = Option.default source.s_name cmdline.output_name in
   let target_nics = List.map (Networks.map cmdline.network_map) source.s_nics in
 
   let conversion_mode =
     if not cmdline.in_place then (
       check_host_free_space ();
-      let overlays = create_overlays source_disks in
+      let overlays = create_overlays source.s_disks in
       Copying overlays
     )
     else In_place in
@@ -96,7 +96,7 @@ let rec main () =
   g#set_network true;
   (match conversion_mode with
    | Copying overlays -> populate_overlays g overlays
-   | In_place -> populate_disks g source_disks
+   | In_place -> populate_disks g source.s_disks
   );
 
   g#launch ();
@@ -129,9 +129,9 @@ let rec main () =
       | Copying _ ->
          { rcaps_block_bus = None; rcaps_net_bus = None; rcaps_video = None }
       | In_place ->
-         rcaps_from_source source source_disks in
+         rcaps_from_source source in
 
-    do_convert g inspect source_disks
+    do_convert g source inspect
       output#keep_serial_console rcaps cmdline.static_ips in
 
   g#umount_all ();
@@ -166,7 +166,7 @@ let rec main () =
       message (f_"Assigning disks to buses");
       let target_buses =
         Target_bus_assignment.target_bus_assignment
-          source_disks source.s_removables guestcaps in
+          source.s_disks source.s_removables guestcaps in
       debug "%s" (string_of_target_buses target_buses);
 
       let target_firmware =
@@ -204,17 +204,17 @@ let rec main () =
 and open_source cmdline input =
   message (f_"Opening the source %s") input#as_options;
   let bandwidth = cmdline.bandwidth in
-  let source, source_disks = input#source ?bandwidth () in
+  let source = input#source ?bandwidth () in
 
   (* Print source and stop. *)
   if cmdline.print_source then (
     printf (f_"Source guest information (--print-source option):\n");
     printf "\n";
-    printf "%s\n" (string_of_source source source_disks);
+    printf "%s\n" (string_of_source source);
     exit 0
   );
 
-  debug "%s" (string_of_source source source_disks);
+  debug "%s" (string_of_source source);
 
   (match source.s_hypervisor with
   | OtherHV hv ->
@@ -241,7 +241,7 @@ and open_source cmdline input =
                 sockets cores threads expected_vcpu source.s_vcpu
   );
 
-  if source_disks = [] then
+  if source.s_disks = [] then
     error (f_"source has no hard disks!");
   let () =
     let ids = ref IntSet.empty in
@@ -251,9 +251,9 @@ and open_source cmdline input =
         (* Check s_disk_id are all unique. *)
         assert (not (IntSet.mem s_disk_id !ids));
         ids := IntSet.add s_disk_id !ids
-    ) source_disks in
+    ) source.s_disks in
 
-  source, source_disks
+  source
 
 (* Conversion can fail or hang if there is insufficient free space in
  * the temporary directory used to store overlays on the host
@@ -551,7 +551,7 @@ and estimate_target_size mpstats overlays =
   )
 
 (* Conversion. *)
-and do_convert g inspect source_disks keep_serial_console rcaps interfaces =
+and do_convert g source inspect keep_serial_console rcaps interfaces =
   (match inspect.i_product_name with
   | "unknown" ->
     message (f_"Converting the guest to run on KVM")
@@ -567,7 +567,7 @@ and do_convert g inspect source_disks keep_serial_console rcaps interfaces =
   debug "picked conversion module %s" conversion_name;
   debug "requested caps: %s" (string_of_requested_guestcaps rcaps);
   let guestcaps =
-    convert g inspect source_disks keep_serial_console rcaps interfaces in
+    convert g source inspect keep_serial_console rcaps interfaces in
   debug "%s" (string_of_guestcaps guestcaps);
 
   (* Did we manage to install virtio drivers? *)
@@ -829,9 +829,9 @@ and preserve_overlays overlays src_name =
   ) overlays
 
 (* Request guest caps based on source configuration. *)
-and rcaps_from_source source source_disks =
+and rcaps_from_source source =
   let source_block_types =
-    List.map (fun sd -> sd.s_controller) source_disks in
+    List.map (fun sd -> sd.s_controller) source.s_disks in
   let source_block_type =
     match List.sort_uniq source_block_types with
     | [] -> error (f_"source has no hard disks!")

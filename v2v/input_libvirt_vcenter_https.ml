@@ -67,7 +67,8 @@ object (self)
     unsetenv "ALL_PROXY";
     unsetenv "NO_PROXY";
 
-    let source, disks, xml = parse_libvirt_domain ?bandwidth self#conn guest in
+    let source, parsed_disks, xml =
+      parse_libvirt_domain ?bandwidth self#conn guest in
 
     (* Find the <vmware:datacenterpath> element from the XML.  This
      * was added in libvirt >= 1.2.20.
@@ -96,9 +97,9 @@ object (self)
          * the format of the -flat file is *always* raw, so force it here.
          *)
         { disk with s_qemu_uri = qemu_uri; s_format = Some "raw" }
-    ) disks in
+    ) parsed_disks in
 
-    source, disks
+    { source with s_disks = disks }
 end
 
 let input_libvirt_vcenter_https = new input_libvirt_vcenter_https

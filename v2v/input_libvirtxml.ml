@@ -34,7 +34,7 @@ object
   method source ?bandwidth () =
     let xml = read_whole_file file in
 
-    let source, disks = parse_libvirt_xml xml in
+    let source, parsed_disks = parse_libvirt_xml xml in
 
     (* When reading libvirt XML from a file (-i libvirtxml) we allow
      * paths to disk images in the libvirt XML to be relative (to the XML
@@ -51,9 +51,9 @@ object
         let path =
           if not (Filename.is_relative path) then path else dir // path in
         { disk with s_qemu_uri = path }
-    ) disks in
+    ) parsed_disks in
 
-    source, disks
+    { source with s_disks = disks }
 end
 
 let input_libvirtxml = new input_libvirtxml

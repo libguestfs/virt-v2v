@@ -65,9 +65,10 @@ object (self)
   method source ?bandwidth () =
     debug "input_libvirt_other: source ()";
 
-    let source, disks, _ = parse_libvirt_domain ?bandwidth self#conn guest in
-    let disks = List.map (fun { p_source_disk = disk } -> disk) disks in
-    source, disks
+    let source, parsed_disks, _ =
+      parse_libvirt_domain ?bandwidth self#conn guest in
+    let disks = List.map (fun { p_source_disk = disk } -> disk) parsed_disks in
+    { source with s_disks = disks }
 end
 
 let input_libvirt_other = new input_libvirt_other

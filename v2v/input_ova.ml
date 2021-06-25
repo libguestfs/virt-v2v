@@ -185,7 +185,7 @@ class input_ova ova = object
           { source_disk with s_qemu_uri = qemu_uri })
                (List.combine disks qemu_uris) in
 
-    let source = {
+    {
       s_hypervisor = VMware;
       s_name = name;
       s_genid = None; (* XXX *)
@@ -199,11 +199,10 @@ class input_ova ova = object
       s_display = None; (* XXX *)
       s_video = None;
       s_sound = None;
+      s_disks = disks;
       s_removables = removables;
       s_nics = nics;
-    } in
-
-    source, disks
+    }
 end
 
 let input_ova = new input_ova

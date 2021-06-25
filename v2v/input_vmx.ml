@@ -494,7 +494,7 @@ object
     let removables = find_removables vmx in
     let nics = find_nics vmx in
 
-    let source = {
+    {
       s_hypervisor = VMware;
       s_name = name;
       s_genid = genid;
@@ -508,11 +508,10 @@ object
       s_display = None;
       s_video = video;
       s_sound = sound;
+      s_disks = disks;
       s_removables = removables;
       s_nics = nics;
-    } in
-
-    source, disks
+    }
 end
 
 let input_vmx = new input_vmx

@@ -76,7 +76,7 @@ class input_disk input_format disk = object
       s_vnet_type = Network
     } in
 
-    let source = {
+    {
       s_hypervisor = UnknownHV;
       s_name = name;
       s_genid = None;
@@ -92,11 +92,10 @@ class input_disk input_format disk = object
                s_listen = LNoListen; s_port = None };
       s_video = None;
       s_sound = None;
+      s_disks = [disk];
       s_removables = [];
       s_nics = [network];
-    } in
-
-    source, [disk]
+    }
 end
 
 let input_disk = new input_disk
