@@ -67,7 +67,6 @@ SOURCES_MLI = \
 	linux.mli \
 	linux_bootloaders.mli \
 	linux_kernels.mli \
-	measure_disk.mli \
 	modules_list.mli \
 	name_from_disk.mli \
 	nbdkit.mli \
@@ -162,7 +161,6 @@ SOURCES_ML = \
 	output_openstack.ml \
 	inspect_source.ml \
 	target_bus_assignment.ml \
-	measure_disk.ml \
 	networks.ml \
 	cmdline.ml \
 	v2v.ml

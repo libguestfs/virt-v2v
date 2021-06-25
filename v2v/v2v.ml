@@ -157,12 +157,6 @@ let rec main () =
   (match conversion_mode with
    | In_place -> ()
    | Copying overlays ->
-      (* Print copy size estimate and stop. *)
-      if cmdline.print_estimate then (
-        print_estimate overlays;
-        exit 0
-      );
-
       message (f_"Assigning disks to buses");
       let target_buses =
         Target_bus_assignment.target_bus_assignment
@@ -616,25 +610,6 @@ and get_target_formats cmdline output overlays =
 
       format
   ) overlays
-
-and print_estimate overlays =
-  let estimates =
-    List.map (
-      fun { ov_overlay_file } ->
-        Measure_disk.measure ~format:"qcow2" ov_overlay_file
-    ) overlays in
-  let total = sum estimates in
-
-  match machine_readable () with
-  | None ->
-     List.iteri (fun i e -> printf "disk %d: %Ld\n" (i+1) e) estimates;
-     printf "total: %Ld\n" total
-  | Some {pr} ->
-     let json = [
-       "disks", JSON.List (List.map (fun i -> JSON.Int i) estimates);
-       "total", JSON.Int total
-     ] in
-     pr "%s\n" (JSON.string_of_doc ~fmt:JSON.Indented json)
 
 (* Does the guest require UEFI on the target? *)
 and get_target_firmware inspect guestcaps source output =

@@ -93,7 +93,6 @@ TESTS = \
 	test-v2v-oa-option.sh \
 	test-v2v-of-option.sh \
 	test-v2v-on-option.sh \
-	test-v2v-print-estimate.sh \
 	test-v2v-print-source.sh \
 	test-v2v-sound.sh \
 	test-v2v-virtio-win-iso.sh \
@@ -251,7 +250,6 @@ EXTRA_DIST += \
 	test-v2v-oa-option.sh \
 	test-v2v-of-option.sh \
 	test-v2v-on-option.sh \
-	test-v2v-print-estimate.sh \
 	test-v2v-print-source.expected \
 	test-v2v-print-source.sh \
 	test-v2v-conversion-of.sh \

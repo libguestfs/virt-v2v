@@ -28,7 +28,6 @@ type cmdline = {
   output_alloc : Types.output_allocation;
   output_format : string option;
   output_name : string option;
-  print_estimate : bool;
   print_source : bool;
   root_choice : Types.root_choice;
   static_ips : Types.static_ip list;
