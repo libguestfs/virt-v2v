@@ -215,14 +215,10 @@ val string_of_inspect : inspect -> string
 
 (** {2 Disk stats}
 
-    Note that the estimate is filled in by core v2v.ml code before
-    copying starts, and the actual size is filled in after copying
-    (but may not be filled in if [--no-copy] so don't rely on it). *)
+    Note the actual size is filled in after copying (but may not be
+    filled in if [--no-copy] so don't rely on it). *)
 type disk_stats = {
-  mutable target_estimated_size : int64 option;
-                             (** Est. max. space taken on target. *)
-  mutable target_actual_size : int64 option;
-                             (** Actual size on target. *)
+  mutable target_actual_size : int64 option; (** Actual size on target. *)
 }
 
 (** {2 Overlay disks} *)

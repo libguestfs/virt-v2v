@@ -370,7 +370,6 @@ i_windows_current_control_set = %s
   inspect.i_windows_current_control_set
 
 type disk_stats = {
-  mutable target_estimated_size : int64 option;
   mutable target_actual_size : int64 option;
 }
 
@@ -387,15 +386,12 @@ let string_of_overlay ov =
       overlay device name: %s
 overlay virtual disk size: %Ld
   overlay source qemu URI: %s
-    target estimated size: %s
        target actual size: %s
 "
     ov.ov_overlay_file
     ov.ov_sd
     ov.ov_virtual_size
     ov.ov_source.s_qemu_uri
-    (match ov.ov_stats.target_estimated_size with
-    | None -> "None" | Some i -> Int64.to_string i)
     (match ov.ov_stats.target_actual_size with
     | None -> "None" | Some i -> Int64.to_string i)
 
