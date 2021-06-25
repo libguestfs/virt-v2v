@@ -552,7 +552,6 @@ end
 class virtual output = object
   method precheck () = ()
   method virtual as_options : string
-  method check_target_firmware (_ : guestcaps) (_ : target_firmware) = ()
   method override_output_format (_ : overlay) = (None : string option)
   method transfer_format t = t.target_format
   method virtual prepare_targets : string -> (string * overlay) list -> guestcaps -> target_file list

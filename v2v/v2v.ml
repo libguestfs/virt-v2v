@@ -493,8 +493,6 @@ and get_target_firmware inspect guestcaps source output =
        | I_UEFI _ -> TargetUEFI
   in
 
-  output#check_target_firmware guestcaps target_firmware;
-
   (match target_firmware with
    | TargetBIOS -> ()
    | TargetUEFI -> info (f_"This guest requires UEFI on the target to boot."));

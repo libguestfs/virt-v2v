@@ -42,14 +42,14 @@ object
         TargetFile (dir // source_name ^ "-" ^ ov.ov_sd)
     ) overlays
 
-  method check_target_firmware guestcaps target_firmware =
-    match target_firmware with
-    | TargetBIOS -> ()
-    | TargetUEFI -> error_unless_uefi_firmware guestcaps.gcaps_arch
-
   method create_metadata source inspect
            { guestcaps; output_name;
              target_buses; target_firmware; target_nics } targets =
+    (match target_firmware with
+     | TargetBIOS -> ()
+     | TargetUEFI -> error_unless_uefi_firmware guestcaps.gcaps_arch
+    );
+
     let file = dir // output_name ^ ".sh" in
 
     let uefi_firmware =

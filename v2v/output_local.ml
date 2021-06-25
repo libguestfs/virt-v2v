@@ -36,17 +36,17 @@ class output_local dir = object
       fun (_, ov) -> TargetFile (dir // source_name ^ "-" ^ ov.ov_sd)
     ) overlays
 
-  method check_target_firmware guestcaps target_firmware =
-    match target_firmware with
-    | TargetBIOS -> ()
-    | TargetUEFI ->
-       (* XXX Can remove this method when libvirt supports
-        * <loader type="efi"/> since then it will be up to
-        * libvirt to check this.
-        *)
-       error_unless_uefi_firmware guestcaps.gcaps_arch
-
   method create_metadata source inspect target_meta targets =
+    (match target_meta.target_firmware with
+     | TargetBIOS -> ()
+     | TargetUEFI ->
+        (* XXX Can remove this method when libvirt supports
+         * <loader type="efi"/> since then it will be up to
+         * libvirt to check this.
+         *)
+        error_unless_uefi_firmware target_meta.guestcaps.gcaps_arch
+    );
+
     (* We don't know what target features the hypervisor supports, but
      * assume a common set that libvirt supports.
      *)

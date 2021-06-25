@@ -484,10 +484,6 @@ class virtual output : object
   method virtual as_options : string
   (** Converts the output object back to the equivalent command line options.
       This is just used for pretty-printing log messages. *)
-  method check_target_firmware : guestcaps -> target_firmware -> unit
-  (** Called before conversion once the guest’s target firmware is known.
-      Can be used as an additional check that the target firmware is
-      supported on the host. *)
   method override_output_format : overlay -> string option
   (** In rare cases we want to override the -of option on the command
       line (silently).  It’s best not to do this, instead modify
