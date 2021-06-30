@@ -197,7 +197,6 @@ let rec main () =
     if !output_mode <> `Not_set then
       error (f_"%s option used more than once on the command line") "-o";
     match mode with
-    | "glance" -> output_mode := `Glance
     | "kubevirt" -> output_mode := `Kubevirt
     | "libvirt" -> output_mode := `Libvirt
     | "disk" | "local" -> output_mode := `Disk
@@ -257,7 +256,7 @@ let rec main () =
       s_"Map network ‘in’ to ‘out’";
     [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
       s_"Ignored for backwards compatibility";
-    [ S 'o' ],       Getopt.String ("glance|kubevirt|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
+    [ S 'o' ],       Getopt.String ("kubevirt|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
                                     s_"Set output allocation mode";
@@ -324,8 +323,6 @@ virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi esx_guest \
 virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
 virt-v2v -i disk disk.img -o local -os /var/tmp
-
-virt-v2v -i disk disk.img -o glance
 
 There is a companion front-end called \"virt-p2v\" which comes as an
 ISO or CD image that can be booted on physical machines.
@@ -401,7 +398,6 @@ read the man page virt-v2v(1).
       pr "input:libvirtxml\n";
       pr "input:ova\n";
       pr "input:vmx\n";
-      pr "output:glance\n";
       pr "output:kubevirt\n";
       pr "output:libvirt\n";
       pr "output:local\n";
@@ -498,7 +494,6 @@ read the man page virt-v2v(1).
     | `Disk -> (module Output_disk.Disk)
     | `Null -> (module Output_null.Null)
     | `QEmu -> (module Output_qemu.QEMU)
-    | `Glance -> (module Output_glance.Glance)
     | `Kubevirt -> (module Output_kubevirt.Kubevirt)
     | `Openstack -> (module Output_openstack.Openstack)
     | `RHV_Upload -> (module Output_rhv_upload.RHVUpload)
