@@ -18,7 +18,6 @@
 
 type output_mode =
   | Disk
-  | Glance
   | Kubevirt
   | Libvirt
   | Null
