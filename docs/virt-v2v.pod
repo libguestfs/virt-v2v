@@ -416,14 +416,6 @@ See L</Networks and bridges> below.
 
 This is the same as I<-o local>.
 
-=item B<-o> B<glance>
-
-This is a legacy option.  You should probably use I<-o openstack>
-instead.
-
-Set the output method to OpenStack Glance.  In this mode the converted
-guest is uploaded to Glance.  See L<virt-v2v-output-openstack(1)>.
-
 =item B<-o> B<json>
 
 This option is deprecated and will be removed in S<virt-v2v 2.2>.
@@ -1148,11 +1140,6 @@ and output methods may use disk space, as outlined in the table below.
 This temporarily places a full copy of the uncompressed source disks
 in C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
 
-=item I<-o glance>
-
-This temporarily places a full copy of the output disks in
-C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
-
 =item I<-o local>
 
 =item I<-o qemu>
@@ -1335,13 +1322,6 @@ instance.
 
 Because of how Cinder volumes are presented as F</dev> block devices,
 using I<-o openstack> normally requires that virt-v2v is run as root.
-
-=item Writing to Glance
-
-This does I<not> need root (in fact it probably won’t work), but may
-require either a special user and/or for you to source a script that
-sets authentication environment variables.  Consult the Glance
-documentation.
 
 =item Writing to block devices
 
