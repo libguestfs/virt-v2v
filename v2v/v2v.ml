@@ -267,8 +267,6 @@ virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
 virt-v2v -i disk disk.img -o local -os /var/tmp
 
-virt-v2v -i disk disk.img -o glance
-
 There is a companion front-end called \"virt-p2v\" which comes as an
 ISO or CD image that can be booted on physical machines.
 
