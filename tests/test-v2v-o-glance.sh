@@ -20,6 +20,9 @@
 
 set -e
 
+# Feature is disabled in RHEL 9.
+exit 77
+
 $TEST_FUNCTIONS
 skip_if_skipped
 skip_if_backend uml

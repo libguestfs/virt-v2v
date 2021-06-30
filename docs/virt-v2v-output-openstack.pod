@@ -10,13 +10,10 @@ virt-v2v-output-openstack - Using virt-v2v to convert guests to OpenStack
                         [-oo verify-server-certificate=false]
                         [-oo os-username=admin] [-oo os-*=*]
 
- virt-v2v [-i* options] -o glance
-
 =head1 DESCRIPTION
 
 This page documents how to use L<virt-v2v(1)> to convert guests to run
-on OpenStack.  There are two output modes you can select, but only
-I<-o openstack> should be used normally.
+on OpenStack.
 
 =over 4
 
@@ -26,15 +23,6 @@ Full description: L</OUTPUT TO OPENSTACK>
 
 This is the modern method for uploading to OpenStack via the REST API.
 Guests can be directly converted into Cinder volumes.
-
-=item B<-o glance>
-
-Full description: L</OUTPUT TO GLANCE>
-
-This is the old method for uploading to Glance.  Unfortunately Glance
-is not well suited to storing converted guests (since virt-v2v deals
-with "pets" not templated "cattle"), so this method is not recommended
-unless you really know what you are doing.
 
 =back
 
@@ -170,50 +158,10 @@ no Cinder volume type is used.
 The following options are B<not> supported with OpenStack: I<-oa>,
 I<-of>.
 
-=head1 OUTPUT TO GLANCE
-
-Note this is a legacy option.  In most cases you should use
-L</OUTPUT TO OPENSTACK> instead.
-
-To output to OpenStack Glance, use the I<-o glance> option.
-
-This runs the L<glance(1)> CLI program which must be installed on the
-virt-v2v conversion host.  For authentication to work, you will need
-to set C<OS_*> environment variables.
-
-Normally there is a file called C<overcloudrc> or C<keystonerc_admin>
-which you can simply C<source> to set everything up.
-
-Virt-v2v adds metadata for the guest to Glance, describing such things
-as the guest operating system and what drivers it requires.  The
-command C<glance image-show> will display the metadata as "Property"
-fields such as C<os_type> and C<hw_disk_bus>.
-
-=head2 Glance and sparseness
-
-Glance image upload doesn't appear to correctly handle sparseness.
-For this reason, using qcow2 will be faster and use less space on the
-Glance server.  Use the virt-v2v S<I<-of qcow2>> option.
-
-=head2 Glance and multiple disks
-
-If the guest has a single disk, then the name of the disk in Glance
-will be the name of the guest.  You can control this using the I<-on>
-option.
-
-Glance doesn't have a concept of associating multiple disks with a
-single guest, and Nova doesn't allow you to boot a guest from multiple
-Glance disks either.  If the guest has multiple disks, then the first
-(assumed to be the system disk) will have the name of the guest, and
-the second and subsequent data disks will be called
-C<I<guestname>-disk2>, C<I<guestname>-disk3> etc.  It may be best to
-leave the system disk in Glance, and import the data disks to Cinder.
-
 =head1 SEE ALSO
 
 L<virt-v2v(1)>,
-L<https://docs.openstack.org/python-openstackclient/latest/cli/man/openstack.html>,
-L<glance(1)>.
+L<https://docs.openstack.org/python-openstackclient/latest/cli/man/openstack.html>.
 
 =head1 AUTHOR
 

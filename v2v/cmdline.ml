@@ -170,7 +170,6 @@ let parse_cmdline () =
     if !output_mode <> `Not_set then
       error (f_"%s option used more than once on the command line") "-o";
     match mode with
-    | "glance" -> output_mode := `Glance
     | "libvirt" -> output_mode := `Libvirt
     | "disk" | "local" -> output_mode := `Local
     | "json" -> output_mode := `JSON
@@ -322,8 +321,6 @@ let parse_cmdline () =
  virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
  virt-v2v -i disk disk.img -o local -os /var/tmp
-
- virt-v2v -i disk disk.img -o glance
 
 There is a companion front-end called \"virt-p2v\" which comes as an
 ISO or CD image that can be booted on physical machines.

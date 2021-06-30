@@ -100,4 +100,4 @@ object
 end
 
 let output_glance = new output_glance
-let () = Modules_list.register_output_module "glance"
+(* let () = Modules_list.register_output_module "glance" *)
