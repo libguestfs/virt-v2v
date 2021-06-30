@@ -125,8 +125,7 @@ amount of disks in the guest
 
 =item *
 
-the specified UUIDs are used as they are, without checking whether
-they are already used by other disks
+the specified UUIDs must not conflict with the UUIDs of existing disks
 
 =back
 
