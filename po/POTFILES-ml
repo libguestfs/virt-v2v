@@ -47,7 +47,6 @@ v2v/libvirt_utils.ml
 v2v/linux.ml
 v2v/linux_bootloaders.ml
 v2v/linux_kernels.ml
-v2v/measure_disk.ml
 v2v/modules_list.ml
 v2v/name_from_disk.ml
 v2v/nbdkit.ml
