@@ -38,7 +38,7 @@ hypervisor, else you will have to adjust paths in the metadata.
 
 =item UEFI on OpenStack
 
-Supported since virt-v2v E<ge> 1.43.2.
+Supported since virt-v2v E<ge> 1.42.0-7.
 
 =item UEFI on oVirt or RHV
 
