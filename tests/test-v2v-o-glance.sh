@@ -20,6 +20,9 @@
 
 set -e
 
+# Feature is disabled in RHEL 9.
+exit 77
+
 source ./functions.sh
 set -e
 set -x
