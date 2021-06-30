@@ -18,4 +18,4 @@
 
 (** [-o glance] output mode. *)
 
-module Glance : Output.OUTPUT
+(*module Glance : Output.OUTPUT*)

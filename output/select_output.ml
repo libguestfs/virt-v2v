@@ -21,7 +21,6 @@ open Common_gettext.Gettext
 
 type output_mode =
   | Disk
-  | Glance
   | Kubevirt
   | Libvirt
   | Null
@@ -33,7 +32,6 @@ type output_mode =
 
 let output_modes = [
     Disk;
-    Glance;
     Kubevirt;
     Libvirt;
     Null;
@@ -46,7 +44,6 @@ let output_modes = [
 
 let string_of_output_mode = function
   | Disk -> "disk"
-  | Glance -> "glance"
   | Kubevirt -> "kubevirt"
   | Libvirt -> "libvirt"
   | Null -> "null"
@@ -57,7 +54,6 @@ let string_of_output_mode = function
   | VDSM -> "vdsm"
 
 let output_mode_of_string = function
-  | "glance" -> Glance
   | "kubevirt" -> Kubevirt
   | "libvirt" -> Libvirt
   | "disk" | "local" -> Disk
@@ -75,7 +71,6 @@ let select_output = function
   | Some Disk -> (module Output_disk.Disk)
   | Some Null -> (module Output_null.Null)
   | Some QEmu -> (module Output_qemu.QEMU)
-  | Some Glance -> (module Output_glance.Glance)
   | Some Kubevirt -> (module Output_kubevirt.Kubevirt)
   | Some Openstack -> (module Output_openstack.Openstack)
   | Some OVirt_Upload -> (module Output_ovirt_upload.OVirtUpload)
