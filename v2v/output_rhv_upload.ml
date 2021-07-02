@@ -154,15 +154,11 @@ let error_unless_nbdkit_compiled_with_selinux config =
 let error_current_limitation required_param =
   error (f_"rhv-upload: currently you must use ‘%s’.  This restriction will be loosened in a future version.") required_param
 
-let error_unless_output_alloc_sparse output_alloc =
-  if output_alloc <> Sparse then
-    error_current_limitation "-oa sparse"
-
 let json_optstring = function
   | Some s -> JSON.String s
   | None -> JSON.Null
 
-class output_rhv_upload output_alloc output_conn
+class output_rhv_upload output_conn
                         output_password output_storage
                         rhv_options =
   (* Create a temporary directory which will be deleted on exit. *)
@@ -197,9 +193,6 @@ class output_rhv_upload output_alloc output_conn
     "output_conn", JSON.String output_conn;
     "output_password", JSON.String output_password;
     "output_storage", JSON.String output_storage;
-    "output_sparse", JSON.Bool (match output_alloc with
-                                | Sparse -> true
-                                | Preallocated -> false);
     "rhv_cafile", json_optstring rhv_options.rhv_cafile;
     "rhv_cluster",
       JSON.String (Option.default "Default" rhv_options.rhv_cluster);
@@ -265,7 +258,6 @@ object
     error_unless_nbdkit_min_version config;
     error_unless_nbdkit_python_plugin_working plugin_script;
     error_unless_nbdkit_compiled_with_selinux config;
-    error_unless_output_alloc_sparse output_alloc;
 
     (* Python code prechecks. *)
     let json_params = match rhv_options.rhv_disk_uuids with
@@ -291,9 +283,6 @@ object
 
   method as_options =
     "-o rhv-upload" ^
-    (match output_alloc with
-     | Sparse -> "" (* default, don't need to print it *)
-     | Preallocated -> " -oa preallocated") ^
     sprintf " -oc %s -op %s -os %s"
             output_conn output_password output_storage
 
@@ -447,7 +436,7 @@ object
     (* Create the metadata. *)
     let ovf =
       Create_ovf.create_ovf source inspect target_meta targets
-        output_alloc sd_uuid image_uuids vol_uuids vm_uuid
+        Sparse sd_uuid image_uuids vol_uuids vm_uuid
         OVirt in
     let ovf = DOM.doc_to_string ovf in
 

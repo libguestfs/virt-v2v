@@ -25,9 +25,8 @@ val print_output_options : unit -> unit
 val parse_output_options : (string * string) list -> rhv_options
 (** Print and parse rhv-upload -oo options. *)
 
-val output_rhv_upload : Types.output_allocation -> string -> string ->
-                        string -> rhv_options -> Types.output
-(** [output_rhv_upload output_alloc output_conn output_password output_storage
-     rhv_options]
+val output_rhv_upload : string -> string -> string -> rhv_options ->
+                        Types.output
+(** [output_rhv_upload output_conn output_password output_storage rhv_options]
     creates and returns a new {!Types.output} object specialized for writing
     output to oVirt or RHV directly via RHV APIs. *)

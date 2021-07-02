@@ -699,7 +699,7 @@ read the man page virt-v2v(1).
         | Some os -> os in
       if qemu_boot then
         error_option_cannot_be_used_in_output_mode "rhv-upload" "--qemu-boot";
-      Output_rhv_upload.output_rhv_upload output_alloc output_conn
+      Output_rhv_upload.output_rhv_upload output_conn
                                           output_password os
                                           rhv_options,
       output_format, output_alloc
