@@ -19,6 +19,7 @@
 # Test --no-copy option.
 
 set -e
+set -x
 
 $TEST_FUNCTIONS
 skip_if_skipped
