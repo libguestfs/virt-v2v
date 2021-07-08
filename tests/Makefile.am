@@ -90,7 +90,8 @@ TESTS = \
 	test-v2v-o-rhv.sh \
 	test-v2v-o-rhv-upload.sh \
 	test-v2v-o-vdsm-options.sh \
-	test-v2v-oa-option.sh \
+	test-v2v-oa-option-qcow2.sh \
+	test-v2v-oa-option-raw.sh \
 	test-v2v-of-option.sh \
 	test-v2v-on-option.sh \
 	test-v2v-print-source.sh \
@@ -247,7 +248,8 @@ EXTRA_DIST += \
 	test-v2v-o-vdsm-oo-query.sh \
 	test-v2v-o-vdsm-options.ovf.expected \
 	test-v2v-o-vdsm-options.sh \
-	test-v2v-oa-option.sh \
+	test-v2v-oa-option-qcow2.sh \
+	test-v2v-oa-option-raw.sh \
 	test-v2v-of-option.sh \
 	test-v2v-on-option.sh \
 	test-v2v-print-source.expected \

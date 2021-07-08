@@ -1,6 +1,6 @@
 #!/bin/bash -
 # libguestfs virt-v2v test script
-# Copyright (C) 2014-2020 Red Hat Inc.
+# Copyright (C) 2014-2021 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# Test virt-v2v -oa (sparse/preallocated) option.
+# Test virt-v2v -oa (sparse/preallocated) option + -of qcow2.
 
 set -e
 
@@ -31,7 +31,7 @@ f=$top_builddir/test-data/phony-guests/windows.img
 
 export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
 
-d=test-v2v-oa-option.d
+d=test-v2v-oa-option-qcow2.d
 rm -rf $d
 mkdir $d
 
