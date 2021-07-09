@@ -601,17 +601,29 @@ def finalize_transfer(connection, transfer, disk_id):
     """
     Finalize a transfer, making the transfer disk available.
 
-    If finalizing succeeds, transfer's phase will change to FINISHED_SUCCESS
-    and the transer's disk status will change to OK.  On errors, the transfer's
-    phase will change to FINISHED_FAILURE and the disk status will change to
-    ILLEGAL and it will be removed. In both cases the transfer entity will be
-    removed shortly after.
+    If finalizing succeeds, the transfer's disk status will change to OK
+    and transfer's phase will change to FINISHED_SUCCESS. Unfortunately,
+    the disk status is modified before the transfer finishes, and oVirt
+    may still hold a lock on the disk at this point.
 
-    If oVirt fails to finalize the transfer, transfer's phase will change to
-    PAUSED_SYSTEM. In this case the disk's status will change to ILLEGAL and it
-    will not be removed.
+    The only way to make sure that the disk is unlocked, is to wait
+    until the transfer phase switches FINISHED_SUCCESS. Unfortunately
+    oVirt makes this hard to use because the transfer is removed shortly
+    after switching the phase to the final phase. However if the
+    transfer was removed, we can be sure that the disk is not locked,
+    since oVirt releases the locks before removing the transfer.
 
-    For simplicity, we track only disk's status changes.
+    On errors, the transfer's phase will change to FINISHED_FAILURE and
+    the disk status will change to ILLEGAL and it will be removed. Again
+    the transfer will be removed shortly after that.
+
+    If oVirt fails to finalize the transfer, transfer's phase will
+    change to PAUSED_SYSTEM. In this case the disk's status will change
+    to ILLEGAL and it will not be removed.
+
+    oVirt 4.4.7 made waiting for transfer easier by keeping transfers
+    after they complete, but we must support older versions so we have
+    generic code that work with any version.
 
     For more info see:
     - http://ovirt.github.io/ovirt-engine-api-model/4.4/#services/image_transfer
@@ -626,34 +638,62 @@ def finalize_transfer(connection, transfer, disk_id):
 
     transfer_service.finalize()
 
-    disk_service = (connection.system_service()
-                    .disks_service()
-                    .disk_service(disk_id))
-
     while True:
         time.sleep(1)
         try:
-            disk = disk_service.get()
+            transfer = transfer_service.get()
         except sdk.NotFoundError:
-            # Disk verification failed and the system removed the disk.
-            raise RuntimeError(
-                "transfer %s failed: disk %s was removed"
-                % (transfer.id, disk_id))
+            # Transfer was removed (ovirt < 4.4.7). We need to check the
+            # disk status to understand if the transfer was successful.
+            # Due to the way oVirt does locking, we know that the disk
+            # is unlocked at this point so we can check only once.
 
-        if disk.status == types.DiskStatus.ILLEGAL:
-            # Disk verification failed or transfer was paused by the system.
-            raise RuntimeError(
-                "transfer %s failed: disk is ILLEGAL" % transfer.id)
+            debug("transfer %s was removed, checking disk %s status"
+                  % (transfer.id, disk_id))
 
-        if disk.status == types.DiskStatus.OK:
-            debug("transfer %s finalized in %.3f seconds"
-                  % (transfer.id, time.time() - start))
-            break
+            disk_service = (connection.system_service()
+                            .disks_service()
+                            .disk_service(disk_id))
 
-        if time.time() > start + timeout:
+            try:
+                disk = disk_service.get()
+            except sdk.NotFoundError:
+                raise RuntimeError(
+                    "transfer %s failed: disk %s was removed"
+                    % (transfer.id, disk_id))
+
+            debug("disk %s is %s" % (disk_id, disk.status))
+
+            if disk.status == types.DiskStatus.OK:
+                break
+
             raise RuntimeError(
-                "timed out waiting for transfer %s to finalize"
-                % transfer.id)
+                "transfer %s failed: disk is %s" % (transfer.id, disk.status))
+        else:
+            # Transfer exists, check if it reached one of the final
+            # phases, or we timed out.
+
+            debug("transfer %s is %s" % (transfer.id, transfer.phase))
+
+            if transfer.phase == types.ImageTransferPhase.FINISHED_SUCCESS:
+                break
+
+            if transfer.phase == types.ImageTransferPhase.FINISHED_FAILURE:
+                raise RuntimeError(
+                    "transfer %s has failed" % (transfer.id,))
+
+            if transfer.phase == types.ImageTransferPhase.PAUSED_SYSTEM:
+                raise RuntimeError(
+                    "transfer %s was paused by system" % (transfer.id,))
+
+            if time.time() > start + timeout:
+                raise RuntimeError(
+                    "timed out waiting for transfer %s to finalize, "
+                    "transfer is %s"
+                    % (transfer.id, transfer.phase))
+
+    debug("transfer %s finalized in %.3f seconds"
+          % (transfer.id, time.time() - start))
 
 
 def transfer_supports_format():
