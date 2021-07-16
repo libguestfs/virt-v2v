@@ -1,43 +1,44 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Red Hat Inc.
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the virt-v2v package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-# Translators:
-# rjones <rjones@redhat.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: libguestfs 1.39.12\n"
+"Project-Id-Version: virt-v2v 1.43.4\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2021-06-30 11:28+0100\n"
-"PO-Revision-Date: 2015-02-21 10:50+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Kannada (http://www.transifex.com/projects/p/libguestfs/"
-"language/kn/)\n"
-"Language: kn\n"
+"PO-Revision-Date: 2021-05-02 19:02+0000\n"
+"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
+"Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-master/fi/>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6.1\n"
 
 #: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:187
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: common/mltools/getopt.ml:73
 msgid ""
 "%s\n"
 "Options:\n"
 msgstr ""
+"%s\n"
+"Vaihtoehdot:\n"
 
 #: v2v/inspect_source.ml:53 common/mltools/tools_utils.ml:640
 msgid "%s (ignored)"
-msgstr ""
+msgstr "%s (ohitettu)"
 
 #: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
-msgstr ""
+msgstr "%s ei palauttanut mitään ulostuloa"
 
 #: v2v/output_rhv.ml:93
 msgid ""
@@ -69,11 +70,11 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:183 common/mltools/tools_utils.ml:155
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: common/mltools/tools_utils.ml:185
 msgid "%s: %s: %s"
-msgstr ""
+msgstr "%s: %s: %s"
 
 #: v2v/windows_virtio.ml:363
 msgid "%s: cannot open virtio-win ISO file: %s"
@@ -104,11 +105,11 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:125
 msgid "%s: error: %s"
-msgstr ""
+msgstr "%s: virhe: %s"
 
 #: common/mltools/tools_utils.ml:673
 msgid "%s: operation timed out"
-msgstr ""
+msgstr "%s: toiminta aikakatkaistiin"
 
 #: v2v/parse_ova.ml:126 v2v/parse_ova.ml:122
 msgid ""
@@ -120,12 +121,12 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:144
 msgid "%s: warning: %s"
-msgstr ""
+msgstr "%s: varoitus: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:240
 #: common/mlcustomize/customize_cmdline.ml:331
 msgid "'CMD+ARGS'"
-msgstr ""
+msgstr "'CMD+ARGS'"
 
 #: v2v/cmdline.ml:157
 msgid "--mac ip prefix length field is out of range"
@@ -319,15 +320,15 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:269
 msgid "Add package(s) to install"
-msgstr ""
+msgstr "Lisää asennettavat paketit"
 
 #: common/mlcustomize/customize_cmdline.ml:252
 msgid "Add package(s) to install at first boot"
-msgstr ""
+msgstr "Lisää ensimmäisen käynnistyksen yhteydessä asennettavat paketit"
 
 #: common/mlcustomize/customize_cmdline.ml:168
 msgid "Append line(s) to the file"
-msgstr ""
+msgstr "Liitä tiedostoon rivit"
 
 #: v2v/v2v.ml:152
 msgid "Assigning disks to buses"
@@ -335,7 +336,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:349
 msgid "Attach to a subscription-manager pool"
-msgstr ""
+msgstr "Liitä tilaus-manager-varantoon"
 
 #: v2v/cmdline.ml:279
 msgid "Boot in qemu (-o qemu only)"
@@ -355,7 +356,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:179
 msgid "Change the permissions of a file"
-msgstr ""
+msgstr "Muuta tiedoston käyttöoikeuksia"
 
 #: v2v/v2v.ml:351
 msgid "Checking for sufficient free disk space in the guest"
@@ -387,11 +388,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:201
 msgid "Copy files in disk image"
-msgstr ""
+msgstr "Kopioi levykuvan tiedostot"
 
 #: common/mlcustomize/customize_cmdline.ml:212
 msgid "Copy local files or directories into image"
-msgstr ""
+msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 
 #: v2v/v2v.ml:524
 msgid "Copying disk %d/%d to %s (%s)"
@@ -403,11 +404,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:286
 msgid "Create a directory"
-msgstr ""
+msgstr "Luo hakemisto"
 
 #: common/mlcustomize/customize_cmdline.ml:280
 msgid "Create symbolic links"
-msgstr ""
+msgstr "Luo symbolisia linkkejä"
 
 #: v2v/v2v.ml:258
 msgid "Creating an overlay to protect the source from being modified"
@@ -423,7 +424,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:285
 msgid "DIR"
-msgstr ""
+msgstr "HAKEMISTO"
 
 #: common/mlcustomize/customize_cmdline.ml:218
 msgid "Delete a file or directory"
@@ -435,7 +436,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:332
 msgid "Display version and exit"
-msgstr ""
+msgstr "Näytä versio ja poistu"
 
 #: common/mltools/tools_utils.ml:336
 msgid "Don’t print progress messages"
@@ -475,7 +476,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:337
 #: common/mlcustomize/customize_cmdline.ml:402
 msgid "FILE"
-msgstr ""
+msgstr "TIEDOSTO"
 
 #: common/mlcustomize/customize_cmdline.ml:437
 msgid "FILE:CONTENT"
@@ -582,7 +583,7 @@ msgstr ""
 
 #: v2v/cmdline.ml:240
 msgid "Libvirt URI"
-msgstr ""
+msgstr "Libvirt:n URI"
 
 #: common/mltools/tools_utils.ml:361
 msgid "Make output machine readable"
@@ -606,7 +607,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:297
 msgid "Move files in disk image"
-msgstr ""
+msgstr "Siirrä levykuvassa olevia tiedostoja"
 
 #: v2v/cmdline.ml:410
 msgid "No -io (input options) are supported with this input transport.\n"
@@ -742,7 +743,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:190
 msgid "Read customize commands from file"
-msgstr ""
+msgstr "Lue mukautuskomennot tiedostosta"
 
 #: common/mltools/tools_utils.ml:355
 msgid "Read passphrases from stdin"
@@ -770,11 +771,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:241
 msgid "Run command at first guest boot"
-msgstr ""
+msgstr "Suorita komento ensimmäisen vieraskäynnistyksen yhteydessä"
 
 #: common/mlcustomize/customize_cmdline.ml:332
 msgid "Run command in disk image"
-msgstr ""
+msgstr "Suorita komento levykuvassa"
 
 #: common/mlcustomize/customize_cmdline.ml:235
 msgid "Run script at first guest boot"
@@ -791,7 +792,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:234
 #: common/mlcustomize/customize_cmdline.ml:325
 msgid "SCRIPT"
-msgstr ""
+msgstr "KOMENTOSARJA"
 
 #. common/mlcustomize/customize_cmdline.ml:344
 #. common/mlcustomize/customize_cmdline.ml:315
@@ -984,7 +985,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:414
 msgid "Uninstall package(s)"
-msgstr ""
+msgstr "Poista paketteja"
 
 #: common/mlcustomize/customize_cmdline.ml:367
 msgid "Unregister using subscription-manager"
@@ -1143,11 +1144,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:494
 msgid "command '%s' cannot be used in command files, see the man page"
-msgstr ""
+msgstr "komentoa '%s' ei voi käyttää komentotiedostoissa, katso man-sivu"
 
 #: common/mlcustomize/customize_cmdline.ml:511
 msgid "command '%s' not valid, see the man page"
-msgstr ""
+msgstr "komentoa '%s'ei kelpaa, katso man-sivua"
 
 #: v2v/inspect_source.ml:160
 msgid "connection closed"
@@ -1189,6 +1190,8 @@ msgid ""
 "could not finish firstboot installation by running ‘%s’ because the command "
 "failed: %s"
 msgstr ""
+"firstboot-asennusta ei voitu suorittaa loppuun suorittamalla '%s', koska "
+"komento epäonnistui: %s"
 
 #: v2v/input_libvirt.ml:47
 msgid "could not parse '-ic %s'.  Original error message was: %s"
@@ -1365,15 +1368,15 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:382
 msgid "external command ‘%s’ exited with error %d"
-msgstr ""
+msgstr "ulkoinen komento '%s' poistui virheellä %d"
 
 #: common/mltools/tools_utils.ml:463 common/mltools/tools_utils.ml:384
 msgid "external command ‘%s’ killed by signal %d"
-msgstr ""
+msgstr "signaalin %d tappamana ulkoinen komento '%s'"
 
 #: common/mltools/tools_utils.ml:465 common/mltools/tools_utils.ml:386
 msgid "external command ‘%s’ stopped by signal %d"
-msgstr ""
+msgstr "signaalin %d pyrähtämänä ulkoinen komento '%s'"
 
 #: v2v/output_rhv_upload.ml:281
 msgid "failed server prechecks, see earlier errors"
@@ -1401,7 +1404,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:191
 msgid "failure: %s"
-msgstr ""
+msgstr "epäonnistuminen: %s"
 
 #: v2v/input_ova.ml:151
 msgid "file ‘%s’ not found in the ova"
@@ -2193,11 +2196,13 @@ msgstr ""
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
+msgstr[1] ""
 
 #: v2v/parse_libvirt_xml.ml:485
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
+msgstr[1] ""
 
 #: v2v/parse_libvirt_xml.ml:249
 msgid "this guest has no non-removable disks"
@@ -2252,11 +2257,11 @@ msgstr ""
 
 #: v2v/cmdline.ml:88
 msgid "unknown -i option: %s"
-msgstr ""
+msgstr "tuntematon -i vaihtoehto: %s"
 
 #: v2v/cmdline.ml:185
 msgid "unknown -o option: %s"
-msgstr ""
+msgstr "tuntematon -o vaihtoehto: %s"
 
 #: v2v/cmdline.ml:196
 msgid "unknown -oa option: %s"
@@ -2419,7 +2424,7 @@ msgstr ""
 #: common/mltools/getopt-c.c:198
 #, c-format
 msgid "%s: %s: integer out of range\n"
-msgstr "%s: %s: ಪೂರ್ಣಾಂಕವು ವ್ಯಾಪ್ತಿಯ ಹೊರಗಿದೆ\n"
+msgstr ""
 
 #: common/mltools/getopt-c.c:388
 #, c-format
@@ -2434,7 +2439,7 @@ msgstr ""
 #: common/mltools/getopt-c.c:426
 #, c-format
 msgid "Extra parameter on the command line: ‘%s’.\n"
-msgstr ""
+msgstr "Ylimääräinen parametri komentorivillä: ‘%s’.\n"
 
 #: common/options/config.c:72
 #, c-format
@@ -2450,6 +2455,11 @@ msgid ""
 "\n"
 "Original error: %s (%d)"
 msgstr ""
+"ei löytynyt avainta salatun LUKS %s avaamiseen.\n"
+"\n"
+"Yritä käyttää '--key' komentorivillä.\n"
+"\n"
+"Alkuperäinen virhe: %s (%d)"
 
 #: common/options/inspect.c:71
 #, c-format
@@ -2474,6 +2484,21 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
+"%s: tältä levyltä ei löytynyt käyttöjärjestelmää\n"
+"\n"
+"Jos käytät guestfish ‘-i’ -vaihtoehtoa, poista tämä vaihtoehto ja\n"
+"sen sijaan käytä komentoja 'run' ja sitten 'list-filesystems'.\n"
+"Tämän jälkeen voit liittää haluamasi tiedostojärjestelmät käsin\n"
+"'Mount' tai 'mount-ro' -komento.\n"
+"\n"
+"Jos käytät guestmount ‘-i’, poista tämä vaihtoehto ja valitse\n"
+"tiedostojärjestelmät, jotka haluat nähdä lisäämällä manuaalisesti\n"
+"'-m' -vaihtoehdot. Käytä virt-filesystems-sovellusta nähdäksesi\n"
+"käytettävissä olevat tiedostojärjestelmät.\n"
+"\n"
+"Jos käytät muita virt-työkaluja, tämä levykuva ei toimi näiden\n"
+"työkalujen avulla. Käytä guestfish-vastaavia komentoja\n"
+"(katso virt-työkalun käyttöoppaan sivu).\n"
 
 #: common/options/inspect.c:102
 #, c-format
@@ -2493,6 +2518,21 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
+"%s: monikäynnistyskäyttöjärjestelmiä ei tueta\n"
+"\n"
+"Jos käytät guestfish ‘-i’ -vaihtoehtoa, poista tämä vaihtoehto ja\n"
+"sen sijaan käytä komentoja 'run' ja sitten 'list-filesystems'.\n"
+"Tämän jälkeen voit liittää haluamasi tiedostojärjestelmät käsin\n"
+"'Mount' tai 'mount-ro' -komento.\n"
+"\n"
+"Jos käytät guestmount ‘-i’, poista tämä vaihtoehto ja valitse\n"
+"tiedostojärjestelmät, jotka haluat nähdä lisäämällä manuaalisesti\n"
+"'-m' -vaihtoehdot. Käytä virt-filesystems-sovellusta nähdäksesi\n"
+"käytettävissä olevat tiedostojärjestelmät.\n"
+"\n"
+"Jos käytät muita virt-työkaluja, monikäynnistyskäyttöjärjestelmät\n"
+"eivät toimi näiden työkalujen avulla. Käytä guestfish-vastaavia komentoja\n"
+"(katso virt-työkalun käyttöoppaan sivu).\n"
 
 #: common/options/inspect.c:164
 #, c-format
