@@ -156,8 +156,8 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.discard_request()
 
-        # Advertize only zero support.
-        content = b'''{ "features": [ "zero" ] }'''
+        # Advertize only flush and zero support.
+        content = b'''{ "features": [ "flush", "zero" ] }'''
         length = len(content)
 
         self.send_response(200)
