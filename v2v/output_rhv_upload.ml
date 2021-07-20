@@ -103,7 +103,6 @@ let nbdkit_min_version = (1, 22, 0)
 let nbdkit_min_version_string = "1.22.0"
 
 let nbdkit_python_plugin = Config.nbdkit_python_plugin
-let pidfile_timeout = 30
 let finalization_timeout = 5*60
 
 (* Check that the 'ovirtsdk4' Python module is available. *)
@@ -146,13 +145,6 @@ let error_unless_nbdkit_compiled_with_selinux config =
     if selinux = "no" then
       error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
   )
-
-(* Output sparse must be sparse.  We may be able to
- * lift this limitation in future, but it requires changes on the
- * RHV side.  See TODO file for details.  XXX
- *)
-let error_current_limitation required_param =
-  error (f_"rhv-upload: currently you must use ‘%s’.  This restriction will be loosened in a future version.") required_param
 
 let json_optstring = function
   | Some s -> JSON.String s
