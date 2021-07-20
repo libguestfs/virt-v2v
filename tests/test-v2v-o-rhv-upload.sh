@@ -19,7 +19,7 @@
 # Test -o rhv-upload.
 #
 # These uses a test harness (see
-# v2v/test-v2v-o-rhv-upload-module/ovirtsdk4) to fake responses from
+# tests/test-v2v-o-rhv-upload-module/ovirtsdk4) to fake responses from
 # oVirt.
 
 set -e
