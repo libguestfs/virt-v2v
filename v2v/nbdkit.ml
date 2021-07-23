@@ -26,8 +26,6 @@ open Unix_utils
 
 open Utils
 
-let quote = Filename.quote
-
 let is_installed () =
   Sys.command "nbdkit --version >/dev/null 2>&1" = 0
 
