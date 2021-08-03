@@ -388,10 +388,6 @@ def close(h):
     except:
         cancel_transfer(connection, transfer)
         raise
-    else:
-        # Write the disk ID file.  Only do this on successful completion.
-        with builtins.open(params['diskid_file'], 'w') as fp:
-            fp.write(disk_id)
     finally:
         connection.close()
 
@@ -482,8 +478,7 @@ def create_disk(connection):
 
     disk = disks_service.add(
         disk=types.Disk(
-            # The ID is optional.
-            id=params.get('rhv_disk_uuid'),
+            id=params['disk_uuid'],
             name=params['disk_name'],
             description="Uploaded by virt-v2v",
             format=disk_format,

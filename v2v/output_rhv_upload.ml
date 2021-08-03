@@ -159,8 +159,6 @@ class output_rhv_upload output_conn
     rmdir_on_exit t;
     t in
 
-  let diskid_file_of_id id = tmpdir // sprintf "diskid.%d" id in
-
   (* Create Python scripts for precheck, vmcheck, plugin and create VM. *)
   let precheck_script =
     Python_script.create ~name:"rhv-upload-precheck.py"
@@ -238,7 +236,7 @@ object
   (* The cluster CPU architecture *)
   val mutable rhv_cluster_cpu_architecture = None
   (* List of disk UUIDs. *)
-  val mutable disks_uuids = []
+  val mutable disk_uuids = []
   (* If we didn't finish successfully, delete on exit. *)
   val mutable delete_disks_on_exit = true
 
@@ -283,6 +281,20 @@ object
   method write_out_of_order = true
 
   method prepare_targets source_name overlays guestcaps =
+    (* If the disk UUIDs were not provided, then generate them.
+     * This is simpler than letting RHV generate them and trying
+     * to read them back from RHV.
+     *)
+    disk_uuids <-
+      (match rhv_options.rhv_disk_uuids with
+       | Some uuids ->
+          if List.length uuids <> List.length overlays then
+            error (f_"the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has to match the number of guest disk images (for this guest: %d)")
+              (List.length overlays);
+          uuids
+       | None -> List.map (fun _ -> uuidgen ()) overlays
+      );
+
     let rhv_cluster_name =
       match List.assoc "rhv_cluster" json_params with
       | JSON.String s -> s
@@ -294,16 +306,6 @@ object
         error (f_"the cluster ‘%s’ does not support the architecture %s but %s")
           rhv_cluster_name guestcaps.gcaps_arch arch
     );
-
-    let uuids =
-      match rhv_options.rhv_disk_uuids with
-      | None ->
-        List.map (fun _ -> None) overlays
-      | Some uuids ->
-        if List.length uuids <> List.length overlays then
-          error (f_"the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has to match the number of guest disk images (for this guest: %d)")
-            (List.length overlays);
-        List.map (fun uuid -> Some uuid) uuids in
 
     let output_name = source_name in
     let json_params =
@@ -319,8 +321,8 @@ object
     at_exit (
       fun () ->
         if delete_disks_on_exit then (
-          if disks_uuids <> [] then
-            delete_disks disks_uuids
+          if disk_uuids <> [] then
+            delete_disks disk_uuids
         )
     );
 
@@ -348,16 +350,8 @@ object
         let json_params =
           ("disk_size", JSON.Int disk_size) :: json_params in
 
-        (* Ask the plugin to write the disk ID to a special file. *)
-        let diskid_file = diskid_file_of_id id in
         let json_params =
-          ("diskid_file", JSON.String diskid_file) :: json_params in
-
-        let json_params =
-          match uuid with
-          | None -> json_params
-          | Some uuid ->
-            ("rhv_disk_uuid", JSON.String uuid) :: json_params in
+          ("disk_uuid", JSON.String uuid) :: json_params in
 
         (* Write the JSON parameters to a file. *)
         let json_param_file = tmpdir // sprintf "params%d.json" id in
@@ -390,31 +384,9 @@ object
           "file.export", JSON.String "/";
         ] in
         TargetURI ("json:" ^ JSON.string_of_doc json_params)
-    ) (List.combine overlays uuids)
-
-  method disk_copied t i nr_disks =
-    (* Get the UUID of the disk image.  This file is written
-     * out by the nbdkit plugin on successful finalization of the
-     * transfer.
-     *)
-    let id = t.target_overlay.ov_source.s_disk_id in
-    let diskid_file = diskid_file_of_id id in
-    if not (wait_for_file diskid_file finalization_timeout) then
-      error (f_"transfer of disk %d/%d failed, see earlier error messages")
-            (i+1) nr_disks;
-    let diskid = read_whole_file diskid_file in
-    disks_uuids <- disks_uuids @ [diskid];
+    ) (List.combine overlays disk_uuids)
 
   method create_metadata source inspect target_meta targets =
-    let image_uuids =
-      match rhv_options.rhv_disk_uuids, disks_uuids with
-      | None, [] ->
-          error (f_"there must be ‘-oo rhv-disk-uuid’ parameters passed on the command line to specify the UUIDs of guest disk images (for this guest: %d)")
-            (List.length targets)
-      | Some uuids, _ -> uuids
-      | None, uuids -> uuids in
-    assert (List.length image_uuids = List.length targets);
-
     (* The storage domain UUID. *)
     let sd_uuid =
       match rhv_storagedomain_uuid with
@@ -428,7 +400,7 @@ object
     (* Create the metadata. *)
     let ovf =
       Create_ovf.create_ovf source inspect target_meta targets
-        Sparse sd_uuid image_uuids vol_uuids vm_uuid
+        Sparse sd_uuid disk_uuids vol_uuids vm_uuid
         OVirt in
     let ovf = DOM.doc_to_string ovf in
 

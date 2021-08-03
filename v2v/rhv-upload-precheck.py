@@ -98,6 +98,8 @@ if cpu.architecture == types.Architecture.UNDEFINED:
                        (params['rhv_cluster']))
 
 # Find if any disk already exists with specified UUID.
+# Only used with -oo rhv-disk-uuid.  It is assumed that the
+# random UUIDs that we generate are unlikely to conflict.
 disks_service = system_service.disks_service()
 
 for uuid in params.get('rhv_disk_uuids', []):
