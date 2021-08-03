@@ -23,18 +23,21 @@ unset CDPATH
 export LANG=C
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 img_base="$abs_top_builddir/test-data/phony-guests/windows.img"
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 d=$PWD/test-v2v-in-place.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 img="$d/test.qcow2"
@@ -103,6 +106,3 @@ diff -u "$expected" "$response"
 
 # Test the base image remained untouched
 test "$md5" = "$(do_md5 $img_base)"
-
-# Clean up.
-rm -r $d

@@ -21,19 +21,22 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
-skip_unless_phony_guest blank-disk.img
+requires test -f ../test-data/phony-guests/windows.img
+requires test -f ../test-data/phony-guests/blank-disk.img
 
 libvirt_uri="test://$abs_builddir/test-v2v-floppy.xml"
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 d=test-v2v-floppy.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
@@ -54,5 +57,3 @@ if ! diff -u "$srcdir/test-v2v-floppy.expected" $d/disks; then
     cat $d/disks
     exit 1
 fi
-
-rm -r $d

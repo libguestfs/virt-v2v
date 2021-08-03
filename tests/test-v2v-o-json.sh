@@ -21,20 +21,23 @@
 set -e
 set -x
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
-skip_unless jq --version
+requires test -f ../test-data/phony-guests/windows.img
+requires jq --version
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 guestname=windows
 
 d=test-v2v-o-json.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 json=$d/$guestname.json
@@ -63,6 +66,3 @@ osinfo=$(jq -r '.inspect.osinfo' $json)
 if [ "x$osinfo" != "xnull" ]; then
     test x$osinfo = xwin7
 fi
-
-# Clean up.
-rm -r $d

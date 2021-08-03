@@ -20,20 +20,23 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 if [ ! -f windows.vmdk -o ! -s windows.vmdk ]; then
     echo "$0: test skipped because windows.vmdk was not created"
     exit 77
 fi
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-i-ova-bad-sha256.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 pushd $d
@@ -63,4 +66,3 @@ then
 fi
 
 popd
-rm -rf $d

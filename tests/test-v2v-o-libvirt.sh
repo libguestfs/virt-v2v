@@ -20,10 +20,12 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 # You shouldn't be running the tests as root anyway, but in this case
 # it's especially bad because we don't want to start creating guests
@@ -34,12 +36,12 @@ skip_if_root
 # architecture was valid at guest creation time, rather than when you
 # first run the guest.  Since the guest XML contains arch='x86_64',
 # this test will fail on !x86_64.
-skip_unless_arch x86_64
+requires_arch x86_64
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 # Generate a random guest name.
 guestname=tmp-$(tr -cd 'a-f0-9' < /dev/urandom | head -c 8)
@@ -49,6 +51,13 @@ poolname=tmp-$(tr -cd 'a-f0-9' < /dev/urandom | head -c 8)
 
 d=test-v2v-o-libvirt.d
 rm -rf $d
+
+# Clean up.
+cleanup_fn rm -r $d
+cleanup_fn virsh pool-destroy $poolname
+# I think because the pool is transient, this is not necessary:
+#cleanup_fn virsh undefine $guestname
+
 mkdir $d
 
 # Set up the output directory as a libvirt storage pool.
@@ -64,8 +73,3 @@ test -f $d/$guestname-sda
 
 # Test the guest exists.
 virsh dumpxml $guestname
-
-# Clean up.
-virsh pool-destroy $poolname ||:
-virsh undefine $guestname ||:
-rm -r $d

@@ -24,21 +24,28 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 root_test
 skip_if_skipped
-skip_unless_backend libvirt
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
+
+# Originally this test was only run on libvirt, but we may as
+# well run it with all backends.
+#skip_unless_backend libvirt
 
 if [ ! -f windows.vmdk -o ! -s windows.vmdk ]; then
     echo "$0: test skipped because windows.vmdk was not created"
     exit 77
 fi
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-i-ova-as-root.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 pushd $d
@@ -62,4 +69,3 @@ $VG virt-v2v --debug-gc --quiet \
     -o null
 
 popd
-rm -rf $d

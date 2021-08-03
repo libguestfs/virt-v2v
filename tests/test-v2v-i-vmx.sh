@@ -20,12 +20,14 @@
 
 set -e
 
-$TEST_FUNCTIONS
-skip_if_skipped
-skip_if_backend uml
+source ./functions.sh
+set -e
+set -x
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+skip_if_skipped
+
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 rm -f test-v2v-i-vmx-*.actual
 

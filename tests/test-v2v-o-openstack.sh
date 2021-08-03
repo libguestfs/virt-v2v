@@ -20,18 +20,21 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-windows=$top_builddir/test-data/phony-guests/windows.img
+windows=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-o-openstack.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 # We don't want to upload to the real openstack, so introduce a fake
@@ -67,5 +70,3 @@ grep 'volume set.*--bootable.*dummy-vol-id' $d/log
 grep 'volume set.*--property.*virt_v2v_guest_id=guestid' $d/log
 grep 'server remove volume' $d/log
 grep -- '--insecure' $d/log
-
-rm -r $d

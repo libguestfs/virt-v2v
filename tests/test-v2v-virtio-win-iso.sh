@@ -21,16 +21,18 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_builddir/test-data/fake-virtio-win/fake-virtio-win.iso"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="../test-data/fake-virtio-win/fake-virtio-win.iso"
 
 if ! test -f "$VIRTIO_WIN"; then
     echo "$0: test skipped because fake virtio-win iso image was not created"
@@ -49,6 +51,7 @@ root=`random_choice`
 
 d=test-v2v-virtio-win-iso.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
@@ -93,5 +96,3 @@ done
 
 guestfish --ro -a "$d/windows-sda" -i < "$script" > "$response"
 diff -u "$expected" "$response"
-
-rm -r $d

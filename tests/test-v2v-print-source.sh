@@ -20,12 +20,16 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 d=test-v2v-print-source.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
@@ -42,5 +46,3 @@ grep -v '^$' \
 > $d/output
 
 diff -u "$srcdir/test-v2v-print-source.expected" $d/output
-
-rm -r $d

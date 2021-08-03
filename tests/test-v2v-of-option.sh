@@ -20,19 +20,22 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
 # No support for either network or qcow2.
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-of-option.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
@@ -44,5 +47,3 @@ if [ "$(guestfish disk-format $d/windows-sda)" != qcow2 ]; then
     echo "$0: test failed: output is not qcow2"
     exit 1
 fi
-
-rm -r $d

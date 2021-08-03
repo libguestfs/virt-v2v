@@ -22,14 +22,17 @@ unset CDPATH
 export LANG=C
 set -e
 
-$TEST_FUNCTIONS
-skip_if_skipped
-skip_if_backend uml
+source ./functions.sh
+set -e
+set -x
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+skip_if_skipped
+
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-i-ova-tar.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 pushd $d
@@ -62,6 +65,3 @@ else
     sed -i -e 's,[^ \t]*\(disk.*.vmdk\),\1,' $d/source
     diff -u "$srcdir/test-v2v-i-ova-tar.expected" $d/source
 fi
-
-
-rm -rf $d

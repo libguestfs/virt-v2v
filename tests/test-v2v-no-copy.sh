@@ -18,21 +18,21 @@
 
 # Test --no-copy option.
 
+source ./functions.sh
 set -e
 set -x
 
-$TEST_FUNCTIONS
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-no-copy.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 # No copy with -o local.
@@ -63,5 +63,3 @@ test -f $d/12345678-1234-1234-1234-123456789abc/master/vms/*/*.ovf
 
 # Test the disk was NOT created.
 ! test -f $d/12345678-1234-1234-1234-123456789abc/images/*/*.meta
-
-rm -r $d

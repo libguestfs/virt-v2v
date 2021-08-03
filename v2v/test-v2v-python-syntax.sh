@@ -18,18 +18,18 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ../tests/functions.sh
+set -e
+set -x
+
 skip_if_skipped
 
 # Files to check.
 files="$(find "$srcdir" -name '*.py')"
 
-# Base version of Python.
-python=python3
-
 # Checks the files are syntactically correct, but not very much else.
 for f in $files; do
-    $python -m py_compile "$f"
+    python3 -m py_compile "$f"
 done
 
 # Checks the files correspond to PEP8 coding style.

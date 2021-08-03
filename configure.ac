@@ -156,6 +156,7 @@ AC_CONFIG_FILES([Makefile
                  test-data/files/Makefile
                  test-data/phony-guests/Makefile
                  test-data/phony-guests/guests.xml
+                 tests/functions.sh
                  tests/Makefile
                  tests/rhbz1232192.xml
                  tests/test-v2v-cdrom.xml

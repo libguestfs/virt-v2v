@@ -24,13 +24,16 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 slow_test
 skip_if_skipped
-skip_if_backend uml
 
 d=test-v2v-trim.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 n=fedora-20
@@ -82,5 +85,3 @@ if [ $((size_after-size_before)) -gt 300000 ]; then
     echo "trimming failed"
     exit 1
 fi
-
-rm -r $d

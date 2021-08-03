@@ -20,15 +20,17 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 # We don't want to upload to the real glance, so introduce a fake
 # glance binary.

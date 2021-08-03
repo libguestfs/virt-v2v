@@ -21,13 +21,15 @@
 
 set -e
 
-$TEST_FUNCTIONS
-skip_if_skipped
-skip_unless virt-v2v --help
-skip_if_backend uml
-skip_unless_phony_guest windows.img
-skip_unless_phony_guest blank-disk.img
+source ./functions.sh
+set -e
+set -x
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+skip_if_skipped
+requires virt-v2v --help
+requires test -f ../test-data/phony-guests/windows.img
+requires test -f ../test-data/phony-guests/blank-disk.img
+
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 virt-v2v -i libvirtxml rhbz1232192.xml -o null --no-copy

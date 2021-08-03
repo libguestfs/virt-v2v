@@ -20,16 +20,18 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 # Return a random element from the array 'choices'.
 function random_choice
@@ -43,6 +45,7 @@ root=`random_choice`
 
 d=test-v2v-windows-conversion.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
@@ -91,5 +94,3 @@ diff -u "$expected" "$response"
 # We also update the Registry several times, for firstboot, and (ONLY
 # if the virtio-win drivers are installed locally) the critical device
 # database.
-
-rm -r $d

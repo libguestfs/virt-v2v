@@ -25,18 +25,20 @@
 set -e
 set -x
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless python3 --version
-skip_unless nbdkit $VIRT_V2V_NBDKIT_PYTHON_PLUGIN --version
-skip_unless_phony_guest windows.img
+requires python3 --version
+requires nbdkit $VIRT_V2V_NBDKIT_PYTHON_PLUGIN --version
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 export PYTHONPATH=$srcdir/test-v2v-o-rhv-upload-module:$PYTHONPATH
 
 # Run virt-v2v -o rhv-upload.

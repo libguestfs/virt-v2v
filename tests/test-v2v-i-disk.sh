@@ -20,23 +20,24 @@
 
 set -e
 
-$TEST_FUNCTIONS
-skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+source ./functions.sh
+set -e
+set -x
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+skip_if_skipped
+requires test -f ../test-data/phony-guests/windows.img
+
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-i-disk.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 $VG virt-v2v --debug-gc \
-    -i disk $top_builddir/test-data/phony-guests/windows.img \
+    -i disk ../test-data/phony-guests/windows.img \
     -o local -os $d
 
 # Test the libvirt XML metadata and a disk was created.
 test -f $d/windows.xml
 test -f $d/windows-sda
-
-rm -r $d

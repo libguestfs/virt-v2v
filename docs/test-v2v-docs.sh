@@ -18,11 +18,14 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ../tests/functions.sh
+set -e
+set -x
+
 skip_if_skipped
 
-$top_srcdir/podcheck.pl virt-v2v.pod virt-v2v \
-  --path $top_srcdir/common/options \
+$srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
+  --path $srcdir/../common/options \
   --ignore=\
 --debug-overlay,\
 --ic,\

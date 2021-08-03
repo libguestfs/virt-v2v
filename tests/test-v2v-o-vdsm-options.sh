@@ -21,19 +21,22 @@
 set -e
 set -x
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
-f=$top_builddir/test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 d=test-v2v-o-vdsm-options.d
 rm -rf $d
+cleanup_fn rm -r $d
 mkdir $d
 
 # Create a dummy Export Storage Domain.
@@ -89,8 +92,5 @@ sed -i \
   -e 's/\<ovf:vm_snapshot_id='"'$RE_UUID'/ovf:vm_snapshot_id='#UUID#'/g" \
   "$OVF"
 
-
 diff -u "$srcdir/test-v2v-o-vdsm-options.ovf.expected" \
   "$OVF"
-
-rm -r $d

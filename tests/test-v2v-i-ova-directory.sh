@@ -20,25 +20,26 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless_phony_guest windows.img
+requires test -f ../test-data/phony-guests/windows.img
 
-skip_unless_libvirt_minimum_version 3 1 0
-
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
-export VIRTIO_WIN="$top_srcdir/test-data/fake-virtio-win"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
 d=test-v2v-i-ova-directory.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 vmdk=test-ova.vmdk
 ovf=test-v2v-i-ova.ovf
 mf=test-ova.mf
 
-qemu-img convert $top_builddir/test-data/phony-guests/windows.img \
+qemu-img convert ../test-data/phony-guests/windows.img \
          -O vmdk $d/$vmdk
 cp "$srcdir/$ovf" $d/$ovf
 sha1=`do_sha1 $d/$ovf`
@@ -49,5 +50,3 @@ echo "SHA256($vmdk)= $sha256" >> $d/$mf
 $VG virt-v2v --debug-gc \
     -i ova $d \
     -o null
-
-rm -rf $d

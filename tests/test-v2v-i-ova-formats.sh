@@ -20,18 +20,21 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
-skip_if_backend uml
-skip_unless zip --version
-skip_unless unzip --help
+requires zip --version
+requires unzip --help
 
 formats="zip tar-gz tar-xz"
 
-export VIRT_TOOLS_DATA_DIR="$top_srcdir/test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
 d=test-v2v-i-ova-formats.d
 rm -rf $d
+cleanup_fn rm -rf $d
 mkdir $d
 
 pushd $d
@@ -74,5 +77,3 @@ for format in $formats; do
     # Check the parsed source is what we expect.
     diff -u "$srcdir/test-v2v-i-ova-formats.expected" $d/source
 done
-
-rm -rf $d

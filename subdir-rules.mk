@@ -89,23 +89,8 @@ if HAVE_OCAMLOPT
 	$(guestfs_am_v_ocamlopt)$(OCAMLFIND) ocamlopt -package guestfs $(OCAMLFLAGS) $(OCAMLPACKAGES) -c $< -o $@
 endif
 
-# Test shell scripts should use '$TEST_FUNCTIONS' to get a predefined
-# set of helper functions for running tests (see
-# tests/test-functions.sh).
-#
-# Notes:
-#
-# (1) This is in fact a single command all on one line.  The variables
-# are evaluated in test-functions.sh.
-#
-# (2) We use absolute paths here and in test-functions.sh so that the
-# test can change directory freely.  But we also include the
-# non-absolute values so they can be used by the test script itself.
-export TEST_FUNCTIONS := \
-	source $(abs_top_srcdir)/tests/test-functions.sh \
-	abs_srcdir="$(abs_srcdir)" \
-	abs_builddir="$(abs_builddir)" \
-	top_srcdir="$(top_srcdir)" \
-	top_builddir="$(top_builddir)" \
-	abs_top_srcdir="$(abs_top_srcdir)" \
-	abs_top_builddir="$(abs_top_builddir)"
+# A few parts of the common/ submodule use $TEST_FUNCTIONS expecting
+# it to be replaced with the old hacky test-functions.sh script and
+# some local variables (as happens in libguestfs).  Until we can
+# replace that. use this for now.
+export TEST_FUNCTIONS := exit 77

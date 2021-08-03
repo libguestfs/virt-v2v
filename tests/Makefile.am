@@ -17,7 +17,8 @@
 
 include $(top_srcdir)/subdir-rules.mk
 
-EXTRA_DIST = test-functions.sh
+EXTRA_DIST = functions.sh.in
+check_DATA = functions.sh
 
 # Small utility to check for a needed libvirt version;
 # to be used in shell/script-based tests.
@@ -103,7 +104,7 @@ TESTS = \
 	$(ROOT_TESTS)
 
 # The VMDK file is used for some -i ova tests.
-check_DATA = windows.vmdk
+check_DATA += windows.vmdk
 windows.vmdk: ../test-data/phony-guests/windows.img
 	rm -f $@ $@-t
 	if [ -s $< ]; then \

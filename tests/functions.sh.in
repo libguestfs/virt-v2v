@@ -1,0 +1,209 @@
+# nbdkit
+# @configure_input@
+# Copyright (C) 2017-2021 Red Hat Inc.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+# * Redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer.
+#
+# * Redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution.
+#
+# * Neither the name of Red Hat nor the names of its contributors may be
+# used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY RED HAT AND CONTRIBUTORS ''AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+# PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL RED HAT OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF
+# USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+# OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+
+# Common functions and variables used by tests.
+#
+# Most test scripts (tests/*.sh files) start with:
+#
+#   source ./functions.sh
+#   set -e
+#   set -x
+#
+#   skip_if_skipped
+
+# Various variables defined by autoconf that test scripts might want
+# to use.
+OCAMLOPT="@OCAMLOPT@"
+PYCODESTYLE="@PYCODESTYLE@"
+abs_srcdir="@abs_srcdir@"
+abs_top_srcdir="@abs_top_srcdir@"
+abs_builddir="@abs_builddir@"
+abs_top_builddir="@abs_top_builddir@"
+
+# cleanup_fn cmd [args]
+#
+# Run the command ‘cmd [args]’ when the test script exits.  This is
+# run in all cases when the script exits, so is a reliable way to
+# clean up test files, external processes etc.
+#
+# Examples:
+#   cleanup_fn rm -f test.out
+#   cleanup_fn kill $pid
+declare -a _cleanup_hook
+cleanup_fn ()
+{
+    _cleanup_hook[${#_cleanup_hook[@]}]="$@"
+}
+
+_run_cleanup_hooks ()
+{
+    local _status=$? _i
+
+    set +e
+    trap '' INT QUIT TERM EXIT ERR
+    echo $0: run cleanup hooks: exit code $_status
+
+    for (( _i = 0; _i < ${#_cleanup_hook[@]}; ++_i )); do
+        ${_cleanup_hook[_i]}
+    done
+
+    exit $_status
+}
+trap _run_cleanup_hooks INT QUIT TERM EXIT ERR
+
+# requires program [args]
+#
+# Check that ‘program [args]’ works.  If not, skip the test.
+# For example to check that qemu-img is available, do:
+#
+# requires qemu-img --version
+requires ()
+{
+    ( "$@" ) </dev/null >/dev/null 2>&1 || {
+        echo "$0: ‘$*’ failed with error code $?"
+        echo "$0: test prerequisite is missing or not working"
+        exit 77
+    }
+}
+
+# Requires the current arch == $1.
+requires_arch ()
+{
+    local m="$(uname -m)"
+    case "$1" in
+        # Some magic happens for some architectures.
+        arm)
+            if [[ ! "$m" =~ ^arm ]]; then
+                echo "$0: test skipped because the current architecture ($m) is not arm (32 bit)"
+                exit 77
+            fi
+            ;;
+        i?86)
+            if [[ ! "$m" =~ ^i?86 ]]; then
+                echo "$0: test skipped because the current architecture ($m) is not $1"
+                exit 77
+            fi
+            ;;
+        *)
+            if [ "$m" != "$1" ]; then
+                echo "$0: test skipped because the current architecture ($m) is not $1"
+                exit 77
+            fi
+            ;;
+    esac
+}
+
+# Skip if $SKIP_<script_name> environment variable is set.
+# Every test should call this function first.
+skip_if_skipped ()
+{
+    local v
+    if [ -n "$1" ]; then
+        v="SKIP_$(basename $1 | tr a-z.- A-Z__)"
+    else
+        v="SKIP_$(basename $0 | tr a-z.- A-Z__)"
+    fi
+    if [ -n "${!v}" ]; then
+        echo "$0: test skipped because \$$v is set"
+        exit 77
+    fi
+    echo "$0: info: you can skip this test by setting $v=1"
+}
+
+# Skip if the user is trying to run a test as root.
+# Tests shouldn't be run as root, but a few are especially dangerous.
+skip_if_root ()
+{
+    if [ "$(id -u)" -eq 0 ]; then
+        echo "$0: test skipped because you're running tests as root."
+        echo "$0: it is NEVER a good idea to run libguestfs tests as root."
+    exit 77
+fi
+}
+
+# Slow tests should always call this function.  (See guestfs-hacking(1)).
+slow_test ()
+{
+    if [ -z "$SLOW" ]; then
+        echo "$(basename $0): use 'make check-slow' to run this test"
+        exit 77
+    fi
+}
+
+# Root tests should always call this function.  (See guestfs-hacking(1)).
+root_test ()
+{
+    if test "$(id -u)" -ne 0; then
+        echo "$(basename $0): use 'sudo make check-root' to run this test"
+        exit 77
+    fi
+}
+
+# These miscellaneous functions are used for testing OVAs.
+do_md5 ()
+{
+  case "$(uname)" in
+    Linux)
+      md5sum "$1" | awk '{print $1}'
+      ;;
+    *)
+      echo "$(basename $0): unknown method to calculate MD5 of file on $(uname)"
+      exit 1
+      ;;
+  esac
+}
+
+do_sha1 ()
+{
+  case "$(uname)" in
+    Linux)
+      sha1sum "$1" | awk '{print $1}'
+      ;;
+    *)
+      echo "$(basename $0): unknown method to calculate SHA1 of file on $(uname)"
+      exit 1
+      ;;
+  esac
+}
+
+do_sha256 ()
+{
+  case "$(uname)" in
+    Linux)
+      sha256sum "$1" | awk '{print $1}'
+      ;;
+    *)
+      echo "$(basename $0): unknown method to calculate SHA256 of file on $(uname)"
+      exit 1
+      ;;
+  esac
+}

@@ -115,6 +115,7 @@ Makefile.in
 /test-data/phony-guests/windows.img
 /test-data/phony-guests/windows-software
 /test-data/phony-guests/windows-system
+/tests/functions.sh
 /tests/libvirt-is-version
 /tests/rhbz1232192.xml
 /tests/test-v2v-cdrom.xml

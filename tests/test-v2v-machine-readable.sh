@@ -20,7 +20,10 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
 
 $VG virt-v2v --debug-gc --machine-readable > test-v2v-machine-readable.out

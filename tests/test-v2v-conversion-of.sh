@@ -20,10 +20,13 @@
 
 set -e
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 slow_test
 skip_if_skipped "$script"
-skip_unless_arch x86_64
+requires_arch x86_64
 
 guestname="$1"
 if [ -z "$guestname" ]; then
@@ -36,6 +39,8 @@ xml="real-$guestname.xml"
 os="real-$guestname.d"
 rm -f "$disk" "$xml"
 rm -rf "$os"
+cleanup_fn rm -f "$disk" "$xml"
+cleanup_fn rm -rf "$os"
 mkdir "$os"
 
 # If the guest doesn't exist in virt-builder, skip.  This is because
@@ -98,6 +103,3 @@ if test $diff -lt 50; then
     ls -l "$disk" "$os/$guestname-sda"
     exit 1
 fi
-
-rm -f "$disk" "$xml"
-rm -rf "$os"

@@ -21,7 +21,10 @@
 set -e
 set -x
 
-$TEST_FUNCTIONS
+source ./functions.sh
+set -e
+set -x
+
 skip_if_skipped
 
 # We expect all of these to print an error.  NB: LANG=C is set.
