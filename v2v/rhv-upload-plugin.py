@@ -123,6 +123,13 @@ def can_fua(h):
     return options['can_flush']
 
 
+def can_multi_conn(h):
+    # We can always handle multiple connections, and the number of NBD
+    # connections is independent of the number of HTTP clients in the
+    # pool.
+    return True
+
+
 def get_size(h):
     return size
 
