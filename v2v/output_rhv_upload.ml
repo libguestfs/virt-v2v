@@ -169,12 +169,18 @@ class output_rhv_upload output_conn
   let plugin_script =
     Python_script.create ~name:"rhv-upload-plugin.py"
       Output_rhv_upload_plugin_source.code in
+  let transfer_script =
+    Python_script.create ~name:"rhv-upload-transfer.py"
+      Output_rhv_upload_transfer_source.code in
+  let finalize_script =
+    Python_script.create ~name:"rhv-upload-finalize.py"
+      Output_rhv_upload_finalize_source.code in
+  let cancel_script =
+    Python_script.create ~name:"rhv-upload-cancel.py"
+      Output_rhv_upload_cancel_source.code in
   let createvm_script =
     Python_script.create ~name:"rhv-upload-createvm.py"
       Output_rhv_upload_createvm_source.code in
-  let deletedisks_script =
-    Python_script.create ~name:"rhv-upload-deletedisks.py"
-      Output_rhv_upload_deletedisks_source.code in
 
   (* JSON parameters which are invariant between disks. *)
   let json_params = [
@@ -214,16 +220,17 @@ class output_rhv_upload output_conn
     else
       nbdkit_cmd in
 
-  (* Delete disks.
+  (* Cancel the transfer and delete disks.
    *
    * This ignores errors since the only time we are doing this is on
    * the failure path.
    *)
-  let delete_disks uuids =
-    let ids = List.map (fun uuid -> JSON.String uuid) uuids in
-    let json_params =
-      ("disk_uuids", JSON.List ids) :: json_params in
-    ignore (Python_script.run_command deletedisks_script json_params [])
+  let cancel transfer_ids disk_uuids =
+    let ids = List.map (fun id -> JSON.String id) transfer_ids in
+    let json_params = ("transfer_ids", JSON.List ids) :: json_params in
+    let ids = List.map (fun uuid -> JSON.String uuid) disk_uuids in
+    let json_params = ("disk_uuids", JSON.List ids) :: json_params in
+    ignore (Python_script.run_command cancel_script json_params [])
   in
 
 object
@@ -237,8 +244,10 @@ object
   val mutable rhv_cluster_cpu_architecture = None
   (* List of disk UUIDs. *)
   val mutable disk_uuids = []
-  (* If we didn't finish successfully, delete on exit. *)
-  val mutable delete_disks_on_exit = true
+  (* List of transfer IDs. *)
+  val mutable transfer_ids = []
+  (* If we didn't finish successfully, cancel and delete disks on exit. *)
+  val mutable cancel_on_exit = true
 
   method precheck () =
     Python_script.error_unless_python_interpreter_found ();
@@ -320,9 +329,9 @@ object
     (* Set up an at-exit handler so we delete the orphan disks on failure. *)
     at_exit (
       fun () ->
-        if delete_disks_on_exit then (
+        if cancel_on_exit then (
           if disk_uuids <> [] then
-            delete_disks disk_uuids
+            cancel transfer_ids disk_uuids
         )
     );
 
@@ -359,8 +368,38 @@ object
           json_param_file
           (fun chan -> output_string chan (JSON.string_of_doc json_params));
 
-        (* Add common arguments to per-target arguments. *)
-        let cmd = Nbdkit.add_arg nbdkit_cmd "params" json_param_file in
+        (* Start the transfer. *)
+        let transfer_json = tmpdir // "v2vtransfer.json" in
+        let fd = Unix.openfile transfer_json [O_WRONLY; O_CREAT] 0o600 in
+        if Python_script.run_command ~stdout_fd:fd
+             transfer_script json_params [] <> 0 then
+          error (f_"failed to start transfer, see earlier errors");
+        let json = JSON_parser.json_parser_tree_parse_file transfer_json in
+        debug "transfer output parsed as: %s"
+          (JSON.string_of_doc ~fmt:JSON.Indented ["", json]);
+        let destination_url =
+          JSON_parser.object_get_string "destination_url" json in
+        let transfer_id =
+          JSON_parser.object_get_string "transfer_id" json in
+        transfer_ids <- transfer_ids @ [transfer_id];
+        let is_ovirt_host =
+          JSON_parser.object_get_bool "is_ovirt_host" json in
+
+        (* Create the nbdkit instance. *)
+        let cmd = nbdkit_cmd in
+        let cmd = Nbdkit.add_arg cmd "size" (Int64.to_string disk_size) in
+        let cmd = Nbdkit.add_arg cmd "url" destination_url in
+        let cmd =
+          match rhv_options.rhv_cafile with
+          | None -> cmd
+          | Some cafile -> Nbdkit.add_arg cmd "cafile" cafile in
+        let cmd =
+          if not (rhv_options.rhv_verifypeer) then
+            Nbdkit.add_arg cmd "insecure" "true"
+          else cmd in
+        let cmd =
+          if is_ovirt_host then
+            Nbdkit.add_arg cmd "is_ovirt_host" "true" else cmd in
         let sock, _ = Nbdkit.run_unix cmd in
 
         if have_selinux then (
@@ -387,6 +426,16 @@ object
     ) (List.combine overlays disk_uuids)
 
   method create_metadata source inspect target_meta targets =
+    (* Finalize all the transfers. *)
+    let json_params =
+      let ids = List.map (fun id -> JSON.String id) transfer_ids in
+      let json_params = ("transfer_ids", JSON.List ids) :: json_params in
+      let ids = List.map (fun uuid -> JSON.String uuid) disk_uuids in
+      let json_params = ("disk_uuids", JSON.List ids) :: json_params in
+      json_params in
+    if Python_script.run_command finalize_script json_params [] <> 0 then
+      error (f_"failed to finalize the transfers, see earlier errors");
+
     (* The storage domain UUID. *)
     let sd_uuid =
       match rhv_storagedomain_uuid with
@@ -416,7 +465,7 @@ object
       error (f_"failed to create virtual machine, see earlier errors");
 
     (* Successful so don't delete on exit. *)
-    delete_disks_on_exit <- false
+    cancel_on_exit <- false
 
 end
 

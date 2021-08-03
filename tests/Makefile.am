@@ -243,6 +243,7 @@ EXTRA_DIST += \
 	test-v2v-o-rhv.ovf.expected \
 	test-v2v-o-rhv.sh \
 	test-v2v-o-rhv-upload.sh \
+	test-v2v-o-rhv-upload-module/imageio.py \
 	test-v2v-o-rhv-upload-module/ovirtsdk4/__init__.py \
 	test-v2v-o-rhv-upload-module/ovirtsdk4/types.py \
 	test-v2v-o-rhv-upload-oo-query.sh \

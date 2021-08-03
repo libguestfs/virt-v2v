@@ -1,6 +1,6 @@
 # -*- python -*-
-# oVirt or RHV upload delete disks used by ‘virt-v2v -o rhv-upload’
-# Copyright (C) 2019 Red Hat Inc.
+# oVirt or RHV upload cancel used by ‘virt-v2v -o rhv-upload’
+# Copyright (C) 2019-2021 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,11 +19,18 @@
 import json
 import logging
 import sys
-
+from contextlib import closing
 from urllib.parse import urlparse
 
 import ovirtsdk4 as sdk
 import ovirtsdk4.types as types
+
+
+def debug(s):
+    if params['verbose']:
+        print(s, file=sys.stderr)
+        sys.stderr.flush()
+
 
 # Parameters are passed in via a JSON doc from the OCaml code.
 # Because this Python code ships embedded inside virt-v2v there
@@ -56,14 +63,31 @@ connection = sdk.Connection(
     insecure=params['insecure'],
 )
 
-system_service = connection.system_service()
-disks_service = system_service.disks_service()
+with closing(connection):
+    system_service = connection.system_service()
+    image_transfers_service = system_service.image_transfers_service()
 
-for uuid in params['disk_uuids']:
-    # Try to get and remove the disk, however do not fail
-    # if it does not exist (maybe removed in the meanwhile).
-    try:
-        disk_service = disks_service.disk_service(uuid)
-        disk_service.remove()
-    except sdk.NotFoundError:
-        pass
+    # Try to cancel the transfers.  This should delete the associated disk.
+    for id in params['transfer_ids']:
+        try:
+            transfer_service = \
+                image_transfers_service.image_transfer_service(id)
+            transfer_service.cancel()
+        except sdk.NotFoundError:
+            debug("unexpected error: transfer id %s not found" % id)
+        except Exception:
+            if params['verbose']: traceback.print_exc()
+
+    disks_service = system_service.disks_service()
+
+    # In case we didn't associate a disk with a transfer and as a last
+    # resort, delete the disk too.
+    for uuid in params['disk_uuids']:
+        try:
+            disk_service = disks_service.disk_service(uuid)
+            disk_service.remove()
+        except (sdk.NotFoundError, sdk.Error):
+            # We expect these exceptions so ignore them.
+            pass
+        except Exception:
+            if params['verbose']: traceback.print_exc()

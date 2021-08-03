@@ -18,10 +18,12 @@
 include $(top_srcdir)/subdir-rules.mk
 
 BUILT_SOURCES = \
+	output_rhv_upload_cancel_source.ml \
 	output_rhv_upload_createvm_source.ml \
-	output_rhv_upload_deletedisks_source.ml \
+	output_rhv_upload_finalize_source.ml \
 	output_rhv_upload_plugin_source.ml \
 	output_rhv_upload_precheck_source.ml \
+	output_rhv_upload_transfer_source.ml \
 	output_rhv_upload_vmcheck_source.ml
 
 CONFIGURE_GENERATED_ML = \
@@ -32,10 +34,12 @@ EXTRA_DIST = \
 	$(filter-out $(CONFIGURE_GENERATED_ML) $(BUILT_SOURCES),$(SOURCES_ML)) \
 	$(SOURCES_C) \
 	embed.sh \
+	rhv-upload-cancel.py \
 	rhv-upload-createvm.py \
-	rhv-upload-deletedisks.py \
+	rhv-upload-finalize.py \
 	rhv-upload-plugin.py \
 	rhv-upload-precheck.py \
+	rhv-upload-transfer.py \
 	rhv-upload-vmcheck.py \
 	test-v2v-python-syntax.sh \
 	var_expander_tests.ml \
@@ -82,10 +86,12 @@ SOURCES_MLI = \
 	output_qemu.mli \
 	output_rhv.mli \
 	output_rhv_upload.mli \
+	output_rhv_upload_cancel_source.mli \
 	output_rhv_upload_createvm_source.mli \
-	output_rhv_upload_deletedisks_source.mli \
+	output_rhv_upload_finalize_source.mli \
 	output_rhv_upload_plugin_source.mli \
 	output_rhv_upload_precheck_source.mli \
+	output_rhv_upload_transfer_source.mli \
 	output_rhv_upload_vmcheck_source.mli \
 	output_vdsm.mli \
 	parse_ova.mli \
@@ -151,10 +157,12 @@ SOURCES_ML = \
 	output_local.ml \
 	output_qemu.ml \
 	output_rhv.ml \
+	output_rhv_upload_cancel_source.ml \
 	output_rhv_upload_createvm_source.ml \
-	output_rhv_upload_deletedisks_source.ml \
+	output_rhv_upload_finalize_source.ml \
 	output_rhv_upload_plugin_source.ml \
 	output_rhv_upload_precheck_source.ml \
+	output_rhv_upload_transfer_source.ml \
 	output_rhv_upload_vmcheck_source.ml \
 	output_rhv_upload.ml \
 	output_vdsm.ml \
@@ -170,13 +178,17 @@ SOURCES_C = \
 	qemuopts-c.c
 
 # These files are generated and contain *.py embedded as an OCaml string.
+output_rhv_upload_cancel_source.ml: $(srcdir)/rhv-upload-cancel.py
+	$(srcdir)/embed.sh code $^ $@
 output_rhv_upload_createvm_source.ml: $(srcdir)/rhv-upload-createvm.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_deletedisks_source.ml: $(srcdir)/rhv-upload-deletedisks.py
+output_rhv_upload_finalize_source.ml: $(srcdir)/rhv-upload-finalize.py
 	$(srcdir)/embed.sh code $^ $@
 output_rhv_upload_plugin_source.ml: $(srcdir)/rhv-upload-plugin.py
 	$(srcdir)/embed.sh code $^ $@
 output_rhv_upload_precheck_source.ml: $(srcdir)/rhv-upload-precheck.py
+	$(srcdir)/embed.sh code $^ $@
+output_rhv_upload_transfer_source.ml: $(srcdir)/rhv-upload-transfer.py
 	$(srcdir)/embed.sh code $^ $@
 output_rhv_upload_vmcheck_source.ml: $(srcdir)/rhv-upload-vmcheck.py
 	$(srcdir)/embed.sh code $^ $@

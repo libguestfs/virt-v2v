@@ -18,8 +18,11 @@
 # Fake ovirtsdk4 module used as a test harness.
 # See v2v/test-v2v-o-rhv-upload.sh
 
+import os
 from enum import Enum
-from ovirtsdk4 import imageio_port
+
+imageio_port = os.getenv("IMAGEIO_PORT")
+assert imageio_port is not None
 
 
 class Architecture(Enum):
@@ -130,7 +133,7 @@ class ImageTransfer(object):
 
     id = "e26ac8ab-7090-4d5e-95ad-e707b511a359"
     phase = ImageTransferPhase.TRANSFERRING
-    transfer_url = "http://localhost:" + str(imageio_port) + "/"
+    transfer_url = "http://localhost:" + imageio_port + "/"
 
 
 class Initialization(object):

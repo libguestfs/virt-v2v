@@ -41,6 +41,26 @@ export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 export PYTHONPATH=$srcdir/test-v2v-o-rhv-upload-module:$PYTHONPATH
 
+# Run the imageio process and get the port number.
+log=test-v2v-o-rhv-upload.webserver.log
+rm -f $log
+cleanup_fn rm -f $log
+$srcdir/test-v2v-o-rhv-upload-module/imageio.py >$log 2>&1 &
+pid=$!
+cleanup_fn kill $pid
+export IMAGEIO_PORT=
+for i in {1..5}; do
+    IMAGEIO_PORT=$( grep "^port:" $log | awk '{print $2}' )
+    if [ -n "$IMAGEIO_PORT" ]; then break; fi
+    sleep 3
+done
+if [ ! -n "$IMAGEIO_PORT" ]; then
+    echo "$0: imageio process did not start up"
+    cat $log
+    exit 1
+fi
+echo IMAGEIO_PORT=$IMAGEIO_PORT
+
 # Run virt-v2v -o rhv-upload.
 #
 # The fake ovirtsdk4 module doesn't care about most of the options

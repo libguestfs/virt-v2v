@@ -18,10 +18,6 @@
 # Fake ovirtsdk4 module used as a test harness.
 # See v2v/test-v2v-o-rhv-upload.sh
 
-from http.server import HTTPServer, BaseHTTPRequestHandler
-import threading
-
-
 class Error(Exception):
     pass
 
@@ -144,59 +140,3 @@ class VmsService(object):
 
     def list(self, search=None):
         return []
-
-
-# Create a background thread running a web server which is
-# simulating the imageio server.
-
-
-class RequestHandler(BaseHTTPRequestHandler):
-    protocol_version = 'HTTP/1.1'
-
-    def do_OPTIONS(self):
-        self.discard_request()
-
-        # Advertize only flush and zero support.
-        content = b'''{ "features": [ "flush", "zero" ] }'''
-        length = len(content)
-
-        self.send_response(200)
-        self.send_header("Content-type", "application/json; charset=UTF-8")
-        self.send_header("Content-Length", length)
-        self.end_headers()
-        self.wfile.write(content)
-
-    # eg. zero request.  Just ignore it.
-    def do_PATCH(self):
-        self.discard_request()
-        self.send_response(200)
-        self.send_header("Content-Length", "0")
-        self.end_headers()
-
-    # Flush request.  Ignore it.
-    def do_PUT(self):
-        self.discard_request()
-        self.send_response(200)
-        self.send_header("Content-Length", "0")
-        self.end_headers()
-
-    def discard_request(self):
-        length = self.headers.get('Content-Length')
-        if length:
-            length = int(length)
-            content = self.rfile.read(length)
-
-
-server_address = ("", 0)
-# XXX This should test HTTPS, not HTTP, because we are testing a
-# different path through the main code.
-httpd = HTTPServer(server_address, RequestHandler)
-imageio_port = httpd.server_address[1]
-
-
-def server():
-    httpd.serve_forever()
-
-
-thread = threading.Thread(target=server, args=[], daemon=True)
-thread.start()
