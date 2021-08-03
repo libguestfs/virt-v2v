@@ -502,10 +502,6 @@ class virtual output : object
   (** Called in order to create disks on the target.  The method has the
       same signature as Guestfs#disk_create.  Normally you should {b not}
       define this since the default method calls Guestfs#disk_create. *)
-  method disk_copied : target -> int -> int -> unit
-  (** Called after a disk was successfully copied on the target.
-      The second parameter is the index of the copied disk (starting
-      from 0), and the third is the number of disks in total. *)
   method virtual create_metadata : source -> inspect -> target_meta -> target list -> unit
   (** Called after conversion and copying to create metadata and
       do any finalization. *)

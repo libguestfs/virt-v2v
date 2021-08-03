@@ -556,7 +556,6 @@ class virtual output = object
   method transfer_format t = t.target_format
   method virtual prepare_targets : string -> (string * overlay) list -> guestcaps -> target_file list
   method disk_create = (open_guestfs ())#disk_create
-  method disk_copied (_ : target) (_ : int) (_ : int) = ()
   method virtual create_metadata : source -> inspect -> target_meta -> target list -> unit
   method keep_serial_console = true
   method write_out_of_order = false
