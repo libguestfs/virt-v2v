@@ -76,7 +76,8 @@ with closing(connection):
         except sdk.NotFoundError:
             debug("unexpected error: transfer id %s not found" % id)
         except Exception:
-            if params['verbose']: traceback.print_exc()
+            if params['verbose']:
+                traceback.print_exc()
 
     disks_service = system_service.disks_service()
 
@@ -90,4 +91,5 @@ with closing(connection):
             # We expect these exceptions so ignore them.
             pass
         except Exception:
-            if params['verbose']: traceback.print_exc()
+            if params['verbose']:
+                traceback.print_exc()

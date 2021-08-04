@@ -311,6 +311,7 @@ class UnixHTTPConnection(HTTPConnection):
             self.sock.settimeout(timeout)
         self.sock.connect(self.path)
 
+
 # Connection pool.
 def create_http_pool(url, options):
     pool = queue.Queue()
