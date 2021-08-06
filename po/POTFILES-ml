@@ -64,6 +64,7 @@ v2v/output_rhv.ml
 v2v/output_rhv_upload.ml
 v2v/output_rhv_upload_cancel_source.ml
 v2v/output_rhv_upload_createvm_source.ml
+v2v/output_rhv_upload_deletedisks_source.ml
 v2v/output_rhv_upload_finalize_source.ml
 v2v/output_rhv_upload_plugin_source.ml
 v2v/output_rhv_upload_precheck_source.ml

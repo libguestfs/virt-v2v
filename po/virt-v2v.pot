@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 1.45.2\n"
+"Project-Id-Version: virt-v2v 1.45.3\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-06-30 11:28+0100\n"
+"POT-Creation-Date: 2021-08-06 12:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:187
+#: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:193
 msgid "%s"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: v2v/inspect_source.ml:53 common/mltools/tools_utils.ml:640
+#: v2v/inspect_source.ml:53 common/mltools/tools_utils.ml:650
 msgid "%s (ignored)"
 msgstr ""
 
@@ -65,11 +65,11 @@ msgid ""
 "manually after conversion."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:183 common/mltools/tools_utils.ml:155
+#: common/mltools/tools_utils.ml:189 common/mltools/tools_utils.ml:161
 msgid "%s: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:185
+#: common/mltools/tools_utils.ml:191
 msgid "%s: %s: %s"
 msgstr ""
 
@@ -100,11 +100,11 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:125
+#: common/mltools/tools_utils.ml:131
 msgid "%s: error: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:673
+#: common/mltools/tools_utils.ml:683
 msgid "%s: operation timed out"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgid ""
 "compress with gzip or xz), zip"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:144
+#: common/mltools/tools_utils.ml:150
 msgid "%s: warning: %s"
 msgstr ""
 
@@ -431,15 +431,15 @@ msgstr ""
 msgid "Display brief help"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:332
+#: common/mltools/tools_utils.ml:341
 msgid "Display version and exit"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:336
+#: common/mltools/tools_utils.ml:345
 msgid "Don’t print progress messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:354
+#: common/mltools/tools_utils.ml:361
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
@@ -453,11 +453,11 @@ msgstr ""
 msgid "Edit file using Perl expression"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:333
+#: common/mltools/tools_utils.ml:342
 msgid "Enable libguestfs debugging messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:334
+#: common/mltools/tools_utils.ml:343
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
@@ -511,7 +511,7 @@ msgstr ""
 msgid "How to choose root filesystem"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:130
+#: common/mltools/tools_utils.ml:136
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -582,7 +582,7 @@ msgstr ""
 msgid "Libvirt URI"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:361
+#: common/mltools/tools_utils.ml:367
 msgid "Make output machine readable"
 msgstr ""
 
@@ -742,7 +742,7 @@ msgstr ""
 msgid "Read customize commands from file"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:355
+#: common/mltools/tools_utils.ml:362
 msgid "Read passphrases from stdin"
 msgstr ""
 
@@ -793,7 +793,7 @@ msgstr ""
 
 #. common/mlcustomize/customize_cmdline.ml:344
 #. common/mlcustomize/customize_cmdline.ml:315
-#: common/mltools/tools_utils.ml:356
+#: common/mltools/tools_utils.ml:363
 #: common/mlcustomize/customize_cmdline.ml:470
 msgid "SELECTOR"
 msgstr ""
@@ -911,6 +911,10 @@ msgstr ""
 msgid "Set password crypto"
 msgstr ""
 
+#: common/mltools/tools_utils.ml:371
+msgid "Set program name"
+msgstr ""
+
 #: common/mlcustomize/customize_cmdline.ml:320
 msgid "Set root password"
 msgstr ""
@@ -931,7 +935,7 @@ msgstr ""
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:356
+#: common/mltools/tools_utils.ml:363
 msgid "Specify a LUKS key"
 msgstr ""
 
@@ -996,7 +1000,7 @@ msgstr ""
 msgid "Upload local file to destination"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:338
+#: common/mltools/tools_utils.ml:347
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
@@ -1331,7 +1335,7 @@ msgstr ""
 msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:200
+#: common/mltools/tools_utils.ml:206
 msgid "exception: %s"
 msgstr ""
 
@@ -1361,24 +1365,28 @@ msgstr ""
 msgid "expecting an OVA file name on the command line"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:382
+#: common/mltools/tools_utils.ml:392
 msgid "external command ‘%s’ exited with error %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:463 common/mltools/tools_utils.ml:384
+#: common/mltools/tools_utils.ml:473 common/mltools/tools_utils.ml:394
 msgid "external command ‘%s’ killed by signal %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:465 common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:475 common/mltools/tools_utils.ml:396
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:281
+#: v2v/output_rhv_upload.ml:272
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:463
+#: v2v/output_rhv_upload.ml:465
 msgid "failed to create virtual machine, see earlier errors"
+msgstr ""
+
+#: v2v/output_rhv_upload.ml:437
+msgid "failed to finalize the transfers, see earlier errors"
 msgstr ""
 
 #: v2v/linux_bootloaders.ml:211
@@ -1393,11 +1401,15 @@ msgstr ""
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:335
+#: v2v/output_rhv_upload.ml:376
+msgid "failed to start transfer, see earlier errors"
+msgstr ""
+
+#: v2v/output_rhv_upload.ml:327
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:191
+#: common/mltools/tools_utils.ml:197
 msgid "failure: %s"
 msgstr ""
 
@@ -1433,7 +1445,7 @@ msgid ""
 "Original message: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:210
+#: common/mltools/tools_utils.ml:216
 msgid "generated by %s %s"
 msgstr ""
 
@@ -1531,15 +1543,15 @@ msgid ""
 "host\"."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:198
+#: common/mltools/tools_utils.ml:204
 msgid "internal error: Not_found exception was thrown"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:195
+#: common/mltools/tools_utils.ml:201
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:193
+#: common/mltools/tools_utils.ml:199
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
@@ -1584,7 +1596,7 @@ msgstr ""
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:308
+#: common/mltools/tools_utils.ml:315
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
@@ -1596,19 +1608,19 @@ msgstr ""
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:323
+#: common/mltools/tools_utils.ml:330
 msgid "invalid output fd for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:325
+#: common/mltools/tools_utils.ml:332
 msgid "invalid output for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:317
+#: common/mltools/tools_utils.ml:324
 msgid "invalid output stream for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:351
+#: common/mltools/tools_utils.ml:358
 msgid "invalid selector string for --key: %s"
 msgstr ""
 
@@ -1628,7 +1640,7 @@ msgstr ""
 msgid "kernel %s is not under grub tree %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:189
+#: common/mltools/tools_utils.ml:195
 msgid "libguestfs error: %s"
 msgstr ""
 
@@ -1685,7 +1697,7 @@ msgid ""
 "option to change how virt-v2v handles this."
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:135
+#: v2v/output_rhv_upload.ml:134
 msgid ""
 "nbdkit %s plugin is not installed or not working.  It is required if you "
 "want to use ‘-o rhv-upload’.\n"
@@ -1717,11 +1729,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: v2v/nbdkit.ml:188
+#: v2v/nbdkit.ml:186
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: v2v/nbdkit.ml:190
+#: v2v/nbdkit.ml:188
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -1733,13 +1745,13 @@ msgstr ""
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:118
+#: v2v/output_rhv_upload.ml:117
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
 "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:123
+#: v2v/output_rhv_upload.ml:122
 msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s"
 msgstr ""
 
@@ -1751,14 +1763,14 @@ msgstr ""
 msgid "nbdkit plugin %s is not installed"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:147 v2v/nbdkit_sources.ml:62
+#: v2v/output_rhv_upload.ml:146 v2v/nbdkit_sources.ml:62
 msgid ""
 "nbdkit was compiled without SELinux support.  You will have to recompile "
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
 "mode while doing the conversion."
 msgstr ""
 
-#: v2v/nbdkit.ml:50
+#: v2v/nbdkit.ml:48
 msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
@@ -1925,17 +1937,11 @@ msgid ""
 "Windows guest)."
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:361
+#: v2v/output_rhv_upload.ml:353
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
-msgstr ""
-
-#: v2v/output_rhv_upload.ml:155
-msgid ""
-"rhv-upload: currently you must use ‘%s’.  This restriction will be loosened "
-"in a future version."
 msgstr ""
 
 #: v2v/inspect_source.ml:178
@@ -1954,31 +1960,31 @@ msgstr ""
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr ""
 
-#: v2v/v2v.ml:644
+#: v2v/v2v.ml:637
 msgid "source has multiple hard disk types!"
 msgstr ""
 
-#: v2v/v2v.ml:660
+#: v2v/v2v.ml:653
 msgid "source has multiple network adapter model!"
 msgstr ""
 
-#: v2v/v2v.ml:642 v2v/v2v.ml:229
+#: v2v/v2v.ml:635 v2v/v2v.ml:229
 msgid "source has no hard disks!"
 msgstr ""
 
-#: v2v/v2v.ml:652
+#: v2v/v2v.ml:645
 msgid "source has unrecognized hard disk type"
 msgstr ""
 
-#: v2v/v2v.ml:650
+#: v2v/v2v.ml:643
 msgid "source has unsupported hard disk type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:666
+#: v2v/v2v.ml:659
 msgid "source has unsupported network adapter model ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:674
+#: v2v/v2v.ml:667
 msgid "source has unsupported video adapter model ‘%s’"
 msgstr ""
 
@@ -2022,21 +2028,21 @@ msgstr ""
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:113
+#: v2v/output_rhv_upload.ml:112
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:313
+#: v2v/output_rhv_upload.ml:315
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:76
+#: common/mltools/JSON_parser.ml:81
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:323
+#: v2v/output_rhv_upload.ml:301
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has "
 "to match the number of guest disk images (for this guest: %d)"
@@ -2053,23 +2059,27 @@ msgstr ""
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:70
+#: common/mltools/JSON_parser.ml:75
 msgid "the value for key ‘%s’ is not a string as expected"
+msgstr ""
+
+#: common/mltools/JSON_parser.ml:47
+msgid "the value for the key ‘%s’ is not a bool"
 msgstr ""
 
 #: common/mltools/JSON_parser.ml:42
 msgid "the value for the key ‘%s’ is not a string"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:62
+#: common/mltools/JSON_parser.ml:67
 msgid "the value for the key ‘%s’ is not an integer"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:47
+#: common/mltools/JSON_parser.ml:52
 msgid "the value for the key ‘%s’ is not an object"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:51
+#: common/mltools/JSON_parser.ml:56
 msgid "the value is not an object"
 msgstr ""
 
@@ -2165,12 +2175,6 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: v2v/output_rhv_upload.ml:431
-msgid ""
-"there must be ‘-oo rhv-disk-uuid’ parameters passed on the command line to "
-"specify the UUIDs of guest disk images (for this guest: %d)"
-msgstr ""
-
 #: v2v/convert_windows.ml:239
 msgid ""
 "this guest has Anti-Virus (AV) software and a new virtio block device driver "
@@ -2201,10 +2205,6 @@ msgstr[1] ""
 
 #: v2v/parse_libvirt_xml.ml:249
 msgid "this guest has no non-removable disks"
-msgstr ""
-
-#: v2v/output_rhv_upload.ml:422
-msgid "transfer of disk %d/%d failed, see earlier error messages"
 msgstr ""
 
 #: v2v/convert_linux.ml:908
