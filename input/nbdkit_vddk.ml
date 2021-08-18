@@ -161,6 +161,15 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
    *)
   let cmd = Nbdkit.add_filter cmd "cow" in
 
+  (* If the filter supports it, enable cow-block-size (added in
+   * nbdkit 1.27.6).  This helps to reduce fragmentated small
+   * extent and read requests.
+   *)
+  let cmd =
+    if Nbdkit.probe_filter_parameter "cow" "cow-block-size" then
+      Nbdkit.add_arg cmd "cow-block-size" "1M"
+    else cmd in
+
   (* Add the cow-on-read flag if supported. *)
   let cmd =
     match cor with
