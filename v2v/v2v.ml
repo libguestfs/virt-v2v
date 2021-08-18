@@ -580,7 +580,17 @@ read the man page virt-v2v(1).
           nbdinfo ~content:false output_uri
         );
 
-        nbdcopy output_alloc input_uri output_uri
+        (* At the moment, unconditionally set nbdcopy --request-size
+         * to 4M (up from the default of 256K).  With nbdkit + vddk +
+         * cow + cow-block-size=1M this is necessary because requests
+         * must be larger than the cow filter block size to avoid
+         * breaking up reads.  It probably doesn't affect other
+         * modes, but in future consider setting this only for
+         * specific input modes that adjust cow-block-size.
+         *)
+        let request_size = Some (4*1024*1024) in
+
+        nbdcopy ?request_size output_alloc input_uri output_uri
     ) disks;
 
     unlink (tmpdir // "copy")
@@ -634,13 +644,17 @@ and start_helper helper_type prog cmd pidfile =
 
   pid
 
-and nbdcopy output_alloc input_uri output_uri =
+and nbdcopy ?request_size output_alloc input_uri output_uri =
   (* XXX It's possible that some output modes know whether
    * --target-is-zero which would be a useful optimization.
    *)
   let cmd = ref [] in
   List.push_back_list cmd [ "nbdcopy"; input_uri; output_uri ];
   List.push_back cmd "--flush";
+  (match request_size with
+   | None -> ()
+   | Some size -> List.push_back cmd (sprintf "--request-size=%d" size)
+  );
   (*List.push_back cmd "--verbose";*)
   if not (quiet ()) then List.push_back cmd "--progress";
   if output_alloc = Types.Preallocated then List.push_back cmd "--allocated";
