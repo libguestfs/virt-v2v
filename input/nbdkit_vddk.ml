@@ -112,6 +112,9 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
   (* Suppress datapath messages. *)
   let cmd = Nbdkit.add_debug_flag cmd "vddk.datapath" "0" in
 
+  (* Enable VDDK stats. *)
+  let cmd = Nbdkit.add_debug_flag cmd "vddk.stats" "1" in
+
   (* Other flags. *)
   let cmd = Nbdkit.set_verbose cmd (verbose ()) in
   let cmd = Nbdkit.set_exportname cmd "/" in
