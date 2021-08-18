@@ -738,30 +738,32 @@ if errorlevel 3010 exit /b 0
        however, as this is specific to Windows 2003 it lists location
        0x1A as unused.
     *)
-    let rootpart = inspect.i_root in
+    if inspect.i_major_version < 6 (* is Windows 2000/XP *) then (
+      let rootpart = inspect.i_root in
 
-    (* Ignore if the rootpart is something like /dev/sda.  RHBZ#1276540. *)
-    if not (g#is_whole_device rootpart) then (
-      (* Check that the root device contains NTFS magic. *)
-      let magic = g#pread_device rootpart 8 3L in
-      if magic = "NTFS    " then (
-        (* Get the size of the whole disk containing the root partition. *)
-        let rootdev = g#part_to_dev rootpart in (* eg. /dev/sda *)
-        let size = g#blockdev_getsize64 rootdev in
+      (* Ignore if the rootpart is something like /dev/sda.  RHBZ#1276540. *)
+      if not (g#is_whole_device rootpart) then (
+        (* Check that the root device contains NTFS magic. *)
+        let magic = g#pread_device rootpart 8 3L in
+        if magic = "NTFS    " then (
+          (* Get the size of the whole disk containing the root partition. *)
+          let rootdev = g#part_to_dev rootpart in (* eg. /dev/sda *)
+          let size = g#blockdev_getsize64 rootdev in
 
-        let heads =             (* refer to the table above *)
-          if size < 2114445312L then 0x40
-          else if size < 4228374780L then 0x80
-          else 0xff in
+          let heads =             (* refer to the table above *)
+            if size < 2114445312L then 0x40
+            else if size < 4228374780L then 0x80
+            else 0xff in
 
-        (* Update NTFS's idea of the number of heads.  This is an
-         * unsigned 16 bit little-endian integer, offset 0x1a from the
-         * beginning of the partition.
-         *)
-        let b = Bytes.create 2 in
-        Bytes.unsafe_set b 0 (Char.chr heads);
-        Bytes.unsafe_set b 1 '\000';
-        ignore (g#pwrite_device rootpart (Bytes.to_string b) 0x1a_L)
+          (* Update NTFS's idea of the number of heads.  This is an
+           * unsigned 16 bit little-endian integer, offset 0x1a from the
+           * beginning of the partition.
+           *)
+          let b = Bytes.create 2 in
+          Bytes.unsafe_set b 0 (Char.chr heads);
+          Bytes.unsafe_set b 1 '\000';
+          ignore (g#pwrite_device rootpart (Bytes.to_string b) 0x1a_L)
+        )
       )
     )
 
