@@ -87,7 +87,7 @@ let rec main () =
   );
 
   let g = open_guestfs ~identifier:"v2v" () in
-  g#set_memsize (g#get_memsize () * 14 / 5);
+  g#set_memsize (g#get_memsize () * 2);
   (* Setting the number of vCPUs allows parallel mkinitrd, but make
    * sure this is not too large because each vCPU consumes guest RAM.
    *)
