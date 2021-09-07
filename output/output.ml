@@ -325,7 +325,8 @@ and finalize dir output_mode =
 (* Common code when an output mode wants to create a local file
  * with a particular format (only "raw" or "qcow2").
  *)
-and output_local_file output_alloc output_format filename size socket =
+and output_local_file ?(changeuid = fun f -> f ())
+                      output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working.  It is required to use ‘-o disk’.");
@@ -338,7 +339,9 @@ and output_local_file output_alloc output_format filename size socket =
     match output_alloc with
     | Preallocated -> Some "full"
     | Sparse -> None in
-  Guestfs.disk_create ?preallocation g filename output_format size;
+  changeuid (
+    fun () -> Guestfs.disk_create ?preallocation g filename output_format size
+  );
 
   match output_format with
   | "raw" ->
@@ -2147,14 +2150,20 @@ and rhv_servers dir disks output_name
       cleanup_socket socket;
 
       (* Create the actual output disk. *)
-      output_local_file output_alloc output_format filename size socket;
-
-      (* Make it sufficiently writable so that possibly root, or
-       * root squashed nbdkit will definitely be able to open it.
-       * An example of how root squashing nonsense makes everyone
-       * less secure.
-       *)
-      chmod filename 0o666
+      let changeuid f =
+        Changeuid.func changeuid_t (fun () ->
+          (* Run the command to create the file. *)
+          f ();
+          (* Make the file sufficiently writable so that possibly root, or
+           * root squashed nbdkit will definitely be able to open it.
+           * An example of how root squashing nonsense makes everyone
+           * less secure.
+           *)
+          chmod filename 0o666
+        )
+      in
+      output_local_file ~changeuid
+                        output_alloc output_format filename size socket
   ) (List.combine disks filenames);
 
   (* Save parameters since we need them during finalization. *)
