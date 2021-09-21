@@ -280,6 +280,11 @@ read the man page virt-v2v(1).
   let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
 
+  (* Was --debug-gc passed on the command line?  If so we want to
+   * pass it through to helpers.
+   *)
+  let debug_gc = !(opthandle.debug_gc) in
+
   (* -on option has to be passed to both the output and conversion helpers. *)
   (match !output_name with
    | None -> ()
@@ -365,6 +370,7 @@ read the man page virt-v2v(1).
   let std_args = ref [] in
   List.push_back std_args tmpdir;
   if colours () then List.push_back std_args "--colours";
+  if debug_gc then List.push_back std_args "--debug-gc";
   if quiet () then List.push_back std_args "-q";
   if verbose () then List.push_back std_args "-v";
   if trace () then List.push_back std_args "-x";
