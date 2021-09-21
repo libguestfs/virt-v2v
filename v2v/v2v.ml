@@ -440,6 +440,7 @@ read the man page virt-v2v(1).
 
   let i_cmd =
     i_helper :: std_args @ i_extra_args @
+      key_store_to_cli opthandle.ks (* --key parameters *) @
       List.flatten (List.map (fun (k, v) -> [k; v]) i_options) @
         args in
 
