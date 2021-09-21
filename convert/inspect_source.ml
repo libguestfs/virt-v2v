@@ -153,7 +153,7 @@ and choose_root root_choice g = function
           printf (f_"Enter a number between 1 and %d, or ‘exit’: ") n;
           let input = read_line () in
           if input = "exit" || input = "q" || input = "quit" then
-            exit 0
+            exit 1
           else (
             try i := int_of_string input
             with
