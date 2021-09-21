@@ -39,7 +39,8 @@ EXTRA_DIST = \
 	rhv-upload-precheck.py \
 	rhv-upload-transfer.py \
 	rhv-upload-vmcheck.py \
-	test-v2v-python-syntax.sh
+	test-v2v-python-syntax.sh \
+	var_expander_tests.ml
 
 SOURCES_MLI = \
 	changeuid.mli \
