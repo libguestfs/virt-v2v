@@ -211,10 +211,7 @@ and i_firmware =
 
 val string_of_inspect : inspect -> string
 
-(** {2 Disk stats}
-
-    Note the actual size is filled in after copying (but may not be
-    filled in if [--no-copy] so don't rely on it). *)
+(** {2 Disk stats} *)
 type disk_stats = {
   mutable target_actual_size : int64 option; (** Actual size on target. *)
 }

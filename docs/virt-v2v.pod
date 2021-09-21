@@ -433,19 +433,6 @@ are mapped to C<out>.
 
 See L</Networks and bridges> below.
 
-=item B<--no-copy>
-
-Don’t copy the disks.  Instead, conversion is performed and metadata
-is written, but no disks are copied.  Depending on the output mode, an
-empty disk or disks may be created.  It is almost always better to use
-S<I<-o null>>, see below.
-
-This is useful in two cases: Either you want to test if conversion is
-likely to succeed, without the long copying process.  Or you are only
-interested in looking at the metadata.
-
-This option is not compatible with I<-o glance> for technical reasons.
-
 =item B<-o> B<disk>
 
 This is the same as I<-o local>.

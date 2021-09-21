@@ -41,7 +41,7 @@ mkdir $d
 
 $VG virt-v2v --debug-gc \
     -i libvirt -ic "$libvirt_uri" windows \
-    -o local -os $d --no-copy
+    -o local -os $d
 
 # Test the libvirt XML metadata was created.
 test -f $d/windows.xml

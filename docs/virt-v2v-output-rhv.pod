@@ -129,9 +129,6 @@ the specified UUIDs must not conflict with the UUIDs of existing disks
 
 =back
 
-This option is considered advanced, and to be used mostly in
-combination with I<--no-copy>.
-
 =item I<-oo rhv-direct>
 
 If this option is given then virt-v2v will attempt to directly upload

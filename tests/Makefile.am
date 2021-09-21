@@ -81,7 +81,6 @@ TESTS = \
 	test-v2v-mac.sh \
 	test-v2v-machine-readable.sh \
 	test-v2v-networks-and-bridges.sh \
-	test-v2v-no-copy.sh \
 	test-v2v-o-glance.sh \
 	test-v2v-o-json.sh \
 	test-v2v-o-libvirt.sh \
@@ -233,7 +232,6 @@ EXTRA_DIST += \
 	test-v2v-mac.sh \
 	test-v2v-networks-and-bridges.sh \
 	test-v2v-networks-and-bridges-expected.xml \
-	test-v2v-no-copy.sh \
 	test-v2v-o-glance.sh \
 	test-v2v-o-json.sh \
 	test-v2v-o-libvirt.sh \

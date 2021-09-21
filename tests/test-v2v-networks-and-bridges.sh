@@ -37,10 +37,9 @@ rm -rf $d
 cleanup_fn rm -r $d
 mkdir $d
 
-# Use --no-copy because we only care about metadata for this test.
 $VG virt-v2v --debug-gc \
     -i libvirt -ic "$libvirt_uri" windows \
-    -o local -os $d --no-copy \
+    -o local -os $d \
     --bridge "VM Network:bridge1" \
     -b bridge2 \
     --network default:network1 \

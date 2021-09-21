@@ -110,7 +110,6 @@ let rec main () =
   let add_conv_option k v = List.push_front (k, v) conv_options in
 
   (* Other options that we handle here. *)
-  let do_copy = ref true in
   let in_place = ref false in
   let print_source = ref false in
 
@@ -197,8 +196,6 @@ let rec main () =
       s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_conv_option "-n"),
       s_"Map network ‘in’ to ‘out’";
-    [ L"no-copy" ],  Getopt.Clear do_copy,
-      s_"Just write the metadata";
     [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
       s_"Ignored for backwards compatibility";
     [ S 'o' ],       Getopt.String ("glance|json|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
@@ -300,7 +297,6 @@ read the man page virt-v2v(1).
   (* Dereference the arguments. *)
   let args = List.rev !args in
   let conv_options = List.rev !conv_options in
-  let do_copy = !do_copy in
   let in_place = !in_place in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
@@ -549,52 +545,51 @@ read the man page virt-v2v(1).
   unlink (tmpdir // "convert");
 
   (* Do the copy. *)
-  if do_copy then (
-    with_open_out (tmpdir // "copy") (fun _ -> ());
+  with_open_out (tmpdir // "copy") (fun _ -> ());
 
-    (* Get the list of disks and corresponding sockets. *)
-    let rec loop acc i =
-      let input_socket = sprintf "%s/in%d" tmpdir i
-      and output_socket = sprintf "%s/out%d" tmpdir i in
-      if Sys.file_exists input_socket && Sys.file_exists output_socket then
-        loop ((i, input_socket, output_socket) :: acc) (i+1)
-      else
-        List.rev acc
-    in
-    let disks = loop [] 0 in
-    let nr_disks = List.length disks in
+  (* Get the list of disks and corresponding sockets. *)
+  let rec loop acc i =
+    let input_socket = sprintf "%s/in%d" tmpdir i
+    and output_socket = sprintf "%s/out%d" tmpdir i in
+    if Sys.file_exists input_socket && Sys.file_exists output_socket then
+      loop ((i, input_socket, output_socket) :: acc) (i+1)
+    else
+      List.rev acc
+  in
+  let disks = loop [] 0 in
+  let nr_disks = List.length disks in
 
-    (* Copy the disks. *)
-    List.iter (
-      fun (i, input_socket, output_socket) ->
-        message (f_"Copying disk %d/%d") (i+1) nr_disks;
+  (* Copy the disks. *)
+  List.iter (
+    fun (i, input_socket, output_socket) ->
+      message (f_"Copying disk %d/%d") (i+1) nr_disks;
 
-        let input_uri = nbd_uri_of_socket input_socket
-        and output_uri = nbd_uri_of_socket output_socket in
+      let input_uri = nbd_uri_of_socket input_socket
+      and output_uri = nbd_uri_of_socket output_socket in
 
-        (* In verbose mode print some information about each
-         * side of the pipeline.
-         *)
-        if verbose () then (
-          nbdinfo ~content:true input_uri;
-          nbdinfo ~content:false output_uri
-        );
+      (* In verbose mode print some information about each
+       * side of the pipeline.
+       *)
+      if verbose () then (
+        nbdinfo ~content:true input_uri;
+        nbdinfo ~content:false output_uri
+      );
 
-        (* At the moment, unconditionally set nbdcopy --request-size
-         * to 4M (up from the default of 256K).  With nbdkit + vddk +
-         * cow + cow-block-size=1M this is necessary because requests
-         * must be larger than the cow filter block size to avoid
-         * breaking up reads.  It probably doesn't affect other
-         * modes, but in future consider setting this only for
-         * specific input modes that adjust cow-block-size.
-         *)
-        let request_size = Some (4*1024*1024) in
+      (* At the moment, unconditionally set nbdcopy --request-size
+       * to 4M (up from the default of 256K).  With nbdkit + vddk +
+       * cow + cow-block-size=1M this is necessary because requests
+       * must be larger than the cow filter block size to avoid
+       * breaking up reads.  It probably doesn't affect other
+       * modes, but in future consider setting this only for
+       * specific input modes that adjust cow-block-size.
+       *)
+      let request_size = Some (4*1024*1024) in
 
-        nbdcopy ?request_size output_alloc input_uri output_uri
-    ) disks;
+      nbdcopy ?request_size output_alloc input_uri output_uri
+  ) disks;
 
-    unlink (tmpdir // "copy")
-  );
+  (* End of copying phase. *)
+  unlink (tmpdir // "copy");
 
   (* Do the finalization step. *)
   message (f_"Creating output metadata");
