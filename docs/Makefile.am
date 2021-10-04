@@ -27,7 +27,8 @@ EXTRA_DIST = \
 	virt-v2v-output-openstack.pod \
 	virt-v2v-output-rhv.pod \
 	virt-v2v-release-notes-1.42.pod \
-	virt-v2v-support.pod
+	virt-v2v-support.pod \
+	vm-generation-id-across-hypervisors.txt
 
 # Manual pages and HTML files for the website.
 

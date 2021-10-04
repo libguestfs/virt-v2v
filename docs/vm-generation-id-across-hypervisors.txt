@@ -1,0 +1,194 @@
+VM Generation ID is a hypervisor feature which exposes a 128 bit (16 byte)
+random string of bytes to the guest.  The generation ID lets the guest
+know when it has been cloned, and this is mainly useful for Windows
+because various security features of Windows rely on unique UUIDs and
+don't work if the guest is cloned.  Guests can use the random string
+(which is NOT itself a UUID) to generate new UUIDs after cloning.
+
+The main spec is very light on details, but it's here:
+http://go.microsoft.com/fwlink/?LinkId=260709
+
+This file documents how the VM Generation ID feature is implemented
+across multiple hypervisors that support it.
+
+
+Inside the guest
+----------------------------------------------------------------------
+
+For Windows guests the easiest way to view the VM generation ID is
+using VMGENID.EXE.  You can download the binary and source here:
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1598350#c3
+https://docs.microsoft.com/en-gb/windows/win32/hyperv_v2/virtual-machine-generation-identifier?redirectedfrom=MSDN
+
+VMGENID.EXE prints the low 64 bit int followed by the high 64 bit int,
+both in hex, eg:
+
+8987940a09512cc5:e81510634ff550b9
+
+For Linux guests at the time of writing (late 2021) there is no
+upstream driver.  For qemu guests you can view the VM generation ID
+using these commands:
+
+# hexdump -C /sys/firmware/qemu_fw_cfg/by_name/etc/vmgenid_addr/raw
+00000000  28 f0 ff 7f 00 00 00 00                           |(.......|
+00000008
+
+Take the bytes printed (a raw physical memory address in little endian
+format), reverse them, and insert them into this command:
+
+# dd if=/dev/mem bs=1 skip=$(( 0x7ffff028 )) count=16 | hexdump -C
+16+0 records in
+16+0 records out
+16 bytes copied, 6.0392e-05 s, 265 kB/s
+00000000  44 33 22 11 66 55 88 77  99 aa bb cc dd ee ff 00  |D3".fU.w........|
+00000010
+
+which prints the raw 16 byte VM generation ID as it appears in guest
+physical memory.
+
+
+Bytes in memory vs Windows guest driver
+----------------------------------------------------------------------
+
+All hypervisors that implement this feature write 16 bytes into guest
+physical memory.  Different guest drivers could then treat this
+differently.  This section documents what the Windows driver does.
+
+If the bytes in guest RAM are:
+
+ 11 22 33 44 55 66 77 88   99 aa bb cc dd ee ff 00
+
+The Windows guest driver treats this as two little endian 64 bit
+integers called "low" and "high":
+
+ low = 0x8877665544332211
+ high = 0x00ffeeddccbbaa99
+
+VMGENID.EXE prints:
+
+8877665544332211:[00]ffeeddccbbaa99
+
+(The [00] is not printed because VMGENID.EXE does not zero-extend.  I
+added this for clarity)
+
+
+Microsoft Hyper-V
+----------------------------------------------------------------------
+
+In Hyper-V <= 2012 guest metadata is stored in XML.  In later versions
+the XML was replaced by a binary vmcx file.  The same data is stored
+in both, but you'll need to use hexdump to read the binary file.
+
+In XML:
+
+<generation_id type="string">805a287a250989e4fe6f6992be334a43</generation_id>
+
+The same in the vmcx file:
+
+000056b0  00 00 0e 67 65 6e 65 72  61 74 69 6f 6e 5f 69 64  |...generation_id|
+000056c0  00 40 00 00 00 38 00 30  00 35 00 61 00 32 00 38  |     8 0 5 a 2 8|
+000056d0  00 37 00 61 00 32 00 35  00 30 00 39 00 38 00 39  |.7.a.2.5.0.9.8.9|
+000056e0  00 65 00 34 00 66 00 65  00 36 00 66 00 36 00 39  |.e.4.f.e.6.f.6.9|
+000056f0  00 39 00 32 00 62 00 65  00 33 00 33 00 34 00 61  |.9.2.b.e.3.3.4.a|
+00005700  00 34 00 33 00 00 00 00  00 00 00 00 00 00 00 00  |.4.3............|
+
+In a Windows guest VMGENID.EXE prints:
+
+fe6f6992be334a43:805a287a250989e4
+
+Notice that the hypervisor metadata is storing the high 64 bit word
+(little endian) followed by the low 64 bit word (little endian).
+
+
+VMware ESXi
+----------------------------------------------------------------------
+
+VM generation ID can be found in the guest.vmx file as two 64 bit
+little-endian signed decimal integers, eg:
+
+vm.genid = "-8536691797830587195"
+vm.genidX = "-1723453263670062919"
+
+To convert them to the more normal hex format, use these Python
+statements:
+
+>>> print("%x" % (2**64-8536691797830587195))
+8987940a09512cc5
+>>> print("%x" % (2**64-1723453263670062919))
+e81510634ff550b9
+
+In a Windows guest, VMGENID.EXE prints:
+
+8987940a09512cc5:e81510634ff550b9
+
+Note that vm.genid corresponds to what the Windows driver calls the
+low 64 bit int, and vm.genidX to the high int.
+
+
+QEMU
+----------------------------------------------------------------------
+
+Unfortunately QEMU made a significant mistake when implementing this
+feature.  Because the string is 128 bits wrong, they decided it must
+be a UUID (as you can see above there is no evidence that Microsoft
+who wrote the original spec thought it was).  Following from this
+incorrect assumption, they stated that the "UUID" must be supplied to
+qemu in big endian format and must be byteswapped when writing it to
+guest memory.  Their documentation says that they only do this for
+little endian guests, but this is not true of their implementation
+which byte swaps it for all guests.
+
+To further add to the confusion, byte swapping of UUIDs is not
+straightforward.  Only some fields are byte swapped.
+
+qemu uses a -device vmgenid parameter to specify the "UUID":
+
+-device vmgenid,guid=11223344-5566-7788-99aa-bbccddeeff00,id=vmgenid0
+
+Because of the byte swapping this appears inside the guest as:
+
+44 33 22 11 66 55 88 77   99 aa bb cc dd ee ff 00
+
+In order to get a predictable byte order, you must do your own
+mangling which is then further mangled by qemu with the effect that
+both manglings cancel out.  This ordering:
+
+-device vmgenid,guid=44332211-6655-8877-99aa-bbccddeeff00,id=vmgenid0
+
+will result in guest physical memory containing:
+
+11 22 33 44 55 66 77 88   99 aa bb cc dd ee ff 00
+
+In a Windows guest, VMGENID.EXE prints:
+
+8877665544332211:[00]ffeeddccbbaa99
+
+(The [00] is not printed because VMGENID.EXE does not zero-extend.  I
+added this for clarity)
+
+
+Libvirt
+----------------------------------------------------------------------
+
+Unfortunately libvirt took the mistaken QEMU UUID concept and ran with it.
+Libvirt XML is written:
+
+<genid>44332211-6655-8877-99aa-bbccddeeff00</genid>
+
+which will result in the following bytes being written to guest memory:
+
+11 22 33 44 55 66 77 88   99 aa bb cc dd ee ff 00
+
+
+References
+----------------------------------------------------------------------
+
+Main specification: http://go.microsoft.com/fwlink/?LinkId=260709
+
+Threads about qemu and libvirt implementations:
+https://lists.nongnu.org/archive/html/qemu-devel/2018-07/threads.html#01505
+https://listman.redhat.com/archives/libvir-list/2021-September/thread.html#00931
+
+Latest attempt to get a Linux driver upstream:
+https://lore.kernel.org/linux-doc/3E05451B-A9CD-4719-99D0-72750A304044@amazon.com/

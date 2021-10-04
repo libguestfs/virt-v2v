@@ -369,11 +369,7 @@ let parse_domain_from_vmx vmx_source =
     | None, None | Some _, None | None, Some _ ->
        None
     | Some lo, Some hi ->
-       (* The actual mapping from the two integers to the UUID
-        * (as defined by qemu and used by libvirt) is very complex.
-        * This code was determined empirically.  See also:
-        * https://lists.nongnu.org/archive/html/qemu-devel/2018-07/msg01505.html
-        *)
+       (* See docs/vm-generation-id-across-hypervisors.txt *)
        let sub = String.sub (sprintf "%016Lx%016Lx" lo hi) in
        let uuid =
          sub  8 8 ^ "-" ^
