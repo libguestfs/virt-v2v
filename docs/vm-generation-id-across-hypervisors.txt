@@ -130,14 +130,13 @@ QEMU
 ----------------------------------------------------------------------
 
 Unfortunately QEMU made a significant mistake when implementing this
-feature.  Because the string is 128 bits wrong, they decided it must
-be a UUID (as you can see above there is no evidence that Microsoft
-who wrote the original spec thought it was).  Following from this
-incorrect assumption, they stated that the "UUID" must be supplied to
-qemu in big endian format and must be byteswapped when writing it to
-guest memory.  Their documentation says that they only do this for
-little endian guests, but this is not true of their implementation
-which byte swaps it for all guests.
+feature.  Because the string is 128 bits long, they decided it must be
+a UUID (as you can see above there is no evidence that Microsoft who
+wrote the original spec thought it was).  Following from this
+assumption, they stated that the "UUID" must be supplied to qemu in
+big endian format and must be byteswapped when writing it to guest
+memory as the virtual device is assumed to always be little-endian
+(even for BE guests).
 
 To further add to the confusion, byte swapping of UUIDs is not
 straightforward.  Only some fields are byte swapped.
@@ -189,6 +188,10 @@ Main specification: http://go.microsoft.com/fwlink/?LinkId=260709
 Threads about qemu and libvirt implementations:
 https://lists.nongnu.org/archive/html/qemu-devel/2018-07/threads.html#01505
 https://listman.redhat.com/archives/libvir-list/2021-September/thread.html#00931
+
+QEMU documentation and implementation:
+https://gitlab.com/qemu-project/qemu/-/blob/master/docs/specs/vmgenid.txt
+https://gitlab.com/qemu-project/qemu/-/blob/master/hw/acpi/vmgenid.c
 
 Latest attempt to get a Linux driver upstream:
 https://lore.kernel.org/linux-doc/3E05451B-A9CD-4719-99D0-72750A304044@amazon.com/
