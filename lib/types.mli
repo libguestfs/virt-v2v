@@ -147,7 +147,7 @@ and s_display_listen =
 
 (** Video adapter model. *)
 and source_video = Source_other_video of string |
-                   Source_Cirrus | Source_QXL
+                   Source_Cirrus
 
 and source_sound = {
   s_sound_model : source_sound_model; (** Sound model. *)

@@ -90,7 +90,7 @@ and s_display_listen =
   | LNone
 
 and source_video = Source_other_video of string |
-                   Source_Cirrus | Source_QXL
+                   Source_Cirrus
 
 and source_sound = {
   s_sound_model : source_sound_model;
@@ -260,12 +260,10 @@ and string_of_source_display { s_display_type = typ;
     )
 
 and string_of_source_video = function
-  | Source_QXL -> "qxl"
   | Source_Cirrus -> "cirrus"
   | Source_other_video video -> video
 
 and source_video_of_string = function
-  | "qxl" -> Source_QXL
   | "cirrus" -> Source_Cirrus
   | video -> Source_other_video video
 
