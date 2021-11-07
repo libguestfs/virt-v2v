@@ -47,18 +47,31 @@ SOURCES_ML = \
 	vCenter.ml \
 	input.ml
 
-bin_PROGRAMS = helper-v2v-input
+# We pretend that we're building a C library.  automake handles the
+# compilation of the C sources for us.  At the end we take the C
+# objects and OCaml objects and link them into the OCaml library.
+# This C library is never used.
 
-helper_v2v_input_SOURCES = dummy.c
-helper_v2v_input_CPPFLAGS = \
+noinst_LIBRARIES = libmlinput.a
+
+if !HAVE_OCAMLOPT
+MLINPUT_CMA = mlinput.cma
+else
+MLINPUT_CMA = mlinput.cmxa
+endif
+
+noinst_DATA = $(MLINPUT_CMA)
+
+libmlinput_a_SOURCES = dummy.c
+libmlinput_a_CPPFLAGS = \
 	-DCAML_NAME_SPACE \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib \
-	-I$(top_srcdir)/v2v
-helper_v2v_input_CFLAGS = \
+	-I$(top_srcdir)/lib
+libmlinput_a_CFLAGS = \
 	-pthread \
+	-fPIC \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS)
 
@@ -108,14 +121,12 @@ OCAMLLINKFLAGS = \
 	mlv2vlib.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
-helper_v2v_input_DEPENDENCIES = \
-	$(OBJECTS) \
-	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
-helper_v2v_input_LINK = \
-	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
-	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \
-	  $(OBJECTS) -o $@
+libmlinput_a_DEPENDENCIES = \
+	$(OBJECTS)
+
+$(MLINPUT_CMA): $(OBJECTS) libmlinput.a
+	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	    $(OBJECTS) $(libmlinput_a_OBJECTS) -o mlinput
 
 # Dependencies.
 .depend: \

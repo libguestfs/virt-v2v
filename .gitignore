@@ -60,7 +60,6 @@ Makefile.in
 /.gitattributes
 /.git-module-status
 /input/.depend
-/input/helper-v2v-input
 /installcheck.sh
 /install-sh
 /libtool

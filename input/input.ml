@@ -30,7 +30,7 @@ open Utils
 open Name_from_disk
 open Parse_libvirt_xml
 
-type cmdline = {
+type options = {
   bandwidth : Types.bandwidth option;
   input_conn : string option;
   input_format : string option;
@@ -39,200 +39,28 @@ type cmdline = {
   input_transport : [`SSH|`VDDK] option;
 }
 
-(* RHBZ#1570407: VMware-generated OVA files found in the wild can
- * contain hrefs referencing snapshots.  The href will be something
- * like: <File href="disk1.vmdk"/> but the actual disk will be a
- * snapshot called something like "disk1.vmdk.000000000".
- *)
-let re_snapshot = PCRE.compile "\\.(\\d+)$"
+module type INPUT = sig
+  val setup : string -> options -> string list -> Types.source
+  val query_input_options : unit -> unit
+  val cleanup : unit -> unit
+end
 
-(* Install a signal handler so we can clean up subprocesses on exit. *)
-let cleanup_pid, cleanup_socket =
+(* Use a common cleanup function to clean up PIDs and sockets. *)
+let cleanup_pid, cleanup_socket, common_cleanup =
   let open Sys in
   let pids = ref [] and sockets = ref [] in
   let cleanup_pid pid = List.push_front pid pids in
   let cleanup_socket sock = List.push_front sock sockets in
-  let cleanup _ =
+  let common_cleanup () =
     List.iter (fun pid -> kill pid sigterm) !pids;
-    List.iter unlink !sockets;
+    List.iter (fun sock -> try unlink sock with Unix_error _ -> ()) !sockets;
   in
-  List.iter (
-    fun signl -> ignore (signal signl (Signal_handle cleanup))
-  ) [ sigint; sigquit; sigterm; sighup ];
-  cleanup_pid, cleanup_socket
-
-let rec main () =
-  (* Parse the command line. *)
-  let set_string_option_once optname optref arg =
-    match !optref with
-    | Some _ ->
-       error (f_"%s option used more than once on the command line") optname
-    | None ->
-       optref := Some arg
-  in
-
-  let input_mode = ref None in
-  let set_input_mode mode =
-    if !input_mode <> None then
-      error (f_"%s option used more than once on the command line") "-im";
-    match mode with
-    | "disk" -> input_mode := Some `Disk
-    | "libvirt" -> input_mode := Some `Libvirt
-    | "libvirtxml" -> input_mode := Some `LibvirtXML
-    | "ova" -> input_mode := Some `OVA
-    | "vcenter-https" -> input_mode := Some `VCenterHTTPS
-    | "vddk" -> input_mode := Some `VDDK
-    | "vmx" -> input_mode := Some `VMX
-    | "xen-ssh" -> input_mode := Some `XenSSH
-    | s -> error (f_"unknown -im option: %s") s
-  in
-
-  let input_options = ref [] in
-  let io_query = ref false in
-  let set_input_option option =
-    if option = "?" then io_query := true (* -io ? *)
-    else (
-      let kv = String.split "=" option in
-      List.push_back input_options kv
-    )
-  in
-
-  let bandwidth = ref None in
-  let bandwidth_file = ref None in
-  let input_conn = ref None in
-  let input_format = ref None in
-  let input_password = ref None in
-  let input_transport = ref None in
-  let args = ref [] in
-  let anon_fun s = List.push_front s args in
-
-  let argspec = [
-    [ L"bandwidth" ], Getopt.String ("bps", set_string_option_once "--bandwidth" bandwidth),
-                                    s_"Set bandwidth to bits per sec";
-    [ L"bandwidth-file" ], Getopt.String ("filename", set_string_option_once "--bandwidth-file" bandwidth_file),
-                                    s_"Set bandwidth dynamically from file";
-    [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
-                                    s_"Libvirt URI";
-    [ M"if" ],       Getopt.String ("format", set_string_option_once "-if" input_format),
-                                    s_"Input format";
-    [ M"im" ],       Getopt.String ("disk|libvirt|libvirtxml|ova|vcenter-https|vddk|vmx|xen-ssh", set_input_mode),
-                                    s_"Set input mode";
-    [ M"io" ],       Getopt.String ("option[=value]", set_input_option),
-                                    s_"Set option for input mode";
-    [ M"ip" ],       Getopt.String ("filename", set_string_option_once "-ip" input_password),
-                                    s_"Use password from file to connect to input hypervisor";
-    [ M"it" ],       Getopt.String ("transport", set_string_option_once "-it" input_transport),
-                                    s_"Input transport";
-  ] in
-
-  let usage_msg =
-    sprintf (f_"\
-%s: helper to set up virt-v2v for input
-
-helper-v2v-input -im MODE V2VDIR [MODE SPECIFIC PARAMETERS ...]
-")
-      prog in
-  let opthandle =
-    create_standard_options argspec ~anon_fun ~program_name:true usage_msg in
-  Getopt.parse opthandle.getopt;
-
-  (* Dereference arguments. *)
-  let args = List.rev !args in
-  let cmdline = {
-    bandwidth =
-      (match !bandwidth, !bandwidth_file with
-       | None, None -> None
-       | Some rate, None -> Some (StaticBandwidth rate)
-       | rate, Some filename -> Some (DynamicBandwidth (rate, filename)));
-    input_conn = !input_conn;
-    input_format = !input_format;
-    input_options = !input_options;
-    input_password = !input_password;
-    input_transport =
-      (match !input_transport with
-       | None -> None
-       | Some "ssh" -> Some `SSH
-       | Some "vddk" -> Some `VDDK
-       | Some it -> error (f_"unknown -it option, must be -it ssh|vddk"))
-  } in
-  let io_query = !io_query in
-
-  (* -im option is required in this tool.  It is set by virt-v2v. *)
-  let input_mode =
-    match !input_mode with
-    | None -> error (f_"-im parameter was not set")
-    | Some im -> im in
-
-  (* -io ? means list the valid input options for this mode. *)
-  if io_query then (
-    (match input_mode with
-     | `Disk | `Libvirt | `LibvirtXML | `OVA | `VCenterHTTPS | `VMX | `XenSSH ->
-        printf (f_"No input options can be used in this mode.\n");
-     | `VDDK ->
-        vddk_print_input_options ();
-    );
-    exit 0
-  );
-
-  (* Check -io is only used for input modes that support it. *)
-  if cmdline.input_options <> [] then (
-    match input_mode with
-    | `Disk | `Libvirt | `LibvirtXML | `OVA | `VCenterHTTPS | `VMX | `XenSSH ->
-       error (f_"no -io (input options) are allowed here")
-    | `VDDK -> ()
-  );
-
-  (* The first parameter must be the V2V directory. *)
-  let dir, args =
-    match args with
-    | [] -> error (f_"the first parameter must be the V2V directory")
-    | dir :: args -> dir, args in
-
-  (* The v2v directory must exist. *)
-  if not (is_directory dir) then
-    error (f_"%s does not exist or is not a directory") dir;
-
-  (* Create the source struct and input-mode-specific data. *)
-  let source, data =
-    match input_mode with
-    | `Disk -> disk_source cmdline args
-    | `Libvirt -> libvirt_source cmdline args
-    | `LibvirtXML -> libvirt_xml_source cmdline args
-    | `OVA -> ova_source cmdline args
-    | `VCenterHTTPS -> vcenter_https_source cmdline args
-    | `VDDK -> vddk_source cmdline args
-    | `VMX -> vmx_source cmdline args
-    | `XenSSH -> xen_ssh_source cmdline args in
-
-  (* Create NBD server instances. *)
-  (match data with
-   | `Disk data -> disk_servers dir data
-   | `Libvirt data -> libvirt_servers dir data
-   | `OVA data -> ova_servers dir data
-   | `VCenterHTTPS data -> vcenter_https_servers dir data
-   | `VDDK data -> vddk_servers dir data
-   | `VMX data -> vmx_servers dir data
-   | `XenSSH data -> xen_ssh_servers dir data
-  );
-
-  (* Write out the source metadata. *)
-  with_open_out (dir // "source") (
-    fun chan ->
-      output_value chan Utils.metaversion;
-      output_value chan source
-  );
-
-  (* Now everything should be running, write our PID and
-   * wait until we get a signal.
-   *)
-  let in_pid = dir // "in.pid" in
-  with_open_out in_pid (fun chan -> fprintf chan "%d" (getpid ()));
-  pause ()
+  cleanup_pid, cleanup_socket, common_cleanup
 
 (*----------------------------------------------------------------------*)
-(* -im disk *)
+(* Input.Disk *)
 
-and disk_source cmdline args =
+let rec disk_source options args =
   if args = [] then
     error (f_"-i disk: expecting a disk image (filename) on the command line");
 
@@ -278,8 +106,8 @@ and disk_source cmdline args =
     s_nics = [s_nic];
   } in
 
-  let input_format = detect_local_input_format cmdline args in
-  source, `Disk (input_format, args)
+  let input_format = detect_local_input_format options args in
+  source, (input_format, args)
 
 (* For a list of local disks, try to detect the input format if
  * the [-if] option was not used on the command line.  If the
@@ -349,10 +177,24 @@ and disk_servers dir (input_format, args) =
          cleanup_pid pid
   ) args
 
-(*----------------------------------------------------------------------*)
-(* -im libvirt *)
+module Disk = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = disk_source options args in
+    disk_servers dir data;
+    source
 
-and libvirt_source cmdline args =
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Input.Libvirt_ *)
+
+let rec libvirt_source options args =
   let guest =
     match args with
     | [arg] -> arg
@@ -362,12 +204,12 @@ and libvirt_source cmdline args =
   (* Connect to the hypervisor. *)
   let conn =
     let auth = Libvirt_utils.auth_for_password_file
-                 ?password_file:cmdline.input_password () in
-    Libvirt.Connect.connect_auth ?name:cmdline.input_conn auth in
+                 ?password_file:options.input_password () in
+    Libvirt.Connect.connect_auth ?name:options.input_conn auth in
 
   (* Parse the libvirt XML. *)
   let source, disks, _ = parse_libvirt_domain conn guest in
-  source, `Libvirt disks
+  source, disks
 
 and libvirt_servers dir disks =
   (* Check nbdkit is installed. *)
@@ -447,10 +289,24 @@ and libvirt_servers dir disks =
             cleanup_pid pid
   ) disks
 
-(*----------------------------------------------------------------------*)
-(* -im libvirtxml *)
+module Libvirt_ = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = libvirt_source options args in
+    libvirt_servers dir data;
+    source
 
-and libvirt_xml_source _ args =
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Input.LibvirtXML *)
+
+let libvirt_xml_source _ args =
   let xmlfile =
     match args with
     | [arg] -> arg
@@ -458,12 +314,33 @@ and libvirt_xml_source _ args =
        error (f_"-i libvirtxml: expecting a libvirt XML filename on the command line") in
   let xml = read_whole_file xmlfile in
   let source, disks = parse_libvirt_xml xml in
-  source, `Libvirt disks
+  source, disks
+
+module LibvirtXML = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = libvirt_xml_source options args in
+    libvirt_servers dir data;
+    source
+
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
 
 (*----------------------------------------------------------------------*)
-(* -im ova *)
+(* Input.OVA *)
 
-and ova_source _ args =
+(* RHBZ#1570407: VMware-generated OVA files found in the wild can
+ * contain hrefs referencing snapshots.  The href will be something
+ * like: <File href="disk1.vmdk"/> but the actual disk will be a
+ * snapshot called something like "disk1.vmdk.000000000".
+ *)
+let re_snapshot = PCRE.compile "\\.(\\d+)$"
+
+let rec ova_source _ args =
   let ova =
     match args with
     | [ova] -> ova
@@ -601,7 +478,7 @@ and ova_source _ args =
     s_nics = nics;
     } in
 
-  source, `OVA qemu_uris
+  source, qemu_uris
 
 and ova_servers dir qemu_uris =
   (* Run qemu-nbd for each disk. *)
@@ -654,10 +531,24 @@ and get_snapshot_if_matches href filename =
 and error_missing_href href =
   error (f_"-i ova: OVF references file ‘%s’ which was not found in the OVA archive") href
 
-(*----------------------------------------------------------------------*)
-(* -im vcenter-https *)
+module OVA = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = ova_source options args in
+    ova_servers dir data;
+    source
 
-and vcenter_https_source cmdline args =
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Input.VCenterHTTPS *)
+
+let rec vcenter_https_source options args =
   let open Xpath_helpers in
 
   (* Remove proxy environment variables so curl doesn't try to use
@@ -682,7 +573,7 @@ and vcenter_https_source cmdline args =
    * enforced by virt-v2v.
    *)
   let input_conn =
-    match cmdline.input_conn with
+    match options.input_conn with
     | Some ic -> ic
     | None ->
        error (f_"-i libvirt: expecting -ic parameter for vcenter connection") in
@@ -702,7 +593,7 @@ and vcenter_https_source cmdline args =
   (* Connect to the hypervisor. *)
   let conn =
     let auth = Libvirt_utils.auth_for_password_file
-                 ?password_file:cmdline.input_password () in
+                 ?password_file:options.input_password () in
     Libvirt.Connect.connect_auth ~name:input_conn auth in
 
   (* Parse the libvirt XML. *)
@@ -721,8 +612,8 @@ and vcenter_https_source cmdline args =
     | None ->
        error (f_"vcenter: <vmware:datacenterpath> was not found in the XML.  You need to upgrade to libvirt ≥ 1.2.20.") in
 
-  source, `VCenterHTTPS (dcPath, uri, server, disks,
-                         cmdline.bandwidth, cmdline.input_password)
+  source, (dcPath, uri, server, disks,
+           options.bandwidth, options.input_password)
 
 and vcenter_https_servers dir
                           (dcPath, uri, server, disks,
@@ -744,10 +635,24 @@ and vcenter_https_servers dir
          cleanup_pid pid
   ) disks
 
-(*----------------------------------------------------------------------*)
-(* -im vddk *)
+module VCenterHTTPS = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = vcenter_https_source options args in
+    vcenter_https_servers dir data;
+    source
 
-and vddk_print_input_options () =
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Input.VDDK *)
+
+let rec vddk_print_input_options () =
   printf (f_"Input options (-io) which can be used with -it vddk:
 
   -io vddk-thumbprint=xx:xx:xx:...
@@ -769,7 +674,7 @@ Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further
 information on these settings.
 ");
 
-and vddk_source cmdline args =
+and vddk_source options args =
   let open Xpath_helpers in
 
   (* Check there are no input options we don't understand.
@@ -785,7 +690,7 @@ and vddk_source cmdline args =
       "thumbprint";
       "transports" ] in
 
-  let options =
+  let io_options =
     List.map (
       fun (key, value) ->
       let error_invalid_key () =
@@ -795,15 +700,15 @@ and vddk_source cmdline args =
       let key = String.sub key 5 (String.length key-5) in
       if not (List.mem key vddk_option_keys) then error_invalid_key ();
       (key, value)
-    ) cmdline.input_options in
+    ) options.input_options in
 
   (* Check no option appears more than once. *)
-  let keys = List.map fst options in
+  let keys = List.map fst io_options in
   if List.length keys <> List.length (List.sort_uniq compare keys) then
     error (f_"-it vddk: duplicate -io options on the command line");
 
   (* thumbprint is mandatory. *)
-  if not (List.mem_assoc "thumbprint" options) then
+  if not (List.mem_assoc "thumbprint" io_options) then
     error (f_"You must pass the ‘-io vddk-thumbprint’ option with the SSL thumbprint of the VMware server.  To find the thumbprint, see the nbdkit-vddk-plugin(1) manual.  See also the virt-v2v-input-vmware(1) manual.");
 
   (* Get the guest name. *)
@@ -817,7 +722,7 @@ and vddk_source cmdline args =
    * enforced by virt-v2v.
    *)
   let input_conn =
-    match cmdline.input_conn with
+    match options.input_conn with
     | Some ic -> ic
     | None ->
        error (f_"-i libvirt: expecting -ic parameter for vcenter connection") in
@@ -831,7 +736,7 @@ and vddk_source cmdline args =
   (* Connect to the hypervisor. *)
   let conn =
     let auth = Libvirt_utils.auth_for_password_file
-                 ?password_file:cmdline.input_password () in
+                 ?password_file:options.input_password () in
     Libvirt.Connect.connect_auth ~name:input_conn auth in
 
   (* Parse the libvirt XML. *)
@@ -851,11 +756,11 @@ and vddk_source cmdline args =
     | None ->
        error (f_"<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The most likely reason is that libvirt is too old, try upgrading libvirt to ≥ 3.7.") guest in
 
-  source, `VDDK (uri, options, moref, disks,
-                 cmdline.bandwidth, input_conn, cmdline.input_password)
+  source, (uri, io_options, moref, disks,
+           options.bandwidth, input_conn, options.input_password)
 
 and vddk_servers dir
-                 (uri, options, moref, disks,
+                 (uri, io_options, moref, disks,
                  bandwidth, input_conn, input_password) =
   (* It probably never happens that the server name can be missing
    * from the libvirt URI, but we need a server name to pass to
@@ -870,22 +775,22 @@ and vddk_servers dir
   let user = uri.Xml.uri_user in
 
   let config =
-    try Some (List.assoc "config" options) with Not_found -> None in
+    try Some (List.assoc "config" io_options) with Not_found -> None in
   let cookie =
-    try Some (List.assoc "cookie" options) with Not_found -> None in
+    try Some (List.assoc "cookie" io_options) with Not_found -> None in
   let libdir =
-    try Some (List.assoc "libdir" options) with Not_found -> None in
+    try Some (List.assoc "libdir" io_options) with Not_found -> None in
   let nfchostport =
-    try Some (List.assoc "nfchostport" options) with Not_found -> None in
+    try Some (List.assoc "nfchostport" io_options) with Not_found -> None in
   let port =
-    try Some (List.assoc "port" options) with Not_found -> None in
+    try Some (List.assoc "port" io_options) with Not_found -> None in
   let snapshot =
-    try Some (List.assoc "snapshot" options) with Not_found -> None in
+    try Some (List.assoc "snapshot" io_options) with Not_found -> None in
   let thumbprint =
-    try List.assoc "thumbprint" options
+    try List.assoc "thumbprint" io_options
     with Not_found -> assert false (* checked above *) in
   let transports =
-    try Some (List.assoc "transports" options) with Not_found -> None in
+    try Some (List.assoc "transports" io_options) with Not_found -> None in
 
   (* Create an nbdkit instance for each disk. *)
   List.iteri (
@@ -914,17 +819,29 @@ and vddk_servers dir
          cleanup_pid pid
   ) disks
 
-(*----------------------------------------------------------------------*)
-(* -im vmx *)
+module VDDK = struct
+  let setup dir options args =
+    let source, data = vddk_source options args in
+    vddk_servers dir data;
+    source
 
-and vmx_source cmdline args =
+  let query_input_options () =
+    vddk_print_input_options ()
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Input.VMX *)
+
+let rec vmx_source options args =
   let open Parse_domain_from_vmx in
 
   let vmx_source =
     match args with
     | [arg] ->
        let input_transport =
-         match cmdline.input_transport with
+         match options.input_transport with
          | None -> None
          | Some `SSH -> Some `SSH
          | Some `VDDK ->
@@ -934,8 +851,8 @@ and vmx_source cmdline args =
        error (f_"-i vmx: expecting a VMX file or ssh:// URI") in
 
   let source, filenames = parse_domain_from_vmx vmx_source in
-  source, `VMX (vmx_source, filenames,
-                cmdline.bandwidth, cmdline.input_password)
+  source, (vmx_source, filenames,
+           options.bandwidth, options.input_password)
 
 and vmx_servers dir (vmx_source, filenames, bandwidth, input_password) =
   let open Parse_domain_from_vmx in
@@ -1007,10 +924,24 @@ and absolute_path_from_other_file other_filename filename =
   if not (Filename.is_relative filename) then filename
   else (Filename.dirname (absolute_path other_filename)) // filename
 
-(*----------------------------------------------------------------------*)
-(* -im xen-ssh *)
+module VMX = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = vmx_source options args in
+    vmx_servers dir data;
+    source
 
-and xen_ssh_source cmdline args =
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Input.XenSSH *)
+
+let rec xen_ssh_source options args =
   (* Get the guest name. *)
   let guest =
     match args with
@@ -1020,7 +951,7 @@ and xen_ssh_source cmdline args =
 
   (* -ic must be set. *)
   let input_conn =
-    match cmdline.input_conn with
+    match options.input_conn with
     | Some ic -> ic
     | None ->
        error (f_"-i libvirt: expecting -ic parameter for Xen over SSH connection") in
@@ -1034,14 +965,14 @@ and xen_ssh_source cmdline args =
   (* Connect to the hypervisor. *)
   let conn =
     let auth = Libvirt_utils.auth_for_password_file
-                 ?password_file:cmdline.input_password () in
+                 ?password_file:options.input_password () in
     Libvirt.Connect.connect_auth ~name:input_conn auth in
 
   (* Parse the libvirt XML. *)
   let source, disks, _ = parse_libvirt_domain conn guest in
 
-  source, `XenSSH (disks, uri,
-                   cmdline.bandwidth, input_conn, cmdline.input_password)
+  source, (disks, uri,
+           options.bandwidth, input_conn, options.input_password)
 
 and xen_ssh_servers dir (disks, uri, bandwidth, input_conn, input_password) =
   let server =
@@ -1080,4 +1011,16 @@ and xen_ssh_servers dir (disks, uri, bandwidth, input_conn, input_password) =
          cleanup_pid pid
   ) disks
 
-let () = run_main_and_handle_errors main
+module XenSSH = struct
+  let setup dir options args =
+    if options.input_options <> [] then
+      error (f_"no -io (input options) are allowed here");
+    let source, data = xen_ssh_source options args in
+    xen_ssh_servers dir data;
+    source
+
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end

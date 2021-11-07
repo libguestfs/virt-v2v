@@ -48,11 +48,11 @@ let tmpdir =
   if running_as_root then chmod tmpdir 0o711;
   tmpdir
 
-(* Ensure the input and output helpers get killed on exit. *)
-let i_pid = ref 0 and o_pid = ref 0
+(* Ensure the output helper gets killed on exit. *)
+let o_pid = ref 0
 
 let cleanup () =
-  (* Wait a short time for the helpers to exit before deleting
+  (* Wait a short time for the helper to exit before deleting
    * the v2v directory, since the helpers cleanups may need
    * files in there.
    *)
@@ -67,11 +67,6 @@ let cleanup () =
     try fst (waitpid [WNOHANG] pid) <> 0 with Unix_error _ -> false
   in
 
-  if !i_pid <> 0 then (
-    kill !i_pid Sys.sigterm;
-    loop 30 !i_pid;
-    i_pid := 0
-  );
   if !o_pid <> 0 then (
     kill !o_pid Sys.sigterm;
     loop 30 !o_pid;
@@ -90,6 +85,26 @@ let rec main () =
        error (f_"%s option used more than once on the command line") optname
     | None ->
        optref := Some arg
+  in
+
+  let bandwidth = ref None in
+  let bandwidth_file = ref None in
+  let input_conn = ref None in
+  let input_format = ref None in
+  let input_password = ref None in
+  let input_transport = ref None in
+
+  let input_options = ref [] in
+  let io_query = ref false in
+  let set_input_option_compat k v =
+    List.push_back input_options (k, v)
+  in
+  let set_input_option option =
+    if option = "?" then io_query := true
+    else (
+      let k, v = String.split "=" option in
+      set_input_option_compat k v
+    )
   in
 
   let network_map = Networks.create () in
@@ -166,15 +181,6 @@ let rec main () =
       error (f_"unknown --root option: %s") s
   in
 
-  (* Input options passed to helper-v2v-input-*. *)
-  let i_options = ref [] in
-  let io_query = ref false in
-  let add_i_option k v =
-    if k = "-io" && v = "?" then io_query := true; (* XXX *)
-    List.push_front (k, v) i_options
-  in
-  let set_input_option_compat k v = add_i_option "-io" (k ^ "=" ^ v) in
-
   (* Output options passed to helper-v2v-output-*. *)
   let o_options = ref [] in
   let oo_query = ref false in
@@ -188,8 +194,6 @@ let rec main () =
   let in_place = ref false in
   let print_source = ref false in
 
-  let input_conn = ref None in
-  let input_transport = ref None in
   let input_mode = ref `Not_set in
   let set_input_mode mode =
     if !input_mode <> `Not_set then
@@ -245,10 +249,10 @@ let rec main () =
   in
 
   let argspec = [
-    [ L"bandwidth" ], Getopt.String ("bps", add_i_option "--bandwidth"),
-      s_"Set bandwidth to bits per sec";
-    [ L"bandwidth-file" ], Getopt.String ("filename", add_i_option "--bandwidth-file"),
-      s_"Set bandwidth dynamically from file";
+    [ L"bandwidth" ], Getopt.String ("bps", set_string_option_once "--bandwidth" bandwidth),
+                                    s_"Set bandwidth to bits per sec";
+    [ L"bandwidth-file" ], Getopt.String ("filename", set_string_option_once "--bandwidth-file" bandwidth_file),
+                                    s_"Set bandwidth dynamically from file";
     [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
       s_"Map bridge ‘in’ to ‘out’";
     [ L"compressed" ], Getopt.Unit (fun () -> add_o_option "-oo" "compressed"),
@@ -256,15 +260,15 @@ let rec main () =
     [ S 'i' ],       Getopt.String ("disk|libvirt|libvirtxml|ova|vmx", set_input_mode),
       s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
-      s_"Libvirt URI";
-    [ M"if" ],       Getopt.String ("format", add_i_option "-if"),
-      s_"Input format (for -i disk)";
-    [ M"io" ],       Getopt.String ("option[=value]", add_i_option "-io"),
-      s_"Set option for input mode";
-    [ M"ip" ],       Getopt.String ("filename", add_i_option "-ip"),
-      s_"Use password from file to connect to input hypervisor";
+                                    s_"Libvirt URI";
+    [ M"if" ],       Getopt.String ("format", set_string_option_once "-if" input_format),
+                                    s_"Input format";
+    [ M"io" ],       Getopt.String ("option[=value]", set_input_option),
+                                    s_"Set option for input mode";
+    [ M"ip" ],       Getopt.String ("filename", set_string_option_once "-ip" input_password),
+                                    s_"Use password from file to connect to input hypervisor";
     [ M"it" ],       Getopt.String ("transport", set_string_option_once "-it" input_transport),
-      s_"Input transport";
+                                    s_"Input transport";
     [ L"in-place" ], Getopt.Set in_place,
       s_"Only tune the guest in the input VM";
     [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
@@ -289,7 +293,7 @@ let rec main () =
       s_"Use password from file to connect to output hypervisor";
     [ M"os" ],       Getopt.String ("storage", add_o_option "-os"),
       s_"Set output storage location";
-    [ L"password-file" ], Getopt.String ("filename", add_i_option "-ip"),
+    [ L"password-file" ], Getopt.String ("filename", set_string_option_once "-ip" input_password),
       s_"Same as ‘-ip filename’";
     [ L"print-source" ], Getopt.Set print_source,
       s_"Print source and stop";
@@ -386,7 +390,6 @@ read the man page virt-v2v(1).
     | Some "vddk" -> Some `VDDK
     | Some transport ->
        error (f_"unknown input transport ‘-it %s’") transport in
-  let i_options = List.rev !i_options in
   let output_alloc =
     match !output_alloc with
     | `Not_set | `Sparse -> Types.Sparse
@@ -454,23 +457,16 @@ read the man page virt-v2v(1).
   List.push_back std_args "--program-name=virt-v2v";
   let std_args = !std_args in
 
-  (* Get the input helper name and command line. *)
-  let i_helper, i_extra_args =
+  (* Get the input module. *)
+  let (module Input_module) =
     match input_mode with
-    | `Disk -> "helper-v2v-input", [ "-im"; "disk" ]
-    | `LibvirtXML ->
-       "helper-v2v-input", [ "-im"; "libvirtxml" ]
-    | `OVA -> "helper-v2v-input", [ "-im"; "ova" ]
-    | `VMX ->
-       let i_extra_args =
-         match input_transport with
-         | None -> []
-         | Some `SSH -> [ "-it"; "ssh" ]
-         | Some `VDDK -> error (f_"only ‘-it ssh’ can be used here") in
-       "helper-v2v-input", [ "-im"; "vmx" ] @ i_extra_args
+    | `Disk -> (module Input.Disk : Input.INPUT)
+    | `LibvirtXML -> (module Input.LibvirtXML)
+    | `OVA -> (module Input.OVA)
+    | `VMX -> (module Input.VMX)
     | `Not_set | `Libvirt ->
        match input_conn with
-       | None -> "helper-v2v-input", [ "-im"; "libvirt" ]
+       | None -> (module Input.Libvirt_)
        | Some orig_uri ->
           let { Xml.uri_server = server; uri_scheme = scheme } =
             try Xml.parse_uri orig_uri
@@ -484,19 +480,19 @@ read the man page virt-v2v(1).
 
             | Some _, None, _     (* No scheme? *)
             | Some _, Some "", _ ->
-             "helper-v2v-input", [ "-im"; "libvirt"; "-ic"; orig_uri ]
+             (module Input.Libvirt_)
 
           (* vCenter over https. *)
           | Some server, Some ("esx"|"gsx"|"vpx"), None ->
-             "helper-v2v-input", [ "-im"; "vcenter-https"; "-ic"; orig_uri ]
+             (module Input.VCenterHTTPS)
 
           (* vCenter or ESXi using nbdkit vddk plugin *)
           | Some server, Some ("esx"|"gsx"|"vpx"), Some `VDDK ->
-             "helper-v2v-input", [ "-im"; "vddk"; "-ic"; orig_uri ]
+             (module Input.VDDK)
 
           (* Xen over SSH *)
           | Some server, Some "xen+ssh", _ ->
-             "helper-v2v-input", [ "-im"; "xen-ssh"; "-ic"; orig_uri ]
+             (module Input.XenSSH)
 
           (* Old virt-v2v also supported qemu+ssh://.  However I am
            * deliberately not supporting this in new virt-v2v.  Don't
@@ -506,28 +502,41 @@ read the man page virt-v2v(1).
           (* Unknown remote scheme. *)
           | Some _, Some _, _ ->
              warning (f_"no support for remote libvirt connections to '-ic %s'.  The conversion may fail when it tries to read the source disks.") orig_uri;
-             "helper-v2v-input", [ "-im"; "libvirt"; "-ic"; orig_uri ] in
+             (module Input.Libvirt_) in
 
-  (* The purpose of this is simply to fail early on if the
-   * input helper we have chosen does not exist.
-   *)
-  if shell_command (sprintf "%s --version >/dev/null 2>&1" i_helper) <> 0 then
-    error (f_"input helper command (%s) does not exist or is not working")
-      i_helper;
-
-  let i_cmd =
-    i_helper :: std_args @ i_extra_args @
-      key_store_to_cli opthandle.ks (* --key parameters *) @
-      List.flatten (List.map (fun (k, v) -> [k; v]) i_options) @
-        args in
+  let input_options = {
+    Input.bandwidth =
+      (match !bandwidth, !bandwidth_file with
+       | None, None -> None
+       | Some rate, None -> Some (StaticBandwidth rate)
+       | rate, Some filename -> Some (DynamicBandwidth (rate, filename)));
+    input_conn = input_conn;
+    input_format = !input_format;
+    input_options = !input_options;
+    input_password = !input_password;
+    input_transport = input_transport
+  } in
 
   (* If -io ? then we want to query input options supported in this mode. *)
   if !io_query then (
-    if run_command i_cmd <> 0 then
-      (* We assume the command already printed an error. *)
-      exit 1;
+    Input_module.query_input_options ();
     exit 0
   );
+
+  (* Install a signal handler and atexit handler so the
+   * Input_module.cleanup function is always called.
+   *)
+  let () =
+    let cleanup_called = ref false in
+    let cleanup () =
+      if not !cleanup_called then Input_module.cleanup ();
+      cleanup_called := true
+    in
+    List.iter (
+      fun signl ->
+        ignore (Sys.signal signl (Sys.Signal_handle (fun _ -> cleanup ())))
+    ) [ Sys.sigint; Sys.sigquit; Sys.sigterm; Sys.sighup ];
+    at_exit cleanup in
 
   (* Get the output helper name and command line. *)
   let o_helper, o_extra_args =
@@ -597,22 +606,22 @@ read the man page virt-v2v(1).
     static_ips;
   } in
 
-  (* Start the input helper (runs in the background). *)
-  i_pid := start_helper "input" i_helper i_cmd (tmpdir // "in.pid");
+  (* Start the input module (runs an NBD server in the background). *)
+  let source = Input_module.setup tmpdir input_options args in
 
   (* If --print-source then print the source metadata and exit. *)
   if print_source then (
-    let source =
-      with_open_in (tmpdir // "source") (
-        fun chan ->
-          let ver = input_value chan in
-          assert (ver = Utils.metaversion);
-          (input_value chan : Types.source)
-      ) in
     printf (f_"Source guest information (--print-source option):\n");
     printf "\n";
     printf "%s\n" (Types.string_of_source source);
     exit 0
+  );
+
+  (* XXX Temporary - removed in following commit XXX *)
+  with_open_out (tmpdir // "source") (
+    fun chan ->
+      output_value chan Utils.metaversion;
+      output_value chan source
   );
 
   (* Start the output helper (runs in the background). *)
@@ -623,15 +632,6 @@ read the man page virt-v2v(1).
     let cmd = sprintf "ls -alZ %s 1>&2" (quote tmpdir) in
     ignore (Sys.command cmd)
   );
-
-  (* XXX Temporary - removed in following commit XXX *)
-  let source =
-    with_open_in (tmpdir // "source") (
-      fun chan ->
-        let ver = input_value chan in
-        assert (ver = Utils.metaversion);
-        (input_value chan : Types.source)
-    ) in
 
   (* Do the conversion. *)
   with_open_out (tmpdir // "convert") (fun _ -> ());

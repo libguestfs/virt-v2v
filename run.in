@@ -73,7 +73,6 @@ chcon --reference=/tmp "$b/tmp" 2>/dev/null ||:
 
 # Set the PATH to contain the virt-v2v and helper binaries.
 prepend PATH "$b/v2v"
-prepend PATH "$b/input"
 prepend PATH "$b/output"
 export PATH
 
