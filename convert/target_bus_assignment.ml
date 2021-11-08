@@ -35,7 +35,6 @@ let rec target_bus_assignment source_disks source_removables guestcaps =
     let bus =
       match guestcaps.gcaps_block_bus with
       | Virtio_blk -> virtio_blk_bus
-      | Virtio_SCSI -> scsi_bus
       | IDE -> ide_bus in
     List.iteri (
       fun i d ->

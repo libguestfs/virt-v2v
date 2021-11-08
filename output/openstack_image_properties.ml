@@ -35,7 +35,6 @@ let create source inspect { target_buses; guestcaps; target_firmware } =
     "hw_disk_bus",
     (match guestcaps.gcaps_block_bus with
      | Virtio_blk -> "virtio"
-     | Virtio_SCSI -> "scsi"
      | IDE -> "ide");
     "hw_vif_model",
     (match guestcaps.gcaps_net_bus with
@@ -71,12 +70,6 @@ let create source inspect { target_buses; guestcaps; target_firmware } =
       List.push_back properties ("hw_cpu_sockets", string_of_int sockets);
       List.push_back properties ("hw_cpu_cores", string_of_int cores);
       List.push_back properties ("hw_cpu_threads", string_of_int threads);
-  );
-
-  (match guestcaps.gcaps_block_bus with
-   | Virtio_SCSI ->
-      List.push_back properties ("hw_scsi_model", "virtio-scsi")
-   | Virtio_blk | IDE -> ()
   );
 
   (match inspect.i_major_version, inspect.i_minor_version with

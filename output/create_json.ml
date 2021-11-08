@@ -195,7 +195,6 @@ let create_json_metadata source inspect
     let block_bus =
       match guestcaps.gcaps_block_bus with
       | Virtio_blk -> "virtio-blk"
-      | Virtio_SCSI -> "virtio-scsi"
       | IDE -> "ide" in
     let net_bus =
       match guestcaps.gcaps_net_bus with

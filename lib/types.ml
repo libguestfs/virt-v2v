@@ -422,14 +422,13 @@ type guestcaps = {
   gcaps_arch : string;
   gcaps_acpi : bool;
 }
-and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
+and guestcaps_block_type = Virtio_blk | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
 and guestcaps_video_type = QXL | Cirrus
 and guestcaps_machine = I440FX | Q35 | Virt
 
 let string_of_block_type = function
   | Virtio_blk -> "virtio-blk"
-  | Virtio_SCSI -> "virtio-scsi"
   | IDE -> "ide"
 let string_of_net_type = function
   | Virtio_net -> "virtio-net"
