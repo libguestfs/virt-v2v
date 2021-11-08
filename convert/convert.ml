@@ -30,9 +30,14 @@ open Utils
 
 module G = Guestfs
 
-(* Matches --mac command line parameters. *)
-let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)"
-let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
+type options = {
+  keep_serial_console : bool;
+  ks : key_store;
+  network_map : Networks.t;
+  output_name : string option;
+  root_choice : root_choice;
+  static_ips : static_ip list;
+}
 
 (* Mountpoint stats, used for free space estimation. *)
 type mpstat = {
@@ -42,151 +47,9 @@ type mpstat = {
   mp_vfs : string;                      (* VFS type (eg. "ext4") *)
 }
 
-let rec main () =
-  let set_string_option_once optname optref arg =
-    match !optref with
-    | Some _ ->
-       error (f_"%s option used more than once on the command line") optname
-    | None ->
-       optref := Some arg
-  in
-
-  let network_map = Networks.create () in
-  let static_ips = ref [] in
-  let rec add_network str =
-    match String.split ":" str with
-    | "", "" ->
-       error (f_"invalid -n/--network parameter")
-    | out, "" | "", out ->
-       Networks.add_default_network network_map out
-    | in_, out ->
-       Networks.add_network network_map in_ out
-  and add_bridge str =
-    match String.split ":" str with
-    | "", "" ->
-       error (f_"invalid -b/--bridge parameter")
-    | out, "" | "", out ->
-       Networks.add_default_bridge network_map out
-    | in_, out ->
-       Networks.add_bridge network_map in_ out
-  and add_mac str =
-    if not (PCRE.matches mac_re str) then
-      error (f_"cannot parse --mac \"%s\" parameter") str;
-    let mac = PCRE.sub 1 and out = PCRE.sub 3 in
-    match PCRE.sub 2 with
-    | "network" ->
-       Networks.add_mac network_map mac Network out
-    | "bridge" ->
-       Networks.add_mac network_map mac Bridge out
-    | "ip" ->
-       (match String.nsplit "," out with
-        | [] -> error (f_"invalid --mac ip option")
-        | [ip] -> add_static_ip mac ip None None []
-        | [ip; gw] -> add_static_ip mac ip (Some gw) None []
-        | ip :: gw :: len :: nameservers ->
-           add_static_ip mac ip (Some gw) (Some len) nameservers
-       )
-    | _ -> assert false
-  and add_static_ip if_mac_addr if_ip_address if_default_gateway
-                    if_prefix_length_str if_nameservers =
-    (* Check the IP addresses and prefix length are sensible.  This
-     * is only a very simple test that they are sane, since IP addresses
-     * come in too many valid forms to check thoroughly.
-     *)
-    let rec error_unless_ip_addr what addr =
-      if not (PCRE.matches mac_ip_re addr) then
-        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” is an IP address") what addr
-    in
-    error_unless_ip_addr "ipaddr" if_ip_address;
-    Option.may (error_unless_ip_addr "gw") if_default_gateway;
-    List.iter (error_unless_ip_addr "nameserver") if_nameservers;
-    let if_prefix_length =
-      match if_prefix_length_str with
-      | None -> None
-      | Some len ->
-         let len =
-           try int_of_string len with
-           | Failure _ -> error (f_"cannot parse --mac ip prefix length field as an integer: %s") len in
-         if len < 0 || len > 128 then
-           error (f_"--mac ip prefix length field is out of range");
-         Some len in
-    List.push_back static_ips
-      { if_mac_addr; if_ip_address; if_default_gateway;
-        if_prefix_length; if_nameservers }
-  in
-
-  let root_choice = ref AskRoot in
-  let set_root_choice = function
-    | "ask" -> root_choice := AskRoot
-    | "single" -> root_choice := SingleRoot
-    | "first" -> root_choice := FirstRoot
-    | dev when String.is_prefix dev "/dev/" -> root_choice := RootDev dev
-    | s ->
-      error (f_"unknown --root option: %s") s
-  in
-
-  let keep_serial_console = ref true in
-  let output_name = ref None in
-
-  (* Parse the command line. *)
-  let args = ref [] in
-  let anon_fun s = List.push_front s args in
-  let argspec = [
-    [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
-                                    s_"Map bridge ‘in’ to ‘out’";
-    [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
-                                    s_"Map NIC to network or bridge or assign static IP";
-    [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
-                                    s_"Map network ‘in’ to ‘out’";
-    [ M"on" ],       Getopt.String ("name", set_string_option_once "-on" output_name),
-                                    s_"Rename guest when converting";
-    [ L"remove-serial-console" ],
-                     Getopt.Clear keep_serial_console,
-                                    s_"Remove Linux serial console";
-    [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
-                                    s_"How to choose root filesystem";
-  ] in
-
-  let usage_msg =
-    sprintf (f_"\
-%s: helper to convert a guest to run on KVM
-
-helper-v2v-convert V2VDIR
-")
-      prog in
-  let opthandle =
-    create_standard_options argspec ~anon_fun ~program_name:true usage_msg in
-  Getopt.parse opthandle.getopt;
-
-  (* Dereference the arguments. *)
-  let args = List.rev !args in
-  let keep_serial_console = !keep_serial_console in
-  let output_name = !output_name in
-  let root_choice = !root_choice in
-  let static_ips = !static_ips in
-
-  (* Check correct number of anon args were passed. *)
-  let dir =
-    match args with
-    | [] -> error (f_"the first parameter must be the V2V directory")
-    | [dir] -> dir
-    | _ -> error (f_"too many anon args passed to %s") prog in
-
-  (* The v2v directory must exist. *)
-  if not (is_directory dir) then
-    error (f_"%s does not exist or is not a directory") dir;
-
-  (* Read the source metadata written by the input helper. *)
-  let source =
-    with_open_in (dir // "source") (
-      fun chan ->
-        let ver = input_value chan in
-        assert (ver = Utils.metaversion);
-        (input_value chan : Types.source)
-    ) in
-
-  let output_name = Option.default source.s_name output_name in
-  let target_nics = List.map (Networks.map network_map) source.s_nics in
+let rec convert dir options source =
+  let output_name = Option.default source.s_name options.output_name in
+  let target_nics = List.map (Networks.map options.network_map) source.s_nics in
 
   message (f_"Opening the source");
   let g = open_guestfs ~identifier:"v2v" () in
@@ -213,24 +76,19 @@ helper-v2v-convert V2VDIR
   g#launch ();
 
   (* Decrypt the disks. *)
-  inspect_decrypt g opthandle.ks;
+  inspect_decrypt g options.ks;
 
   (* Inspection - this also mounts up the filesystems. *)
   message (f_"Inspecting the source");
-  let inspect = Inspect_source.inspect_source root_choice g in
-
-  with_open_out (dir // "inspect") (
-    fun chan ->
-      output_value chan Utils.metaversion;
-      output_value chan inspect
-  );
+  let inspect = Inspect_source.inspect_source options.root_choice g in
 
   let mpstats = get_mpstats g in
   check_guest_free_space inspect mpstats;
 
   (* Conversion. *)
   let guestcaps =
-    do_convert g source inspect keep_serial_console static_ips in
+    do_convert g source inspect
+      options.keep_serial_console options.static_ips in
 
   g#umount_all ();
 
@@ -259,11 +117,9 @@ helper-v2v-convert V2VDIR
   (* Create target metadata file. *)
   let target_meta = { guestcaps; output_name;
                       target_buses; target_firmware; target_nics } in
-  with_open_out (dir // "target_meta") (
-    fun chan ->
-      output_value chan Utils.metaversion;
-      output_value chan target_meta
-  )
+
+  (* Return inspection data and target metadata. *)
+  inspect, target_meta
 
 (* Collect statvfs information from the guest mountpoints. *)
 and get_mpstats g =
@@ -418,5 +274,3 @@ and get_target_firmware inspect guestcaps source output =
    | TargetUEFI -> info (f_"This guest requires UEFI on the target to boot."));
 
   target_firmware
-
-let () = run_main_and_handle_errors main

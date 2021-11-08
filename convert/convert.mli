@@ -16,4 +16,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Convert a guest to run on KVM. *)
+type options = {
+  keep_serial_console : bool;
+  ks : Tools_utils.key_store;      (** [--key] option *)
+  network_map : Networks.t;        (** [-b] and [-n] options *)
+  output_name : string option;     (** Guest output name [-on] *)
+  root_choice : Types.root_choice; (** [--root] option *)
+  static_ips : Types.static_ip list; (** [--mac :ip:] option *)
+}
+
+val convert : string -> options -> Types.source -> Types.inspect * Types.target_meta
+(** [convert dir options source]
+
+    Convert a guest to run on KVM. *)

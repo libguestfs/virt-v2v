@@ -32,7 +32,6 @@ SOURCES_MLI = \
 	linux.mli \
 	linux_bootloaders.mli \
 	linux_kernels.mli \
-	networks.mli \
 	target_bus_assignment.mli \
 	windows.mli \
 	windows_virtio.mli
@@ -49,32 +48,41 @@ SOURCES_ML = \
 	convert_windows.ml \
 	inspect_source.ml \
 	target_bus_assignment.ml \
-	networks.ml \
 	convert.ml
 
 SOURCES_C = \
 	libosinfo-c.c
 
-bin_PROGRAMS = helper-v2v-convert
+# We pretend that we're building a C library.  automake handles the
+# compilation of the C sources for us.  At the end we take the C
+# objects and OCaml objects and link them into the OCaml library.
+# This C library is never used.
 
-helper_v2v_convert_SOURCES = $(SOURCES_C)
-helper_v2v_convert_CPPFLAGS = \
+noinst_LIBRARIES = libmlconvert.a
+
+if !HAVE_OCAMLOPT
+MLCONVERT_CMA = mlconvert.cma
+else
+MLCONVERT_CMA = mlconvert.cmxa
+endif
+
+noinst_DATA = $(MLCONVERT_CMA)
+
+libmlconvert_a_SOURCES = $(SOURCES_C)
+libmlconvert_a_CPPFLAGS = \
 	-DCAML_NAME_SPACE \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib \
-	-I$(top_srcdir)/v2v
-helper_v2v_convert_CFLAGS = \
+	-I$(top_srcdir)/lib
+libmlconvert_a_CFLAGS = \
 	-pthread \
+	-fPIC \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
 	$(LIBOSINFO_CFLAGS)
 
-BOBJECTS = \
-	$(top_builddir)/common/mlcustomize/firstboot.cmo \
-	$(top_builddir)/common/mlcustomize/SELinux_relabel.cmo \
-	$(SOURCES_ML:.ml=.cmo)
+BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
 
 OCAMLPACKAGES = \
@@ -122,14 +130,12 @@ OCAMLLINKFLAGS = \
 	mlv2vlib.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
-helper_v2v_convert_DEPENDENCIES = \
-	$(OBJECTS) \
-	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
-helper_v2v_convert_LINK = \
-	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
-	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \
-	  $(OBJECTS) -o $@
+libmlconvert_a_DEPENDENCIES = \
+	$(OBJECTS)
+
+$(MLCONVERT_CMA): $(OBJECTS) libmlconvert.a
+	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	    $(OBJECTS) $(libmlconvert_a_OBJECTS) -o mlconvert
 
 # Dependencies.
 .depend: \

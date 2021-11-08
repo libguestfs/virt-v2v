@@ -49,10 +49,7 @@ virt_v2v_CFLAGS = \
 	$(LIBVIRT_CFLAGS) \
 	$(LIBOSINFO_CFLAGS)
 
-BOBJECTS = \
-	$(top_builddir)/common/mlcustomize/firstboot.cmo \
-	$(top_builddir)/common/mlcustomize/SELinux_relabel.cmo \
-	$(SOURCES_ML:.ml=.cmo)
+BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
 
 OCAMLPACKAGES = \
@@ -61,6 +58,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/qemuopts/.libs \
 	-I $(top_builddir)/gnulib/lib/.libs \
 	-I $(top_builddir)/lib \
+	-I $(top_builddir)/convert \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlutils \
 	-I $(top_builddir)/common/mlgettext \
@@ -105,10 +103,12 @@ OCAMLLINKFLAGS = \
 	mlcustomize.$(MLARCHIVE) \
 	mlv2v.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
+	mlconvert.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
 virt_v2v_DEPENDENCIES = \
 	$(OBJECTS) \
+	$(top_builddir)/convert/mlconvert.$(MLARCHIVE) \
 	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
 	$(top_srcdir)/ocaml-link.sh
 virt_v2v_LINK = \

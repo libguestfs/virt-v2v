@@ -33,6 +33,7 @@ SOURCES_MLI = \
 	DOM.mli \
 	libvirt_utils.mli \
 	nbdkit.mli \
+	networks.mli \
 	qemuNBD.mli \
 	types.mli \
 	utils.mli
@@ -42,6 +43,7 @@ SOURCES_ML = \
 	utils.ml \
 	nbdkit.ml \
 	qemuNBD.ml \
+	networks.ml \
 	DOM.ml \
 	create_ovf.ml \
 	libvirt_utils.ml

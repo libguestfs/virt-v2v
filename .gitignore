@@ -46,7 +46,6 @@ Makefile.in
 /config.sub
 /configure
 /convert/.depend
-/convert/helper-v2v-convert
 /depcomp
 /docs/stamp-virt-v2v*.pod
 /docs/virt-v2v.1

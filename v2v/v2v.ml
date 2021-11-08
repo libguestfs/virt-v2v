@@ -30,7 +30,12 @@ open Unix_utils
 open Common_gettext.Gettext
 open Getopt.OptionName
 
+open Types
 open Utils
+
+(* Matches --mac command line parameters. *)
+let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)"
+let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
 
 (* Create the temporary directory to control conversion.
  * (This directory is cleaned up in the cleanup() function).
@@ -87,6 +92,80 @@ let rec main () =
        optref := Some arg
   in
 
+  let network_map = Networks.create () in
+  let static_ips = ref [] in
+  let rec add_network str =
+    match String.split ":" str with
+    | "", "" ->
+       error (f_"invalid -n/--network parameter")
+    | out, "" | "", out ->
+       Networks.add_default_network network_map out
+    | in_, out ->
+       Networks.add_network network_map in_ out
+  and add_bridge str =
+    match String.split ":" str with
+    | "", "" ->
+       error (f_"invalid -b/--bridge parameter")
+    | out, "" | "", out ->
+       Networks.add_default_bridge network_map out
+    | in_, out ->
+       Networks.add_bridge network_map in_ out
+  and add_mac str =
+    if not (PCRE.matches mac_re str) then
+      error (f_"cannot parse --mac \"%s\" parameter") str;
+    let mac = PCRE.sub 1 and out = PCRE.sub 3 in
+    match PCRE.sub 2 with
+    | "network" ->
+       Networks.add_mac network_map mac Network out
+    | "bridge" ->
+       Networks.add_mac network_map mac Bridge out
+    | "ip" ->
+       (match String.nsplit "," out with
+        | [] -> error (f_"invalid --mac ip option")
+        | [ip] -> add_static_ip mac ip None None []
+        | [ip; gw] -> add_static_ip mac ip (Some gw) None []
+        | ip :: gw :: len :: nameservers ->
+           add_static_ip mac ip (Some gw) (Some len) nameservers
+       )
+    | _ -> assert false
+  and add_static_ip if_mac_addr if_ip_address if_default_gateway
+                    if_prefix_length_str if_nameservers =
+    (* Check the IP addresses and prefix length are sensible.  This
+     * is only a very simple test that they are sane, since IP addresses
+     * come in too many valid forms to check thoroughly.
+     *)
+    let rec error_unless_ip_addr what addr =
+      if not (PCRE.matches mac_ip_re addr) then
+        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” is an IP address") what addr
+    in
+    error_unless_ip_addr "ipaddr" if_ip_address;
+    Option.may (error_unless_ip_addr "gw") if_default_gateway;
+    List.iter (error_unless_ip_addr "nameserver") if_nameservers;
+    let if_prefix_length =
+      match if_prefix_length_str with
+      | None -> None
+      | Some len ->
+         let len =
+           try int_of_string len with
+           | Failure _ -> error (f_"cannot parse --mac ip prefix length field as an integer: %s") len in
+         if len < 0 || len > 128 then
+           error (f_"--mac ip prefix length field is out of range");
+         Some len in
+    List.push_back static_ips
+      { if_mac_addr; if_ip_address; if_default_gateway;
+        if_prefix_length; if_nameservers }
+  in
+
+  let root_choice = ref AskRoot in
+  let set_root_choice = function
+    | "ask" -> root_choice := AskRoot
+    | "single" -> root_choice := SingleRoot
+    | "first" -> root_choice := FirstRoot
+    | dev when String.is_prefix dev "/dev/" -> root_choice := RootDev dev
+    | s ->
+      error (f_"unknown --root option: %s") s
+  in
+
   (* Input options passed to helper-v2v-input-*. *)
   let i_options = ref [] in
   let io_query = ref false in
@@ -104,10 +183,6 @@ let rec main () =
     List.push_front (k, v) o_options
   in
   let set_output_option_compat k v = add_o_option "-oo" (k ^ "=" ^ v) in
-
-  (* Conversion options passed to helper-v2v-convert. *)
-  let conv_options = ref [] in
-  let add_conv_option k v = List.push_front (k, v) conv_options in
 
   (* Other options that we handle here. *)
   let in_place = ref false in
@@ -174,7 +249,7 @@ let rec main () =
       s_"Set bandwidth to bits per sec";
     [ L"bandwidth-file" ], Getopt.String ("filename", add_i_option "--bandwidth-file"),
       s_"Set bandwidth dynamically from file";
-    [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_conv_option "-b"),
+    [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
       s_"Map bridge ‘in’ to ‘out’";
     [ L"compressed" ], Getopt.Unit (fun () -> add_o_option "-oo" "compressed"),
       s_"Compress output file (-of qcow2 only)";
@@ -192,9 +267,9 @@ let rec main () =
       s_"Input transport";
     [ L"in-place" ], Getopt.Set in_place,
       s_"Only tune the guest in the input VM";
-    [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_conv_option "--mac"),
+    [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
       s_"Map NIC to network or bridge or assign static IP";
-    [ S 'n'; L"network" ], Getopt.String ("in:out", add_conv_option "-n"),
+    [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
       s_"Map network ‘in’ to ‘out’";
     [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
       s_"Ignored for backwards compatibility";
@@ -220,7 +295,7 @@ let rec main () =
       s_"Print source and stop";
     [ L"qemu-boot" ], Getopt.Unit (fun () -> add_o_option "-oo" "qemu-boot"),
       s_"Boot in qemu (-o qemu only)";
-    [ L"root" ],     Getopt.String ("ask|... ", add_conv_option "--root"),
+    [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
       s_"How to choose root filesystem";
     [ L"vddk-config" ], Getopt.String ("filename", set_input_option_compat "vddk-config"),
       s_"Same as ‘-io vddk-config=filename’";
@@ -285,10 +360,10 @@ read the man page virt-v2v(1).
    *)
   let debug_gc = !(opthandle.debug_gc) in
 
-  (* -on option has to be passed to both the output and conversion helpers. *)
+  (* -on option has to be passed to both the output helper. *)
   (match !output_name with
    | None -> ()
-   | Some n -> add_o_option "-on" n; add_conv_option "-on" n
+   | Some n -> add_o_option "-on" n
   );
 
   (* -oa preallocated has to be passed to the output helper.  But also
@@ -301,7 +376,6 @@ read the man page virt-v2v(1).
 
   (* Dereference the arguments. *)
   let args = List.rev !args in
-  let conv_options = List.rev !conv_options in
   let in_place = !in_place in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
@@ -318,8 +392,11 @@ read the man page virt-v2v(1).
     | `Not_set | `Sparse -> Types.Sparse
     | `Preallocated -> Types.Preallocated in
   let output_mode = !output_mode in
+  let output_name = !output_name in
   let o_options = List.rev !o_options in
   let print_source = !print_source in
+  let root_choice = !root_choice in
+  let static_ips = !static_ips in
 
   (* --in-place isn't implemented yet - TODO *)
   if in_place then error "XXX --in-place option is not implemented yet";
@@ -505,17 +582,20 @@ read the man page virt-v2v(1).
    * -o rhv-upload, even though we probably should, which would
    * indicate that actually RHV is fine if we don't do this.
    *)
-  let conv_remove_serial_console =
+  let remove_serial_console =
     match output_mode with
-    | `RHV | `VDSM -> ["--remove-serial-console"]
-    | _ -> [] in
+    | `RHV | `VDSM -> true
+    | _ -> false in
 
   (* Get the conversion options. *)
-  let conv_helper = "helper-v2v-convert" in
-  let conv_cmd =
-    conv_helper :: std_args @
-    conv_remove_serial_console @
-    List.flatten (List.map (fun (k, v) -> [k; v]) conv_options) in
+  let conv_options = {
+    Convert.keep_serial_console = not remove_serial_console;
+    ks = opthandle.ks;
+    network_map;
+    output_name;
+    root_choice;
+    static_ips;
+  } in
 
   (* Start the input helper (runs in the background). *)
   i_pid := start_helper "input" i_helper i_cmd (tmpdir // "in.pid");
@@ -544,12 +624,31 @@ read the man page virt-v2v(1).
     ignore (Sys.command cmd)
   );
 
+  (* XXX Temporary - removed in following commit XXX *)
+  let source =
+    with_open_in (tmpdir // "source") (
+      fun chan ->
+        let ver = input_value chan in
+        assert (ver = Utils.metaversion);
+        (input_value chan : Types.source)
+    ) in
+
   (* Do the conversion. *)
   with_open_out (tmpdir // "convert") (fun _ -> ());
-  if run_command conv_cmd <> 0 then
-    (* We assume the command already printed an error. *)
-    exit 1;
+  let inspect, target_meta = Convert.convert tmpdir conv_options source in
   unlink (tmpdir // "convert");
+
+  (* XXX Temporary - removed in following commit XXX *)
+  with_open_out (tmpdir // "inspect") (
+    fun chan ->
+      output_value chan Utils.metaversion;
+      output_value chan inspect
+  );
+  with_open_out (tmpdir // "target_meta") (
+    fun chan ->
+      output_value chan Utils.metaversion;
+      output_value chan target_meta
+  );
 
   (* Do the copy. *)
   with_open_out (tmpdir // "copy") (fun _ -> ());

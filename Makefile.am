@@ -39,9 +39,9 @@ SUBDIRS += common/mlcustomize
 SUBDIRS += common/mlv2v
 SUBDIRS += bundled/libvirt-ocaml
 SUBDIRS += lib
+SUBDIRS += convert
 SUBDIRS += input
 SUBDIRS += output
-SUBDIRS += convert
 SUBDIRS += v2v
 
 SUBDIRS += tests
