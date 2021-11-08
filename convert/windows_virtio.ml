@@ -44,31 +44,16 @@ let viostor_modern_pciid = "VEN_1AF4&DEV_1042&SUBSYS_11001AF4&REV_01"
 let vioscsi_legacy_pciid = "VEN_1AF4&DEV_1004&SUBSYS_00081AF4&REV_00"
 let vioscsi_modern_pciid = "VEN_1AF4&DEV_1048&SUBSYS_11001AF4&REV_01"
 
-let rec install_drivers ((g, _) as reg) inspect rcaps =
+let rec install_drivers ((g, _) as reg) inspect =
   (* Copy the virtio drivers to the guest. *)
   let driverdir = sprintf "%s/Drivers/VirtIO" inspect.i_windows_systemroot in
   g#mkdir_p driverdir;
 
   if not (copy_drivers g inspect driverdir) then (
-    match rcaps with
-    | { rcaps_block_bus = Some Virtio_blk | Some Virtio_SCSI }
-    | { rcaps_net_bus = Some Virtio_net }
-    | { rcaps_video = Some QXL } ->
-      error (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s).  virt-v2v looks for drivers in %s")
-            inspect.i_major_version inspect.i_minor_version inspect.i_arch
-            inspect.i_product_variant virtio_win
-
-    | { rcaps_block_bus = (Some IDE | None);
-        rcaps_net_bus = ((Some E1000 | Some RTL8139 | None) as net_type);
-        rcaps_video = (Some Cirrus | None) } ->
       warning (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s).  virt-v2v looks for drivers in %s\n\nThe guest will be configured to use slower emulated devices.")
               inspect.i_major_version inspect.i_minor_version inspect.i_arch
               inspect.i_product_variant virtio_win;
-      let net_type =
-        match net_type with
-        | Some model -> model
-        | None -> RTL8139 in
-      (IDE, net_type, Cirrus, false, false, false, false)
+      (IDE, RTL8139, Cirrus, false, false, false, false)
   )
   else (
     (* Can we install the block driver? *)
@@ -83,25 +68,14 @@ let rec install_drivers ((g, _) as reg) inspect rcaps =
           ) filenames
         )
       ) with Not_found -> None in
-      let has_vioscsi = g#exists (driverdir // "vioscsi.inf") in
-      match rcaps.rcaps_block_bus, viostor_driver, has_vioscsi with
-      | Some Virtio_blk, None, _ ->
-        error (f_"there is no virtio block device driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s\n\nThe guest will be configured to use a slower emulated device.")
-              inspect.i_major_version inspect.i_minor_version
-              inspect.i_arch virtio_win
-
-      | Some Virtio_SCSI, _, false ->
-        error (f_"there is no vioscsi (virtio SCSI) driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s\n\nThe guest will be configured to use a slower emulated device.")
-              inspect.i_major_version inspect.i_minor_version
-              inspect.i_arch virtio_win
-
-      | None, None, _ ->
+      match viostor_driver with
+      | None ->
         warning (f_"there is no virtio block device driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s\n\nThe guest will be configured to use a slower emulated device.")
                 inspect.i_major_version inspect.i_minor_version
                 inspect.i_arch virtio_win;
         IDE
 
-      | (Some Virtio_blk | None), Some driver_name, _ ->
+      | Some driver_name ->
         (* Block driver needs tweaks to allow booting; the rest is set up by PnP
          * manager *)
         let source = driverdir // (driver_name ^ ".sys") in
@@ -111,22 +85,7 @@ let rec install_drivers ((g, _) as reg) inspect rcaps =
         g#cp source target;
         add_guestor_to_registry reg inspect driver_name viostor_legacy_pciid;
         add_guestor_to_registry reg inspect driver_name viostor_modern_pciid;
-        Virtio_blk
-
-      | Some Virtio_SCSI, _, true ->
-        (* Block driver needs tweaks to allow booting; the rest is set up by PnP
-         * manager *)
-        let source = driverdir // "vioscsi.sys" in
-        let target = sprintf "%s/system32/drivers/vioscsi.sys"
-                             inspect.i_windows_systemroot in
-        let target = g#case_sensitive_path target in
-        g#cp source target;
-        add_guestor_to_registry reg inspect "vioscsi" vioscsi_legacy_pciid;
-        add_guestor_to_registry reg inspect "vioscsi" vioscsi_modern_pciid;
-        Virtio_SCSI
-
-      | Some IDE, _, _ ->
-        IDE in
+        Virtio_blk in
 
     (* Can we install the virtio-net driver? *)
     let net : guestcaps_net_type =
@@ -135,46 +94,28 @@ let rec install_drivers ((g, _) as reg) inspect rcaps =
         List.exists (
           fun driver_file -> g#exists (driverdir // driver_file)
         ) filenames in
-      match rcaps.rcaps_net_bus, has_netkvm with
-      | Some Virtio_net, false ->
-        error (f_"there is no virtio network driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s")
-              inspect.i_major_version inspect.i_minor_version
-              inspect.i_arch virtio_win
-
-      | None, false ->
+      if not has_netkvm then (
         warning (f_"there is no virtio network driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s\n\nThe guest will be configured to use a slower emulated device.")
                 inspect.i_major_version inspect.i_minor_version
                 inspect.i_arch virtio_win;
         RTL8139
-
-      | (Some Virtio_net | None), true ->
-        Virtio_net
-
-      | Some net_type, _ ->
-        net_type in
+      )
+      else
+        Virtio_net in
 
     (* Can we install the QXL driver? *)
     let video : guestcaps_video_type =
       let has_qxl =
         g#exists (driverdir // "qxl.inf") ||
         g#exists (driverdir // "qxldod.inf") in
-      match rcaps.rcaps_video, has_qxl with
-      | Some QXL, false ->
-        error (f_"there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s")
-              inspect.i_major_version inspect.i_minor_version
-              inspect.i_arch virtio_win
-
-      | None, false ->
+      if not has_qxl then (
         warning (f_"there is no QXL driver for this version of Windows (%d.%d %s).  virt-v2v looks for this driver in %s\n\nThe guest will be configured to use a basic VGA display driver.")
                 inspect.i_major_version inspect.i_minor_version
                 inspect.i_arch virtio_win;
         Cirrus
-
-      | (Some QXL | None), true ->
-        QXL
-
-      | Some Cirrus, _ ->
-        Cirrus in
+      )
+      else
+        QXL in
 
     (* Did we install the miscellaneous drivers? *)
     let virtio_rng_supported = g#exists (driverdir // "viorng.inf") in

@@ -422,11 +422,6 @@ type guestcaps = {
   gcaps_arch : string;
   gcaps_acpi : bool;
 }
-and requested_guestcaps = {
-  rcaps_block_bus : guestcaps_block_type option;
-  rcaps_net_bus : guestcaps_net_type option;
-  rcaps_video : guestcaps_video_type option;
-}
 and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
 and guestcaps_video_type = QXL | Cirrus
@@ -462,21 +457,6 @@ gcaps_acpi = %b
   (string_of_machine gcaps.gcaps_machine)
   gcaps.gcaps_arch
   gcaps.gcaps_acpi
-
-let string_of_requested_guestcaps rcaps =
-  sprintf "\
-rcaps_block_bus = %s
-rcaps_net_bus = %s
-rcaps_video = %s
-" (match rcaps.rcaps_block_bus with
-   | None -> "unspecified"
-   | Some block_type -> (string_of_block_type block_type))
-  (match rcaps.rcaps_net_bus with
-   | None -> "unspecified"
-   | Some net_type -> (string_of_net_type net_type))
-  (match rcaps.rcaps_video with
-   | None -> "unspecified"
-   | Some video -> (string_of_video video))
 
 type target_buses = {
   target_virtio_blk_bus : target_bus_slot array;

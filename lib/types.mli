@@ -282,22 +282,12 @@ type guestcaps = {
 }
 (** Guest capabilities after conversion.  eg. Was virtio found or installed? *)
 
-and requested_guestcaps = {
-  rcaps_block_bus : guestcaps_block_type option;
-  rcaps_net_bus : guestcaps_net_type option;
-  rcaps_video : guestcaps_video_type option;
-}
-(** For [--in-place] conversions, the requested guest capabilities, to
-    allow the caller to affect conversion choices.  [None] = no
-    preference, use the best available. *)
-
 and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
 and guestcaps_video_type = QXL | Cirrus
 and guestcaps_machine = I440FX | Q35 | Virt
 
 val string_of_guestcaps : guestcaps -> string
-val string_of_requested_guestcaps : requested_guestcaps -> string
 
 (** {2 Guest buses} *)
 

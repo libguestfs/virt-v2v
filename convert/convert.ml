@@ -230,10 +230,7 @@ helper-v2v-convert V2VDIR
 
   (* Conversion. *)
   let guestcaps =
-    let rcaps = (*XXX*)
-      { rcaps_block_bus = None; rcaps_net_bus = None; rcaps_video = None } in
-
-    do_convert g source inspect keep_serial_console rcaps static_ips in
+    do_convert g source inspect keep_serial_console static_ips in
 
   g#umount_all ();
 
@@ -364,7 +361,7 @@ and do_fstrim g inspect =
   ) fses
 
 (* Conversion. *)
-and do_convert g source inspect keep_serial_console rcaps interfaces =
+and do_convert g source inspect keep_serial_console interfaces =
   (match inspect.i_product_name with
   | "unknown" ->
     message (f_"Converting the guest to run on KVM")
@@ -388,9 +385,8 @@ and do_convert g source inspect keep_serial_console rcaps interfaces =
        error (f_"virt-v2v is unable to convert this guest type (%s/%s)")
          inspect.i_type inspect.i_distro in
   debug "picked conversion module %s" conversion_name;
-  debug "requested caps: %s" (string_of_requested_guestcaps rcaps);
   let guestcaps =
-    convert g source inspect keep_serial_console rcaps interfaces in
+    convert g source inspect keep_serial_console interfaces in
   debug "%s" (string_of_guestcaps guestcaps);
 
   (* Did we manage to install virtio drivers? *)

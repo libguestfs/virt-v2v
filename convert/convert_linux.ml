@@ -34,7 +34,7 @@ open Linux_kernels
 module G = Guestfs
 
 (* The conversion function. *)
-let convert (g : G.guestfs) source inspect keep_serial_console rcaps _ =
+let convert (g : G.guestfs) source inspect keep_serial_console _ =
   (*----------------------------------------------------------------------*)
   (* Inspect the guest first.  We already did some basic inspection in
    * the common v2v.ml code, but that has to deal with generic guests
@@ -111,22 +111,12 @@ let convert (g : G.guestfs) source inspect keep_serial_console rcaps _ =
 
     let acpi = supports_acpi () in
 
-    let video =
-      match rcaps.rcaps_video with
-      | None -> QXL
-      | Some video -> video in
-
     let block_type =
-      match rcaps.rcaps_block_bus with
-      | None -> if kernel.ki_supports_virtio_blk then Virtio_blk else IDE
-      | Some block_type -> block_type in
-
+      if kernel.ki_supports_virtio_blk then Virtio_blk else IDE in
     let net_type =
-      match rcaps.rcaps_net_bus with
-      | None -> if kernel.ki_supports_virtio_net then Virtio_net else E1000
-      | Some net_type -> net_type in
+      if kernel.ki_supports_virtio_net then Virtio_net else E1000 in
 
-    configure_display_driver video;
+    configure_display_driver ();
     remap_block_devices block_type;
     configure_kernel_modules block_type net_type;
     rebuild_initrd kernel;
@@ -158,7 +148,7 @@ let convert (g : G.guestfs) source inspect keep_serial_console rcaps _ =
     let guestcaps = {
       gcaps_block_bus = block_type;
       gcaps_net_bus = net_type;
-      gcaps_video = video;
+      gcaps_video = QXL;
       gcaps_virtio_rng = kernel.ki_supports_virtio_rng;
       gcaps_virtio_balloon = kernel.ki_supports_virtio_balloon;
       gcaps_isa_pvpanic = kernel.ki_supports_isa_pvpanic;
@@ -828,8 +818,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console rcaps _ =
     else
       true
 
-  and configure_display_driver video =
-    let video_driver = match video with QXL -> "qxl" | Cirrus -> "cirrus" in
+  and configure_display_driver () =
+    let video_driver = "qxl" in
 
     let updated = ref false in
 

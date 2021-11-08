@@ -19,20 +19,15 @@
 (** Functions for installing Windows virtio drivers. *)
 
 val install_drivers
-    : Registry.t -> Types.inspect -> Types.requested_guestcaps ->
+    : Registry.t -> Types.inspect ->
       Types.guestcaps_block_type * Types.guestcaps_net_type * Types.guestcaps_video_type * bool * bool * bool * bool
-(** [install_drivers reg inspect rcaps]
+(** [install_drivers reg inspect]
     installs virtio drivers from the driver directory or driver
     ISO into the guest driver directory and updates the registry
     so that the [viostor.sys] driver gets loaded by Windows at boot.
 
     [reg] is the system hive which is open for writes when this
     function is called.
-
-    [rcaps] is the set of guest "capabilities" requested by the caller.  This
-    may include the type of the block driver, network driver, and video driver.
-    install_drivers will adjust its choices based on that information, and
-    abort if the requested driver wasn't found.
 
     This returns the tuple [(block_driver, net_driver, video_driver,
     virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported)]

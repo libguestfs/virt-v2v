@@ -21,5 +21,5 @@
     This module converts a Windows guest to run on KVM. *)
 
 val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
-              bool -> Types.requested_guestcaps -> Types.static_ip list ->
+              bool -> Types.static_ip list ->
               Types.guestcaps

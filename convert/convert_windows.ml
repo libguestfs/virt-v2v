@@ -38,7 +38,7 @@ module G = Guestfs
  * time the Windows VM is booted on KVM.
  *)
 
-let convert (g : G.guestfs) _ inspect _ rcaps static_ips =
+let convert (g : G.guestfs) _ inspect _ static_ips =
   (*----------------------------------------------------------------------*)
   (* Inspect the Windows guest. *)
 
@@ -469,7 +469,7 @@ if errorlevel 3010 exit /b 0
     disable_xenpv_win_drivers reg;
     disable_prl_drivers reg;
     disable_autoreboot reg;
-    Windows_virtio.install_drivers reg inspect rcaps
+    Windows_virtio.install_drivers reg inspect
 
   and disable_xenpv_win_drivers reg =
     (* Disable xenpv-win service (RHBZ#809273). *)
