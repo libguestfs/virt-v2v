@@ -801,7 +801,7 @@ and vddk_source cmdline args =
 
   (* Check no option appears more than once. *)
   let keys = List.map fst options in
-  if List.length keys <> List.length (List.sort_uniq keys) then
+  if List.length keys <> List.length (List.sort_uniq compare keys) then
     error (f_"-it vddk: duplicate -io options on the command line");
 
   (* thumbprint is mandatory. *)
