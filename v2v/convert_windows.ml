@@ -422,12 +422,15 @@ popd
  and configure_qemu_ga files =
    List.iter (
      fun msi_path ->
-       (* Windows is a trashfire. https://stackoverflow.com/a/18730884 *)
+       (* Windows is a trashfire.
+        * https://stackoverflow.com/a/18730884
+        * https://bugzilla.redhat.com/show_bug.cgi?id=1895323
+        *)
        let fb_script = sprintf "\
 echo Removing any previously scheduled qemu-ga installation
 schtasks.exe /Delete /TN Firstboot-qemu-ga /F
 echo Scheduling delayed installation of qemu-ga from %s
-powershell.exe -command \"$d = (get-date).AddSeconds(120); $FormatHack = ($([System.Globalization.DateTimeFormatInfo]::CurrentInfo.ShortDatePattern) -replace 'M+/', 'MM/') -replace 'd+/', 'dd/'; schtasks.exe /Create /SC ONCE /ST $d.ToString('HH:mm') /SD $d.ToString($FormatHack) /RU SYSTEM /TN Firstboot-qemu-ga /TR \\\"C:\\%s /forcerestart /qn /l+*vx C:\\%s.log\\\"\"
+powershell.exe -command \"$d = (get-date).AddSeconds(120); $FormatHack = (($([System.Globalization.DateTimeFormatInfo]::CurrentInfo.ShortDatePattern) -replace 'y+', 'yyyy') -replace 'M+', 'MM') -replace 'd+', 'dd'; schtasks.exe /Create /SC ONCE /ST $d.ToString('HH:mm') /SD $d.ToString($FormatHack) /RU SYSTEM /TN Firstboot-qemu-ga /TR \\\"C:\\%s /forcerestart /qn /l+*vx C:\\%s.log\\\"\"
       "
       msi_path msi_path msi_path in
       Firstboot.add_firstboot_script g inspect.i_root
