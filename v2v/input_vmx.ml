@@ -190,7 +190,7 @@ and find_hdds ?bandwidth input_password vmx vmx_source
            let uri, format = qemu_uri_of_filename ?bandwidth input_password
                                                   vmx_source filename in
            let s = { s_disk_id = (-1);
-                     s_qemu_uri = uri; s_format = Some format;
+                     s_qemu_uri = uri; s_format = format;
                      s_controller = Some controller } in
            Some (c, t, s)
         | _ -> None

@@ -100,7 +100,7 @@ and source_firmware =
 and source_disk = {
   s_disk_id : int;                      (** A unique ID for each source disk. *)
   s_qemu_uri : string;                  (** QEMU URI of source disk. *)
-  s_format : string option;             (** Format. *)
+  s_format : string;                    (** Format of source disk. *)
   s_controller : s_controller option;   (** Controller, eg. IDE, SCSI. *)
 }
 (** A source disk. *)

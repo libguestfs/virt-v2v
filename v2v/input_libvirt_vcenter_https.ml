@@ -95,7 +95,7 @@ object (self)
         (* The libvirt ESX driver doesn't normally specify a format, but
          * the format of the -flat file is *always* raw, so force it here.
          *)
-        { disk with s_qemu_uri = qemu_uri; s_format = Some "raw" }
+        { disk with s_qemu_uri = qemu_uri; s_format = "raw" }
     ) disks in
 
     source, disks

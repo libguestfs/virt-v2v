@@ -157,7 +157,7 @@ and parse_disks xpathctx =
         source_disk = {
           s_disk_id = i;
           s_qemu_uri = "";
-          s_format = Some "vmdk";
+          s_format = "vmdk";
           s_controller = controller;
         };
         href = href;

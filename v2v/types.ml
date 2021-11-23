@@ -55,7 +55,7 @@ and source_firmware =
 and source_disk = {
   s_disk_id : int;
   s_qemu_uri : string;
-  s_format : string option;
+  s_format : string;
   s_controller : s_controller option;
 }
 and s_controller = Source_IDE | Source_SATA | Source_SCSI |
@@ -196,11 +196,8 @@ and string_of_source_firmware = function
 
 and string_of_source_disk { s_qemu_uri = qemu_uri; s_format = format;
                             s_controller = controller } =
-  sprintf "\t%s%s%s"
-    qemu_uri
-    (match format with
-    | None -> ""
-    | Some format -> " (" ^ format ^ ")")
+  sprintf "\t%s (%s)%s"
+    qemu_uri format
     (match controller with
     | None -> ""
     | Some controller -> " [" ^ string_of_controller controller ^ "]")
