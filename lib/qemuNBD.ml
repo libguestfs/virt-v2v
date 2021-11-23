@@ -28,8 +28,9 @@ open Unix_utils
 
 open Utils
 
-let is_installed () =
-  Sys.command "qemu-nbd --version >/dev/null 2>&1" = 0
+let is_installed =
+  let test = lazy (Sys.command "qemu-nbd --version >/dev/null 2>&1" = 0) in
+  fun () -> Lazy.force test
 
 type version = int * int * int
 

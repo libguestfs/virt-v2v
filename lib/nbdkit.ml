@@ -26,8 +26,9 @@ open Unix_utils
 
 open Utils
 
-let is_installed () =
-  Sys.command "nbdkit --version >/dev/null 2>&1" = 0
+let is_installed =
+  let test = lazy (Sys.command "nbdkit --version >/dev/null 2>&1" = 0) in
+  fun () -> Lazy.force test
 
 type config = (string * string) list
 
