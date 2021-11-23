@@ -32,6 +32,10 @@ let is_installed =
   let test = lazy (Sys.command "qemu-nbd --version >/dev/null 2>&1" = 0) in
   fun () -> Lazy.force test
 
+let qemu_nbd_has_selinux_label_option =
+  let test = lazy (Sys.command "qemu-nbd --help |& grep -sq selinux" = 0) in
+  fun () -> Lazy.force test
+
 type version = int * int * int
 
 let version =
@@ -94,6 +98,11 @@ let run_unix ?socket { disk; snapshot; format } =
   (* -s adds a protective overlay. *)
   if snapshot then List.push_back args "-s";
 
+  if have_selinux && qemu_nbd_has_selinux_label_option () then (
+    List.push_back args "--selinux-label";
+    List.push_back args "system_u:object_r:svirt_socket_t:s0"
+  );
+
   Option.may (
     fun format ->
       List.push_back args "--format";
@@ -126,8 +135,12 @@ let run_unix ?socket { disk; snapshot; format } =
 If the messages above are not sufficient to diagnose the problem then add the ‘virt-v2v -v -x’ options and examine the debugging output carefully.")
   );
 
-  (* We must label the socket so qemu can open it. *)
   if have_selinux then (
+    (* Note that Unix domain sockets have both a file label and
+     * a socket/process label.  Using --selinux-label above
+     * only set the socket label, but we must also set the file
+     * label.
+     *)
     ignore (run_command ["chcon"; "system_u:object_r:svirt_image_t:s0";
                          socket]);
   );
