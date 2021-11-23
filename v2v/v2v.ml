@@ -293,12 +293,11 @@ and create_overlays source_disks =
        * should allow us to fstrim/blkdiscard and avoid copying
        * significant parts of the data over the wire.
        *)
-      let options =
-        "compat=1.1" ^
-          (match format with None -> ""
-                           | Some fmt -> ",backing_fmt=" ^ fmt) in
-      let cmd = [ "qemu-img"; "create"; "-q"; "-f"; "qcow2"; "-b"; qemu_uri;
-                  "-o"; options; overlay_file ] in
+      let cmd = [ "qemu-img"; "create"; "-q";
+                  "-o"; "compat=1.1";
+                  "-b"; qemu_uri; "-F"; format;
+                  "-f"; "qcow2";
+                  overlay_file ] in
       if run_command cmd <> 0 then
         error (f_"qemu-img command failed, see earlier errors");
 
@@ -344,7 +343,7 @@ and populate_overlays g overlays =
 and populate_disks g source_disks =
   List.iter (
     fun ({s_qemu_uri = qemu_uri; s_format = format}) ->
-      g#add_drive_opts qemu_uri ?format ~cachemode:"unsafe"
+      g#add_drive_opts qemu_uri ~format ~cachemode:"unsafe"
                           ~discard:"besteffort"
   ) source_disks
 
@@ -604,11 +603,7 @@ and get_target_formats cmdline output overlays =
         | None ->
            match cmdline.output_format with
            | Some format -> format
-           | None ->
-              match ov.ov_source.s_format with
-              | Some format -> format
-              | None ->
-                 error (f_"disk %s (%s) has no defined format.\n\nThe input metadata did not define the disk format (eg. raw/qcow2/etc) of this disk, and so virt-v2v will try to autodetect the format when reading it.\n\nHowever because the input format was not defined, we do not know what output format you want to use.  You have two choices: either define the original format in the source metadata, or use the ‘-of’ option to force the output format.") ov.ov_sd ov.ov_source.s_qemu_uri in
+           | None -> ov.ov_source.s_format in
 
       (* What really happens here is that the call to #disk_create
        * below fails if the format is not raw or qcow2.  We would

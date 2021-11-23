@@ -187,7 +187,7 @@ object (self)
          (* nbdkit always presents us with the raw disk blocks from
           * the guest, so force the format to raw here.
           *)
-         { disk with s_qemu_uri = qemu_uri; s_format = Some "raw" }
+         { disk with s_qemu_uri = qemu_uri; s_format = "raw" }
     ) disks in
 
     source, disks

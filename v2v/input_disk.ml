@@ -64,7 +64,7 @@ class input_disk input_format disk = object
     let disk = {
       s_disk_id = 0;
       s_qemu_uri = disk_absolute;
-      s_format = Some format;
+      s_format = format;
       s_controller = None;
     } in
 
