@@ -267,7 +267,11 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
         | Some "aio" -> "raw" (* Xen wierdness *)
         | Some format -> format
         | None ->
-           error (f_"<disk><driver type=\"format\"> attribute is missing from the libvirt XML") in
+           (* Some libvirt drivers don't set the format.  Typically
+            * this is the vpx/esx driver (see RHBZ#2026199).  We
+            * can assume "raw", as it will be overwritten later.
+            *)
+           "raw" in
 
       (* The <disk type='...'> attribute may be 'block', 'file',
        * 'network' or 'volume'.  We ignore any other types.
@@ -338,7 +342,7 @@ let parse_libvirt_xml ?bandwidth ?conn xml =
             match xpath_string "/volume/target/format/@type" with
             | Some format -> format
             | None ->
-               error (f_"<volume><target>.<format type=\"format\"> attribute is missing from the libvirt XML of volume %s") vol in
+               error (f_"<volume><target><format type=\"format\"> attribute is missing from the libvirt XML of volume %s") vol in
 
           (match xpath_string "/volume/@type" with
           | None | Some "file" ->
