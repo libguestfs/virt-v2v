@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 1.44.1\n"
+"Project-Id-Version: virt-v2v 1.44.2\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-11-23 10:41+0000\n"
+"POT-Creation-Date: 2021-11-25 17:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,32 +317,27 @@ msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
 #. v2v/copy_to_local.ml:276
-#: v2v/parse_libvirt_xml.ml:355 v2v/parse_libvirt_xml.ml:295
+#: v2v/parse_libvirt_xml.ml:359 v2v/parse_libvirt_xml.ml:299
 msgid "<disk type='%s'> was ignored"
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:321
+#: v2v/parse_libvirt_xml.ml:325
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:351
+#: v2v/parse_libvirt_xml.ml:355
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:277 v2v/copy_to_local.ml:258
+#: v2v/parse_libvirt_xml.ml:281 v2v/copy_to_local.ml:258
 msgid "<disk> element with no type attribute ignored"
-msgstr ""
-
-#: v2v/parse_libvirt_xml.ml:270
-msgid ""
-"<disk><driver type=\"format\"> attribute is missing from the libvirt XML"
 msgstr ""
 
 #: v2v/parse_libvirt_xml.ml:157
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:398
+#: v2v/parse_libvirt_xml.ml:402
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -354,9 +349,9 @@ msgid ""
 "3.7."
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:341
+#: v2v/parse_libvirt_xml.ml:345
 msgid ""
-"<volume><target>.<format type=\"format\"> attribute is missing from the "
+"<volume><target><format type=\"format\"> attribute is missing from the "
 "libvirt XML of volume %s"
 msgstr ""
 
@@ -1277,7 +1272,7 @@ msgstr ""
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:392 v2v/parse_libvirt_xml.ml:46
+#: v2v/parse_libvirt_xml.ml:396 v2v/parse_libvirt_xml.ml:46
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
@@ -2286,13 +2281,13 @@ msgid ""
 "happens, try disabling Group Policy before doing the conversion."
 msgstr ""
 
-#: v2v/parse_libvirt_xml.ml:509
+#: v2v/parse_libvirt_xml.ml:513
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
 msgstr[1] ""
 
-#: v2v/parse_libvirt_xml.ml:491
+#: v2v/parse_libvirt_xml.ml:495
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
