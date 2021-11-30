@@ -61,11 +61,6 @@ let server_of_uri { Xml.uri_server } =
 let path_of_uri { Xml.uri_path } =
   match uri_path with None -> assert false | Some p -> p
 
-let scp_supports_T_option = lazy (
-  let cmd = "LANG=C scp -T |& grep \"unknown option\"" in
-  shell_command cmd <> 0
-)
-
 (* 'scp' a remote file into a temporary local file, returning the path
  * of the temporary local file.
  *)
@@ -73,9 +68,8 @@ let scp_from_remote_to_temporary uri tmpdir filename =
   let localfile = tmpdir // filename in
 
   let cmd =
-    sprintf "scp%s%s%s %s%s:%s %s"
+    sprintf "scp -T%s%s %s%s:%s %s"
             (if verbose () then "" else " -q")
-            (if Lazy.force scp_supports_T_option then " -T" else "")
             (match port_of_uri uri with
              | None -> ""
              | Some port -> sprintf " -P %d" port)
@@ -83,11 +77,7 @@ let scp_from_remote_to_temporary uri tmpdir filename =
              | None -> ""
              | Some user -> quote user ^ "@")
             (quote (server_of_uri uri))
-            (* The double quoting of the path is counter-intuitive
-             * but correct, see:
-             * https://stackoverflow.com/questions/19858176/how-to-escape-spaces-in-path-during-scp-copy-in-linux
-             *)
-            (quote (quote (path_of_uri uri)))
+            (quote (path_of_uri uri))
             (quote localfile) in
   if verbose () then
     eprintf "%s\n%!" cmd;
@@ -106,8 +96,7 @@ let remote_file_exists uri path =
              | None -> ""
              | Some user -> quote user ^ "@")
             (quote (server_of_uri uri))
-            (* Double quoting is necessary here, see above. *)
-            (quote (quote path)) in
+            (quote path) in
   if verbose () then
     eprintf "%s\n%!" cmd;
   Sys.command cmd = 0
