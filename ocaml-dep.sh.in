@@ -43,6 +43,9 @@ common/mlv2v
 common/mlvisit
 common/mlxml
 lib
+convert
+input
+output
 "
 
 # Output file is always created in the current directory.

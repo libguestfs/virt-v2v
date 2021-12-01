@@ -95,19 +95,32 @@ output_rhv_upload_transfer_source.ml: $(srcdir)/rhv-upload-transfer.py
 output_rhv_upload_vmcheck_source.ml: $(srcdir)/rhv-upload-vmcheck.py
 	$(srcdir)/embed.sh code $^ $@
 
-bin_PROGRAMS = helper-v2v-output
+# We pretend that we're building a C library.  automake handles the
+# compilation of the C sources for us.  At the end we take the C
+# objects and OCaml objects and link them into the OCaml library.
+# This C library is never used.
 
-helper_v2v_output_SOURCES = $(SOURCES_C)
-helper_v2v_output_CPPFLAGS = \
+noinst_LIBRARIES = libmloutput.a
+
+if !HAVE_OCAMLOPT
+MLOUTPUT_CMA = mloutput.cma
+else
+MLOUTPUT_CMA = mloutput.cmxa
+endif
+
+noinst_DATA = $(MLOUTPUT_CMA)
+
+libmloutput_a_SOURCES = $(SOURCES_C)
+libmloutput_a_CPPFLAGS = \
 	-DCAML_NAME_SPACE \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
 	-I$(top_srcdir)/common/qemuopts \
-	-I$(top_srcdir)/lib \
-	-I$(top_srcdir)/v2v
-helper_v2v_output_CFLAGS = \
+	-I$(top_srcdir)/lib
+libmloutput_a_CFLAGS = \
 	-pthread \
+	-fPIC \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
 	$(LIBXML2_CFLAGS) \
@@ -163,14 +176,12 @@ OCAMLLINKFLAGS = \
 	mlv2vlib.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
-helper_v2v_output_DEPENDENCIES = \
-	$(OBJECTS) \
-	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
-helper_v2v_output_LINK = \
-	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
-	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \
-	  $(OBJECTS) -o $@
+libmloutput_a_DEPENDENCIES = \
+	$(OBJECTS)
+
+$(MLOUTPUT_CMA): $(OBJECTS) libmloutput.a
+	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	    $(OBJECTS) $(libmloutput_a_OBJECTS) -o mloutput
 
 # Unit tests.
 TESTS =

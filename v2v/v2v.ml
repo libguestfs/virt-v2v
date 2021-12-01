@@ -48,36 +48,12 @@ let tmpdir =
   if running_as_root then chmod tmpdir 0o711;
   tmpdir
 
-(* Ensure the output helper gets killed on exit. *)
-let o_pid = ref 0
-
-let cleanup () =
-  (* Wait a short time for the helper to exit before deleting
-   * the v2v directory, since the helpers cleanups may need
-   * files in there.
-   *)
-  let rec loop timeout pid =
-    if timeout = 0 then ()
-    else if pid_finished pid then ()
-    else (
-      Unix.sleep 1;
-      loop (timeout-1) pid
-    )
-  and pid_finished pid =
-    try fst (waitpid [WNOHANG] pid) <> 0 with Unix_error _ -> false
-  in
-
-  if !o_pid <> 0 then (
-    kill !o_pid Sys.sigterm;
-    loop 30 !o_pid;
-    o_pid := 0
-  );
-
+let cleanup_tmpdir () =
   let cmd = sprintf "rm -rf %s" (quote tmpdir) in
   ignore (Sys.command cmd)
 
 let rec main () =
-  at_exit cleanup;
+  at_exit cleanup_tmpdir;
 
   let set_string_option_once optname optref arg =
     match !optref with
@@ -104,6 +80,19 @@ let rec main () =
     else (
       let k, v = String.split "=" option in
       set_input_option_compat k v
+    )
+  in
+
+  let output_options = ref [] in
+  let oo_query = ref false in
+  let set_output_option_compat k v =
+    List.push_back output_options (k, v)
+  in
+  let set_output_option option =
+    if option = "?" then oo_query := true
+    else (
+      let k, v = String.split "=" option in
+      set_output_option_compat k v
     )
   in
 
@@ -181,14 +170,22 @@ let rec main () =
       error (f_"unknown --root option: %s") s
   in
 
-  (* Output options passed to helper-v2v-output-*. *)
-  let o_options = ref [] in
-  let oo_query = ref false in
-  let add_o_option k v =
-    if k = "-oo" && v = "?" then oo_query := true; (* XXX *)
-    List.push_front (k, v) o_options
+  let output_alloc = ref `Not_set in
+  let set_output_alloc mode =
+    if !output_alloc <> `Not_set then
+      error (f_"%s option used more than once on the command line") "-oa";
+    match mode with
+    | "sparse" -> output_alloc := `Sparse
+    | "preallocated" -> output_alloc := `Preallocated
+    | s ->
+       error (f_"unknown -oa option: %s") s
   in
-  let set_output_option_compat k v = add_o_option "-oo" (k ^ "=" ^ v) in
+
+  let output_conn = ref None in
+  let output_format = ref None in
+  let output_name = ref None in
+  let output_password = ref None in
+  let output_storage = ref None in
 
   (* Other options that we handle here. *)
   let in_place = ref false in
@@ -208,7 +205,6 @@ let rec main () =
        error (f_"unknown -i option: %s") s
   in
 
-  let output_name = ref None in
   let output_mode = ref `Not_set in
   let set_output_mode mode =
     if !output_mode <> `Not_set then
@@ -229,17 +225,6 @@ let rec main () =
        error (f_"unknown -o option: %s") s
   in
 
-  let output_alloc = ref `Not_set in
-  let set_output_alloc mode =
-    if !output_alloc <> `Not_set then
-      error (f_"%s option used more than once on the command line") "-oa";
-    match mode with
-    | "sparse" -> output_alloc := `Sparse
-    | "preallocated" -> output_alloc := `Preallocated
-    | s ->
-       error (f_"unknown -oa option: %s") s
-  in
-
   (* Options that are ignored for backwards compatibility. *)
   let no_trim_warning _ =
     warning (f_"the --no-trim option has been removed and now does nothing")
@@ -255,7 +240,7 @@ let rec main () =
                                     s_"Set bandwidth dynamically from file";
     [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
       s_"Map bridge ‘in’ to ‘out’";
-    [ L"compressed" ], Getopt.Unit (fun () -> add_o_option "-oo" "compressed"),
+    [ L"compressed" ], Getopt.Unit (fun () -> set_output_option_compat "compressed" ""),
       s_"Compress output file (-of qcow2 only)";
     [ S 'i' ],       Getopt.String ("disk|libvirt|libvirtxml|ova|vmx", set_input_mode),
       s_"Set input mode (default: libvirt)";
@@ -280,24 +265,24 @@ let rec main () =
     [ S 'o' ],       Getopt.String ("glance|json|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
-      s_"Set output allocation mode";
-    [ M"oc" ],       Getopt.String ("uri", add_o_option "-oc"),
-      s_"Output hypervisor connection";
-    [ M"of" ],       Getopt.String ("raw|qcow2", add_o_option "-of"),
-      s_"Set output format";
+                                    s_"Set output allocation mode";
+    [ M"oc" ],       Getopt.String ("uri", set_string_option_once "-oc" output_conn),
+                                    s_"Output hypervisor connection";
+    [ M"of" ],       Getopt.String ("raw|qcow2", set_string_option_once "-of" output_format),
+                                    s_"Set output format";
     [ M"on" ],       Getopt.String ("name", set_string_option_once "-on" output_name),
-      s_"Rename guest when converting";
-    [ M"oo" ],       Getopt.String ("option[=value]", add_o_option "-oo"),
-      s_"Set option for output mode";
-    [ M"op" ],       Getopt.String ("filename", add_o_option "-op"),
-      s_"Use password from file to connect to output hypervisor";
-    [ M"os" ],       Getopt.String ("storage", add_o_option "-os"),
-      s_"Set output storage location";
+                                    s_"Rename guest when converting";
+    [ M"oo" ],       Getopt.String ("option[=value]", set_output_option),
+                                    s_"Set option for output mode";
+    [ M"op" ],       Getopt.String ("filename", set_string_option_once "-op" output_password),
+                                    s_"Use password from file to connect to output hypervisor";
+    [ M"os" ],       Getopt.String ("storage", set_string_option_once "-os" output_storage),
+                                    s_"Set output storage location";
     [ L"password-file" ], Getopt.String ("filename", set_string_option_once "-ip" input_password),
       s_"Same as ‘-ip filename’";
     [ L"print-source" ], Getopt.Set print_source,
       s_"Print source and stop";
-    [ L"qemu-boot" ], Getopt.Unit (fun () -> add_o_option "-oo" "qemu-boot"),
+    [ L"qemu-boot" ], Getopt.Unit (fun () -> set_output_option_compat "qemu-boot" ""),
       s_"Boot in qemu (-o qemu only)";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
       s_"How to choose root filesystem";
@@ -359,25 +344,6 @@ read the man page virt-v2v(1).
   let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
 
-  (* Was --debug-gc passed on the command line?  If so we want to
-   * pass it through to helpers.
-   *)
-  let debug_gc = !(opthandle.debug_gc) in
-
-  (* -on option has to be passed to both the output helper. *)
-  (match !output_name with
-   | None -> ()
-   | Some n -> add_o_option "-on" n
-  );
-
-  (* -oa preallocated has to be passed to the output helper.  But also
-   * we handle it here with nbdcopy.
-   *)
-  (match !output_alloc with
-   | `Not_set | `Sparse -> ()
-   | `Preallocated -> add_o_option "-oa" "preallocated"
-  );
-
   (* Dereference the arguments. *)
   let args = List.rev !args in
   let in_place = !in_place in
@@ -396,7 +362,6 @@ read the man page virt-v2v(1).
     | `Preallocated -> Types.Preallocated in
   let output_mode = !output_mode in
   let output_name = !output_name in
-  let o_options = List.rev !o_options in
   let print_source = !print_source in
   let root_choice = !root_choice in
   let static_ips = !static_ips in
@@ -443,19 +408,6 @@ read the man page virt-v2v(1).
       exit 0
    | _, _ -> ()
   );
-
-  (* We pass through standard flags --colours, -q, -v, -x and the
-   * v2v temporary directory to all helpers.
-   *)
-  let std_args = ref [] in
-  List.push_back std_args tmpdir;
-  if colours () then List.push_back std_args "--colours";
-  if debug_gc then List.push_back std_args "--debug-gc";
-  if quiet () then List.push_back std_args "-q";
-  if verbose () then List.push_back std_args "-v";
-  if trace () then List.push_back std_args "-x";
-  List.push_back std_args "--program-name=virt-v2v";
-  let std_args = !std_args in
 
   (* Get the input module. *)
   let (module Input_module) =
@@ -523,13 +475,46 @@ read the man page virt-v2v(1).
     exit 0
   );
 
+  (* Get the output helper name and command line. *)
+  let (module Output_module) =
+    match output_mode with
+    | `Not_set | `Libvirt -> (module Output.Libvirt_ : Output.OUTPUT)
+    | `Disk -> (module Output.Disk)
+    | `Null -> (module Output.Null)
+    | `QEmu -> (module Output.QEMU)
+    | `Glance -> (module Output.Glance)
+    | `Openstack -> (module Output.Openstack)
+    | `RHV_Upload -> (module Output.RHVUpload)
+    | `RHV -> (module Output.RHV)
+    | `VDSM -> (module Output.VDSM)
+    | `JSON -> (module Output.Json) in
+
+  let output_options = {
+    Output.output_alloc = output_alloc;
+    output_conn = !output_conn;
+    output_format = Option.default "raw" !output_format;
+    output_name = output_name;
+    output_options = !output_options;
+    output_password = !output_password;
+    output_storage = !output_storage
+  } in
+
+  (* If -oo ? then we want to query output options supported in this mode. *)
+  if !oo_query then (
+    Output_module.query_output_options ();
+    exit 0
+  );
+
   (* Install a signal handler and atexit handler so the
-   * Input_module.cleanup function is always called.
+   * Input_module/Output_module.cleanup functions are always called.
    *)
   let () =
     let cleanup_called = ref false in
     let cleanup () =
-      if not !cleanup_called then Input_module.cleanup ();
+      if not !cleanup_called then (
+        Input_module.cleanup ();
+        Output_module.cleanup ()
+      );
       cleanup_called := true
     in
     List.iter (
@@ -537,54 +522,6 @@ read the man page virt-v2v(1).
         ignore (Sys.signal signl (Sys.Signal_handle (fun _ -> cleanup ())))
     ) [ Sys.sigint; Sys.sigquit; Sys.sigterm; Sys.sighup ];
     at_exit cleanup in
-
-  (* Get the output helper name and command line. *)
-  let o_helper, o_extra_args =
-    match output_mode with
-    | `Not_set | `Libvirt ->
-       "helper-v2v-output", [ "-om"; "libvirt" ]
-    | `Disk ->
-       "helper-v2v-output", [ "-om"; "disk" ]
-    | `Null ->
-       "helper-v2v-output", [ "-om"; "null" ]
-    | `QEmu ->
-       "helper-v2v-output", [ "-om"; "qemu" ]
-    | `Glance ->
-       "helper-v2v-output", [ "-om"; "glance" ]
-    | `Openstack ->
-       "helper-v2v-output", [ "-om"; "openstack" ]
-    | `RHV_Upload ->
-       "helper-v2v-output", [ "-om"; "rhv-upload"]
-    | `RHV ->
-       "helper-v2v-output", [ "-om"; "rhv" ]
-    | `VDSM ->
-       "helper-v2v-output", [ "-om"; "vdsm" ]
-    | `JSON ->
-       "helper-v2v-output", [ "-om"; "json" ] in
-
-  (* The purpose of this is simply to fail early on if the
-   * output helper we have chosen does not exist.  If --print-source
-   * is used then we will never call the output helper so don't
-   * fail in that case (it is used a lot in tests).
-   *)
-  if not print_source &&
-       shell_command (sprintf "%s --version >/dev/null 2>&1" o_helper) <> 0 then
-    error (f_"output helper command (%s) does not exist or is not working")
-      o_helper;
-
-  let o_setup_cmd, o_final_cmd =
-    let o_options =
-      List.flatten (List.map (fun (k, v) -> [k; v]) o_options) in
-    o_helper :: "setup" :: std_args @ o_extra_args @ o_options,
-    o_helper :: "final" :: std_args @ o_extra_args @ o_options in
-
-  (* If -oo ? then we want to query output options supported in this mode. *)
-  if !oo_query then (
-    if run_command o_setup_cmd <> 0 then
-      (* We assume the command already printed an error. *)
-      exit 1;
-    exit 0
-  );
 
   (* XXX This is a hack for -o rhv and -o vdsm where we must remove
    * the serial console for Linux conversions.  We don't do this for
@@ -617,15 +554,8 @@ read the man page virt-v2v(1).
     exit 0
   );
 
-  (* XXX Temporary - removed in following commit XXX *)
-  with_open_out (tmpdir // "source") (
-    fun chan ->
-      output_value chan Utils.metaversion;
-      output_value chan source
-  );
-
-  (* Start the output helper (runs in the background). *)
-  o_pid := start_helper "output" o_helper o_setup_cmd (tmpdir // "out.pid");
+  (* Start the output module (runs an NBD server in the background). *)
+  let output_t = Output_module.setup tmpdir output_options source in
 
   (* Debug the v2vdir. *)
   if verbose () then (
@@ -637,18 +567,6 @@ read the man page virt-v2v(1).
   with_open_out (tmpdir // "convert") (fun _ -> ());
   let inspect, target_meta = Convert.convert tmpdir conv_options source in
   unlink (tmpdir // "convert");
-
-  (* XXX Temporary - removed in following commit XXX *)
-  with_open_out (tmpdir // "inspect") (
-    fun chan ->
-      output_value chan Utils.metaversion;
-      output_value chan inspect
-  );
-  with_open_out (tmpdir // "target_meta") (
-    fun chan ->
-      output_value chan Utils.metaversion;
-      output_value chan target_meta
-  );
 
   (* Do the copy. *)
   with_open_out (tmpdir // "copy") (fun _ -> ());
@@ -699,11 +617,8 @@ read the man page virt-v2v(1).
 
   (* Do the finalization step. *)
   message (f_"Creating output metadata");
-  debug "running output finalization: %s"
-    (String.concat " " (List.map quote o_final_cmd));
-  if run_command o_final_cmd <> 0 then
-    (* We assume the command already printed an error. *)
-    exit 1;
+  Output_module.finalize tmpdir output_options
+    source inspect target_meta output_t;
 
   message (f_"Finishing off");
   (* As the last thing, write a file indicating success before
@@ -712,38 +627,6 @@ read the man page virt-v2v(1).
    * on-success or on-fail cleanup is required.
    *)
   with_open_out (tmpdir // "done") (fun _ -> ())
-
-and start_helper helper_type prog cmd pidfile =
-  debug "running %s helper: %s"
-    helper_type (String.concat " " (List.map quote cmd));
-  let args = Array.of_list cmd in
-  let pid = fork () in
-  if pid = 0 then execvp prog args; (* Child process. *)
-
-  (* Wait for the pidfile to appear, but also check if the
-   * PID is still running in case it exited early during start-up.
-   *)
-  let rec loop timeout =
-    if Sys.file_exists pidfile then true
-    else if timeout = 0 then false
-    else if pid_finished pid then false
-    else (
-      Unix.sleep 1;
-      loop (timeout-1)
-    )
-  and pid_finished pid =
-    try fst (waitpid [WNOHANG] pid) <> 0 with Unix_error _ -> false
-  in
-
-  (* Note that it can take a long time for the input helper
-   * to start up if it has to connect to a remote VMware server.
-   * Or (crucially) if the user has to enter a password.
-   *)
-  if not (loop 60) then
-    (* We assume the command already printed an error. *)
-    exit 1;
-
-  pid
 
 and nbdcopy ?request_size output_alloc input_uri output_uri =
   (* XXX It's possible that some output modes know whether

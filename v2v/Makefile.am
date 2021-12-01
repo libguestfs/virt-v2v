@@ -58,8 +58,9 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/qemuopts/.libs \
 	-I $(top_builddir)/gnulib/lib/.libs \
 	-I $(top_builddir)/lib \
-	-I $(top_builddir)/convert \
 	-I $(top_builddir)/input \
+	-I $(top_builddir)/output \
+	-I $(top_builddir)/convert \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlutils \
 	-I $(top_builddir)/common/mlgettext \
@@ -106,11 +107,13 @@ OCAMLLINKFLAGS = \
 	mlv2vlib.$(MLARCHIVE) \
 	mlconvert.$(MLARCHIVE) \
 	mlinput.$(MLARCHIVE) \
+	mloutput.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
 virt_v2v_DEPENDENCIES = \
 	$(OBJECTS) \
 	$(top_builddir)/input/mlinput.$(MLARCHIVE) \
+	$(top_builddir)/output/mloutput.$(MLARCHIVE) \
 	$(top_builddir)/convert/mlconvert.$(MLARCHIVE) \
 	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
 	$(top_srcdir)/ocaml-link.sh

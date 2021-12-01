@@ -1,4 +1,4 @@
-(* helper-v2v-output
+(* virt-v2v
  * Copyright (C) 2009-2021 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -31,11 +31,12 @@ open Create_libvirt_xml
 open Types
 open Utils
 
-type cmdline = {
+type options = {
   output_alloc : Types.output_allocation;
   output_conn : string option;
   output_format : string;
   output_options : (string * string) list;
+  output_name : string option;
   output_password : string option;
   output_storage : string option;
 }
@@ -44,289 +45,48 @@ type cmdline = {
 let error_option_cannot_be_used_in_output_mode mode opt =
   error (f_"-o %s: %s option cannot be used in this output mode") mode opt
 
-(* Install a signal handler so we can clean up subprocesses on exit. *)
-let cleanup_pid, cleanup_socket =
+(* Use a common cleanup function to clean up PIDs and sockets. *)
+let cleanup_pid, cleanup_socket, common_cleanup =
   let open Sys in
   let pids = ref [] and sockets = ref [] in
   let cleanup_pid pid = List.push_front pid pids in
   let cleanup_socket sock = List.push_front sock sockets in
-  let cleanup _ =
+  let common_cleanup () =
     List.iter (fun pid -> kill pid sigterm) !pids;
-    List.iter unlink !sockets;
+    List.iter (fun sock -> try unlink sock with Unix_error _ -> ()) !sockets;
   in
-  List.iter (
-    fun signl -> ignore (signal signl (Signal_handle cleanup))
-  ) [ sigint; sigquit; sigterm; sighup ];
-  cleanup_pid, cleanup_socket
+  cleanup_pid, cleanup_socket, common_cleanup
 
-let rec main () =
-  (* Parse the command line. *)
-  let set_string_option_once optname optref arg =
-    match !optref with
-    | Some _ ->
-       error (f_"%s option used more than once on the command line") optname
-    | None ->
-       optref := Some arg
-  in
+(* Common code to get the final output_name. *)
+let common_output_name { output_name } source =
+  match output_name with
+  | None -> source.s_name
+  | Some name -> name
 
-  let output_mode = ref None in
-  let set_output_mode mode =
-    if !output_mode <> None then
-      error (f_"%s option used more than once on the command line") "-om";
-    match mode with
-    | "disk" -> output_mode := Some `Disk
-    | "glance" -> output_mode := Some `Glance
-    | "json" -> output_mode := Some `Json
-    | "libvirt" -> output_mode := Some `Libvirt
-    | "null" -> output_mode := Some `Null
-    | "openstack" -> output_mode := Some `Openstack
-    | "qemu" -> output_mode := Some `Qemu
-    | "rhv-upload" -> output_mode := Some `RHVUpload
-    | "rhv" -> output_mode := Some `RHV
-    | "vdsm" -> output_mode := Some `VDSM
-    | s -> error (f_"unknown -om option: %s") s
-  in
-
-  let output_options = ref [] in
-  let oo_query = ref false in
-  let set_output_option option =
-    if option = "?" then oo_query := true (* -oo ? *)
-    else (
-      let kv = String.split "=" option in
-      List.push_back output_options kv
+(* Common code to get the list of disks and query the size of each. *)
+let common_disks dir =
+  let rec loop acc i =
+    let socket = sprintf "%s/in%d" dir i in
+    if Sys.file_exists socket then (
+      let nbd = NBD.create () in
+      NBD.connect_unix nbd socket;
+      let size = NBD.get_size nbd in
+      (try
+         NBD.shutdown nbd;
+         NBD.close nbd
+       with NBD.Error _ -> ());
+      loop ((i, size) :: acc) (i+1)
     )
+    else
+      List.rev acc
   in
-
-  let output_alloc = ref `Not_set in
-  let set_output_alloc mode =
-    if !output_alloc <> `Not_set then
-      error (f_"%s option used more than once on the command line") "-oa";
-    match mode with
-    | "sparse" -> output_alloc := `Sparse
-    | "preallocated" -> output_alloc := `Preallocated
-    | s ->
-       error (f_"unknown -oa option: %s") s
-  in
-
-  let output_conn = ref None in
-  let output_format = ref None in
-  let output_name = ref None in
-  let output_password = ref None in
-  let output_storage = ref None in
-  let args = ref [] in
-  let anon_fun s = List.push_front s args in
-
-  let argspec = [
-    [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
-                                    s_"Set output allocation mode";
-    [ M"oc" ],       Getopt.String ("uri", set_string_option_once "-oc" output_conn),
-                                    s_"Output hypervisor connection";
-    [ M"of" ],       Getopt.String ("raw|qcow2", set_string_option_once "-of" output_format),
-                                    s_"Set output format";
-    [ M"om" ],       Getopt.String ("disk|glance|json|null|openstack|qemu|rhv-upload|rhv|vdsm", set_output_mode),
-                                    s_"Set output mode";
-    [ M"on" ],       Getopt.String ("name", set_string_option_once "-on" output_name),
-                                    s_"Rename guest when converting";
-    [ M"oo" ],       Getopt.String ("option[=value]", set_output_option),
-                                    s_"Set option for output mode";
-    [ M"op" ],       Getopt.String ("filename", set_string_option_once "-op" output_password),
-                                    s_"Use password from file to connect to output hypervisor";
-    [ M"os" ],       Getopt.String ("storage", set_string_option_once "-os" output_storage),
-                                    s_"Set output storage location";
-  ] in
-
-  let usage_msg =
-    sprintf (f_"\
-%s: helper to set up virt-v2v for output
-
-helper-v2v-output -om MODE setup V2VDIR [MODE SPECIFIC PARAMETERS]
-helper-v2v-output -om MODE final V2VDIR [MODE SPECIFIC PARAMETERS]
-")
-      prog in
-  let opthandle =
-    create_standard_options argspec ~anon_fun ~program_name:true usage_msg in
-  Getopt.parse opthandle.getopt;
-
-  (* Dereference arguments. *)
-  let args = List.rev !args in
-  let cmdline = {
-    output_alloc =
-      (match !output_alloc with
-       | `Not_set | `Sparse -> Types.Sparse
-       | `Preallocated -> Types.Preallocated);
-    output_conn = !output_conn;
-    output_format = Option.default "raw" !output_format;
-    output_options = !output_options;
-    output_password = !output_password;
-    output_storage = !output_storage
-  } in
-  let oo_query = !oo_query in
-
-  (* -om option is required in this tool.  It is set by virt-v2v. *)
-  let output_mode =
-    match !output_mode with
-    | None -> error (f_"-om parameter was not set")
-    | Some om -> om in
-
-  (* -oo ? means list the valid output options for this mode. *)
-  if oo_query then (
-    (match output_mode with
-     | `Disk | `Libvirt | `Glance | `Null | `RHV ->
-        printf (f_"No output options can be used in this mode.\n");
-     | `Json -> json_print_output_options ()
-     | `Openstack -> openstack_print_output_options ()
-     | `Qemu -> qemu_print_output_options ()
-     | `RHVUpload -> rhv_upload_print_output_options ()
-     | `VDSM -> vdsm_print_output_options ()
-    );
-    exit 0
-  );
-
-  (* Check -oo is only used for output modes that support it. *)
-  if cmdline.output_options <> [] then (
-    match output_mode with
-    | `Disk | `Libvirt | `Glance | `Null | `RHV ->
-       error (f_"no -oo (output options) are allowed here")
-    | `Json | `Openstack | `Qemu | `RHVUpload | `VDSM -> ()
-  );
-
-  (* The first parameter must be setup|final (phase), and the second
-   * parameter must be the V2V directory.
-   *)
-  let phase, dir =
-    match args with
-    | [] -> error (f_"the first parameter must be the phase ‘setup’ or ‘final’: see %s --help for more information") prog
-    | ["setup"; dir] -> `Setup, dir
-    | ["final"; dir] -> `Final, dir
-    | [phase; _] ->
-       error (f_"unknown phase ‘%s’, must be ‘setup’ or ‘final’: see %s --help for more information") phase prog
-    | _ -> error (f_"too many anon args passed to %s") prog in
-
-  (* The v2v directory must exist. *)
-  if not (is_directory dir) then
-    error (f_"%s does not exist or is not a directory") dir;
-
-  (* Per-mode option parsing. *)
-  let output_mode =
-    match output_mode with
-    | `Disk -> disk_parse_options cmdline
-    | `Glance -> glance_parse_options cmdline
-    | `Json -> json_parse_options cmdline
-    | `Libvirt -> libvirt_parse_options cmdline
-    | `Null -> null_parse_options cmdline
-    | `Openstack -> openstack_parse_options cmdline
-    | `Qemu -> qemu_parse_options cmdline
-    | `RHVUpload -> rhv_upload_parse_options cmdline
-    | `RHV -> rhv_parse_options cmdline
-    | `VDSM -> vdsm_parse_options cmdline in
-
-  match phase with
-  | `Setup ->
-     setup dir output_name output_mode
-  | `Final ->
-     finalize dir output_mode
-
-(* Setup mode. *)
-and setup dir output_name output_mode =
-  (* Calculate the output_name. *)
-  let output_name =
-    let source =
-      with_open_in (dir // "source") (
-        fun chan ->
-          let ver = input_value chan in
-          assert (ver = Utils.metaversion);
-          (input_value chan : Types.source)
-      ) in
-    match !output_name with
-    | None -> source.s_name
-    | Some name -> name in
-
-  (* Get a list of input disks and query the size of each. *)
-  let disks =
-    let rec loop acc i =
-      let socket = sprintf "%s/in%d" dir i in
-      if Sys.file_exists socket then (
-        let nbd = NBD.create () in
-        NBD.connect_unix nbd socket;
-        let size = NBD.get_size nbd in
-        (try
-           NBD.shutdown nbd;
-           NBD.close nbd
-         with NBD.Error _ -> ());
-        loop ((i, size) :: acc) (i+1)
-      )
-      else
-        List.rev acc
-    in
-    loop [] 0 in
-
-  (* Create NBD server instances for each disk. *)
-  (match output_mode with
-   | `Disk data ->
-      disk_servers dir disks output_name data
-   | `Glance data -> glance_servers dir disks output_name data
-   | `Json data -> json_servers dir disks output_name data
-   | `Libvirt data -> libvirt_servers dir disks output_name data
-   | `Null -> null_servers dir disks output_name
-   | `Openstack data -> openstack_servers dir disks output_name data
-   | `Qemu data -> qemu_servers dir disks output_name data
-   | `RHVUpload data -> rhv_upload_servers dir disks output_name data
-   | `RHV data -> rhv_servers dir disks output_name data
-   | `VDSM data -> vdsm_servers dir disks output_name data
-  );
-
-  (* Now everything should be running, write our PID and
-   * wait until we get a signal.
-   *)
-  let out_pid = dir // "out.pid" in
-  with_open_out out_pid (fun chan -> fprintf chan "%d" (getpid ()));
-  pause ()
-
-and finalize dir output_mode =
-  (* Read the metadata written by other parts of virt-v2v. *)
-  let source =
-    with_open_in (dir // "source") (
-      fun chan ->
-        let ver = input_value chan in
-        assert (ver = Utils.metaversion);
-        (input_value chan : Types.source)
-    ) in
-
-  let inspect =
-    with_open_in (dir // "inspect") (
-      fun chan ->
-        let ver = input_value chan in
-        assert (ver = Utils.metaversion);
-        (input_value chan : Types.inspect)
-    ) in
-
-  let target_meta =
-    with_open_in (dir // "target_meta") (
-      fun chan ->
-        let ver = input_value chan in
-        assert (ver = Utils.metaversion);
-        (input_value chan : Types.target_meta)
-    ) in
-
-  (match output_mode with
-   | `Disk data ->
-      disk_finalize dir source inspect target_meta data
-   | `Glance data -> glance_finalize dir source inspect target_meta data
-   | `Json data -> json_finalize dir source inspect target_meta data
-   | `Libvirt data -> libvirt_finalize dir source inspect target_meta data
-   | `Null -> (* nothing to do *) ()
-   | `Openstack data -> openstack_finalize dir source inspect target_meta data
-   | `Qemu data -> qemu_finalize dir source inspect target_meta data
-   | `RHVUpload data -> rhv_upload_finalize dir source inspect target_meta data
-   | `RHV data -> rhv_finalize dir source inspect target_meta data
-   | `VDSM data -> vdsm_finalize dir source inspect target_meta data
-  ) (* match output_mode *)
+  loop [] 0
 
 (* Common code when an output mode wants to create a local file
  * with a particular format (only "raw" or "qcow2").
  *)
-and output_local_file ?(changeuid = fun f -> f ())
-                      output_alloc output_format filename size socket =
+let output_local_file ?(changeuid = fun f -> f ())
+      output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working.  It is required to use ‘-o disk’.");
@@ -375,22 +135,33 @@ and output_local_file ?(changeuid = fun f -> f ())
      error (f_"output mode only supports raw or qcow2 format (format: %s)")
        output_format
 
-(*----------------------------------------------------------------------*)
-(* -om disk *)
+module type OUTPUT = sig
+  type t
+  val setup : string -> options -> Types.source -> t
+  val finalize : string -> options ->
+                 Types.source -> Types.inspect -> Types.target_meta ->
+                 t ->
+                 unit
+  val query_output_options : unit -> unit
+  val cleanup : unit -> unit
+end
 
-and disk_parse_options cmdline =
-  if cmdline.output_password <> None then
+(*----------------------------------------------------------------------*)
+(* Output.Disk *)
+
+let rec disk_parse_options options =
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "local" "-op";
 
   (* -os must be set to a directory. *)
   let output_storage =
-    match cmdline.output_storage with
+    match options.output_storage with
     | None ->
        error (f_"-o disk: output directory was not specified, use '-os /dir'")
     | Some d when not (is_directory d) ->
        error (f_"-os %s: output directory does not exist or is not a directory") d
     | Some d -> d in
-  `Disk (cmdline.output_alloc, cmdline.output_format, output_storage)
+  options.output_alloc, options.output_format, output_storage
 
 and disk_servers dir disks output_name
                  (output_alloc, output_format, output_storage) =
@@ -449,17 +220,38 @@ and disk_path os name i =
   let outdisk = sprintf "%s/%s-sd%s" os name (drive_name i) in
   absolute_path outdisk
 
-(*----------------------------------------------------------------------*)
-(* -om glance *)
+module Disk = struct
+  type t = unit
 
-and glance_parse_options cmdline =
-  if cmdline.output_conn <> None then
+  let setup dir options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
+    let data = disk_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    disk_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta () =
+    let data = disk_parse_options options in
+    disk_finalize dir source inspect target_meta data
+
+  let query_output_options () =
+    printf (f_"No output options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.Glance *)
+
+let glance_parse_options options =
+  if options.output_conn <> None then
     error_option_cannot_be_used_in_output_mode "glance" "-oc";
-  if cmdline.output_password <> None then
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "glance" "-op";
-  if cmdline.output_storage <> None then
+  if options.output_storage <> None then
     error_option_cannot_be_used_in_output_mode "glance" "-os";
-  `Glance cmdline.output_format
+  options.output_format
 
 and glance_servers dir disks output_name output_format =
   (* This does nothing useful except to check that the user has
@@ -479,12 +271,8 @@ and glance_servers dir disks output_name output_format =
   (* Although glance can slurp in a stream from stdin, qemu-nbd
    * (used for -of qcow2) cannot write to a stream.  This might
    * be possible in future with more creative use of NBD.  (XXX)
-   * We save the location of the tmpdir as a symbolic link under
-   * v2vdir (v2vdir/out.tmpdir) so we can complete the conversion
-   * in finalization.
    *)
   let tmpdir = Mkdtemp.temp_dir ~base_dir:large_tmpdir "glance." in
-  symlink tmpdir (dir // "out.tmpdir");
 
   (* This will write disks to the large temporary directory. *)
   List.iter (
@@ -493,17 +281,13 @@ and glance_servers dir disks output_name output_format =
       cleanup_socket socket;
 
       (* Create the actual output disk. *)
-      let outdisk = sprintf "%s/out.tmpdir/%d" dir i in
+      let outdisk = sprintf "%s/%d" tmpdir i in
       output_local_file Sparse output_format outdisk size socket
-  ) disks
+  ) disks;
 
-and glance_finalize dir source inspect target_meta output_format =
-  (* This is a symbolic link to the directory containing the
-   * temporary disks.  It was created in the setup phase.
-   *)
-  if not (is_directory (dir // "out.tmpdir/")) then
-    error (f_"%s/out.tmpdir does not exist or is not a directory") dir;
+  tmpdir
 
+and glance_finalize dir source inspect target_meta output_format tmpdir =
   let min_ram = source.s_memory /^ 1024L /^ 1024L in
 
   (* Get the image properties. *)
@@ -527,7 +311,7 @@ and glance_finalize dir source inspect target_meta output_format =
         if i == 0 then target_meta.output_name
         else sprintf "%s-disk%d" target_meta.output_name (i+1) in
 
-      let disk = sprintf "%s/out.tmpdir/%d" dir i in
+      let disk = sprintf "%s/%d" tmpdir i in
 
       (* If glance is used with VMware then there's a vmware_disktype
        * option which allows preallocated.  However I don't believe
@@ -548,21 +332,42 @@ and glance_finalize dir source inspect target_meta output_format =
   ) source.s_disks;
 
   (* Remove the temporary directory for the large files. *)
-  (try rmdir (readlink (dir // "out.tmpdir")) with Unix_error _ -> ())
+  (try rmdir tmpdir with Unix_error _ -> ())
+
+module Glance = struct
+  type t = string
+
+  let setup dir options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
+    let data = glance_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    glance_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta tmpdir =
+    let data = glance_parse_options options in
+    glance_finalize dir source inspect target_meta data tmpdir
+
+  let query_output_options () =
+    printf (f_"No output options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
 
 (*----------------------------------------------------------------------*)
-(* -om json *)
+(* Output.Json *)
 
-and json_print_output_options () =
+let rec json_print_output_options () =
   printf (f_"Output options (-oo) which can be used with -o json:
 
   -oo json-disks-pattern=PATTERN   Pattern for the disks.
 ")
 
-and json_parse_options cmdline =
-  if cmdline.output_conn <> None then
+and json_parse_options options =
+  if options.output_conn <> None then
     error_option_cannot_be_used_in_output_mode "json" "-oc";
-  if cmdline.output_password <> None then
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "json" "-op";
 
   let known_pattern_variables = ["DiskNo"; "DiskDeviceName"; "GuestName"] in
@@ -587,22 +392,22 @@ and json_parse_options cmdline =
          json_disks_pattern := Some v
       | k ->
          error (f_"-o json: unknown output option ‘-oo %s’") k
-    ) cmdline.output_options;
+    ) options.output_options;
 
   let json_disks_pattern =
     Option.default "%{GuestName}-%{DiskDeviceName}" !json_disks_pattern in
 
   (* -os must be set to a directory. *)
   let output_storage =
-    match cmdline.output_storage with
+    match options.output_storage with
     | None ->
        error (f_"-o json: output directory was not specified, use '-os /dir'")
     | Some d when not (is_directory d) ->
        error (f_"-os %s: output directory does not exist or is not a directory") d
     | Some d -> d in
 
-  `Json (json_disks_pattern,
-         cmdline.output_alloc, cmdline.output_format, output_storage)
+  (json_disks_pattern,
+   options.output_alloc, options.output_format, output_storage)
 
 and json_servers dir disks output_name
                  (json_disks_pattern,
@@ -655,19 +460,39 @@ and json_path os output_name json_disks_pattern i =
   let outdisk = absolute_path outdisk in
   outdisk
 
-(*----------------------------------------------------------------------*)
-(* -om libvirt *)
+module Json = struct
+  type t = unit
 
-and libvirt_parse_options cmdline =
-  if cmdline.output_password <> None then
+  let setup dir options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
+    let data = json_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    json_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta () =
+    let data = json_parse_options options in
+    json_finalize dir source inspect target_meta data
+
+  let query_output_options = json_print_output_options
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.Libvirt_ *)
+
+let rec libvirt_parse_options options =
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "libvirt" "-op";
 
-  let conn = lazy (Libvirt.Connect.connect ?name:cmdline.output_conn ()) in
+  let conn = lazy (Libvirt.Connect.connect ?name:options.output_conn ()) in
 
   (* -os is the name of the output pool.  It defaults to "default". *)
-  let output_pool = Option.default "default" cmdline.output_storage in
+  let output_pool = Option.default "default" options.output_storage in
 
-  `Libvirt (conn, cmdline.output_alloc, cmdline.output_format, output_pool)
+  (conn, options.output_alloc, options.output_format, output_pool)
 
 and libvirt_servers dir disks output_name
                     (conn, output_alloc, output_format, output_pool) =
@@ -717,14 +542,6 @@ and libvirt_servers dir disks output_name
    *)
   let pool_name = Libvirt.Pool.get_name (Libvirt.Pool.const pool) in
 
-  (* Stash the capabilities XML, since we cannot get the bits we
-   * need from it until we know the guest architecture, which happens
-   * after conversion.  Also stash the pool name used in the
-   * final XML.
-   *)
-  with_open_out (dir // "out.libvirt")
-    (fun chan -> output_value chan (capabilities_xml, pool_name));
-
   (* Set up the NBD servers. *)
   List.iter (
     fun (i, size) ->
@@ -734,10 +551,13 @@ and libvirt_servers dir disks output_name
       (* Create the actual output disk. *)
       let outdisk = target_path // output_name ^ "-sd" ^ (drive_name i) in
       output_local_file output_alloc output_format outdisk size socket
-  ) disks
+  ) disks;
+
+  (capabilities_xml, pool_name)
 
 and libvirt_finalize dir source inspect target_meta
-                     (conn, output_alloc, output_format, output_pool) =
+                     (conn, output_alloc, output_format, output_pool)
+                     (capabilities_xml, pool_name) =
   (match target_meta.target_firmware with
    | TargetBIOS -> ()
    | TargetUEFI ->
@@ -762,12 +582,8 @@ and libvirt_finalize dir source inspect target_meta
        output_pool (Option.default "" message)
   );
 
-  (* Read the capabilities and pool name saved in the setup step. *)
-  let capabilities_xml, pool_name =
-    with_open_in (dir // "out.libvirt") (fun chan -> input_value chan) in
-  let doc = Xml.parse_memory capabilities_xml in
-
   (* Parse the capabilities XML in order to get the supported features. *)
+  let doc = Xml.parse_memory capabilities_xml in
   let target_features =
     target_features_of_capabilities_doc doc target_meta.guestcaps.gcaps_arch in
 
@@ -831,22 +647,41 @@ and target_features_of_capabilities_doc doc arch =
     List.map Xml.node_name features
   )
 
+module Libvirt_ = struct
+  type t = string * string
+
+  let setup dir options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
+    let data = libvirt_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    libvirt_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta t =
+    let data = libvirt_parse_options options in
+    libvirt_finalize dir source inspect target_meta data t
+
+  let query_output_options () =
+    printf (f_"No output options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
 (*----------------------------------------------------------------------*)
-(* -om null *)
+(* Output.Null *)
 
-and null_parse_options cmdline =
-  if cmdline.output_alloc <> Sparse then
+let null_parse_options options =
+  if options.output_alloc <> Sparse then
     error_option_cannot_be_used_in_output_mode "null" "-oa";
-  if cmdline.output_conn <> None then
+  if options.output_conn <> None then
     error_option_cannot_be_used_in_output_mode "null" "-oc";
-  if cmdline.output_format <> "raw" then
+  if options.output_format <> "raw" then
     error_option_cannot_be_used_in_output_mode "null" "-of";
-  if cmdline.output_password <> None then
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "null" "-op";
-  if cmdline.output_storage <> None then
-    error_option_cannot_be_used_in_output_mode "null" "-os";
-
-  `Null
+  if options.output_storage <> None then
+    error_option_cannot_be_used_in_output_mode "null" "-os"
 
 and null_servers dir disks output_name =
   (* Check nbdkit is installed and has the required plugin. *)
@@ -883,10 +718,30 @@ and null_servers dir disks output_name =
       )
   ) disks
 
-(*----------------------------------------------------------------------*)
-(* -om openstack *)
+module Null = struct
+  type t = unit
 
-and openstack_print_output_options () =
+  let setup dir options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
+    null_parse_options options;
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    null_servers dir disks output_name
+
+  let finalize dir options source inspect target_meta () =
+    () (* nothing to do *)
+
+  let query_output_options () =
+    printf (f_"No output options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.Openstack *)
+
+let rec openstack_print_output_options () =
   printf (f_"virt-v2v -oo server-id=<NAME|UUID> [os-*=...]
 
 Specify the name or UUID of the conversion appliance using
@@ -917,8 +772,8 @@ For example:
 The os-* parameters and environment variables are optional.
 ")
 
-and openstack_parse_options cmdline =
-  if cmdline.output_alloc <> Sparse || cmdline.output_format <> "raw" then
+and openstack_parse_options options =
+  if options.output_alloc <> Sparse || options.output_format <> "raw" then
     error (f_"-o openstack mode only supports -oa sparse -of raw");
 
   let server_id = ref None in
@@ -947,7 +802,7 @@ and openstack_parse_options cmdline =
        authentication := opt :: !authentication
     | k, _ ->
        error (f_"-o openstack: unknown output option ‘-oo %s’") k
-  ) cmdline.output_options;
+  ) options.output_options;
   let server_id =
     match !server_id with
     | None ->
@@ -965,7 +820,7 @@ and openstack_parse_options cmdline =
   let extra_args =
     let args = ref authentication in
     Option.may (fun oc -> List.push_back args (sprintf "--os-auth-url=%s" oc))
-               cmdline.output_conn;
+               options.output_conn;
     if not verify_server_certificate then
       List.push_back args "--insecure";
     !args in
@@ -1030,9 +885,9 @@ and openstack_parse_options cmdline =
   if run_openstack_command args <> 0 then
     error (f_"openstack: precheck failed, there may be a problem with authentication, see earlier error messages");
 
-  `Openstack (cmdline.output_storage, server_id, guest_id, dev_disk_by_id,
-              run_openstack_command,
-              run_openstack_command_capture_json)
+  (options.output_storage, server_id, guest_id, dev_disk_by_id,
+   run_openstack_command,
+   run_openstack_command_capture_json)
 
 and openstack_servers dir disks output_name
                       (output_storage, server_id, guest_id, dev_disk_by_id,
@@ -1219,16 +1074,13 @@ and openstack_servers dir disks output_name
       output_local_file Sparse "raw" dev size socket
   ) (List.combine disks devices);
 
-  (* Stash the volume IDs which will be needed again when finalizing. *)
-  with_open_out (dir // "out.volume-ids")
-    (fun chan -> output_value chan !volume_ids)
+  !volume_ids
 
 and openstack_finalize dir source inspect target_meta
                        (output_storage, server_id, guest_id, dev_disk_by_id,
                         run_openstack_command,
-                        run_openstack_command_capture_json) =
-  let volume_ids : string list =
-    with_open_in (dir // "out.volume-ids") (fun chan -> input_value chan) in
+                        run_openstack_command_capture_json)
+                       volume_ids =
   let nr_disks = List.length volume_ids in
 
   (* Update metadata on a cinder volume. *)
@@ -1319,17 +1171,35 @@ and iso_time =
     (tm.tm_year + 1900) (tm.tm_mon + 1) tm.tm_mday
     tm.tm_hour tm.tm_min tm.tm_sec
 
-(*----------------------------------------------------------------------*)
-(* -om qemu *)
+module Openstack = struct
+  type t = string list
 
-and qemu_print_output_options () =
+  let setup dir options source =
+    let data = openstack_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    openstack_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta t =
+    let data = openstack_parse_options options in
+    openstack_finalize dir source inspect target_meta data t
+
+  let query_output_options = openstack_print_output_options
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.QEMU *)
+
+let qemu_print_output_options () =
   printf (f_"Output options (-oo) which can be used with -o qemu:
 
   -oo qemu-boot       Boot the guest in qemu after conversion
 ")
 
-and qemu_parse_options cmdline =
-  if cmdline.output_password <> None then
+and qemu_parse_options options =
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "qemu" "-op";
 
   let qemu_boot = ref false in
@@ -1343,19 +1213,19 @@ and qemu_parse_options cmdline =
            error (f_"-o qemu: use -oo qemu-boot[=true|false]")
       | k ->
          error (f_"-o qemu: unknown output option ‘-oo %s’") k
-    ) cmdline.output_options;
+    ) options.output_options;
   let qemu_boot = !qemu_boot in
 
   (* -os must be set to a directory. *)
   let output_storage =
-    match cmdline.output_storage with
+    match options.output_storage with
     | None ->
        error (f_"-o qemu: output directory was not specified, use '-os /dir'")
     | Some d when not (is_directory d) ->
        error (f_"-os %s: output directory does not exist or is not a directory") d
     | Some d -> d in
 
-  `Qemu (qemu_boot, cmdline.output_alloc, cmdline.output_format, output_storage)
+  (qemu_boot, options.output_alloc, options.output_format, output_storage)
 
 and qemu_servers dir disks output_name
                  (_, output_alloc, output_format, output_storage) =
@@ -1606,10 +1476,28 @@ and qemu_finalize dir source inspect target_meta
     ignore (shell_command cmd)
   )
 
-(*----------------------------------------------------------------------*)
-(* -om rhv-upload *)
+module QEMU = struct
+  type t = unit
 
-and rhv_upload_print_output_options () =
+  let setup dir options source =
+    let data = qemu_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    qemu_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta () =
+    let data = qemu_parse_options options in
+    qemu_finalize dir source inspect target_meta data
+
+  let query_output_options = qemu_print_output_options
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.RHVUpload *)
+
+let rec rhv_upload_print_output_options () =
   printf (f_"Output options (-oo) which can be used with -o rhv-upload:
 
   -oo rhv-cafile=CA.PEM           Set ‘ca.pem’ certificate bundle filename.
@@ -1623,20 +1511,20 @@ after their uploads (if you do, you must supply one for each disk):
   -oo rhv-disk-uuid=UUID          Disk UUID
 ")
 
-and rhv_upload_parse_options cmdline =
+and rhv_upload_parse_options options =
   let output_conn =
-    match cmdline.output_conn with
+    match options.output_conn with
     | None ->
        error (f_"-o rhv-upload: use ‘-oc’ to point to the oVirt or RHV server REST API URL, which is usually https://servername/ovirt-engine/api")
     | Some oc -> oc in
   (* In theory we could make the password optional in future. *)
   let output_password =
-    match cmdline.output_password with
+    match options.output_password with
     | None ->
        error (f_"-o rhv-upload: output password file was not specified, use ‘-op’ to point to a file which contains the password used to connect to the oVirt or RHV server")
     | Some op -> op in
   let output_storage =
-    match cmdline.output_storage with
+    match options.output_storage with
     | None ->
        error (f_"-o rhv-upload: output storage was not specified, use ‘-os’");
     | Some os -> os in
@@ -1667,7 +1555,7 @@ and rhv_upload_parse_options cmdline =
        rhv_disk_uuids := Some (v :: (Option.default [] !rhv_disk_uuids))
     | k, _ ->
        error (f_"-o rhv-upload: unknown output option ‘-oo %s’") k
-  ) cmdline.output_options;
+  ) options.output_options;
 
   let rhv_cafile = !rhv_cafile in
   let rhv_cluster = !rhv_cluster in
@@ -1675,10 +1563,10 @@ and rhv_upload_parse_options cmdline =
   let rhv_verifypeer = !rhv_verifypeer in
   let rhv_disk_uuids = Option.map List.rev !rhv_disk_uuids in
 
-  `RHVUpload (output_conn, cmdline.output_format,
-              output_password, output_storage,
-              rhv_cafile, rhv_cluster, rhv_direct,
-              rhv_verifypeer, rhv_disk_uuids)
+  (output_conn, options.output_format,
+   output_password, output_storage,
+   rhv_cafile, rhv_cluster, rhv_direct,
+   rhv_verifypeer, rhv_disk_uuids)
 
 and rhv_upload_servers dir disks output_name
                        (output_conn, output_format,
@@ -1956,19 +1844,17 @@ e command line has to match the number of guest disk images (for this guest: %d)
           finalize_script, createvm_script, json_params,
           rhv_storagedomain_uuid, rhv_cluster_uuid,
           rhv_cluster_cpu_architecture, rhv_cluster_name in
-  with_open_out (dir // "out.rhv") (fun chan -> output_value chan t)
+  t
 
 and rhv_upload_finalize dir source inspect target_meta
                         (output_conn, output_format,
                          output_password, output_storage,
                          rhv_cafile, rhv_cluster, rhv_direct,
-                         rhv_verifypeer, rhv_disk_uuids) =
-  let (disk_sizes : int64 list), disk_uuids, transfer_ids,
-      finalize_script, createvm_script, json_params,
-      rhv_storagedomain_uuid, rhv_cluster_uuid,
-      rhv_cluster_cpu_architecture, rhv_cluster_name =
-    with_open_in (dir // "out.rhv") (fun chan -> input_value chan) in
-
+                         rhv_verifypeer, rhv_disk_uuids)
+                        (disk_sizes, disk_uuids, transfer_ids,
+                         finalize_script, createvm_script, json_params,
+                         rhv_storagedomain_uuid, rhv_cluster_uuid,
+                         rhv_cluster_cpu_architecture, rhv_cluster_name) =
   (* Check the cluster CPU arch matches what we derived about the
    * guest during conversion.
    *)
@@ -2032,20 +1918,41 @@ and json_optstring = function
   | Some s -> JSON.String s
   | None -> JSON.Null
 
-(*----------------------------------------------------------------------*)
-(* -om rhv *)
+module RHVUpload = struct
+  type t = int64 list * string list * string list *
+           Python_script.script * Python_script.script *
+           JSON.field list * string option * string option *
+           string option * string
 
-and rhv_parse_options cmdline =
-  if cmdline.output_password <> None then
+  let setup dir options source =
+    let data = rhv_upload_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    rhv_upload_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta t =
+    let data = rhv_upload_parse_options options in
+    rhv_upload_finalize dir source inspect target_meta data t
+
+  let query_output_options = rhv_upload_print_output_options
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.RHV *)
+
+let rec rhv_parse_options options =
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "rhv" "-op";
 
   (* -os must be set, but at this point we cannot check it. *)
   let output_storage =
-    match cmdline.output_storage with
+    match options.output_storage with
     | None -> error (f_"-o rhv: -os option was not specified")
     | Some d -> d in
 
-  `RHV (cmdline.output_alloc, cmdline.output_format, output_storage)
+  (options.output_alloc, options.output_format, output_storage)
 
 and rhv_servers dir disks output_name
                 (output_alloc, output_format, output_storage) =
@@ -2168,14 +2075,11 @@ and rhv_servers dir disks output_name
 
   (* Save parameters since we need them during finalization. *)
   let t = esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes in
-  with_open_out (dir // "out.esd") (fun chan -> output_value chan t)
+  t
 
 and rhv_finalize dir source inspect target_meta
-                 (output_alloc, output_format, output_storage) =
-  (* Read back parameters saved during setup. *)
-  let esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes =
-    with_open_in (dir // "out.esd") (fun chan -> input_value chan) in
-
+                 (output_alloc, output_format, output_storage)
+                 (esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes) =
   (* UID:GID required for files and directories when writing to ESD. *)
   let uid = 36 and gid = 36 in
 
@@ -2271,10 +2175,31 @@ and check_storage_domain domain_class os mp =
   (* Looks good, so return the SD mountpoint and UUID. *)
   (mp, uuid)
 
-(*----------------------------------------------------------------------*)
-(* -om vdsm *)
+module RHV = struct
+  type t = string * string * string * string list * string list * int64 list
 
-and vdsm_print_output_options () =
+  let setup dir options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
+    let data = rhv_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    rhv_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta t =
+    let data = rhv_parse_options options in
+    rhv_finalize dir source inspect target_meta data t
+
+  let query_output_options () =
+    printf (f_"No output options can be used in this mode.\n")
+
+  let cleanup = common_cleanup
+end
+
+(*----------------------------------------------------------------------*)
+(* Output.VDSM *)
+
+let vdsm_print_output_options () =
   let ovf_flavours_str = String.concat "|" Create_ovf.ovf_flavours in
 
   printf (f_"Output options (-oo) which can be used with -o vdsm:
@@ -2292,8 +2217,8 @@ For each disk you must supply one of each of these options:
   -oo vdsm-vol-uuid=UUID       Disk volume UUID
 ") ovf_flavours_str
 
-and vdsm_parse_options cmdline =
-  if cmdline.output_password <> None then
+and vdsm_parse_options options =
+  if options.output_password <> None then
     error_option_cannot_be_used_in_output_mode "vdsm" "-op";
 
   let vm_uuid = ref None in
@@ -2325,7 +2250,7 @@ and vdsm_parse_options cmdline =
        List.push_front v vol_uuids
     | k, _ ->
        error (f_"-o vdsm: unknown output option ‘-oo %s’") k
-  ) cmdline.output_options;
+  ) options.output_options;
 
   let compat = !compat in
   let image_uuids = List.rev !image_uuids in
@@ -2342,15 +2267,15 @@ and vdsm_parse_options cmdline =
 
   (* -os must be set, but at this point we cannot check it. *)
   let output_storage =
-    match cmdline.output_storage with
+    match options.output_storage with
     | None -> error (f_"-o vdsm: -os option was not specified")
     | Some d when not (is_directory d) ->
        error (f_"-os %s: output directory does not exist or is not a directory") d
     | Some d -> d in
 
-  `VDSM (cmdline.output_alloc, cmdline.output_format, output_storage,
-         image_uuids, vol_uuids, vm_uuid, ovf_output,
-         compat, ovf_flavour)
+  (options.output_alloc, options.output_format, output_storage,
+   image_uuids, vol_uuids, vm_uuid, ovf_output,
+   compat, ovf_flavour)
 
 and vdsm_servers dir disks output_name
                  (output_alloc, output_format, output_storage,
@@ -2435,16 +2360,13 @@ and vdsm_servers dir disks output_name
 
   (* Save parameters since we need them during finalization. *)
   let t = dd_mp, dd_uuid, sizes in
-  with_open_out (dir // "out.dd") (fun chan -> output_value chan t)
+  t
 
 and vdsm_finalize dir source inspect target_meta
                   (output_alloc, output_format, output_storage,
                    image_uuids, vol_uuids, vm_uuid, ovf_output,
-                   compat, ovf_flavour) =
-  (* Read back parameters saved during setup. *)
-  let dd_mp, dd_uuid, sizes =
-    with_open_in (dir // "out.dd") (fun chan -> input_value chan) in
-
+                   compat, ovf_flavour)
+                  (dd_mp, dd_uuid, sizes) =
   (* Create the metadata. *)
   let ovf = Create_ovf.create_ovf source inspect target_meta sizes
               output_alloc output_format dd_uuid
@@ -2457,4 +2379,20 @@ and vdsm_finalize dir source inspect target_meta
   let file = ovf_output // vm_uuid ^ ".ovf" in
   with_open_out file (fun chan -> DOM.doc_to_chan chan ovf)
 
-let () = run_main_and_handle_errors main
+module VDSM = struct
+  type t = string * string * int64 list
+
+  let setup dir options source =
+    let data = vdsm_parse_options options in
+    let output_name = common_output_name options source in
+    let disks = common_disks dir in
+    vdsm_servers dir disks output_name data
+
+  let finalize dir options source inspect target_meta t =
+    let data = vdsm_parse_options options in
+    vdsm_finalize dir source inspect target_meta data t
+
+  let query_output_options = vdsm_print_output_options
+
+  let cleanup = common_cleanup
+end

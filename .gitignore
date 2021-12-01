@@ -77,7 +77,6 @@ Makefile.in
 /ocaml-dep.sh
 /ocaml-link.sh
 /output/.depend
-/output/helper-v2v-output
 /output/oUnit-anon.cache
 /output/output_rhv_upload_*_source.ml
 /output/var_expander_tests

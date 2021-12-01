@@ -1,4 +1,4 @@
-(* helper-v2v-output
+(* virt-v2v
  * Copyright (C) 2009-2021 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,4 +16,48 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(* empty *)
+type options = {
+  output_alloc : Types.output_allocation;
+  output_conn : string option;
+  output_format : string;
+  output_options : (string * string) list;
+  output_name : string option;
+  output_password : string option;
+  output_storage : string option;
+}
+
+module type OUTPUT = sig
+  type t
+  (** Opaque data used by the output mode. *)
+
+  val setup : string -> options -> Types.source -> t
+  (** [setup dir options source]
+
+      Set up the output mode.  Sets up a disk pipeline
+      [dir // "outX"] for each output disk. *)
+
+  val finalize : string -> options ->
+                 Types.source -> Types.inspect -> Types.target_meta ->
+                 t ->
+                 unit
+  (** [finalize dir inspect target_meta t]
+
+      Finalizes the conversion and writes metadata. *)
+
+  val query_output_options : unit -> unit
+  (** When the user passes [-oo ?] this is used to print help. *)
+
+  val cleanup : unit -> unit
+  (** The main program will call this function on exit. *)
+end
+
+module Disk : OUTPUT             (** [-o disk] output mode. *)
+module Glance : OUTPUT           (** [-o glance] output mode. *)
+module Json : OUTPUT             (** [-o json] output mode. *)
+module Libvirt_ : OUTPUT         (** [-o libvirt] output mode. *)
+module Null : OUTPUT             (** [-o null] output mode. *)
+module Openstack : OUTPUT        (** [-o openstack] output mode. *)
+module QEMU : OUTPUT             (** [-o qemu] output mode. *)
+module RHVUpload : OUTPUT        (** [-o rhv-upload] output mode. *)
+module RHV : OUTPUT              (** [-o rhv] output mode. *)
+module VDSM : OUTPUT             (** [-o vdsm] output mode. *)
