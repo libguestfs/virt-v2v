@@ -487,9 +487,8 @@ where C<name> is the guest name.
 
 Set the output method to I<null>.
 
-The guest is converted and copied (unless you also specify
-I<--no-copy>), but the results are thrown away and no metadata is
-written.
+The guest is converted and copied but the results are thrown away and
+no metadata is written.
 
 =item B<-o> B<openstack>
 
