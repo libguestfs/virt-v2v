@@ -1952,7 +1952,8 @@ e command line has to match the number of guest disk images (for this guest: %d)
   ) (List.combine disks disk_uuids);
 
   (* Stash some data we will need during finalization. *)
-  let t = disks, disk_uuids, !transfer_ids,
+  let disk_sizes = List.map snd disks in
+  let t = (disk_sizes : int64 list), disk_uuids, !transfer_ids,
           finalize_script, createvm_script, json_params,
           rhv_storagedomain_uuid, rhv_cluster_uuid,
           rhv_cluster_cpu_architecture, rhv_cluster_name in
@@ -1963,7 +1964,7 @@ and rhv_upload_finalize dir source inspect target_meta
                          output_password, output_storage,
                          rhv_cafile, rhv_cluster, rhv_direct,
                          rhv_verifypeer, rhv_disk_uuids) =
-  let disks, disk_uuids, transfer_ids,
+  let (disk_sizes : int64 list), disk_uuids, transfer_ids,
       finalize_script, createvm_script, json_params,
       rhv_storagedomain_uuid, rhv_cluster_uuid,
       rhv_cluster_cpu_architecture, rhv_cluster_name =
@@ -1997,12 +1998,12 @@ and rhv_upload_finalize dir source inspect target_meta
     | Some uuid -> uuid in
 
   (* The volume and VM UUIDs are made up. *)
-  let vol_uuids = List.map (fun _ -> uuidgen ()) disks
+  let vol_uuids = List.map (fun _ -> uuidgen ()) disk_sizes
   and vm_uuid = uuidgen () in
 
   (* Create the metadata. *)
   let ovf =
-    Create_ovf.create_ovf source inspect target_meta disks
+    Create_ovf.create_ovf source inspect target_meta disk_sizes
       Sparse output_format sd_uuid disk_uuids vol_uuids vm_uuid
       OVirt in
   let ovf = DOM.doc_to_string ovf in
