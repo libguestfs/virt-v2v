@@ -103,7 +103,7 @@ let rec main () =
     if k = "-oo" && v = "?" then oo_query := true; (* XXX *)
     List.push_front (k, v) o_options
   in
-  let set_output_option_compat k v = add_i_option "-oo" (k ^ "=" ^ v) in
+  let set_output_option_compat k v = add_o_option "-oo" (k ^ "=" ^ v) in
 
   (* Conversion options passed to helper-v2v-convert. *)
   let conv_options = ref [] in
