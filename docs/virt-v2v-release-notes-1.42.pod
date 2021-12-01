@@ -1,6 +1,6 @@
 =head1 NAME
 
-virt-v2v-release-notes - virt-v2v Release Notes
+virt-v2v-release-notes - virt-v2v release notes for 1.42
 
 =head1 DESCRIPTION
 
