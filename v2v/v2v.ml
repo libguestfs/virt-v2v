@@ -183,7 +183,6 @@ let rec main () =
   let output_storage = ref None in
 
   (* Other options that we handle here. *)
-  let in_place = ref false in
   let print_source = ref false in
 
   let input_mode = ref `Not_set in
@@ -248,8 +247,6 @@ let rec main () =
                                     s_"Use password from file to connect to input hypervisor";
     [ M"it" ],       Getopt.String ("transport", set_string_option_once "-it" input_transport),
                                     s_"Input transport";
-    [ L"in-place" ], Getopt.Set in_place,
-      s_"Only tune the guest in the input VM";
     [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
       s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
@@ -347,7 +344,6 @@ read the man page virt-v2v(1).
 
   (* Dereference the arguments. *)
   let args = List.rev !args in
-  let in_place = !in_place in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
   let input_transport =
@@ -367,9 +363,6 @@ read the man page virt-v2v(1).
   let root_choice = !root_choice in
   let static_ips = !static_ips in
 
-  (* --in-place isn't implemented yet - TODO *)
-  if in_place then error "XXX --in-place option is not implemented yet";
-
   (* No arguments and machine-readable mode?  Print out some facts
    * about what this binary supports.
    *)
@@ -383,7 +376,6 @@ read the man page virt-v2v(1).
       pr "vddk\n";
       pr "colours-option\n";
       pr "vdsm-compat-option\n";
-      pr "in-place\n";
       pr "io/oo\n";
       pr "mac-option\n";
       pr "bandwidth-option\n";
