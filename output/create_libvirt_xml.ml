@@ -421,7 +421,7 @@ let create_libvirt_xml ?pool source inspect
   let video =
     let video_model =
       match guestcaps.gcaps_video with
-      | Standard_VGA -> assert false
+      | Standard_VGA -> e "model" [ "type", "vga"; "vram", "16384" ] []
       | QXL ->    e "model" [ "type", "qxl"; "ram", "65536" ] []
       | Cirrus -> e "model" [ "type", "cirrus"; "vram", "9216" ] [] in
     append_attr ("heads", "1") video_model;
