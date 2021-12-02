@@ -38,10 +38,6 @@ drivers = \
 	drivers/amd64/Win2008R2/netkvm.cat \
 	drivers/amd64/Win2008R2/netkvm.inf \
 	drivers/amd64/Win2008R2/netkvm.sys \
-	drivers/amd64/Win2008R2/qxl.cat \
-	drivers/amd64/Win2008R2/qxldd.dll \
-	drivers/amd64/Win2008R2/qxl.inf \
-	drivers/amd64/Win2008R2/qxl.sys \
 	drivers/amd64/Win2008R2/vioscsi.cat \
 	drivers/amd64/Win2008R2/vioscsi.inf \
 	drivers/amd64/Win2008R2/vioscsi.sys \
@@ -75,10 +71,6 @@ drivers = \
 	drivers/amd64/Win7/netkvm.cat \
 	drivers/amd64/Win7/netkvm.inf \
 	drivers/amd64/Win7/netkvm.sys \
-	drivers/amd64/Win7/qxl.cat \
-	drivers/amd64/Win7/qxldd.dll \
-	drivers/amd64/Win7/qxl.inf \
-	drivers/amd64/Win7/qxl.sys \
 	drivers/amd64/Win7/vioscsi.cat \
 	drivers/amd64/Win7/vioscsi.inf \
 	drivers/amd64/Win7/vioscsi.sys \
@@ -121,10 +113,6 @@ drivers = \
 	drivers/i386/Win7/netkvm.cat \
 	drivers/i386/Win7/netkvm.inf \
 	drivers/i386/Win7/netkvm.sys \
-	drivers/i386/Win7/qxl.cat \
-	drivers/i386/Win7/qxldd.dll \
-	drivers/i386/Win7/qxl.inf \
-	drivers/i386/Win7/qxl.sys \
 	drivers/i386/Win7/vioscsi.cat \
 	drivers/i386/Win7/vioscsi.inf \
 	drivers/i386/Win7/vioscsi.sys \
@@ -152,10 +140,6 @@ drivers = \
 	drivers/i386/WinXP/netkvm.cat \
 	drivers/i386/WinXP/netkvm.inf \
 	drivers/i386/WinXP/netkvm.sys \
-	drivers/i386/WinXP/qxl.cat \
-	drivers/i386/WinXP/qxldd.dll \
-	drivers/i386/WinXP/qxl.inf \
-	drivers/i386/WinXP/qxl.sys \
 	drivers/i386/WinXP/viostor.cat \
 	drivers/i386/WinXP/viostor.inf \
 	drivers/i386/WinXP/viostor.sys
