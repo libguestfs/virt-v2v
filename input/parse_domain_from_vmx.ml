@@ -401,13 +401,6 @@ let parse_domain_from_vmx vmx_source =
        warning (f_"unknown firmware value '%s', assuming BIOS") fw;
        BIOS in
 
-  let video =
-    if Parse_vmx.namespace_present vmx ["svga"] then
-      (* We could also parse svga.vramSize. *)
-      Some "vmvga"
-    else
-      None in
-
   let sound =
     match Parse_vmx.get_string vmx ["sound"; "virtualDev"] with
     | Some "sb16" -> Some { s_sound_model = SB16 }
@@ -434,7 +427,6 @@ let parse_domain_from_vmx vmx_source =
     s_features = [];
     s_firmware = firmware;
     s_display = None;
-    s_video = video;
     s_sound = sound;
     s_disks = List.map fst disks;
     s_removables = removables;

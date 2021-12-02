@@ -11,7 +11,6 @@ hypervisor type: vmware
    CPU features: 
        firmware: uefi
         display: 
-          video: 
           sound: 
 disks:
 	json:{ "file": { "driver": "raw", "offset": x, "size": 10240, "file": { "driver": "file", "filename": "test-tar.ova" } } } (vmdk) [scsi]

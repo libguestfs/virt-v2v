@@ -11,7 +11,6 @@ hypervisor type: vmware
    CPU features: 
        firmware: bios
         display: 
-          video: 
           sound: 
 disks:
 	0 [scsi]

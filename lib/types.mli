@@ -70,7 +70,6 @@ type source = {
   s_features : string list;             (** Machine features. *)
   s_firmware : source_firmware;         (** Firmware (BIOS or EFI). *)
   s_display : source_display option;    (** Guest display. *)
-  s_video : string option;              (** Video adapter. *)
   s_sound : source_sound option;        (** Sound card. *)
   s_disks : source_disk list;           (** Source disks. *)
   s_removables : source_removable list; (** CDROMs etc. *)

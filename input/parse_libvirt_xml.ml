@@ -183,19 +183,6 @@ let parse_libvirt_xml ?conn xml =
         None
     ) in
 
-  (* Video adapter. *)
-  let video =
-    let obj = Xml.xpath_eval_expression xpathctx "/domain/devices/video" in
-    let nr_nodes = Xml.xpathobj_nr_nodes obj in
-    if nr_nodes < 1 then None
-    else (
-      (* Ignore everything except the first <video> device. *)
-      let node = Xml.xpathobj_node obj 0 in
-
-      Xml.xpathctx_set_current_context xpathctx node;
-      xpath_string "model/@type"
-    ) in
-
   (* Sound card. *)
   let sound =
     let obj = Xml.xpath_eval_expression xpathctx "/domain/devices/sound" in
@@ -512,7 +499,6 @@ let parse_libvirt_xml ?conn xml =
     s_features = features;
     s_firmware = firmware;
     s_display = display;
-    s_video = video;
     s_sound = sound;
     s_disks = s_disks;
     s_removables = removables;

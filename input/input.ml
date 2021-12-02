@@ -272,7 +272,6 @@ and disk_source cmdline args =
     s_display =
       Some { s_display_type = Window; s_keymap = None; s_password = None;
              s_listen = LNoListen; s_port = None };
-    s_video = None;
     s_sound = None;
     s_disks = s_disks;
     s_removables = [];
@@ -596,7 +595,6 @@ and ova_source _ args =
     s_features = []; (* XXX *)
     s_firmware = firmware;
     s_display = None; (* XXX *)
-    s_video = None;
     s_sound = None;
     s_disks = s_disks;
     s_removables = removables;

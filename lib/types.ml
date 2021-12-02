@@ -36,7 +36,6 @@ type source = {
   s_features : string list;
   s_firmware : source_firmware;
   s_display : source_display option;
-  s_video : string option;
   s_sound : source_sound option;
   s_disks : source_disk list;
   s_removables : source_removable list;
@@ -112,7 +111,6 @@ hypervisor type: %s
    CPU features: %s
        firmware: %s
         display: %s
-          video: %s
           sound: %s
 disks:
 %s
@@ -136,9 +134,6 @@ NICs:
     (match s.s_display with
     | None -> ""
     | Some display -> string_of_source_display display)
-    (match s.s_video with
-    | None -> ""
-    | Some video -> video)
     (match s.s_sound with
     | None -> ""
     | Some sound -> string_of_source_sound sound)
