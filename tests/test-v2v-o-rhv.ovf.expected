@@ -24,7 +24,7 @@
     <TimeZone/>
     <IsStateless>False</IsStateless>
     <VmType>0</VmType>
-    <DefaultDisplayType>1</DefaultDisplayType>
+    <DefaultDisplayType>2</DefaultDisplayType>
     <BiosType>1</BiosType>
     <Section ovf:id='#VM_ID#' ovf:required='false' xsi:type='ovf:OperatingSystemSection_Type'>
       <Info>Microsoft Windows 7 Phony Edition</Info>
@@ -60,7 +60,7 @@
         <rasd:ResourceType>20</rasd:ResourceType>
         <Type>video</Type>
         <rasd:VirtualQuantity>1</rasd:VirtualQuantity>
-        <rasd:Device>qxl</rasd:Device>
+        <Device>vga</Device>
       </Item>
       <Item>
         <rasd:Caption>RNG Device</rasd:Caption>

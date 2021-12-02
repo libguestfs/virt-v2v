@@ -587,8 +587,8 @@ let rec create_ovf source inspect
         e "TimeZone" [] [];
         e "IsStateless" [] [PCData "False"];
         e "VmType" [] [PCData vmtype];
-        (* See https://bugzilla.redhat.com/show_bug.cgi?id=1260590#c17 *)
-        e "DefaultDisplayType" [] [PCData "1"];
+        (* See https://bugzilla.redhat.com/show_bug.cgi?id=1961107#c39 *)
+        e "DefaultDisplayType" [] [PCData "2"];
       ] in
 
       (match biostype with
@@ -675,9 +675,12 @@ let rec create_ovf source inspect
           e "rasd:UsbPolicy" [] [PCData "Disabled"];
         ];
 
-        (* We always add a qxl device when outputting to RHV.
-         * See RHBZ#1213701 and RHBZ#1211231 for the reasoning
-         * behind that.
+        (* We always add a standard VGA-compatible video controller when
+         * outputting to RHV. See RHBZ#1213701 and RHBZ#1211231 for the
+         * reasoning behind that. The device model used to be QXL previously,
+         * but only the unaccelerated standard VGA framebuffer is needed; so
+         * the (simpler) standard VGA device itself suffices. Refer to
+         * RHBZ#1961107.
          *)
         let monitor_resourcetype =
           match ovf_flavour with
@@ -690,7 +693,7 @@ let rec create_ovf source inspect
             [PCData (string_of_int monitor_resourcetype)];
           e "Type" [] [PCData "video"];
           e "rasd:VirtualQuantity" [] [PCData "1"];
-          e "rasd:Device" [] [PCData "qxl"];
+          e "Device" [] [PCData "vga"];
         ]
       ];
 
