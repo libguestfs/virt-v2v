@@ -53,7 +53,7 @@ let rec install_drivers ((g, _) as reg) inspect =
       warning (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s).  virt-v2v looks for drivers in %s\n\nThe guest will be configured to use slower emulated devices.")
               inspect.i_major_version inspect.i_minor_version inspect.i_arch
               inspect.i_product_variant virtio_win;
-      (IDE, RTL8139, Standard_VGA, false, false, false, false)
+      (IDE, RTL8139, false, false, false, false)
   )
   else (
     (* Can we install the block driver? *)
@@ -109,7 +109,7 @@ let rec install_drivers ((g, _) as reg) inspect =
     let isa_pvpanic_supported = g#exists (driverdir // "pvpanic.inf") in
     let virtio_socket_supported = g#exists (driverdir // "viosock.inf") in
 
-    (block, net, Standard_VGA,
+    (block, net,
      virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported, virtio_socket_supported)
   )
 

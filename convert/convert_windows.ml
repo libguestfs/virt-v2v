@@ -211,7 +211,6 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     (* Open the system hive for writes and update it. *)
     let block_driver,
         net_driver,
-        video_driver,
         virtio_rng_supported,
         virtio_ballon_supported,
         isa_pvpanic_supported,
@@ -253,7 +252,6 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     let guestcaps = {
       gcaps_block_bus = block_driver;
       gcaps_net_bus = net_driver;
-      gcaps_video = video_driver;
       gcaps_virtio_rng = virtio_rng_supported;
       gcaps_virtio_balloon = virtio_ballon_supported;
       gcaps_isa_pvpanic = isa_pvpanic_supported;

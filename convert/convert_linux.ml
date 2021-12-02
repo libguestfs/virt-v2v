@@ -148,7 +148,6 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     let guestcaps = {
       gcaps_block_bus = block_type;
       gcaps_net_bus = net_type;
-      gcaps_video = Standard_VGA;
       gcaps_virtio_rng = kernel.ki_supports_virtio_rng;
       gcaps_virtio_balloon = kernel.ki_supports_virtio_balloon;
       gcaps_isa_pvpanic = kernel.ki_supports_isa_pvpanic;

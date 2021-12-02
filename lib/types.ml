@@ -413,7 +413,6 @@ type target_nics = source_nic list
 type guestcaps = {
   gcaps_block_bus : guestcaps_block_type;
   gcaps_net_bus : guestcaps_net_type;
-  gcaps_video : guestcaps_video_type;
   gcaps_virtio_rng : bool;
   gcaps_virtio_balloon : bool;
   gcaps_isa_pvpanic : bool;
@@ -424,7 +423,6 @@ type guestcaps = {
 }
 and guestcaps_block_type = Virtio_blk | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
-and guestcaps_video_type = Standard_VGA
 and guestcaps_machine = I440FX | Q35 | Virt
 
 let string_of_block_type = function
@@ -434,8 +432,6 @@ let string_of_net_type = function
   | Virtio_net -> "virtio-net"
   | E1000 -> "e1000"
   | RTL8139 -> "rtl8139"
-let string_of_video = function
-  | Standard_VGA -> "stdvga"
 let string_of_machine = function
   | I440FX -> "i440fx"
   | Q35 -> "q35"
@@ -445,13 +441,11 @@ let string_of_guestcaps gcaps =
   sprintf "\
 gcaps_block_bus = %s
 gcaps_net_bus = %s
-gcaps_video = %s
 gcaps_machine = %s
 gcaps_arch = %s
 gcaps_acpi = %b
 " (string_of_block_type gcaps.gcaps_block_bus)
   (string_of_net_type gcaps.gcaps_net_bus)
-  (string_of_video gcaps.gcaps_video)
   (string_of_machine gcaps.gcaps_machine)
   gcaps.gcaps_arch
   gcaps.gcaps_acpi

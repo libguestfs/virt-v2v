@@ -1538,10 +1538,7 @@ and qemu_finalize dir source inspect target_meta
                                 | Some p -> p);
                              "addr=127.0.0.1"]
       );
-      arg "-vga"
-        (match guestcaps.gcaps_video with
-         | Standard_VGA -> "std"
-        )
+      arg "-vga" "std"
   );
 
   (* Add a sound card. *)

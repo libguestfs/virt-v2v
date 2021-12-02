@@ -201,9 +201,7 @@ let create_json_metadata source inspect
       | Virtio_net -> "virtio-net"
       | E1000 -> "e1000"
       | RTL8139 -> "rtl8139" in
-    let video =
-      match guestcaps.gcaps_video with
-      | Standard_VGA -> "vga" in
+    let video = "vga" in
     let machine =
       match guestcaps.gcaps_machine with
       | I440FX -> "i440fx"

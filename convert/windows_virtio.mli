@@ -20,7 +20,7 @@
 
 val install_drivers
     : Registry.t -> Types.inspect ->
-      Types.guestcaps_block_type * Types.guestcaps_net_type * Types.guestcaps_video_type * bool * bool * bool * bool
+      Types.guestcaps_block_type * Types.guestcaps_net_type * bool * bool * bool * bool
 (** [install_drivers reg inspect]
     installs virtio drivers from the driver directory or driver
     ISO into the guest driver directory and updates the registry
@@ -29,11 +29,10 @@ val install_drivers
     [reg] is the system hive which is open for writes when this
     function is called.
 
-    This returns the tuple [(block_driver, net_driver, video_driver,
-    virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported,
-    virtio_socket_supported)] reflecting what devices are now required by the
-    guest, either virtio devices if we managed to install those, or legacy
-    devices if we didn't. *)
+    This returns the tuple [(block_driver, net_driver, virtio_rng_supported,
+    virtio_ballon_supported, isa_pvpanic_supported, virtio_socket_supported)]
+    reflecting what devices are now required by the guest, either virtio
+    devices if we managed to install those, or legacy devices if we didn't. *)
 
 val install_linux_tools : Guestfs.guestfs -> Types.inspect -> unit
 (** installs QEMU Guest Agent on Linux guest OS from the driver directory or

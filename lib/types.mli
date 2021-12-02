@@ -265,12 +265,10 @@ type target_nics = source_nic list
 type guestcaps = {
   gcaps_block_bus : guestcaps_block_type;
   gcaps_net_bus : guestcaps_net_type;
-  gcaps_video : guestcaps_video_type;
-  (** Best block device, network device and video device guest can
-      access.  These are determined during conversion by inspecting the
-      guest (and in some cases conversion can actually enhance these by
-      installing drivers).  Thus this is not known until after
-      conversion. *)
+  (** Best block device and network device guest can access.  These are
+      determined during conversion by inspecting the guest (and in some cases
+      conversion can actually enhance these by installing drivers).  Thus this
+      is not known until after conversion. *)
 
   gcaps_virtio_rng : bool;      (** Guest supports virtio-rng. *)
   gcaps_virtio_balloon : bool;  (** Guest supports virtio balloon. *)
@@ -284,7 +282,6 @@ type guestcaps = {
 
 and guestcaps_block_type = Virtio_blk | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
-and guestcaps_video_type = Standard_VGA
 and guestcaps_machine = I440FX | Q35 | Virt
 
 val string_of_guestcaps : guestcaps -> string

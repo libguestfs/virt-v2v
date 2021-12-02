@@ -41,9 +41,7 @@ let create source inspect { target_buses; guestcaps; target_firmware } =
      | Virtio_net -> "virtio"
      | E1000 -> "e1000"
      | RTL8139 -> "rtl8139");
-    "hw_video_model",
-    (match guestcaps.gcaps_video with
-     | Standard_VGA -> "vga");
+    "hw_video_model", "vga";
     "hw_machine_type",
     (match guestcaps.gcaps_machine with
      | I440FX -> "pc"
