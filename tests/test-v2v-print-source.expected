@@ -9,7 +9,7 @@ hypervisor type: kvm
    CPU features: acpi,apic,pae
        firmware: unknown
         display: 
-          video: qxl
+          video: vga
           sound: 
 disks:
 	0 [virtio-blk]

@@ -299,7 +299,7 @@
         <model type='virtio'/>
       </interface>
       <video>
-        <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1'/>
+        <model type='vga' vram='16384' heads='1'/>
       </video>
     </devices>
   </domain>
