@@ -1542,7 +1542,6 @@ and qemu_finalize dir source inspect target_meta
         (match guestcaps.gcaps_video with
          | Standard_VGA -> "std"
          | Cirrus -> "cirrus"
-         | QXL -> "qxl"
         )
   );
 

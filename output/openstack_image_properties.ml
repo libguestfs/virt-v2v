@@ -44,7 +44,6 @@ let create source inspect { target_buses; guestcaps; target_firmware } =
     "hw_video_model",
     (match guestcaps.gcaps_video with
      | Standard_VGA -> "vga"
-     | QXL -> "qxl"
      | Cirrus -> "cirrus");
     "hw_machine_type",
     (match guestcaps.gcaps_machine with

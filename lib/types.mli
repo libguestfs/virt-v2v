@@ -284,7 +284,7 @@ type guestcaps = {
 
 and guestcaps_block_type = Virtio_blk | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
-and guestcaps_video_type = Standard_VGA | QXL | Cirrus
+and guestcaps_video_type = Standard_VGA | Cirrus
 and guestcaps_machine = I440FX | Q35 | Virt
 
 val string_of_guestcaps : guestcaps -> string

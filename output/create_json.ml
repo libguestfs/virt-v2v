@@ -204,7 +204,6 @@ let create_json_metadata source inspect
     let video =
       match guestcaps.gcaps_video with
       | Standard_VGA -> "vga"
-      | QXL -> "qxl"
       | Cirrus -> "cirrus" in
     let machine =
       match guestcaps.gcaps_machine with
