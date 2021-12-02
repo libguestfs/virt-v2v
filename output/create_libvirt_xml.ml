@@ -421,8 +421,7 @@ let create_libvirt_xml ?pool source inspect
   let video =
     let video_model =
       match guestcaps.gcaps_video with
-      | Standard_VGA -> e "model" [ "type", "vga"; "vram", "16384" ] []
-      | Cirrus -> e "model" [ "type", "cirrus"; "vram", "9216" ] [] in
+      | Standard_VGA -> e "model" [ "type", "vga"; "vram", "16384" ] [] in
     append_attr ("heads", "1") video_model;
     e "video" [] [ video_model ] in
   List.push_back devices video;

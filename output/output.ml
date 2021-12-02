@@ -1541,7 +1541,6 @@ and qemu_finalize dir source inspect target_meta
       arg "-vga"
         (match guestcaps.gcaps_video with
          | Standard_VGA -> "std"
-         | Cirrus -> "cirrus"
         )
   );
 
