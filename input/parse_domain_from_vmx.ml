@@ -404,7 +404,7 @@ let parse_domain_from_vmx vmx_source =
   let video =
     if Parse_vmx.namespace_present vmx ["svga"] then
       (* We could also parse svga.vramSize. *)
-      Some (Source_other_video "vmvga")
+      Some "vmvga"
     else
       None in
 

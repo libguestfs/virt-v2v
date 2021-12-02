@@ -36,7 +36,7 @@ type source = {
   s_features : string list;
   s_firmware : source_firmware;
   s_display : source_display option;
-  s_video : source_video option;
+  s_video : string option;
   s_sound : source_sound option;
   s_disks : source_disk list;
   s_removables : source_removable list;
@@ -89,9 +89,6 @@ and s_display_listen =
   | LSocket of string option
   | LNone
 
-and source_video = Source_other_video of string |
-                   Source_Cirrus
-
 and source_sound = {
   s_sound_model : source_sound_model;
 }
@@ -141,7 +138,7 @@ NICs:
     | Some display -> string_of_source_display display)
     (match s.s_video with
     | None -> ""
-    | Some video -> string_of_source_video video)
+    | Some video -> video)
     (match s.s_sound with
     | None -> ""
     | Some sound -> string_of_source_sound sound)
@@ -258,14 +255,6 @@ and string_of_source_display { s_display_type = typ;
     | LSocket None -> sprintf " listening on automatically created Unix domain socket"
     | LNone -> " listening on private fd"
     )
-
-and string_of_source_video = function
-  | Source_Cirrus -> "cirrus"
-  | Source_other_video video -> video
-
-and source_video_of_string = function
-  | "cirrus" -> Source_Cirrus
-  | video -> Source_other_video video
 
 and string_of_source_sound { s_sound_model = model } =
   string_of_source_sound_model model

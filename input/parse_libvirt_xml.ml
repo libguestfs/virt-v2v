@@ -193,9 +193,7 @@ let parse_libvirt_xml ?conn xml =
       let node = Xml.xpathobj_node obj 0 in
 
       Xml.xpathctx_set_current_context xpathctx node;
-      match xpath_string "model/@type" with
-      | None -> None
-      | Some model -> Some (source_video_of_string model)
+      xpath_string "model/@type"
     ) in
 
   (* Sound card. *)

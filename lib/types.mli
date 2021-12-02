@@ -70,7 +70,7 @@ type source = {
   s_features : string list;             (** Machine features. *)
   s_firmware : source_firmware;         (** Firmware (BIOS or EFI). *)
   s_display : source_display option;    (** Guest display. *)
-  s_video : source_video option;        (** Video adapter. *)
+  s_video : string option;              (** Video adapter. *)
   s_sound : source_sound option;        (** Sound card. *)
   s_disks : source_disk list;           (** Source disks. *)
   s_removables : source_removable list; (** CDROMs etc. *)
@@ -145,10 +145,6 @@ and s_display_listen =
   | LSocket of string option       (** Listen Unix domain socket. *)
   | LNone                          (** <listen type='none'> *)
 
-(** Video adapter model. *)
-and source_video = Source_other_video of string |
-                   Source_Cirrus
-
 and source_sound = {
   s_sound_model : source_sound_model; (** Sound model. *)
 }
@@ -169,8 +165,6 @@ val nic_model_of_string : string -> s_nic_model
 val string_of_vnet_type : vnet_type -> string
 val string_of_source_sound_model : source_sound_model -> string
 val source_sound_model_of_string : string -> source_sound_model option
-val string_of_source_video : source_video -> string
-val source_video_of_string : string -> source_video
 val string_of_source_cpu_topology : source_cpu_topology -> string
 
 val string_of_source_hypervisor : source_hypervisor -> string
