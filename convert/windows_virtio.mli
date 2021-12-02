@@ -30,10 +30,10 @@ val install_drivers
     function is called.
 
     This returns the tuple [(block_driver, net_driver, video_driver,
-    virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported)]
-    reflecting what devices are now required by the guest, either
-    virtio devices if we managed to install those, or legacy devices
-    if we didn't. *)
+    virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported,
+    virtio_socket_supported)] reflecting what devices are now required by the
+    guest, either virtio devices if we managed to install those, or legacy
+    devices if we didn't. *)
 
 val install_linux_tools : Guestfs.guestfs -> Types.inspect -> unit
 (** installs QEMU Guest Agent on Linux guest OS from the driver directory or
