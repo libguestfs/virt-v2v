@@ -43,6 +43,7 @@ let create source inspect { target_buses; guestcaps; target_firmware } =
      | RTL8139 -> "rtl8139");
     "hw_video_model",
     (match guestcaps.gcaps_video with
+     | Standard_VGA -> assert false
      | QXL -> "qxl"
      | Cirrus -> "cirrus");
     "hw_machine_type",

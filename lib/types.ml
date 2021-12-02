@@ -424,7 +424,7 @@ type guestcaps = {
 }
 and guestcaps_block_type = Virtio_blk | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
-and guestcaps_video_type = QXL | Cirrus
+and guestcaps_video_type = Standard_VGA | QXL | Cirrus
 and guestcaps_machine = I440FX | Q35 | Virt
 
 let string_of_block_type = function
@@ -435,6 +435,7 @@ let string_of_net_type = function
   | E1000 -> "e1000"
   | RTL8139 -> "rtl8139"
 let string_of_video = function
+  | Standard_VGA -> "stdvga"
   | QXL -> "qxl"
   | Cirrus -> "cirrus"
 let string_of_machine = function

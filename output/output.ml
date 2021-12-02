@@ -1539,7 +1539,11 @@ and qemu_finalize dir source inspect target_meta
                              "addr=127.0.0.1"]
       );
       arg "-vga"
-        (match guestcaps.gcaps_video with Cirrus -> "cirrus" | QXL -> "qxl")
+        (match guestcaps.gcaps_video with
+         | Standard_VGA -> assert false
+         | Cirrus -> "cirrus"
+         | QXL -> "qxl"
+        )
   );
 
   (* Add a sound card. *)
