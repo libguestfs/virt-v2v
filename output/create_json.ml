@@ -203,7 +203,7 @@ let create_json_metadata source inspect
       | RTL8139 -> "rtl8139" in
     let video =
       match guestcaps.gcaps_video with
-      | Standard_VGA -> assert false
+      | Standard_VGA -> "vga"
       | QXL -> "qxl"
       | Cirrus -> "cirrus" in
     let machine =
