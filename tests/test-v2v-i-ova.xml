@@ -39,7 +39,7 @@
       <model type='virtio'/>
     </interface>
     <video>
-      <model type='qxl' ram='65536' heads='1'/>
+      <model type='vga' vram='16384' heads='1'/>
     </video>
     <graphics type='vnc' autoport='yes' port='-1'/>
     <rng model='virtio'>
