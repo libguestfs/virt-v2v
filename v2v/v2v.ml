@@ -214,12 +214,6 @@ let rec main () =
     warning (f_"the --vmtype option has been removed and now does nothing")
   in
 
-  (* Options that are errors. *)
-  let in_place_error _ =
-    error (f_"The --in-place option has been replaced by the \
-              ‘virt-v2v-in-place’ program")
-  in
-
   let argspec = [
     [ L"bandwidth" ], Getopt.String ("bps", set_string_option_once "--bandwidth" bandwidth),
                                     s_"Set bandwidth to bits per sec";
@@ -241,8 +235,6 @@ let rec main () =
                                     s_"Use password from file to connect to input hypervisor";
     [ M"it" ],       Getopt.String ("transport", set_string_option_once "-it" input_transport),
                                     s_"Input transport";
-    [ L"in-place" ], Getopt.Unit in_place_error,
-                                    s_"Use virt-v2v-in-place instead";
     [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
       s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),

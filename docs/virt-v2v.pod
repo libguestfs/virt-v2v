@@ -21,9 +21,6 @@ There is also a companion front-end called L<virt-p2v(1)> which comes
 as an ISO, CD or PXE image that can be booted on physical machines to
 virtualize those machines (physical to virtual, or p2v).
 
-For in-place conversion, there is a separate tool called
-L<virt-v2v-in-place(1)>.
-
 =head2 Input and Output
 
 You normally run virt-v2v with several I<-i*> options controlling the
@@ -35,10 +32,6 @@ system such as oVirt or OpenStack.
 The input and output sides of virt-v2v are separate and unrelated.
 Virt-v2v can read from any input and write to any output.  Therefore
 these sides of virt-v2v are documented separately in this manual.
-
-Virt-v2v normally copies from the input to the output, called "copying
-mode".  In this case the source guest is always left unchanged.
-In-place conversions may be done using L<virt-v2v-in-place(1)>.
 
 =head2 Other virt-v2v topics
 
@@ -1587,7 +1580,6 @@ L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-rhev/#c
 =head1 SEE ALSO
 
 L<virt-p2v(1)>,
-L<virt-v2v-in-place(1)>,
 L<virt-customize(1)>,
 L<virt-df(1)>,
 L<virt-filesystems(1)>,
