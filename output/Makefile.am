@@ -48,6 +48,16 @@ SOURCES_MLI = \
 	create_libvirt_xml.mli \
 	openstack_image_properties.mli \
 	output.mli \
+	output_disk.mli \
+	output_glance.mli \
+	output_json.mli \
+	output_libvirt.mli \
+	output_null.mli \
+	output_openstack.mli \
+	output_qemu.mli \
+	output_rhv.mli \
+	output_rhv_upload.mli \
+	output_vdsm.mli \
 	output_rhv_upload_cancel_source.mli \
 	output_rhv_upload_createvm_source.mli \
 	output_rhv_upload_finalize_source.mli \
@@ -74,7 +84,17 @@ SOURCES_ML = \
 	output_rhv_upload_precheck_source.ml \
 	output_rhv_upload_transfer_source.ml \
 	output_rhv_upload_vmcheck_source.ml \
-	output.ml
+	output.ml \
+	output_disk.ml \
+	output_glance.ml \
+	output_json.ml \
+	output_libvirt.ml \
+	output_null.ml \
+	output_openstack.ml \
+	output_qemu.ml \
+	output_rhv.ml \
+	output_rhv_upload.ml \
+	output_vdsm.ml
 
 SOURCES_C = \
 	qemuopts-c.c

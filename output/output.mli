@@ -48,13 +48,27 @@ module type OUTPUT = sig
   (** When the user passes [-oo ?] this is used to print help. *)
 end
 
-module Disk : OUTPUT             (** [-o disk] output mode. *)
-module Glance : OUTPUT           (** [-o glance] output mode. *)
-module Json : OUTPUT             (** [-o json] output mode. *)
-module Libvirt_ : OUTPUT         (** [-o libvirt] output mode. *)
-module Null : OUTPUT             (** [-o null] output mode. *)
-module Openstack : OUTPUT        (** [-o openstack] output mode. *)
-module QEMU : OUTPUT             (** [-o qemu] output mode. *)
-module RHVUpload : OUTPUT        (** [-o rhv-upload] output mode. *)
-module RHV : OUTPUT              (** [-o rhv] output mode. *)
-module VDSM : OUTPUT             (** [-o vdsm] output mode. *)
+(** Helper functions for output modes. *)
+
+val error_option_cannot_be_used_in_output_mode : string -> string -> unit
+(** [error_option_cannot_be_used_in_output_mode mode option]
+    prints error message that option cannot be used in this output mode. *)
+
+val get_output_name : options -> Types.source -> string
+(** Works out the output name from -on or input name. *)
+
+val get_disks : string -> (int * int64) list
+(** Examines the v2v directory and opens each input socket (in0 etc),
+    returning a list of input disk index and size. *)
+
+val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->
+                           Types.output_allocation ->
+                           string -> string -> int64 -> string ->
+                           unit
+(** When an output mode wants to create a local file with a
+    particular format (only "raw" or "qcow2" allowed) then
+    this common function can be used. *)
+
+val disk_path : string -> string -> int -> string
+(** For [-o disk|qemu], return the output disk name of the i'th disk,
+    eg. 0 => /path/to/name-sda. *)

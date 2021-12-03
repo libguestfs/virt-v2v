@@ -473,16 +473,16 @@ read the man page virt-v2v(1).
   (* Get the output helper name and command line. *)
   let (module Output_module) =
     match output_mode with
-    | `Not_set | `Libvirt -> (module Output.Libvirt_ : Output.OUTPUT)
-    | `Disk -> (module Output.Disk)
-    | `Null -> (module Output.Null)
-    | `QEmu -> (module Output.QEMU)
-    | `Glance -> (module Output.Glance)
-    | `Openstack -> (module Output.Openstack)
-    | `RHV_Upload -> (module Output.RHVUpload)
-    | `RHV -> (module Output.RHV)
-    | `VDSM -> (module Output.VDSM)
-    | `JSON -> (module Output.Json) in
+    | `Not_set | `Libvirt -> (module Output_libvirt.Libvirt_ : Output.OUTPUT)
+    | `Disk -> (module Output_disk.Disk)
+    | `Null -> (module Output_null.Null)
+    | `QEmu -> (module Output_qemu.QEMU)
+    | `Glance -> (module Output_glance.Glance)
+    | `Openstack -> (module Output_openstack.Openstack)
+    | `RHV_Upload -> (module Output_rhv_upload.RHVUpload)
+    | `RHV -> (module Output_rhv.RHV)
+    | `VDSM -> (module Output_vdsm.VDSM)
+    | `JSON -> (module Output_json.Json) in
 
   let output_options = {
     Output.output_alloc = output_alloc;
