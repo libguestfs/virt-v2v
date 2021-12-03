@@ -931,7 +931,7 @@ and openstack_servers dir disks output_name
    * (1) Unconditionally detach volumes.
    * (2) Delete the volumes, but only if conversion was not successful.
    *)
-  at_exit (
+  On_exit.f (
     fun () ->
       let volume_ids = !volume_ids in
       List.iter detach_volume volume_ids;
@@ -1754,7 +1754,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
   in
 
   (* Set up an at-exit handler so we delete the orphan disks on failure. *)
-  at_exit (
+  On_exit.f (
     fun () ->
       (* virt-v2v writes v2vdir/done on success only. *)
       let success = Sys.file_exists (dir // "done") in
@@ -2004,7 +2004,7 @@ and rhv_servers dir disks output_name
       let d = images_dir // image_uuid in
       Changeuid.mkdir changeuid_t d 0o755
   ) image_uuids;
-  at_exit (
+  On_exit.f (
     fun () ->
       (* virt-v2v writes v2vdir/done on success only. *)
       let success = Sys.file_exists (dir // "done") in
@@ -2127,10 +2127,11 @@ and mount_and_check_storage_domain domain_class os =
       error (f_"mount command failed, see earlier errors.\n\nThis probably means you didn't specify the right %s path [-os %s], or else you need to rerun virt-v2v as root.") domain_class os;
 
     (* Make sure it is unmounted at exit. *)
-    at_exit (fun () ->
-      let cmd = [ "umount"; mp ] in
-      ignore (run_command cmd);
-      try rmdir mp with _ -> ()
+    On_exit.f (
+      fun () ->
+        let cmd = [ "umount"; mp ] in
+        ignore (run_command cmd);
+        try rmdir mp with _ -> ()
     );
 
     check_storage_domain domain_class os mp

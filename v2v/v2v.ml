@@ -38,7 +38,7 @@ let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xd
 let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
 
 (* Create the temporary directory to control conversion.
- * (This directory is cleaned up in the cleanup() function).
+ *
  * Because it contains sockets, if we're running as root then
  * we must make it executable by world.
  *)
@@ -46,15 +46,10 @@ let tmpdir =
   let tmpdir = Mkdtemp.temp_dir "v2v." in
   let running_as_root = geteuid () = 0 in
   if running_as_root then chmod tmpdir 0o711;
+  On_exit.rmdir tmpdir;
   tmpdir
 
-let cleanup_tmpdir () =
-  let cmd = sprintf "rm -rf %s" (quote tmpdir) in
-  ignore (Sys.command cmd)
-
 let rec main () =
-  at_exit cleanup_tmpdir;
-
   let set_string_option_once optname optref arg =
     match !optref with
     | Some _ ->
