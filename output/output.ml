@@ -45,18 +45,6 @@ type options = {
 let error_option_cannot_be_used_in_output_mode mode opt =
   error (f_"-o %s: %s option cannot be used in this output mode") mode opt
 
-(* Use a common cleanup function to clean up PIDs and sockets. *)
-let cleanup_pid, cleanup_socket, common_cleanup =
-  let open Sys in
-  let pids = ref [] and sockets = ref [] in
-  let cleanup_pid pid = List.push_front pid pids in
-  let cleanup_socket sock = List.push_front sock sockets in
-  let common_cleanup () =
-    List.iter (fun pid -> kill pid sigterm) !pids;
-    List.iter (fun sock -> try unlink sock with Unix_error _ -> ()) !sockets;
-  in
-  cleanup_pid, cleanup_socket, common_cleanup
-
 (* Common code to get the final output_name. *)
 let common_output_name { output_name } source =
   match output_name with
@@ -121,7 +109,7 @@ let output_local_file ?(changeuid = fun f -> f ())
      (* --exit-with-parent should ensure nbdkit is cleaned
       * up when we exit, but it's not supported everywhere.
       *)
-     cleanup_pid pid
+     On_exit.kill pid
 
   | "qcow2" ->
      let cmd = QemuNBD.new_cmd in
@@ -129,7 +117,7 @@ let output_local_file ?(changeuid = fun f -> f ())
      let cmd = QemuNBD.set_snapshot cmd false in
      let cmd = QemuNBD.set_format cmd (Some "qcow2") in
      let _, pid = QemuNBD.run_unix ~socket cmd in
-     cleanup_pid pid
+     On_exit.kill pid
 
   | _ ->
      error (f_"output mode only supports raw or qcow2 format (format: %s)")
@@ -143,7 +131,6 @@ module type OUTPUT = sig
                  t ->
                  unit
   val query_output_options : unit -> unit
-  val cleanup : unit -> unit
 end
 
 (*----------------------------------------------------------------------*)
@@ -168,7 +155,7 @@ and disk_servers dir disks output_name
   List.iter (
     fun (i, size) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       let outdisk = disk_path output_storage output_name i in
@@ -237,8 +224,6 @@ module Disk = struct
 
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -278,7 +263,7 @@ and glance_servers dir disks output_name output_format =
   List.iter (
     fun (i, size) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       let outdisk = sprintf "%s/%d" tmpdir i in
@@ -351,8 +336,6 @@ module Glance = struct
 
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -415,7 +398,7 @@ and json_servers dir disks output_name
   List.iter (
     fun (i, size) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       let outdisk = json_path output_storage output_name json_disks_pattern i in
@@ -476,8 +459,6 @@ module Json = struct
     json_finalize dir source inspect target_meta data
 
   let query_output_options = json_print_output_options
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -546,7 +527,7 @@ and libvirt_servers dir disks output_name
   List.iter (
     fun (i, size) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       let outdisk = target_path // output_name ^ "-sd" ^ (drive_name i) in
@@ -664,8 +645,6 @@ module Libvirt_ = struct
 
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -695,7 +674,7 @@ and null_servers dir disks output_name =
    * and set the size of the output to 7E.
    *)
   let socket = sprintf "%s/out0" dir in
-  cleanup_socket socket;
+  On_exit.unlink socket;
 
   let () =
     let cmd = Nbdkit.new_cmd in
@@ -707,7 +686,7 @@ and null_servers dir disks output_name =
     (* --exit-with-parent should ensure nbdkit is cleaned
      * up when we exit, but it's not supported everywhere.
      *)
-    cleanup_pid pid in
+    On_exit.kill pid in
 
   (* Use hard links to the same socket for the other disks. *)
   List.iter (
@@ -734,8 +713,6 @@ module Null = struct
 
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -1069,7 +1046,7 @@ and openstack_servers dir disks output_name
   List.iter (
     fun ((i, size), dev) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       output_local_file Sparse "raw" dev size socket
   ) (List.combine disks devices);
@@ -1185,8 +1162,6 @@ module Openstack = struct
     openstack_finalize dir source inspect target_meta data t
 
   let query_output_options = openstack_print_output_options
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -1232,7 +1207,7 @@ and qemu_servers dir disks output_name
   List.iter (
     fun (i, size) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       let outdisk = disk_path output_storage output_name i in
@@ -1490,8 +1465,6 @@ module QEMU = struct
     qemu_finalize dir source inspect target_meta data
 
   let query_output_options = qemu_print_output_options
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -1770,7 +1743,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
   List.iter (
     fun ((i, size), uuid) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       let disk_name = sprintf "%s-%03d" output_name i in
       let json_params =
@@ -1835,7 +1808,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
       (* --exit-with-parent should ensure nbdkit is cleaned
        * up when we exit, but it's not supported everywhere.
        *)
-      cleanup_pid pid;
+      On_exit.kill pid;
   ) (List.combine disks disk_uuids);
 
   (* Stash some data we will need during finalization. *)
@@ -1935,8 +1908,6 @@ module RHVUpload = struct
     rhv_upload_finalize dir source inspect target_meta data t
 
   let query_output_options = rhv_upload_print_output_options
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -2054,7 +2025,7 @@ and rhv_servers dir disks output_name
   List.iter (
     fun ((i, size), filename) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       let changeuid f =
@@ -2193,8 +2164,6 @@ module RHV = struct
 
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -2353,7 +2322,7 @@ and vdsm_servers dir disks output_name
   List.iter (
     fun ((i, size), filename) ->
       let socket = sprintf "%s/out%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       (* Create the actual output disk. *)
       output_local_file output_alloc output_format filename size socket
@@ -2394,6 +2363,4 @@ module VDSM = struct
     vdsm_finalize dir source inspect target_meta data t
 
   let query_output_options = vdsm_print_output_options
-
-  let cleanup = common_cleanup
 end

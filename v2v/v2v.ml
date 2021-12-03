@@ -500,24 +500,6 @@ read the man page virt-v2v(1).
     exit 0
   );
 
-  (* Install a signal handler and atexit handler so the
-   * Input_module/Output_module.cleanup functions are always called.
-   *)
-  let () =
-    let cleanup_called = ref false in
-    let cleanup () =
-      if not !cleanup_called then (
-        Input_module.cleanup ();
-        Output_module.cleanup ()
-      );
-      cleanup_called := true
-    in
-    List.iter (
-      fun signl ->
-        ignore (Sys.signal signl (Sys.Signal_handle (fun _ -> cleanup ())))
-    ) [ Sys.sigint; Sys.sigquit; Sys.sigterm; Sys.sighup ];
-    at_exit cleanup in
-
   (* XXX This is a hack for -o rhv and -o vdsm where we must remove
    * the serial console for Linux conversions.  We don't do this for
    * -o rhv-upload, even though we probably should, which would

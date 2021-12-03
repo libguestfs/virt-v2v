@@ -42,20 +42,7 @@ type options = {
 module type INPUT = sig
   val setup : string -> options -> string list -> Types.source
   val query_input_options : unit -> unit
-  val cleanup : unit -> unit
 end
-
-(* Use a common cleanup function to clean up PIDs and sockets. *)
-let cleanup_pid, cleanup_socket, common_cleanup =
-  let open Sys in
-  let pids = ref [] and sockets = ref [] in
-  let cleanup_pid pid = List.push_front pid pids in
-  let cleanup_socket sock = List.push_front sock sockets in
-  let common_cleanup () =
-    List.iter (fun pid -> kill pid sigterm) !pids;
-    List.iter (fun sock -> try unlink sock with Unix_error _ -> ()) !sockets;
-  in
-  cleanup_pid, cleanup_socket, common_cleanup
 
 (*----------------------------------------------------------------------*)
 (* Input.Disk *)
@@ -145,7 +132,7 @@ and disk_servers dir (input_format, args) =
   List.iteri (
     fun i disk ->
       let socket = sprintf "%s/in%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       match input_format with
       | "raw" ->
@@ -166,7 +153,7 @@ and disk_servers dir (input_format, args) =
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
           *)
-         cleanup_pid pid
+         On_exit.kill pid
 
       | format ->
          let cmd = QemuNBD.new_cmd in
@@ -174,7 +161,7 @@ and disk_servers dir (input_format, args) =
          let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
          let cmd = QemuNBD.set_format cmd (Some format) in
          let _, pid = QemuNBD.run_unix ~socket cmd in
-         cleanup_pid pid
+         On_exit.kill pid
   ) args
 
 module Disk = struct
@@ -187,8 +174,6 @@ module Disk = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -228,7 +213,7 @@ and libvirt_servers dir disks =
   List.iteri (
     fun i { d_format = format; d_type } ->
       let socket = sprintf "%s/in%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       match d_type with
       (* Forward to another NBD server using nbdkit-nbd-plugin. *)
@@ -244,7 +229,7 @@ and libvirt_servers dir disks =
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
           *)
-         cleanup_pid pid
+         On_exit.kill pid
 
       (* Forward to an HTTP/HTTPS server using nbdkit-curl-plugin. *)
       | HTTP url ->
@@ -255,7 +240,7 @@ and libvirt_servers dir disks =
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
           *)
-         cleanup_pid pid
+         On_exit.kill pid
 
       | BlockDev filename | LocalFile filename ->
          match format with
@@ -277,7 +262,7 @@ and libvirt_servers dir disks =
             (* --exit-with-parent should ensure nbdkit is cleaned
              * up when we exit, but it's not supported everywhere.
              *)
-            cleanup_pid pid
+            On_exit.kill pid
 
          (* We use qemu-nbd for all other formats including auto-detect. *)
          | _ ->
@@ -286,7 +271,7 @@ and libvirt_servers dir disks =
             let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
             let cmd = QemuNBD.set_format cmd format in
             let _, pid = QemuNBD.run_unix ~socket cmd in
-            cleanup_pid pid
+            On_exit.kill pid
   ) disks
 
 module Libvirt_ = struct
@@ -299,8 +284,6 @@ module Libvirt_ = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -326,8 +309,6 @@ module LibvirtXML = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -485,14 +466,14 @@ and ova_servers dir qemu_uris =
   List.iteri (
     fun i qemu_uri ->
       let socket = sprintf "%s/in%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       let cmd = QemuNBD.new_cmd in
       let cmd = QemuNBD.set_disk cmd qemu_uri in
       let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
       let cmd = QemuNBD.set_format cmd None in (* auto-detect format *)
       let _, pid = QemuNBD.run_unix ~socket cmd in
-      cleanup_pid pid
+      On_exit.kill pid
   ) qemu_uris
 
 and find_file_or_snapshot ova_t href manifest =
@@ -541,8 +522,6 @@ module OVA = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -621,7 +600,7 @@ and vcenter_https_servers dir
   List.iteri (
     fun i { d_format = format; d_type } ->
       let socket = sprintf "%s/in%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       match d_type with
       | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
@@ -632,7 +611,7 @@ and vcenter_https_servers dir
          let pid = VCenter.start_nbdkit_for_path ?bandwidth ~cor
                      ?password_file:input_password
                      dcPath uri server path socket in
-         cleanup_pid pid
+         On_exit.kill pid
   ) disks
 
 module VCenterHTTPS = struct
@@ -645,8 +624,6 @@ module VCenterHTTPS = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -796,7 +773,7 @@ and vddk_servers dir
   List.iteri (
     fun i { d_format = format; d_type } ->
       let socket = sprintf "%s/in%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       match d_type with
       | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
@@ -816,7 +793,7 @@ and vddk_servers dir
              ~server ?snapshot ~thumbprint ?transports ?user
              path in
          let _, pid = Nbdkit.run_unix ~socket nbdkit in
-         cleanup_pid pid
+         On_exit.kill pid
   ) disks
 
 module VDDK = struct
@@ -827,8 +804,6 @@ module VDDK = struct
 
   let query_input_options () =
     vddk_print_input_options ()
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -863,7 +838,7 @@ and vmx_servers dir (vmx_source, filenames, bandwidth, input_password) =
      List.iteri (
        fun i filename ->
          let socket = sprintf "%s/in%d" dir i in
-         cleanup_socket socket;
+         On_exit.unlink socket;
 
          let cmd = QemuNBD.new_cmd in
          let cmd =
@@ -872,14 +847,14 @@ and vmx_servers dir (vmx_source, filenames, bandwidth, input_password) =
          let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
          let cmd = QemuNBD.set_format cmd (Some "vmdk") in
          let _, pid = QemuNBD.run_unix ~socket cmd in
-         cleanup_pid pid
+         On_exit.kill pid
      ) filenames
 
   | SSH uri ->
      List.iteri (
        fun i filename ->
          let socket = sprintf "%s/in%d" dir i in
-         cleanup_socket socket;
+         On_exit.unlink socket;
 
          let vmx_path = path_of_uri uri in
          let abs_path = absolute_path_from_other_file vmx_path filename in
@@ -913,7 +888,7 @@ and vmx_servers dir (vmx_source, filenames, bandwidth, input_password) =
          let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password ~server
                         ?port ?user abs_path in
          let _, pid = Nbdkit.run_unix ~socket nbdkit in
-         cleanup_pid pid
+         On_exit.kill pid
      ) filenames
 
 (* The filename can be an absolute path, but is more often a
@@ -934,8 +909,6 @@ module VMX = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end
 
 (*----------------------------------------------------------------------*)
@@ -997,7 +970,7 @@ and xen_ssh_servers dir (disks, uri, bandwidth, input_conn, input_password) =
   List.iteri (
     fun i { d_format = format; d_type } ->
       let socket = sprintf "%s/in%d" dir i in
-      cleanup_socket socket;
+      On_exit.unlink socket;
 
       match d_type with
       | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
@@ -1008,7 +981,7 @@ and xen_ssh_servers dir (disks, uri, bandwidth, input_conn, input_password) =
          let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
                         ?port ~server ?user path in
          let _, pid = Nbdkit.run_unix ~socket nbdkit in
-         cleanup_pid pid
+         On_exit.kill pid
   ) disks
 
 module XenSSH = struct
@@ -1021,6 +994,4 @@ module XenSSH = struct
 
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
-
-  let cleanup = common_cleanup
 end

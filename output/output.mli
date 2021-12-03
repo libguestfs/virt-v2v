@@ -46,9 +46,6 @@ module type OUTPUT = sig
 
   val query_output_options : unit -> unit
   (** When the user passes [-oo ?] this is used to print help. *)
-
-  val cleanup : unit -> unit
-  (** The main program will call this function on exit. *)
 end
 
 module Disk : OUTPUT             (** [-o disk] output mode. *)

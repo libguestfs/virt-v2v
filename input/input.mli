@@ -35,9 +35,6 @@ module type INPUT = sig
 
   val query_input_options : unit -> unit
   (** When the user passes [-io ?] this is used to print help. *)
-
-  val cleanup : unit -> unit
-  (** The main program will call this function on exit. *)
 end
 
 module Disk : INPUT             (** [-i disk] input mode. *)
