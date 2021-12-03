@@ -13,6 +13,7 @@ common/mltools/URI.ml
 common/mltools/checksums.ml
 common/mltools/curl.ml
 common/mltools/getopt.ml
+common/mltools/on_exit.ml
 common/mltools/planner.ml
 common/mltools/regedit.ml
 common/mltools/registry.ml

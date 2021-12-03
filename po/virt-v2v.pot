@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 1.45.92\n"
+"Project-Id-Version: virt-v2v 1.45.93\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-12-02 10:31+0000\n"
+"POT-Creation-Date: 2021-12-03 17:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:662
+#: common/mltools/tools_utils.ml:639
 msgid "%s (ignored)"
 msgstr ""
 
@@ -36,7 +36,7 @@ msgstr ""
 msgid "%s did not return any output"
 msgstr ""
 
-#: v2v/v2v.ml:211 v2v/v2v.ml:197 v2v/v2v.ml:176 v2v/v2v.ml:61
+#: v2v/v2v.ml:206 v2v/v2v.ml:192 v2v/v2v.ml:171 v2v/v2v.ml:56
 msgid "%s option used more than once on the command line"
 msgstr ""
 
@@ -48,7 +48,7 @@ msgstr ""
 msgid "%s: %s: %s"
 msgstr ""
 
-#: v2v/v2v.ml:323
+#: v2v/v2v.ml:318
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -75,7 +75,7 @@ msgstr ""
 msgid "%s: error: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:695
+#: common/mltools/tools_utils.ml:672
 msgid "%s: operation timed out"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "'CMD+ARGS'"
 msgstr ""
 
-#: v2v/v2v.ml:156
+#: v2v/v2v.ml:151
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
-#: v2v/v2v.ml:286
+#: v2v/v2v.ml:281
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Change the permissions of a file"
 msgstr ""
 
-#: v2v/v2v.ml:244
+#: v2v/v2v.ml:239
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:589
+#: v2v/v2v.ml:566
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:619
+#: v2v/v2v.ml:596
 msgid "Creating output metadata"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:623
+#: v2v/v2v.ml:600
 msgid "Finishing off"
 msgstr ""
 
@@ -218,7 +218,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:288
+#: v2v/v2v.ml:283
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: v2v/v2v.ml:318 v2v/v2v.ml:264
+#: v2v/v2v.ml:313 v2v/v2v.ml:259
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
@@ -238,11 +238,11 @@ msgstr ""
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: v2v/v2v.ml:250
+#: v2v/v2v.ml:245
 msgid "Input format"
 msgstr ""
 
-#: v2v/v2v.ml:256
+#: v2v/v2v.ml:251
 msgid "Input transport"
 msgstr ""
 
@@ -250,7 +250,7 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/v2v.ml:248
+#: v2v/v2v.ml:243
 msgid "Libvirt URI"
 msgstr ""
 
@@ -258,15 +258,15 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr ""
 
-#: v2v/v2v.ml:260
+#: v2v/v2v.ml:255
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:242
+#: v2v/v2v.ml:237
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:262
+#: v2v/v2v.ml:257
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -281,11 +281,11 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:258
+#: v2v/v2v.ml:253
 msgid "Only tune the guest in the input VM"
 msgstr ""
 
-#: v2v/v2v.ml:270
+#: v2v/v2v.ml:265
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -304,7 +304,7 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:284
+#: v2v/v2v.ml:279
 msgid "Print source and stop"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "Remove all the subscriptions"
 msgstr ""
 
-#: v2v/v2v.ml:274
+#: v2v/v2v.ml:269
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -373,63 +373,63 @@ msgstr ""
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: v2v/v2v.ml:290
+#: v2v/v2v.ml:285
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:292
+#: v2v/v2v.ml:287
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:294
+#: v2v/v2v.ml:289
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr ""
 
-#: v2v/v2v.ml:296
+#: v2v/v2v.ml:291
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr ""
 
-#: v2v/v2v.ml:298
+#: v2v/v2v.ml:293
 msgid "Same as ‘-io vddk-port=port’"
 msgstr ""
 
-#: v2v/v2v.ml:300
+#: v2v/v2v.ml:295
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr ""
 
-#: v2v/v2v.ml:302
+#: v2v/v2v.ml:297
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr ""
 
-#: v2v/v2v.ml:304
+#: v2v/v2v.ml:299
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr ""
 
-#: v2v/v2v.ml:282
+#: v2v/v2v.ml:277
 msgid "Same as ‘-ip filename’"
 msgstr ""
 
-#: v2v/v2v.ml:306
+#: v2v/v2v.ml:301
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr ""
 
-#: v2v/v2v.ml:308
+#: v2v/v2v.ml:303
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:316
+#: v2v/v2v.ml:311
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr ""
 
-#: v2v/v2v.ml:314
+#: v2v/v2v.ml:309
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr ""
 
-#: v2v/v2v.ml:312
+#: v2v/v2v.ml:307
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:310
+#: v2v/v2v.ml:305
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
@@ -441,39 +441,39 @@ msgstr ""
 msgid "Scrub build log file"
 msgstr ""
 
-#: v2v/v2v.ml:240
+#: v2v/v2v.ml:235
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:238
+#: v2v/v2v.ml:233
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: v2v/v2v.ml:246
+#: v2v/v2v.ml:241
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:252
+#: v2v/v2v.ml:247
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:276
+#: v2v/v2v.ml:271
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:268
+#: v2v/v2v.ml:263
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:272
+#: v2v/v2v.ml:267
 msgid "Set output format"
 msgstr ""
 
-#: v2v/v2v.ml:266
+#: v2v/v2v.ml:261
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:280
+#: v2v/v2v.ml:275
 msgid "Set output storage location"
 msgstr ""
 
@@ -501,7 +501,7 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:551
+#: v2v/v2v.ml:528
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -549,11 +549,11 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/v2v.ml:254
+#: v2v/v2v.ml:249
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:278
+#: v2v/v2v.ml:273
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
@@ -568,15 +568,15 @@ msgid ""
 "at boot."
 msgstr ""
 
-#: v2v/v2v.ml:119
+#: v2v/v2v.ml:114
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:143
+#: v2v/v2v.ml:138
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:154
+#: v2v/v2v.ml:149
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
@@ -594,7 +594,7 @@ msgid ""
 "failed: %s"
 msgstr ""
 
-#: v2v/v2v.ml:426
+#: v2v/v2v.ml:421
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -666,15 +666,15 @@ msgstr ""
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
-#: v2v/v2v.ml:128
+#: v2v/v2v.ml:123
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:112
+#: v2v/v2v.ml:107
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:104
+#: v2v/v2v.ml:99
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -719,21 +719,21 @@ msgstr ""
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:648
+#: v2v/v2v.ml:625
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
-#: v2v/v2v.ml:456
+#: v2v/v2v.ml:451
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: v2v/v2v.ml:230
+#: v2v/v2v.ml:225
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 
-#: v2v/v2v.ml:233
+#: v2v/v2v.ml:228
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
@@ -777,23 +777,23 @@ msgstr ""
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:170
+#: v2v/v2v.ml:165
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:205
+#: v2v/v2v.ml:200
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:225
+#: v2v/v2v.ml:220
 msgid "unknown -o option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:181
+#: v2v/v2v.ml:176
 msgid "unknown -oa option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:358
+#: v2v/v2v.ml:353
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
