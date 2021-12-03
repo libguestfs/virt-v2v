@@ -859,7 +859,7 @@ and openstack_parse_options options =
     let cmd = [ openstack_binary ] @ extra_args @ args in
 
     let json, chan = Filename.open_temp_file "v2vopenstack" ".json" in
-    unlink_on_exit json;
+    On_exit.unlink json;
     let fd = descr_of_out_channel chan in
 
     (* Note that Tools_utils.run_command closes fd.

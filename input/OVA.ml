@@ -78,7 +78,7 @@ let rec parse_ova ova =
     else (
       let tmpdir =
         let t = Mkdtemp.temp_dir ~base_dir:large_tmpdir "ova." in
-        rmdir_on_exit t;
+        On_exit.rmdir t;
         t in
 
       match detect_file_type ova with

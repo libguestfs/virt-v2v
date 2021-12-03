@@ -117,7 +117,7 @@ let qemu_img_supports_offset_and_size () =
    * file that has an offset and size.
    *)
   let tmp = Filename.temp_file "v2vqemuimgtst" ".img" in
-  unlink_on_exit tmp;
+  On_exit.unlink tmp;
   Unix.truncate tmp 1024;
 
   let json = [

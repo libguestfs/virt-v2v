@@ -89,7 +89,7 @@ let rec start_nbdkit_for_path ?bandwidth ?cor ?password_file
    *)
   let cookie_script, chan =
     Filename.open_temp_file ~perms:0o700 "v2vcs" ".sh" in
-  unlink_on_exit cookie_script;
+  On_exit.unlink cookie_script;
   let fpf fs = fprintf chan fs in
   fpf "#!/bin/sh -\n";
   fpf "\n";

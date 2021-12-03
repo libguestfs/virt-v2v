@@ -147,7 +147,7 @@ let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
        tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
        printf "\n";
        let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
-       unlink_on_exit password_file;
+       On_exit.unlink password_file;
        with_open_out password_file (fun chan -> output_string chan password);
        Nbdkit.add_arg cmd "password" ("+" ^ password_file)
     | PasswordFile password_file ->

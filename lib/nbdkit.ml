@@ -119,7 +119,7 @@ let run_unix ?socket cmd =
      * qemu can open the sockets.
      *)
     chmod t 0o755;
-    rmdir_on_exit t;
+    On_exit.rmdir t;
     t in
 
   let id = unique () in

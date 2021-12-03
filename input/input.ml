@@ -410,7 +410,7 @@ let rec ova_source _ args =
            let new_filename =
              Filename.temp_file ~temp_dir:Utils.large_tmpdir
                "ova" ".vmdk" in
-           unlink_on_exit new_filename;
+           On_exit.unlink new_filename;
            let cmd =
              sprintf "zcat %s > %s"
                (quote filename) (quote new_filename) in

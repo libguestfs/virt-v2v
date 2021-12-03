@@ -328,7 +328,7 @@ and find_nics vmx =
 let parse_domain_from_vmx vmx_source =
   let tmpdir =
     let t = Mkdtemp.temp_dir "vmx." in
-    rmdir_on_exit t;
+    On_exit.rmdir t;
     t in
 
   (* If the transport is SSH, fetch the file from remote, else
