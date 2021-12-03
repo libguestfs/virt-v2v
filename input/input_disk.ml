@@ -1,0 +1,158 @@
+(* helper-v2v-input
+ * Copyright (C) 2009-2021 Red Hat Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *)
+
+open Printf
+open Unix
+
+open Std_utils
+open Tools_utils
+open Common_gettext.Gettext
+
+open Types
+open Utils
+
+open Name_from_disk
+open Input
+
+let rec disk_source dir options args =
+  if options.input_options <> [] then
+    error (f_"no -io (input options) are allowed here");
+
+  if args = [] then
+    error (f_"-i disk: expecting a disk image (filename) on the command line");
+
+  (* Check the input files exist and are readable. *)
+  List.iter (fun disk -> access disk [R_OK]) args;
+
+  (* What name should we use for the guest?  We try to derive it from
+   * the first filename passed in.  Users can override this using the
+   * `-on name' option.
+   *)
+  let name = name_from_disk (List.hd args) in
+
+  let s_disks =
+    List.mapi (
+      fun i _ -> { s_disk_id = i; s_controller = None }
+    ) args in
+
+  (* Give the guest a simple generic network interface. *)
+  let s_nic = {
+    s_mac = None;
+    s_nic_model = None;
+    s_vnet = "default";
+    s_vnet_type = Network;
+  } in
+
+  let source = {
+    s_hypervisor = UnknownHV;
+    s_name = name;
+    s_genid = None;
+    s_memory = 2048L *^ 1024L *^ 1024L; (* 2048 MB *)
+    s_vcpu = 1;            (* 1 vCPU is a safe default *)
+    s_cpu_vendor = None;
+    s_cpu_model = None;
+    s_cpu_topology = None;
+    s_features = [ "acpi"; "apic"; "pae" ];
+    s_firmware = UnknownFirmware; (* causes virt-v2v to autodetect *)
+    s_display =
+      Some { s_display_type = Window; s_keymap = None; s_password = None;
+             s_listen = LNoListen; s_port = None };
+    s_sound = None;
+    s_disks = s_disks;
+    s_removables = [];
+    s_nics = [s_nic];
+  } in
+
+  let input_format = detect_local_input_format options args in
+
+  (* Check nbdkit is installed. *)
+  if not (Nbdkit.is_installed ()) then
+    error (f_"nbdkit is not installed or not working.  It is required to use ‘-i disk’.");
+
+  if not (Nbdkit.probe_plugin "file") then
+    error (f_"nbdkit-file-plugin is not installed or not working");
+  if not (Nbdkit.probe_filter "cow") then
+    error (f_"nbdkit-cow-filter is not installed or not working");
+
+  let nbdkit_config = Nbdkit.config () in
+
+  List.iteri (
+    fun i disk ->
+      let socket = sprintf "%s/in%d" dir i in
+      On_exit.unlink socket;
+
+      match input_format with
+      | "raw" ->
+         let cmd = Nbdkit.new_cmd in
+         let cmd = Nbdkit.set_verbose cmd (verbose ()) in
+         let cmd = Nbdkit.set_plugin cmd "file" in
+         let cmd = Nbdkit.add_filter cmd "cow" in
+         let cmd = Nbdkit.add_arg cmd "file" disk in
+         let cmd =
+           if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
+             let cmd = Nbdkit.add_arg cmd "fadvise" "sequential" in
+             let cmd = Nbdkit.add_arg cmd "cache" "none" in
+             cmd
+           )
+           else cmd in
+         let _, pid = Nbdkit.run_unix ~socket cmd in
+
+         (* --exit-with-parent should ensure nbdkit is cleaned
+          * up when we exit, but it's not supported everywhere.
+          *)
+         On_exit.kill pid
+
+      | format ->
+         let cmd = QemuNBD.new_cmd in
+         let cmd = QemuNBD.set_disk cmd disk in
+         let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
+         let cmd = QemuNBD.set_format cmd (Some format) in
+         let _, pid = QemuNBD.run_unix ~socket cmd in
+         On_exit.kill pid
+  ) args;
+
+  source
+
+(* For a list of local disks, try to detect the input format if
+ * the [-if] option was not used on the command line.  If the
+ * formats of the disks are different, that is an error.
+ *)
+and detect_local_input_format { input_format } filenames =
+  match input_format with
+  | Some fmt -> fmt
+  | None ->
+     let formats =
+       let g = Guestfs.create () in
+       List.map (Guestfs.disk_format g) filenames in
+
+     let rec get_format = function
+       | [] -> error (f_"expected >= 1 disk name on the command line")
+       | [x] -> x
+       | x :: y :: xs when compare x y = 0 -> get_format (y :: xs)
+       | _ -> error (f_"disks on the command line have mixed formats")
+     in
+
+     get_format formats
+
+module Disk = struct
+  let setup dir options args =
+    disk_source dir options args
+
+  let query_input_options () =
+    printf (f_"No input options can be used in this mode.\n")
+end

@@ -1,4 +1,4 @@
-(* helper-v2v-input
+(* virt-v2v
  * Copyright (C) 2009-2021 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,16 +16,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-type options = {
-  bandwidth : Types.bandwidth option;
-  input_conn : string option;
-  input_format : string option;
-  input_options : (string * string) list;
-  input_password : string option;
-  input_transport : [`SSH|`VDDK] option;
-}
+(** Input from vCenter over HTTPS *)
 
-module type INPUT = sig
-  val setup : string -> options -> string list -> Types.source
-  val query_input_options : unit -> unit
-end
+module VCenterHTTPS : Input.INPUT

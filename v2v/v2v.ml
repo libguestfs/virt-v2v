@@ -407,13 +407,13 @@ read the man page virt-v2v(1).
   (* Get the input module. *)
   let (module Input_module) =
     match input_mode with
-    | `Disk -> (module Input.Disk : Input.INPUT)
-    | `LibvirtXML -> (module Input.LibvirtXML)
-    | `OVA -> (module Input.OVA)
-    | `VMX -> (module Input.VMX)
+    | `Disk -> (module Input_disk.Disk : Input.INPUT)
+    | `LibvirtXML -> (module Input_libvirt.LibvirtXML)
+    | `OVA -> (module Input_ova.OVA)
+    | `VMX -> (module Input_vmx.VMX)
     | `Not_set | `Libvirt ->
        match input_conn with
-       | None -> (module Input.Libvirt_)
+       | None -> (module Input_libvirt.Libvirt_)
        | Some orig_uri ->
           let { Xml.uri_server = server; uri_scheme = scheme } =
             try Xml.parse_uri orig_uri
@@ -427,19 +427,19 @@ read the man page virt-v2v(1).
 
             | Some _, None, _     (* No scheme? *)
             | Some _, Some "", _ ->
-             (module Input.Libvirt_)
+             (module Input_libvirt.Libvirt_)
 
           (* vCenter over https. *)
           | Some server, Some ("esx"|"gsx"|"vpx"), None ->
-             (module Input.VCenterHTTPS)
+             (module Input_vcenter_https.VCenterHTTPS)
 
           (* vCenter or ESXi using nbdkit vddk plugin *)
           | Some server, Some ("esx"|"gsx"|"vpx"), Some `VDDK ->
-             (module Input.VDDK)
+             (module Input_vddk.VDDK)
 
           (* Xen over SSH *)
           | Some server, Some "xen+ssh", _ ->
-             (module Input.XenSSH)
+             (module Input_xen_ssh.XenSSH)
 
           (* Old virt-v2v also supported qemu+ssh://.  However I am
            * deliberately not supporting this in new virt-v2v.  Don't
@@ -449,7 +449,7 @@ read the man page virt-v2v(1).
           (* Unknown remote scheme. *)
           | Some _, Some _, _ ->
              warning (f_"no support for remote libvirt connections to '-ic %s'.  The conversion may fail when it tries to read the source disks.") orig_uri;
-             (module Input.Libvirt_) in
+             (module Input_libvirt.Libvirt_) in
 
   let input_options = {
     Input.bandwidth =

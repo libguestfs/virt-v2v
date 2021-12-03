@@ -23,6 +23,13 @@ EXTRA_DIST = \
 
 SOURCES_MLI = \
 	input.mli \
+	input_disk.mli \
+	input_libvirt.mli \
+	input_ova.mli \
+	input_vcenter_https.mli \
+	input_vddk.mli \
+	input_vmx.mli \
+	input_xen_ssh.mli \
 	name_from_disk.mli \
 	nbdkit_curl.mli \
 	nbdkit_ssh.mli \
@@ -45,7 +52,14 @@ SOURCES_ML = \
 	nbdkit_ssh.ml \
 	nbdkit_vddk.ml \
 	vCenter.ml \
-	input.ml
+	input.ml \
+	input_disk.ml \
+	input_libvirt.ml \
+	input_ova.ml \
+	input_vcenter_https.ml \
+	input_vddk.ml \
+	input_vmx.ml \
+	input_xen_ssh.ml
 
 # We pretend that we're building a C library.  automake handles the
 # compilation of the C sources for us.  At the end we take the C

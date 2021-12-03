@@ -36,12 +36,3 @@ module type INPUT = sig
   val query_input_options : unit -> unit
   (** When the user passes [-io ?] this is used to print help. *)
 end
-
-module Disk : INPUT             (** [-i disk] input mode. *)
-module Libvirt_ : INPUT         (** [-i libvirt] (generic) input mode. *)
-module LibvirtXML : INPUT       (** [-i libvirtxml] input mode. *)
-module OVA : INPUT              (** [-i ova] input mode. *)
-module VCenterHTTPS : INPUT     (** Input from VCenter over HTTPS. *)
-module VDDK : INPUT             (** Input from VDDK. *)
-module VMX : INPUT              (** [-i vmx] input mode. *)
-module XenSSH : INPUT           (** Input from Xen over SSH. *)
