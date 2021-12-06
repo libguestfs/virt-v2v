@@ -157,9 +157,29 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
   let cmd = Nbdkit.add_filter_if_available cmd "cacheextents" in
 
   (* IMPORTANT! Add the COW filter.  It must be furthest away
-   * except for the rate filter.
+   * except for the multi-conn and rate filters.
    *)
   let cmd = Nbdkit.add_filter cmd "cow" in
+
+  (* The cow filter unconditionally enables multi-conn (because it is
+   * safe).  However this causes an unintended consequence with the VDDK
+   * plugin.  Multiple VDDK handles are opened (one per multi-conn
+   * connection), and for some reason, possibly internal locking, they
+   * conflict with each other.  This manifests itself as API calls taking
+   * between 2 and 7 times longer to serve (especially QueryAllocatedBlocks
+   * which seems to slow down most).
+   *
+   * Avoid this by adding nbdkit-multi-conn-filter with
+   * multi-conn-mode=disable on top which disables multi-conn
+   * advertisement.
+   *)
+  let cmd =
+    if Nbdkit.probe_filter "multi-conn" then (
+      let cmd = Nbdkit.add_filter cmd "multi-conn" in
+      let cmd = Nbdkit.add_arg cmd "multi-conn-mode" "disable" in
+      cmd
+    )
+    else cmd in
 
   (* If the filter supports it, enable cow-block-size (added in
    * nbdkit 1.27.6).  This helps to reduce fragmentated small
