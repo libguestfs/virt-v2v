@@ -138,7 +138,6 @@ let run_unix ?socket cmd =
   add_arg "nbdkit";
   add_arg "--exit-with-parent";
   add_arg "--foreground";
-  add_arg "--newstyle";
   add_arg "--pidfile"; add_arg pidfile;
   add_arg "--unix"; add_arg socket;
   add_arg "--threads"; add_arg (string_of_int cmd.threads);
