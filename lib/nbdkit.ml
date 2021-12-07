@@ -73,7 +73,6 @@ type cmd = {
   args : (string * string) list; (* stored reversed *)
   env : (string * string) list;
   debug_flags : (string * string) list; (* stored reversed *)
-  exportname : string option;
   readonly : bool;
   threads : int;
   verbose : bool;
@@ -85,7 +84,6 @@ let new_cmd = {
   args = [];
   env = [ "LANG", "C" ];
   debug_flags = [];
-  exportname = None;
   readonly = false;
   threads = 16;
   verbose = false;
@@ -94,7 +92,6 @@ let new_cmd = {
 let add_debug_flag cmd name value =
   { cmd with debug_flags = (name, value) :: cmd.debug_flags }
 
-let set_exportname cmd v = { cmd with exportname = Some v }
 let set_readonly cmd v = { cmd with readonly = v }
 let set_threads cmd v = { cmd with threads = v }
 let set_verbose cmd v = { cmd with verbose = v }
@@ -161,7 +158,6 @@ let run_unix ?socket cmd =
     fun (name, value) ->
       add_arg "-D"; add_arg (sprintf "%s=%s" name value)
   ) (List.rev cmd.debug_flags);
-  Option.may (fun s -> add_arg "--exportname"; add_arg s) cmd.exportname;
   if cmd.readonly then add_arg "--readonly";
   if cmd.verbose then add_arg "--verbose";
   List.iter (fun filter -> add_arg "--filter"; add_arg filter) cmd.filters;

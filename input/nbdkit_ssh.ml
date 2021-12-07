@@ -63,7 +63,6 @@ let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
 
   (* Other flags. *)
   let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-  let cmd = Nbdkit.set_exportname cmd "/" in
 
   let cmd = Nbdkit.add_arg cmd "host" server in
   let cmd = Nbdkit.add_arg cmd "path" path in

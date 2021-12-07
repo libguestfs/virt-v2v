@@ -208,7 +208,6 @@ See also the virt-v2v-output-rhv(1) manual.");
 
   (* nbdkit command line which is invariant between disks. *)
   let nbdkit_cmd = Nbdkit.new_cmd in
-  let nbdkit_cmd = Nbdkit.set_exportname nbdkit_cmd "/" in
   let nbdkit_cmd = Nbdkit.set_verbose nbdkit_cmd (verbose ()) in
   let nbdkit_cmd = Nbdkit.set_plugin nbdkit_cmd "python" in
   let nbdkit_cmd =

@@ -67,7 +67,6 @@ val new_cmd : cmd
 (** Return an empty command line.  {!set_plugin} must be called. *)
 
 val add_debug_flag : cmd -> string -> string -> cmd
-val set_exportname : cmd -> string -> cmd
 val set_readonly : cmd -> bool -> cmd
 val set_threads : cmd -> int -> cmd
 val set_verbose : cmd -> bool -> cmd

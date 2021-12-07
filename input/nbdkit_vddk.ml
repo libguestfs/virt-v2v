@@ -117,7 +117,6 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
 
   (* Other flags. *)
   let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-  let cmd = Nbdkit.set_exportname cmd "/" in
 
   (* For VDDK we require some user.  If it's not supplied, assume root. *)
   let user = Option.default "root" user in

@@ -60,7 +60,6 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
 
   (* Other flags. *)
   let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-  let cmd = Nbdkit.set_exportname cmd "/" in
 
   let cmd = Nbdkit.add_arg cmd "url" url in
 
