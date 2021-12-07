@@ -186,7 +186,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
    *)
   let cmd =
     if Nbdkit.probe_filter_parameter "cow" "cow-block-size" then
-      Nbdkit.add_arg cmd "cow-block-size" "1M"
+      Nbdkit.add_arg cmd "cow-block-size" "4096"
     else cmd in
 
   (* Add the cow-on-read flag if supported. *)
