@@ -98,8 +98,14 @@ let output_to_local_file ?(changeuid = fun f -> f ())
      let cmd = Nbdkit.add_arg cmd "file" filename in
      let cmd =
        if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
-         let cmd = Nbdkit.add_arg cmd "fadvise" "sequential" in
-         let cmd = Nbdkit.add_arg cmd "cache" "none" in
+         (* nbdkit 1.28 has a very naive implementation of
+          * page cache eviction.  We need to copy the one from
+          * nbdcopy copy/file-ops.c.  Until then do not use
+          * this flag because it causes a large slow down on
+          * some machines. XXX
+          *)
+         (*let cmd = Nbdkit.add_arg cmd "fadvise" "sequential" in
+           let cmd = Nbdkit.add_arg cmd "cache" "none" in*)
          cmd
        )
        else cmd in
