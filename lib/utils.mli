@@ -87,3 +87,11 @@ val with_nbd_connect_unix : socket:string ->
     contexts in [meta_contexts] requested (each of which is not necessarily
     supported by the server though). The connection is torn down either on
     normal return or if the function [f] throws an exception. *)
+
+val get_disk_allocated : dir:string -> disknr:int -> int64 option
+(** Callable only in the finalization step. [get_disk_allocated dir disknr]
+    examines output disk [disknr] through the corresponding NBD server socket
+    that resides in [dir]. Returns the number of bytes allocated in the disk
+    image, according to the "base:allocation" metadata context. If the context
+    is not supported by the NBD server behind the socket, the function returns
+    None. *)

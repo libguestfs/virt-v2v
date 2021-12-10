@@ -176,3 +176,33 @@ let with_nbd_connect_unix ~socket ~meta_contexts ~f =
             ~finally:(fun () -> NBD.shutdown nbd)
        )
     ~finally:(fun () -> NBD.close nbd)
+
+let get_disk_allocated ~dir ~disknr =
+  let socket = sprintf "%s/out%d" dir disknr
+  and alloc_ctx = "base:allocation" in
+  with_nbd_connect_unix ~socket ~meta_contexts:[alloc_ctx]
+    ~f:(fun nbd ->
+         if NBD.can_meta_context nbd alloc_ctx then (
+           (* Get the list of extents, using a 2GiB chunk size as hint. *)
+           let size = NBD.get_size nbd
+           and allocated = ref 0_L
+           and fetch_offset = ref 0_L in
+           while !fetch_offset < size do
+             let remaining = size -^ !fetch_offset in
+             let fetch_size = min 0x8000_0000_L remaining in
+             NBD.block_status nbd fetch_size !fetch_offset
+               (fun ctx offset entries err ->
+                  assert (ctx = alloc_ctx);
+                  for i = 0 to Array.length entries / 2 - 1 do
+                    let len = Int64.of_int32 entries.(i * 2)
+                    and typ = entries.(i * 2 + 1) in
+                    if Int32.logand typ 1_l = 0_l then
+                      allocated := !allocated +^ len;
+                    fetch_offset := !fetch_offset +^ len
+                  done;
+                  0
+               )
+           done;
+           Some !allocated
+         ) else None
+       )
