@@ -201,6 +201,7 @@ and vdsm_finalize dir source inspect target_meta
               output_alloc output_format dd_uuid
               image_uuids
               vol_uuids
+              dir
               vm_uuid
               ovf_flavour in
 

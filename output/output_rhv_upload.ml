@@ -419,7 +419,7 @@ and rhv_upload_finalize dir source inspect target_meta
   (* Create the metadata. *)
   let ovf =
     Create_ovf.create_ovf source inspect target_meta disk_sizes
-      Sparse output_format sd_uuid disk_uuids vol_uuids vm_uuid
+      Sparse output_format sd_uuid disk_uuids vol_uuids dir vm_uuid
       OVirt in
   let ovf = DOM.doc_to_string ovf in
 

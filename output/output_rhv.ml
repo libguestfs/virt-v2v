@@ -183,7 +183,7 @@ and rhv_finalize dir source inspect target_meta
   (* Create the metadata. *)
   let ovf =
     Create_ovf.create_ovf source inspect target_meta sizes
-      output_alloc output_format esd_uuid image_uuids vol_uuids vm_uuid
+      output_alloc output_format esd_uuid image_uuids vol_uuids dir vm_uuid
       Create_ovf.RHVExportStorageDomain in
 
   (* Write it to the metadata file. *)
