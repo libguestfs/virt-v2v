@@ -77,3 +77,13 @@ val metaversion : string
 
     Eventually we may switch to using an "open metadata" format instead
     (eg. XML). *)
+
+val with_nbd_connect_unix : socket:string ->
+                            meta_contexts:string list ->
+                            f:(NBD.t -> 'a) ->
+                            'a
+(** [with_nbd_connect_unix socket meta_contexts f] calls function [f] with the
+    NBD server at Unix domain socket [socket] connected, and the metadata
+    contexts in [meta_contexts] requested (each of which is not necessarily
+    supported by the server though). The connection is torn down either on
+    normal return or if the function [f] throws an exception. *)

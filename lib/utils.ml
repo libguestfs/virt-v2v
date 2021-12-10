@@ -164,3 +164,15 @@ let rec wait_for_file filename timeout =
   )
 
 let metaversion = Digest.to_hex (Digest.string Config.package_version_full)
+
+let with_nbd_connect_unix ~socket ~meta_contexts ~f =
+  let nbd = NBD.create () in
+  protect
+    ~f:(fun () ->
+          List.iter (NBD.add_meta_context nbd) meta_contexts;
+          NBD.connect_unix nbd socket;
+          protect
+            ~f:(fun () -> f nbd)
+            ~finally:(fun () -> NBD.shutdown nbd)
+       )
+    ~finally:(fun () -> NBD.close nbd)
