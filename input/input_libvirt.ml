@@ -100,10 +100,8 @@ and libvirt_servers dir disks =
             let cmd = Nbdkit.create "file" in
             Nbdkit.add_filter cmd "cow";
             Nbdkit.add_arg cmd "file" filename;
-            if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
-              Nbdkit.add_arg cmd "fadvise" "sequential";
+            if Nbdkit.version nbdkit_config >= (1, 22, 0) then
               Nbdkit.add_arg cmd "cache" "none";
-            );
             let _, pid = Nbdkit.run_unix ~socket cmd in
 
             (* --exit-with-parent should ensure nbdkit is cleaned

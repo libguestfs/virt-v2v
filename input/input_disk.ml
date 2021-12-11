@@ -101,10 +101,8 @@ let rec disk_source dir options args =
          let cmd = Nbdkit.create "file" in
          Nbdkit.add_filter cmd "cow";
          Nbdkit.add_arg cmd "file" disk;
-         if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
-           Nbdkit.add_arg cmd "fadvise" "sequential";
+         if Nbdkit.version nbdkit_config >= (1, 22, 0) then
            Nbdkit.add_arg cmd "cache" "none";
-         );
          let _, pid = Nbdkit.run_unix ~socket cmd in
 
          (* --exit-with-parent should ensure nbdkit is cleaned
