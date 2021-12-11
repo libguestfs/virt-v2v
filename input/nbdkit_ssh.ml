@@ -80,12 +80,6 @@ let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
    *)
   let cmd = Nbdkit.add_filter_if_available cmd "retry" in
 
-  (* Adding the readahead filter is always a win for our access
-   * patterns.  If it doesn't exist don't worry.  However it
-   * breaks VMware servers (RHBZ#1832805, RHBZ#1848862).
-   *)
-  let cmd = Nbdkit.add_filter_if_available cmd "readahead" in
-
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.
    *)
