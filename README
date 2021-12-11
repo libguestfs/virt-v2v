@@ -67,6 +67,8 @@ REQUIREMENTS
 
   + nbdkit-cacheextents-filter
   + nbdkit-cow-filter
+  + nbdkit-multi-conn-filter
+  + nbdkit-rate-filter
   + nbdkit-retry-filter
 
 * qemu-nbd
