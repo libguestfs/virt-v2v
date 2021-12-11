@@ -68,41 +68,39 @@ let probe_filter_parameter name regex =
   Sys.command cmd = 0
 
 type cmd = {
-  plugin : string option;
-  filters : string list;
-  args : (string * string) list; (* stored reversed *)
-  env : (string * string) list;
-  debug_flags : (string * string) list; (* stored reversed *)
-  readonly : bool;
-  threads : int;
+  plugin : string;
+  mutable filters : string list;
+  mutable args : (string * string) list; (* stored reversed *)
+  mutable env : (string * string) list;
+  mutable debug_flags : (string * string) list;
+  mutable readonly : bool;
+  mutable threads : int;
   verbose : bool;
 }
 
-let new_cmd = {
-  plugin = None;
+let create ?(quiet = false) plugin = {
+  plugin;
   filters = [];
   args = [];
   env = [ "LANG", "C" ];
   debug_flags = [];
   readonly = false;
   threads = 16;
-  verbose = false;
+  verbose = not quiet && verbose ()
 }
 
 let add_debug_flag cmd name value =
-  { cmd with debug_flags = (name, value) :: cmd.debug_flags }
+  cmd.debug_flags <- (name, value) :: cmd.debug_flags
 
-let set_readonly cmd v = { cmd with readonly = v }
-let set_threads cmd v = { cmd with threads = v }
-let set_verbose cmd v = { cmd with verbose = v }
-let set_plugin cmd v = { cmd with plugin = Some v }
-let add_filter cmd v = { cmd with filters = v :: cmd.filters }
-let add_arg cmd key value = { cmd with args = (key, value) :: cmd.args }
-let add_args cmd kvs = { cmd with args = List.rev kvs @ cmd.args }
-let add_env cmd name value = { cmd with env = (name, value) :: cmd.env }
+let set_readonly cmd v = cmd.readonly <- v
+let set_threads cmd v = cmd.threads <- v
+let add_filter cmd v = cmd.filters <- v :: cmd.filters
+let add_arg cmd key value = cmd.args <- (key, value) :: cmd.args
+let add_args cmd kvs = cmd.args <- List.rev kvs @ cmd.args
+let add_env cmd name value = cmd.env <- (name, value) :: cmd.env
 
 let add_filter_if_available cmd filter =
-  if probe_filter filter then add_filter cmd filter else cmd
+  if probe_filter filter then add_filter cmd filter
 
 let run_unix ?socket cmd =
   (* Create a temporary directory where we place the socket and PID file.
@@ -156,14 +154,12 @@ let run_unix ?socket cmd =
   List.iter (
     fun (name, value) ->
       add_arg "-D"; add_arg (sprintf "%s=%s" name value)
-  ) (List.rev cmd.debug_flags);
+  ) cmd.debug_flags;
   if cmd.readonly then add_arg "--readonly";
   if cmd.verbose then add_arg "--verbose";
   List.iter (fun filter -> add_arg "--filter"; add_arg filter) cmd.filters;
 
-  (match cmd.plugin with
-   | None -> assert false
-   | Some plugin -> add_arg plugin);
+  add_arg cmd.plugin;
   add_args_reversed (List.map (fun (k, v) -> sprintf "%s=%s" k v) cmd.args);
   let args = get_args () in
 

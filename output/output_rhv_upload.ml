@@ -207,14 +207,11 @@ See also the virt-v2v-output-rhv(1) manual.");
   ] in
 
   (* nbdkit command line which is invariant between disks. *)
-  let nbdkit_cmd = Nbdkit.new_cmd in
-  let nbdkit_cmd = Nbdkit.set_verbose nbdkit_cmd (verbose ()) in
-  let nbdkit_cmd = Nbdkit.set_plugin nbdkit_cmd "python" in
-  let nbdkit_cmd =
-    Nbdkit.add_arg nbdkit_cmd "script" (Python_script.path plugin_script) in
+  let cmd = Nbdkit.create "python" in
+  Nbdkit.add_arg cmd "script" (Python_script.path plugin_script);
 
   (* Match number of parallel coroutines in qemu-img *)
-  let nbdkit_cmd = Nbdkit.set_threads nbdkit_cmd 8 in
+  Nbdkit.set_threads cmd 8;
 
   (* Python code prechecks. *)
   let json_params = match rhv_disk_uuids with
@@ -346,20 +343,15 @@ e command line has to match the number of guest disk images (for this guest: %d)
         JSON_parser.object_get_bool "is_ovirt_host" json in
 
       (* Create the nbdkit instance. *)
-      let cmd = nbdkit_cmd in
-      let cmd = Nbdkit.add_arg cmd "size" (Int64.to_string size) in
-      let cmd = Nbdkit.add_arg cmd "url" destination_url in
-      let cmd =
-        match rhv_cafile with
-        | None -> cmd
-        | Some cafile -> Nbdkit.add_arg cmd "cafile" cafile in
-      let cmd =
-        if not rhv_verifypeer then
-          Nbdkit.add_arg cmd "insecure" "true"
-        else cmd in
-      let cmd =
-        if is_ovirt_host then
-          Nbdkit.add_arg cmd "is_ovirt_host" "true" else cmd in
+      Nbdkit.add_arg cmd "size" (Int64.to_string size);
+      Nbdkit.add_arg cmd "url" destination_url;
+      (match rhv_cafile with
+       | None -> ()
+       | Some cafile -> Nbdkit.add_arg cmd "cafile" cafile);
+      if not rhv_verifypeer then
+        Nbdkit.add_arg cmd "insecure" "true";
+      if is_ovirt_host then
+        Nbdkit.add_arg cmd "is_ovirt_host" "true";
       let _, pid = Nbdkit.run_unix ~socket cmd in
 
       (* --exit-with-parent should ensure nbdkit is cleaned

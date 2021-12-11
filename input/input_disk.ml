@@ -98,18 +98,13 @@ let rec disk_source dir options args =
 
       match input_format with
       | "raw" ->
-         let cmd = Nbdkit.new_cmd in
-         let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-         let cmd = Nbdkit.set_plugin cmd "file" in
-         let cmd = Nbdkit.add_filter cmd "cow" in
-         let cmd = Nbdkit.add_arg cmd "file" disk in
-         let cmd =
-           if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
-             let cmd = Nbdkit.add_arg cmd "fadvise" "sequential" in
-             let cmd = Nbdkit.add_arg cmd "cache" "none" in
-             cmd
-           )
-           else cmd in
+         let cmd = Nbdkit.create "file" in
+         Nbdkit.add_filter cmd "cow";
+         Nbdkit.add_arg cmd "file" disk;
+         if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
+           Nbdkit.add_arg cmd "fadvise" "sequential";
+           Nbdkit.add_arg cmd "cache" "none";
+         );
          let _, pid = Nbdkit.run_unix ~socket cmd in
 
          (* --exit-with-parent should ensure nbdkit is cleaned

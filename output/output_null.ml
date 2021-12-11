@@ -55,10 +55,8 @@ and null_servers dir disks output_name =
   On_exit.unlink socket;
 
   let () =
-    let cmd = Nbdkit.new_cmd in
-    (*let cmd = Nbdkit.set_verbose cmd (verbose ()) in*)
-    let cmd = Nbdkit.set_plugin cmd "null" in
-    let cmd = Nbdkit.add_arg cmd "size" "7E" in
+    let cmd = Nbdkit.create ~quiet:true "null" in
+    Nbdkit.add_arg cmd "size" "7E";
     let _, pid = Nbdkit.run_unix ~socket cmd in
 
     (* --exit-with-parent should ensure nbdkit is cleaned

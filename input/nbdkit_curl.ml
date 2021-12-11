@@ -52,75 +52,61 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
   );
 
   (* Construct the nbdkit command. *)
-  let cmd = Nbdkit.new_cmd in
-  let cmd = Nbdkit.set_plugin cmd "curl" in
-
-  (* Environment.  We always add LANG=C. *)
-  let cmd = Nbdkit.add_env cmd "LANG" "C" in
-
-  (* Other flags. *)
-  let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-
-  let cmd = Nbdkit.add_arg cmd "url" url in
+  let cmd = Nbdkit.create "curl" in
+  Nbdkit.add_arg cmd "url" url;
 
   (* https://bugzilla.redhat.com/show_bug.cgi?id=1146007#c10 *)
-  let cmd = Nbdkit.add_arg cmd "timeout" "2000" in
-  let cmd =
-    match cookie_script with
-    | Some s -> Nbdkit.add_arg cmd "cookie-script" s
-    | None -> cmd in
-  let cmd =
-    match cookie_script_renew with
-    | Some i -> Nbdkit.add_arg cmd "cookie-script-renew" (string_of_int i)
-    | None -> cmd in
-  let cmd = if not sslverify then Nbdkit.add_arg cmd "sslverify" "false"
-            else cmd in
+  Nbdkit.add_arg cmd "timeout" "2000";
+  (match cookie_script with
+   | Some s -> Nbdkit.add_arg cmd "cookie-script" s
+   | None -> ());
+  (match cookie_script_renew with
+   | Some i -> Nbdkit.add_arg cmd "cookie-script-renew" (string_of_int i)
+   | None -> ());
+  if not sslverify then Nbdkit.add_arg cmd "sslverify" "false";
 
   (* For lots of extra debugging, uncomment one or both lines. *)
-  (* let cmd = Nbdkit.add_arg cmd "--debug" "curl.verbose=1" in *)
-  (* let cmd = Nbdkit.add_arg cnd "--debug" "curl.scripts=1" in *)
+  (* Nbdkit.add_arg cmd "--debug" "curl.verbose=1"; *)
+  (* Nbdkit.add_arg cnd "--debug" "curl.scripts=1"; *)
 
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "retry" in
+  Nbdkit.add_filter_if_available cmd "retry";
 
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "cacheextents" in
+  Nbdkit.add_filter_if_available cmd "cacheextents";
 
   (* IMPORTANT! Add the COW filter.  It must be furthest away
    * except for the rate filter.
    *)
-  let cmd = Nbdkit.add_filter cmd "cow" in
+  Nbdkit.add_filter cmd "cow";
 
   (* Add the cow-on-read flag if supported. *)
-  let cmd =
-    match cor with
-    | None -> cmd
-    | Some cor ->
-       if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
-         Nbdkit.add_arg cmd "cow-on-read" cor
-       else cmd in
+  (match cor with
+   | None -> ()
+   | Some cor ->
+      if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
+        Nbdkit.add_arg cmd "cow-on-read" cor
+  );
 
   (* Add the rate filter.  This must be furthest away so that
    * we don't end up rate-limiting internal nbdkit operations.
    *)
-  let cmd =
-    if Nbdkit.probe_filter "rate" then (
-      match bandwidth with
-      | None -> cmd
-      | Some bandwidth ->
-         let cmd = Nbdkit.add_filter cmd "rate" in
-         match bandwidth with
-         | StaticBandwidth rate ->
-            Nbdkit.add_arg cmd "rate" rate
-         | DynamicBandwidth (None, filename) ->
-            Nbdkit.add_arg cmd "rate-file" filename
-         | DynamicBandwidth (Some rate, filename) ->
-            Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
-    )
-    else cmd in
+  if Nbdkit.probe_filter "rate" then (
+    match bandwidth with
+    | None -> ()
+    | Some bandwidth ->
+       Nbdkit.add_filter cmd "rate";
+       match bandwidth with
+       | StaticBandwidth rate ->
+          Nbdkit.add_arg cmd "rate" rate
+       | DynamicBandwidth (None, filename) ->
+          Nbdkit.add_arg cmd "rate-file" filename
+       | DynamicBandwidth (Some rate, filename) ->
+          Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
+  );
 
   cmd

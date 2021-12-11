@@ -92,16 +92,12 @@ let output_to_local_file ?(changeuid = fun f -> f ())
 
   match output_format with
   | "raw" ->
-     let cmd = Nbdkit.new_cmd in
-     let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-     let cmd = Nbdkit.set_plugin cmd "file" in
-     let cmd = Nbdkit.add_arg cmd "file" filename in
-     let cmd =
-       if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
-         let cmd = Nbdkit.add_arg cmd "cache" "none" in
-         cmd
-       )
-       else cmd in
+     let cmd = Nbdkit.create "file" in
+     Nbdkit.add_arg cmd "file" filename;
+     if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
+       let cmd = Nbdkit.add_arg cmd "cache" "none" in
+       cmd
+     );
      let _, pid = Nbdkit.run_unix ~socket cmd in
 
      (* --exit-with-parent should ensure nbdkit is cleaned

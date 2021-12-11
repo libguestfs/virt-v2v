@@ -103,28 +103,21 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
   error_unless_nbdkit_vddk_working ();
 
   (* Construct the nbdkit command. *)
-  let cmd = Nbdkit.new_cmd in
-  let cmd = Nbdkit.set_plugin cmd "vddk" in
-
-  (* Environment.  We always add LANG=C. *)
-  let cmd = Nbdkit.add_env cmd "LANG" "C" in
+  let cmd = Nbdkit.create "vddk" in
 
   (* Suppress datapath messages. *)
-  let cmd = Nbdkit.add_debug_flag cmd "vddk.datapath" "0" in
+  Nbdkit.add_debug_flag cmd "vddk.datapath" "0";
 
   (* Enable VDDK stats. *)
-  let cmd = Nbdkit.add_debug_flag cmd "vddk.stats" "1" in
+  Nbdkit.add_debug_flag cmd "vddk.stats" "1";
 
-  (* Other flags. *)
-  let cmd = Nbdkit.set_verbose cmd (verbose ()) in
+  Nbdkit.add_arg cmd "server" server;
+  Nbdkit.add_arg cmd "vm" (sprintf "moref=%s" moref);
+  Nbdkit.add_arg cmd "file" path;
 
   (* For VDDK we require some user.  If it's not supplied, assume root. *)
   let user = Option.default "root" user in
-
-  let cmd = Nbdkit.add_arg cmd "server" server in
-  let cmd = Nbdkit.add_arg cmd "user" user in
-  let cmd = Nbdkit.add_arg cmd "vm" (sprintf "moref=%s" moref) in
-  let cmd = Nbdkit.add_arg cmd "file" path in
+  Nbdkit.add_arg cmd "user" user;
 
   let password =
     match password_file with
@@ -132,33 +125,29 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     | Some password_file -> PasswordFile password_file in
 
   (* The passthrough parameters. *)
-  let passthru cmd name v =
-    match v with
-    | Some s -> Nbdkit.add_arg cmd name s
-    | None -> cmd
-  in
-  let cmd = passthru cmd "config" config in
-  let cmd = passthru cmd "libdir" libdir in
-  let cmd = passthru cmd "nfchostport" nfchostport in
-  let cmd = passthru cmd "port" port in
-  let cmd = passthru cmd "snapshot" snapshot in
-  let cmd = Nbdkit.add_arg cmd "thumbprint" thumbprint in
-  let cmd = passthru cmd "transports" transports in
+  let passthru cmd name v = Option.may (Nbdkit.add_arg cmd name) v in
+  passthru cmd "config" config;
+  passthru cmd "libdir" libdir;
+  passthru cmd "nfchostport" nfchostport;
+  passthru cmd "port" port;
+  passthru cmd "snapshot" snapshot;
+  Nbdkit.add_arg cmd "thumbprint" thumbprint; (* required *)
+  passthru cmd "transports" transports;
 
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "retry" in
+  Nbdkit.add_filter_if_available cmd "retry";
 
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "cacheextents" in
+  Nbdkit.add_filter_if_available cmd "cacheextents";
 
   (* IMPORTANT! Add the COW filter.  It must be furthest away
    * except for the multi-conn and rate filters.
    *)
-  let cmd = Nbdkit.add_filter cmd "cow" in
+  Nbdkit.add_filter cmd "cow";
 
   (* The cow filter unconditionally enables multi-conn (because it is
    * safe).  However this causes an unintended consequence with the VDDK
@@ -172,75 +161,68 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
    * multi-conn-mode=disable on top which disables multi-conn
    * advertisement.
    *)
-  let cmd =
-    if Nbdkit.probe_filter "multi-conn" then (
-      let cmd = Nbdkit.add_filter cmd "multi-conn" in
-      let cmd = Nbdkit.add_arg cmd "multi-conn-mode" "disable" in
-      cmd
-    )
-    else cmd in
+  if Nbdkit.probe_filter "multi-conn" then (
+    Nbdkit.add_filter cmd "multi-conn";
+    Nbdkit.add_arg cmd "multi-conn-mode" "disable";
+  );
 
   (* If the filter supports it, enable cow-block-size (added in
    * nbdkit 1.27.6).  This helps to reduce fragmentated small
    * extent and read requests.
    *)
-  let cmd =
-    if Nbdkit.probe_filter_parameter "cow" "cow-block-size" then
-      Nbdkit.add_arg cmd "cow-block-size" "4096"
-    else cmd in
+  if Nbdkit.probe_filter_parameter "cow" "cow-block-size" then
+    Nbdkit.add_arg cmd "cow-block-size" "4096";
 
   (* Add the cow-on-read flag if supported. *)
-  let cmd =
-    match cor with
-    | None -> cmd
-    | Some cor ->
-       if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
+  (match cor with
+   | None -> ()
+   | Some cor ->
+      if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
          Nbdkit.add_arg cmd "cow-on-read" cor
-       else cmd in
+  );
 
   (* Add the rate filter.  This must be furthest away so that
    * we don't end up rate-limiting internal nbdkit operations.
    *)
-  let cmd =
-    if Nbdkit.probe_filter "rate" then (
-      match bandwidth with
-      | None -> cmd
-      | Some bandwidth ->
-         let cmd = Nbdkit.add_filter cmd "rate" in
-         match bandwidth with
-         | StaticBandwidth rate ->
-            Nbdkit.add_arg cmd "rate" rate
-         | DynamicBandwidth (None, filename) ->
-            Nbdkit.add_arg cmd "rate-file" filename
-         | DynamicBandwidth (Some rate, filename) ->
-            Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
-    )
-    else cmd in
+  if Nbdkit.probe_filter "rate" then (
+    match bandwidth with
+    | None -> ()
+    | Some bandwidth ->
+       Nbdkit.add_filter cmd "rate";
+       match bandwidth with
+       | StaticBandwidth rate ->
+          Nbdkit.add_arg cmd "rate" rate
+       | DynamicBandwidth (None, filename) ->
+          Nbdkit.add_arg cmd "rate-file" filename
+       | DynamicBandwidth (Some rate, filename) ->
+          Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
+  );
 
   (* Handle the password parameter specially. *)
-  let cmd =
-    match password with
-    | AskForPassword ->
-       (* Because we will start nbdkit in the background and then wait
-        * for 30 seconds for it to start up, we cannot use the
-        * password=- feature of nbdkit to read the password
-        * interactively (since in the words of the movie the user has
-        * only "30 seconds to comply").  In any case this feature broke
-        * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
-        * AskForPassword case we read the password here.
-        *)
-       printf "password: ";
-       let open Unix in
-       let orig = tcgetattr stdin in
-       let tios = { orig with c_echo = false } in
-       tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
-       let password = read_line () in
-       tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
-       printf "\n";
-       let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
-       On_exit.unlink password_file;
-       with_open_out password_file (fun chan -> output_string chan password);
-       Nbdkit.add_arg cmd "password" ("+" ^ password_file)
-    | PasswordFile password_file ->
-       Nbdkit.add_arg cmd "password" ("+" ^ password_file) in
+  (match password with
+   | AskForPassword ->
+      (* Because we will start nbdkit in the background and then wait
+       * for 30 seconds for it to start up, we cannot use the
+       * password=- feature of nbdkit to read the password
+       * interactively (since in the words of the movie the user has
+       * only "30 seconds to comply").  In any case this feature broke
+       * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
+       * AskForPassword case we read the password here.
+       *)
+      printf "password: ";
+      let open Unix in
+      let orig = tcgetattr stdin in
+      let tios = { orig with c_echo = false } in
+      tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
+      let password = read_line () in
+      tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
+      printf "\n";
+      let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
+      On_exit.unlink password_file;
+      with_open_out password_file (fun chan -> output_string chan password);
+      Nbdkit.add_arg cmd "password" ("+" ^ password_file)
+   | PasswordFile password_file ->
+      Nbdkit.add_arg cmd "password" ("+" ^ password_file)
+  );
+
   cmd

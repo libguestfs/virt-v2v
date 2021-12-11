@@ -58,93 +58,83 @@ let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
   error_unless_nbdkit_min_version config;
 
   (* Construct the nbdkit command. *)
-  let cmd = Nbdkit.new_cmd in
-  let cmd = Nbdkit.set_plugin cmd "ssh" in
-
-  (* Other flags. *)
-  let cmd = Nbdkit.set_verbose cmd (verbose ()) in
-
-  let cmd = Nbdkit.add_arg cmd "host" server in
-  let cmd = Nbdkit.add_arg cmd "path" path in
-  let cmd =
-    match port with
-    | Some s -> Nbdkit.add_arg cmd "port" s
-    | None -> cmd in
-  let cmd =
-    match user with
-    | Some s -> Nbdkit.add_arg cmd "user" s
-    | None -> cmd in
+  let cmd = Nbdkit.create "ssh" in
+  Nbdkit.add_arg cmd "host" server;
+  Nbdkit.add_arg cmd "path" path;
+  (match port with
+   | Some s -> Nbdkit.add_arg cmd "port" s
+   | None -> ());
+  (match user with
+   | Some s -> Nbdkit.add_arg cmd "user" s
+   | None -> ());
 
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "retry" in
+  Nbdkit.add_filter_if_available cmd "retry";
 
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.
    *)
-  let cmd = Nbdkit.add_filter_if_available cmd "cacheextents" in
+  Nbdkit.add_filter_if_available cmd "cacheextents";
 
   (* IMPORTANT! Add the COW filter.  It must be furthest away
    * except for the rate filter.
    *)
-  let cmd = Nbdkit.add_filter cmd "cow" in
+  Nbdkit.add_filter cmd "cow";
 
   (* Add the cow-on-read flag if supported. *)
-  let cmd =
-    match cor with
-    | None -> cmd
-    | Some cor ->
-       if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
-         Nbdkit.add_arg cmd "cow-on-read" cor
-       else cmd in
+  (match cor with
+   | None -> ()
+   | Some cor ->
+      if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
+        Nbdkit.add_arg cmd "cow-on-read" cor
+  );
 
   (* Add the rate filter.  This must be furthest away so that
    * we don't end up rate-limiting internal nbdkit operations.
    *)
-  let cmd =
-    if Nbdkit.probe_filter "rate" then (
-      match bandwidth with
-      | None -> cmd
-      | Some bandwidth ->
-         let cmd = Nbdkit.add_filter cmd "rate" in
-         match bandwidth with
-         | StaticBandwidth rate ->
-            Nbdkit.add_arg cmd "rate" rate
-         | DynamicBandwidth (None, filename) ->
-            Nbdkit.add_arg cmd "rate-file" filename
-         | DynamicBandwidth (Some rate, filename) ->
-            Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
-    )
-    else cmd in
+  if Nbdkit.probe_filter "rate" then (
+    match bandwidth with
+    | None -> ()
+    | Some bandwidth ->
+       Nbdkit.add_filter cmd "rate";
+       match bandwidth with
+       | StaticBandwidth rate ->
+          Nbdkit.add_arg cmd "rate" rate
+       | DynamicBandwidth (None, filename) ->
+          Nbdkit.add_arg cmd "rate-file" filename
+       | DynamicBandwidth (Some rate, filename) ->
+          Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
+  );
 
   (* Handle the password parameter specially. *)
-  let cmd =
-    match password with
-    | NoPassword -> cmd
-    | AskForPassword ->
-       (* Because we will start nbdkit in the background and then wait
-        * for 30 seconds for it to start up, we cannot use the
-        * password=- feature of nbdkit to read the password
-        * interactively (since in the words of the movie the user has
-        * only "30 seconds to comply").  In any case this feature broke
-        * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
-        * AskForPassword case we read the password here.
-        *)
-       printf "password: ";
-       let open Unix in
-       let orig = tcgetattr stdin in
-       let tios = { orig with c_echo = false } in
-       tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
-       let password = read_line () in
-       tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
-       printf "\n";
-       let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
-       On_exit.unlink password_file;
-       with_open_out password_file (fun chan -> output_string chan password);
-       Nbdkit.add_arg cmd "password" ("+" ^ password_file)
-    | PasswordFile password_file ->
-       Nbdkit.add_arg cmd "password" ("+" ^ password_file) in
+  (match password with
+   | NoPassword -> ()
+   | AskForPassword ->
+      (* Because we will start nbdkit in the background and then wait
+       * for 30 seconds for it to start up, we cannot use the
+       * password=- feature of nbdkit to read the password
+       * interactively (since in the words of the movie the user has
+       * only "30 seconds to comply").  In any case this feature broke
+       * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
+       * AskForPassword case we read the password here.
+       *)
+      printf "password: ";
+      let open Unix in
+      let orig = tcgetattr stdin in
+      let tios = { orig with c_echo = false } in
+      tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
+      let password = read_line () in
+      tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
+      printf "\n";
+      let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
+      On_exit.unlink password_file;
+      with_open_out password_file (fun chan -> output_string chan password);
+      Nbdkit.add_arg cmd "password" ("+" ^ password_file)
+   | PasswordFile password_file ->
+      Nbdkit.add_arg cmd "password" ("+" ^ password_file)
+  );
 
   cmd
 

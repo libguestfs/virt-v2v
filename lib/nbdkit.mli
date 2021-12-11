@@ -61,36 +61,35 @@ val probe_filter_parameter : string -> string -> bool
     in the output of [nbdkit --filter=filter null --help]. *)
 
 type cmd
-(** An nbdkit command line.  Note this type is immutable. *)
+(** An nbdkit command. *)
 
-val new_cmd : cmd
-(** Return an empty command line.  {!set_plugin} must be called. *)
+val create : ?quiet:bool -> string -> cmd
+(** Create a new nbdkit command.
 
-val add_debug_flag : cmd -> string -> string -> cmd
-val set_readonly : cmd -> bool -> cmd
-val set_threads : cmd -> int -> cmd
-val set_verbose : cmd -> bool -> cmd
+    The parameter is the required plugin name.  Normally the nbdkit
+    verbose ([-v]) flag is inherited from virt-v2v but exceptionally
+    you can use ~quiet:true to make nbdkit always quiet. *)
+
+val add_debug_flag : cmd -> string -> string -> unit
+val set_readonly : cmd -> bool -> unit
+val set_threads : cmd -> int -> unit
 (** Set various command line flags. *)
 
-val set_plugin : cmd -> string -> cmd
-(** Set the plugin name.  Use {!probe_plugin} first to check the
-    plugin is installed. *)
-
-val add_filter : cmd -> string -> cmd
+val add_filter : cmd -> string -> unit
 (** Add a filter.  Use {!probe_filter} first to check the filter
     is installed.  The filters are added closest to the plugin first. *)
 
-val add_filter_if_available : cmd -> string -> cmd
+val add_filter_if_available : cmd -> string -> unit
 (** Same as {!add_filter} but does the {!probe_filter} check and
     omits the filter if it's not available. *)
 
-val add_arg : cmd -> string -> string -> cmd
-val add_args : cmd -> (string * string) list -> cmd
+val add_arg : cmd -> string -> string -> unit
+val add_args : cmd -> (string * string) list -> unit
 (** Add a key=value argument(s) to the command line.
 
     The arguments are added left to right. *)
 
-val add_env : cmd -> string -> string -> cmd
+val add_env : cmd -> string -> string -> unit
 (** Add name=value environment variable. *)
 
 val run_unix : ?socket:string -> cmd -> string * int
