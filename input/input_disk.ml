@@ -113,10 +113,9 @@ let rec disk_source dir options args =
          On_exit.kill pid
 
       | format ->
-         let cmd = QemuNBD.new_cmd in
-         let cmd = QemuNBD.set_disk cmd disk in
-         let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
-         let cmd = QemuNBD.set_format cmd (Some format) in
+         let cmd = QemuNBD.create disk in
+         QemuNBD.set_snapshot cmd true; (* protective overlay *)
+         QemuNBD.set_format cmd (Some format);
          let _, pid = QemuNBD.run_unix ~socket cmd in
          On_exit.kill pid
   ) args;

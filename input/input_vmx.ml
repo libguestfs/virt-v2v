@@ -56,12 +56,10 @@ let rec vmx_source dir options args =
          let socket = sprintf "%s/in%d" dir i in
          On_exit.unlink socket;
 
-         let cmd = QemuNBD.new_cmd in
-         let cmd =
-           QemuNBD.set_disk cmd
-             (absolute_path_from_other_file vmx_filename filename) in
-         let cmd = QemuNBD.set_snapshot cmd true in (* protective overlay *)
-         let cmd = QemuNBD.set_format cmd (Some "vmdk") in
+         let cmd = QemuNBD.create
+                     (absolute_path_from_other_file vmx_filename filename) in
+         QemuNBD.set_snapshot cmd true; (* protective overlay *)
+         QemuNBD.set_format cmd (Some "vmdk");
          let _, pid = QemuNBD.run_unix ~socket cmd in
          On_exit.kill pid
      ) filenames

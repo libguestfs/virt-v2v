@@ -31,17 +31,17 @@ val version : unit -> version
 type cmd
 (** A qemu-nbd command line.  Note this type is immutable. *)
 
-val new_cmd : cmd
-(** Return an empty command line.  {!set_disk} must be called. *)
+val create : string -> cmd
+(** Create a new qemu-nbd command.
 
-val set_snapshot : cmd -> bool -> cmd
+    The parameter is the required filename or URI of the
+    disk image to serve. *)
+
+val set_snapshot : cmd -> bool -> unit
 (** Set the snapshot [-s] flag. *)
 
-val set_format : cmd -> string option -> cmd
+val set_format : cmd -> string option -> unit
 (** Set the format [--format] parameter. *)
-
-val set_disk : cmd -> string -> cmd
-(** Set the filename of the disk image to serve. *)
 
 val run_unix : ?socket:string -> cmd -> string * int
 (** Start qemu-nbd command listening on a Unix domain socket,

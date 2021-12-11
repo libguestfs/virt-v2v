@@ -53,17 +53,14 @@ let version =
 
 type cmd = {
   disk : string;
-  snapshot : bool;
-  format : string option;
+  mutable snapshot : bool;
+  mutable format : string option;
 }
 
-let new_cmd = { disk = ""; snapshot = false; format = None }
+let create disk = { disk; snapshot = false; format = None }
 
-let set_snapshot cmd snap = { cmd with snapshot = snap }
-
-let set_format cmd format = { cmd with format = format }
-
-let set_disk cmd disk = { cmd with disk = disk }
+let set_snapshot cmd snap = cmd.snapshot <- snap
+let set_format cmd format = cmd.format <- format
 
 let run_unix ?socket { disk; snapshot; format } =
   assert (disk <> "");

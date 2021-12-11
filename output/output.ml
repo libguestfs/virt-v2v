@@ -106,10 +106,9 @@ let output_to_local_file ?(changeuid = fun f -> f ())
      On_exit.kill pid
 
   | "qcow2" ->
-     let cmd = QemuNBD.new_cmd in
-     let cmd = QemuNBD.set_disk cmd filename in
-     let cmd = QemuNBD.set_snapshot cmd false in
-     let cmd = QemuNBD.set_format cmd (Some "qcow2") in
+     let cmd = QemuNBD.create filename in
+     QemuNBD.set_snapshot cmd false;
+     QemuNBD.set_format cmd (Some "qcow2");
      let _, pid = QemuNBD.run_unix ~socket cmd in
      On_exit.kill pid
 
