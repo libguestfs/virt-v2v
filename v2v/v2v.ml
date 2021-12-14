@@ -339,6 +339,17 @@ read the man page virt-v2v(1).
   let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
 
+  (* Print the version, easier than asking users to tell us. *)
+  debug "%s: %s %s (%s)"
+        prog Config.package_name Config.package_version_full
+        Config.host_cpu;
+
+  (* Print the libvirt version if debugging. *)
+  if verbose () then (
+    let major, minor, release = Libvirt_utils.libvirt_get_version () in
+    debug "libvirt version: %d.%d.%d" major minor release
+  );
+
   (* Dereference the arguments. *)
   let args = List.rev !args in
   let in_place = !in_place in
