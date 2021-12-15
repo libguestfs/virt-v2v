@@ -28,7 +28,7 @@
     </disk>
     <disk device='cdrom' type='file'>
       <driver name='qemu' type='raw'/>
-      <target dev='hda' bus='ide'/>
+      <target dev='sda' bus='sata'/>
     </disk>
     <disk device='floppy' type='file'>
       <driver name='qemu' type='raw'/>

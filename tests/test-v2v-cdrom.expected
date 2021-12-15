@@ -4,5 +4,5 @@
     </disk>
     <disk device='cdrom' type='file'>
       <driver name='qemu' type='raw'/>
-      <target dev='hdc' bus='ide'/>
+      <target dev='sdc' bus='sata'/>
     </disk>

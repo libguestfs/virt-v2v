@@ -35,7 +35,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
       <disk type='file' device='cdrom'>
         <driver name='qemu' type='raw'/>
         <source file='@abs_top_builddir@/test-data/phony-guests/blank-disk.img'/>
-        <!-- virt-v2v should preserve the device name and bus -->
+        <!-- virt-v2v should change the bus to sata, due to Windows 7
+             triggering a machine type change from i440fx to q35. Beyond that,
+             virt-v2v should preserve the on-bus index. -->
         <target dev='hdc' bus='ide'/>
       </disk>
     </devices>

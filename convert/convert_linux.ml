@@ -1020,6 +1020,25 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
           "xvd" ^ drive_name i, block_prefix_after_conversion ^ drive_name i
       ) source.s_disks in
 
+    (* Check the first CD-ROM. If its controller is IDE, and the OS is RHEL<=5,
+     * then translate the CD-ROM from "/dev/hd[SLOT]" to "/dev/cdrom". See
+     * RHBZ#1637857 for details.
+     *)
+    let cdroms = List.filter
+                   (fun removable -> removable.s_removable_type = CDROM)
+                   source.s_removables in
+    if List.length cdroms >= 2 then
+      warning (f_"multiple CD-ROMs found; translation of CD-ROM references \
+                  may be inexact");
+    let map = map @
+      (match cdroms with
+       | { s_removable_controller = Some Source_IDE;
+           s_removable_slot = Some slot } :: _
+         when family = `RHEL_family && inspect.i_major_version <= 5 ->
+           [("hd" ^ drive_name slot, "cdrom")]
+       | _ -> []
+      ) in
+
     if verbose () then (
       eprintf "block device map:\n";
       List.iter (
