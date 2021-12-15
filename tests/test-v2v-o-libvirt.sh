@@ -55,8 +55,7 @@ rm -rf $d
 # Clean up.
 cleanup_fn rm -r $d
 cleanup_fn virsh pool-destroy $poolname
-# I think because the pool is transient, this is not necessary:
-#cleanup_fn virsh undefine $guestname
+cleanup_fn virsh undefine $guestname
 
 mkdir $d
 
