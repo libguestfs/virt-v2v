@@ -278,22 +278,37 @@ def emulate_zero(h, count, offset, flags):
 
 
 def flush(h, flags):
+    # Wait until all inflight requests are completed, and send a flush
+    # request for all imageio connections.
+    locked = []
+
+    # Lock the pool by taking all connections out.
+    while len(locked) < pool.maxsize:
+        locked.append(pool.get())
+
+    try:
+        for http in locked:
+            send_flush(http)
+    finally:
+        # Unlock the pool by puting the connection back.
+        for http in locked:
+            pool.put(http)
+
+
+def send_flush(http):
     # Construct the JSON request for flushing.
     buf = json.dumps({'op': "flush"}).encode()
 
     headers = {"Content-Type": "application/json",
                "Content-Length": str(len(buf))}
 
-    # Wait until all inflight requests are completed, and send a flush
-    # request for all imageio connections.
-    for http in iter_http_pool(pool):
-        http.request("PATCH", url.path, body=buf, headers=headers)
+    http.request("PATCH", url.path, body=buf, headers=headers)
 
-        r = http.getresponse()
-        if r.status != 200:
-            request_failed(r, "could not flush")
+    r = http.getresponse()
+    if r.status != 200:
+        request_failed(r, "could not flush")
 
-        r.read()
+    r.read()
 
 
 # Modify http.client.HTTPConnection to work over a Unix domain socket.
@@ -342,29 +357,6 @@ def http_context(pool):
         yield http
     finally:
         pool.put(http)
-
-
-def iter_http_pool(pool):
-    """
-    Wait until all inflight requests are done, and iterate on imageio
-    connections.
-
-    The pool is empty during iteration. New requests issued during iteration
-    will block until iteration is done.
-    """
-    locked = []
-
-    # Lock the pool by taking all connections out.
-    while len(locked) < pool.maxsize:
-        locked.append(pool.get())
-
-    try:
-        for http in locked:
-            yield http
-    finally:
-        # Unlock the pool by puting the connection back.
-        for http in locked:
-            pool.put(http)
 
 
 def close_http_pool(pool):
