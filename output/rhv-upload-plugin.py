@@ -20,6 +20,7 @@ import json
 import queue
 import socket
 import ssl
+import time
 
 from contextlib import contextmanager
 from http.client import HTTPSConnection, HTTPConnection
@@ -287,12 +288,13 @@ def flush(h, flags):
         locked.append(pool.get())
 
     try:
-        for http in locked:
-            send_flush(http)
+        for item in locked:
+            send_flush(item.http)
+            item.last_used = time.monotonic()
     finally:
         # Unlock the pool by puting the connection back.
-        for http in locked:
-            pool.put(http)
+        for item in locked:
+            pool.put(item)
 
 
 def send_flush(http):
@@ -327,6 +329,13 @@ class UnixHTTPConnection(HTTPConnection):
         self.sock.connect(self.path)
 
 
+class PoolItem:
+
+    def __init__(self, http):
+        self.http = http
+        self.last_used = None
+
+
 # Connection pool.
 def create_http_pool(url, options):
     count = min(options["max_readers"],
@@ -341,7 +350,7 @@ def create_http_pool(url, options):
 
     for i in range(count):
         http = create_http(url, unix_socket=unix_socket)
-        pool.put(http)
+        pool.put(PoolItem(http))
 
     return pool
 
@@ -352,11 +361,12 @@ def http_context(pool):
     Context manager yielding an imageio http connection from the pool. Blocks
     until a connection is available.
     """
-    http = pool.get()
+    item = pool.get()
     try:
-        yield http
+        yield item.http
     finally:
-        pool.put(http)
+        item.last_used = time.monotonic()
+        pool.put(item)
 
 
 def close_http_pool(pool):
@@ -373,8 +383,8 @@ def close_http_pool(pool):
     while len(locked) < pool.maxsize:
         locked.append(pool.get())
 
-    for http in locked:
-        http.close()
+    for item in locked:
+        item.http.close()
 
 
 def create_http(url, unix_socket=None):
