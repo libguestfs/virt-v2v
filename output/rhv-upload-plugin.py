@@ -314,8 +314,6 @@ class UnixHTTPConnection(HTTPConnection):
 
 # Connection pool.
 def create_http_pool(url, options):
-    pool = queue.Queue()
-
     count = min(options["max_readers"],
                 options["max_writers"],
                 MAX_CONNECTIONS)
@@ -323,6 +321,8 @@ def create_http_pool(url, options):
     nbdkit.debug("creating http pool connections=%d" % count)
 
     unix_socket = options["unix_socket"] if is_ovirt_host else None
+
+    pool = queue.Queue(count)
 
     for i in range(count):
         http = create_http(url, unix_socket=unix_socket)
@@ -354,8 +354,8 @@ def iter_http_pool(pool):
     """
     locked = []
 
-    # Lock the pool by taking the connection out.
-    while len(locked) < pool.qsize():
+    # Lock the pool by taking all connections out.
+    while len(locked) < pool.maxsize:
         locked.append(pool.get())
 
     try:
@@ -378,7 +378,7 @@ def close_http_pool(pool):
 
     locked = []
 
-    while len(locked) < pool.qsize():
+    while len(locked) < pool.maxsize:
         locked.append(pool.get())
 
     for http in locked:
