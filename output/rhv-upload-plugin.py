@@ -20,6 +20,7 @@ import json
 import queue
 import socket
 import ssl
+import threading
 import time
 
 from contextlib import contextmanager
@@ -35,6 +36,9 @@ API_VERSION = 2
 # client, this give best performance.
 MAX_CONNECTIONS = 4
 
+# Maximum idle time allowed for imageio connections.
+IDLE_TIMEOUT = 30
+
 # Required parameters.
 size = None
 url = None
@@ -49,6 +53,12 @@ options = None
 
 # Pool of HTTP connections.
 pool = None
+
+# Set when plugin is cleaning up.
+done = threading.Event()
+
+# Set when periodic flush request fails.
+pool_error = None
 
 
 # Parse parameters.
@@ -91,11 +101,17 @@ def after_fork():
 
     pool = create_http_pool(url, options)
 
+    t = threading.Thread(target=pool_keeper, name="poolkeeper")
+    t.daemon = True
+    t.start()
+
 
 # This function is not actually defined before nbdkit 1.28, but it
 # doesn't particularly matter if we don't close the pool because
 # clients should call flush().
 def cleanup():
+    nbdkit.debug("cleaning up")
+    done.set()
     close_http_pool(pool)
 
 
@@ -279,6 +295,9 @@ def emulate_zero(h, count, offset, flags):
 
 
 def flush(h, flags):
+    if pool_error:
+        raise pool_error
+
     # Wait until all inflight requests are completed, and send a flush
     # request for all imageio connections.
     locked = []
@@ -355,12 +374,64 @@ def create_http_pool(url, options):
     return pool
 
 
+def pool_keeper():
+    """
+    Thread flushing idle connections, keeping them alive.
+
+    If a connection does not send any request for 60 seconds, imageio
+    server closes the connection. Recovering from closed connection is
+    hard and unsafe, so this thread ensure that connections never
+    becomes idle by sending a flush request if the connection is idle
+    for too much time.
+
+    In normal conditions, all connections are busy most of the time, so
+    the keeper will find no idle connections. If there short delays in
+    nbdcopy, the keeper will find some idle connections, but will
+    quickly return them back to the pool. In the pathological case when
+    nbdcopy is blocked for 3 minutes on vddk input, the keeper will send
+    a flush request on all connections every ~30 seconds, until nbdcopy
+    starts communicating again.
+    """
+    global pool_error
+
+    nbdkit.debug("poolkeeper: started")
+
+    while not done.wait(IDLE_TIMEOUT / 2):
+        idle = []
+
+        while True:
+            try:
+                idle.append(pool.get_nowait())
+            except queue.Empty:
+                break
+
+        if idle:
+            now = time.monotonic()
+            for item in idle:
+                if item.last_used and now - item.last_used > IDLE_TIMEOUT:
+                    nbdkit.debug("poolkeeper: flushing idle connection")
+                    try:
+                        send_flush(item.http)
+                        item.last_used = now
+                    except Exception as e:
+                        # We will report this error on the next request.
+                        pool_error = e
+                        item.last_used = None
+
+                pool.put(item)
+
+    nbdkit.debug("poolkeeper: stopped")
+
+
 @contextmanager
 def http_context(pool):
     """
     Context manager yielding an imageio http connection from the pool. Blocks
     until a connection is available.
     """
+    if pool_error:
+        raise pool_error
+
     item = pool.get()
     try:
         yield item.http
