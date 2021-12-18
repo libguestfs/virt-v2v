@@ -61,12 +61,8 @@ let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
   let cmd = Nbdkit.create "ssh" in
   Nbdkit.add_arg cmd "host" server;
   Nbdkit.add_arg cmd "path" path;
-  (match port with
-   | Some s -> Nbdkit.add_arg cmd "port" s
-   | None -> ());
-  (match user with
-   | Some s -> Nbdkit.add_arg cmd "user" s
-   | None -> ());
+  Option.may (Nbdkit.add_arg cmd "port") port;
+  Option.may (Nbdkit.add_arg cmd "user") user;
 
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.

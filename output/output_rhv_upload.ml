@@ -345,9 +345,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
       (* Create the nbdkit instance. *)
       Nbdkit.add_arg cmd "size" (Int64.to_string size);
       Nbdkit.add_arg cmd "url" destination_url;
-      (match rhv_cafile with
-       | None -> ()
-       | Some cafile -> Nbdkit.add_arg cmd "cafile" cafile);
+      Option.may (Nbdkit.add_arg cmd "cafile") rhv_cafile;
       if not rhv_verifypeer then
         Nbdkit.add_arg cmd "insecure" "true";
       if is_ovirt_host then

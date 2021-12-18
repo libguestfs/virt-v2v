@@ -57,9 +57,7 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
 
   (* https://bugzilla.redhat.com/show_bug.cgi?id=1146007#c10 *)
   Nbdkit.add_arg cmd "timeout" "2000";
-  (match cookie_script with
-   | Some s -> Nbdkit.add_arg cmd "cookie-script" s
-   | None -> ());
+  Option.may (Nbdkit.add_arg cmd "cookie-script") cookie_script;
   (match cookie_script_renew with
    | Some i -> Nbdkit.add_arg cmd "cookie-script-renew" (string_of_int i)
    | None -> ());
