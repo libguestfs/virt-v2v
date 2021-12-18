@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 1.45.94\n"
+"Project-Id-Version: virt-v2v 1.45.95\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-12-07 09:03+0000\n"
+"POT-Creation-Date: 2021-12-18 11:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:566
+#: v2v/v2v.ml:577
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:596
+#: v2v/v2v.ml:607
 msgid "Creating output metadata"
 msgstr ""
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:600
+#: v2v/v2v.ml:611
 msgid "Finishing off"
 msgstr ""
 
@@ -507,7 +507,7 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:528
+#: v2v/v2v.ml:539
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -600,7 +600,7 @@ msgid ""
 "failed: %s"
 msgstr ""
 
-#: v2v/v2v.ml:421
+#: v2v/v2v.ml:432
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -725,11 +725,11 @@ msgstr ""
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:625
+#: v2v/v2v.ml:636
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
-#: v2v/v2v.ml:451
+#: v2v/v2v.ml:462
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -799,7 +799,7 @@ msgstr ""
 msgid "unknown -oa option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:353
+#: v2v/v2v.ml:364
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
