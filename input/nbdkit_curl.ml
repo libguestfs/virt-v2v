@@ -65,7 +65,7 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
 
   (* For lots of extra debugging, uncomment one or both lines. *)
   (* Nbdkit.add_arg cmd "--debug" "curl.verbose=1"; *)
-  (* Nbdkit.add_arg cnd "--debug" "curl.scripts=1"; *)
+  (* Nbdkit.add_arg cmd "--debug" "curl.scripts=1"; *)
 
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
