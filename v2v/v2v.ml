@@ -542,6 +542,11 @@ read the man page virt-v2v(1).
     exit 0
   );
 
+  (* Do the conversion. *)
+  with_open_out (tmpdir // "convert") (fun _ -> ());
+  let inspect, target_meta = Convert.convert tmpdir conv_options source in
+  unlink (tmpdir // "convert");
+
   (* Start the output module (runs an NBD server in the background). *)
   let output_t = Output_module.setup tmpdir output_options source in
 
@@ -550,11 +555,6 @@ read the man page virt-v2v(1).
     let cmd = sprintf "ls -alZ %s 1>&2" (quote tmpdir) in
     ignore (Sys.command cmd)
   );
-
-  (* Do the conversion. *)
-  with_open_out (tmpdir // "convert") (fun _ -> ());
-  let inspect, target_meta = Convert.convert tmpdir conv_options source in
-  unlink (tmpdir // "convert");
 
   (* Do the copy. *)
   with_open_out (tmpdir // "copy") (fun _ -> ());
