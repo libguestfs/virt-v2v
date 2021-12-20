@@ -531,7 +531,8 @@ let rec create_ovf source inspect
           { output_name; guestcaps; target_firmware; target_nics }
           sizes
           output_alloc output_format
-          sd_uuid image_uuids vol_uuids dir vm_uuid ovf_flavour =
+          sd_uuid image_uuids vol_uuids ?(need_actual_sizes = false) dir
+          vm_uuid ovf_flavour =
   assert (List.length sizes = List.length vol_uuids);
 
   let memsize_mb = source.s_memory /^ 1024L /^ 1024L in
@@ -745,7 +746,7 @@ let rec create_ovf source inspect
 
   (* Add disks to the OVF XML. *)
   add_disks sizes guestcaps output_alloc output_format
-    sd_uuid image_uuids vol_uuids dir ovf_flavour ovf;
+    sd_uuid image_uuids vol_uuids need_actual_sizes dir ovf_flavour ovf;
 
   (* Old virt-v2v ignored removable media. XXX *)
 
@@ -791,7 +792,7 @@ and get_flavoured_section ovf ovirt_path rhv_path rhv_path_attr = function
 
 (* This modifies the OVF DOM, adding a section for each disk. *)
 and add_disks sizes guestcaps output_alloc output_format
-    sd_uuid image_uuids vol_uuids dir ovf_flavour ovf =
+    sd_uuid image_uuids vol_uuids need_actual_sizes dir ovf_flavour ovf =
   let references =
     let nodes = path_to_nodes ovf ["ovf:Envelope"; "References"] in
     match nodes with
@@ -839,7 +840,12 @@ and add_disks sizes guestcaps output_alloc output_format
         b /^ 1073741824L
       in
       let size_gb = bytes_to_gb size in
-      let actual_size = get_disk_allocated ~dir ~disknr:i in
+      let actual_size =
+        if need_actual_sizes then
+          get_disk_allocated ~dir ~disknr:i
+        else
+          None
+      in
 
       let format_for_rhv =
         match output_format with
@@ -891,16 +897,17 @@ and add_disks sizes guestcaps output_alloc output_format
           "ovf:disk-type", "System"; (* RHBZ#744538 *)
           "ovf:boot", if is_bootable_drive then "True" else "False";
         ] in
-        (* Ovirt-engine considers the "ovf:actual_size" attribute mandatory. If
-         * we don't know the actual size, we must create the attribute with
-         * empty contents.
-         *)
-        List.push_back attrs
-          ("ovf:actual_size",
-           match actual_size with
-            | None -> ""
-            | Some actual_size -> Int64.to_string (bytes_to_gb actual_size)
-          );
+        if need_actual_sizes then
+          (* Ovirt-engine considers the "ovf:actual_size" attribute mandatory.
+           * If we don't know the actual size, we must create the attribute
+           * with empty contents.
+           *)
+          List.push_back attrs
+            ("ovf:actual_size",
+             match actual_size with
+              | None -> ""
+              | Some actual_size -> Int64.to_string (bytes_to_gb actual_size)
+            );
         e "Disk" !attrs [] in
       append_child disk disk_section;
 
