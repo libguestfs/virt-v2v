@@ -423,12 +423,13 @@ let string_of_machine = function
 
 let string_of_guestcaps gcaps =
   sprintf "\
-gcaps_block_bus = %s
-gcaps_net_bus = %s
-gcaps_machine = %s
-gcaps_arch = %s
-gcaps_acpi = %b
-" (string_of_block_type gcaps.gcaps_block_bus)
+           gcaps_block_bus = %s\n\
+           gcaps_net_bus = %s\n\
+           gcaps_machine = %s\n\
+           gcaps_arch = %s\n\
+           gcaps_acpi = %b\n\
+          "
+  (string_of_block_type gcaps.gcaps_block_bus)
   (string_of_net_type gcaps.gcaps_net_bus)
   (string_of_machine gcaps.gcaps_machine)
   gcaps.gcaps_arch
