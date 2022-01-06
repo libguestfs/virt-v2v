@@ -155,6 +155,7 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = acpi;
+      gcaps_virtio_1_0 = true;
     } in
 
     guestcaps

@@ -259,6 +259,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = true;
+      gcaps_virtio_1_0 = true;
     } in
 
     guestcaps
