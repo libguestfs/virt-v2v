@@ -425,12 +425,20 @@ let string_of_guestcaps gcaps =
   sprintf "\
            gcaps_block_bus = %s\n\
            gcaps_net_bus = %s\n\
+           gcaps_virtio_rng = %b\n\
+           gcaps_virtio_balloon = %b\n\
+           gcaps_isa_pvpanic = %b\n\
+           gcaps_virtio_socket = %b\n\
            gcaps_machine = %s\n\
            gcaps_arch = %s\n\
            gcaps_acpi = %b\n\
           "
   (string_of_block_type gcaps.gcaps_block_bus)
   (string_of_net_type gcaps.gcaps_net_bus)
+  gcaps.gcaps_virtio_rng
+  gcaps.gcaps_virtio_balloon
+  gcaps.gcaps_isa_pvpanic
+  gcaps.gcaps_virtio_socket
   (string_of_machine gcaps.gcaps_machine)
   gcaps.gcaps_arch
   gcaps.gcaps_acpi
