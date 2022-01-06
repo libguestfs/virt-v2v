@@ -123,26 +123,39 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
 
     SELinux_relabel.relabel g;
 
-    (* Pivot on the year 2007.  Any Linux distro from earlier than
-     * 2007 should use i440fx, anything 2007 or newer should use q35.
-     * XXX Look up this information in libosinfo in future.
-     *)
-    let machine =
-      match inspect.i_arch, inspect.i_distro, inspect.i_major_version with
-      | ("i386"|"x86_64"), "fedora", _ -> Q35
-      | ("i386"|"x86_64"), ("rhel"|"centos"|"scientificlinux"|
-                            "redhat-based"|"oraclelinux"), major ->
-         if major <= 4 then I440FX else Q35
-      | ("i386"|"x86_64"), ("sles"|"suse-based"|"opensuse"), major ->
-         if major < 10 then I440FX else Q35
-      | ("i386"|"x86_64"), ("debian"|"ubuntu"|"linuxmint"|
-                            "kalilinux"), major ->
-         if major < 4 then I440FX else Q35
+    let machine, virtio_1_0 =
+      match inspect.i_arch with
+      | ("i386"|"x86_64") ->
+        (try
+           let os = Libosinfo_utils.get_os_by_short_id inspect.i_osinfo in
+           let devices = os#get_devices () in
+           debug "libosinfo devices for OS \"%s\":\n%s" inspect.i_osinfo
+             (Libosinfo_utils.string_of_osinfo_device_list devices);
+           let { Libosinfo_utils.q35; vio10 } =
+             Libosinfo_utils.os_support_of_osinfo_device_list devices in
+           (if q35 then Q35 else I440FX), vio10
+         with
+         | Not_found ->
+           (* Pivot on the year 2007.  Any Linux distro from earlier than 2007
+            * should use i440fx, anything 2007 or newer should use q35.
+            *)
+           (match inspect.i_distro, inspect.i_major_version with
+            | "fedora", _ -> Q35
+            | ("rhel"|"centos"|"scientificlinux"|"redhat-based"|"oraclelinux"),
+              major ->
+              if major <= 4 then I440FX else Q35
+            | ("sles"|"suse-based"|"opensuse"), major ->
+              if major < 10 then I440FX else Q35
+            | ("debian"|"ubuntu"|"linuxmint"|"kalilinux"), major ->
+              if major < 4 then I440FX else Q35
 
-      (* reasonable default for all modern Linux kernels *)
-      | ("i386"|"x86_64"), _, _ -> Q35
+            (* reasonable default for all modern Linux kernels *)
+            | _, _ -> Q35
+           ), true
+        )
 
-      | _ -> Virt in
+      | _ -> Virt, true
+    in
 
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
@@ -155,7 +168,7 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = acpi;
-      gcaps_virtio_1_0 = true;
+      gcaps_virtio_1_0 = virtio_1_0;
     } in
 
     guestcaps

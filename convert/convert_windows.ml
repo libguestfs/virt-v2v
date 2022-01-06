@@ -238,15 +238,27 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
         warning (f_"this guest has Anti-Virus (AV) software and a new virtio block device driver was installed.  In some circumstances, AV may prevent new drivers from working (resulting in a 7B boot error).  If this happens, try disabling AV before doing the conversion.");
     );
 
-    (* Pivot on the year 2007.  Any Windows version from earlier than
-     * 2007 should use i440fx, anything 2007 or newer should use q35.
-     * Luckily this coincides almost exactly with the release of NT 6.
-     * XXX Look up this information in libosinfo in future.
-     *)
-    let machine =
-      match inspect.i_arch, inspect.i_major_version with
-      | ("i386"|"x86_64"), major -> if major < 6 then I440FX else Q35
-      | _ -> Virt in
+    let machine, virtio_1_0 =
+      match inspect.i_arch with
+      | ("i386"|"x86_64") ->
+        (try
+           let os = Libosinfo_utils.get_os_by_short_id inspect.i_osinfo in
+           let devices = os#get_devices () in
+           debug "libosinfo devices for OS \"%s\":\n%s" inspect.i_osinfo
+             (Libosinfo_utils.string_of_osinfo_device_list devices);
+           let { Libosinfo_utils.q35; vio10 } =
+             Libosinfo_utils.os_support_of_osinfo_device_list devices in
+           (if q35 then Q35 else I440FX), vio10
+         with
+         | Not_found ->
+           (* Pivot on the year 2007.  Any Windows version from earlier than
+            * 2007 should use i440fx, anything 2007 or newer should use q35.
+            * Luckily this coincides almost exactly with the release of NT 6.
+            *)
+           (if inspect.i_major_version < 6 then I440FX else Q35), true
+        )
+      | _ -> Virt, true
+    in
 
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
@@ -259,7 +271,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = true;
-      gcaps_virtio_1_0 = true;
+      gcaps_virtio_1_0 = virtio_1_0;
     } in
 
     guestcaps
