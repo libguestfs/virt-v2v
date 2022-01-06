@@ -312,18 +312,26 @@ let create_libvirt_xml ?pool source inspect
   (* The devices. *)
   let devices = ref [] in
 
+  (* This will affect all of the virtio devices (if any). *)
+  let virtio_transitional =
+    guestcaps.gcaps_machine = Q35 && not guestcaps.gcaps_virtio_1_0 in
+  let virtio_model =
+    if virtio_transitional then "virtio-transitional" else "virtio" in
+
   (* Fixed and removable disks. *)
   let () =
-    let make_disk bus_name drive_prefix i = function
+    let make_disk bus_name ?(viotrans = false) drive_prefix i = function
     | BusSlotEmpty -> Comment (sprintf "%s slot %d is empty" bus_name i)
 
     | BusSlotDisk d ->
        let outdisk = outdisk_name d.s_disk_id in
 
-        e "disk" [
-          "type", if pool = None then "file" else "volume";
-          "device", "disk"
-        ] [
+        e "disk" (
+          [
+            "type", if pool = None then "file" else "volume";
+            "device", "disk"
+          ] @ if (viotrans) then [ "model", "virtio-transitional" ] else []
+        ) [
           e "driver" [
             "name", "qemu";
             "type", output_format;
@@ -364,7 +372,7 @@ let create_libvirt_xml ?pool source inspect
     in
 
     List.push_back_list devices
-      (List.mapi (make_disk "virtio" "vd")
+      (List.mapi (make_disk "virtio" ~viotrans:virtio_transitional "vd")
                  (Array.to_list target_buses.target_virtio_blk_bus));
     let ide_disks =
       match guestcaps.gcaps_machine with
@@ -392,7 +400,7 @@ let create_libvirt_xml ?pool source inspect
   let nics =
     let net_model =
       match guestcaps.gcaps_net_bus with
-      | Virtio_net -> "virtio" | E1000 -> "e1000" | RTL8139 -> "rtl8139" in
+      | Virtio_net -> virtio_model | E1000 -> "e1000" | RTL8139 -> "rtl8139" in
     List.map (
       fun { s_mac = mac; s_vnet_type = vnet_type; s_vnet = vnet } ->
         let vnet_type_str =
@@ -483,7 +491,7 @@ let create_libvirt_xml ?pool source inspect
   (* Miscellaneous KVM devices. *)
   if guestcaps.gcaps_virtio_rng then
     List.push_back devices (
-      e "rng" ["model", "virtio"] [
+      e "rng" ["model", virtio_model] [
         (* XXX Using /dev/urandom requires libvirt >= 1.3.4.  Libvirt
          * was broken before that.
          *)
@@ -496,7 +504,7 @@ let create_libvirt_xml ?pool source inspect
   List.push_back devices (
     e "memballoon"
       ["model",
-       if guestcaps.gcaps_virtio_balloon then "virtio" else "none"]
+       if guestcaps.gcaps_virtio_balloon then virtio_model else "none"]
       []
   );
   if guestcaps.gcaps_isa_pvpanic then
@@ -508,7 +516,7 @@ let create_libvirt_xml ?pool source inspect
   List.push_back devices (
     e "viosock"
       ["model",
-        if guestcaps.gcaps_virtio_socket then "virtio" else "none"]
+        if guestcaps.gcaps_virtio_socket then virtio_model else "none"]
        []
   );
 
