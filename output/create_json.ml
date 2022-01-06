@@ -219,6 +219,7 @@ let create_json_metadata source inspect
       "isa-pvpanic", JSON.Bool guestcaps.gcaps_isa_pvpanic;
       "virtio-socket", JSON.Bool guestcaps.gcaps_virtio_socket;
       "acpi", JSON.Bool guestcaps.gcaps_acpi;
+      "virtio-1-0", JSON.Bool guestcaps.gcaps_virtio_1_0;
     ] in
   List.push_back doc ("guestcaps", JSON.Dict guestcaps_dict);
 
