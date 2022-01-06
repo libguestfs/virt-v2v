@@ -77,3 +77,21 @@ let string_of_osinfo_device_list dev_list =
    *)
   String.concat "\n"
     (List.map (fun dev -> columnate (listify dev) max_widths) dev_list)
+
+type os_support = {
+  q35 : bool;
+  vio10 : bool;
+}
+
+let os_support_of_osinfo_device_list =
+  let rec next accu left =
+    match accu, left with
+    | { q35 = true; vio10 = true }, _
+    | _ , [] ->
+      accu
+    | { q35; vio10 }, { Libosinfo.id } :: tail ->
+      let q35 = q35 || id = "http://qemu.org/chipset/x86/q35"
+      and vio10 = vio10 || id = "http://pcisig.com/pci/1af4/1041" in
+      next { q35; vio10 } tail
+  in
+  next { q35 = false; vio10 = false }

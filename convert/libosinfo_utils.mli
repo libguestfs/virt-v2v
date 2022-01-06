@@ -30,3 +30,17 @@ val string_of_osinfo_device_driver : Libosinfo.osinfo_device_driver -> string
 
 val string_of_osinfo_device_list : Libosinfo.osinfo_device list -> string
 (** Convert an [osinfo_device] list to a printable string for debugging. *)
+
+type os_support = {
+  q35 : bool;
+  vio10 : bool;
+}
+(** Tell whether the operating system supports the Q35 board type and/or
+    non-transitional (virtio-1.0-only) virtio devices. (Internally, the
+    virtio-1.0-net device is used as a proxy for the general statement about
+    virtio-1.0.)
+ *)
+
+val os_support_of_osinfo_device_list : Libosinfo.osinfo_device list ->
+                                       os_support
+(** Get [os_support] from an [osinfo_device] list. *)
