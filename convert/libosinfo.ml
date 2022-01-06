@@ -32,13 +32,27 @@ type osinfo_device_driver = {
   files : string list;
 }
 
+type osinfo_device = {
+  id : string;
+  vendor : string;
+  vendor_id : string;
+  product : string;
+  product_id : string;
+  name : string;
+  class_ : string;
+  bus_type : string;
+  subsystem : string;
+}
+
 external osinfo_os_get_id : osinfo_os_t -> string = "v2v_osinfo_os_get_id"
 external osinfo_os_get_device_drivers : osinfo_os_t -> osinfo_device_driver list = "v2v_osinfo_os_get_device_drivers"
+external osinfo_os_get_devices : osinfo_os_t -> osinfo_device list = "v2v_osinfo_os_get_all_devices"
 
 class osinfo_os h =
   object (self)
     method get_id () = osinfo_os_get_id h
     method get_device_drivers () = osinfo_os_get_device_drivers h
+    method get_devices () = osinfo_os_get_devices h
 end
 
 external osinfo_db_load : unit -> osinfo_db_t = "v2v_osinfo_db_load"

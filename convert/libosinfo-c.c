@@ -50,6 +50,7 @@
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoFilter, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoLoader, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoOsList, g_object_unref)
+G_DEFINE_AUTOPTR_CLEANUP_FUNC(OsinfoDeviceList, g_object_unref)
 #endif
 
 typedef OsinfoDb *OsinfoDb_t;
@@ -254,4 +255,69 @@ v2v_osinfo_os_get_device_drivers (value osv)
   }
 
   CAMLreturn (rv);
+}
+
+/* Collect OsinfoDevice properties from two levels:
+ *
+ * - The OSINFO_ENTITY_PROP_ID property, originating from the OsinfoEntity base
+ *   class. This is a unique URI, identifying the device.
+ *
+ * - All currently known OSINFO_DEVICE_PROP_* properties, originating from the
+ *   OsinfoDevice class.
+ *
+ * All of the above properties have string values. Thus, for uniformity, access
+ * all these properties by their names at the OsinfoEntity level (i.e., forego
+ * the class- and property-specific, dedicated property getter functions).
+ */
+static const char * const device_prop[] = {
+  OSINFO_ENTITY_PROP_ID,
+  OSINFO_DEVICE_PROP_VENDOR,
+  OSINFO_DEVICE_PROP_VENDOR_ID,
+  OSINFO_DEVICE_PROP_PRODUCT,
+  OSINFO_DEVICE_PROP_PRODUCT_ID,
+  OSINFO_DEVICE_PROP_NAME,
+  OSINFO_DEVICE_PROP_CLASS,
+  OSINFO_DEVICE_PROP_BUS_TYPE,
+  OSINFO_DEVICE_PROP_SUBSYSTEM,
+};
+#define NUM_DEVICE_PROPS (sizeof device_prop / sizeof device_prop[0])
+
+value
+v2v_osinfo_os_get_all_devices (value osv)
+{
+  CAMLparam1 (osv);
+  CAMLlocal3 (retvalv, linkv, propsv);
+  g_autoptr (OsinfoDeviceList) dev_list = NULL;
+  OsinfoList *ent_list;
+  gint ent_nr;
+
+  retvalv = Val_emptylist;
+  dev_list = osinfo_os_get_all_devices (OsinfoOs_t_val (osv), NULL);
+  ent_list = OSINFO_LIST (dev_list);
+  ent_nr = osinfo_list_get_length (ent_list);
+
+  while (ent_nr > 0) {
+    OsinfoEntity *ent;
+    size_t prop_nr;
+
+    --ent_nr;
+    ent = osinfo_list_get_nth (ent_list, ent_nr);
+
+    propsv = caml_alloc (NUM_DEVICE_PROPS, 0);
+    for (prop_nr = 0; prop_nr < NUM_DEVICE_PROPS; ++prop_nr) {
+      const gchar *prop_val;
+
+      prop_val = osinfo_entity_get_param_value (ent, device_prop[prop_nr]);
+      if (prop_val == NULL)
+        prop_val = "";
+      Store_field (propsv, prop_nr, caml_copy_string (prop_val));
+    }
+
+    linkv = caml_alloc (2, 0);
+    Store_field (linkv, 0, propsv);
+    Store_field (linkv, 1, retvalv);
+    retvalv = linkv;
+  }
+
+  CAMLreturn (retvalv);
 }

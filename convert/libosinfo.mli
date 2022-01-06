@@ -29,11 +29,25 @@ type osinfo_device_driver = {
   files : string list;
 }
 
+type osinfo_device = {
+  id : string;
+  vendor : string;
+  vendor_id : string;
+  product : string;
+  product_id : string;
+  name : string;
+  class_ : string;
+  bus_type : string;
+  subsystem : string;
+}
+
 class osinfo_os : osinfo_os_t -> object
   method get_id : unit -> string
   (** Return the ID. *)
   method get_device_drivers : unit -> osinfo_device_driver list
   (** Return the list of device drivers. *)
+  method get_devices : unit -> osinfo_device list
+  (** Return the list of devices. *)
 end
 (** Minimal OsinfoOs wrapper. *)
 
