@@ -42,3 +42,38 @@ let string_of_osinfo_device_driver { Libosinfo.architecture; location;
     (if signed then "signed" else "unsigned")
     priority
     (String.concat " " files)
+
+let string_of_osinfo_device_list dev_list =
+
+  (* Turn the fields of an "osinfo_device" record into a list. *)
+  let listify { Libosinfo.id; vendor; vendor_id; product; product_id; name;
+                class_; bus_type; subsystem } =
+    [ id; vendor; vendor_id; product; product_id; name;
+      class_; bus_type; subsystem ]
+
+  (* Given a list of strings, and a list of previously known maximum widths,
+   * "increase" each width, if necessary, to the length of the corresponding
+   * string.
+   *)
+  and grow_widths = List.map2 (fun s -> max (String.length s))
+  in
+
+  (* Compute the maximum width for each field in "dev_list". *)
+  let max_widths =
+    List.fold_right grow_widths (List.map listify dev_list)
+      [ 0; 0; 0; 0; 0; 0; 0; 0; 0 ]
+
+  (* Given a list of strings and a list of field widths, format "string1 |
+   * string2 | ... | stringN" such that each field is right-padded to the
+   * corresponding width.
+   *)
+  and columnate strings widths =
+    String.concat " | " (List.map2 (Printf.sprintf "%-*s") widths strings)
+  in
+
+  (* Format "dev_list" as a table by (a) printing one "osinfo_device" record
+   * per line, and (b) right-padding each field of each "osinfo_device" record
+   * to the maximum width of that field.
+   *)
+  String.concat "\n"
+    (List.map (fun dev -> columnate (listify dev) max_widths) dev_list)

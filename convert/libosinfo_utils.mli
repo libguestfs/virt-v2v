@@ -27,3 +27,6 @@ val get_os_by_short_id : string -> Libosinfo.osinfo_os
 
 val string_of_osinfo_device_driver : Libosinfo.osinfo_device_driver -> string
 (** Convert a [osinfo_device_driver] to a printable string for debugging. *)
+
+val string_of_osinfo_device_list : Libosinfo.osinfo_device list -> string
+(** Convert an [osinfo_device] list to a printable string for debugging. *)
