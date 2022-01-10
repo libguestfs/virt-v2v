@@ -183,23 +183,26 @@ value
 v2v_osinfo_os_get_id (value osv)
 {
   CAMLparam1 (osv);
+  CAMLlocal1 (copyv);
   const gchar *id;
 
   id = osinfo_entity_get_id (OSINFO_ENTITY(OsinfoOs_t_val (osv)));
-  CAMLreturn (caml_copy_string (id));
+  copyv = caml_copy_string (id);
+  CAMLreturn (copyv);
 }
 
 static value
 glist_to_value_list (GList *list)
 {
   CAMLparam0 ();
-  CAMLlocal2 (rv, v);
+  CAMLlocal3 (rv, v, copyv);
   GList *l;
 
   rv = Val_emptylist;
   for (l = list; l != NULL; l = l->next) {
     v = caml_alloc (2, 0);
-    Store_field (v, 0, caml_copy_string (l->data));
+    copyv = caml_copy_string (l->data);
+    Store_field (v, 0, copyv);
     Store_field (v, 1, rv);
     rv = v;
   }
@@ -211,7 +214,7 @@ value
 v2v_osinfo_os_get_device_drivers (value osv)
 {
   CAMLparam1 (osv);
-  CAMLlocal3 (rv, v, vi);
+  CAMLlocal4 (rv, v, vi, copyv);
   OsinfoDeviceDriverList *list;
   gint i, len;
 
@@ -230,9 +233,11 @@ v2v_osinfo_os_get_device_drivers (value osv)
 
     vi = caml_alloc (6, 0);
     str = osinfo_device_driver_get_architecture (driver);
-    Store_field (vi, 0, caml_copy_string (str));
+    copyv = caml_copy_string (str);
+    Store_field (vi, 0, copyv);
     str = osinfo_device_driver_get_location (driver);
-    Store_field (vi, 1, caml_copy_string (str));
+    copyv = caml_copy_string (str);
+    Store_field (vi, 1, copyv);
     b = osinfo_device_driver_get_pre_installable (driver);
     Store_field (vi, 2, Val_bool (b));
     b = osinfo_device_driver_get_signed (driver);
@@ -243,7 +248,8 @@ v2v_osinfo_os_get_device_drivers (value osv)
     /* Same as OSINFO_DEVICE_DRIVER_DEFAULT_PRIORITY in libosinfo 1.7.0+. */
     i64 = 50;
 #endif
-    Store_field (vi, 4, caml_copy_int64 (i64));
+    copyv = caml_copy_int64 (i64);
+    Store_field (vi, 4, copyv);
     l = osinfo_device_driver_get_files (driver);
     Store_field (vi, 5, glist_to_value_list (l));
     g_list_free (l);
@@ -286,7 +292,7 @@ value
 v2v_osinfo_os_get_all_devices (value osv)
 {
   CAMLparam1 (osv);
-  CAMLlocal3 (retvalv, linkv, propsv);
+  CAMLlocal4 (retvalv, linkv, propsv, copyv);
   g_autoptr (OsinfoDeviceList) dev_list = NULL;
   OsinfoList *ent_list;
   gint ent_nr;
@@ -310,7 +316,8 @@ v2v_osinfo_os_get_all_devices (value osv)
       prop_val = osinfo_entity_get_param_value (ent, device_prop[prop_nr]);
       if (prop_val == NULL)
         prop_val = "";
-      Store_field (propsv, prop_nr, caml_copy_string (prop_val));
+      copyv = caml_copy_string (prop_val);
+      Store_field (propsv, prop_nr, copyv);
     }
 
     linkv = caml_alloc (2, 0);
