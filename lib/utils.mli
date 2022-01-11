@@ -78,9 +78,9 @@ val metaversion : string
     Eventually we may switch to using an "open metadata" format instead
     (eg. XML). *)
 
-val with_nbd_connect_unix : socket:string ->
-                            meta_contexts:string list ->
-                            f:(NBD.t -> 'a) ->
+val with_nbd_connect_unix : ?meta_contexts:string list ->
+                            socket:string ->
+                            (NBD.t -> 'a) ->
                             'a
 (** [with_nbd_connect_unix socket meta_contexts f] calls function [f] with the
     NBD server at Unix domain socket [socket] connected, and the metadata

@@ -165,7 +165,7 @@ let rec wait_for_file filename timeout =
 
 let metaversion = Digest.to_hex (Digest.string Config.package_version_full)
 
-let with_nbd_connect_unix ~socket ~meta_contexts ~f =
+let with_nbd_connect_unix ?(meta_contexts = []) ~socket f =
   let nbd = NBD.create () in
   protect
     ~f:(fun () ->
@@ -181,7 +181,7 @@ let get_disk_allocated ~dir ~disknr =
   let socket = sprintf "%s/out%d" dir disknr
   and alloc_ctx = "base:allocation" in
   with_nbd_connect_unix ~socket ~meta_contexts:[alloc_ctx]
-    ~f:(fun nbd ->
+    (fun nbd ->
          if NBD.can_meta_context nbd alloc_ctx then (
            (* Get the list of extents, using a 2GiB chunk size as hint. *)
            let size = NBD.get_size nbd
