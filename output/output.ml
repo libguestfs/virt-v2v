@@ -58,13 +58,7 @@ let get_disks dir =
   let rec loop acc i =
     let socket = sprintf "%s/in%d" dir i in
     if Sys.file_exists socket then (
-      let nbd = NBD.create () in
-      NBD.connect_unix nbd socket;
-      let size = NBD.get_size nbd in
-      (try
-         NBD.shutdown nbd;
-         NBD.close nbd
-       with NBD.Error _ -> ());
+      let size = Utils.with_nbd_connect_unix ~socket NBD.get_size in
       loop ((i, size) :: acc) (i+1)
     )
     else
