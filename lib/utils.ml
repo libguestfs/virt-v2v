@@ -169,6 +169,7 @@ let with_nbd_connect_unix ?(meta_contexts = []) ~socket f =
   let nbd = NBD.create () in
   protect
     ~f:(fun () ->
+          NBD.set_debug nbd (verbose ());
           List.iter (NBD.add_meta_context nbd) meta_contexts;
           NBD.connect_unix nbd socket;
           protect
