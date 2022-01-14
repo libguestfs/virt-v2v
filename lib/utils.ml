@@ -195,10 +195,10 @@ let get_disk_allocated ~dir ~disknr =
                (fun ctx offset entries err ->
                   assert (ctx = alloc_ctx);
                   for i = 0 to Array.length entries / 2 - 1 do
-                    let len = Int64.of_int32 entries.(i * 2)
+                    let len = entries.(i * 2)
                     and typ = entries.(i * 2 + 1) in
                     assert (len > 0_L);
-                    if Int32.logand typ 1_l = 0_l then
+                    if typ &^ 1_L = 0_L then
                       allocated := !allocated +^ len;
                     fetch_offset := !fetch_offset +^ len
                   done;
