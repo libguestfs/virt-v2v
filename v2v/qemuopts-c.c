@@ -34,6 +34,19 @@
 
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
+/*
+  GCC 12 introduced this warning:
+
+  In file included from /usr/lib64/ocaml/caml/alloc.h:24,
+                 from qemuopts-c.c:26:
+qemuopts-c.c: In function ‘guestfs_int_qemuopts_set_binary_by_arch’:
+/usr/lib64/ocaml/caml/mlvalues.h:206:37: error: array subscript 0 is outside array bounds of ‘value[0:]’ [-Werror=array-bounds]
+  206 | #define Field(x, i) (((value *)(x)) [i])
+      |                                     ^
+cc1: all warnings being treated as errors
+*/
+#pragma GCC diagnostic ignored "-Warray-bounds"
+
 #define Qopts_val(v) (*((struct qemuopts **)Data_custom_val(v)))
 
 static void
