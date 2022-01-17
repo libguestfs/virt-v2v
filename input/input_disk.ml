@@ -129,8 +129,8 @@ and detect_local_input_format { input_format } filenames =
   | Some fmt -> fmt
   | None ->
      let formats =
-       let g = Guestfs.create () in
-       List.map (Guestfs.disk_format g) filenames in
+       let g = open_guestfs () in
+       List.map g#disk_format filenames in
 
      let rec get_format = function
        | [] -> error (f_"expected >= 1 disk name on the command line")

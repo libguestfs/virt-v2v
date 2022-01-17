@@ -75,13 +75,13 @@ let output_to_local_file ?(changeuid = fun f -> f ())
     error (f_"nbdkit-file-plugin is not installed or not working");
   let nbdkit_config = Nbdkit.config () in
 
-  let g = Guestfs.create () in
+  let g = open_guestfs () in
   let preallocation =
     match output_alloc with
     | Preallocated -> Some "full"
     | Sparse -> None in
   changeuid (
-    fun () -> Guestfs.disk_create ?preallocation g filename output_format size
+    fun () -> g#disk_create ?preallocation filename output_format size
   );
 
   match output_format with
