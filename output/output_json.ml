@@ -135,8 +135,6 @@ module Json = struct
   type t = unit
 
   let setup dir options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
     let data = json_parse_options options in
     let output_name = get_output_name options source in
     let disks = get_disks dir in
