@@ -87,8 +87,18 @@ let rec xen_ssh_source dir options args =
       On_exit.unlink socket;
 
       match d_type with
-      | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
+      | NBD _ | HTTP _ -> (* These should never happen? *)
          assert false
+
+      | BlockDev _ ->
+         (* Conversion from a remote block device over SSH isn't
+          * supported because OpenSSH sftp server doesn't know how
+          * to get the size of a block device.  Therefore we disallow
+          * this and refer users to the manual.
+          *)
+         error (f_"input from xen over ssh does not support disks stored on \
+                   remote block devices.  See virt-v2v-input-xen(1) \
+                   section \"Xen or ssh conversions from block devices\".")
 
       | LocalFile path ->
          let cor = dir // "convert" in

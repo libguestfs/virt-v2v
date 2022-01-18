@@ -99,6 +99,11 @@ This happens because the qemu ssh block driver that we use to access
 remote disks uses the ssh sftp protocol, and this protocol cannot
 correctly detect the size of host block devices.
 
+The workaround is to copy the block device from the remote Xen
+server to a regular local file, copy the libvirt guest XML,
+adjust the C<disk> element to point to the local file, and use
+C<-i libvirtxml> mode instead.
+
 =head1 SEE ALSO
 
 L<virt-v2v(1)>.
