@@ -61,8 +61,17 @@ case "$guestname" in
         ;;
 esac
 
+# Don't try to update Windows versions.
+case "$guestname" in
+    windows*)
+        ;;
+    *)
+        extra[${#extra[*]}]='--update'
+        ;;
+esac
+
 # Build a guest (using virt-builder).
-virt-builder "$guestname" --quiet -o "$disk" "${extra[@]}" --update
+virt-builder "$guestname" --quiet -o "$disk" "${extra[@]}"
 
 # Create some minimal test metadata.
 cat > "$xml" <<EOF
