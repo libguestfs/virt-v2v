@@ -149,11 +149,9 @@ real_guests_scripts = \
 	test-v2v-conversion-of-rhel-6.8.sh \
 	test-v2v-conversion-of-rhel-7.0.sh \
 	test-v2v-conversion-of-rhel-7.2.sh \
-	test-v2v-conversion-of-ubuntu-10.04.sh \
-	test-v2v-conversion-of-ubuntu-12.04.sh \
-	test-v2v-conversion-of-ubuntu-14.04.sh \
 	test-v2v-conversion-of-ubuntu-16.04.sh \
 	test-v2v-conversion-of-ubuntu-18.04.sh \
+	test-v2v-conversion-of-ubuntu-20.04.sh \
 	test-v2v-conversion-of-windows-6.2-server.sh \
 	test-v2v-conversion-of-windows-6.3-server.sh \
 	test-v2v-conversion-of-windows-10.0-server.sh
