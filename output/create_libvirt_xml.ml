@@ -435,13 +435,18 @@ let create_libvirt_xml ?pool source inspect
 
   let graphics =
     match source.s_display with
-    | None -> e "graphics" [ "type", "vnc" ] []
+    | None ->
+       e "graphics" [ "type", "vnc"; "autoport", "yes" ] []
     | Some { s_display_type = Window } ->
        e "graphics" [ "type", "sdl" ] []
-    | Some { s_display_type = VNC } ->
-       e "graphics" [ "type", "vnc" ] []
-    | Some { s_display_type = Spice } ->
-       e "graphics" [ "type", "spice" ] [] in
+    | Some { s_display_type = VNC; s_port = Some p } ->
+       e "graphics" [ "type", "vnc"; "port", string_of_int p ] []
+    | Some { s_display_type = VNC; s_port = None } ->
+       e "graphics" [ "type", "vnc"; "autoport", "yes" ] []
+    | Some { s_display_type = Spice; s_port = Some p } ->
+       e "graphics" [ "type", "spice"; "port", string_of_int p ] []
+    | Some { s_display_type = Spice; s_port = None } ->
+       e "graphics" [ "type", "spice"; "autoport", "yes" ] [] in
 
   (match source.s_display with
    | Some { s_keymap = Some km } -> append_attr ("keymap", km) graphics
@@ -469,13 +474,6 @@ let create_libvirt_xml ?pool source inspect
           append_child sub graphics
       )
    | None -> ());
-  (match source.s_display with
-   | Some { s_port = Some p } ->
-      append_attr ("autoport", "no") graphics;
-      append_attr ("port", string_of_int p) graphics
-   | Some { s_port = None } | None ->
-      append_attr ("autoport", "yes") graphics;
-      append_attr ("port", "-1") graphics);
   List.push_back devices graphics;
 
   let sound =
