@@ -145,10 +145,10 @@ real_guests_scripts = \
 	test-v2v-conversion-of-opensuse-13.1.sh \
 	test-v2v-conversion-of-opensuse-13.2.sh \
 	test-v2v-conversion-of-opensuse-42.1.sh \
-	test-v2v-conversion-of-rhel-5.10.sh \
-	test-v2v-conversion-of-rhel-6.8.sh \
-	test-v2v-conversion-of-rhel-7.0.sh \
-	test-v2v-conversion-of-rhel-7.2.sh \
+	test-v2v-conversion-of-rhel-5.11.sh \
+	test-v2v-conversion-of-rhel-6.10.sh \
+	test-v2v-conversion-of-rhel-7.9.sh \
+	test-v2v-conversion-of-rhel-8.4.sh \
 	test-v2v-conversion-of-ubuntu-16.04.sh \
 	test-v2v-conversion-of-ubuntu-18.04.sh \
 	test-v2v-conversion-of-ubuntu-20.04.sh \
