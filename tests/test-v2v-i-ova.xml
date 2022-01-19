@@ -46,7 +46,6 @@
       <backend model='random'>/dev/urandom</backend>
     </rng>
     <memballoon model='virtio-transitional'/>
-    <viosock model='none'/>
     <input type='tablet' bus='usb'/>
     <input type='mouse' bus='ps2'/>
     <console type='pty'/>

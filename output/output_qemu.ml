@@ -277,9 +277,7 @@ and qemu_finalize dir source inspect target_meta
   if guestcaps.gcaps_isa_pvpanic then
     arg_list "-device" ["pvpanic"; "ioport=0x505"];
   if guestcaps.gcaps_virtio_socket then
-    arg "-viosock" "virtio"
-  else
-    arg "-viosock" "none";
+    arg "-device" "vhost-vsock-pci";
 
   (* Add a serial console to Linux guests. *)
   if inspect.i_type = "linux" then
