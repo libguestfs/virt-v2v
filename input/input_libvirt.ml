@@ -129,6 +129,14 @@ and libvirt_xml_source _ args =
   source, disks
 
 module Libvirt_ = struct
+  let to_string options args =
+    let xs = "-i libvirt" :: args in
+    let xs =
+      match options.input_conn with
+      | Some ic -> ("-ic " ^ ic) :: xs
+      | None -> xs in
+    String.concat " " xs
+
   let setup dir options args =
     let source, data = libvirt_source options args in
     libvirt_servers dir data;
@@ -139,6 +147,8 @@ module Libvirt_ = struct
 end
 
 module LibvirtXML = struct
+  let to_string options args = String.concat " " ("-i libvirtxml" :: args)
+
   let setup dir options args =
     let source, data = libvirt_xml_source options args in
     libvirt_servers dir data;

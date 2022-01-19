@@ -118,6 +118,8 @@ and absolute_path_from_other_file other_filename filename =
   else (Filename.dirname (absolute_path other_filename)) // filename
 
 module VMX = struct
+  let to_string options args = String.concat " " ("-i vmx" :: args)
+
   let setup dir options args =
     vmx_source dir options args
 

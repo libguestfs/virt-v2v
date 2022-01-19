@@ -134,6 +134,12 @@ and json_path os output_name json_disks_pattern i =
 module Json = struct
   type t = unit
 
+  let to_string options =
+    "-o json" ^
+      match options.output_storage with
+      | Some os -> " -os " ^ os
+      | None -> ""
+
   let setup dir options source =
     let data = json_parse_options options in
     let output_name = get_output_name options source in

@@ -229,6 +229,8 @@ and error_missing_href href =
   error (f_"-i ova: OVF references file ‘%s’ which was not found in the OVA archive") href
 
 module OVA = struct
+  let to_string options args = String.concat " " ("-i ova" :: args)
+
   let setup dir options args =
     ova_source dir options args
 

@@ -122,6 +122,8 @@ and glance_finalize dir source inspect target_meta output_format tmpdir =
 module Glance = struct
   type t = string
 
+  let to_string options = "-o glance"
+
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");

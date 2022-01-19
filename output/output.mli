@@ -30,6 +30,10 @@ module type OUTPUT = sig
   type t
   (** Opaque data used by the output mode. *)
 
+  val to_string : options -> string
+  (** [to_string options] converts the destination to a printable
+      string (for messages). *)
+
   val setup : string -> options -> Types.source -> t
   (** [setup dir options source]
 

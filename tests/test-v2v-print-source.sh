@@ -27,6 +27,8 @@ set -x
 skip_if_skipped
 requires test -f ../test-data/phony-guests/windows.img
 
+export LANG=C
+
 d=test-v2v-print-source.d
 rm -rf $d
 cleanup_fn rm -r $d
@@ -39,6 +41,7 @@ $VG virt-v2v --debug-gc \
 
 mv $d/output $d/output.orig
 < $d/output.orig \
+grep -v 'Setting up the source' |
 grep -v 'Opening the source' |
 grep -v 'Source guest information' |
 sed -e 's,/.*/windows.img,windows.img,' |

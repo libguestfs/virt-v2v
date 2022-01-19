@@ -212,6 +212,8 @@ and vdsm_finalize dir source inspect target_meta
 module VDSM = struct
   type t = string * string * int64 list
 
+  let to_string options = "-o vdsm"
+
   let setup dir options source =
     let data = vdsm_parse_options options in
     let output_name = get_output_name options source in

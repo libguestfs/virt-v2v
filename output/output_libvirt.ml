@@ -198,6 +198,12 @@ and target_features_of_capabilities_doc doc arch =
 module Libvirt_ = struct
   type t = string * string
 
+  let to_string options =
+    "-o libvirt" ^
+      match options.output_storage with
+      | Some os -> " -os " ^ os
+      | None -> ""
+
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");

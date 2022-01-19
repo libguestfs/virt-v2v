@@ -29,6 +29,8 @@ set -x
 
 skip_if_skipped
 
+export LANG=C
+
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
 
@@ -52,6 +54,7 @@ for i in 1 2 3 4 5; do
     # Normalize the print-source output.
     mv test-v2v-i-vmx-$i.actual test-v2v-i-vmx-$i.actual.old
     sed \
+        -e "s,.*Setting up the source.*,," \
         -e "s,.*Opening the source.*,," \
         -e "s,$(pwd),," \
         < test-v2v-i-vmx-$i.actual.old > test-v2v-i-vmx-$i.actual

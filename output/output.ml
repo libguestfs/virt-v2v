@@ -38,6 +38,7 @@ type options = {
 
 module type OUTPUT = sig
   type t
+  val to_string : options -> string
   val setup : string -> options -> Types.source -> t
   val finalize : string -> options ->
                  Types.source -> Types.inspect -> Types.target_meta ->

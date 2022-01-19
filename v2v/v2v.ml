@@ -532,6 +532,8 @@ read the man page virt-v2v(1).
   } in
 
   (* Start the input module (runs an NBD server in the background). *)
+  message (f_"Setting up the source: %s")
+    (Input_module.to_string input_options args);
   let source = Input_module.setup tmpdir input_options args in
 
   (* If --print-source then print the source metadata and exit. *)
@@ -548,6 +550,8 @@ read the man page virt-v2v(1).
   unlink (tmpdir // "convert");
 
   (* Start the output module (runs an NBD server in the background). *)
+  message (f_"Setting up the destination: %s")
+    (Output_module.to_string output_options);
   let output_t = Output_module.setup tmpdir output_options source in
 
   (* Debug the v2vdir. *)

@@ -112,6 +112,15 @@ let rec xen_ssh_source dir options args =
   source
 
 module XenSSH = struct
+  let to_string options args =
+    let xs = args in
+    let xs =
+      match options.input_conn with
+      | Some ic -> ("-ic " ^ ic) :: xs
+      | None -> xs in
+    let xs = "-i libvirt" :: xs in
+    String.concat " " xs
+
   let setup dir options args =
     xen_ssh_source dir options args
 

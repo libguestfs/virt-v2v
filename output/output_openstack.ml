@@ -462,6 +462,22 @@ and iso_time =
 module Openstack = struct
   type t = string list
 
+  let to_string options =
+    (* Try to get the server-id since it seems useful to display
+     * that for diagnostics.
+     *)
+    let server_id = ref None in
+    List.iter (
+      function
+      | "server-id", v -> server_id := Some v
+      | _ -> ()
+    ) options.output_options;
+
+    "-o openstack" ^
+      (match !server_id with
+       | None -> ""
+       | Some id -> sprintf " -oo server-id=%s" id)
+
   let setup dir options source =
     let data = openstack_parse_options options in
     let output_name = get_output_name options source in

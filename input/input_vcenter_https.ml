@@ -117,6 +117,15 @@ let rec vcenter_https_source dir options args =
   source
 
 module VCenterHTTPS = struct
+  let to_string options args =
+    let xs = args in
+    let xs =
+      match options.input_conn with
+      | Some ic -> ("-ic " ^ ic) :: xs
+      | None -> xs in
+    let xs = "-i libvirt" :: xs in
+    String.concat " " xs
+
   let setup dir options args =
     vcenter_https_source dir options args
 

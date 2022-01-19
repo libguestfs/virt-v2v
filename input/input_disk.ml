@@ -142,6 +142,8 @@ and detect_local_input_format { input_format } filenames =
      get_format formats
 
 module Disk = struct
+  let to_string options args = String.concat " " ("-i disk" :: args)
+
   let setup dir options args =
     disk_source dir options args
 

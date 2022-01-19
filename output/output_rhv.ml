@@ -266,6 +266,8 @@ and check_storage_domain domain_class os mp =
 module RHV = struct
   type t = string * string * string * string list * string list * int64 list
 
+  let to_string options = "-o rhv"
+
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");

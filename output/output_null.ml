@@ -76,6 +76,8 @@ and null_servers dir disks output_name =
 module Null = struct
   type t = unit
 
+  let to_string options = "-o null"
+
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");

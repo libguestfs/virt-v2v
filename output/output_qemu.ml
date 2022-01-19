@@ -315,6 +315,12 @@ and qemu_finalize dir source inspect target_meta
 module QEMU = struct
   type t = unit
 
+  let to_string options =
+    "-o qemu" ^
+      match options.output_storage with
+      | Some os -> " -os " ^ os
+      | None -> ""
+
   let setup dir options source =
     let data = qemu_parse_options options in
     let output_name = get_output_name options source in

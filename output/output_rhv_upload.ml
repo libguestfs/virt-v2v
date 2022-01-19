@@ -444,6 +444,15 @@ module RHVUpload = struct
            JSON.field list * string option * string option *
            string option * string
 
+  let to_string options =
+    "-o rhv-upload" ^
+      (match options.output_conn with
+       | Some oc -> " -oc " ^ oc
+       | None -> "") ^
+      (match options.output_storage with
+       | Some os -> " -os " ^ os
+       | None -> "")
+
   let setup dir options source =
     let data = rhv_upload_parse_options options in
     let output_name = get_output_name options source in

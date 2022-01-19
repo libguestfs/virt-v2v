@@ -26,6 +26,10 @@ type options = {
 }
 
 module type INPUT = sig
+  val to_string : options -> string list -> string
+  (** [to_string options args] converts the source to a printable
+      string (for messages). *)
+
   val setup : string -> options -> string list -> Types.source
   (** [setup dir options args]
 

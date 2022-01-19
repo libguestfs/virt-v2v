@@ -96,6 +96,12 @@ and disk_finalize dir source inspect target_meta
 module Disk = struct
   type t = unit
 
+  let to_string options =
+    "-o disk" ^
+      match options.output_storage with
+      | Some os -> " -os " ^ os
+      | None -> ""
+
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
