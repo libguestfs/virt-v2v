@@ -66,7 +66,7 @@ fi
 
 virt-v2v --debug-gc \
          -i disk $d/fedora.qcow2 \
-         -o local -os $d
+         -o local -of qcow2 -os $d
 
 # Test the libvirt XML metadata and a disk was created.
 test -f $d/fedora.xml
