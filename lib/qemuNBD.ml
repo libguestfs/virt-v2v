@@ -93,6 +93,7 @@ let run_unix ?socket { disk; snapshot; format } =
     ["qemu-nbd";
      "-t";
      "--shared=0";
+     "--discard=unmap";
      "--pid-file"; pidfile;
      "--socket"; socket];
 
