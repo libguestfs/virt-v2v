@@ -90,7 +90,11 @@ let run_unix ?socket { disk; snapshot; format } =
   (* Construct the qemu-nbd command line. *)
   let args = ref [] in
   List.push_back_list args
-    ["qemu-nbd"; "-t"; "--pid-file"; pidfile; "--socket"; socket];
+    ["qemu-nbd";
+     "-t";
+     "--shared=0";
+     "--pid-file"; pidfile;
+     "--socket"; socket];
 
   (* -s adds a protective overlay. *)
   if snapshot then List.push_back args "-s";
