@@ -76,6 +76,7 @@ and libvirt_servers dir disks =
          Nbdkit.add_filter cmd "cow";
          Nbdkit.add_arg cmd "hostname" hostname;
          Nbdkit.add_arg cmd "port" (string_of_int port);
+         Nbdkit.add_arg cmd "shared" "true";
          let _, pid = Nbdkit.run_unix ~socket cmd in
 
          (* --exit-with-parent should ensure nbdkit is cleaned
