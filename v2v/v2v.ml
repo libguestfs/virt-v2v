@@ -631,7 +631,7 @@ and nbdcopy output_alloc input_uri output_uri =
  *)
 and nbdinfo ?(content = false) uri =
   let cmd =
-    sprintf "nbdinfo%s %s"
+    sprintf "nbdinfo%s %s >&2"
       (if content then " --content" else " --no-content") (quote uri) in
   ignore (Sys.command cmd)
 
