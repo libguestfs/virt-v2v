@@ -84,6 +84,7 @@ val error_if_disk_count_gt : string -> int -> unit
     called. *)
 
 val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->
+                           ?compressed:bool ->
                            Types.output_allocation ->
                            string -> string -> int64 -> string ->
                            unit

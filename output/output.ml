@@ -69,7 +69,7 @@ let error_if_disk_count_gt dir n =
   if Sys.file_exists socket then
     error (f_"this output module doesn't support copying more than %d disks") n
 
-let output_to_local_file ?(changeuid = fun f -> f ())
+let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
       output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
   if not (Nbdkit.is_installed ()) then
@@ -77,6 +77,24 @@ let output_to_local_file ?(changeuid = fun f -> f ())
   if not (Nbdkit.probe_plugin "file") then
     error (f_"nbdkit-file-plugin is not installed or not working");
   let nbdkit_config = Nbdkit.config () in
+
+  if compressed then (
+    (* Only allow compressed with -of qcow2. *)
+    if output_format <> "qcow2" then
+      error (f_"‘-oo compressed’ is only allowed when the output format \
+                is a local qcow2-format file, i.e. ‘-of qcow2’");
+
+    (* Check nbdcopy is new enough.  This assumes that the version of
+     * libnbd is the same as the version of nbdcopy, but parsing this
+     * is easier.  We can remove this check when we build-depend on
+     * libnbd >= 1.14.
+     *)
+    let version =
+      NBD.create () |> NBD.get_version |>
+      String.nsplit "." |> List.map int_of_string in
+    if version < [1; 13; 5] then
+      error (f_"-oo compressed option requires nbdcopy >= 1.13.5")
+  );
 
   let g = open_guestfs () in
   let preallocation =
@@ -103,9 +121,24 @@ let output_to_local_file ?(changeuid = fun f -> f ())
      On_exit.kill pid
 
   | "qcow2" ->
-     let cmd = QemuNBD.create filename in
+     let cmd =
+       if compressed then (
+         let qemu_quote str = String.replace str "," ",," in
+         let image_opts = [ "driver=compress";
+                            "file.driver=qcow2";
+                            "file.file.driver=file";
+                            "file.file.filename=" ^ qemu_quote filename ] in
+         let image_opts = String.concat "," image_opts in
+         let cmd = QemuNBD.create image_opts in
+         QemuNBD.set_image_opts cmd true;
+         cmd
+       )
+       else (* not compressed *) (
+         let cmd = QemuNBD.create filename in
+         QemuNBD.set_format cmd (Some "qcow2");
+         cmd
+       ) in
      QemuNBD.set_snapshot cmd false;
-     QemuNBD.set_format cmd (Some "qcow2");
      let _, pid = QemuNBD.run_unix socket cmd in
      On_exit.kill pid
 
