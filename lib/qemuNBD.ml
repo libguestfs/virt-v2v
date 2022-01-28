@@ -55,14 +55,16 @@ type cmd = {
   disk : string;
   mutable snapshot : bool;
   mutable format : string option;
+  mutable imgopts : bool;
 }
 
-let create disk = { disk; snapshot = false; format = None }
+let create disk = { disk; snapshot = false; format = None; imgopts = false }
 
 let set_snapshot cmd snap = cmd.snapshot <- snap
 let set_format cmd format = cmd.format <- format
+let set_image_opts cmd imgopts = cmd.imgopts <- imgopts
 
-let run_unix socket { disk; snapshot; format } =
+let run_unix socket { disk; snapshot; format; imgopts } =
   assert (disk <> "");
 
   (* Create a temporary directory where we place the PID file. *)
@@ -84,6 +86,11 @@ let run_unix socket { disk; snapshot; format } =
 
   (* -s adds a protective overlay. *)
   if snapshot then List.push_back args "-s";
+
+  (* --image-opts reinterprets the filename parameter as a set of
+   * image options.
+   *)
+  if imgopts then List.push_back args "--image-opts";
 
   if have_selinux && qemu_nbd_has_selinux_label_option () then (
     List.push_back args "--selinux-label";

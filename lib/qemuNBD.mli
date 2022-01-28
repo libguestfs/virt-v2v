@@ -43,6 +43,11 @@ val set_snapshot : cmd -> bool -> unit
 val set_format : cmd -> string option -> unit
 (** Set the format [--format] parameter. *)
 
+val set_image_opts : cmd -> bool -> unit
+(** Set whether the [--image-opts] parameter is used.  This changes
+    the meaning of the [filename] parameter to a set of image options.
+    Consult the qemu-nbd man page for more details. *)
+
 val run_unix : string -> cmd -> string * int
 (** Start qemu-nbd command listening on a Unix domain socket,
     waiting for the process to start up.
