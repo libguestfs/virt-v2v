@@ -1,17 +1,3 @@
-virt-v2v -o disk|qemu -oo compressed
-------------------------------------
-
-This was temporarily dropped when I modularized virt-v2v.  It would
-not be too difficult to add it back.  The following is the qemu-nbd
-command required (to be run as the output helper) which creates a
-compressed qcow2 disk image:
-
-$ qemu-nbd --image-opts driver=compress,file.driver=qcow2,file.file.driver=file,file.file.filename=new.qcow2
-
-Note this requires fixes in nbdcopy so it obeys the advertised block
-alignment:
-https://lists.gnu.org/archive/html/qemu-block/2022-01/threads.html#00729
-
 virt-v2v -o rhv-upload
 ----------------------
 

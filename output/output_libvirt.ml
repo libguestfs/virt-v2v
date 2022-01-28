@@ -32,7 +32,7 @@ open Create_libvirt_xml
 open Output
 
 module Libvirt_ = struct
-  type poptions = Libvirt.rw Libvirt.Connect.t Lazy.t *
+  type poptions = Libvirt.rw Libvirt.Connect.t Lazy.t * bool *
                   Types.output_allocation * string * string * string
 
   type t = string * string
@@ -44,11 +44,21 @@ module Libvirt_ = struct
       | None -> ""
 
   let query_output_options () =
-    printf (f_"No output options can be used in this mode.\n")
+    printf (f_"Output options that can be used with -o libvirt:
+
+  -oo compressed      Compress the output file (used only with -of qcow2)
+")
 
   let parse_options options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
+    let compressed = ref false in
+    List.iter (
+      function
+      | "compressed", "" -> compressed := true
+      | "compressed", v -> compressed := bool_of_string v
+      | k, _ ->
+         error (f_"-o disk: unknown output option ‘-oo %s’") k
+    ) options.output_options;
+
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "libvirt" "-op";
 
@@ -59,12 +69,13 @@ module Libvirt_ = struct
 
     let output_name = Option.default source.s_name options.output_name in
 
-    (conn, options.output_alloc, options.output_format, output_name,
-     output_pool)
+    (conn, !compressed, options.output_alloc, options.output_format,
+     output_name, output_pool)
 
   let setup dir options source =
     let disks = get_disks dir in
-    let conn, output_alloc, output_format, output_name, output_pool = options in
+    let conn, compressed, output_alloc, output_format,
+        output_name, output_pool = options in
     let conn = Lazy.force conn in
 
     (* Get the capabilities from libvirt. *)
@@ -119,13 +130,15 @@ module Libvirt_ = struct
 
         (* Create the actual output disk. *)
         let outdisk = target_path // output_name ^ "-sd" ^ (drive_name i) in
-        output_to_local_file output_alloc output_format outdisk size socket
+        output_to_local_file ~compressed output_alloc output_format
+          outdisk size socket
     ) disks;
 
     (capabilities_xml, pool_name)
 
   let rec finalize dir options t source inspect target_meta =
-    let conn, output_alloc, output_format, output_name, output_pool = options in
+    let conn, _, output_alloc, output_format, output_name, output_pool =
+      options in
     let capabilities_xml, pool_name = t in
 
     (match target_meta.target_firmware with

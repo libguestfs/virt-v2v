@@ -29,7 +29,8 @@ open Utils
 open Output
 
 module QEMU = struct
-  type poptions = bool * Types.output_allocation * string * string * string
+  type poptions = bool * bool *
+                  Types.output_allocation * string * string * string
 
   type t = unit
 
@@ -42,6 +43,7 @@ module QEMU = struct
   let query_output_options () =
     printf (f_"Output options (-oo) which can be used with -o qemu:
 
+  -oo compressed      Compress the output file (used only with -of qcow2)
   -oo qemu-boot       Boot the guest in qemu after conversion
 ")
 
@@ -49,19 +51,19 @@ module QEMU = struct
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "qemu" "-op";
 
-    let qemu_boot = ref false in
+    let compressed = ref false
+    and qemu_boot = ref false in
     List.iter (
-      fun (k, v) ->
-        match k with
-        | "qemu-boot" ->
-           if v = "" || v = "true" then qemu_boot := true
-           else if v = "false" then qemu_boot := false
-           else
-             error (f_"-o qemu: use -oo qemu-boot[=true|false]")
-        | k ->
-           error (f_"-o qemu: unknown output option ‘-oo %s’") k
-      ) options.output_options;
-    let qemu_boot = !qemu_boot in
+      function
+      | "compressed", "" -> compressed := true
+      | "compressed", v -> compressed := bool_of_string v
+      | "qemu-boot", "" -> qemu_boot := true
+      | "qemu-boot", v -> qemu_boot := bool_of_string v
+      | k, _ ->
+         error (f_"-o qemu: unknown output option ‘-oo %s’") k
+    ) options.output_options;
+    let compressed = !compressed
+    and qemu_boot = !qemu_boot in
 
     (* -os must be set to a directory. *)
     let output_storage =
@@ -74,12 +76,13 @@ module QEMU = struct
 
     let output_name = Option.default source.s_name options.output_name in
 
-    (qemu_boot, options.output_alloc, options.output_format,
+    (compressed, qemu_boot, options.output_alloc, options.output_format,
      output_name, output_storage)
 
   let setup dir options source =
     let disks = get_disks dir in
-    let _, output_alloc, output_format, output_name, output_storage = options in
+    let compressed, _, output_alloc, output_format,
+        output_name, output_storage = options in
 
     List.iter (
       fun (i, size) ->
@@ -88,11 +91,12 @@ module QEMU = struct
 
         (* Create the actual output disk. *)
         let outdisk = disk_path output_storage output_name i in
-        output_to_local_file output_alloc output_format outdisk size socket
+        output_to_local_file ~compressed output_alloc output_format
+          outdisk size socket
     ) disks
 
   let finalize dir options () source inspect target_meta =
-    let qemu_boot, output_alloc, output_format,
+    let _, qemu_boot, output_alloc, output_format,
         output_name, output_storage = options in
 
     let { guestcaps; target_buses; target_firmware } = target_meta in

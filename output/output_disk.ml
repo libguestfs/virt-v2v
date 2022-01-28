@@ -30,7 +30,7 @@ open Create_libvirt_xml
 open Output
 
 module Disk = struct
-  type poptions = Types.output_allocation * string * string * string
+  type poptions = bool * Types.output_allocation * string * string * string
 
   type t = unit
 
@@ -41,11 +41,21 @@ module Disk = struct
       | None -> ""
 
   let query_output_options () =
-    printf (f_"No output options can be used in this mode.\n")
+    printf (f_"Output options that can be used with -o disk:
+
+  -oo compressed      Compress the output file (used only with -of qcow2)
+")
 
   let parse_options options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
+    let compressed = ref false in
+    List.iter (
+      function
+      | "compressed", "" -> compressed := true
+      | "compressed", v -> compressed := bool_of_string v
+      | k, _ ->
+         error (f_"-o disk: unknown output option ‘-oo %s’") k
+    ) options.output_options;
+
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "local" "-op";
 
@@ -60,11 +70,13 @@ module Disk = struct
 
     let output_name = Option.default source.s_name options.output_name in
 
-    options.output_alloc, options.output_format, output_name, output_storage
+    !compressed, options.output_alloc, options.output_format,
+    output_name, output_storage
 
   let setup dir options source =
     let disks = get_disks dir in
-    let output_alloc, output_format, output_name, output_storage = options in
+    let compressed, output_alloc, output_format, output_name, output_storage =
+      options in
 
     List.iter (
       fun (i, size) ->
@@ -73,11 +85,12 @@ module Disk = struct
 
         (* Create the actual output disk. *)
         let outdisk = disk_path output_storage output_name i in
-        output_to_local_file output_alloc output_format outdisk size socket
+        output_to_local_file ~compressed output_alloc output_format
+          outdisk size socket
     ) disks
 
   let finalize dir options () source inspect target_meta =
-    let output_alloc, output_format, output_name, output_storage = options in
+    let _, output_alloc, output_format, output_name, output_storage = options in
 
     (* Convert metadata to libvirt XML. *)
     (match target_meta.target_firmware with
