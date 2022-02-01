@@ -53,6 +53,13 @@ let rec vcenter_https_source dir options args =
     | _ ->
        error (f_"-i libvirt: expecting a libvirt guest name on the command line") in
 
+  (* -ip is required in this mode, see RHBZ#1960087 *)
+  let password_file =
+    match options.input_password with
+    | Some file -> file
+    | None ->
+       error (f_"-i libvirt: expecting -ip passwordfile parameter for vCenter connection") in
+
   (* -ic must be set and it must contain a server.  This is
    * enforced by virt-v2v.
    *)
@@ -76,8 +83,7 @@ let rec vcenter_https_source dir options args =
 
   (* Connect to the hypervisor. *)
   let conn =
-    let auth = Libvirt_utils.auth_for_password_file
-                 ?password_file:options.input_password () in
+    let auth = Libvirt_utils.auth_for_password_file ~password_file () in
     Libvirt.Connect.connect_auth ~name:input_conn auth in
 
   (* Parse the libvirt XML. *)
@@ -109,7 +115,7 @@ let rec vcenter_https_source dir options args =
          let cor = dir // "convert" in
          let pid = VCenter.start_nbdkit_for_path
                      ?bandwidth:options.bandwidth
-                     ~cor ?password_file:options.input_password
+                     ~cor ~password_file
                      dcPath uri server path socket in
          On_exit.kill pid
   ) disks;

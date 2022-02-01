@@ -24,6 +24,7 @@ virt-v2v-input-vmware - Using virt-v2v to convert guests from VMware
 
  virt-v2v
     -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'
+    -ip passwordfile
     "GUEST NAME" [-o* options]
 
 =head1 DESCRIPTION
@@ -389,6 +390,9 @@ will need to URI-escape that character using C<%5c>: C<DOMAIN%5cUSER>
 (5c is the hexadecimal ASCII code for backslash.)  Other punctuation
 may also have to be escaped.
 
+The user's password must be supplied in a local file using the
+separate I<-ip> parameter.
+
 =item C<server>
 
 is the vCenter Server (I<not> hypervisor).
@@ -472,11 +476,19 @@ B<If the above commands do not work, then virt-v2v is not going to
 work either>.  Fix your libvirt configuration and/or your VMware
 vCenter Server before continuing.
 
+=head2 vCenter: Supplying the password
+
+The vCenter password (usually for the root account, or the account
+specified by C<user@> in the vpx URL) has to be written to a local
+file, and the name of that file specified on the virt-v2v command line
+using I<-ip passwordfile>.
+
 =head2 vCenter: Importing a guest
 
 To import a particular guest from vCenter Server, do:
 
  $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \
+   -ip passwordfile \
    "Windows 2003" \
    -o local -os /var/tmp
 
