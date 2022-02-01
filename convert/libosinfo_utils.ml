@@ -33,16 +33,6 @@ let get_os_by_short_id os =
   debug "libosinfo: loaded OS: %s" (os#get_id ());
   os
 
-let string_of_osinfo_device_driver { Libosinfo.architecture; location;
-                                     pre_installable; signed; priority;
-                                     files } =
-  Printf.sprintf "%s: [%s, %s, %s, priority %Ld] %s"
-    location architecture
-    (if pre_installable then "pre-installable" else "not pre-installable")
-    (if signed then "signed" else "unsigned")
-    priority
-    (String.concat " " files)
-
 let string_of_osinfo_device_list dev_list =
 
   (* Turn the fields of an "osinfo_device" record into a list. *)
@@ -77,6 +67,17 @@ let string_of_osinfo_device_list dev_list =
    *)
   String.concat "\n"
     (List.map (fun dev -> columnate (listify dev) max_widths) dev_list)
+
+let string_of_osinfo_device_driver { Libosinfo.architecture; location;
+                                     pre_installable; signed; priority;
+                                     files; devices } =
+  Printf.sprintf "%s: [%s, %s, %s, priority %Ld]\nFiles:\n%s\nDevices:\n%s"
+    location architecture
+    (if pre_installable then "pre-installable" else "not pre-installable")
+    (if signed then "signed" else "unsigned")
+    priority
+    (String.concat "\n" files)
+    (string_of_osinfo_device_list devices)
 
 type os_support = {
   q35 : bool;

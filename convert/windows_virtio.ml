@@ -411,7 +411,7 @@ and copy_from_libosinfo g inspect destdir =
   let debug_drivers =
     List.iter (
       fun d ->
-        debug "\t%s" (Libosinfo_utils.string_of_osinfo_device_driver d)
+        debug "Driver: %s" (Libosinfo_utils.string_of_osinfo_device_driver d)
     )
   in
   let { i_osinfo = osinfo; i_arch = arch } = inspect in
