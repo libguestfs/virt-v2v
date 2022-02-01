@@ -292,6 +292,7 @@ v2v_osinfo_os_get_device_drivers (value osv)
     gboolean b;
     GList *l;
     gint64 i64;
+    OsinfoDeviceList *dev_list;
 
     driver = OSINFO_DEVICE_DRIVER(osinfo_list_get_nth (OSINFO_LIST(list), i));
 
@@ -317,6 +318,11 @@ v2v_osinfo_os_get_device_drivers (value osv)
     l = osinfo_device_driver_get_files (driver);
     Store_field (vi, 5, glist_to_value_list (l));
     g_list_free (l);
+    dev_list = osinfo_device_driver_get_devices (driver);
+    v = (dev_list == NULL) ?
+        Val_emptylist :
+        v2v_osinfo_device_list_to_value_list (dev_list);
+    Store_field (vi, 6, v);
 
     v = caml_alloc (2, 0);
     Store_field (v, 0, vi);

@@ -20,15 +20,6 @@
 
 type osinfo_os_t
 
-type osinfo_device_driver = {
-  architecture : string;
-  location : string;
-  pre_installable : bool;
-  signed : bool;
-  priority : int64;
-  files : string list;
-}
-
 type osinfo_device = {
   id : string;
   vendor : string;
@@ -39,6 +30,16 @@ type osinfo_device = {
   class_ : string;
   bus_type : string;
   subsystem : string;
+}
+
+type osinfo_device_driver = {
+  architecture : string;
+  location : string;
+  pre_installable : bool;
+  signed : bool;
+  priority : int64;
+  files : string list;
+  devices : osinfo_device list;
 }
 
 class osinfo_os : osinfo_os_t -> object

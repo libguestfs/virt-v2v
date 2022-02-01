@@ -23,15 +23,6 @@ open Common_gettext.Gettext
 type osinfo_db_t
 type osinfo_os_t
 
-type osinfo_device_driver = {
-  architecture : string;
-  location : string;
-  pre_installable : bool;
-  signed : bool;
-  priority : int64;
-  files : string list;
-}
-
 type osinfo_device = {
   id : string;
   vendor : string;
@@ -42,6 +33,16 @@ type osinfo_device = {
   class_ : string;
   bus_type : string;
   subsystem : string;
+}
+
+type osinfo_device_driver = {
+  architecture : string;
+  location : string;
+  pre_installable : bool;
+  signed : bool;
+  priority : int64;
+  files : string list;
+  devices : osinfo_device list;
 }
 
 external osinfo_os_get_id : osinfo_os_t -> string = "v2v_osinfo_os_get_id"
