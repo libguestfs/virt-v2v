@@ -31,6 +31,18 @@ val string_of_osinfo_device_list : Libosinfo.osinfo_device list -> string
 val string_of_osinfo_device_driver : Libosinfo.osinfo_device_driver -> string
 (** Convert a [osinfo_device_driver] to a printable string for debugging. *)
 
+val best_driver : Libosinfo.osinfo_device_driver list ->
+                  string ->
+                  Libosinfo.osinfo_device_driver
+(** [best_driver drivers arch] picks the best driver from [drivers] as follows:
+    - filters out drivers that:
+      - target a different architecture,
+      - are not pre-installable,
+      - have an invalid or non-local URL;
+    - sorts the remaining drivers by priority, like libosinfo does;
+    - picks the top driver of the sorted list.
+    Raises Not_found if no driver in [drivers] survives filtering. *)
+
 type os_support = {
   q35 : bool;
   vio10 : bool;

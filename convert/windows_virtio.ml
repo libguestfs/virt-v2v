@@ -408,53 +408,11 @@ and virtio_iso_path_matches_qemu_ga path inspect =
  * Returns list of copied files.
  *)
 and copy_from_libosinfo g inspect destdir =
-  let debug_drivers =
-    List.iter (
-      fun d ->
-        debug "Driver: %s" (Libosinfo_utils.string_of_osinfo_device_driver d)
-    )
-  in
   let { i_osinfo = osinfo; i_arch = arch } = inspect in
-  (* The architecture that "inspect.i_arch" from libguestfs
-   * ("daemon/filearch.ml") calls "i386", the osinfo-db schema
-   * ("data/schema/osinfo.rng.in") calls "i686".
-   *)
-  let arch = if arch = "i386" then "i686" else arch in
   try
     let os = Libosinfo_utils.get_os_by_short_id osinfo in
     let drivers = os#get_device_drivers () in
-    debug "libosinfo drivers before filtering:"; debug_drivers drivers;
-    (*
-     * Filter out drivers that we cannot use:
-     * - for a different architecture
-     * - non-pre-installable ones
-     * - location is an invalid URL, or a non-local one
-     *)
-    let drivers =
-      List.filter (
-        fun { Libosinfo.architecture; location; pre_installable } ->
-          if architecture <> arch || not pre_installable then
-            false
-          else
-            try
-              (match Xml.parse_uri location with
-              | { Xml.uri_scheme = Some scheme;
-                  Xml.uri_path = Some _ } when scheme = "file" -> true
-              | _ -> false
-              )
-            with Invalid_argument _ -> false
-      ) drivers in
-    debug "libosinfo drivers after filtering:"; debug_drivers drivers;
-    (* Sort the drivers by priority, like libosinfo does. *)
-    let drivers =
-      List.sort (
-        fun { Libosinfo.priority = prioA } { Libosinfo.priority = prioB } ->
-          compare prioB prioA
-      ) drivers in
-    (* Any driver available? *)
-    if drivers = [] then
-      raise Not_found;
-    let driver = List.hd drivers in
+    let driver = Libosinfo_utils.best_driver drivers arch in
     let uri = Xml.parse_uri driver.Libosinfo.location in
     let basedir =
       match uri.Xml.uri_path with

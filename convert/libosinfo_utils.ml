@@ -79,6 +79,41 @@ let string_of_osinfo_device_driver { Libosinfo.architecture; location;
     (String.concat "\n" files)
     (string_of_osinfo_device_list devices)
 
+let best_driver drivers arch =
+  let debug_drivers =
+    List.iter (fun d -> debug "Driver: %s" (string_of_osinfo_device_driver d))
+  (* The architecture that "inspect.i_arch" from libguestfs
+   * ("daemon/filearch.ml") calls "i386", the osinfo-db schema
+   * ("data/schema/osinfo.rng.in") calls "i686".
+   *)
+  and arch = if arch = "i386" then "i686" else arch in
+  debug "libosinfo drivers before filtering:";
+  debug_drivers drivers;
+  let drivers =
+    List.filter (
+      fun { Libosinfo.architecture; location; pre_installable } ->
+        if architecture <> arch || not pre_installable then
+          false
+        else
+          try
+            (match Xml.parse_uri location with
+            | { Xml.uri_scheme = Some scheme;
+                Xml.uri_path = Some _ } when scheme = "file" -> true
+            | _ -> false
+            )
+          with Invalid_argument _ -> false
+    ) drivers in
+  debug "libosinfo drivers after filtering:";
+  debug_drivers drivers;
+  let drivers =
+    List.sort (
+      fun { Libosinfo.priority = prioA } { Libosinfo.priority = prioB } ->
+        compare prioB prioA
+    ) drivers in
+  if drivers = [] then
+    raise Not_found;
+  List.hd drivers
+
 type os_support = {
   q35 : bool;
   vio10 : bool;
