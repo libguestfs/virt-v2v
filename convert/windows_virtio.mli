@@ -16,7 +16,11 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Functions for installing Windows virtio drivers. *)
+(** Values and functions for installing Windows virtio drivers. *)
+
+val virtio_win_from_env : bool
+(** [virtio_win_from_env] is true iff at least one of the VIRTIO_WIN and
+    VIRTIO_WIN_DIR variables is present in the environment. *)
 
 val install_drivers
     : Registry.t -> Types.inspect ->

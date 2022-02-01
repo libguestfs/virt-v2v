@@ -21,7 +21,7 @@
   <on_reboot>restart</on_reboot>
   <on_crash>restart</on_crash>
   <devices>
-    <disk type='file' device='disk' model='virtio-transitional'>
+    <disk type='file' device='disk'>
       <driver name='qemu' type='raw'/>
       <source file='TestOva-sda'/>
       <target dev='vda' bus='virtio'/>
@@ -36,16 +36,16 @@
     </disk>
     <interface type='bridge'>
       <source bridge='VM Network'/>
-      <model type='virtio-transitional'/>
+      <model type='virtio'/>
     </interface>
     <video>
       <model type='vga' vram='16384' heads='1'/>
     </video>
     <graphics type='vnc' autoport='yes'/>
-    <rng model='virtio-transitional'>
+    <rng model='virtio'>
       <backend model='random'>/dev/urandom</backend>
     </rng>
-    <memballoon model='virtio-transitional'/>
+    <memballoon model='virtio'/>
     <input type='tablet' bus='usb'/>
     <input type='mouse' bus='ps2'/>
     <console type='pty'/>

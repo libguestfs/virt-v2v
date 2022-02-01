@@ -1,4 +1,4 @@
-    <disk type='file' device='disk' model='virtio-transitional'>
+    <disk type='file' device='disk'>
       <driver name='qemu' type='raw'/>
       <target dev='vda' bus='virtio'/>
     </disk>
