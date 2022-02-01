@@ -415,6 +415,11 @@ and copy_from_libosinfo g inspect destdir =
     )
   in
   let { i_osinfo = osinfo; i_arch = arch } = inspect in
+  (* The architecture that "inspect.i_arch" from libguestfs
+   * ("daemon/filearch.ml") calls "i386", the osinfo-db schema
+   * ("data/schema/osinfo.rng.in") calls "i686".
+   *)
+  let arch = if arch = "i386" then "i686" else arch in
   try
     let os = Libosinfo_utils.get_os_by_short_id osinfo in
     let drivers = os#get_device_drivers () in
