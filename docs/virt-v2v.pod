@@ -919,7 +919,12 @@ below.
  Ubuntu 10.04+  All versions support virtio
 
  Windows        Drivers are installed from the ISO or directory pointed
-                to by "VIRTIO_WIN" environment variable if present
+                to by the "VIRTIO_WIN" environment variable if present.
+                If the "VIRTIO_WIN" environment variable is absent
+                (which is the recommended setting), then libosinfo is
+                consulted first, for driver files that are locally
+                available on the conversion host.
+
 
 =head2 RHEL 4: SELinux relabel appears to hang forever
 
@@ -1595,14 +1600,19 @@ I<--firstboot> or I<--firstboot-command> options with Windows guests.
 
 =item C<VIRTIO_WIN>
 
-This is where virtio drivers for Windows are searched for.  It can be
-a directory I<or> point to F<virtio-win.iso> (CD ROM image containing
-drivers).
+This is an override for where virtio drivers for Windows are searched
+for.  It can be a directory I<or> point to F<virtio-win.iso> (CD ROM
+image containing drivers).
 
-If unset, then we look for drivers in whichever of these paths
-is found first:
+If unset, then we look for drivers via whichever of these methods
+succeeds first:
 
 =over 4
+
+=item C<osinfo-db>
+
+Load osinfo data from the default paths, and attempt to find drivers via
+libosinfo lookup.  This is the preferred method.
 
 =item F</usr/share/virtio-win/virtio-win.iso>
 
@@ -1611,7 +1621,7 @@ The ISO containing virtio drivers for Windows.
 =item F</usr/share/virtio-win>
 
 The exploded tree of virtio drivers for Windows.  This is
-usually incomplete, hence the ISO is preferred.
+usually incomplete, hence the least preferred method.
 
 =back
 

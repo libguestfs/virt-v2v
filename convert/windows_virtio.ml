@@ -29,14 +29,14 @@ open Utils
 
 module G = Guestfs
 
-let virtio_win =
-  try Sys.getenv "VIRTIO_WIN"
+let virtio_win, virtio_win_from_env =
+  try Sys.getenv "VIRTIO_WIN", true
   with Not_found ->
-    try Sys.getenv "VIRTIO_WIN_DIR" (* old name for VIRTIO_WIN *)
+    try Sys.getenv "VIRTIO_WIN_DIR" (* old name for VIRTIO_WIN *), true
     with Not_found ->
       let iso = Config.datadir // "virtio-win" // "virtio-win.iso" in
-      if Sys.file_exists iso then iso
-      else Config.datadir // "virtio-win"
+      (if Sys.file_exists iso then iso
+       else Config.datadir // "virtio-win"), false
 
 let scsi_class_guid = "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
 let viostor_legacy_pciid = "VEN_1AF4&DEV_1001&SUBSYS_00021AF4&REV_00"
@@ -228,7 +228,7 @@ and ddb_regedits inspect drv_name drv_pciid =
  * been copied.
  *)
 and copy_drivers g inspect driverdir =
-  [] <> copy_from_libosinfo g inspect driverdir ||
+  (not virtio_win_from_env && [] <> copy_from_libosinfo g inspect driverdir) ||
     [] <> copy_from_virtio_win g inspect "/" driverdir
       virtio_iso_path_matches_guest_os
       (fun () ->
