@@ -1308,8 +1308,7 @@ have at least 100 available inodes.
 =head3 Minimum free space check in the host
 
 You must have sufficient free space in the host directory used to
-store large temporary overlays (except in I<--in-place> mode).  To
-find out which directory this is, use:
+store large temporary overlays.  To find out which directory this is, use:
 
  $ df -h "`guestfish get-cachedir`"
  Filesystem        Size  Used Avail Use% Mounted on

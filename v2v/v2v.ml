@@ -531,6 +531,11 @@ read the man page virt-v2v(1).
     static_ips;
   } in
 
+  (* Before starting the input module, check there is sufficient
+   * free space in the temporary directory on the host.
+   *)
+  check_host_free_space ();
+
   (* Start the input module (runs an NBD server in the background). *)
   message (f_"Setting up the source: %s")
     (Input_module.to_string input_options args);
@@ -609,6 +614,20 @@ read the man page virt-v2v(1).
    * on-success or on-fail cleanup is required.
    *)
   with_open_out (tmpdir // "done") (fun _ -> ())
+
+(* Conversion can fail or hang if there is insufficient free space in
+ * the large temporary directory.  Some input modules use large_tmpdir
+ * to unpack OVAs or store qcow2 overlays and some output modules
+ * use it to store temporary files.  In addition the  500 MB guestfs
+ * appliance may be created there.  (RHBZ#1316479, RHBZ#2051394)
+ *)
+and check_host_free_space () =
+  let free_space = StatVFS.free_space (StatVFS.statvfs large_tmpdir) in
+  debug "check_host_free_space: large_tmpdir=%s free_space=%Ld"
+        large_tmpdir free_space;
+  if free_space < 1_073_741_824L then
+    error (f_"insufficient free space in the conversion server temporary directory %s (%s).\n\nEither free up space in that directory, or set the LIBGUESTFS_CACHEDIR environment variable to point to another directory with more than 1GB of free space.\n\nSee also the virt-v2v(1) manual, section \"Minimum free space check in the host\".")
+          large_tmpdir (human_size free_space)
 
 and nbdcopy output_alloc input_uri output_uri =
   (* XXX It's possible that some output modes know whether
