@@ -280,9 +280,22 @@ e command line has to match the number of guest disk images (for this guest: %d)
     ignore (Python_script.run_command cancel_script json_params [])
   in
 
-  (* Set up an at-exit handler so we delete the orphan disks on failure. *)
+  (* Set up an at-exit handler to perform some cleanups.
+   * - Kill nbdkit PIDs (only before finalization).
+   * - Delete the orphan disks (only on conversion failure).
+   *)
+  let nbdkit_pids = ref [] in
   On_exit.f (
     fun () ->
+      (* Kill the nbdkit PIDs. *)
+      List.iter (
+        fun pid ->
+          try
+            kill pid Sys.sigterm
+          with exn -> debug "%s" (Printexc.to_string exn)
+      ) !nbdkit_pids;
+      nbdkit_pids := [];
+
       (* virt-v2v writes v2vdir/done on success only. *)
       let success = Sys.file_exists (dir // "done") in
       if not success then (
@@ -351,11 +364,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
       if is_ovirt_host then
         Nbdkit.add_arg cmd "is_ovirt_host" "true";
       let _, pid = Nbdkit.run_unix ~socket cmd in
-
-      (* --exit-with-parent should ensure nbdkit is cleaned
-       * up when we exit, but it's not supported everywhere.
-       *)
-      On_exit.kill pid;
+      List.push_front pid nbdkit_pids
   ) (List.combine disks disk_uuids);
 
   (* Stash some data we will need during finalization. *)
@@ -363,7 +372,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
   let t = (disk_sizes : int64 list), disk_uuids, !transfer_ids,
           finalize_script, createvm_script, json_params,
           rhv_storagedomain_uuid, rhv_cluster_uuid,
-          rhv_cluster_cpu_architecture, rhv_cluster_name in
+          rhv_cluster_cpu_architecture, rhv_cluster_name, nbdkit_pids in
   t
 
 and rhv_upload_finalize dir source inspect target_meta
@@ -374,7 +383,8 @@ and rhv_upload_finalize dir source inspect target_meta
                         (disk_sizes, disk_uuids, transfer_ids,
                          finalize_script, createvm_script, json_params,
                          rhv_storagedomain_uuid, rhv_cluster_uuid,
-                         rhv_cluster_cpu_architecture, rhv_cluster_name) =
+                         rhv_cluster_cpu_architecture, rhv_cluster_name,
+                         nbdkit_pids) =
   (* Check the cluster CPU arch matches what we derived about the
    * guest during conversion.
    *)
@@ -385,6 +395,19 @@ and rhv_upload_finalize dir source inspect target_meta
         error (f_"the cluster ‘%s’ does not support the architecture %s but %s")
           rhv_cluster_name target_meta.guestcaps.gcaps_arch arch
   );
+
+  (* We must kill all our nbdkit instances before finalizing the
+   * transfer.  See:
+   * https://listman.redhat.com/archives/libguestfs/2022-February/msg00111.html
+   *
+   * We want to fail here if the kill fails because nbdkit
+   * died already, as that would be unexpected.
+   *)
+  let () =
+    let pids = !nbdkit_pids in
+    List.iter (fun pid -> kill pid Sys.sigterm) pids;
+    List.iter (fun pid -> ignore (waitpid [] pid)) pids;
+    nbdkit_pids := [] (* Don't kill them again in the On_exit handler. *) in
 
   (* Finalize all the transfers. *)
   let json_params =
@@ -442,7 +465,7 @@ module RHVUpload = struct
   type t = int64 list * string list * string list *
            Python_script.script * Python_script.script *
            JSON.field list * string option * string option *
-           string option * string
+           string option * string * int list ref
 
   let to_string options =
     "-o rhv-upload" ^
