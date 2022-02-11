@@ -34,6 +34,9 @@ module type OUTPUT = sig
   (** [to_string options] converts the destination to a printable
       string (for messages). *)
 
+  val query_output_options : unit -> unit
+  (** When the user passes [-oo ?] this is used to print help. *)
+
   val setup : string -> options -> Types.source -> t
   (** [setup dir options source]
 
@@ -47,9 +50,6 @@ module type OUTPUT = sig
   (** [finalize dir inspect target_meta t]
 
       Finalizes the conversion and writes metadata. *)
-
-  val query_output_options : unit -> unit
-  (** When the user passes [-oo ?] this is used to print help. *)
 end
 
 (** Helper functions for output modes. *)

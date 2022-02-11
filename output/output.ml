@@ -39,12 +39,12 @@ type options = {
 module type OUTPUT = sig
   type t
   val to_string : options -> string
+  val query_output_options : unit -> unit
   val setup : string -> options -> Types.source -> t
   val finalize : string -> options ->
                  Types.source -> Types.inspect -> Types.target_meta ->
                  t ->
                  unit
-  val query_output_options : unit -> unit
 end
 
 let error_option_cannot_be_used_in_output_mode mode opt =

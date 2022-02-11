@@ -29,113 +29,113 @@ open Utils
 
 open Output
 
-let glance_parse_options options =
-  if options.output_conn <> None then
-    error_option_cannot_be_used_in_output_mode "glance" "-oc";
-  if options.output_password <> None then
-    error_option_cannot_be_used_in_output_mode "glance" "-op";
-  if options.output_storage <> None then
-    error_option_cannot_be_used_in_output_mode "glance" "-os";
-  options.output_format
-
-and glance_servers dir disks output_name output_format =
-  (* This does nothing useful except to check that the user has
-   * supplied all the correct auth environment variables to make
-   * 'glance' commands work as the current user.  If not then the
-   * program exits early.
-   *)
-  if shell_command "glance image-list > /dev/null" <> 0 then
-    error (f_"glance: glance client is not installed or set up correctly.  You may need to set environment variables or source a script to enable authentication.  See preceding messages for details.");
-
-  (* When debugging, query the glance client for its version. *)
-  if verbose () then (
-    eprintf "version of the glance client:\n%!";
-    ignore (shell_command "glance --version");
-  );
-
-  (* Although glance can slurp in a stream from stdin, qemu-nbd
-   * (used for -of qcow2) cannot write to a stream.  This might
-   * be possible in future with more creative use of NBD.  (XXX)
-   *)
-  let tmpdir = Mkdtemp.temp_dir ~base_dir:large_tmpdir "glance." in
-
-  (* This will write disks to the large temporary directory. *)
-  List.iter (
-    fun (i, size) ->
-      let socket = sprintf "%s/out%d" dir i in
-      On_exit.unlink socket;
-
-      (* Create the actual output disk. *)
-      let outdisk = sprintf "%s/%d" tmpdir i in
-      output_to_local_file Sparse output_format outdisk size socket
-  ) disks;
-
-  tmpdir
-
-and glance_finalize dir source inspect target_meta output_format tmpdir =
-  let min_ram = source.s_memory /^ 1024L /^ 1024L in
-
-  (* Get the image properties. *)
-  let properties =
-    Openstack_image_properties.create source inspect target_meta in
-  let properties =
-    List.flatten (
-      List.map (
-        fun (k, v) -> [ "--property"; sprintf "%s=%s" k v ]
-      ) properties
-    ) in
-
-  (* The first disk, assumed to be the system disk, will be called
-   * "guestname".  Subsequent disks, assumed to be data disks,
-   * will be called "guestname-disk2" etc.  The manual strongly
-   * hints you should import the data disks to Cinder.
-   *)
-  List.iteri (
-    fun i _ ->
-      let name =
-        if i == 0 then target_meta.output_name
-        else sprintf "%s-disk%d" target_meta.output_name (i+1) in
-
-      let disk = sprintf "%s/%d" tmpdir i in
-
-      (* If glance is used with VMware then there's a vmware_disktype
-       * option which allows preallocated.  However I don't believe
-       * it's possible in general glance, so ignore the -oa option.
-       * Since we are writing to a temporary file before copying to
-       * glance, -oa preallocated just preallocates the temporary file.
-       *)
-      let cmd = [ "glance"; "image-create"; "--name"; name;
-                  "--disk-format=" ^ output_format;
-                  "--container-format=bare"; "--file"; disk;
-                  "--min-ram"; Int64.to_string min_ram ] @
-                  properties in
-      if run_command cmd <> 0 then
-        error (f_"glance: image upload to glance failed, see earlier errors");
-
-      (* Unlink the temporary files as soon as glance has got them. *)
-      try unlink disk with Unix_error _ -> ()
-  ) source.s_disks;
-
-  (* Remove the temporary directory for the large files. *)
-  (try rmdir tmpdir with Unix_error _ -> ())
-
 module Glance = struct
   type t = string
 
   let to_string options = "-o glance"
 
+  let query_output_options () =
+    printf (f_"No output options can be used in this mode.\n")
+
+  let parse_options options =
+    if options.output_conn <> None then
+      error_option_cannot_be_used_in_output_mode "glance" "-oc";
+    if options.output_password <> None then
+      error_option_cannot_be_used_in_output_mode "glance" "-op";
+    if options.output_storage <> None then
+      error_option_cannot_be_used_in_output_mode "glance" "-os";
+    options.output_format
+
+  let setup_servers dir disks output_name output_format =
+    (* This does nothing useful except to check that the user has
+     * supplied all the correct auth environment variables to make
+     * 'glance' commands work as the current user.  If not then the
+     * program exits early.
+     *)
+    if shell_command "glance image-list > /dev/null" <> 0 then
+      error (f_"glance: glance client is not installed or set up correctly.  You may need to set environment variables or source a script to enable authentication.  See preceding messages for details.");
+
+    (* When debugging, query the glance client for its version. *)
+    if verbose () then (
+      eprintf "version of the glance client:\n%!";
+      ignore (shell_command "glance --version");
+    );
+
+    (* Although glance can slurp in a stream from stdin, qemu-nbd
+     * (used for -of qcow2) cannot write to a stream.  This might
+     * be possible in future with more creative use of NBD.  (XXX)
+     *)
+    let tmpdir = Mkdtemp.temp_dir ~base_dir:large_tmpdir "glance." in
+
+    (* This will write disks to the large temporary directory. *)
+    List.iter (
+      fun (i, size) ->
+        let socket = sprintf "%s/out%d" dir i in
+        On_exit.unlink socket;
+
+        (* Create the actual output disk. *)
+        let outdisk = sprintf "%s/%d" tmpdir i in
+        output_to_local_file Sparse output_format outdisk size socket
+    ) disks;
+
+    tmpdir
+
+  let do_finalize dir source inspect target_meta output_format tmpdir =
+    let min_ram = source.s_memory /^ 1024L /^ 1024L in
+
+    (* Get the image properties. *)
+    let properties =
+      Openstack_image_properties.create source inspect target_meta in
+    let properties =
+      List.flatten (
+          List.map (
+              fun (k, v) -> [ "--property"; sprintf "%s=%s" k v ]
+            ) properties
+        ) in
+
+    (* The first disk, assumed to be the system disk, will be called
+     * "guestname".  Subsequent disks, assumed to be data disks,
+     * will be called "guestname-disk2" etc.  The manual strongly
+     * hints you should import the data disks to Cinder.
+     *)
+    List.iteri (
+      fun i _ ->
+        let name =
+          if i == 0 then target_meta.output_name
+          else sprintf "%s-disk%d" target_meta.output_name (i+1) in
+
+        let disk = sprintf "%s/%d" tmpdir i in
+
+        (* If glance is used with VMware then there's a vmware_disktype
+         * option which allows preallocated.  However I don't believe
+         * it's possible in general glance, so ignore the -oa option.
+         * Since we are writing to a temporary file before copying to
+         * glance, -oa preallocated just preallocates the temporary file.
+         *)
+        let cmd = [ "glance"; "image-create"; "--name"; name;
+                    "--disk-format=" ^ output_format;
+                    "--container-format=bare"; "--file"; disk;
+                    "--min-ram"; Int64.to_string min_ram ] @
+                    properties in
+        if run_command cmd <> 0 then
+          error (f_"glance: image upload to glance failed, see earlier errors");
+
+        (* Unlink the temporary files as soon as glance has got them. *)
+        try unlink disk with Unix_error _ -> ()
+    ) source.s_disks;
+
+    (* Remove the temporary directory for the large files. *)
+    (try rmdir tmpdir with Unix_error _ -> ())
+
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
-    let data = glance_parse_options options in
+    let data = parse_options options in
     let output_name = get_output_name options source in
     let disks = get_disks dir in
-    glance_servers dir disks output_name data
+    setup_servers dir disks output_name data
 
   let finalize dir options source inspect target_meta tmpdir =
-    let data = glance_parse_options options in
-    glance_finalize dir source inspect target_meta data tmpdir
-
-  let query_output_options () =
-    printf (f_"No output options can be used in this mode.\n")
+    let data = parse_options options in
+    do_finalize dir source inspect target_meta data tmpdir
 end

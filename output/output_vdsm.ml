@@ -28,10 +28,15 @@ open Utils
 
 open Output
 
-let vdsm_print_output_options () =
-  let ovf_flavours_str = String.concat "|" Create_ovf.ovf_flavours in
+module VDSM = struct
+  type t = string * string * int64 list
 
-  printf (f_"Output options (-oo) which can be used with -o vdsm:
+  let to_string options = "-o vdsm"
+
+  let query_output_options () =
+    let ovf_flavours_str = String.concat "|" Create_ovf.ovf_flavours in
+
+    printf (f_"Output options (-oo) which can be used with -o vdsm:
 
   -oo vdsm-compat=0.10|1.1     Write qcow2 with compat=0.10|1.1
                                    (default: 0.10)
@@ -46,183 +51,176 @@ For each disk you must supply one of each of these options:
   -oo vdsm-vol-uuid=UUID       Disk volume UUID
 ") ovf_flavours_str
 
-and vdsm_parse_options options =
-  if options.output_password <> None then
-    error_option_cannot_be_used_in_output_mode "vdsm" "-op";
+  let parse_options options =
+    if options.output_password <> None then
+      error_option_cannot_be_used_in_output_mode "vdsm" "-op";
 
-  let vm_uuid = ref None in
-  let ovf_output = ref None in (* default "." *)
-  let compat = ref "0.10" in
-  let ovf_flavour = ref Create_ovf.RHVExportStorageDomain in
-  let image_uuids = ref [] in
-  let vol_uuids = ref [] in
+    let vm_uuid = ref None in
+    let ovf_output = ref None in (* default "." *)
+    let compat = ref "0.10" in
+    let ovf_flavour = ref Create_ovf.RHVExportStorageDomain in
+    let image_uuids = ref [] in
+    let vol_uuids = ref [] in
 
-  List.iter (
-    function
-    | "vdsm-compat", "0.10" -> compat := "0.10"
-    | "vdsm-compat", "1.1" -> compat := "1.1"
-    | "vdsm-compat", v ->
-       error (f_"-o vdsm: unknown vdsm-compat level ‘%s’") v
-    | "vdsm-vm-uuid", v ->
-       if !vm_uuid <> None then
-         error (f_"-o vdsm: -oo vdsm-vm-uuid set more than once");
-       vm_uuid := Some v;
-    | "vdsm-ovf-output", v ->
-       if !ovf_output <> None then
-         error (f_"-o vdsm: -oo vdsm-ovf-output set more than once");
-       ovf_output := Some v;
-    | "vdsm-ovf-flavour", v ->
-       ovf_flavour := Create_ovf.ovf_flavour_of_string v
-    | "vdsm-image-uuid", v ->
-       List.push_front v image_uuids
-    | "vdsm-vol-uuid", v ->
-       List.push_front v vol_uuids
-    | k, _ ->
-       error (f_"-o vdsm: unknown output option ‘-oo %s’") k
-  ) options.output_options;
+    List.iter (
+      function
+      | "vdsm-compat", "0.10" -> compat := "0.10"
+      | "vdsm-compat", "1.1" -> compat := "1.1"
+      | "vdsm-compat", v ->
+         error (f_"-o vdsm: unknown vdsm-compat level ‘%s’") v
+      | "vdsm-vm-uuid", v ->
+         if !vm_uuid <> None then
+           error (f_"-o vdsm: -oo vdsm-vm-uuid set more than once");
+         vm_uuid := Some v;
+      | "vdsm-ovf-output", v ->
+         if !ovf_output <> None then
+           error (f_"-o vdsm: -oo vdsm-ovf-output set more than once");
+         ovf_output := Some v;
+      | "vdsm-ovf-flavour", v ->
+         ovf_flavour := Create_ovf.ovf_flavour_of_string v
+      | "vdsm-image-uuid", v ->
+         List.push_front v image_uuids
+      | "vdsm-vol-uuid", v ->
+         List.push_front v vol_uuids
+      | k, _ ->
+         error (f_"-o vdsm: unknown output option ‘-oo %s’") k
+    ) options.output_options;
 
-  let compat = !compat in
-  let image_uuids = List.rev !image_uuids in
-  let vol_uuids = List.rev !vol_uuids in
-  if image_uuids = [] || vol_uuids = [] then
-    error (f_"-o vdsm: either -oo vdsm-vol-uuid or -oo vdsm-vm-uuid was not specified");
-  let vm_uuid =
-    match !vm_uuid with
-    | None ->
-       error (f_"-o vdsm: -oo vdsm-image-uuid was not specified")
-    | Some uuid -> uuid in
-  let ovf_output = Option.default "." !ovf_output in
-  let ovf_flavour = !ovf_flavour in
+    let compat = !compat in
+    let image_uuids = List.rev !image_uuids in
+    let vol_uuids = List.rev !vol_uuids in
+    if image_uuids = [] || vol_uuids = [] then
+      error (f_"-o vdsm: either -oo vdsm-vol-uuid or -oo vdsm-vm-uuid was not specified");
+    let vm_uuid =
+      match !vm_uuid with
+      | None ->
+         error (f_"-o vdsm: -oo vdsm-image-uuid was not specified")
+      | Some uuid -> uuid in
+    let ovf_output = Option.default "." !ovf_output in
+    let ovf_flavour = !ovf_flavour in
 
-  (* -os must be set, but at this point we cannot check it. *)
-  let output_storage =
-    match options.output_storage with
-    | None -> error (f_"-o vdsm: -os option was not specified")
-    | Some d when not (is_directory d) ->
-       error (f_"-os %s: output directory does not exist or is not a directory") d
-    | Some d -> d in
+    (* -os must be set, but at this point we cannot check it. *)
+    let output_storage =
+      match options.output_storage with
+      | None -> error (f_"-o vdsm: -os option was not specified")
+      | Some d when not (is_directory d) ->
+         error (f_"-os %s: output directory does not exist or is not a directory") d
+      | Some d -> d in
 
-  (options.output_alloc, options.output_format, output_storage,
-   image_uuids, vol_uuids, vm_uuid, ovf_output,
-   compat, ovf_flavour)
+    (options.output_alloc, options.output_format, output_storage,
+     image_uuids, vol_uuids, vm_uuid, ovf_output,
+     compat, ovf_flavour)
 
-and vdsm_servers dir disks output_name
-                 (output_alloc, output_format, output_storage,
-                  image_uuids, vol_uuids, vm_uuid, ovf_output,
-                  compat, ovf_flavour) =
-  if List.length image_uuids <> List.length disks ||
-     List.length vol_uuids <> List.length disks then
-    error (f_"the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters passed on the command line has to match the number of guest disk images (for this guest: %d)")
-      (List.length disks);
+  let setup_servers dir disks output_name
+                    (output_alloc, output_format, output_storage,
+                     image_uuids, vol_uuids, vm_uuid, ovf_output,
+                     compat, ovf_flavour) =
+    if List.length image_uuids <> List.length disks ||
+       List.length vol_uuids <> List.length disks then
+      error (f_"the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters passed on the command line has to match the number of guest disk images (for this guest: %d)")
+        (List.length disks);
 
-  let dd_mp, dd_uuid =
-    let fields =
-      String.nsplit "/" output_storage in (* ... "data-center" "UUID" *)
-    let fields = List.rev fields in       (* "UUID" "data-center" ... *)
-    let fields = List.dropwhile ((=) "") fields in
-    match fields with
-    | uuid :: rest when String.length uuid = 36 ->
-       let mp = String.concat "/" (List.rev rest) in
-       mp, uuid
-    | _ ->
-       error (f_"vdsm: invalid -os parameter does not contain a valid UUID: %s")
-         output_storage in
+    let dd_mp, dd_uuid =
+      let fields =
+        String.nsplit "/" output_storage in (* ... "data-center" "UUID" *)
+      let fields = List.rev fields in       (* "UUID" "data-center" ... *)
+      let fields = List.dropwhile ((=) "") fields in
+      match fields with
+      | uuid :: rest when String.length uuid = 36 ->
+         let mp = String.concat "/" (List.rev rest) in
+         mp, uuid
+      | _ ->
+         error (f_"vdsm: invalid -os parameter does not contain a valid UUID: %s")
+           output_storage in
 
-  debug "VDSM: DD mountpoint: %s\nVDSM: DD UUID: %s" dd_mp dd_uuid;
+    debug "VDSM: DD mountpoint: %s\nVDSM: DD UUID: %s" dd_mp dd_uuid;
 
-  (* Note that VDSM has to create all these directories. *)
-  let images_dir = dd_mp // dd_uuid // "images" in
-  List.iter (
-    fun image_uuid ->
-      let d = images_dir // image_uuid in
-      if not (is_directory d) then
-        error (f_"image directory (%s) does not exist or is not a directory")
-          d
-    ) image_uuids;
+    (* Note that VDSM has to create all these directories. *)
+    let images_dir = dd_mp // dd_uuid // "images" in
+    List.iter (
+      fun image_uuid ->
+        let d = images_dir // image_uuid in
+        if not (is_directory d) then
+          error (f_"image directory (%s) does not exist or is not a directory")
+            d
+      ) image_uuids;
 
-  (* Note that VDSM has to create this directory too. *)
-  if not (is_directory ovf_output) then
-    error (f_"OVF (metadata) directory (%s) does not exist or is not a directory")
-      ovf_output;
+    (* Note that VDSM has to create this directory too. *)
+    if not (is_directory ovf_output) then
+      error (f_"OVF (metadata) directory (%s) does not exist or is not a directory")
+        ovf_output;
 
-  debug "VDSM: OVF (metadata) directory: %s" ovf_output;
+    debug "VDSM: OVF (metadata) directory: %s" ovf_output;
 
-  (* The final directory structure should look like this:
-   *   /<MP>/<ESD_UUID>/images/
-   *      <IMAGE_UUID_1>/<VOL_UUID_1>        # first disk
-   *      <IMAGE_UUID_1>/<VOL_UUID_1>.meta   # first disk
-   *      <IMAGE_UUID_2>/<VOL_UUID_2>        # second disk
-   *      <IMAGE_UUID_2>/<VOL_UUID_2>.meta   # second disk
-   *      <IMAGE_UUID_3>/<VOL_UUID_3>        # etc
-   *      <IMAGE_UUID_3>/<VOL_UUID_3>.meta   #
-   *)
+    (* The final directory structure should look like this:
+     *   /<MP>/<ESD_UUID>/images/
+     *      <IMAGE_UUID_1>/<VOL_UUID_1>        # first disk
+     *      <IMAGE_UUID_1>/<VOL_UUID_1>.meta   # first disk
+     *      <IMAGE_UUID_2>/<VOL_UUID_2>        # second disk
+     *      <IMAGE_UUID_2>/<VOL_UUID_2>.meta   # second disk
+     *      <IMAGE_UUID_3>/<VOL_UUID_3>        # etc
+     *      <IMAGE_UUID_3>/<VOL_UUID_3>.meta   #
+     *)
 
-  (* Create the target filenames. *)
-  let filenames =
-    List.map (
-      fun (image_uuid, vol_uuid) ->
-        let filename = images_dir // image_uuid // vol_uuid in
-        debug "VDSM: disk: %s" filename;
-        filename
-    ) (List.combine image_uuids vol_uuids) in
+    (* Create the target filenames. *)
+    let filenames =
+      List.map (
+        fun (image_uuid, vol_uuid) ->
+          let filename = images_dir // image_uuid // vol_uuid in
+          debug "VDSM: disk: %s" filename;
+          filename
+      ) (List.combine image_uuids vol_uuids) in
 
-  (* Generate the .meta files associated with each volume. *)
-  let sizes = List.map snd disks in
-  let metas =
-    Create_ovf.create_meta_files output_alloc output_format
-      dd_uuid image_uuids sizes in
-  List.iter (
-    fun (filename, meta) ->
-      let meta_filename = filename ^ ".meta" in
-      with_open_out meta_filename (fun chan -> output_string chan meta)
-  ) (List.combine filenames metas);
+    (* Generate the .meta files associated with each volume. *)
+    let sizes = List.map snd disks in
+    let metas =
+      Create_ovf.create_meta_files output_alloc output_format
+        dd_uuid image_uuids sizes in
+    List.iter (
+      fun (filename, meta) ->
+        let meta_filename = filename ^ ".meta" in
+        with_open_out meta_filename (fun chan -> output_string chan meta)
+    ) (List.combine filenames metas);
 
-  (* Set up the NBD servers. *)
-  List.iter (
-    fun ((i, size), filename) ->
-      let socket = sprintf "%s/out%d" dir i in
-      On_exit.unlink socket;
+    (* Set up the NBD servers. *)
+    List.iter (
+      fun ((i, size), filename) ->
+        let socket = sprintf "%s/out%d" dir i in
+        On_exit.unlink socket;
 
-      (* Create the actual output disk. *)
-      output_to_local_file output_alloc output_format filename size socket
-  ) (List.combine disks filenames);
+        (* Create the actual output disk. *)
+        output_to_local_file output_alloc output_format filename size socket
+    ) (List.combine disks filenames);
 
-  (* Save parameters since we need them during finalization. *)
-  let t = dd_mp, dd_uuid, sizes in
-  t
+    (* Save parameters since we need them during finalization. *)
+    let t = dd_mp, dd_uuid, sizes in
+    t
 
-and vdsm_finalize dir source inspect target_meta
+  let do_finalize dir source inspect target_meta
                   (output_alloc, output_format, output_storage,
                    image_uuids, vol_uuids, vm_uuid, ovf_output,
                    compat, ovf_flavour)
                   (dd_mp, dd_uuid, sizes) =
-  (* Create the metadata. *)
-  let ovf = Create_ovf.create_ovf source inspect target_meta sizes
-              output_alloc output_format dd_uuid
-              image_uuids
-              vol_uuids
-              dir
-              vm_uuid
-              ovf_flavour in
+    (* Create the metadata. *)
+    let ovf = Create_ovf.create_ovf source inspect target_meta sizes
+                output_alloc output_format dd_uuid
+                image_uuids
+                vol_uuids
+                dir
+                vm_uuid
+                ovf_flavour in
 
-  (* Write it to the metadata file. *)
-  let file = ovf_output // vm_uuid ^ ".ovf" in
-  with_open_out file (fun chan -> DOM.doc_to_chan chan ovf)
-
-module VDSM = struct
-  type t = string * string * int64 list
-
-  let to_string options = "-o vdsm"
+    (* Write it to the metadata file. *)
+    let file = ovf_output // vm_uuid ^ ".ovf" in
+    with_open_out file (fun chan -> DOM.doc_to_chan chan ovf)
 
   let setup dir options source =
-    let data = vdsm_parse_options options in
+    let data = parse_options options in
     let output_name = get_output_name options source in
     let disks = get_disks dir in
-    vdsm_servers dir disks output_name data
+    setup_servers dir disks output_name data
 
   let finalize dir options source inspect target_meta t =
-    let data = vdsm_parse_options options in
-    vdsm_finalize dir source inspect target_meta data t
-
-  let query_output_options = vdsm_print_output_options
+    let data = parse_options options in
+    do_finalize dir source inspect target_meta data t
 end
