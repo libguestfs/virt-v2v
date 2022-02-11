@@ -27,6 +27,6 @@ type options = {
 
 module type INPUT = sig
   val to_string : options -> string list -> string
-  val setup : string -> options -> string list -> Types.source
   val query_input_options : unit -> unit
+  val setup : string -> options -> string list -> Types.source
 end

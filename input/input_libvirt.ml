@@ -30,7 +30,7 @@ open Utils
 
 open Input
 
-let rec libvirt_source options args =
+let rec get_source_from_libvirt options args =
   if options.input_options <> [] then
     error (f_"no -io (input options) are allowed here");
 
@@ -50,7 +50,17 @@ let rec libvirt_source options args =
   let source, disks, _ = parse_libvirt_domain conn guest in
   source, disks
 
-and libvirt_servers dir disks =
+and get_source_from_libvirt_xml _ args =
+  let xmlfile =
+    match args with
+    | [arg] -> arg
+    | _ ->
+       error (f_"-i libvirtxml: expecting a libvirt XML filename on the command line") in
+  let xml = read_whole_file xmlfile in
+  let source, disks = parse_libvirt_xml xml in
+  source, disks
+
+and setup_servers dir disks =
   (* Check nbdkit is installed. *)
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working.  It is required to use ‘-i libvirt|libvirtxml’.");
@@ -119,16 +129,6 @@ and libvirt_servers dir disks =
             On_exit.kill pid
   ) disks
 
-and libvirt_xml_source _ args =
-  let xmlfile =
-    match args with
-    | [arg] -> arg
-    | _ ->
-       error (f_"-i libvirtxml: expecting a libvirt XML filename on the command line") in
-  let xml = read_whole_file xmlfile in
-  let source, disks = parse_libvirt_xml xml in
-  source, disks
-
 module Libvirt_ = struct
   let to_string options args =
     let xs = "-i libvirt" :: args in
@@ -138,23 +138,23 @@ module Libvirt_ = struct
       | None -> xs in
     String.concat " " xs
 
-  let setup dir options args =
-    let source, data = libvirt_source options args in
-    libvirt_servers dir data;
-    source
-
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
+
+  let setup dir options args =
+    let source, data = get_source_from_libvirt options args in
+    setup_servers dir data;
+    source
 end
 
 module LibvirtXML = struct
   let to_string options args = String.concat " " ("-i libvirtxml" :: args)
 
-  let setup dir options args =
-    let source, data = libvirt_xml_source options args in
-    libvirt_servers dir data;
-    source
-
   let query_input_options () =
     printf (f_"No input options can be used in this mode.\n")
+
+  let setup dir options args =
+    let source, data = get_source_from_libvirt_xml options args in
+    setup_servers dir data;
+    source
 end

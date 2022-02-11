@@ -30,13 +30,13 @@ module type INPUT = sig
   (** [to_string options args] converts the source to a printable
       string (for messages). *)
 
+  val query_input_options : unit -> unit
+  (** When the user passes [-io ?] this is used to print help. *)
+
   val setup : string -> options -> string list -> Types.source
   (** [setup dir options args]
 
       Set up the input mode.  Examines the source and extracts
       source metadata ([Types.source]).  Creates a disk pipeline
       [dir // "inX"] for each input disk. *)
-
-  val query_input_options : unit -> unit
-  (** When the user passes [-io ?] this is used to print help. *)
 end
