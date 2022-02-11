@@ -30,6 +30,8 @@ open Utils
 open Output
 
 module Glance = struct
+  type poptions = string * string
+
   type t = string
 
   let to_string options = "-o glance"
@@ -38,6 +40,8 @@ module Glance = struct
     printf (f_"No output options can be used in this mode.\n")
 
   let parse_options options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
     if options.output_conn <> None then
       error_option_cannot_be_used_in_output_mode "glance" "-oc";
     if options.output_password <> None then
@@ -49,7 +53,10 @@ module Glance = struct
 
     options.output_format, output_name
 
-  let setup_servers dir disks (output_format, output_name) =
+  let setup dir options source =
+    let disks = get_disks dir in
+    let output_format, output_name = options in
+
     (* This does nothing useful except to check that the user has
      * supplied all the correct auth environment variables to make
      * 'glance' commands work as the current user.  If not then the
@@ -83,8 +90,9 @@ module Glance = struct
 
     tmpdir
 
-  let do_finalize dir source inspect target_meta (output_format, output_name)
-                  tmpdir =
+  let finalize dir options tmpdir source inspect target_meta =
+    let output_format, output_name = options in
+
     let min_ram = source.s_memory /^ 1024L /^ 1024L in
 
     (* Get the image properties. *)
@@ -130,15 +138,4 @@ module Glance = struct
 
     (* Remove the temporary directory for the large files. *)
     (try rmdir tmpdir with Unix_error _ -> ())
-
-  let setup dir options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta tmpdir =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data tmpdir
 end

@@ -29,6 +29,10 @@ open Utils
 open Output
 
 module VDSM = struct
+  type poptions = Types.output_allocation * string * string * string *
+                  string list * string list * string * string *
+                  string * Create_ovf.ovf_flavour
+
   type t = string * string * int64 list
 
   let to_string options = "-o vdsm"
@@ -114,11 +118,13 @@ For each disk you must supply one of each of these options:
      image_uuids, vol_uuids, vm_uuid, ovf_output,
      compat, ovf_flavour)
 
-  let setup_servers dir disks
-                    (output_alloc, output_format,
-                     output_name, output_storage,
-                     image_uuids, vol_uuids, vm_uuid, ovf_output,
-                     compat, ovf_flavour) =
+  let setup dir options source =
+    let disks = get_disks dir in
+    let output_alloc, output_format,
+        output_name, output_storage,
+        image_uuids, vol_uuids, vm_uuid, ovf_output,
+        compat, ovf_flavour = options in
+
     if List.length image_uuids <> List.length disks ||
        List.length vol_uuids <> List.length disks then
       error (f_"the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters passed on the command line has to match the number of guest disk images (for this guest: %d)")
@@ -200,12 +206,13 @@ For each disk you must supply one of each of these options:
     let t = dd_mp, dd_uuid, sizes in
     t
 
-  let do_finalize dir source inspect target_meta
-                  (output_alloc, output_format,
-                   output_name, output_storage,
-                   image_uuids, vol_uuids, vm_uuid, ovf_output,
-                   compat, ovf_flavour)
-                  (dd_mp, dd_uuid, sizes) =
+  let finalize dir options t source inspect target_meta =
+    let output_alloc, output_format,
+        output_name, output_storage,
+        image_uuids, vol_uuids, vm_uuid, ovf_output,
+        compat, ovf_flavour = options in
+    let dd_mp, dd_uuid, sizes = t in
+
     (* Create the metadata. *)
     let ovf = Create_ovf.create_ovf source inspect target_meta sizes
                 output_alloc output_format output_name dd_uuid
@@ -218,13 +225,4 @@ For each disk you must supply one of each of these options:
     (* Write it to the metadata file. *)
     let file = ovf_output // vm_uuid ^ ".ovf" in
     with_open_out file (fun chan -> DOM.doc_to_chan chan ovf)
-
-  let setup dir options source =
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta t =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data t
 end

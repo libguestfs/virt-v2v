@@ -548,6 +548,12 @@ read the man page virt-v2v(1).
     exit 0
   );
 
+  (* Check and parse the output options on the command line.
+   * Do this before starting conversion to catch errors early, but
+   * we have to do it after creating the source above.
+   *)
+  let output_poptions = Output_module.parse_options output_options source in
+
   (* Do the conversion. *)
   with_open_out (tmpdir // "convert") (fun _ -> ());
   let inspect, target_meta = Convert.convert tmpdir conv_options source in
@@ -556,7 +562,7 @@ read the man page virt-v2v(1).
   (* Start the output module (runs an NBD server in the background). *)
   message (f_"Setting up the destination: %s")
     (Output_module.to_string output_options);
-  let output_t = Output_module.setup tmpdir output_options source in
+  let output_t = Output_module.setup tmpdir output_poptions source in
 
   (* Debug the v2vdir. *)
   if verbose () then (
@@ -603,8 +609,8 @@ read the man page virt-v2v(1).
 
   (* Do the finalization step. *)
   message (f_"Creating output metadata");
-  Output_module.finalize tmpdir output_options
-    source inspect target_meta output_t;
+  Output_module.finalize tmpdir output_poptions output_t
+    source inspect target_meta;
 
   message (f_"Finishing off");
   (* As the last thing, write a file indicating success before

@@ -27,8 +27,12 @@ type options = {
 }
 
 module type OUTPUT = sig
+  type poptions
+  (** Opaque parsed output options. *)
+
   type t
-  (** Opaque data used by the output mode. *)
+  (** Opaque data that the output mode needs to pass from
+      {!setup} to {!finalize}. *)
 
   val to_string : options -> string
   (** [to_string options] converts the destination to a printable
@@ -37,17 +41,22 @@ module type OUTPUT = sig
   val query_output_options : unit -> unit
   (** When the user passes [-oo ?] this is used to print help. *)
 
-  val setup : string -> options -> Types.source -> t
-  (** [setup dir options source]
+  val parse_options : options -> Types.source -> poptions
+  (** [parse_options source options] should check and parse the output
+      options passed on the command line.  The return value {!poptions}
+      stores the parsed information and is passed to both
+      {!setup} and {!finalize} methods. *)
+
+  val setup : string -> poptions -> Types.source -> t
+  (** [setup dir poptions source]
 
       Set up the output mode.  Sets up a disk pipeline
       [dir // "outX"] for each output disk. *)
 
-  val finalize : string -> options ->
+  val finalize : string -> poptions -> t ->
                  Types.source -> Types.inspect -> Types.target_meta ->
-                 t ->
                  unit
-  (** [finalize dir inspect target_meta t]
+  (** [finalize dir poptions t inspect target_meta]
 
       Finalizes the conversion and writes metadata. *)
 end

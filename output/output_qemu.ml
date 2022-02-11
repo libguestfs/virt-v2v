@@ -29,6 +29,8 @@ open Utils
 open Output
 
 module QEMU = struct
+  type poptions = bool * Types.output_allocation * string * string * string
+
   type t = unit
 
   let to_string options =
@@ -75,9 +77,10 @@ module QEMU = struct
     (qemu_boot, options.output_alloc, options.output_format,
      output_name, output_storage)
 
-  let setup_servers dir disks
-                    (_, output_alloc, output_format,
-                     output_name, output_storage) =
+  let setup dir options source =
+    let disks = get_disks dir in
+    let _, output_alloc, output_format, output_name, output_storage = options in
+
     List.iter (
       fun (i, size) ->
         let socket = sprintf "%s/out%d" dir i in
@@ -88,9 +91,10 @@ module QEMU = struct
         output_to_local_file output_alloc output_format outdisk size socket
     ) disks
 
-  let do_finalize dir source inspect target_meta
-                  (qemu_boot, output_alloc, output_format,
-                   output_name, output_storage) =
+  let finalize dir options () source inspect target_meta =
+    let qemu_boot, output_alloc, output_format,
+        output_name, output_storage = options in
+
     let { guestcaps; target_buses; target_firmware } = target_meta in
 
     (* Convert metadata to libvirt XML. *)
@@ -323,13 +327,4 @@ module QEMU = struct
       let cmd = sprintf "%s &" (quote file) in
       ignore (shell_command cmd)
     )
-
-  let setup dir options source =
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta () =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data
 end

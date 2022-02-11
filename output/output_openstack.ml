@@ -30,6 +30,10 @@ open Utils
 open Output
 
 module Openstack = struct
+  type poptions = string option * string * string *
+                  string option * string option *
+                  (string list -> int) * (string list -> JSON.json_t option)
+
   type t = string list
 
   let to_string options =
@@ -200,11 +204,12 @@ The os-* parameters and environment variables are optional.
      run_openstack_command,
      run_openstack_command_capture_json)
 
-  let setup_servers dir disks
-                    (output_storage, output_name,
-                     server_id, guest_id, dev_disk_by_id,
-                     run_openstack_command,
-                     run_openstack_command_capture_json) =
+  let setup dir options source =
+    let disks = get_disks dir in
+    let output_storage, output_name,
+        server_id, guest_id, dev_disk_by_id,
+        run_openstack_command, run_openstack_command_capture_json = options in
+
     (* Timeout waiting for Cinder volumes to attach to the appliance. *)
     let attach_timeout = 300 (* seconds *) in
 
@@ -382,12 +387,10 @@ The os-* parameters and environment variables are optional.
 
     !volume_ids
 
-  let rec do_finalize dir source inspect target_meta
-                      (output_storage, output_name,
-                       server_id, guest_id, dev_disk_by_id,
-                       run_openstack_command,
-                       run_openstack_command_capture_json)
-                      volume_ids =
+  let rec finalize dir options volume_ids source inspect target_meta =
+    let output_storage, output_name,
+        server_id, guest_id, dev_disk_by_id,
+        run_openstack_command, run_openstack_command_capture_json = options in
     let nr_disks = List.length volume_ids in
 
     (* Update metadata on a cinder volume. *)
@@ -479,12 +482,5 @@ The os-* parameters and environment variables are optional.
       (tm.tm_year + 1900) (tm.tm_mon + 1) tm.tm_mday
       tm.tm_hour tm.tm_min tm.tm_sec
 
-  let setup dir options source =
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
 
-  let finalize dir options source inspect target_meta t =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data t
 end

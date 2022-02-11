@@ -32,6 +32,9 @@ open Create_libvirt_xml
 open Output
 
 module Libvirt_ = struct
+  type poptions = Libvirt.rw Libvirt.Connect.t Lazy.t *
+                  Types.output_allocation * string * string * string
+
   type t = string * string
 
   let to_string options =
@@ -44,6 +47,8 @@ module Libvirt_ = struct
     printf (f_"No output options can be used in this mode.\n")
 
   let parse_options options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "libvirt" "-op";
 
@@ -57,9 +62,9 @@ module Libvirt_ = struct
     (conn, options.output_alloc, options.output_format, output_name,
      output_pool)
 
-  let setup_servers dir disks
-                    (conn, output_alloc, output_format, output_name,
-                     output_pool) =
+  let setup dir options source =
+    let disks = get_disks dir in
+    let conn, output_alloc, output_format, output_name, output_pool = options in
     let conn = Lazy.force conn in
 
     (* Get the capabilities from libvirt. *)
@@ -119,10 +124,10 @@ module Libvirt_ = struct
 
     (capabilities_xml, pool_name)
 
-  let rec do_finalize dir source inspect target_meta
-                      (conn, output_alloc, output_format, output_name,
-                       output_pool)
-                      (capabilities_xml, pool_name) =
+  let rec finalize dir options t source inspect target_meta =
+    let conn, output_alloc, output_format, output_name, output_pool = options in
+    let capabilities_xml, pool_name = t in
+
     (match target_meta.target_firmware with
      | TargetBIOS -> ()
      | TargetUEFI ->
@@ -212,15 +217,4 @@ module Libvirt_ = struct
       let features = xpath_get_nodes xpathctx "features/*" in
       List.map Xml.node_name features
     )
-
-  let setup dir options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta t =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data t
 end

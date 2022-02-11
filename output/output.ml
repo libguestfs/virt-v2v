@@ -37,13 +37,14 @@ type options = {
 }
 
 module type OUTPUT = sig
+  type poptions
   type t
   val to_string : options -> string
   val query_output_options : unit -> unit
-  val setup : string -> options -> Types.source -> t
-  val finalize : string -> options ->
+  val parse_options : options -> Types.source -> poptions
+  val setup : string -> poptions -> Types.source -> t
+  val finalize : string -> poptions -> t ->
                  Types.source -> Types.inspect -> Types.target_meta ->
-                 t ->
                  unit
 end
 

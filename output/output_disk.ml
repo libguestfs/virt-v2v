@@ -30,6 +30,8 @@ open Create_libvirt_xml
 open Output
 
 module Disk = struct
+  type poptions = Types.output_allocation * string * string * string
+
   type t = unit
 
   let to_string options =
@@ -42,6 +44,8 @@ module Disk = struct
     printf (f_"No output options can be used in this mode.\n")
 
   let parse_options options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "local" "-op";
 
@@ -58,8 +62,10 @@ module Disk = struct
 
     options.output_alloc, options.output_format, output_name, output_storage
 
-  let setup_servers dir disks
-                    (output_alloc, output_format, output_name, output_storage) =
+  let setup dir options source =
+    let disks = get_disks dir in
+    let output_alloc, output_format, output_name, output_storage = options in
+
     List.iter (
       fun (i, size) ->
         let socket = sprintf "%s/out%d" dir i in
@@ -70,8 +76,9 @@ module Disk = struct
         output_to_local_file output_alloc output_format outdisk size socket
     ) disks
 
-  let do_finalize dir source inspect target_meta
-                  (output_alloc, output_format, output_name, output_storage) =
+  let finalize dir options () source inspect target_meta =
+    let output_alloc, output_format, output_name, output_storage = options in
+
     (* Convert metadata to libvirt XML. *)
     (match target_meta.target_firmware with
      | TargetBIOS -> ()
@@ -105,15 +112,4 @@ module Disk = struct
       DOM.doc_to_chan Stdlib.stderr doc;
       eprintf "\n%!";
     )
-
-  let setup dir options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta () =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data
 end

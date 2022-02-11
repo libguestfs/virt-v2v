@@ -30,6 +30,8 @@ open Utils
 open Output
 
 module Json = struct
+  type poptions = string * Types.output_allocation * string * string * string
+
   type t = unit
 
   let to_string options =
@@ -91,10 +93,12 @@ module Json = struct
     (json_disks_pattern,
      options.output_alloc, options.output_format, output_name, output_storage)
 
-  let rec setup_servers dir disks
-                        (json_disks_pattern,
-                         output_alloc, output_format, output_name,
-                         output_storage) =
+  let rec setup dir options source =
+    let disks = get_disks dir in
+    let json_disks_pattern,
+        output_alloc, output_format, output_name,
+        output_storage = options in
+
     List.iter (
       fun (i, size) ->
         let socket = sprintf "%s/out%d" dir i in
@@ -122,9 +126,10 @@ module Json = struct
     let outdisk = absolute_path outdisk in
     outdisk
 
-  let do_finalize dir source inspect target_meta
-                  (json_disks_pattern,
-                   output_alloc, output_format, output_name, output_storage) =
+  let finalize dir options () source inspect target_meta =
+    let json_disks_pattern,
+        output_alloc, output_format, output_name, output_storage = options in
+
     let doc =
       Create_json.create_json_metadata source inspect target_meta
         (json_path output_storage output_name json_disks_pattern)
@@ -143,13 +148,4 @@ module Json = struct
         output_string chan doc_string;
         output_char chan '\n'
     )
-
-  let setup dir options source =
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta () =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data
 end

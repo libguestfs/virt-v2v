@@ -30,6 +30,8 @@ open Utils
 open Output
 
 module RHV = struct
+  type poptions = Types.output_allocation * string * string * string
+
   type t = string * string * string * string list * string list * int64 list
 
   let to_string options = "-o rhv"
@@ -38,6 +40,8 @@ module RHV = struct
     printf (f_"No output options can be used in this mode.\n")
 
   let parse_options options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "rhv" "-op";
 
@@ -51,9 +55,10 @@ module RHV = struct
 
     (options.output_alloc, options.output_format, output_name, output_storage)
 
-  let rec setup_servers dir disks
-                        (output_alloc, output_format,
-                         output_name, output_storage) =
+  let rec setup dir options source =
+    let disks = get_disks dir in
+    let output_alloc, output_format, output_name, output_storage = options in
+
     (* UID:GID required for files and directories when writing to ESD. *)
     let uid = 36 and gid = 36 in
 
@@ -248,10 +253,10 @@ module RHV = struct
     (* Looks good, so return the SD mountpoint and UUID. *)
     (mp, uuid)
 
-  let do_finalize dir source inspect target_meta
-                  (output_alloc, output_format,
-                   output_name, output_storage)
-                  (esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes) =
+  let finalize dir options t source inspect target_meta =
+    let output_alloc, output_format, output_name, output_storage = options in
+    let esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes = t in
+
     (* UID:GID required for files and directories when writing to ESD. *)
     let uid = 36 and gid = 36 in
 
@@ -277,15 +282,4 @@ module RHV = struct
     Changeuid.mkdir changeuid_t dir 0o755;
     let file = dir // vm_uuid ^ ".ovf" in
     Changeuid.output changeuid_t file (fun chan -> DOM.doc_to_chan chan ovf)
-
-  let setup dir options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options source in
-    let disks = get_disks dir in
-    setup_servers dir disks data
-
-  let finalize dir options source inspect target_meta t =
-    let data = parse_options options source in
-    do_finalize dir source inspect target_meta data t
 end

@@ -29,6 +29,7 @@ open Utils
 open Output
 
 module Null = struct
+  type poptions = unit
   type t = unit
 
   let to_string options = "-o null"
@@ -37,6 +38,8 @@ module Null = struct
     printf (f_"No output options can be used in this mode.\n")
 
   let parse_options options source =
+    if options.output_options <> [] then
+      error (f_"no -oo (output options) are allowed here");
     if options.output_alloc <> Sparse then
       error_option_cannot_be_used_in_output_mode "null" "-oa";
     if options.output_conn <> None then
@@ -48,7 +51,9 @@ module Null = struct
     if options.output_storage <> None then
       error_option_cannot_be_used_in_output_mode "null" "-os"
 
-  let setup_servers dir disks =
+  let setup dir () source =
+    let disks = get_disks dir in
+
     (* Check nbdkit is installed and has the required plugin. *)
     if not (Nbdkit.is_installed ()) then
       error (f_"nbdkit is not installed or not working.  It is required to use ‘-o null’.");
@@ -81,13 +86,6 @@ module Null = struct
         )
     ) disks
 
-  let setup dir options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
-    parse_options options source;
-    let disks = get_disks dir in
-    setup_servers dir disks
-
-  let finalize dir options source inspect target_meta () =
+  let finalize dir () () source inspect target_meta =
     () (* nothing to do *)
 end
