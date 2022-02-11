@@ -79,7 +79,7 @@ For example:
 The os-* parameters and environment variables are optional.
 ")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_alloc <> Sparse || options.output_format <> "raw" then
       error (f_"-o openstack mode only supports -oa sparse -of raw");
 
@@ -193,12 +193,16 @@ The os-* parameters and environment variables are optional.
     if run_openstack_command args <> 0 then
       error (f_"openstack: precheck failed, there may be a problem with authentication, see earlier error messages");
 
-    (options.output_storage, server_id, guest_id, dev_disk_by_id,
+    let output_name = Option.default source.s_name options.output_name in
+
+    (options.output_storage, output_name,
+     server_id, guest_id, dev_disk_by_id,
      run_openstack_command,
      run_openstack_command_capture_json)
 
-  let setup_servers dir disks output_name
-                    (output_storage, server_id, guest_id, dev_disk_by_id,
+  let setup_servers dir disks
+                    (output_storage, output_name,
+                     server_id, guest_id, dev_disk_by_id,
                      run_openstack_command,
                      run_openstack_command_capture_json) =
     (* Timeout waiting for Cinder volumes to attach to the appliance. *)
@@ -379,7 +383,8 @@ The os-* parameters and environment variables are optional.
     !volume_ids
 
   let rec do_finalize dir source inspect target_meta
-                      (output_storage, server_id, guest_id, dev_disk_by_id,
+                      (output_storage, output_name,
+                       server_id, guest_id, dev_disk_by_id,
                        run_openstack_command,
                        run_openstack_command_capture_json)
                       volume_ids =
@@ -442,12 +447,12 @@ The os-* parameters and environment variables are optional.
       fun i id ->
         let description =
           sprintf "%s disk %d/%d converted by virt-v2v"
-            target_meta.output_name (i+1) nr_disks in
+            output_name (i+1) nr_disks in
 
         let volume_properties = ref [
           "virt_v2v_version", Config.package_version_full;
           "virt_v2v_conversion_date", iso_time;
-          "virt_v2v_guest_name", target_meta.output_name;
+          "virt_v2v_guest_name", output_name;
           "virt_v2v_disk_index", sprintf "%d/%d" (i+1) nr_disks;
         ] in
         (match source.s_genid with
@@ -475,12 +480,11 @@ The os-* parameters and environment variables are optional.
       tm.tm_hour tm.tm_min tm.tm_sec
 
   let setup dir options source =
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta t =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data t
 end

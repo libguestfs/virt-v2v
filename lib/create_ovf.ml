@@ -528,9 +528,10 @@ let create_meta_files output_alloc output_format sd_uuid image_uuids sizes =
 
 (* Create the OVF file. *)
 let rec create_ovf source inspect
-          { output_name; guestcaps; target_firmware; target_nics }
+          { guestcaps; target_firmware; target_nics }
           sizes
           output_alloc output_format
+          output_name
           sd_uuid image_uuids vol_uuids ?(need_actual_sizes = false) dir
           vm_uuid ovf_flavour =
   assert (List.length sizes = List.length vol_uuids);

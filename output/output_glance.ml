@@ -37,16 +37,19 @@ module Glance = struct
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_conn <> None then
       error_option_cannot_be_used_in_output_mode "glance" "-oc";
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "glance" "-op";
     if options.output_storage <> None then
       error_option_cannot_be_used_in_output_mode "glance" "-os";
-    options.output_format
 
-  let setup_servers dir disks output_name output_format =
+    let output_name = Option.default source.s_name options.output_name in
+
+    options.output_format, output_name
+
+  let setup_servers dir disks (output_format, output_name) =
     (* This does nothing useful except to check that the user has
      * supplied all the correct auth environment variables to make
      * 'glance' commands work as the current user.  If not then the
@@ -80,7 +83,8 @@ module Glance = struct
 
     tmpdir
 
-  let do_finalize dir source inspect target_meta output_format tmpdir =
+  let do_finalize dir source inspect target_meta (output_format, output_name)
+                  tmpdir =
     let min_ram = source.s_memory /^ 1024L /^ 1024L in
 
     (* Get the image properties. *)
@@ -101,8 +105,8 @@ module Glance = struct
     List.iteri (
       fun i _ ->
         let name =
-          if i == 0 then target_meta.output_name
-          else sprintf "%s-disk%d" target_meta.output_name (i+1) in
+          if i == 0 then output_name
+          else sprintf "%s-disk%d" output_name (i+1) in
 
         let disk = sprintf "%s/%d" tmpdir i in
 
@@ -130,12 +134,11 @@ module Glance = struct
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta tmpdir =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data tmpdir
 end

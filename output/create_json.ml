@@ -44,8 +44,8 @@ let json_unknown_string = function
   | v -> JSON.String v
 
 let create_json_metadata source inspect
-      { output_name; guestcaps; target_buses; target_firmware; target_nics }
-      outdisk_name output_format =
+      { guestcaps; target_buses; target_firmware; target_nics }
+      outdisk_name output_format output_name =
   let doc = ref [
     "version", JSON.Int 1L;
     "name", JSON.String output_name;

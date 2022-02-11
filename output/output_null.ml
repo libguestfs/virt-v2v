@@ -36,7 +36,7 @@ module Null = struct
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_alloc <> Sparse then
       error_option_cannot_be_used_in_output_mode "null" "-oa";
     if options.output_conn <> None then
@@ -48,7 +48,7 @@ module Null = struct
     if options.output_storage <> None then
       error_option_cannot_be_used_in_output_mode "null" "-os"
 
-  let setup_servers dir disks output_name =
+  let setup_servers dir disks =
     (* Check nbdkit is installed and has the required plugin. *)
     if not (Nbdkit.is_installed ()) then
       error (f_"nbdkit is not installed or not working.  It is required to use ‘-o null’.");
@@ -84,10 +84,9 @@ module Null = struct
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
-    parse_options options;
-    let output_name = Option.default source.s_name options.output_name in
+    parse_options options source;
     let disks = get_disks dir in
-    setup_servers dir disks output_name
+    setup_servers dir disks
 
   let finalize dir options source inspect target_meta () =
     () (* nothing to do *)

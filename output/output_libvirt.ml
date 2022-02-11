@@ -43,7 +43,7 @@ module Libvirt_ = struct
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "libvirt" "-op";
 
@@ -52,10 +52,14 @@ module Libvirt_ = struct
     (* -os is the name of the output pool.  It defaults to "default". *)
     let output_pool = Option.default "default" options.output_storage in
 
-    (conn, options.output_alloc, options.output_format, output_pool)
+    let output_name = Option.default source.s_name options.output_name in
 
-  let setup_servers dir disks output_name
-                    (conn, output_alloc, output_format, output_pool) =
+    (conn, options.output_alloc, options.output_format, output_name,
+     output_pool)
+
+  let setup_servers dir disks
+                    (conn, output_alloc, output_format, output_name,
+                     output_pool) =
     let conn = Lazy.force conn in
 
     (* Get the capabilities from libvirt. *)
@@ -116,7 +120,8 @@ module Libvirt_ = struct
     (capabilities_xml, pool_name)
 
   let rec do_finalize dir source inspect target_meta
-                      (conn, output_alloc, output_format, output_pool)
+                      (conn, output_alloc, output_format, output_name,
+                       output_pool)
                       (capabilities_xml, pool_name) =
     (match target_meta.target_firmware with
      | TargetBIOS -> ()
@@ -152,8 +157,8 @@ module Libvirt_ = struct
     let doc =
       create_libvirt_xml ~pool:pool_name source inspect target_meta
         target_features
-        (fun i -> target_meta.output_name ^ "-sd" ^ (drive_name i))
-        output_format in
+        (fun i -> output_name ^ "-sd" ^ (drive_name i))
+        output_format output_name in
 
     let tmpfile, chan = Filename.open_temp_file "v2vlibvirt" ".xml" in
     DOM.doc_to_chan chan doc;
@@ -211,12 +216,11 @@ module Libvirt_ = struct
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta t =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data t
 end

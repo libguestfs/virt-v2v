@@ -34,7 +34,6 @@ type options = {
   keep_serial_console : bool;
   ks : key_store;
   network_map : Networks.t;
-  output_name : string option;
   root_choice : root_choice;
   static_ips : static_ip list;
 }
@@ -48,7 +47,6 @@ type mpstat = {
 }
 
 let rec convert dir options source =
-  let output_name = Option.default source.s_name options.output_name in
   let target_nics = List.map (Networks.map options.network_map) source.s_nics in
 
   message (f_"Opening the source");
@@ -115,8 +113,7 @@ let rec convert dir options source =
     get_target_firmware inspect guestcaps source output in
 
   (* Create target metadata file. *)
-  let target_meta = { guestcaps; output_name;
-                      target_buses; target_firmware; target_nics } in
+  let target_meta = { guestcaps; target_buses; target_firmware; target_nics } in
 
   (* Return inspection data and target metadata. *)
   inspect, target_meta

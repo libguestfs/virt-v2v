@@ -43,7 +43,7 @@ module QEMU = struct
   -oo qemu-boot       Boot the guest in qemu after conversion
 ")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "qemu" "-op";
 
@@ -70,10 +70,14 @@ module QEMU = struct
          error (f_"-os %s: output directory does not exist or is not a directory") d
       | Some d -> d in
 
-    (qemu_boot, options.output_alloc, options.output_format, output_storage)
+    let output_name = Option.default source.s_name options.output_name in
 
-  let setup_servers dir disks output_name
-                    (_, output_alloc, output_format, output_storage) =
+    (qemu_boot, options.output_alloc, options.output_format,
+     output_name, output_storage)
+
+  let setup_servers dir disks
+                    (_, output_alloc, output_format,
+                     output_name, output_storage) =
     List.iter (
       fun (i, size) ->
         let socket = sprintf "%s/out%d" dir i in
@@ -85,9 +89,9 @@ module QEMU = struct
     ) disks
 
   let do_finalize dir source inspect target_meta
-                  (qemu_boot, output_alloc, output_format, output_storage) =
-    let { guestcaps; output_name; target_buses; target_firmware } =
-      target_meta in
+                  (qemu_boot, output_alloc, output_format,
+                   output_name, output_storage) =
+    let { guestcaps; target_buses; target_firmware } = target_meta in
 
     (* Convert metadata to libvirt XML. *)
     (match target_firmware with
@@ -321,12 +325,11 @@ module QEMU = struct
     )
 
   let setup dir options source =
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta () =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data
 end

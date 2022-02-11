@@ -20,8 +20,8 @@
 
 val create_json_metadata : Types.source -> Types.inspect ->
                            Types.target_meta ->
-                           (int -> string) -> string ->
+                           (int -> string) -> string -> string ->
                            JSON.doc
-(** [create_json_metadata source targets target_buses guestcaps
-    inspect target_firmware] creates the JSON with the majority
-    of the data that virt-v2v used for the conversion. *)
+(** [create_json_metadata source targets outdisk_map output_format output_name]
+    creates the JSON with the majority of the data that virt-v2v used for the
+    conversion. *)

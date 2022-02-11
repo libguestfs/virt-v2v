@@ -51,7 +51,7 @@ For each disk you must supply one of each of these options:
   -oo vdsm-vol-uuid=UUID       Disk volume UUID
 ") ovf_flavours_str
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "vdsm" "-op";
 
@@ -107,12 +107,16 @@ For each disk you must supply one of each of these options:
          error (f_"-os %s: output directory does not exist or is not a directory") d
       | Some d -> d in
 
-    (options.output_alloc, options.output_format, output_storage,
+    let output_name = Option.default source.s_name options.output_name in
+
+    (options.output_alloc, options.output_format,
+     output_name, output_storage,
      image_uuids, vol_uuids, vm_uuid, ovf_output,
      compat, ovf_flavour)
 
-  let setup_servers dir disks output_name
-                    (output_alloc, output_format, output_storage,
+  let setup_servers dir disks
+                    (output_alloc, output_format,
+                     output_name, output_storage,
                      image_uuids, vol_uuids, vm_uuid, ovf_output,
                      compat, ovf_flavour) =
     if List.length image_uuids <> List.length disks ||
@@ -197,13 +201,14 @@ For each disk you must supply one of each of these options:
     t
 
   let do_finalize dir source inspect target_meta
-                  (output_alloc, output_format, output_storage,
+                  (output_alloc, output_format,
+                   output_name, output_storage,
                    image_uuids, vol_uuids, vm_uuid, ovf_output,
                    compat, ovf_flavour)
                   (dd_mp, dd_uuid, sizes) =
     (* Create the metadata. *)
     let ovf = Create_ovf.create_ovf source inspect target_meta sizes
-                output_alloc output_format dd_uuid
+                output_alloc output_format output_name dd_uuid
                 image_uuids
                 vol_uuids
                 dir
@@ -215,12 +220,11 @@ For each disk you must supply one of each of these options:
     with_open_out file (fun chan -> DOM.doc_to_chan chan ovf)
 
   let setup dir options source =
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta t =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data t
 end

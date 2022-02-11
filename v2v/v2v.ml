@@ -526,7 +526,6 @@ read the man page virt-v2v(1).
     Convert.keep_serial_console = not remove_serial_console;
     ks = opthandle.ks;
     network_map;
-    output_name;
     root_choice;
     static_ips;
   } in

@@ -478,7 +478,6 @@ let string_of_target_buses buses =
 
 type target_meta = {
   guestcaps : guestcaps;
-  output_name : string;
   target_buses : target_buses;
   target_firmware : target_firmware;
   target_nics : target_nics

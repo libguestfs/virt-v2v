@@ -44,7 +44,7 @@ module Json = struct
   -oo json-disks-pattern=PATTERN   Pattern for the disks.
 ")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_conn <> None then
       error_option_cannot_be_used_in_output_mode "json" "-oc";
     if options.output_password <> None then
@@ -86,12 +86,15 @@ module Json = struct
          error (f_"-os %s: output directory does not exist or is not a directory") d
       | Some d -> d in
 
-    (json_disks_pattern,
-     options.output_alloc, options.output_format, output_storage)
+    let output_name = Option.default source.s_name options.output_name in
 
-  let rec setup_servers dir disks output_name
+    (json_disks_pattern,
+     options.output_alloc, options.output_format, output_name, output_storage)
+
+  let rec setup_servers dir disks
                         (json_disks_pattern,
-                         output_alloc, output_format, output_storage) =
+                         output_alloc, output_format, output_name,
+                         output_storage) =
     List.iter (
       fun (i, size) ->
         let socket = sprintf "%s/out%d" dir i in
@@ -121,11 +124,11 @@ module Json = struct
 
   let do_finalize dir source inspect target_meta
                   (json_disks_pattern,
-                   output_alloc, output_format, output_storage) =
+                   output_alloc, output_format, output_name, output_storage) =
     let doc =
       Create_json.create_json_metadata source inspect target_meta
-        (json_path output_storage target_meta.output_name json_disks_pattern)
-        output_format in
+        (json_path output_storage output_name json_disks_pattern)
+        output_format output_name in
     let doc_string = JSON.string_of_doc ~fmt:JSON.Indented doc in
 
     if verbose () then (
@@ -134,7 +137,7 @@ module Json = struct
       eprintf "\n\n%!";
     );
 
-    let file = output_storage // target_meta.output_name ^ ".json" in
+    let file = output_storage // output_name ^ ".json" in
     with_open_out file (
       fun chan ->
         output_string chan doc_string;
@@ -142,12 +145,11 @@ module Json = struct
     )
 
   let setup dir options source =
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta () =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data
 end

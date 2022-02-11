@@ -45,7 +45,8 @@ val ovf_flavour_to_string : ovf_flavour -> string
 
 val create_ovf : Types.source -> Types.inspect ->
                  Types.target_meta -> int64 list ->
-                 Types.output_allocation -> string -> string -> string list ->
+                 Types.output_allocation -> string -> string ->
+                 string -> string list ->
                  string list -> ?need_actual_sizes:bool -> string -> string ->
                  ovf_flavour -> DOM.doc
 (** Create the OVF file.

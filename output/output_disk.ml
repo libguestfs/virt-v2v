@@ -41,7 +41,7 @@ module Disk = struct
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "local" "-op";
 
@@ -53,10 +53,13 @@ module Disk = struct
       | Some d when not (is_directory d) ->
          error (f_"-os %s: output directory does not exist or is not a directory") d
       | Some d -> d in
-    options.output_alloc, options.output_format, output_storage
 
-  let setup_servers dir disks output_name
-                    (output_alloc, output_format, output_storage) =
+    let output_name = Option.default source.s_name options.output_name in
+
+    options.output_alloc, options.output_format, output_name, output_storage
+
+  let setup_servers dir disks
+                    (output_alloc, output_format, output_name, output_storage) =
     List.iter (
       fun (i, size) ->
         let socket = sprintf "%s/out%d" dir i in
@@ -68,7 +71,7 @@ module Disk = struct
     ) disks
 
   let do_finalize dir source inspect target_meta
-                  (output_alloc, output_format, output_storage) =
+                  (output_alloc, output_format, output_name, output_storage) =
     (* Convert metadata to libvirt XML. *)
     (match target_meta.target_firmware with
      | TargetBIOS -> ()
@@ -89,12 +92,10 @@ module Disk = struct
       | "x86_64" -> [ "acpi"; "apic" ]
       | _ -> [] in
 
-    let output_name = target_meta.output_name in
-
     let doc = create_libvirt_xml source inspect target_meta
                 target_features
                 (disk_path output_storage output_name)
-                output_format in
+                output_format output_name in
 
     let file = output_storage // output_name ^ ".xml" in
     with_open_out file (fun chan -> DOM.doc_to_chan chan doc);
@@ -108,12 +109,11 @@ module Disk = struct
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta () =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data
 end

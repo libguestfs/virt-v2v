@@ -145,8 +145,8 @@ let get_osinfo_id = function
     None
 
 let create_libvirt_xml ?pool source inspect
-      { output_name; guestcaps; target_buses; target_firmware; target_nics }
-      target_features outdisk_name output_format =
+      { guestcaps; target_buses; target_firmware; target_nics }
+      target_features outdisk_name output_format output_name =
   (* The main body of the libvirt XML document. *)
   let body = ref [] in
 

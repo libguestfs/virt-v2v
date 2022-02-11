@@ -20,7 +20,6 @@ type options = {
   keep_serial_console : bool;
   ks : Tools_utils.key_store;      (** [--key] option *)
   network_map : Networks.t;        (** [-b] and [-n] options *)
-  output_name : string option;     (** Guest output name [-on] *)
   root_choice : Types.root_choice; (** [--root] option *)
   static_ips : Types.static_ip list; (** [--mac :ip:] option *)
 }

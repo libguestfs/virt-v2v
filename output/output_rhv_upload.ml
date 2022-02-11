@@ -57,7 +57,7 @@ after their uploads (if you do, you must supply one for each disk):
   -oo rhv-disk-uuid=UUID          Disk UUID
 ")
 
-  let rec parse_options options =
+  let rec parse_options options source =
     let output_conn =
       match options.output_conn with
       | None ->
@@ -109,8 +109,10 @@ after their uploads (if you do, you must supply one for each disk):
     let rhv_verifypeer = !rhv_verifypeer in
     let rhv_disk_uuids = Option.map List.rev !rhv_disk_uuids in
 
+    let output_name = Option.default source.s_name options.output_name in
+
     (output_conn, options.output_format,
-     output_password, output_storage,
+     output_password, output_name, output_storage,
      rhv_cafile, rhv_cluster, rhv_direct,
      rhv_verifypeer, rhv_disk_uuids)
 
@@ -124,9 +126,9 @@ after their uploads (if you do, you must supply one for each disk):
     if uuid = nil_uuid then false
     else PCRE.matches (Lazy.force rex_uuid) uuid
 
-  let rec setup_servers dir disks output_name
+  let rec setup_servers dir disks
                         (output_conn, output_format,
-                         output_password, output_storage,
+                         output_password, output_name, output_storage,
                          rhv_cafile, rhv_cluster, rhv_direct,
                          rhv_verifypeer, rhv_disk_uuids) =
     (* We need nbdkit >= 1.22 for API_VERSION 2 and parallel threading model
@@ -406,7 +408,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
 
   let do_finalize dir source inspect target_meta
                   (output_conn, output_format,
-                   output_password, output_storage,
+                   output_password, output_name, output_storage,
                    rhv_cafile, rhv_cluster, rhv_direct,
                    rhv_verifypeer, rhv_disk_uuids)
                   (disk_sizes, disk_uuids, transfer_ids,
@@ -461,8 +463,8 @@ e command line has to match the number of guest disk images (for this guest: %d)
     (* Create the metadata. *)
     let ovf =
       Create_ovf.create_ovf source inspect target_meta disk_sizes
-        Sparse output_format sd_uuid disk_uuids vol_uuids dir vm_uuid
-        OVirt in
+        Sparse output_format output_name
+        sd_uuid disk_uuids vol_uuids dir vm_uuid OVirt in
     let ovf = DOM.doc_to_string ovf in
 
     let json_params =
@@ -477,12 +479,11 @@ e command line has to match the number of guest disk images (for this guest: %d)
       error (f_"failed to create virtual machine, see earlier errors")
 
   let setup dir options source =
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta t =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data t
 end

@@ -37,7 +37,7 @@ module RHV = struct
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
 
-  let parse_options options =
+  let parse_options options source =
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "rhv" "-op";
 
@@ -47,10 +47,13 @@ module RHV = struct
       | None -> error (f_"-o rhv: -os option was not specified")
       | Some d -> d in
 
-    (options.output_alloc, options.output_format, output_storage)
+    let output_name = Option.default source.s_name options.output_name in
 
-  let rec setup_servers dir disks output_name
-                        (output_alloc, output_format, output_storage) =
+    (options.output_alloc, options.output_format, output_name, output_storage)
+
+  let rec setup_servers dir disks
+                        (output_alloc, output_format,
+                         output_name, output_storage) =
     (* UID:GID required for files and directories when writing to ESD. *)
     let uid = 36 and gid = 36 in
 
@@ -246,7 +249,8 @@ module RHV = struct
     (mp, uuid)
 
   let do_finalize dir source inspect target_meta
-                  (output_alloc, output_format, output_storage)
+                  (output_alloc, output_format,
+                   output_name, output_storage)
                   (esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes) =
     (* UID:GID required for files and directories when writing to ESD. *)
     let uid = 36 and gid = 36 in
@@ -264,7 +268,7 @@ module RHV = struct
     (* Create the metadata. *)
     let ovf =
       Create_ovf.create_ovf source inspect target_meta sizes
-        output_alloc output_format esd_uuid image_uuids vol_uuids
+        output_alloc output_format output_name esd_uuid image_uuids vol_uuids
         ~need_actual_sizes:true dir vm_uuid
         Create_ovf.RHVExportStorageDomain in
 
@@ -277,12 +281,11 @@ module RHV = struct
   let setup dir options source =
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
-    let data = parse_options options in
-    let output_name = Option.default source.s_name options.output_name in
+    let data = parse_options options source in
     let disks = get_disks dir in
-    setup_servers dir disks output_name data
+    setup_servers dir disks data
 
   let finalize dir options source inspect target_meta t =
-    let data = parse_options options in
+    let data = parse_options options source in
     do_finalize dir source inspect target_meta data t
 end
