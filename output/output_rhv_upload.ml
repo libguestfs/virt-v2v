@@ -478,7 +478,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
 
   let setup dir options source =
     let data = parse_options options in
-    let output_name = get_output_name options source in
+    let output_name = Option.default source.s_name options.output_name in
     let disks = get_disks dir in
     setup_servers dir disks output_name data
 

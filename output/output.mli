@@ -58,9 +58,6 @@ val error_option_cannot_be_used_in_output_mode : string -> string -> unit
 (** [error_option_cannot_be_used_in_output_mode mode option]
     prints error message that option cannot be used in this output mode. *)
 
-val get_output_name : options -> Types.source -> string
-(** Works out the output name from -on or input name. *)
-
 val get_disks : string -> (int * int64) list
 (** Examines the v2v directory and opens each input socket (in0 etc),
     returning a list of input disk index and size. *)

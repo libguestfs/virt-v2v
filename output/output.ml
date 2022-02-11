@@ -50,11 +50,6 @@ end
 let error_option_cannot_be_used_in_output_mode mode opt =
   error (f_"-o %s: %s option cannot be used in this output mode") mode opt
 
-let get_output_name { output_name } source =
-  match output_name with
-  | None -> source.s_name
-  | Some name -> name
-
 let get_disks dir =
   let rec loop acc i =
     let socket = sprintf "%s/in%d" dir i in
