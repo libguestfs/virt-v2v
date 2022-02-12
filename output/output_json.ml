@@ -148,4 +148,6 @@ module Json = struct
         output_string chan doc_string;
         output_char chan '\n'
     )
+
+  let request_size = None
 end

@@ -112,4 +112,6 @@ module Disk = struct
       DOM.doc_to_chan Stdlib.stderr doc;
       eprintf "\n%!";
     )
+
+  let request_size = None
 end

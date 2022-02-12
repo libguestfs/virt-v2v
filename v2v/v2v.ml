@@ -590,7 +590,8 @@ read the man page virt-v2v(1).
     fun (i, input_socket, output_socket) ->
       message (f_"Copying disk %d/%d") (i+1) nr_disks;
 
-      let input_uri = nbd_uri_of_socket input_socket
+      let request_size = Output_module.request_size
+      and input_uri = nbd_uri_of_socket input_socket
       and output_uri = nbd_uri_of_socket output_socket in
 
       (* In verbose mode print some information about each
@@ -601,7 +602,7 @@ read the man page virt-v2v(1).
         nbdinfo ~content:false output_uri
       );
 
-      nbdcopy output_alloc input_uri output_uri
+      nbdcopy ?request_size output_alloc input_uri output_uri
   ) disks;
 
   (* End of copying phase. *)
@@ -634,12 +635,16 @@ and check_host_free_space () =
     error (f_"insufficient free space in the conversion server temporary directory %s (%s).\n\nEither free up space in that directory, or set the LIBGUESTFS_CACHEDIR environment variable to point to another directory with more than 1GB of free space.\n\nSee also the virt-v2v(1) manual, section \"Minimum free space check in the host\".")
           large_tmpdir (human_size free_space)
 
-and nbdcopy output_alloc input_uri output_uri =
+and nbdcopy ?request_size output_alloc input_uri output_uri =
   (* XXX It's possible that some output modes know whether
    * --target-is-zero which would be a useful optimization.
    *)
   let cmd = ref [] in
   List.push_back_list cmd [ "nbdcopy"; input_uri; output_uri ];
+  (match request_size with
+    | None -> ()
+    | Some size -> List.push_back cmd (sprintf "--request-size=%d" size)
+  );
   List.push_back cmd "--flush";
   (*List.push_back cmd "--verbose";*)
   if not (quiet ()) then List.push_back cmd "--progress";

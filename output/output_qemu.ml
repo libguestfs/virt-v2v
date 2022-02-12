@@ -327,4 +327,6 @@ module QEMU = struct
       let cmd = sprintf "%s &" (quote file) in
       ignore (shell_command cmd)
     )
+
+  let request_size = None
 end

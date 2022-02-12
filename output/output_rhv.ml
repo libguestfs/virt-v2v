@@ -282,4 +282,6 @@ module RHV = struct
     Changeuid.mkdir changeuid_t dir 0o755;
     let file = dir // vm_uuid ^ ".ovf" in
     Changeuid.output changeuid_t file (fun chan -> DOM.doc_to_chan chan ovf)
+
+  let request_size = None
 end

@@ -225,4 +225,6 @@ For each disk you must supply one of each of these options:
     (* Write it to the metadata file. *)
     let file = ovf_output // vm_uuid ^ ".ovf" in
     with_open_out file (fun chan -> DOM.doc_to_chan chan ovf)
+
+  let request_size = None
 end

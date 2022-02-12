@@ -484,4 +484,10 @@ e command line has to match the number of guest disk images (for this guest: %d)
     if Python_script.run_command createvm_script json_params [ovf_file] <> 0
     then
       error (f_"failed to create virtual machine, see earlier errors")
+
+  (* The imageio server has high overhead per request. Using 4 MiB
+   * request size is 1.8x times faster compared with nbdcopy default
+   * request size (256k).
+   *)
+  let request_size = Some (4*1024*1024)
 end

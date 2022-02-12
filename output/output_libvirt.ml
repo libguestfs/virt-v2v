@@ -217,4 +217,6 @@ module Libvirt_ = struct
       let features = xpath_get_nodes xpathctx "features/*" in
       List.map Xml.node_name features
     )
+
+  let request_size = None
 end

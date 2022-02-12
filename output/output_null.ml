@@ -88,4 +88,6 @@ module Null = struct
 
   let finalize dir () () source inspect target_meta =
     () (* nothing to do *)
+
+  let request_size = None
 end

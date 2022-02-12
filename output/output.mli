@@ -59,6 +59,11 @@ module type OUTPUT = sig
   (** [finalize dir poptions t inspect target_meta]
 
       Finalizes the conversion and writes metadata. *)
+
+  val request_size : int option
+  (** Returns an optional {i hint} about the NBD request size that
+      optimizes performance.  Note that the copy program may ignore
+      this.  Use NBD block size options for enforcible limits. *)
 end
 
 (** Helper functions for output modes. *)

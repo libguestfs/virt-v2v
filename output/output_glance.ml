@@ -138,4 +138,6 @@ module Glance = struct
 
     (* Remove the temporary directory for the large files. *)
     (try rmdir tmpdir with Unix_error _ -> ())
+
+  let request_size = None
 end

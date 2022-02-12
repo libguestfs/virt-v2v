@@ -46,6 +46,7 @@ module type OUTPUT = sig
   val finalize : string -> poptions -> t ->
                  Types.source -> Types.inspect -> Types.target_meta ->
                  unit
+  val request_size : int option
 end
 
 let error_option_cannot_be_used_in_output_mode mode opt =
