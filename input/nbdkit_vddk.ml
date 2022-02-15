@@ -144,6 +144,16 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
    *)
   Nbdkit.add_filter_if_available cmd "cacheextents";
 
+  (* Split very large requests to avoid out of memory errors on the
+   * server.  Since we're using this filter, also add minblock=512
+   * although it will make no difference.
+   *)
+  if Nbdkit.probe_filter "blocksize" then (
+    Nbdkit.add_filter cmd "blocksize";
+    Nbdkit.add_arg cmd "minblock" "512";
+    Nbdkit.add_arg cmd "maxdata" "2M"
+  );
+
   (* IMPORTANT! Add the COW filter.  It must be furthest away
    * except for the multi-conn and rate filters.
    *)
