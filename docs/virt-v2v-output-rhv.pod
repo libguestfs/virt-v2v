@@ -8,7 +8,7 @@ virt-v2v-output-rhv - Using virt-v2v to convert guests to oVirt or RHV
                         [-op PASSWORD] [-of raw]
                         [-oo rhv-cafile=FILE]
                         [-oo rhv-cluster=CLUSTER]
-                        [-oo rhv-direct]
+                        [-oo rhv-proxy]
                         [-oo rhv-disk-uuid=UUID ...]
                         [-oo rhv-verifypeer]
 
@@ -129,13 +129,11 @@ the specified UUIDs must not conflict with the UUIDs of existing disks
 
 =back
 
-=item I<-oo rhv-direct>
+=item I<-oo rhv-proxy>
 
-If this option is given then virt-v2v will attempt to directly upload
-the disk to the oVirt node, otherwise it will proxy the upload through
-the oVirt engine.  Direct upload requires that you have network access
-to the oVirt nodes.  Non-direct upload is slightly slower but should
-work in all situations.
+Proxy the upload through oVirt Engine.  This is slower than uploading
+directly to the oVirt node but may be necessary if you do not have
+direct network access to the nodes.
 
 =item I<-oo rhv-verifypeer>
 

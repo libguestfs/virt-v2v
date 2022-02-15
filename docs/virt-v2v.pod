@@ -86,8 +86,7 @@ interface(s) are connected to the target network called C<ovirtmgmt>.
  virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest \
    -o rhv-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \
    -os ovirt-data -op /tmp/ovirt-admin-password -of raw \
-   -oo rhv-cafile=/tmp/ca.pem -oo rhv-direct \
-   --bridge ovirtmgmt
+   -oo rhv-cafile=/tmp/ca.pem --bridge ovirtmgmt
 
 In this case the host running virt-v2v acts as a B<conversion server>.
 
@@ -621,14 +620,12 @@ on the oVirt engine.
 For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, set the RHV Cluster
 Name.  If not given it uses C<Default>.
 
-=item B<-oo rhv-direct>
+=item B<-oo rhv-proxy>
 
-For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, if this option is given
-then virt-v2v will attempt to directly upload the disk to the oVirt
-node, otherwise it will proxy the upload through the oVirt engine.
-Direct upload requires that you have network access to the oVirt
-nodes.  Non-direct upload is slightly slower but should work in all
-situations.
+For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, proxy the
+upload through oVirt Engine.  This is slower than uploading directly
+to the oVirt node but may be necessary if you do not have direct
+network access to the nodes.
 
 =item B<-oo rhv-verifypeer>
 

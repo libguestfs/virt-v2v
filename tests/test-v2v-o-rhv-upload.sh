@@ -70,6 +70,5 @@ $VG virt-v2v --debug-gc -v -x \
     -o rhv-upload \
     -oc https://example.com/ovirt-engine/api \
     -oo rhv-cafile=/dev/null \
-    -oo rhv-direct \
     -op /dev/null \
     -os Storage
