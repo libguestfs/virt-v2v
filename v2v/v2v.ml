@@ -641,14 +641,27 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
    *)
   let cmd = ref [] in
   List.push_back_list cmd [ "nbdcopy"; input_uri; output_uri ];
+
   (match request_size with
     | None -> ()
     | Some size -> List.push_back cmd (sprintf "--request-size=%d" size)
   );
+  (* Choose max requests to target an implicit buffer size of 64M. *)
+  let requests =
+    let target_buffer_size = 64 * 1024 * 1024 in
+    let request_size =
+      match request_size with
+      | None -> 256 * 1024 (* default in nbdcopy 1.10+ *)
+      | Some size -> size in
+    min 64 (target_buffer_size / request_size) in
+  List.push_back cmd (sprintf "--requests=%d" requests);
+
   List.push_back cmd "--flush";
   (*List.push_back cmd "--verbose";*)
+
   if not (quiet ()) then List.push_back cmd "--progress";
   if output_alloc = Types.Preallocated then List.push_back cmd "--allocated";
+
   let cmd = !cmd in
 
   if run_command cmd <> 0 then
