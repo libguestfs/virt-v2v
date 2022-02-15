@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 1.45.98\n"
+"Project-Id-Version: virt-v2v 1.45.99\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-02-10 19:38+0000\n"
+"POT-Creation-Date: 2022-02-15 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: common/mltools/tools_utils.ml:194
+#: common/mltools/tools_utils.ml:234
 msgid "%s"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:640
+#: common/mltools/tools_utils.ml:681
 msgid "%s (ignored)"
 msgstr ""
 
@@ -40,11 +40,11 @@ msgstr ""
 msgid "%s option used more than once on the command line"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:190 common/mltools/tools_utils.ml:161
+#: common/mltools/tools_utils.ml:230 common/mltools/tools_utils.ml:201
 msgid "%s: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:192
+#: common/mltools/tools_utils.ml:232
 msgid "%s: %s: %s"
 msgstr ""
 
@@ -77,15 +77,15 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:131
+#: common/mltools/tools_utils.ml:171
 msgid "%s: error: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:673
+#: common/mltools/tools_utils.ml:714
 msgid "%s: operation timed out"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:150
+#: common/mltools/tools_utils.ml:190
 msgid "%s: warning: %s"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:586
+#: v2v/v2v.ml:591
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:606
+#: v2v/v2v.ml:612
 msgid "Creating output metadata"
 msgstr ""
 
@@ -166,15 +166,15 @@ msgstr ""
 msgid "Display brief help"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:344
+#: common/mltools/tools_utils.ml:384
 msgid "Display version and exit"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:348
+#: common/mltools/tools_utils.ml:388
 msgid "Don’t print progress messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:364
+#: common/mltools/tools_utils.ml:405
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
@@ -182,11 +182,11 @@ msgstr ""
 msgid "Edit file using Perl expression"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:345
+#: common/mltools/tools_utils.ml:385
 msgid "Enable libguestfs debugging messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:346
+#: common/mltools/tools_utils.ml:386
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:610
+#: v2v/v2v.ml:616
 msgid "Finishing off"
 msgstr ""
 
@@ -228,7 +228,7 @@ msgstr ""
 msgid "How to choose root filesystem"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:136
+#: common/mltools/tools_utils.ml:176
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Libvirt URI"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:370
+#: common/mltools/tools_utils.ml:411
 msgid "Make output machine readable"
 msgstr ""
 
@@ -318,7 +318,7 @@ msgstr ""
 msgid "Read customize commands from file"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:365
+#: common/mltools/tools_utils.ml:406
 msgid "Read passphrases from stdin"
 msgstr ""
 
@@ -369,7 +369,7 @@ msgstr ""
 
 #. common/mlcustomize/customize_cmdline.ml:344
 #. common/mlcustomize/customize_cmdline.ml:315
-#: common/mltools/tools_utils.ml:366
+#: common/mltools/tools_utils.ml:407
 #: common/mlcustomize/customize_cmdline.ml:470
 msgid "SELECTOR"
 msgstr ""
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Set password crypto"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:374
+#: common/mltools/tools_utils.ml:415
 msgid "Set program name"
 msgstr ""
 
@@ -507,19 +507,19 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:558
+#: v2v/v2v.ml:563
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:540
+#: v2v/v2v.ml:539
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:546
+#: v2v/v2v.ml:545
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:366
+#: common/mltools/tools_utils.ml:407
 msgid "Specify a LUKS key"
 msgstr ""
 
@@ -559,7 +559,7 @@ msgstr ""
 msgid "Upload local file to destination"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:350
+#: common/mltools/tools_utils.ml:390
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
@@ -569,6 +569,10 @@ msgstr ""
 
 #: v2v/v2v.ml:273
 msgid "Use password from file to connect to output hypervisor"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:391
+msgid "Wrap log messages even if not tty"
 msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:442
@@ -624,7 +628,7 @@ msgid ""
 "This could be a bug in %s."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:207
+#: common/mltools/tools_utils.ml:247
 msgid "exception: %s"
 msgstr ""
 
@@ -634,19 +638,19 @@ msgid ""
 "string: %s)"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:405
+#: common/mltools/tools_utils.ml:446
 msgid "external command ‘%s’ exited with error %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:486 common/mltools/tools_utils.ml:407
+#: common/mltools/tools_utils.ml:527 common/mltools/tools_utils.ml:448
 msgid "external command ‘%s’ killed by signal %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:488 common/mltools/tools_utils.ml:409
+#: common/mltools/tools_utils.ml:529 common/mltools/tools_utils.ml:450
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:198
+#: common/mltools/tools_utils.ml:238
 msgid "failure: %s"
 msgstr ""
 
@@ -656,7 +660,7 @@ msgid ""
 "will not be removed"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:217
+#: common/mltools/tools_utils.ml:257
 msgid "generated by %s %s"
 msgstr ""
 
@@ -668,7 +672,7 @@ msgstr ""
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
-#: v2v/v2v.ml:629
+#: v2v/v2v.ml:635
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -681,15 +685,15 @@ msgid ""
 "host\"."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:205
+#: common/mltools/tools_utils.ml:245
 msgid "internal error: Not_found exception was thrown"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:202
+#: common/mltools/tools_utils.ml:242
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:200
+#: common/mltools/tools_utils.ml:240
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
@@ -710,27 +714,27 @@ msgstr ""
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:318
+#: common/mltools/tools_utils.ml:358
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:333
+#: common/mltools/tools_utils.ml:373
 msgid "invalid output fd for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:335
+#: common/mltools/tools_utils.ml:375
 msgid "invalid output for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:327
+#: common/mltools/tools_utils.ml:367
 msgid "invalid output stream for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:361
+#: common/mltools/tools_utils.ml:402
 msgid "invalid selector string for --key: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:196
+#: common/mltools/tools_utils.ml:236
 msgid "libguestfs error: %s"
 msgstr ""
 
@@ -746,7 +750,7 @@ msgstr ""
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:645
+#: v2v/v2v.ml:668
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
