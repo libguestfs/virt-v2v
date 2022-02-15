@@ -833,6 +833,12 @@ Enable verbose messages for debugging.
 
 Display version number and exit.
 
+=item B<--wrap>
+
+Wrap error, warning, and informative messages.  This is the default
+when the output is a tty.  If the output of the program is redirected
+to a file, wrapping is disabled unless you use this option.
+
 =item B<-x>
 
 Enable tracing of libguestfs API calls.
