@@ -18,7 +18,7 @@
 dnl Any C libraries required by virt-v2v.
 
 dnl Of course we need libguestfs.
-PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.40])
+PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.44])
 
 dnl And libnbd.
 PKG_CHECK_MODULES([LIBNBD], [libnbd])
