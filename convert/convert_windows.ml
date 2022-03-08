@@ -107,8 +107,10 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
          let uninstkey = "UninstallString" in
          let valueh = g#hivex_node_get_value node uninstkey in
          if valueh = 0L then (
-           warning (f_"cannot uninstall Xen PV drivers: registry key ‘HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\%s’ does not contain an ‘%s’ key")
-                   xenpvreg uninstkey;
+           warning (f_"cannot uninstall Xen PV drivers: registry key ‘HKLM\\\
+                       SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\\
+                       Uninstall\\%s’ does not contain an ‘%s’ key")
+             xenpvreg uninstkey;
            raise Not_found
          );
          let data = g#hivex_value_value valueh in
@@ -157,13 +159,16 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
                      let reg_cmd = g#hivex_value_string valueh in
                      let reg_cmd = modfn reg_cmd in
                      let cmd =
-                       sprintf "%s /quiet /norestart /l*v+ \"%%~dpn0.log\" REBOOT=ReallySuppress REMOVE=ALL %s"
+                       sprintf "%s /quiet /norestart /l*v+ \"%%~dpn0.log\" \
+                                REBOOT=ReallySuppress REMOVE=ALL %s"
                          reg_cmd extra_uninstall_params in
                      List.push_front cmd ret
                    )
                    else
                      let name = g#hivex_node_name uninstnode in
-                     warning (f_"cannot uninstall %s: registry key ‘HKLM\\SOFTWARE\\%s\\%s’ with DisplayName ‘%s’ doesn't contain value ‘%s’")
+                     warning (f_"cannot uninstall %s: registry key \
+                                 ‘HKLM\\SOFTWARE\\%s\\%s’ with DisplayName \
+                                 ‘%s’ doesn't contain value ‘%s’")
                        pretty_name (String.concat "\\" path) name
                        dispname uninstval
                  )
@@ -233,9 +238,17 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
      *)
     if block_driver = Virtio_blk then (
       if has_group_policy then
-        warning (f_"this guest has Windows Group Policy Objects (GPO) and a new virtio block device driver was installed.  In some circumstances, Group Policy may prevent new drivers from working (resulting in a 7B boot error).  If this happens, try disabling Group Policy before doing the conversion.");
+        warning (f_"this guest has Windows Group Policy Objects (GPO) and a \
+                    new virtio block device driver was installed.  In some \
+                    circumstances, Group Policy may prevent new drivers from \
+                    working (resulting in a 7B boot error).  If this happens, \
+                    try disabling Group Policy before doing the conversion.");
       if has_antivirus then
-        warning (f_"this guest has Anti-Virus (AV) software and a new virtio block device driver was installed.  In some circumstances, AV may prevent new drivers from working (resulting in a 7B boot error).  If this happens, try disabling AV before doing the conversion.");
+        warning (f_"this guest has Anti-Virus (AV) software and a new virtio \
+                    block device driver was installed.  In some \
+                    circumstances, AV may prevent new drivers from working \
+                    (resulting in a 7B boot error).  If this happens, try \
+                    disabling AV before doing the conversion.");
     );
 
     let machine, virtio_1_0 =
@@ -319,7 +332,9 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     if qemu_ga_files <> [] then
       configure_qemu_ga qemu_ga_files
     else
-      warning (f_"QEMU Guest Agent MSI not found on tools ISO/directory. You may want to install the guest agent manually after conversion.");
+      warning (f_"QEMU Guest Agent MSI not found on tools ISO/directory. You \
+                  may want to install the guest agent manually after \
+                  conversion.");
 
     unconfigure_xenpv ();
     unconfigure_prltools ();
@@ -634,7 +649,8 @@ if errorlevel 3010 exit /b 0
        in
        loop values
     | None ->
-       warning (f_"could not find registry key HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion")
+       warning (f_"could not find registry key \
+                   HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion")
 
   and configure_network_interfaces net_driver =
     (* If we were asked to force network interfaces to have particular
@@ -658,7 +674,8 @@ if errorlevel 3010 exit /b 0
         add "$adapters = @()";
         add "While (-Not $adapters) {";
         add "    Start-Sleep -Seconds 5";
-        add "    $adapters = Get-NetAdapter -Physical | Where DriverFileName -eq \"netkvm.sys\"";
+        add "    $adapters = Get-NetAdapter -Physical \
+                             | Where DriverFileName -eq \"netkvm.sys\"";
         add "    Write-Host \"adapters = '$adapters'\"";
         add "}";
         add ""
@@ -669,7 +686,8 @@ if errorlevel 3010 exit /b 0
               if_prefix_length; if_nameservers } ->
           add (sprintf "$mac_address = '%s'"
                        (String.replace if_mac_addr ":" "-"));
-          add "$ifindex = (Get-NetAdapter -Physical | Where MacAddress -eq $mac_address).ifIndex";
+          add "$ifindex = (Get-NetAdapter -Physical \
+                           | Where MacAddress -eq $mac_address).ifIndex";
           add "if ($ifindex) {";
 
           add "    Write-Host \"setting IP address of adapter at $ifindex\"";
@@ -697,8 +715,11 @@ if errorlevel 3010 exit /b 0
 
           (* Set-DnsClientServerAddress command *)
           if if_nameservers <> [] then (
-            add (sprintf "    Set-DnsClientServerAddress -InterfaceIndex $ifindex -ServerAddresses (%s)"
-                         (String.concat "," (List.map (sprintf "'%s'") if_nameservers)))
+            add (sprintf "    Set-DnsClientServerAddress \
+                                -InterfaceIndex $ifindex \
+                                -ServerAddresses (%s)"
+                         (String.concat ","
+                            (List.map (sprintf "'%s'") if_nameservers)))
           );
           add "}";
           add ""
