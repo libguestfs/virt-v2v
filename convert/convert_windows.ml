@@ -418,25 +418,21 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     (* Configure VMDP if possible *)
     g#upload tool_path "/vmdp.exe";
 
-    let fb_script = "\
-echo V2V first boot script started
-echo Decompressing VMDP installer
-\"\\vmdp.exe\"
-pushd \"VMDP-*\"
-echo Installing VMDP
-setup.exe /eula_accepted /no_reboot
-popd
-" in
+    let fb_script = "echo V2V first boot script started\n\
+                     echo Decompressing VMDP installer\n\
+                     \"\\vmdp.exe\"\n\
+                     pushd \"VMDP-*\"\n\
+                     echo Installing VMDP\n\
+                     setup.exe /eula_accepted /no_reboot\n\
+                     popd\n" in
 
-    let fb_recover_script = "\
-echo Finishing VMDP installation
-if not exist VMDP-* (
-  \"\\vmdp.exe\"
-)
-pushd \"VMDP-*\"
-setup.exe /eula_accepted /no_reboot
-popd
-" in
+    let fb_recover_script = "echo Finishing VMDP installation\n\
+                             if not exist VMDP-* (\n\
+                               \"\\vmdp.exe\"\n\
+                             )\n\
+                             pushd \"VMDP-*\"\n\
+                             setup.exe /eula_accepted /no_reboot\n\
+                             popd\n" in
 
     Firstboot.add_firstboot_script g inspect.i_root
       "configure vmdp" fb_script;
