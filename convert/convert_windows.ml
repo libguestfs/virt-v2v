@@ -480,12 +480,12 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     match xenpv_uninst with
     | None -> () (* nothing to be uninstalled *)
     | Some uninst ->
-      let fb_script = sprintf "\
-@echo off
-
-echo uninstalling Xen PV driver
-\"%s\"
-" uninst in
+      let fb_script = sprintf
+                        "@echo off\n\
+                         \n\
+                         echo uninstalling Xen PV driver\n\
+                         \"%s\"\n"
+                        uninst in
       Firstboot.add_firstboot_script g inspect.i_root
         "uninstall Xen PV" fb_script
 
