@@ -64,7 +64,12 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
    * this guest.  See for example RHBZ#1965147.
    *)
   if inspect.i_apps = [] then
-    error (f_"inspection of the package database failed for this Linux guest.  Rerun virt-v2v with -v -x and see earlier errors.  This is an internal error which probably means that this guest is not supported by libguestfs inspection.  If the guest should work with virt-v2v (see virt-v2v docs) then a fix will be required in libguestfs.");
+    error (f_"inspection of the package database failed for this Linux \
+              guest.  Rerun virt-v2v with -v -x and see earlier errors.  \
+              This is an internal error which probably means that this guest \
+              is not supported by libguestfs inspection.  If the guest should \
+              work with virt-v2v (see virt-v2v docs) then a fix will be \
+              required in libguestfs.");
 
   (* We use Augeas for inspection and conversion, so initialize it early.
    * Calling debug_augeas_errors will display any //error nodes in
@@ -300,14 +305,16 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
           Linux.augeas_reload g
         with
           G.Error msg ->
-            warning (f_"VirtualBox Guest Additions were detected, but uninstallation failed.  The error message was: %s (ignored)")
-              msg
+            warning (f_"VirtualBox Guest Additions were detected, but \
+                        uninstallation failed.  The error message was: %s \
+                        (ignored)") msg
     )
 
   and unconfigure_vmware () =
     (* Look for any configured VMware yum repos and disable them. *)
     let repos =
-      g#aug_match "/files/etc/yum.repos.d/*/*[baseurl =~ regexp('https?://([^/]+\\.)?vmware\\.com/.*')]" in
+      g#aug_match "/files/etc/yum.repos.d/*/*[baseurl =~ \
+                   regexp('https?://([^/]+\\.)?vmware\\.com/.*')]" in
     let repos = Array.to_list repos in
     List.iter (
       fun repo ->
@@ -392,7 +399,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
                  ignore (g#command cmd);
                  List.push_front library remove
                with G.Error msg ->
-                 eprintf "%s: could not install replacement for %s.  Error was: %s.  %s was not removed.\n"
+                 eprintf "%s: could not install replacement for %s.  Error \
+                          was: %s.  %s was not removed.\n"
                    prog library msg library
               );
             ) else (
@@ -438,8 +446,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
         Linux.augeas_reload g
       with
         G.Error msg ->
-          warning (f_"VMware tools was detected, but uninstallation failed.  The error message was: %s (ignored)")
-            msg
+          warning (f_"VMware tools was detected, but uninstallation failed.  \
+                      The error message was: %s (ignored)") msg
     )
 
   and unconfigure_citrix () =
@@ -516,8 +524,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
         Linux.augeas_reload g
       with
         G.Error msg ->
-          warning (f_"Parallels tools was detected, but uninstallation failed. The error message was: %s (ignored)")
-            msg
+          warning (f_"Parallels tools was detected, but uninstallation \
+                      failed. The error message was: %s (ignored)") msg
     )
 
   and install_linux_tools () =
@@ -539,7 +547,9 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       fun { ki_is_xen_pv_only_kernel = pv_only } -> pv_only
     ) bootloader_kernels in
     if only_xen_kernels then
-      error (f_"only Xen kernels are installed in this guest.\n\nRead the %s(1) manual, section \"Xen paravirtualized guests\", to see what to do.") prog;
+      error (f_"only Xen kernels are installed in this guest.\n\n\
+                Read the %s(1) manual, section \"Xen paravirtualized \
+                guests\", to see what to do.") prog;
 
     (* Enable the best non-Xen kernel, where "best" means the one with
      * the highest version, preferring non-debug kernels which support
@@ -568,7 +578,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       print_kernel_info stderr "\t" best_kernel
     );
     if best_kernel <> List.hd bootloader_kernels then (
-      debug "best kernel is not the bootloader default, setting bootloader default ...";
+      debug "best kernel is not the bootloader default, \
+             setting bootloader default ...";
       bootloader#set_default_kernel best_kernel.ki_vmlinuz
     );
 
@@ -664,8 +675,10 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
         )
       )
       else if family = `Debian_family then (
-        if not (g#is_file ~followsymlinks:true "/usr/sbin/update-initramfs") then
-          error (f_"unable to rebuild initrd (%s) because update-initramfs was not found in the guest")
+        if not (g#is_file ~followsymlinks:true
+                  "/usr/sbin/update-initramfs") then
+          error (f_"unable to rebuild initrd (%s) because update-initramfs \
+                    was not found in the guest")
             initrd;
 
         if List.length modules > 0 then (
@@ -759,8 +772,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
           ignore (g#sh cmd)
       )
       else (
-        error (f_"unable to rebuild initrd (%s) because mkinitrd or dracut was not found in the guest")
-          initrd
+        error (f_"unable to rebuild initrd (%s) because mkinitrd or dracut \
+                  was not found in the guest") initrd
       )
 
   (* We configure a console on ttyS0. Make sure existing console
@@ -870,8 +883,9 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     if !updated &&
       not (g#is_file ~followsymlinks:true "/usr/bin/X") &&
       not (g#is_file ~followsymlinks:true "/usr/bin/X11/X") then
-      warning (f_"The display driver was updated to ‘%s’, but X11 does not seem to be installed in the guest.  X may not function correctly.")
-        video_driver
+      warning (f_"The display driver was updated to ‘%s’, but X11 does not \
+                  seem to be installed in the guest.  X may not function \
+                  correctly.") video_driver
 
   and configure_kernel_modules block_type net_type =
     (* This function modifies modules.conf (and its various aliases). *)
@@ -909,7 +923,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
         ] in
         try List.find (g#is_file ~followsymlinks:true) paths
         with Not_found ->
-          error (f_"unable to find any valid modprobe configuration file such as /etc/modprobe.conf");
+          error (f_"unable to find any valid modprobe configuration file such \
+                    as /etc/modprobe.conf");
       )
     in
 
@@ -1089,7 +1104,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
              not (String.is_prefix device "sr") &&
              not (String.is_prefix device "scd") &&
              device <> "cdrom" then
-            warning (f_"%s references unknown device \"%s\".  You may have to fix this entry manually after conversion.")
+            warning (f_"%s references unknown device \"%s\".  You may have to \
+                        fix this entry manually after conversion.")
               path device;
           device
       in
