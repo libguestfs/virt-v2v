@@ -401,12 +401,14 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
 
     let pnp_wait_path = "/Program Files/Guestfs/Firstboot/pnp_wait.exe" in
 
-    let fb_script = sprintf "\
-@echo off
-
-echo Wait for PnP to complete
-\"%s\" >\"%%~dpn0.log\" 2>&1
-%s" (String.replace_char pnp_wait_path '/' '\\') reg_restore_str in
+    let fb_script = sprintf
+                      "@echo off\n\
+                       \n\
+                       echo Wait for PnP to complete\n\
+                       \"%s\" >\"%%~dpn0.log\" 2>&1\n\
+                       %s"
+                      (String.replace_char pnp_wait_path '/' '\\')
+                      reg_restore_str in
 
     Firstboot.add_firstboot_script g inspect.i_root "wait pnp" fb_script;
     (* add_firstboot_script has created the path already. *)
