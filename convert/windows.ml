@@ -52,7 +52,7 @@ and (=~) str rex = PCRE.matches rex str
  * a regular batch file.
  *)
 let install_firstboot_powershell g { Types.i_windows_systemroot; i_root }
-                                 filename code =
+                                 ?prio filename code =
   let tempdir = sprintf "%s/Temp" i_windows_systemroot in
   g#mkdir_p tempdir;
   let code = String.concat "\r\n" code ^ "\r\n" in
@@ -67,4 +67,4 @@ let install_firstboot_powershell g { Types.i_windows_systemroot; i_root }
   let ps_path = i_windows_systemroot ^ "\\Temp\\" ^ filename in
 
   let fb = sprintf "%s -ExecutionPolicy ByPass -file %s" ps_exe ps_path in
-  Firstboot.add_firstboot_script g i_root filename fb
+  Firstboot.add_firstboot_script g i_root ?prio filename fb

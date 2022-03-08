@@ -23,7 +23,7 @@ val detect_antivirus : Types.inspect -> bool
     this Windows guest. *)
 
 val install_firstboot_powershell : Guestfs.guestfs -> Types.inspect ->
-                                   string -> string list -> unit
-(** [install_powershell_firstboot g inspect filename code] installs a
+                                   ?prio:int -> string -> string list -> unit
+(** [install_powershell_firstboot g inspect prio filename code] installs a
     Powershell script (the lines of code) as a firstboot script in
-    the Windows VM. *)
+    the Windows VM. If [prio] is omitted, [Firstboot.default_prio] is used. *)
