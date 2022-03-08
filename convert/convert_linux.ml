@@ -1231,10 +1231,12 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
                 g#mkdir_p uefi_fallback_path;
                 g#cp uefi_grub_name uefi_fallback_name;
                 g#cp grub_config uefi_grub_conf;
-                let fix_script = sprintf
-"#!/bin/bash
-efibootmgr -c -L \"CentOS 6\"
-rm -rf %s" uefi_fallback_path in
+                let fix_script =
+                  sprintf
+                    "#!/bin/bash\n\
+                     efibootmgr -c -L \"CentOS 6\"\n\
+                     rm -rf %s"
+                    uefi_fallback_path in
                 Firstboot.add_firstboot_script
                   g inspect.i_root "fix uefi boot" fix_script)
               else
@@ -1262,10 +1264,13 @@ rm -rf %s" uefi_fallback_path in
                  * at UEFI fallback path for simplicity
                  *)
                 if String.find shim "/boot/efi/EFI/ubuntu/shim" >= 0 then
-                  let fix_script = sprintf
-"#!/bin/bash
-sudo efibootmgr -c -L ubuntu -l \\\\EFI\\\\ubuntu\\\\shim%s.efi
-rm -rf %s" arch_suffix uefi_fallback_path in
+                  let fix_script =
+                    sprintf
+                      "#!/bin/bash\n\
+                       sudo efibootmgr -c -L ubuntu \
+                         -l \\\\EFI\\\\ubuntu\\\\shim%s.efi\n\
+                       rm -rf %s"
+                      arch_suffix uefi_fallback_path in
                   Firstboot.add_firstboot_script
                     g inspect.i_root "fix uefi boot" fix_script
                 else
