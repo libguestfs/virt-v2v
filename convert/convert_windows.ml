@@ -739,8 +739,12 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
           add ""
       ) static_ips;
 
-      (* Install the Powershell script to run at firstboot. *)
-      Windows.install_firstboot_powershell g inspect psh_filename !psh
+      (* Install the Powershell script to run at firstboot.
+       *
+       * Place it first among the firstboot scripts (RHBZ#1788823).
+       *)
+      Windows.install_firstboot_powershell g inspect ~prio:2500 psh_filename
+        !psh
     ) (* static_ips <> [] *)
 
   and fix_ntfs_heads () =
