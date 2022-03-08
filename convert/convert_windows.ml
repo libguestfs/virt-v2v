@@ -490,19 +490,20 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
         "uninstall Xen PV" fb_script
 
   and unconfigure_prltools () =
+    let regkey =
+      "HKLM\\System\\CurrentControlSet\\Services\\prl_strg\\DriverInfo" in
     List.iter (
       fun uninst ->
-        let fb_script = "\
-@echo off
-
-REG DELETE HKLM\\System\\CurrentControlSet\\Services\\prl_strg\\DriverInfo /v RefCount /f
-
-echo uninstalling Parallels guest tools
-" ^ uninst ^
-(* ERROR_SUCCESS_REBOOT_REQUIRED == 3010 is OK too *)
-"
-if errorlevel 3010 exit /b 0
-" in
+        let fb_script = sprintf
+                          "@echo off\n\
+                           \n\
+                           REG DELETE %s /v RefCount /f\n\
+                           \n\
+                           echo uninstalling Parallels guest tools\n\
+                           rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too\n\
+                           %s\n\
+                           if errorlevel 3010 exit /b 0\n"
+                          regkey uninst in
 
         Firstboot.add_firstboot_script g inspect.i_root
           "uninstall Parallels tools" fb_script
