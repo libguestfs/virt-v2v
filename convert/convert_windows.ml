@@ -512,15 +512,14 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
   and unconfigure_vmwaretools () =
     List.iter (
       fun uninst ->
-        let fb_script = "\
-@echo off
-
-echo uninstalling VMware Tools
-" ^ uninst ^
-(* ERROR_SUCCESS_REBOOT_REQUIRED == 3010 is OK too *)
-"
-if errorlevel 3010 exit /b 0
-" in
+        let fb_script = sprintf
+                          "@echo off\n\
+                           \n\
+                           echo uninstalling VMware Tools\n\
+                           rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too\n\
+                           %s\n\
+                           if errorlevel 3010 exit /b 0\n"
+                          uninst in
 
         Firstboot.add_firstboot_script g inspect.i_root
           "uninstall VMware Tools" fb_script
