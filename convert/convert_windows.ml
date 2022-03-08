@@ -359,10 +359,9 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
   and reg_restore key name value =
     let strkey = String.concat "\\" key in
     match value with
-    | Some value -> sprintf "\
-reg add \"%s\" /v %s /t REG_DWORD /d %Ld /f" strkey name value
-    | None -> sprintf "\
-reg delete \"%s\" /v %s /f" strkey name
+    | Some value -> sprintf "reg add \"%s\" /v %s /t REG_DWORD /d %Ld /f"
+                      strkey name value
+    | None -> sprintf "reg delete \"%s\" /v %s /f" strkey name
 
   and configure_wait_pnp tool_path =
     (* Prevent destructive interactions of firstboot with PnP. *)
