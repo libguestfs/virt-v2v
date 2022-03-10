@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# Test --in-place.
+# Test virt-v2v-in-place.
 
 unset CDPATH
 export LANG=C
@@ -68,7 +68,7 @@ cat > $libvirt_xml <<EOF
 </node>
 EOF
 
-$VG virt-v2v --debug-gc -i libvirt -ic "test://$libvirt_xml" $n --in-place
+$VG virt-v2v-in-place --debug-gc -i libvirt -ic "test://$libvirt_xml" $n
 
 # Test that the drivers have been copied over into the guest
 script="$d/test.fish"

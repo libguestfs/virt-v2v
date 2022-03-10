@@ -4,6 +4,7 @@ common/options/blocksize-option.pod
 common/options/key-option.pod
 common/options/keys-from-stdin-option.pod
 docs/virt-v2v-hacking.pod
+docs/virt-v2v-in-place.pod
 docs/virt-v2v-input-vmware.pod
 docs/virt-v2v-input-xen.pod
 docs/virt-v2v-output-local.pod

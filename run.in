@@ -71,8 +71,9 @@ export LIBGUESTFS_CACHEDIR="$b/tmp"
 mkdir -p "$b/tmp"
 chcon --reference=/tmp "$b/tmp" 2>/dev/null ||:
 
-# Set the PATH to contain the virt-v2v binary.
+# Set the PATH to contain the virt-v2v and virt-v2v-in-place binaries.
 prepend PATH "$b/v2v"
+prepend PATH "$b/in-place"
 export PATH
 
 # This is a cheap way to find some use-after-free and uninitialized

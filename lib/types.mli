@@ -27,7 +27,7 @@
     conversion into the overlay(s).  We copy the overlay(s) to the
     target disk(s).
 
-    (This progression does not apply for [--in-place] conversions
+    (This progression does not apply for in-place conversions
     which happen on the source only.)
 
     Overlay disks contain a pointer back to source disks.

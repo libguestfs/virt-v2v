@@ -50,6 +50,7 @@ Makefile.in
 /docs/stamp-virt-v2v*.pod
 /docs/virt-v2v.1
 /docs/virt-v2v-hacking.1
+/docs/virt-v2v-in-place.1
 /docs/virt-v2v-input-vmware.1
 /docs/virt-v2v-input-xen.1
 /docs/virt-v2v-output-local.1
@@ -59,6 +60,8 @@ Makefile.in
 /docs/virt-v2v-support.1
 /.gitattributes
 /.git-module-status
+/in-place/.depend
+/in-place/virt-v2v-in-place
 /input/.depend
 /installcheck.sh
 /install-sh

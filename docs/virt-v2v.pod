@@ -8,10 +8,6 @@ virt-v2v - Convert a guest to use KVM
           [-o mode] [other -o* options]
           [guest|filename]
 
- virt-v2v --in-place
-          [-i mode] [other -i* options]
-          [guest|filename]
-
 =head1 DESCRIPTION
 
 Virt-v2v converts a single guest from a foreign hypervisor to run on
@@ -24,6 +20,9 @@ install virtio drivers so it will run quickly.
 There is also a companion front-end called L<virt-p2v(1)> which comes
 as an ISO, CD or PXE image that can be booted on physical machines to
 virtualize those machines (physical to virtual, or p2v).
+
+For in-place conversion, there is a separate tool called
+L<virt-v2v-in-place(1)>.
 
 =head2 Input and Output
 
@@ -39,9 +38,7 @@ these sides of virt-v2v are documented separately in this manual.
 
 Virt-v2v normally copies from the input to the output, called "copying
 mode".  In this case the source guest is always left unchanged.
-In-place conversion (I<--in-place>) only uses the I<-i*> options and
-modifies the source guest in-place.  (See L</In-place conversion>
-below.)
+In-place conversions may be done using L<virt-v2v-in-place(1)>.
 
 =head2 Other virt-v2v topics
 
@@ -293,20 +290,6 @@ L<virt-v2v-input-xen(1)>.
 For I<-i disk> only, this specifies the format of the input disk
 image.  For other input methods you should specify the input
 format in the metadata.
-
-=item B<--in-place>
-
-Do not create an output virtual machine in the target hypervisor.
-Instead, adjust the guest OS in the source VM to run in the input
-hypervisor.
-
-This mode is meant for integration with other toolsets, which take the
-responsibility of converting the VM configuration, providing for
-rollback in case of errors, transforming the storage, etc.
-
-See L</In-place conversion> below.
-
-Conflicts with all I<-o *> options.
 
 =item B<-io> OPTION=VALUE
 
@@ -1449,31 +1432,6 @@ that instead.
    </devices>
  </domain>
 
-=head2 In-place conversion
-
-It is also possible to use virt-v2v in scenarios where a foreign VM
-has already been imported into a KVM-based hypervisor, but still needs
-adjustments in the guest to make it run in the new virtual hardware.
-
-In that case it is assumed that a third-party tool has created the
-target VM in the supported KVM-based hypervisor based on the source VM
-configuration and contents, but using virtual devices more appropriate
-for KVM (e.g. virtio storage and network, etc.).
-
-Then, to make the guest OS boot and run in the changed environment,
-one can use:
-
- virt-v2v -ic qemu:///system converted_vm --in-place
-
-Virt-v2v will analyze the configuration of C<converted_vm> in the
-C<qemu:///system> libvirt instance, and apply various fixups to the
-guest OS configuration to make it match the VM configuration.  This
-may include installing virtio drivers, configuring the bootloader, the
-mountpoints, the network interfaces, and so on.
-
-Should an error occur during the operation, virt-v2v exits with an
-error code leaving the VM in an undefined state.
-
 =head2 Machine readable output
 
 The I<--machine-readable> option can be used to make the output more
@@ -1658,6 +1616,7 @@ L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-rhev/#c
 =head1 SEE ALSO
 
 L<virt-p2v(1)>,
+L<virt-v2v-in-place(1)>,
 L<virt-customize(1)>,
 L<virt-df(1)>,
 L<virt-filesystems(1)>,
@@ -1702,4 +1661,4 @@ Tingting Zheng
 
 =head1 COPYRIGHT
 
-Copyright (C) 2009-2020 Red Hat Inc.
+Copyright (C) 2009-2022 Red Hat Inc.

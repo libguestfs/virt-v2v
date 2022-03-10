@@ -145,6 +145,7 @@ AC_CONFIG_FILES([Makefile
                  convert/Makefile
                  docs/Makefile
                  gnulib/lib/Makefile
+                 in-place/Makefile
                  input/Makefile
                  lib/Makefile
                  lib/config.ml

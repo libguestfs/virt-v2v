@@ -33,6 +33,7 @@ $srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
 --io,\
 --ip,\
 --it,\
+--in-place,\
 --no-trim,\
 --password-file,\
 --oa,\
@@ -57,3 +58,20 @@ $srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
 --vdsm-vm-uuid,\
 --vdsm-vol-uuid,\
 --vmtype
+
+$srcdir/../podcheck.pl virt-v2v-in-place.pod virt-v2v-in-place \
+  --path $srcdir/../common/options \
+  --ignore=\
+--ic,\
+--if,\
+--io,\
+--ip,\
+--it,\
+--password-file,\
+--oa,\
+--oc,\
+--of,\
+--on,\
+--oo,\
+--op,\
+--os

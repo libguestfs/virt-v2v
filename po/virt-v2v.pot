@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.45.99\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-03-10 13:56+0000\n"
+"POT-Creation-Date: 2022-03-10 15:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,9 @@ msgid ""
 "this out through the RHV-M user interface."
 msgstr ""
 
-#: v2v/v2v.ml:206 v2v/v2v.ml:192 v2v/v2v.ml:171 v2v/v2v.ml:56
+#. in-place/in_place.ml:155
+#. in-place/in_place.ml:51
+#: v2v/v2v.ml:205 v2v/v2v.ml:191 v2v/v2v.ml:171 v2v/v2v.ml:56
 msgid "%s option used more than once on the command line"
 msgstr ""
 
@@ -69,7 +71,7 @@ msgid ""
 "%!"
 msgstr ""
 
-#: v2v/v2v.ml:318
+#: v2v/v2v.ml:323
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -90,6 +92,21 @@ msgid ""
 "\n"
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v(1).\n"
+msgstr ""
+
+#: in-place/in_place.ml:191
+msgid ""
+"%s: convert a guest to use KVM in-place\n"
+"\n"
+"Note this program modified the guest in-place with no backup.\n"
+"Normally you should use virt-v2v.\n"
+"\n"
+"virt-v2v -i libvirtxml guest-domain.xml\n"
+"\n"
+"virt-v2v -i disk disk.img\n"
+"\n"
+"A short summary of the options is given below.  For detailed help please\n"
+"read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:171
@@ -117,7 +134,7 @@ msgstr ""
 msgid "'CMD+ARGS'"
 msgstr ""
 
-#: v2v/v2v.ml:151
+#: v2v/v2v.ml:151 in-place/in_place.ml:132
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 
@@ -125,25 +142,25 @@ msgstr ""
 msgid "-i disk: expecting a disk image (filename) on the command line"
 msgstr ""
 
-#: input/input_xen_ssh.ml:61
+#: input/input_xen_ssh.ml:64
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr ""
 
-#: input/input_vddk.ml:114 input/input_vcenter_https.ml:83
+#: input/input_vddk.ml:114 input/input_vcenter_https.ml:86
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
 
-#: input/input_vcenter_https.ml:95
+#: input/input_vcenter_https.ml:98
 msgid "-i libvirt: expecting -ic parameter to contain vcenter server name"
 msgstr ""
 
-#: input/input_vcenter_https.ml:74
+#: input/input_vcenter_https.ml:77
 msgid "-i libvirt: expecting -ip passwordfile parameter for vCenter connection"
 msgstr ""
 
-#. input/input_vcenter_https.ml:67
+#. input/input_vcenter_https.ml:70
 #. input/input_libvirt.ml:41
-#: input/input_xen_ssh.ml:54 input/input_vddk.ml:105
+#: input/input_xen_ssh.ml:57 input/input_vddk.ml:105
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
 msgstr ""
 
@@ -170,11 +187,11 @@ msgid ""
 "-i ova: invalid OVA file: path ‘%s’ references a file outside the archive"
 msgstr ""
 
-#: input/input_vmx.ml:50
+#: input/input_vmx.ml:53
 msgid "-i vmx: cannot use -it vddk in this input mode"
 msgstr ""
 
-#: input/input_vmx.ml:53
+#: input/input_vmx.ml:56
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr ""
 
@@ -351,7 +368,7 @@ msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
 
-#: input/input_vddk.ml:143
+#: input/input_vddk.ml:146
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -374,7 +391,7 @@ msgstr ""
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
-#: v2v/v2v.ml:281
+#: v2v/v2v.ml:286
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
@@ -382,7 +399,7 @@ msgstr ""
 msgid "Change the permissions of a file"
 msgstr ""
 
-#: v2v/v2v.ml:239
+#: v2v/v2v.ml:244
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
@@ -394,7 +411,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:591
+#: v2v/v2v.ml:595
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -406,7 +423,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:612
+#: v2v/v2v.ml:616
 msgid "Creating output metadata"
 msgstr ""
 
@@ -480,7 +497,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:616
+#: v2v/v2v.ml:620 in-place/in_place.ml:350
 msgid "Finishing off"
 msgstr ""
 
@@ -488,7 +505,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:283
+#: v2v/v2v.ml:288 in-place/in_place.ml:186
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -500,7 +517,7 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: v2v/v2v.ml:313 v2v/v2v.ml:259
+#: v2v/v2v.ml:318 v2v/v2v.ml:264
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
@@ -508,7 +525,7 @@ msgstr ""
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: v2v/v2v.ml:245
+#: v2v/v2v.ml:250 in-place/in_place.ml:174
 msgid "Input format"
 msgstr ""
 
@@ -535,7 +552,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:251
+#: v2v/v2v.ml:256
 msgid "Input transport"
 msgstr ""
 
@@ -543,7 +560,7 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/v2v.ml:243
+#: v2v/v2v.ml:248 in-place/in_place.ml:172
 msgid "Libvirt URI"
 msgstr ""
 
@@ -551,15 +568,15 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr ""
 
-#: v2v/v2v.ml:255
+#: v2v/v2v.ml:260 in-place/in_place.ml:180
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:237
+#: v2v/v2v.ml:242 in-place/in_place.ml:168
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:257
+#: v2v/v2v.ml:262 in-place/in_place.ml:182
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -569,8 +586,8 @@ msgstr ""
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:36
-#. input/input_libvirt.ml:154
-#. input/input_libvirt.ml:142
+#. input/input_libvirt.ml:159
+#. input/input_libvirt.ml:147
 #. input/input_disk.ml:36
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -593,11 +610,7 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:253
-msgid "Only tune the guest in the input VM"
-msgstr ""
-
-#: v2v/v2v.ml:265
+#: v2v/v2v.ml:270
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -665,7 +678,7 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:279
+#: v2v/v2v.ml:284 in-place/in_place.ml:184
 msgid "Print source and stop"
 msgstr ""
 
@@ -697,7 +710,7 @@ msgstr ""
 msgid "Remove all the subscriptions"
 msgstr ""
 
-#: v2v/v2v.ml:269
+#: v2v/v2v.ml:274
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -738,63 +751,63 @@ msgstr ""
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: v2v/v2v.ml:285
+#: v2v/v2v.ml:290
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:287
+#: v2v/v2v.ml:292
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:289
+#: v2v/v2v.ml:294
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr ""
 
-#: v2v/v2v.ml:291
+#: v2v/v2v.ml:296
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr ""
 
-#: v2v/v2v.ml:293
+#: v2v/v2v.ml:298
 msgid "Same as ‘-io vddk-port=port’"
 msgstr ""
 
-#: v2v/v2v.ml:295
+#: v2v/v2v.ml:300
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr ""
 
-#: v2v/v2v.ml:297
+#: v2v/v2v.ml:302
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr ""
 
-#: v2v/v2v.ml:299
+#: v2v/v2v.ml:304
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr ""
 
-#: v2v/v2v.ml:277
+#: v2v/v2v.ml:282
 msgid "Same as ‘-ip filename’"
 msgstr ""
 
-#: v2v/v2v.ml:301
+#: v2v/v2v.ml:306
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr ""
 
-#: v2v/v2v.ml:303
+#: v2v/v2v.ml:308
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:311
+#: v2v/v2v.ml:316
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr ""
 
-#: v2v/v2v.ml:309
+#: v2v/v2v.ml:314
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr ""
 
-#: v2v/v2v.ml:307
+#: v2v/v2v.ml:312
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:305
+#: v2v/v2v.ml:310
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
@@ -806,39 +819,39 @@ msgstr ""
 msgid "Scrub build log file"
 msgstr ""
 
-#: v2v/v2v.ml:235
+#: v2v/v2v.ml:240
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:233
+#: v2v/v2v.ml:238
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: v2v/v2v.ml:241
+#: v2v/v2v.ml:246 in-place/in_place.ml:170
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:247
+#: v2v/v2v.ml:252 in-place/in_place.ml:176
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:271
+#: v2v/v2v.ml:276
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:263
+#: v2v/v2v.ml:268
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:267
+#: v2v/v2v.ml:272
 msgid "Set output format"
 msgstr ""
 
-#: v2v/v2v.ml:261
+#: v2v/v2v.ml:266
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:275
+#: v2v/v2v.ml:280
 msgid "Set output storage location"
 msgstr ""
 
@@ -866,15 +879,15 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:563
+#: v2v/v2v.ml:567
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:539
+#: v2v/v2v.ml:543 in-place/in_place.ml:316
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:545
+#: v2v/v2v.ml:549 in-place/in_place.ml:322
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -888,6 +901,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:396
 msgid "TIMEZONE"
+msgstr ""
+
+#: v2v/v2v.ml:232
+msgid ""
+"The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
 
 #: lib/create_ovf.ml:767
@@ -929,12 +947,16 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/v2v.ml:249
+#: v2v/v2v.ml:254 in-place/in_place.ml:178
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:273
+#: v2v/v2v.ml:278
 msgid "Use password from file to connect to output hypervisor"
+msgstr ""
+
+#: v2v/v2v.ml:258
+msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:391
@@ -1000,15 +1022,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: v2v/v2v.ml:114
+#: v2v/v2v.ml:114 in-place/in_place.ml:95
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:138
+#: v2v/v2v.ml:138 in-place/in_place.ml:119
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:149
+#: v2v/v2v.ml:149 in-place/in_place.ml:130
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
@@ -1055,8 +1077,9 @@ msgid ""
 "failed: %s"
 msgstr ""
 
-#. input/input_vcenter_https.ml:88
-#: v2v/v2v.ml:432 input/input_xen_ssh.ml:66 input/input_vddk.ml:119
+#. input/input_vcenter_https.ml:91
+#. in-place/in_place.ml:266
+#: v2v/v2v.ml:432 input/input_xen_ssh.ml:69 input/input_vddk.ml:122
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1094,7 +1117,7 @@ msgid ""
 "This could be a bug in %s."
 msgstr ""
 
-#: input/input_disk.ml:145
+#: input/input_disk.ml:146
 msgid "disks on the command line have mixed formats"
 msgstr ""
 
@@ -1146,7 +1169,7 @@ msgstr ""
 msgid "exception: %s"
 msgstr ""
 
-#: input/input_disk.ml:142
+#: input/input_disk.ml:143
 msgid "expected >= 1 disk name on the command line"
 msgstr ""
 
@@ -1241,14 +1264,30 @@ msgstr ""
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr ""
 
-#: input/input_xen_ssh.ml:112
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:101
+msgid "in-place mode does not work with HTTP source"
+msgstr ""
+
+#: input/input_vddk.ml:117
+msgid "in-place mode does not work with VDDK source"
+msgstr ""
+
+#: input/input_vmx.ml:43
+msgid "in-place mode does not work with VMX source"
+msgstr ""
+
+#: input/input_xen_ssh.ml:50
+msgid "in-place mode does not work with Xen over SSH source"
+msgstr ""
+
+#: input/input_xen_ssh.ml:115
 msgid ""
 "input from xen over ssh does not support disks stored on remote block "
 "devices.  See virt-v2v-input-xen(1) section \"Xen or ssh conversions from "
 "block devices\"."
 msgstr ""
 
-#: v2v/v2v.ml:635
+#: v2v/v2v.ml:639 in-place/in_place.ml:369
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1273,15 +1312,15 @@ msgstr ""
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
-#: v2v/v2v.ml:123
+#: v2v/v2v.ml:123 in-place/in_place.ml:104
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:107
+#: v2v/v2v.ml:107 in-place/in_place.ml:88
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:99
+#: v2v/v2v.ml:99 in-place/in_place.ml:80
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -1378,7 +1417,7 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: v2v/v2v.ml:668
+#: v2v/v2v.ml:672
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
@@ -1643,11 +1682,11 @@ msgstr ""
 msgid "subprocess signalled or stopped by signal %d"
 msgstr ""
 
-#: v2v/v2v.ml:225
+#: v2v/v2v.ml:224
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 
-#: v2v/v2v.ml:228
+#: v2v/v2v.ml:227
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
@@ -1764,15 +1803,15 @@ msgstr ""
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:165
+#: v2v/v2v.ml:165 in-place/in_place.ml:146
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:200
+#: v2v/v2v.ml:199 in-place/in_place.ml:163
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:220
+#: v2v/v2v.ml:219
 msgid "unknown -o option: %s"
 msgstr ""
 
@@ -1792,7 +1831,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:364
+#: v2v/v2v.ml:368
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
@@ -1808,7 +1847,7 @@ msgstr ""
 msgid "unsupported compression in OVF: %s"
 msgstr ""
 
-#: input/input_vcenter_https.ml:116
+#: input/input_vcenter_https.ml:119
 msgid ""
 "vcenter: <vmware:datacenterpath> was not found in the XML.  You need to "
 "upgrade to libvirt ≥ 1.2.20."
@@ -1878,6 +1917,10 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
+#: in-place/in_place.ml:278
+msgid "virt-v2v-in-place does not support remote libvirt URIs"
+msgstr ""
+
 #: input/parse_domain_from_vmx.ml:51
 msgid "vmx URI path component looks incorrect"
 msgstr ""
@@ -1906,7 +1949,7 @@ msgstr ""
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr ""
 
-#: input/input_xen_ssh.ml:82 input/input_vddk.ml:153
+#: input/input_xen_ssh.ml:85 input/input_vddk.ml:156
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
