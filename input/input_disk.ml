@@ -92,7 +92,7 @@ module Disk = struct
 
     if not (Nbdkit.probe_plugin "file") then
       error (f_"nbdkit-file-plugin is not installed or not working");
-    if not (Nbdkit.probe_filter "cow") then
+    if options.read_only && not (Nbdkit.probe_filter "cow") then
       error (f_"nbdkit-cow-filter is not installed or not working");
 
     let nbdkit_config = Nbdkit.config () in
@@ -105,7 +105,8 @@ module Disk = struct
         match input_format with
         | "raw" ->
            let cmd = Nbdkit.create "file" in
-           Nbdkit.add_filter cmd "cow";
+           if options.read_only then
+             Nbdkit.add_filter cmd "cow";
            Nbdkit.add_arg cmd "file" disk;
            if Nbdkit.version nbdkit_config >= (1, 22, 0) then
              Nbdkit.add_arg cmd "cache" "none";
@@ -118,7 +119,7 @@ module Disk = struct
 
         | format ->
            let cmd = QemuNBD.create disk in
-           QemuNBD.set_snapshot cmd true; (* protective overlay *)
+           QemuNBD.set_snapshot cmd options.read_only;
            QemuNBD.set_format cmd (Some format);
            let _, pid = QemuNBD.run_unix ~socket cmd in
            On_exit.kill pid

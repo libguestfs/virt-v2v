@@ -113,6 +113,9 @@ information on these settings.
       | None ->
          error (f_"-i libvirt: expecting -ic parameter for vcenter connection") in
 
+    if not options.read_only then
+      error (f_"in-place mode does not work with VDDK source");
+
     let uri =
       try Xml.parse_uri input_conn
       with Invalid_argument msg ->

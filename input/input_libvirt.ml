@@ -60,7 +60,7 @@ and get_source_from_libvirt_xml _ args =
   let source, disks = parse_libvirt_xml xml in
   source, disks
 
-and setup_servers dir disks =
+and setup_servers options dir disks =
   (* Check nbdkit is installed. *)
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working.  It is required to use ‘-i libvirt|libvirtxml’.");
@@ -69,7 +69,7 @@ and setup_servers dir disks =
     error (f_"nbdkit-file-plugin is not installed or not working");
   if not (Nbdkit.probe_plugin "nbd") then
     error (f_"nbdkit-nbd-plugin is not installed or not working");
-  if not (Nbdkit.probe_filter "cow") then
+  if options.read_only && not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
 
   let nbdkit_config = Nbdkit.config () in
@@ -83,7 +83,8 @@ and setup_servers dir disks =
       (* Forward to another NBD server using nbdkit-nbd-plugin. *)
       | NBD (hostname, port) ->
          let cmd = Nbdkit.create "nbd" in
-         Nbdkit.add_filter cmd "cow";
+         if options.read_only then
+           Nbdkit.add_filter cmd "cow";
          Nbdkit.add_arg cmd "hostname" hostname;
          Nbdkit.add_arg cmd "port" (string_of_int port);
          Nbdkit.add_arg cmd "shared" "true";
@@ -96,6 +97,9 @@ and setup_servers dir disks =
 
       (* Forward to an HTTP/HTTPS server using nbdkit-curl-plugin. *)
       | HTTP url ->
+         if not options.read_only then
+           error (f_"in-place mode does not work with HTTP source");
+
          let cor = dir // "convert" in
          let cmd = Nbdkit_curl.create_curl ~cor url in
          let _, pid = Nbdkit.run_unix ~socket cmd in
@@ -109,7 +113,8 @@ and setup_servers dir disks =
          match format with
          | Some "raw" ->
             let cmd = Nbdkit.create "file" in
-            Nbdkit.add_filter cmd "cow";
+            if options.read_only then
+              Nbdkit.add_filter cmd "cow";
             Nbdkit.add_arg cmd "file" filename;
             if Nbdkit.version nbdkit_config >= (1, 22, 0) then
               Nbdkit.add_arg cmd "cache" "none";
@@ -123,7 +128,7 @@ and setup_servers dir disks =
          (* We use qemu-nbd for all other formats including auto-detect. *)
          | _ ->
             let cmd = QemuNBD.create filename in
-            QemuNBD.set_snapshot cmd true; (* protective overlay *)
+            QemuNBD.set_snapshot cmd options.read_only;
             QemuNBD.set_format cmd format;
             let _, pid = QemuNBD.run_unix ~socket cmd in
             On_exit.kill pid
@@ -143,7 +148,7 @@ module Libvirt_ = struct
 
   let setup dir options args =
     let source, data = get_source_from_libvirt options args in
-    setup_servers dir data;
+    setup_servers options dir data;
     source
 end
 
@@ -155,6 +160,6 @@ module LibvirtXML = struct
 
   let setup dir options args =
     let source, data = get_source_from_libvirt_xml options args in
-    setup_servers dir data;
+    setup_servers options dir data;
     source
 end

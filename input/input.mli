@@ -23,6 +23,7 @@ type options = {
   input_options : (string * string) list; (* [-io] options *)
   input_password : string option;         (* [-ip] option *)
   input_transport : [`SSH|`VDDK] option;  (* [-it] option *)
+  read_only : bool;                       (* read-only (usually true) *)
 }
 
 module type INPUT = sig

@@ -48,6 +48,9 @@ module VCenterHTTPS = struct
     if options.input_options <> [] then
       error (f_"no -io (input options) are allowed here");
 
+    if not options.read_only then
+      error (f_"in-place mode does not work with HTTP source");
+
     (* Remove proxy environment variables so curl doesn't try to use
      * them.  Using a proxy is generally a bad idea because vCenter
      * is slow enough as it is without putting another device in

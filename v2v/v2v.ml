@@ -472,7 +472,11 @@ read the man page virt-v2v(1).
     input_format = !input_format;
     input_options = !input_options;
     input_password = !input_password;
-    input_transport = input_transport
+    input_transport = input_transport;
+    (* This must always be true so that we do not modify the
+     * source.  This is set to [false] by in-place mode.
+     *)
+    read_only = true;
   } in
 
   (* If -io ? then we want to query input options supported in this mode. *)

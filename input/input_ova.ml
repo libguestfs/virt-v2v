@@ -190,7 +190,7 @@ module OVA = struct
         On_exit.unlink socket;
 
         let cmd = QemuNBD.create qemu_uri in
-        QemuNBD.set_snapshot cmd true; (* protective overlay *)
+        QemuNBD.set_snapshot cmd options.read_only; (* protective overlay *)
         QemuNBD.set_format cmd None; (* auto-detect format *)
         let _, pid = QemuNBD.run_unix ~socket cmd in
         On_exit.kill pid

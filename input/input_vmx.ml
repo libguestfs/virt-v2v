@@ -39,6 +39,9 @@ module VMX = struct
     if options.input_options <> [] then
       error (f_"no -io (input options) are allowed here");
 
+    if not options.read_only then
+      error (f_"in-place mode does not work with VMX source");
+
     let vmx_source =
       match args with
       | [arg] ->
