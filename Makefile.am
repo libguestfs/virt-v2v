@@ -110,10 +110,10 @@ po/POTFILES: configure.ac
 po/POTFILES-ml: configure.ac
 	rm -f $@ $@-t
 	cd $(srcdir); \
-	find common/ml* v2v -name '*.ml' | \
+	find common/ml* lib input output v2v -name '*.ml' | \
 	grep -v '^common/mlprogress/' | \
 	grep -v '^common/mlvisit/' | \
-	grep -v '^v2v/config.ml$$' | \
+	grep -v '^lib/config.ml$$' | \
 	grep -v -E '.*_tests\.ml$$' | \
 	LC_ALL=C sort > $@-t
 	mv $@-t $@
