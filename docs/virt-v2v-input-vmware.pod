@@ -238,6 +238,16 @@ and restarting the C<hostd> service:
 
 For more information see L<https://bugzilla.redhat.com/1614276>.
 
+=head2 VDDK: "error: VixDiskLibVim: Failed to open disk using NFC. VixError 1"
+
+If you see an error similar to:
+
+ nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.
+
+then it is caused by a bug in VDDK E<le> 6.7.  The suggested solution
+it to upgrade to the latest VDDK.  See also
+L<https://bugzilla.redhat.com/1684075>
+
 =head2 VDDK: URI
 
 Construct the correct C<vpx://> (for vCenter) or C<esx://> (for ESXi)
