@@ -55,7 +55,9 @@ L<virt-v2v-output-rhv(1)> — Output to oVirt or RHV.
 
 L<virt-v2v-output-openstack(1)> — Output to OpenStack.
 
-L<virt-v2v-release-notes-1.42(1)> — Release notes for older 1.42 release.
+L<virt-v2v-release-notes-1.42(1)> — Release notes for 1.42 release.
+
+L<virt-v2v-release-notes-2.0(1)> — Release notes for 2.0 release.
 
 =head1 EXAMPLES
 

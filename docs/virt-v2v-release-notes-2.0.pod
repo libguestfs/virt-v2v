@@ -1,0 +1,395 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v release notes for 2.0
+
+=head1 DESCRIPTION
+
+These are the release notes for S<B<virt-v2v 2.0>>,
+released on S<B<XXX XXXX 2022>>.
+
+=head2 Security
+
+There were no security-related bugs found in this release.
+
+=head2 New features
+
+Virt-v2v has been modularised allowing external programs to examine
+the state of the conversion and inject their own copying step.
+Further enhancements will be made to this new architecture in
+forthcoming releases.
+
+The command line is almost identical apart from some debugging
+features that were removed (see below).  The only significant
+difference is that the output format (I<-of>) now has to be specified
+if it is different from the input format, whereas previous versions of
+virt-v2v would use the same output format as input format
+automatically.
+
+A lot of time was spent improving the performance of virt-v2v in
+common cases.
+
+Implement conversion of ALT Linux guests (Mikhail Gordeev).
+
+Many bug fixes and performance enhancements were made to oVirt imageio
+output (Nir Soffer).
+
+There is a new L<virt-v2v-in-place(1)> tool which replaces the
+existing virt-v2v I<--in-place> option.
+
+Virt-v2v can now convert guests which use LUKS encrypted logical
+volumes (Laszlo Ersek).
+
+Option I<-oo rhv-direct> has been replaced by I<-oo rhv-proxy>, and
+direct mode (which is much faster) is now the default when writing to
+oVirt, with proxy mode available for restricted network configurations
+(thanks: Nir Soffer).
+
+The following command line options were removed: I<--print-estimate>,
+I<--debug-overlays>, I<--no-copy>.
+
+Virt-v2v no longer installs the RHEV-APT tool in Windows guests.  This
+tool was deprecated and then removed in oVirt 4.3.
+
+Deprecated tool virt-v2v-copy-to-local has been removed.  This was
+deprecated in November 2018.
+
+=head2 Other fixes
+
+Remove reference to prl_strg driver in Windows guests to avoid BSOD
+(Denis Plotnikov).
+
+Fix conversions of UEFI Linux guests that don't provide their own
+fallback bootloader (Denis Plotnikov).
+
+Remove use of L<nbdkit-readahead-filter(1)>.  This filter uses a naive
+strategy and it had several negative effects on conversions.
+
+Remove prompts for interactive passwords.  Normally you should try to
+use the I<-ip> and/or I<-op> options to supply passwords.
+
+For Windows guests, we insert a schtasks command.  However the
+parameters of this command are timezone dependent and so it failed in
+non-European timezones.  (Thanks: Dinesh Herath, Tomáš Golembiovský,
+Bryan Kinney, Mark Zealey, Xiaodai Wang)
+
+Virt-v2v will reauthenticate with vCenter servers periodically when
+copying guests over HTTPS which stops large guests and/or slow copies
+taking longer than about 30 minutes from failing.
+
+Virt-v2v now sets libguestfs SMP to match number of physical host
+CPUs, which helps performance of certain conversion steps.
+
+Virt-v2v output to oVirt now attempts to set the machine and firmware
+type correctly.  Note an exact mapping is not always possible and
+oVirt may ignore our recommendations (incorrectly) sometimes.
+
+Virt-v2v now generates a virtio-vsock device for guests which support
+it (Valeriy Vdovin).
+
+All guests now need at least 100 MB of free space for conversion to
+succeed (Ming Xie).
+
+Standard VGA instead of QXL is now used as the video type for
+converted guests (Laszlo Ersek).
+
+Older guests (eg RHEL 6) will use the virtio-transitional model after
+conversion.  This feature and the machine type are now usually
+determined from the libosinfo database, falling back to hard-coded
+values if libosinfo is not available (Laszlo Ersek).
+
+When virt-v2v prints messages to a pipe or file it no longer wraps
+them, making parsing simpler.  You can enable wrapping in this mode
+using I<--wrap> (Laszlo Ersek).
+
+Windows guest firstboot scripts installed by virt-v2v now run in the
+right order, making network configuration happen earlier (Laszlo
+Ersek).
+
+=head2 Build changes
+
+libguestfs E<ge> 1.44 is now required.
+
+L<nbdcopy(1)> and OCaml NBD bindings, both from libnbd E<ge> 1.10, are
+now required.
+
+nbdkit E<ge> 1.22 is now required (Nir Soffer).
+
+pcre2 (instead of pcre) is now required.
+
+gnulib is no longer bundled or used by virt-v2v.
+
+OCaml E<ge> 4.04 is now required.  OCaml 4.13 support has been added
+in this release.
+
+OpenSSH scp E<ge> 8.8 is now required.  Earlier versions will fail
+because the command line syntax was changed incompatibly.
+
+=head2 Internals
+
+Weblate instead of Zanata is now used for translations (Pino Toscano).
+
+=head2 Bugs fixed
+
+=begin comment
+
+https_proxy= ./bugs-in-changelog.sh v1.42.0..
+
+=end comment
+
+=over 4
+
+=item L<https://bugzilla.redhat.com/2051394>
+
+Missing error message of 'insufficient free space in the conversion server temporary directory'
+
+=item L<https://bugzilla.redhat.com/2044922>
+
+nbdinfo output to stdout instead of stderr during virt-v2v conversion
+
+=item L<https://bugzilla.redhat.com/2044911>
+
+virt-p2v conversion hangs with RHEL9 virt-v2v
+
+=item L<https://bugzilla.redhat.com/2043333>
+
+'model='virtio-transitional' is wrongly added when converting windows guest to local by rhel9 v2v
+
+=item L<https://bugzilla.redhat.com/2041886>
+
+virt-v2v hangs for several minutes when using -ic vpx://... -it vddk with incorrect IP address
+
+=item L<https://bugzilla.redhat.com/2041852>
+
+Improve the unclear assertion failure at input_xen_ssh.ml
+
+=item L<https://bugzilla.redhat.com/2041850>
+
+Can not specify '-oo json-disks-pattern' in '-o json' mode
+
+=item L<https://bugzilla.redhat.com/2039597>
+
+Failed to import VM when selecting OVA as a source on RHV webadmin
+
+=item L<https://bugzilla.redhat.com/2039255>
+
+Conversion performance is not good when convert guest by modular virt-v2v
+
+=item L<https://bugzilla.redhat.com/2034240>
+
+calling "get_disk_allocated" in "create_ovf" breaks the rhv-upload output plugin
+
+=item L<https://bugzilla.redhat.com/2033096>
+
+RFE: Remove -oo rhv-direct and add -oo rhv-proxy option
+
+=item L<https://bugzilla.redhat.com/2032324>
+
+nbdcopy command failed when using v2v to convert guest from ESXi6.5 via vddk > 6.5 + rhv-upload to rhv4.4
+
+=item L<https://bugzilla.redhat.com/2032112>
+
+Add virt-v2v and libvirt version to the beginning of v2v debug log
+
+=item L<https://bugzilla.redhat.com/2027673>
+
+V2V can't convert guest from VMware via vmx+ssh when openssh version is 8.7p1-5
+
+=item L<https://bugzilla.redhat.com/2027598>
+
+There is no guest listed in export domain if use v2v to convert guest to rhv via -o rhv
+
+=item L<https://bugzilla.redhat.com/1994984>
+
+virt-v2v can't convert bitblocker windows guest with libguestfs error: /dev/mapper/cryptsda: No such file or directory
+
+=item L<https://bugzilla.redhat.com/1977681>
+
+The usage description of '-oo rhv-disk-uuid=UUID' in man virt-v2v should be updated
+
+=item L<https://bugzilla.redhat.com/1976607>
+
+[RFE] Drop QXL for guests on CentOS 9 clusters
+
+=item L<https://bugzilla.redhat.com/1976024>
+
+[RFE][v2v] [upload/download disk/CBT] Failed to attach disk to the VM - disk is OK but image transfer still holds a lock on the disk
+
+=item L<https://bugzilla.redhat.com/1972125>
+
+Update privileges for Non-admin vmware role when ESXi host has enabled host encryption mode in virt-v2v-input-vmware man page
+
+=item L<https://bugzilla.redhat.com/1967941>
+
+virt-v2v can't install qemu-guest-agent for rhel9 guest during conversion
+
+=item L<https://bugzilla.redhat.com/1964324>
+
+assertion failed at parse_ova.ml when ova directory ends with '/'
+
+=item L<https://bugzilla.redhat.com/1961107>
+
+Change video type from qxl to vga after v2v conversion
+
+=item L<https://bugzilla.redhat.com/1960087>
+
+v2v import from vCenter fails when using interactive password because cookie-script tries to be interactive
+
+=item L<https://bugzilla.redhat.com/1949147>
+
+Should improve the minimum free space for windows guest in v2v man page and better to improve v2v error message about no space left for windows guest
+
+=item L<https://bugzilla.redhat.com/1945549>
+
+Delete or improve the warning info about rhev-apt during v2v converting windows guest on rhel9
+
+=item L<https://bugzilla.redhat.com/1942325>
+
+Virt-v2v should add 'model='virtio-transitional' to RHEL <=6 guest virtio devices during conversion if target is rhel9 system
+
+=item L<https://bugzilla.redhat.com/1926102>
+
+"virt-v2v: warning: there is no QXL driver for this version of Windows" still shows, even though we copied qxldod driver to the guest
+
+=item L<https://bugzilla.redhat.com/1917760>
+
+VMware tools not getting uninstalled as part of IMS
+
+=item L<https://bugzilla.redhat.com/1903960>
+
+Should hidden "virt-v2v: warning: /usr/share/virt-tools/pnp_wait.exe is missing.."during conversion
+
+=item L<https://bugzilla.redhat.com/1901489>
+
+VDDK 6.7 repeatedly reconnects with nbdkit: vddk[1]: debug: NBD_ClientOpen: attempting to create connection to vpxa-nfc:// followed by virt-v2v failure
+
+=item L<https://bugzilla.redhat.com/1895323>
+
+After virt-v2v, qemu-ga does not run at Windows firstboot if the timezone is not M/d/yyyy format
+
+=item L<https://bugzilla.redhat.com/1872100>
+
+Should correct info about 'UEFI on OpenStack' in virt-v2v-support man page
+
+=item L<https://bugzilla.redhat.com/1872094>
+
+Virt-v2v should convert UEFI guest to openstack via openstack option successfully
+
+=item L<https://bugzilla.redhat.com/1871754>
+
+RFE: Should clarify which file is correct authentication file for openstack/glance conversion in virt-v2v-output-openstack man page
+
+=item L<https://bugzilla.redhat.com/1868690>
+
+Ceph block device will be destroyed if v2v convert guest to ceph block device and guest disk size is greater than ceph block device
+
+=item L<https://bugzilla.redhat.com/1858775>
+
+RFE: virt-v2v should check the ip info when specify guest's ip
+
+=item L<https://bugzilla.redhat.com/1858765>
+
+V2V option --keys-from-stdin gives error: getline: Inappropriate ioctl for device
+
+=item L<https://bugzilla.redhat.com/1854275>
+
+document that vmx+ssh "-ip" auth doesn't cover ssh / scp shell commands
+
+=item L<https://bugzilla.redhat.com/1842440>
+
+nbdkit cannot read the password interactively when started from virt-v2v
+
+=item L<https://bugzilla.redhat.com/1841096>
+
+Option --bandwidth and --bandwidth-file isn't working as expected during v2v conversion
+
+=item L<https://bugzilla.redhat.com/1839917>
+
+There is no info "Opening the source -i libvirt -ic vpx://..." shown if any IP is wrong in vpx:// URL during v2v conversion
+
+=item L<https://bugzilla.redhat.com/1838425>
+
+V2V doesn't ask password if there is no option about password file in v2v command line
+
+=item L<https://bugzilla.redhat.com/1837453>
+
+[RFE]Remove cache=none for guest after v2v converting to libvirt
+
+=item L<https://bugzilla.redhat.com/1837328>
+
+Virt-v2v cannot convert guest from ESXI7.0 server without vddk
+
+=item L<https://bugzilla.redhat.com/1832805>
+
+v2v conversion will be failed because of memory allocation failure if convert guest from ESXi6.0 or ESXi6.5 via vddk, or use vddk6.5 to convert guest from VMware
+
+=item L<https://bugzilla.redhat.com/1789279>
+
+virt-v2v should give more clear error info when use some special invalid uuids for disks
+
+=item L<https://bugzilla.redhat.com/1788823>
+
+Virt-v2v firstboot scripts should run in order, with v2v network configuration happening first
+
+=item L<https://bugzilla.redhat.com/1764569>
+
+V2V conversion fails when a filesystem has no free inodes
+
+=item L<https://bugzilla.redhat.com/1658126>
+
+Virt-v2v can't convert guest using LUKS-on-LV
+
+=item L<https://bugzilla.redhat.com/1637857>
+
+q35 switch caused: error: unsupported configuration: IDE controllers are unsupported for this QEMU binary or machine type
+
+=item L<https://bugzilla.redhat.com/1581428>
+
+virt-v2v use Q35 as default machine-type
+
+=item L<https://bugzilla.redhat.com/1534644>
+
+New way of parsing OVF from OVA that was created by VMware fails.
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>,
+L<virt-v2v-release-notes-1.42(1)>,
+L<guestfs-release-notes-1.40(1)>.
+
+=head1 AUTHORS
+
+Authors of virt-v2v 2.0:
+
+=begin comment
+
+git shortlog -s v1.42.0..
+
+=end comment
+
+=over 4
+
+=item Denis Plotnikov
+
+=item Kevin Locke
+
+=item Laszlo Ersek
+
+=item Martin Kletzander
+
+=item Mikhail Gordeev
+
+=item Nir Soffer
+
+=item Pino Toscano
+
+=item Richard W.M. Jones
+
+=item Valeriy Vdovin
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2022 Red Hat Inc.
