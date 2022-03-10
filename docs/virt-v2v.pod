@@ -1678,9 +1678,13 @@ Matthew Booth
 
 Cédric Bosdonnat
 
+Laszlo Ersek
+
 Tomáš Golembiovský
 
 Shahar Havivi
+
+Richard W.M. Jones
 
 Roman Kagan
 
@@ -1688,9 +1692,11 @@ Mike Latimer
 
 Nir Soffer
 
-Richard W.M. Jones
-
 Pino Toscano
+
+Xiaodai Wang
+
+Ming Xie
 
 Tingting Zheng
 
