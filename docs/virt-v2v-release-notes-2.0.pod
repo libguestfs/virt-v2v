@@ -4,8 +4,13 @@ virt-v2v-release-notes - virt-v2v release notes for 2.0
 
 =head1 DESCRIPTION
 
-These are the release notes for S<B<virt-v2v 2.0>>,
-released on S<B<XXX XXXX 2022>>.
+These are the release notes for S<B<virt-v2v 2.0>>.
+This describes the major changes since 1.42.
+
+No release notes were published for 1.44, so that release is covered
+here.
+
+Virt-v2v 2.0.0 was released on S<B<14 March 2022>>.
 
 =head2 Security
 

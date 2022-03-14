@@ -55,7 +55,7 @@ podfiles: Makefile
 	rm -f $@ $@-t
 	cd $(top_srcdir) && find . -name '*.pod' -printf '%P\n'| \
 	  grep -v ^debian/ | \
-	  grep -v ^virt-v2v-1 | \
+	  grep -v '^virt-v2v-[12]' | \
 	  grep -v ^po-docs/ | \
 	  grep -v ^stamp- | \
 	  grep -v /stamp- \

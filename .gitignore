@@ -144,6 +144,7 @@ Makefile.in
 /v2v/real-*.xml
 /v2v/virt-v2v
 /virt-v2v-*.tar.gz
+/virt-v2v-*.tar.gz.sig
 /website/*.html
 /website/README.txt
 /website/TODO.txt
