@@ -163,8 +163,6 @@ let rec wait_for_file filename timeout =
     wait_for_file filename (timeout-1)
   )
 
-let metaversion = Digest.to_hex (Digest.string Config.package_version_full)
-
 let with_nbd_connect_unix ?(meta_contexts = []) ~socket f =
   let nbd = NBD.create () in
   protect

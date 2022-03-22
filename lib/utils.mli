@@ -67,17 +67,6 @@ val wait_for_file : string -> int -> bool
 (** [wait_for_file filename timeout] waits up to [timeout] seconds for
     [filename] to appear.  It returns [true] if the file appeared. *)
 
-val metaversion : string
-(** When writing the metadata files between versions we serialize this
-    string first to ensure the binary metadata blob is compatible.
-
-    This prevents mixing and matching helpers between incompatible
-    versions of virt-v2v (which could cause a crash) and discourages
-    people from trying to write their own metadata.
-
-    Eventually we may switch to using an "open metadata" format instead
-    (eg. XML). *)
-
 val with_nbd_connect_unix : ?meta_contexts:string list ->
                             socket:string ->
                             (NBD.t -> 'a) ->
