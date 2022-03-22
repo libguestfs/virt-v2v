@@ -146,6 +146,50 @@ let backend_is_libvirt () =
   let backend = fst (String.split ":" backend) in
   backend = "libvirt"
 
+let rec chown_for_libvirt_rhbz_1045069 file =
+  let running_as_root = Unix.geteuid () = 0 in
+  if running_as_root && backend_is_libvirt () then (
+    try
+      let user = Option.default "qemu" (libvirt_qemu_user ()) in
+      let uid =
+        if String.is_prefix user "+" then
+          int_of_string (String.sub user 1 (String.length user - 1))
+        else
+          (Unix.getpwnam user).pw_uid in
+      debug "setting owner of %s to %d:root" file uid;
+      Unix.chown file uid 0
+    with
+    | exn -> (* Print exception, but continue. *)
+       debug "could not set owner of %s: %s"
+         file (Printexc.to_string exn)
+  )
+
+(* Get the local user that libvirt uses to run qemu when we are
+ * running as root.  This is returned as an optional string
+ * containing the username.  The username might be "+NNN"
+ * meaning a numeric UID.
+ * https://listman.redhat.com/archives/libguestfs/2022-March/028450.html
+ *)
+and libvirt_qemu_user =
+  let user =
+    lazy (
+      let conn = Libvirt.Connect.connect_readonly () in
+      let xml = Libvirt.Connect.get_capabilities conn in
+      let doc = Xml.parse_memory xml in
+      let xpathctx = Xml.xpath_new_context doc in
+      let expr =
+        "//secmodel[./model=\"dac\"]/baselabel[@type=\"kvm\"]/text()" in
+      let uid_gid = Xpath_helpers.xpath_string xpathctx expr in
+      match uid_gid with
+      | None -> None
+      | Some uid_gid ->
+         (* The string will be something like "+107:+107", return the
+          * UID part.
+          *)
+         Some (fst (String.split ":" uid_gid))
+    ) in
+  fun () -> Lazy.force user
+
 (* When using the SSH driver in qemu (currently) this requires
  * ssh-agent authentication.  Give a clear error if this hasn't been
  * set up (RHBZ#1139973).  This might improve if we switch to libssh1.
@@ -158,8 +202,7 @@ let error_if_no_ssh_agent () =
 (* Create the directory containing inX and outX sockets. *)
 let create_v2v_directory () =
   let d = Mkdtemp.temp_dir "v2v." in
-  let running_as_root = Unix.geteuid () = 0 in
-  if running_as_root then Unix.chmod d 0o711;
+  chown_for_libvirt_rhbz_1045069 d;
   On_exit.rmdir d;
   d
 

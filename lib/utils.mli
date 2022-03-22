@@ -61,6 +61,17 @@ val qemu_img_supports_offset_and_size : unit -> bool
 val backend_is_libvirt : unit -> bool
 (** Return true iff the current backend is libvirt. *)
 
+val chown_for_libvirt_rhbz_1045069 : string -> unit
+(** If running and root, and if the backend is libvirt, libvirt
+    will run qemu as a non-root user.  This prevents access
+    to root-owned files and directories.  To fix this, provide
+    a function to chown things we might need to qemu:root so
+    qemu can access them.  Note that root normally ignores
+    permissions so can still access the resource.
+
+    This is best-effort.  If something fails then we carry
+    on and hope for the best. *)
+
 val error_if_no_ssh_agent : unit -> unit
 
 val create_v2v_directory : unit -> string
