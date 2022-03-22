@@ -37,17 +37,8 @@ open Utils
 let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)"
 let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
 
-(* Create the temporary directory to control conversion.
- *
- * Because it contains sockets, if we're running as root then
- * we must make it executable by world.
- *)
-let tmpdir =
-  let tmpdir = Mkdtemp.temp_dir "v2v." in
-  let running_as_root = geteuid () = 0 in
-  if running_as_root then chmod tmpdir 0o711;
-  On_exit.rmdir tmpdir;
-  tmpdir
+(* Create the temporary directory to control conversion. *)
+let v2vdir = create_v2v_directory ()
 
 let rec main () =
   let set_string_option_once optname optref arg =
@@ -542,7 +533,7 @@ read the man page virt-v2v(1).
   (* Start the input module (runs an NBD server in the background). *)
   message (f_"Setting up the source: %s")
     (Input_module.to_string input_options args);
-  let source = Input_module.setup tmpdir input_options args in
+  let source = Input_module.setup v2vdir input_options args in
 
   (* If --print-source then print the source metadata and exit. *)
   if print_source then (
@@ -559,28 +550,28 @@ read the man page virt-v2v(1).
   let output_poptions = Output_module.parse_options output_options source in
 
   (* Do the conversion. *)
-  with_open_out (tmpdir // "convert") (fun _ -> ());
-  let inspect, target_meta = Convert.convert tmpdir conv_options source in
-  unlink (tmpdir // "convert");
+  with_open_out (v2vdir // "convert") (fun _ -> ());
+  let inspect, target_meta = Convert.convert v2vdir conv_options source in
+  unlink (v2vdir // "convert");
 
   (* Start the output module (runs an NBD server in the background). *)
   message (f_"Setting up the destination: %s")
     (Output_module.to_string output_options);
-  let output_t = Output_module.setup tmpdir output_poptions source in
+  let output_t = Output_module.setup v2vdir output_poptions source in
 
   (* Debug the v2vdir. *)
   if verbose () then (
-    let cmd = sprintf "ls -alZ %s 1>&2" (quote tmpdir) in
+    let cmd = sprintf "ls -alZ %s 1>&2" (quote v2vdir) in
     ignore (Sys.command cmd)
   );
 
   (* Do the copy. *)
-  with_open_out (tmpdir // "copy") (fun _ -> ());
+  with_open_out (v2vdir // "copy") (fun _ -> ());
 
   (* Get the list of disks and corresponding sockets. *)
   let rec loop acc i =
-    let input_socket = sprintf "%s/in%d" tmpdir i
-    and output_socket = sprintf "%s/out%d" tmpdir i in
+    let input_socket = sprintf "%s/in%d" v2vdir i
+    and output_socket = sprintf "%s/out%d" v2vdir i in
     if Sys.file_exists input_socket && Sys.file_exists output_socket then
       loop ((i, input_socket, output_socket) :: acc) (i+1)
     else
@@ -610,11 +601,11 @@ read the man page virt-v2v(1).
   ) disks;
 
   (* End of copying phase. *)
-  unlink (tmpdir // "copy");
+  unlink (v2vdir // "copy");
 
   (* Do the finalization step. *)
   message (f_"Creating output metadata");
-  Output_module.finalize tmpdir output_poptions output_t
+  Output_module.finalize v2vdir output_poptions output_t
     source inspect target_meta;
 
   message (f_"Finishing off");
@@ -623,7 +614,7 @@ read the man page virt-v2v(1).
    * use the presence or absence of the file to determine if
    * on-success or on-fail cleanup is required.
    *)
-  with_open_out (tmpdir // "done") (fun _ -> ())
+  with_open_out (v2vdir // "done") (fun _ -> ())
 
 (* Conversion can fail or hang if there is insufficient free space in
  * the large temporary directory.  Some input modules use large_tmpdir

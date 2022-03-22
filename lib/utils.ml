@@ -22,6 +22,7 @@ open Printf
 
 open Std_utils
 open Tools_utils
+open Unix_utils
 open Common_gettext.Gettext
 
 let large_tmpdir =
@@ -153,6 +154,14 @@ let error_if_no_ssh_agent () =
   try ignore (Sys.getenv "SSH_AUTH_SOCK")
   with Not_found ->
     error (f_"ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) man page for more information.")
+
+(* Create the directory containing inX and outX sockets. *)
+let create_v2v_directory () =
+  let d = Mkdtemp.temp_dir "v2v." in
+  let running_as_root = Unix.geteuid () = 0 in
+  if running_as_root then Unix.chmod d 0o711;
+  On_exit.rmdir d;
+  d
 
 (* Wait for a file to appear until a timeout. *)
 let rec wait_for_file filename timeout =
