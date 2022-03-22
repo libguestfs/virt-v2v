@@ -126,54 +126,54 @@ virt_v2v_LINK = \
 
 virttoolsdatadir = $(datadir)/virt-tools
 
-# if HAVE_OCAML_PKG_OUNIT
-# TESTS += \
-# 	v2v_unit_tests
-# check_PROGRAMS = \
-# 	v2v_unit_tests
-# endif
+if HAVE_OCAML_PKG_OUNIT
+TESTS = \
+	v2v_unit_tests
+check_PROGRAMS = \
+	v2v_unit_tests
+endif
 
-# v2v_unit_tests_BOBJECTS = \
-# 	libosinfo.cmo \
-# 	libosinfo_utils.cmo \
-# 	create_ovf.cmo \
-# 	windows.cmo \
-# 	linux.cmo \
-# 	windows_virtio.cmo \
-# 	parse_vmx.cmo \
-# 	v2v_unit_tests.cmo
-# v2v_unit_tests_XOBJECTS = $(v2v_unit_tests_BOBJECTS:.cmo=.cmx)
+v2v_unit_tests_BOBJECTS = \
+	../lib/create_ovf.cmo \
+	../convert/libosinfo.cmo \
+	../convert/libosinfo_utils.cmo \
+	../convert/windows.cmo \
+	../convert/linux.cmo \
+	../convert/windows_virtio.cmo \
+	../input/parse_vmx.cmo \
+	v2v_unit_tests.cmo
+v2v_unit_tests_XOBJECTS = $(v2v_unit_tests_BOBJECTS:.cmo=.cmx)
 
-# v2v_unit_tests_SOURCES = $(virt_v2v_SOURCES)
-# v2v_unit_tests_CPPFLAGS = $(virt_v2v_CPPFLAGS)
-# v2v_unit_tests_CFLAGS = $(virt_v2v_CFLAGS)
+v2v_unit_tests_SOURCES = $(virt_v2v_SOURCES)
+v2v_unit_tests_CPPFLAGS = $(virt_v2v_CPPFLAGS)
+v2v_unit_tests_CFLAGS = $(virt_v2v_CFLAGS)
 
-# if !HAVE_OCAMLOPT
-# # Can't call this v2v_unit_tests_OBJECTS because automake gets confused.
-# v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_BOBJECTS)
-# v2v_unit_tests.cmo: OCAMLPACKAGES += -package ounit2
-# else
-# v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_XOBJECTS)
-# v2v_unit_tests.cmx: OCAMLPACKAGES += -package ounit2
-# endif
+if !HAVE_OCAMLOPT
+# Can't call this v2v_unit_tests_OBJECTS because automake gets confused.
+v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_BOBJECTS)
+v2v_unit_tests.cmo: OCAMLPACKAGES += -package ounit2
+else
+v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_XOBJECTS)
+v2v_unit_tests.cmx: OCAMLPACKAGES += -package ounit2
+endif
 
-# v2v_unit_tests_DEPENDENCIES = \
-# 	$(v2v_unit_tests_THEOBJECTS) \
-# 	../common/mlstdutils/mlstdutils.$(MLARCHIVE) \
-# 	../common/mlxml/mlxml.$(MLARCHIVE) \
-# 	../common/mlgettext/mlgettext.$(MLARCHIVE) \
-# 	../common/mlpcre/mlpcre.$(MLARCHIVE) \
-# 	../common/mlutils/mlcutils.$(MLARCHIVE) \
-# 	../common/mltools/mltools.$(MLARCHIVE) \
-# 	../common/mlcustomize/mlcustomize.$(MLARCHIVE) \
-# 	../common/mlv2v/mlv2v.$(MLARCHIVE) \
-# 	$(top_srcdir)/ocaml-link.sh
-# v2v_unit_tests_LINK = \
-# 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
-# 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) \
-# 	  $(OCAMLPACKAGES) -package ounit2 \
-# 	  $(OCAMLLINKFLAGS) \
-# 	  $(v2v_unit_tests_THEOBJECTS) -o $@
+v2v_unit_tests_DEPENDENCIES = \
+	$(v2v_unit_tests_THEOBJECTS) \
+	../common/mlstdutils/mlstdutils.$(MLARCHIVE) \
+	../common/mlxml/mlxml.$(MLARCHIVE) \
+	../common/mlgettext/mlgettext.$(MLARCHIVE) \
+	../common/mlpcre/mlpcre.$(MLARCHIVE) \
+	../common/mlutils/mlcutils.$(MLARCHIVE) \
+	../common/mltools/mltools.$(MLARCHIVE) \
+	../common/mlcustomize/mlcustomize.$(MLARCHIVE) \
+	../common/mlv2v/mlv2v.$(MLARCHIVE) \
+	$(top_srcdir)/ocaml-link.sh
+v2v_unit_tests_LINK = \
+	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
+	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) \
+	  $(OCAMLPACKAGES) -package ounit2 \
+	  $(OCAMLLINKFLAGS) \
+	  $(v2v_unit_tests_THEOBJECTS) -o $@
 
 # Dependencies.
 .depend: \

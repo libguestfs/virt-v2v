@@ -139,9 +139,11 @@ Makefile.in
 /tests/test-v2v-sound.xml
 /tests/windows.vmdk
 /v2v/.depend
+/v2v/oUnit-virt-v2v.cache
 /v2v/real-*.d/
 /v2v/real-*.img
 /v2v/real-*.xml
+/v2v/v2v_unit_tests
 /v2v/virt-v2v
 /virt-v2v-*.tar.gz
 /virt-v2v-*.tar.gz.sig
