@@ -150,7 +150,8 @@ If the messages above are not sufficient to diagnose the problem then add the â€
   (* Set the regular Unix permissions, in case qemu is
    * running as another user.
    *)
-  chmod socket 0o777;
+  chown_for_libvirt_rhbz_1045069 socket;
+  chmod socket 0o700;
 
   (* We don't need the PID file any longer. *)
   unlink pidfile;
