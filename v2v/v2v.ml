@@ -37,9 +37,6 @@ open Utils
 let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)"
 let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
 
-(* Create the temporary directory to control conversion. *)
-let v2vdir = create_v2v_directory ()
-
 let rec main () =
   let set_string_option_once optname optref arg =
     match !optref with
@@ -345,6 +342,9 @@ read the man page virt-v2v(1).
     let major, minor, release = Libvirt_utils.libvirt_get_version () in
     debug "libvirt version: %d.%d.%d" major minor release
   );
+
+  (* Create the temporary directory to control conversion. *)
+  let v2vdir = create_v2v_directory () in
 
   (* Dereference the arguments. *)
   let args = List.rev !args in
