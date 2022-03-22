@@ -63,6 +63,9 @@ val backend_is_libvirt : unit -> bool
 
 val error_if_no_ssh_agent : unit -> unit
 
+val create_v2v_directory : unit -> string
+(** Create the directory containing inX and outX sockets. *)
+
 val wait_for_file : string -> int -> bool
 (** [wait_for_file filename timeout] waits up to [timeout] seconds for
     [filename] to appear.  It returns [true] if the file appeared. *)

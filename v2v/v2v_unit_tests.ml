@@ -26,6 +26,7 @@ open Std_utils
 open Tools_utils
 
 open Types
+open Utils
 
 let inspect_defaults = {
   i_type = ""; i_distro = ""; i_osinfo = ""; i_arch = "";
