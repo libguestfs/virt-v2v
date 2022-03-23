@@ -202,7 +202,7 @@ If the messages above are not sufficient to diagnose the problem then add the â€
                          socket]);
   );
 
-  (* Set the regular Unix permissions, in case qemu is
+  (* Set the regular Unix permissions, in case nbdkit is
    * running as another user.
    *)
   chmod socket 0o777;
