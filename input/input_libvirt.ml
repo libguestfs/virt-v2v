@@ -88,7 +88,7 @@ and setup_servers options dir disks =
          Nbdkit.add_arg cmd "hostname" hostname;
          Nbdkit.add_arg cmd "port" (string_of_int port);
          Nbdkit.add_arg cmd "shared" "true";
-         let _, pid = Nbdkit.run_unix ~socket cmd in
+         let _, pid = Nbdkit.run_unix socket cmd in
 
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
@@ -102,7 +102,7 @@ and setup_servers options dir disks =
 
          let cor = dir // "convert" in
          let cmd = Nbdkit_curl.create_curl ~cor url in
-         let _, pid = Nbdkit.run_unix ~socket cmd in
+         let _, pid = Nbdkit.run_unix socket cmd in
 
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
@@ -118,7 +118,7 @@ and setup_servers options dir disks =
             Nbdkit.add_arg cmd "file" filename;
             if Nbdkit.version nbdkit_config >= (1, 22, 0) then
               Nbdkit.add_arg cmd "cache" "none";
-            let _, pid = Nbdkit.run_unix ~socket cmd in
+            let _, pid = Nbdkit.run_unix socket cmd in
 
             (* --exit-with-parent should ensure nbdkit is cleaned
              * up when we exit, but it's not supported everywhere.
@@ -130,7 +130,7 @@ and setup_servers options dir disks =
             let cmd = QemuNBD.create filename in
             QemuNBD.set_snapshot cmd options.read_only;
             QemuNBD.set_format cmd format;
-            let _, pid = QemuNBD.run_unix ~socket cmd in
+            let _, pid = QemuNBD.run_unix socket cmd in
             On_exit.kill pid
   ) disks
 

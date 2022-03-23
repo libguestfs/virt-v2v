@@ -62,30 +62,15 @@ let create disk = { disk; snapshot = false; format = None }
 let set_snapshot cmd snap = cmd.snapshot <- snap
 let set_format cmd format = cmd.format <- format
 
-let run_unix ?socket { disk; snapshot; format } =
+let run_unix socket { disk; snapshot; format } =
   assert (disk <> "");
 
-  (* Create a temporary directory where we place the socket and PID file.
-   * Use the libguestfs socket directory, so it is more likely the full path
-   * of the UNIX sockets will fit in the (limited) socket pathname.
-   *)
-  let tmpdir =
-    let base_dir = (open_guestfs ())#get_sockdir () in
-    let t = Mkdtemp.temp_dir ~base_dir "v2vqemunbd." in
-    (* tmpdir must be readable (but not writable) by "other" so that
-     * qemu can open the sockets.
-     *)
-    chmod t 0o755;
-    On_exit.rmdir t;
-    t in
+  (* Create a temporary directory where we place the PID file. *)
+  let piddir = Mkdtemp.temp_dir "v2vqemunbd." in
+  On_exit.rmdir piddir;
 
   let id = unique () in
-  let pidfile = tmpdir // sprintf "qemunbd%d.pid" id in
-
-  let socket =
-    match socket with
-    | Some socket -> socket
-    | None -> tmpdir // sprintf "qemunbd%d.sock" id in
+  let pidfile = piddir // sprintf "qemunbd%d.pid" id in
 
   (* Construct the qemu-nbd command line. *)
   let args = ref [] in

@@ -92,13 +92,9 @@ val add_args : cmd -> (string * string) list -> unit
 val add_env : cmd -> string -> string -> unit
 (** Add name=value environment variable. *)
 
-val run_unix : ?socket:string -> cmd -> string * int
+val run_unix : string -> cmd -> string * int
 (** Start nbdkit command listening on a Unix domain socket, waiting
     for the process to start up.
-
-    If optional [?socket] parameter is omitted, then a temporary
-    Unix domain socket name is created.  If [?socket] is present
-    then this overrides the temporary name.
 
     Returns the Unix domain socket name and the nbdkit process ID.
 

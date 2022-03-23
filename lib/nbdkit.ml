@@ -102,27 +102,13 @@ let add_env cmd name value = cmd.env <- (name, value) :: cmd.env
 let add_filter_if_available cmd filter =
   if probe_filter filter then add_filter cmd filter
 
-let run_unix ?socket cmd =
-  (* Create a temporary directory where we place the socket and PID file.
-   * Use the libguestfs socket directory, so it is more likely the full path
-   * of the UNIX sockets will fit in the (limited) socket pathname.
-   *)
-  let tmpdir =
-    let base_dir = (open_guestfs ())#get_sockdir () in
-    let t = Mkdtemp.temp_dir ~base_dir "v2vnbdkit." in
-    (* tmpdir must be readable (but not writable) by "other" so that
-     * qemu can open the sockets.
-     *)
-    chmod t 0o755;
-    On_exit.rmdir t;
-    t in
+let run_unix socket cmd =
+  (* Create a temporary directory where we place the PID file. *)
+  let piddir = Mkdtemp.temp_dir "v2vnbdkit." in
+  On_exit.rmdir piddir;
 
   let id = unique () in
-  let pidfile = tmpdir // sprintf "nbdkit%d.pid" id in
-  let socket =
-    match socket with
-    | None -> tmpdir // sprintf "nbdkit%d.sock" id
-    | Some socket -> socket in
+  let pidfile = piddir // sprintf "nbdkit%d.pid" id in
 
   (* Construct the final command line. *)
   let add_arg, add_args_reversed, get_args =

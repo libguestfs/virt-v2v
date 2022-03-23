@@ -199,7 +199,7 @@ information on these settings.
                ?nfchostport ?password_file:options.input_password ?port
                ~server ?snapshot ~thumbprint ?transports ?user
                path in
-           let _, pid = Nbdkit.run_unix ~socket nbdkit in
+           let _, pid = Nbdkit.run_unix socket nbdkit in
            On_exit.kill pid
     ) disks;
 

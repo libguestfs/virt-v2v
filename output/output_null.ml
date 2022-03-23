@@ -70,7 +70,7 @@ module Null = struct
     let () =
       let cmd = Nbdkit.create ~quiet:true "null" in
       Nbdkit.add_arg cmd "size" "7E";
-      let _, pid = Nbdkit.run_unix ~socket cmd in
+      let _, pid = Nbdkit.run_unix socket cmd in
 
       (* --exit-with-parent should ensure nbdkit is cleaned
        * up when we exit, but it's not supported everywhere.

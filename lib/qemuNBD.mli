@@ -43,12 +43,8 @@ val set_snapshot : cmd -> bool -> unit
 val set_format : cmd -> string option -> unit
 (** Set the format [--format] parameter. *)
 
-val run_unix : ?socket:string -> cmd -> string * int
+val run_unix : string -> cmd -> string * int
 (** Start qemu-nbd command listening on a Unix domain socket,
     waiting for the process to start up.
-
-    If optional [?socket] parameter is omitted, then a temporary
-    Unix domain socket name is created.  If [?socket] is present
-    then this overrides the temporary name.
 
     Returns the Unix domain socket name and the qemu-nbd process ID. *)
