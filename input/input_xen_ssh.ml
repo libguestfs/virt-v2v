@@ -118,7 +118,7 @@ module XenSSH = struct
            let bandwidth = options.bandwidth in
            let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
                           ?port ~server ?user path in
-           let _, pid = Nbdkit.run_unix ~socket nbdkit in
+           let _, pid = Nbdkit.run_unix socket nbdkit in
            On_exit.kill pid
     ) disks;
 

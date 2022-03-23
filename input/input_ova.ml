@@ -192,7 +192,7 @@ module OVA = struct
         let cmd = QemuNBD.create qemu_uri in
         QemuNBD.set_snapshot cmd true; (* protective overlay *)
         QemuNBD.set_format cmd None; (* auto-detect format *)
-        let _, pid = QemuNBD.run_unix ~socket cmd in
+        let _, pid = QemuNBD.run_unix socket cmd in
         On_exit.kill pid
       ) qemu_uris;
 

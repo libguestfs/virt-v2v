@@ -398,7 +398,7 @@ e command line has to match the number of guest disk images (for this guest: %d)
           Nbdkit.add_arg cmd "insecure" "true";
         if is_ovirt_host then
           Nbdkit.add_arg cmd "is_ovirt_host" "true";
-        let _, pid = Nbdkit.run_unix ~socket cmd in
+        let _, pid = Nbdkit.run_unix socket cmd in
         List.push_front pid nbdkit_pids
     ) (List.combine disks disk_uuids);
 

@@ -109,7 +109,7 @@ module Disk = struct
            Nbdkit.add_arg cmd "file" disk;
            if Nbdkit.version nbdkit_config >= (1, 22, 0) then
              Nbdkit.add_arg cmd "cache" "none";
-           let _, pid = Nbdkit.run_unix ~socket cmd in
+           let _, pid = Nbdkit.run_unix socket cmd in
 
            (* --exit-with-parent should ensure nbdkit is cleaned
             * up when we exit, but it's not supported everywhere.
@@ -120,7 +120,7 @@ module Disk = struct
            let cmd = QemuNBD.create disk in
            QemuNBD.set_snapshot cmd true; (* protective overlay *)
            QemuNBD.set_format cmd (Some format);
-           let _, pid = QemuNBD.run_unix ~socket cmd in
+           let _, pid = QemuNBD.run_unix socket cmd in
            On_exit.kill pid
     ) args;
 

@@ -117,7 +117,7 @@ let rec start_nbdkit_for_path ?bandwidth ?cor ?password_file
     Nbdkit_curl.create_curl ?bandwidth ?cor
       ~cookie_script ~cookie_script_renew
       ~sslverify https_url in
-  let _, pid = Nbdkit.run_unix ~socket nbdkit in
+  let _, pid = Nbdkit.run_unix socket nbdkit in
   pid
 
 and get_https_url dcPath uri server path =

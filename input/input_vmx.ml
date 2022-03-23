@@ -66,7 +66,7 @@ module VMX = struct
                         (absolute_path_from_other_file vmx_filename filename) in
             QemuNBD.set_snapshot cmd true; (* protective overlay *)
             QemuNBD.set_format cmd (Some "vmdk");
-            let _, pid = QemuNBD.run_unix ~socket cmd in
+            let _, pid = QemuNBD.run_unix socket cmd in
             On_exit.kill pid
         ) filenames
 
@@ -108,7 +108,7 @@ module VMX = struct
             let bandwidth = options.bandwidth in
             let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
                            ~server ?port ?user abs_path in
-            let _, pid = Nbdkit.run_unix ~socket nbdkit in
+            let _, pid = Nbdkit.run_unix socket nbdkit in
             On_exit.kill pid
         ) filenames
     );

@@ -90,7 +90,7 @@ let output_to_local_file ?(changeuid = fun f -> f ())
        let cmd = Nbdkit.add_arg cmd "cache" "none" in
        cmd
      );
-     let _, pid = Nbdkit.run_unix ~socket cmd in
+     let _, pid = Nbdkit.run_unix socket cmd in
 
      (* --exit-with-parent should ensure nbdkit is cleaned
       * up when we exit, but it's not supported everywhere.
@@ -101,7 +101,7 @@ let output_to_local_file ?(changeuid = fun f -> f ())
      let cmd = QemuNBD.create filename in
      QemuNBD.set_snapshot cmd false;
      QemuNBD.set_format cmd (Some "qcow2");
-     let _, pid = QemuNBD.run_unix ~socket cmd in
+     let _, pid = QemuNBD.run_unix socket cmd in
      On_exit.kill pid
 
   | _ ->
