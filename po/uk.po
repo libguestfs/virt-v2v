@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2022-03-23 13:47+0000\n"
-"PO-Revision-Date: 2022-01-26 20:16+0000\n"
+"PO-Revision-Date: 2022-03-26 10:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 
 #: input/input_ova.ml:134 common/mltools/tools_utils.ml:234
 msgid "%s"
@@ -137,24 +137,6 @@ msgstr ""
 "сторінці підручника virt-v2v(1).\n"
 
 #: in-place/in_place.ml:179
-#, fuzzy
-#| msgid ""
-#| "%s: copy a remote guest to the local machine\n"
-#| "\n"
-#| "Copy the remote guest:\n"
-#| "\n"
-#| "  virt-v2v-copy-to-local -ic xen+ssh://root@xen.example.com guest\n"
-#| "\n"
-#| "Then perform the conversion step:\n"
-#| "\n"
-#| "  virt-v2v -i libvirtxml guest.xml -o local -os /var/tmp\n"
-#| "\n"
-#| "To clean up:\n"
-#| "\n"
-#| "  rm guest.xml guest-disk*\n"
-#| "\n"
-#| "A short summary of the options is given below.  For detailed help please\n"
-#| "read the man page virt-v2v-copy-to-local(1).\n"
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -168,22 +150,19 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
-"%s: скопіювати віддалену гостьову систему на локальний комп’ютер\n"
+"%s: виконати перетворення гостьової системи для використання у KVM «на місці»"
 "\n"
-"Скопіювати віддалену гостьову систему:\n"
 "\n"
-"  virt-v2v-copy-to-local -ic xen+ssh://root@xen.example.com guest\n"
+"Зауважте, що ця програма змінює гостьову систему на місці без резервного "
+"копіювання.\n"
+"Зазвичай, краще скористатися virt-v2v.\n"
 "\n"
-"Далі, виконати крок перетворення:\n"
+"virt-v2v -i libvirtxml гостьовий-домен.xml\n"
 "\n"
-"  virt-v2v -i libvirtxml guest.xml -o local -os /var/tmp\n"
-"\n"
-"Вилучення:\n"
-"\n"
-"  rm guest.xml guest-disk*\n"
+"virt-v2v -i disk диск.img\n"
 "\n"
 "Нижче наведено коротке резюме щодо параметрів. Докладніший опис\n"
-"можна знайти на сторінці man virt-v2v-copy-to-local(1).\n"
+"можна знайти на сторінці man virt-v2v-in-place(1).\n"
 
 #: common/mltools/tools_utils.ml:171
 msgid "%s: error: %s"
@@ -220,40 +199,42 @@ msgstr ""
 "поле довжини префікса IP-адреси --mac лежить поза припустимим діапазоном"
 
 #: input/input_disk.ml:43
-#, fuzzy
-#| msgid "expecting a disk image (filename) on the command line"
 msgid "-i disk: expecting a disk image (filename) on the command line"
-msgstr "у командному рядку очікувався образ диска (назва файла)"
+msgstr "-i disk: у командному рядку мало бути вказано образ диска (назва файла)"
 
 #: input/input_xen_ssh.ml:64
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr ""
+"-i libvirt: мало бути вказано параметр -ic для з'єднання із Xen з "
+"використанням SSH"
 
 #: input/input_vddk.ml:114 input/input_vcenter_https.ml:86
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
+"-i libvirt: мало бути вказано параметр -ic для встановлення з'єднання vcenter"
 
 #: input/input_vcenter_https.ml:98
 msgid "-i libvirt: expecting -ic parameter to contain vcenter server name"
-msgstr ""
+msgstr "-i libvirt: параметр -ic має містити назву сервера vcenter"
 
 #: input/input_vcenter_https.ml:77
 msgid "-i libvirt: expecting -ip passwordfile parameter for vCenter connection"
 msgstr ""
+"-i libvirt: мало бути вказано параметр -ip файл_пароля для встановлення "
+"з'єднання vCenter"
 
 #. input/input_vcenter_https.ml:70
 #. input/input_libvirt.ml:41
 #: input/input_xen_ssh.ml:57 input/input_vddk.ml:105
-#, fuzzy
-#| msgid "expecting a libvirt guest name on the command line"
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
-msgstr "у командному рядку мало бути вказано назву гостьової системи libvirt"
+msgstr ""
+"-i libvirt: у командному рядку мало бути вказано назву гостьової системи "
+"libvirt"
 
 #: input/input_libvirt.ml:58
-#, fuzzy
-#| msgid "expecting a libvirt XML file name on the command line"
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
-msgstr "у командному рядку мало бути вказано назву файла XML libvirt"
+msgstr ""
+"-i libvirtxml: у командному рядку мало бути вказано назву файла XML libvirt"
 
 #: input/input_ova.ml:237
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
@@ -268,10 +249,8 @@ msgstr ""
 "(маємо %s, мало бути %s)"
 
 #: input/input_ova.ml:53
-#, fuzzy
-#| msgid "expecting an OVA file name on the command line"
 msgid "-i ova: expecting an OVA file name on the command line"
-msgstr "у командному рядку мало бути вказано назву файла OVA"
+msgstr "-i ova: у командному рядку мало бути вказано назву файла OVA"
 
 #: input/OVA.ml:351
 msgid ""
@@ -280,15 +259,12 @@ msgstr ""
 "-i ova: некоректний файл OVA: шлях «%s» посилається на файл поза архівом"
 
 #: input/input_vmx.ml:53
-#, fuzzy
-#| msgid "-o %s: %s option cannot be used in this output mode"
 msgid "-i vmx: cannot use -it vddk in this input mode"
-msgstr ""
-"-o %s: параметр %s не можна використовувати у цьому режимі виведення даних"
+msgstr "-i vmx: не можна використовувати -it vddk у цьому режимі вхідних даних"
 
 #: input/input_vmx.ml:56
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
-msgstr ""
+msgstr "-i vmx: мало бути вказано файл VMX або адресу ssh://"
 
 #: input/vCenter.ml:153
 msgid ""
@@ -311,12 +287,10 @@ msgstr ""
 "-o %s: параметр %s не можна використовувати у цьому режимі виведення даних"
 
 #: output/output_disk.ml:56
-#, fuzzy
-#| msgid "-o json: output directory was not specified, use '-os /dir'"
 msgid "-o disk: output directory was not specified, use '-os /dir'"
 msgstr ""
-"-o json: не вказано каталогу для виведення даних, скористайтеся «-os /"
-"каталог»"
+"-o disk: не вказано каталогу для виведення даних, скористайтеся «-os "
+"/каталог»"
 
 #: output/output_json.ml:62
 msgid "-o json: -oo json-disks-pattern set more than once"
@@ -366,7 +340,7 @@ msgstr ""
 
 #: output/output_openstack.ml:88
 msgid "-o openstack mode only supports -oa sparse -of raw"
-msgstr ""
+msgstr "у режимі -o openstack передбачено підтримку лише -oa sparse -of raw"
 
 #: output/output_openstack.ml:115
 msgid "-o openstack: unknown output option ‘-oo %s’"
@@ -379,14 +353,12 @@ msgstr ""
 "каталог»"
 
 #: output/output_qemu.ml:62
-#, fuzzy
-#| msgid "-o vdsm: unknown output option ‘-oo %s’"
 msgid "-o qemu: unknown output option ‘-oo %s’"
-msgstr "-o vdsm: невідомий параметр виведення — «-oo %s»"
+msgstr "-o qemu: невідомий параметр виведення — «-oo %s»"
 
 #: output/output_qemu.ml:60
 msgid "-o qemu: use -oo qemu-boot[=true|false]"
-msgstr ""
+msgstr "-o qemu: використати -oo qemu-boot[=true|false]"
 
 #: output/output_rhv_upload.ml:92
 msgid "-o rhv-upload: -oo rhv-cafile set more than once"
@@ -427,10 +399,8 @@ msgstr ""
 "назва_сервера/ovirt-engine/api"
 
 #: output/output_rhv.ml:51
-#, fuzzy
-#| msgid "-o vdsm: -oo vdsm-image-uuid was not specified"
 msgid "-o rhv: -os option was not specified"
-msgstr "-o vdsm: не вказано --oo vdsm-image-uuid"
+msgstr "-o rhv: не вказано параметр -os"
 
 #: output/output_vdsm.ml:101
 msgid "-o vdsm: -oo vdsm-image-uuid was not specified"
@@ -445,10 +415,8 @@ msgid "-o vdsm: -oo vdsm-vm-uuid set more than once"
 msgstr "-o vdsm: -oo vdsm-vm-uuid встановлено декілька разів"
 
 #: output/output_vdsm.ml:109
-#, fuzzy
-#| msgid "-o vdsm: -oo vdsm-image-uuid was not specified"
 msgid "-o vdsm: -os option was not specified"
-msgstr "-o vdsm: не вказано --oo vdsm-image-uuid"
+msgstr "-o vdsm: не було вказано параметр -os"
 
 #: output/output_vdsm.ml:97
 msgid "-o vdsm: either -oo vdsm-vol-uuid or -oo vdsm-vm-uuid was not specified"
@@ -745,21 +713,14 @@ msgstr "Пересунути файли на образ диска"
 #. input/input_libvirt.ml:147
 #. input/input_disk.ml:36
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
-#, fuzzy
-#| msgid "-o %s: %s option cannot be used in this output mode"
 msgid "No input options can be used in this mode.\n"
-msgstr ""
-"-o %s: параметр %s не можна використовувати у цьому режимі виведення даних"
+msgstr "У цьому режимі не можна використовувати параметри вхідних даних.\n"
 
 #. output/output_glance.ml:40
 #. output/output_disk.ml:44
 #: output/output_rhv.ml:40 output/output_null.ml:38 output/output_libvirt.ml:47
-#, fuzzy
-#| msgid "No -oo (output options) are supported in this output mode.\n"
 msgid "No output options can be used in this mode.\n"
-msgstr ""
-"У цьому режимі виведення даних не передбачено підтримки жодних -oo "
-"(параметрів виведення).\n"
+msgstr "У цьому режимі не можна використовувати параметри виведення.\n"
 
 #: output/output_vdsm.ml:160
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
@@ -791,38 +752,17 @@ msgstr ""
 "  -oo json-disks-pattern=ВЗІРЕЦЬ   Взірець для дисків.\n"
 
 #: output/output_qemu.ml:43
-#, fuzzy
-#| msgid ""
-#| "Output options (-oo) which can be used with -o json:\n"
-#| "\n"
-#| "  -oo json-disks-pattern=PATTERN   Pattern for the disks.\n"
 msgid ""
 "Output options (-oo) which can be used with -o qemu:\n"
 "\n"
 "  -oo qemu-boot       Boot the guest in qemu after conversion\n"
 msgstr ""
-"Параметри виведення (-oo), які може бути використано із -o json:\n"
+"Параметри виведення (-oo), якими можна скористатися із -o qemu:\n"
 "\n"
-"  -oo json-disks-pattern=ВЗІРЕЦЬ   Взірець для дисків.\n"
+"  -oo qemu-boot       завантажити гостьову систему до qemu після "
+"перетворення\n"
 
 #: output/output_rhv_upload.ml:51
-#, fuzzy
-#| msgid ""
-#| "Output options (-oo) which can be used with -o rhv-upload:\n"
-#| "\n"
-#| "  -oo rhv-cafile=CA.PEM           Set ‘ca.pem’ certificate bundle "
-#| "filename.\n"
-#| "  -oo rhv-cluster=CLUSTERNAME     Set RHV cluster name.\n"
-#| "  -oo rhv-direct[=true|false]     Use direct transfer mode (default: "
-#| "false).\n"
-#| "  -oo rhv-verifypeer[=true|false] Verify server identity (default: "
-#| "false).\n"
-#| "\n"
-#| "You can override the UUIDs of the disks, instead of using autogenerated "
-#| "UUIDs\n"
-#| "after their uploads (if you do, you must supply one for each disk):\n"
-#| "\n"
-#| "  -oo rhv-disk-uuid=UUID          Disk UUID\n"
 msgid ""
 "Output options (-oo) which can be used with -o rhv-upload:\n"
 "\n"
@@ -843,8 +783,8 @@ msgstr ""
 "  -oo rhv-cafile=CA.PEM           Встановити назву файла комплекту "
 "сертифіката «ca.pem».\n"
 "  -oo rhv-cluster=НАЗВА_КЛАСТЕРА  Встановити назву кластера RHV.\n"
-"  -oo rhv-direct[=true|false]     Використовувати режим безпосереднього "
-"передавання даних (типово: false).\n"
+"  -oo rhv-proxy                 Встановити з'єднання з використанням проксі "
+"oVirt Engine (типове значення: false).\n"
 "  -oo rhv-verifypeer[=true|false] Перевіряти ідентичність сервера (типово: "
 "false).\n"
 "\n"
@@ -1106,13 +1046,11 @@ msgstr "Встановити пароль користувача"
 
 #: v2v/v2v.ml:558
 msgid "Setting up the destination: %s"
-msgstr ""
+msgstr "Налаштовуємо призначення: %s"
 
 #: v2v/v2v.ml:534 in-place/in_place.ml:307
-#, fuzzy
-#| msgid "Opening the source %s"
 msgid "Setting up the source: %s"
-msgstr "Відкриваємо джерело %s"
+msgstr "Налаштовуємо джерело: %s"
 
 #: v2v/v2v.ml:540 in-place/in_place.ml:313
 msgid "Source guest information (--print-source option):\n"
@@ -1133,7 +1071,7 @@ msgstr "ЧАСОВИЙ_ПОЯС"
 #: v2v/v2v.ml:220
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
-msgstr ""
+msgstr "Параметр --in-place замінено на програму «virt-v2v-in-place»"
 
 #: lib/create_ovf.ml:767
 msgid ""
@@ -1187,13 +1125,11 @@ msgstr "Скористатися паролем з файла для з'єдна
 
 #: v2v/v2v.ml:246
 msgid "Use virt-v2v-in-place instead"
-msgstr ""
+msgstr "Скористайтеся краще virt-v2v-in-place"
 
 #: common/mltools/tools_utils.ml:391
-#, fuzzy
-#| msgid "Use ANSI colour sequences even if not tty"
 msgid "Wrap log messages even if not tty"
-msgstr "Використовувати послідовності ANSI для кольорів, навіть якщо це не tty"
+msgstr "Переносити рядки повідомлень журналу, навіть якщо це не tty"
 
 #: common/mlcustomize/customize_cmdline.ml:442
 msgid "Write file"
@@ -1403,7 +1339,7 @@ msgstr ""
 
 #: input/input_disk.ml:146
 msgid "disks on the command line have mixed formats"
-msgstr ""
+msgstr "диски у командному рядку мають мішані формати"
 
 #: input/parse_libvirt_xml.ml:182
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
@@ -1459,10 +1395,8 @@ msgid "exception: %s"
 msgstr "виключення: %s"
 
 #: input/input_disk.ml:143
-#, fuzzy
-#| msgid "expecting an OVA file name on the command line"
 msgid "expected >= 1 disk name on the command line"
-msgstr "у командному рядку мало бути вказано назву файла OVA"
+msgstr "у рядку команди мало бути >= 1 назви диска"
 
 #: common/mltools/xpath_helpers.ml:36
 msgid ""
@@ -1576,19 +1510,19 @@ msgstr "у метаданих XML libvirt пропущено <name> або вк�
 
 #: input/input_vcenter_https.ml:52 input/input_libvirt.ml:101
 msgid "in-place mode does not work with HTTP source"
-msgstr ""
+msgstr "режим «на місці» не працює із джерелами HTTP"
 
 #: input/input_vddk.ml:117
 msgid "in-place mode does not work with VDDK source"
-msgstr ""
+msgstr "режим «на місці» не працює із джерелами VDDK"
 
 #: input/input_vmx.ml:43
 msgid "in-place mode does not work with VMX source"
-msgstr ""
+msgstr "режим «на місці» не працює із джерелами VMX"
 
 #: input/input_xen_ssh.ml:50
 msgid "in-place mode does not work with Xen over SSH source"
-msgstr ""
+msgstr "режим «на місці» не працює із джерелами Xen з використанням SSH"
 
 #: input/input_xen_ssh.ml:115
 msgid ""
@@ -1596,6 +1530,9 @@ msgid ""
 "devices.  See virt-v2v-input-xen(1) section \"Xen or ssh conversions from "
 "block devices\"."
 msgstr ""
+"якщо використано вхідні дані з xen з ssh, не можна скористатися підтримкою "
+"дисків, які зберігаються на віддалених блокових пристроях. Див. підручник з "
+"virt-v2v-input-xen(1), розділ «Xen or ssh conversions from block devices»."
 
 #: v2v/v2v.ml:630 in-place/in_place.ml:360
 msgid ""
@@ -1817,49 +1754,33 @@ msgid "nbdkit is not installed or not working"
 msgstr "nbdkit не встановлено або програма не працює"
 
 #: input/input_disk.ml:91
-#, fuzzy
-#| msgid ""
-#| "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
-#| "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
-"використання «-o rhv-upload». Див. підручник virt-v2v-output-rhv(1)."
+"використання «-i disk»."
 
 #: input/input_libvirt.ml:66
-#, fuzzy
-#| msgid ""
-#| "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
-#| "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i libvirt|"
 "libvirtxml’."
 msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
-"використання «-o rhv-upload». Див. підручник virt-v2v-output-rhv(1)."
+"використання «-i libvirt|libvirtxml»."
 
 #: output/output.ml:71
-#, fuzzy
-#| msgid ""
-#| "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
-#| "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
-"використання «-o rhv-upload». Див. підручник virt-v2v-output-rhv(1)."
+"використання «-o disk»."
 
 #: output/output_null.ml:59
-#, fuzzy
-#| msgid ""
-#| "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
-#| "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o null’."
 msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
-"використання «-o rhv-upload». Див. підручник virt-v2v-output-rhv(1)."
+"використання «-o null»."
 
 #: output/output_rhv_upload.ml:159
 msgid ""
@@ -1880,19 +1801,13 @@ msgid "nbdkit is too old.  nbdkit >= %d.%d.%d is required."
 msgstr "nbdkit є надто старим. Потрібен nbdkit >= %d.%d.%d."
 
 #: output/output_rhv_upload.ml:177
-#, fuzzy
-#| msgid ""
-#| "nbdkit %s plugin is not installed or not working.  It is required if you "
-#| "want to use ‘-o rhv-upload’.\n"
-#| "\n"
-#| "See also the virt-v2v-output-rhv(1) manual."
 msgid ""
 "nbdkit python plugin is not installed or not working.  It is required if you "
 "want to use ‘-o rhv-upload’.\n"
 "\n"
 "See also the virt-v2v-output-rhv(1) manual."
 msgstr ""
-"Не встановлено додаток nbdkit %s або додаток не працює. Цей додаток "
+"Не встановлено додаток nbdkit для python або додаток не працює. Цей додаток "
 "потрібне, якщо ви хочете скористатися «-o rhv-upload».\n"
 "\n"
 "Див. також підручник virt-v2v-output-rhv(1)."
@@ -1910,46 +1825,32 @@ msgstr ""
 #. input/input_libvirt.ml:73
 #. input/input_disk.ml:96
 #: input/nbdkit_vddk.ml:63 input/nbdkit_ssh.ml:55 input/nbdkit_curl.ml:46
-#, fuzzy
-#| msgid "nbdkit is not installed or not working"
 msgid "nbdkit-cow-filter is not installed or not working"
-msgstr "nbdkit не встановлено або програма не працює"
+msgstr "nbdkit-cow-filter не встановлено або програма не працює"
 
 #: input/nbdkit_curl.ml:43
-#, fuzzy
-#| msgid "nbdkit plugin %s is not installed"
 msgid "nbdkit-curl-plugin is not installed"
-msgstr "Додаток nbdkit %s не встановлено"
+msgstr "Додаток nbdkit-curl не встановлено"
 
 #: output/output.ml:73 input/input_libvirt.ml:69 input/input_disk.ml:94
-#, fuzzy
-#| msgid "nbdkit is not installed or not working"
 msgid "nbdkit-file-plugin is not installed or not working"
-msgstr "nbdkit не встановлено або програма не працює"
+msgstr "nbdkit-file-plugin не встановлено або програма не працює"
 
 #: input/input_libvirt.ml:71
-#, fuzzy
-#| msgid "nbdkit is not installed or not working"
 msgid "nbdkit-nbd-plugin is not installed or not working"
-msgstr "nbdkit не встановлено або програма не працює"
+msgstr "nbdkit-nbd-plugin не встановлено або програма не працює"
 
 #: output/output_null.ml:61
-#, fuzzy
-#| msgid "nbdkit is not installed or not working"
 msgid "nbdkit-null-plugin is not installed or not working"
-msgstr "nbdkit не встановлено або програма не працює"
+msgstr "nbdkit-null-plugin не встановлено або програма не працює"
 
 #: input/nbdkit_ssh.ml:52
-#, fuzzy
-#| msgid "nbdkit plugin %s is not installed"
 msgid "nbdkit-ssh-plugin is not installed"
-msgstr "Додаток nbdkit %s не встановлено"
+msgstr "Додаток nbdkit-ssh не встановлено"
 
 #: input/nbdkit_vddk.ml:60
-#, fuzzy
-#| msgid "nbdkit plugin %s is not installed"
 msgid "nbdkit-vddk-plugin is not installed"
-msgstr "Додаток nbdkit %s не встановлено"
+msgstr "Додаток nbdkit-vddk не встановлено"
 
 #: lib/nbdkit.ml:49
 msgid "nbdkit: unexpected version in --dump-config: %s"
@@ -2051,6 +1952,8 @@ msgstr ""
 #: output/output.ml:108
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
+"для режиму введення передбачено підтримку лише форматів raw і qcow2 (формат: "
+"%s)"
 
 #: input/OVF.ml:260
 msgid ""
@@ -2069,29 +1972,20 @@ msgstr ""
 "додавши файл *.ovf, видобутий з ova"
 
 #: lib/qemuNBD.ml:118
-#, fuzzy
-#| msgid ""
-#| "nbdkit did not start up.  See previous debugging messages for problems."
 msgid ""
 "qemu-nbd did not start up.  See previous debugging messages for problems."
 msgstr ""
-"nbdkit не запустилася. Див. попередні діагностичні повідомлення, щоб виявити "
-"джерело проблеми."
+"qemu-nbd не запустилася. Див. попередні діагностичні повідомлення, щоб "
+"виявити джерело проблеми."
 
 #: lib/qemuNBD.ml:120
-#, fuzzy
-#| msgid ""
-#| "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
-#| "\n"
-#| "If the messages above are not sufficient to diagnose the problem then add "
-#| "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgid ""
 "qemu-nbd did not start up.  There may be errors printed by qemu-nbd above.\n"
 "\n"
 "If the messages above are not sufficient to diagnose the problem then add "
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
-"nbdkit не запустилася. Можливо, повідомлення про помилки nbdkit виведено "
+"qemu-nbd не запустилася. Можливо, повідомлення про помилки qemu-nbd виведено "
 "вище.\n"
 "\n"
 "Якщо повідомлень, виведених вище, недостатньо для визначення причини "
@@ -2099,10 +1993,8 @@ msgstr ""
 "діагностичні дані."
 
 #: lib/qemuNBD.ml:47
-#, fuzzy
-#| msgid "nbdkit: unexpected version in --dump-config: %s"
 msgid "qemu-nbd: unexpected version in --version: %s"
-msgstr "nbdkit: неочікувана версія у --dump-config: %s"
+msgstr "qemu-nbd: неочікувана версія у --version: %s"
 
 #: input/parse_domain_from_vmx.ml:45
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
@@ -2164,10 +2056,6 @@ msgid "the key ‘%s’ was not found in a list of objects"
 msgstr "ключа «%s» у списку об’єктів не знайдено"
 
 #: output/output_rhv_upload.ml:282
-#, fuzzy
-#| msgid ""
-#| "the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line "
-#| "has to match the number of guest disk images (for this guest: %d)"
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on th\n"
 "e command line has to match the number of guest disk images (for this guest: "
@@ -2221,13 +2109,6 @@ msgid "the value of the key ‘%s’ is not an object"
 msgstr "значенням ключа «%s» не є об’єкт"
 
 #: lib/create_ovf.ml:506
-#, fuzzy
-#| msgid ""
-#| "the virtual size of the input disk %s is not an exact multiple of 512 "
-#| "bytes.  The virtual size is: %Ld.\n"
-#| "\n"
-#| "This probably means something unexpected is going on, so please file a "
-#| "bug about this issue."
 msgid ""
 "the virtual size of the input disk %d is not an exact multiple of 512 "
 "bytes.  The virtual size is: %Ld.\n"
@@ -2235,7 +2116,7 @@ msgid ""
 "This probably means something unexpected is going on, so please file a bug "
 "about this issue."
 msgstr ""
-"віртуальний розмір диска вхідних даних %s не є точно кратним до 512 байтів. "
+"віртуальний розмір диска вхідних даних %d не є точно кратним до 512 байтів. "
 "Віртуальний розмір: %Ld.\n"
 "\n"
 "Ймовірно, це означає, що відбувається щось неочікуване. Будь ласка, створіть "
@@ -2453,7 +2334,7 @@ msgstr ""
 
 #: in-place/in_place.ml:269
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
-msgstr ""
+msgstr "У virt-v2v-in-place не передбачено підтримки віддалених адрес libvirt"
 
 #: input/parse_domain_from_vmx.ml:51
 msgid "vmx URI path component looks incorrect"
@@ -2533,10 +2414,9 @@ msgid "%s: line %d: error parsing configuration file: %s"
 msgstr "%s: рядок %d: помилка під час спроби обробки файла налаштувань: %s"
 
 #: common/options/decrypt.c:48
-#, fuzzy, c-format
-#| msgid "Inspecting the overlay"
+#, c-format
 msgid "string size overflow"
-msgstr "Вивчаємо оверлей"
+msgstr "переповнення розміру рядка"
 
 #: common/options/decrypt.c:170
 #, c-format
