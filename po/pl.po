@@ -11,30 +11,32 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2020-08-13 13:16+0200\n"
-"PO-Revision-Date: 2016-09-14 05:28+0000\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2020-12-01 16:16+0000\n"
+"PO-Revision-Date: 2021-01-04 17:01+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/projects/p/libguestfs/"
-"language/pl/)\n"
+"Language-Team: Polish <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-master/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.4\n"
 
 #: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:187
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: common/mltools/getopt.ml:73
 msgid ""
 "%s\n"
 "Options:\n"
 msgstr ""
+"%s\n"
+"Opcje:\n"
 
 #: v2v/inspect_source.ml:53 common/mltools/tools_utils.ml:640
 msgid "%s (ignored)"
@@ -83,11 +85,11 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:183 common/mltools/tools_utils.ml:155
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: common/mltools/tools_utils.ml:185
 msgid "%s: %s: %s"
-msgstr ""
+msgstr "%s: %s: %s"
 
 #: v2v/windows_virtio.ml:380
 msgid "%s: cannot open virtio-win ISO file: %s"
@@ -140,7 +142,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:125
 msgid "%s: error: %s"
-msgstr ""
+msgstr "%s: błąd: %s"
 
 #: common/mltools/tools_utils.ml:673
 msgid "%s: operation timed out"
@@ -156,7 +158,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:144
 msgid "%s: warning: %s"
-msgstr ""
+msgstr "%s: ostrzeżenie: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:240
 #: common/mlcustomize/customize_cmdline.ml:331
@@ -428,7 +430,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:212
 msgid "Copy local files or directories into image"
-msgstr ""
+msgstr "Kopiuje lokalne pliki lub katalogi do obrazu"
 
 #: v2v/v2v.ml:695
 msgid "Copying disk %d/%d to %s (%s)"
@@ -444,11 +446,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:286
 msgid "Create a directory"
-msgstr ""
+msgstr "Tworzy katalog"
 
 #: common/mlcustomize/customize_cmdline.ml:280
 msgid "Create symbolic links"
-msgstr ""
+msgstr "Tworzy dowiązania symboliczne"
 
 #: v2v/v2v.ml:285
 msgid "Creating an overlay to protect the source from being modified"
@@ -464,7 +466,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:285
 msgid "DIR"
-msgstr ""
+msgstr "KATALOG"
 
 #: common/mlcustomize/customize_cmdline.ml:218
 msgid "Delete a file or directory"
@@ -476,7 +478,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:332
 msgid "Display version and exit"
-msgstr ""
+msgstr "Wyświetla wersję i kończy działanie"
 
 #: common/mltools/tools_utils.ml:336
 msgid "Don’t print progress messages"
@@ -524,7 +526,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:337
 #: common/mlcustomize/customize_cmdline.ml:402
 msgid "FILE"
-msgstr ""
+msgstr "PLIK"
 
 #: common/mlcustomize/customize_cmdline.ml:437
 msgid "FILE:CONTENT"
@@ -544,7 +546,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:185
 msgid "FILENAME"
-msgstr ""
+msgstr "NAZWA-PLIKU"
 
 #: v2v/copy_to_local.ml:127
 msgid "Fetching the remote libvirt XML metadata ..."
@@ -560,7 +562,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:257
 msgid "HOSTNAME"
-msgstr ""
+msgstr "NAZWA-KOMPUTERA"
 
 #: v2v/cmdline.ml:289
 msgid "How to choose root filesystem"
@@ -635,7 +637,7 @@ msgstr ""
 
 #: v2v/copy_to_local.ml:48 v2v/cmdline.ml:246
 msgid "Libvirt URI"
-msgstr ""
+msgstr "Adres URI biblioteki libvirt"
 
 #: common/mltools/tools_utils.ml:361
 msgid "Make output machine readable"
@@ -852,7 +854,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:234
 #: common/mlcustomize/customize_cmdline.ml:325
 msgid "SCRIPT"
-msgstr ""
+msgstr "SKRYPT"
 
 #. common/mlcustomize/customize_cmdline.ml:344
 #. common/mlcustomize/customize_cmdline.ml:315
@@ -1037,7 +1039,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:385
 msgid "Truncate a file to zero size"
-msgstr ""
+msgstr "Skraca plik do zerowego rozmiaru"
 
 #: common/mlcustomize/customize_cmdline.ml:303
 msgid "USER:SELECTOR"
@@ -1049,7 +1051,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:414
 msgid "Uninstall package(s)"
-msgstr ""
+msgstr "Odinstalowuje pakiety"
 
 #: common/mlcustomize/customize_cmdline.ml:367
 msgid "Unregister using subscription-manager"
@@ -1488,7 +1490,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:191
 msgid "failure: %s"
-msgstr ""
+msgstr "niepowodzenie: %s"
 
 #: v2v/input_ova.ml:151
 msgid "file ‘%s’ not found in the ova"
@@ -1710,7 +1712,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:189
 msgid "libguestfs error: %s"
-msgstr ""
+msgstr "błąd biblioteki libguestfs: %s"
 
 #: v2v/inspect_source.ml:187
 msgid ""
@@ -2000,7 +2002,7 @@ msgstr ""
 
 #: v2v/linux_kernels.ml:102
 msgid "package ‘%s’ contains no files"
-msgstr ""
+msgstr "pakiet „%s” nie zawiera plików"
 
 #: v2v/v2v.ml:758 v2v/v2v.ml:305
 msgid "qemu-img command failed, see earlier errors"
@@ -2368,19 +2370,19 @@ msgstr ""
 
 #: v2v/cmdline.ml:219
 msgid "unknown --root option: %s"
-msgstr ""
+msgstr "nieznana opcja --root: %s"
 
 #: v2v/cmdline.ml:92
 msgid "unknown -i option: %s"
-msgstr ""
+msgstr "nieznana opcja -i: %s"
 
 #: v2v/cmdline.ml:189
 msgid "unknown -o option: %s"
-msgstr ""
+msgstr "nieznana opcja -o: %s"
 
 #: v2v/cmdline.ml:200
 msgid "unknown -oa option: %s"
-msgstr ""
+msgstr "nieznana opcja -oa: %s"
 
 #: v2v/parse_ovf_from_ova.ml:102
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
@@ -2641,10 +2643,9 @@ msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Proszę podać klucz lub hasło („%s”): "
 
 #: common/options/keys.c:173
-#, fuzzy, c-format
-#| msgid "could not parse boot size"
+#, c-format
 msgid "could not read key from user"
-msgstr "nie można przetworzyć rozmiaru partycji startowej"
+msgstr "nie można odczytać klucza od użytkownika"
 
 #: common/options/options.c:283
 #, c-format
