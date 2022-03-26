@@ -74,10 +74,8 @@ msgid ""
 " (at your option) any later version.\n"
 "\n"
 msgstr ""
-" Ця програма є вільним програмним забезпеченням; ви можете поширювати та/"
-"або\n"
-" змінювати її за умов дотримання GNU General Public License утому вигляді, "
-"що\n"
+" Ця програма є вільним програмним забезпеченням; ви можете поширювати та/або\n"
+" змінювати її за умов дотримання GNU General Public License утому вигляді, що\n"
 " оприлюднений Free Software Foundation; версії 2 цієї Ліцензії, або (якщо\n"
 " забажаєте) будь-якої випущеної пізніше.\n"
 "\n"
@@ -1124,8 +1122,8 @@ msgstr ""
 "Цей параметр встановлює розмір сектора образу диска. Ви стосується усіх "
 "явним чином доданих після цього параметра дисків. Використання I<--"
 "blocksize> без аргументів перемикає розмір сектора диска на типове значення, "
-"яким, зазвичай, є 512 байтів. Див. також "
-"L<guestfs(3)/guestfs_add_drive_opts>."
+"яким, зазвичай, є 512 байтів. Див. також L<guestfs(3)/"
+"guestfs_add_drive_opts>."
 
 #. type: =item
 #: common/options/key-option.pod:1
@@ -1831,8 +1829,8 @@ msgid ""
 "hypervisors or management systems, since OVA is only a pretend standard and "
 "is not compatible or interoperable between vendors."
 msgstr ""
-"Використовуючи цей метод, ви маєте спочатку експортувати гостьову систему ("
-"наприклад з vSphere) у форматі файла F<.ova>, який virt-v2v потім зможе "
+"Використовуючи цей метод, ви маєте спочатку експортувати гостьову систему "
+"(наприклад з vSphere) у форматі файла F<.ova>, який virt-v2v потім зможе "
 "прочитати безпосередньо. Зауважте, що цей метод працює лише з файлами, які "
 "експортовано з VMware, а не файлами OVA, які походять із інших гіпервізорів "
 "або систем керування, оскільки OVA лише приблизно дотримується стандартів і "
@@ -2969,8 +2967,7 @@ msgid ""
 msgstr ""
 " Віртуальна машина:\n"
 "   Взаємодія:\n"
-"     - Керування гостьовими віртуальними машинами за допомогою програмного "
-"інтерфейсу VIX\n"
+"     - Керування гостьовими віртуальними машинами за допомогою програмного інтерфейсу VIX\n"
 "   Приготування:\n"
 "     - Дозволити доступ до дисків\n"
 "     - Дозволити доступ до дисків лише для читання\n"
@@ -3950,8 +3947,8 @@ msgid ""
 msgstr ""
 "Якщо потрібен буквальний текст C<%{...}>, можна використати екранування "
 "початковим C<%>. Наприклад, C<%%{GuestName}-%{DiskNo}.img> призведе до "
-"створення назв файлів для дисків, подібних до C<%%{GuestName}-1.img>, "
-"C<%%{GuestName}-2.img> тощо."
+"створення назв файлів для дисків, подібних до C<%%{GuestName}-1.img>, C<%"
+"%{GuestName}-2.img> тощо."
 
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:3
@@ -4719,9 +4716,9 @@ msgid ""
 "which is the typical superuser account for oVirt instances."
 msgstr ""
 "Крім того, ви можете додати до адреси ім'я користувача і порт. Якщо ім'я "
-"користувача не вказано, virt-v2v типово використовуватиме комбінацію C<admin@"
-"internal>, яка задає типові параметри облікового запису суперкористувача для "
-"екземплярів систем oVirt."
+"користувача не вказано, virt-v2v типово використовуватиме комбінацію "
+"C<admin@internal>, яка задає типові параметри облікового запису "
+"суперкористувача для екземплярів систем oVirt."
 
 #. type: =item
 #: docs/virt-v2v-output-rhv.pod:82
@@ -5245,7 +5242,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:65
 msgid "Support conversions to RHV in qcow2 format (Nir Soffer)."
-msgstr "Реалізовано підтримку перетворення до RHV у форматі qcow2 (Nir Soffer)."
+msgstr ""
+"Реалізовано підтримку перетворення до RHV у форматі qcow2 (Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:67
@@ -5253,8 +5251,8 @@ msgid ""
 "Fix detection of disk status and failures after conversion to RHV (Daniel "
 "Erez)."
 msgstr ""
-"Виправлено виявлення стану диска та помилок після перетворення до RHV ("
-"Daniel Erez)."
+"Виправлено виявлення стану диска та помилок після перетворення до RHV "
+"(Daniel Erez)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:70
@@ -5402,7 +5400,8 @@ msgstr "Тестові перетворення Debian 9 і Fedora 29 (Pino Tosc
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:122
 msgid "Various fixes to srcdir != builddir (Pino Toscano)."
-msgstr "Різноманітні виправлення для випадку srcdir != builddir (Pino Toscano)."
+msgstr ""
+"Різноманітні виправлення для випадку srcdir != builddir (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:124
@@ -5436,8 +5435,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:134
 msgid "Format Python code to comply with PEP 8 / pycodestyle (Pino Toscano)."
 msgstr ""
-"Форматовано код Python для встановлення сумісності із PEP 8 / pycodestyle ("
-"Pino Toscano)."
+"Форматовано код Python для встановлення сумісності із PEP 8 / pycodestyle "
+"(Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:136
@@ -5445,8 +5444,8 @@ msgid ""
 "Tests have been moved to the F<tests/> subdirectory, and manuals to the "
 "F<docs/> subdirectory."
 msgstr ""
-"Тести пересунуто до підкаталогу F<tests/>, підручники — до підкаталогу F<"
-"docs/>."
+"Тести пересунуто до підкаталогу F<tests/>, підручники — до підкаталогу "
+"F<docs/>."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:139
@@ -5620,7 +5619,8 @@ msgstr "L<https://bugzilla.redhat.com/1605242>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:199
 msgid "Update nbdkit info for vddk in v2v man page"
-msgstr "Оновлено відомості щодо nbdkit для vddk на сторінці підручника щодо v2v"
+msgstr ""
+"Оновлено відомості щодо nbdkit для vddk на сторінці підручника щодо v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:201
@@ -6300,8 +6300,7 @@ msgid ""
 msgstr ""
 " virt-v2v \\\n"
 "   -i vmx -it ssh \\\n"
-"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\"
-"\n"
+"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\\n"
 "   -o local -os /var/tmp\n"
 "\n"
 
@@ -6336,8 +6335,8 @@ msgid ""
 "inside an OpenStack VM (called C<v2v-vm> below), and do:"
 msgstr ""
 "Нехай маємо образ диска з іншого гіпервізору, який слід перетворити для "
-"запуску на OpenStack (підтримку передбачено лише для OpenStack на основі KVM)"
-". Тоді можна запустити virt-v2v у віртуальній машині OpenStack (яку ми "
+"запуску на OpenStack (підтримку передбачено лише для OpenStack на основі "
+"KVM). Тоді можна запустити virt-v2v у віртуальній машині OpenStack (яку ми "
 "називатимемо нижче C<v2v-vm>) ось так:"
 
 #. type: verbatim
@@ -6718,9 +6717,9 @@ msgid ""
 "vmware(1)>."
 msgstr ""
 "У цьому режимі ви можете читати файл OVA VMware. Virt-v2v прочитає файл "
-"маніфесту ova і перевірити томи vmdk на коректність (за контрольними сумами)"
-", а також проаналізує файл ovf, а потім виконає перетворення гостьової "
-"системи. Див. L<virt-v2v-input-vmware(1)>."
+"маніфесту ova і перевірити томи vmdk на коректність (за контрольними "
+"сумами), а також проаналізує файл ovf, а потім виконає перетворення "
+"гостьової системи. Див. L<virt-v2v-input-vmware(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:282
@@ -6743,8 +6742,8 @@ msgstr ""
 "У цьому режимі ви можете читати файл VMX VMware безпосередньо або за "
 "допомогою SSH. Такий режим корисний, якщо віртуальні машини VMware "
 "зберігаються на сервері NFS так, що їх можна змонтувати безпосередньо, або "
-"так, що можна отримати доступ за допомогою SSH до гіпервізору ESXi. Див. L"
-"<virt-v2v-input-vmware(1)>."
+"так, що можна отримати доступ за допомогою SSH до гіпервізору ESXi. Див. "
+"L<virt-v2v-input-vmware(1)>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:293
@@ -6969,8 +6968,8 @@ msgid ""
 "When using I<-i vmx>, this enables the ssh transport.  See L<virt-v2v-input-"
 "vmware(1)>."
 msgstr ""
-"Якщо використано I<-i vmx>, вмикає передавання даних за допомогою SSH. Див. L"
-"<virt-v2v-input-vmware(1)>."
+"Якщо використано I<-i vmx>, вмикає передавання даних за допомогою SSH. Див. "
+"L<virt-v2v-input-vmware(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:376
@@ -7040,8 +7039,8 @@ msgid ""
 "Force a particular interface (controlled by its MAC address) to have a "
 "static IP address after boot."
 msgstr ""
-"Примусово використати для певного інтерфейсу (контрольованого за його "
-"MAC-адресою) статичну IP-адресу після завантаження."
+"Примусово використати для певного інтерфейсу (контрольованого за його MAC-"
+"адресою) статичну IP-адресу після завантаження."
 
 #. type: textblock
 #: docs/virt-v2v.pod:404
@@ -7057,7 +7056,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:409
 msgid "This option can be supplied zero or more times."
-msgstr "Цей параметр можна не вказувати або вказувати довільну кількість разів."
+msgstr ""
+"Цей параметр можна не вказувати або вказувати довільну кількість разів."
 
 #. type: textblock
 #: docs/virt-v2v.pod:411
@@ -7641,9 +7641,9 @@ msgid ""
 "(Certificate Authority), copied from F</etc/pki/ovirt-engine/ca.pem> on the "
 "oVirt engine."
 msgstr ""
-"Лише для I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>). Файл F<ca.pem> ("
-"служби сертифікації), скопійований з F</etc/pki/ovirt-engine/ca.pem> у рушії "
-"oVirt."
+"Лише для I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>). Файл F<ca.pem> "
+"(служби сертифікації), скопійований з F</etc/pki/ovirt-engine/ca.pem> у "
+"рушії oVirt."
 
 #. type: =item
 #: docs/virt-v2v.pod:635
@@ -8703,10 +8703,8 @@ msgid ""
 " to use virt-v2v.\n"
 "\n"
 msgstr ""
-" virtv2v: помилка: не вдалося змонтувати образ диска для запису. Ймовірно, "
-"це\n"
-" сталося через те, що у гостьовій системі використано Windows Hibernation "
-"або\n"
+" virtv2v: помилка: не вдалося змонтувати образ диска для запису. Ймовірно, це\n"
+" сталося через те, що у гостьовій системі використано Windows Hibernation або\n"
 " Fast Restart. Вам слід вимкнути ці можливості (у гостьовій системі), щоб\n"
 " скористатися virt-v2v.\n"
 "\n"
@@ -8925,9 +8923,8 @@ msgid ""
 "converting the guest."
 msgstr ""
 "Щоб усунути цю проблему, перш ніж виконувати перетворення гостьової системи, "
-"вам слід встановити у системах підтримку підписування коду SHA-2: "
-"L<https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2015/"
-"3033929>."
+"вам слід встановити у системах підтримку підписування коду SHA-2: L<https://"
+"docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2015/3033929>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1135
@@ -9150,8 +9147,8 @@ msgid ""
 "Virt-v2v places potentially large temporary files in C<$LIBGUESTFS_CACHEDIR> "
 "(which is F</var/tmp> if you don't set it).  Using tmpfs is a bad idea."
 msgstr ""
-"Virt-v2v розташовує потенційно великі тимчасові файли у C<$"
-"LIBGUESTFS_CACHEDIR> (тобто у F</var/tmp>, якщо значення цієї змінної "
+"Virt-v2v розташовує потенційно великі тимчасові файли у C<"
+"$LIBGUESTFS_CACHEDIR> (тобто у F</var/tmp>, якщо значення цієї змінної "
 "середовища не встановлено). Використання tmpfs у цьому випадку недоцільне."
 
 #. type: textblock
@@ -9181,8 +9178,8 @@ msgid ""
 "This temporarily places a full copy of the uncompressed source disks in C<"
 "$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgstr ""
-"Ця команда тимчасово зберігає повну копію нестиснених початкових дисків у C<$"
-"LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
+"Ця команда тимчасово зберігає повну копію нестиснених початкових дисків у C<"
+"$LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
 
 #. type: =item
 #: docs/virt-v2v.pod:1225
@@ -10467,9 +10464,9 @@ msgid ""
 "The easiest way is to compile libguestfs from source (I<note> do not install "
 "it).  The test harness will be in C<virt-v2v.git/test-harness>"
 msgstr ""
-"Найпростішим способом є зібрати libguestfs з початкових кодів (I<Зауваження>:"
-" не встановлювати її). Тестовий комплекс зберігатиметься у C<virt-v2v.git/"
-"test-harness>"
+"Найпростішим способом є зібрати libguestfs з початкових кодів "
+"(I<Зауваження>: не встановлювати її). Тестовий комплекс зберігатиметься у "
+"C<virt-v2v.git/test-harness>"
 
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:73
