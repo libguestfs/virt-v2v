@@ -14,8 +14,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2020-12-01 16:16+0000\n"
-"PO-Revision-Date: 2021-02-17 10:40+0000\n"
-"Last-Translator: Marcin Stanclik <mstanclik@yahoo.com>\n"
+"PO-Revision-Date: 2021-02-20 11:19+0000\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/pl/>\n"
 "Language: pl\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: v2v/inspect_source.ml:53 common/mltools/tools_utils.ml:640
 msgid "%s (ignored)"
-msgstr "%s (zignorowany)"
+msgstr "%s (zignorowane)"
 
 #: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
