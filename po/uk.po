@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2021-06-16 11:35+0100\n"
-"PO-Revision-Date: 2021-03-05 07:01+0000\n"
+"PO-Revision-Date: 2022-01-26 20:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:187
 #: common/mltools/tools_utils.ml:193 common/mltools/tools_utils.ml:194
@@ -2340,7 +2340,7 @@ msgstr ""
 "недостатньо доступних inode для перетворення у файловій системі «%s». "
 "Доступно %Ld inode < потрібно %Ld inode"
 
-#: v2v/v2v.ml:383
+#: v2v/v2v.ml:383 v2v/v2v.ml:417
 msgid ""
 "not enough free space for conversion on filesystem ‘%s’.  %.1f MB free < %d "
 "MB needed"
@@ -2851,7 +2851,7 @@ msgstr ""
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
-"ця гостьова система має безпосередні інтерфейси мережі, які буде "
+"ця гостьова система має безпосередні інтерфейс мережі, який буде "
 "проігноровано"
 msgstr[1] ""
 "ця гостьова система має безпосередні інтерфейси мережі, які буде "
@@ -3361,6 +3361,7 @@ msgid "%s exited for an unknown reason (status %d)"
 msgstr "Роботу %s завершено з невідомої причини (стан %d)"
 
 #: common/mltools/tools_utils.ml:373 common/mltools/tools_utils.ml:374
+#: common/mltools/tools_utils.ml:371
 msgid "Set program name"
 msgstr "Встановити назву програми"
 
@@ -3429,7 +3430,7 @@ msgstr ""
 msgid "output helper command (%s) does not exist or is not working"
 msgstr "допоміжної команди виведення (%s) не існує або вона не є працездатною"
 
-#: v2v/v2v.ml:245
+#: v2v/v2v.ml:245 v2v/v2v.ml:250
 msgid "Input format"
 msgstr "Формат вхідних даних"
 
@@ -3438,14 +3439,18 @@ msgid ""
 "%s: Exiting on signal %s\n"
 "%!"
 msgstr ""
+"%s: вихід за сигналом %s\n"
+"%!"
 
-#~ msgid "failed to finalize the transfers, see earlier errors"
-#~ msgstr ""
-#~ "не вдалося завершити перенесення; див. попередні повідомлення про помилки"
+#: v2v/output_rhv_upload.ml:437
+msgid "failed to finalize the transfers, see earlier errors"
+msgstr ""
+"не вдалося завершити перенесення; див. попередні повідомлення про помилки"
 
-#~ msgid "failed to start transfer, see earlier errors"
-#~ msgstr ""
-#~ "не вдалося розпочати перенесення; див. попередні повідомлення про помилки"
+#: v2v/output_rhv_upload.ml:376
+msgid "failed to start transfer, see earlier errors"
+msgstr ""
+"не вдалося розпочати перенесення; див. попередні повідомлення про помилки"
 
 #~ msgid ""
 #~ "%s: copy a remote guest to the local machine\n"
