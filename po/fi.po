@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-03-03 12:48+0000\n"
-"PO-Revision-Date: 2021-03-07 12:01+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"POT-Creation-Date: 2021-04-30 15:49+0100\n"
+"PO-Revision-Date: 2021-05-02 19:02+0000\n"
+"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
 "Language: fi\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1\n"
+"X-Generator: Weblate 4.6.1\n"
 
 #: v2v/input_ova.ml:152 common/mltools/tools_utils.ml:187
 msgid "%s"
@@ -629,7 +629,7 @@ msgstr ""
 
 #: v2v/copy_to_local.ml:48 v2v/cmdline.ml:246
 msgid "Libvirt URI"
-msgstr ""
+msgstr "Libvirt:n URI"
 
 #: common/mltools/tools_utils.ml:361
 msgid "Make output machine readable"
@@ -653,7 +653,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:297
 msgid "Move files in disk image"
-msgstr ""
+msgstr "Siirrä levykuvassa olevia tiedostoja"
 
 #: v2v/cmdline.ml:426
 msgid "No -io (input options) are supported with this input transport.\n"
@@ -2352,11 +2352,11 @@ msgstr ""
 
 #: v2v/cmdline.ml:92
 msgid "unknown -i option: %s"
-msgstr ""
+msgstr "tuntematon -i vaihtoehto: %s"
 
 #: v2v/cmdline.ml:189
 msgid "unknown -o option: %s"
-msgstr ""
+msgstr "tuntematon -o vaihtoehto: %s"
 
 #: v2v/cmdline.ml:200
 msgid "unknown -oa option: %s"
