@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2021-01-05 14:00+0000\n"
+"POT-Creation-Date: 2021-03-03 12:48+0000\n"
 "PO-Revision-Date: 2020-08-15 16:29+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -71,7 +71,7 @@ msgstr ""
 "Якщо вам не вдається встановити, якою має бути точка монтування %s, ви "
 "можете скористатися для цього інтерфейсом користувача RHV-M."
 
-#: v2v/convert_windows.ml:289
+#: v2v/convert_windows.ml:285
 msgid ""
 "%s is missing, but the output hypervisor is oVirt or RHV.  Installing RHEV-"
 "APT in the guest would mean the guest is automatically updated with new "
@@ -81,7 +81,7 @@ msgstr ""
 "Встановлення RHEV-APT у гостьовій системі забезпечить оновлення драйверів "
 "тощо. Вам варто встановити RHEV-APT вручну після перетворення."
 
-#: v2v/convert_windows.ml:280
+#: v2v/convert_windows.ml:276
 msgid "%s is missing.  Firstboot scripts may conflict with PnP."
 msgstr "Не вистачає %s. Скрипти Firstboot можуть конфліктувати з PnP."
 
@@ -91,7 +91,7 @@ msgstr "Не вистачає %s. Скрипти Firstboot можуть конф
 msgid "%s option used more than once on the command line"
 msgstr "у командному рядку параметр %s використано декілька разів"
 
-#: v2v/convert_linux.ml:1065
+#: v2v/convert_linux.ml:1066
 msgid ""
 "%s references unknown device \"%s\".  You may have to fix this entry "
 "manually after conversion."
@@ -107,7 +107,7 @@ msgstr "%s: %s"
 msgid "%s: %s: %s"
 msgstr "%s: %s: %s"
 
-#: v2v/windows_virtio.ml:380
+#: v2v/windows_virtio.ml:381
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: не вдалося відкрити файл ISO virtio-win: %s"
 
@@ -491,11 +491,11 @@ msgstr "Завантажитися у qemu (лише для -o qemu)"
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: v2v/convert_linux.ml:1161
+#: v2v/convert_linux.ml:1162
 msgid "Can't find file: '%s' needed for UEFI fixing"
 msgstr "Не вдалося знайти файл: потрібен «%s» для виправлення UEFI"
 
-#: v2v/convert_linux.ml:1142
+#: v2v/convert_linux.ml:1143
 msgid "Can't fix UEFI bootloader. VM may not boot."
 msgstr ""
 "Не вдалося виправити завантажувач UEFI. Віртуальна машина може бути "
@@ -669,7 +669,7 @@ msgstr "Отримуємо метадані XML віддаленої libvirt…"
 msgid "Finishing off"
 msgstr "Завершуємо"
 
-#: v2v/convert_linux.ml:1175
+#: v2v/convert_linux.ml:1176
 msgid "Fixing UEFI bootloader."
 msgstr "Виправляємо завантажувач UEFI."
 
@@ -816,7 +816,7 @@ msgstr ""
 "У цьому режимі виведення даних не передбачено підтримки жодних -oo "
 "(параметрів виведення).\n"
 
-#: v2v/convert_linux.ml:1234
+#: v2v/convert_linux.ml:1235
 msgid "No UEFI fix rule for %s %d"
 msgstr "Немає правила виправлення UEFI для %s %d"
 
@@ -930,7 +930,7 @@ msgstr ""
 "  -oo vdsm-image-uuid=UUID     UUID каталогу образу\n"
 "  -oo vdsm-vol-uuid=UUID       UUID тому диска\n"
 
-#: v2v/v2v.ml:839
+#: v2v/v2v.ml:840
 msgid "Overlay saved as %s [--debug-overlays]"
 msgstr "Накладку збережено як %s [--debug-overlays]"
 
@@ -949,7 +949,7 @@ msgstr "ПРАВА_ДОСТУПУ:ФАЙЛ"
 msgid "PKG,PKG.."
 msgstr "ПАКУНОК,ПАКУНОК.."
 
-#: v2v/convert_linux.ml:507
+#: v2v/convert_linux.ml:508
 msgid ""
 "Parallels tools was detected, but uninstallation failed. The error message "
 "was: %s (ignored)"
@@ -973,7 +973,7 @@ msgstr "Вибрано %s, оскільки використано «--root firs
 msgid "Print source and stop"
 msgstr "Вивести джерело і припинити обробку"
 
-#: v2v/convert_windows.ml:305
+#: v2v/convert_windows.ml:301
 msgid ""
 "QEMU Guest Agent MSI not found on tools ISO/directory. You may want to "
 "install the guest agent manually after conversion."
@@ -982,7 +982,7 @@ msgstr ""
 "системи QEMU. Ймовірно, вам варто встановити агент гостьової системи вручну "
 "після перетворення."
 
-#: v2v/windows_virtio.ml:224
+#: v2v/windows_virtio.ml:225
 msgid "QEMU Guest Agent installed for this guest."
 msgstr "Агент гостьової системи QEMU встановлено для цієї гостьової системи."
 
@@ -1200,7 +1200,7 @@ msgstr "ПРИЗНАЧЕННЯ:ПОСИЛАННЯ[:ПОСИЛАННЯ..]"
 msgid "TIMEZONE"
 msgstr "ЧАСОВИЙ_ПОЯС"
 
-#: v2v/convert_linux.ml:860
+#: v2v/convert_linux.ml:861
 msgid ""
 "The display driver was updated to ‘%s’, but X11 does not seem to be "
 "installed in the guest.  X may not function correctly."
@@ -1282,7 +1282,7 @@ msgstr ""
 "Не знайдено шлях до бібліотек VDDK %s або шлях не є каталогом. Див. "
 "підручник з virt-v2v-input-vmware(1)."
 
-#: v2v/convert_linux.ml:429
+#: v2v/convert_linux.ml:430
 msgid ""
 "VMware tools was detected, but uninstallation failed.  The error message "
 "was: %s (ignored)"
@@ -1290,7 +1290,7 @@ msgstr ""
 "Виявлено засоби VMware, але спроба вилучення зазнала невдачі. Повідомлення "
 "щодо помилки: %s (проігноровано)"
 
-#: v2v/convert_linux.ml:291
+#: v2v/convert_linux.ml:292
 msgid ""
 "VirtualBox Guest Additions were detected, but uninstallation failed.  The "
 "error message was: %s (ignored)"
@@ -1349,22 +1349,6 @@ msgstr ""
 "через ваду у libvirt, https://bugzilla.redhat.com/1134878 , вам слід або "
 "оновити libvirt до версії 2.1.0 або новішої, або встановити таке значення "
 "змінної середовища:\n"
-"\n"
-"export LIBGUESTFS_BACKEND=direct\n"
-"\n"
-"а потім перезапустити програму virt-v2v."
-
-#: v2v/input_libvirt_xen_ssh.ml:39
-msgid ""
-"because of libvirt bug https://bugzilla.redhat.com/1140166 you must set this "
-"environment variable:\n"
-"\n"
-"export LIBGUESTFS_BACKEND=direct\n"
-"\n"
-"and then rerun the virt-v2v command."
-msgstr ""
-"через ваду у libvirt, https://bugzilla.redhat.com/1140166 вам слід "
-"встановити таке значення змінної середовища:\n"
 "\n"
 "export LIBGUESTFS_BACKEND=direct\n"
 "\n"
@@ -1527,7 +1511,7 @@ msgstr "не вдалося визначити спосіб оновлення �
 msgid "could not find bootloader mount point (%s): %s"
 msgstr "не вдалося виявити точки монтування завантажувача (%s): %s"
 
-#: v2v/convert_windows.ml:635
+#: v2v/convert_windows.ml:631
 msgid ""
 "could not find registry key HKLM\\SOFTWARE\\Microsoft\\Windows"
 "\\CurrentVersion"
@@ -1666,7 +1650,7 @@ msgid "don’t know how to remove packages using %s: packages: %s"
 msgstr ""
 "спосіб вилучення пакунків за допомогою %s невідомий програмі: пакунки: %s"
 
-#: v2v/convert_linux.ml:965
+#: v2v/convert_linux.ml:966
 msgid "don’t know how to update %s which loads the %s module"
 msgstr "спосіб оновлення %s, який завантажує модуль %s, невідомий програмі"
 
@@ -1764,13 +1748,13 @@ msgstr "виконання зовнішньої програми «%s» заве
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr "виконання зовнішньої програми «%s» зупинено сигналом %d"
 
-#: v2v/output_rhv_upload.ml:260
+#: v2v/output_rhv_upload.ml:263
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 "не пройдено попередніх перевірок сервера; див. попередні повідомлення про "
 "помилки"
 
-#: v2v/output_rhv_upload.ml:446
+#: v2v/output_rhv_upload.ml:451
 msgid "failed to create virtual machine, see earlier errors"
 msgstr ""
 "не вдалося створити віртуальну машину; див. попередні повідомлення про "
@@ -1782,7 +1766,7 @@ msgstr ""
 "не вдалося знайти виконуваний файл grub2-mkconfig (втім, на гостьовій "
 "системі виявлено Grub2)"
 
-#: v2v/windows_virtio.ml:226
+#: v2v/windows_virtio.ml:227
 msgid "failed to install QEMU Guest Agent: %s"
 msgstr "не вдалося встановити агент гостьової системи QEMU: %s"
 
@@ -1790,7 +1774,7 @@ msgstr "не вдалося встановити агент гостьової �
 msgid "failed to parse line returned by tar: %S"
 msgstr "не вдалося обробити рядок, який повернуто tar: %S"
 
-#: v2v/output_rhv_upload.ml:317
+#: v2v/output_rhv_upload.ml:322
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 "не вдалося пройти перевірки віртуальної машини; див. попередні повідомлення "
@@ -1903,7 +1887,7 @@ msgstr "підтримки типу гостьової системи %s не п
 msgid "guest type %s/%s is not supported"
 msgstr "підтримки типу гостьової системи %s/%s не передбачено"
 
-#: v2v/linux_kernels.ml:316
+#: v2v/linux_kernels.ml:320
 msgid "ignoring kernel %s in bootloader, as it does not exist."
 msgstr "ігноруємо ядро %s у завантажувачі, оскільки його не існує."
 
@@ -2210,13 +2194,13 @@ msgstr ""
 "\n"
 "Див. також сторінку підручника virt-v2v-input-vmware(1)."
 
-#: v2v/nbdkit.ml:184
+#: v2v/nbdkit.ml:188
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 "nbdkit не запустилася. Див. попередні діагностичні повідомлення, щоб виявити "
 "джерело проблеми."
 
-#: v2v/nbdkit.ml:186
+#: v2v/nbdkit.ml:190
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -2296,11 +2280,11 @@ msgstr "у файлі VMX не виявлено ключа displayName"
 msgid "no href in ovf:File (id=%s)"
 msgstr "немає href у ovf:File (id=%s)"
 
-#: v2v/linux_kernels.ml:176
+#: v2v/linux_kernels.ml:177
 msgid "no initrd was found in /boot matching %s %s."
 msgstr "у /boot не знайдено initrd, що відповідає %s %s."
 
-#: v2v/linux_kernels.ml:291
+#: v2v/linux_kernels.ml:295
 msgid ""
 "no installed kernel packages were found.\n"
 "\n"
@@ -2311,7 +2295,7 @@ msgstr ""
 "Це, ймовірно, означає, що %s не вдасться вивчити належним чином гостьову "
 "систему."
 
-#: v2v/linux_kernels.ml:328
+#: v2v/linux_kernels.ml:332
 msgid ""
 "no kernels were found in the bootloader configuration.\n"
 "\n"
@@ -2359,7 +2343,7 @@ msgstr ""
 "Система oVirt не здатна емулювати звукові картки «%s». Цю звукову картку "
 "буде викинуто з виведених даних."
 
-#: v2v/convert_linux.ml:530
+#: v2v/convert_linux.ml:531
 msgid ""
 "only Xen kernels are installed in this guest.\n"
 "\n"
@@ -2472,7 +2456,7 @@ msgstr ""
 "Диск ova не має батьківського контролера. Будь ласка, повідомте про цю ваду, "
 "додавши файл *.ovf, видобутий з ova"
 
-#: v2v/v2v.ml:769 v2v/v2v.ml:307
+#: v2v/v2v.ml:770 v2v/v2v.ml:307
 msgid "qemu-img command failed, see earlier errors"
 msgstr ""
 "помилка під час спроби виконати qemu-img, див. попередні повідомлення щодо "
@@ -2500,7 +2484,7 @@ msgstr ""
 "(наприклад CD-ROM із початковою назвою /dev/hdc може бути пересунуто до /dev/"
 "hdd, або з D: до E: у гостьовій системі Windows)."
 
-#: v2v/output_rhv_upload.ml:343
+#: v2v/output_rhv_upload.ml:348
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
@@ -2524,7 +2508,7 @@ msgid "root device %s not found.  Roots found were: %s"
 msgstr ""
 "не знайдено кореневого пристрою %s. Знайдено такі кореневі пристрої: %s"
 
-#: v2v/windows_virtio.ml:311 v2v/windows_virtio.ml:305
+#: v2v/windows_virtio.ml:312 v2v/windows_virtio.ml:306
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2541,31 +2525,31 @@ msgstr ""
 msgid "source disk has <source dev=...> attribute in XML"
 msgstr "диск джерела має атрибут <source dev=...> у XML"
 
-#: v2v/v2v.ml:850
+#: v2v/v2v.ml:851
 msgid "source has multiple hard disk types!"
 msgstr "у джерела декілька типів жорстких дисків!"
 
-#: v2v/v2v.ml:866
+#: v2v/v2v.ml:867
 msgid "source has multiple network adapter model!"
 msgstr "у джерела декілька моделей адаптера мережі!"
 
-#: v2v/v2v.ml:848 v2v/v2v.ml:244
+#: v2v/v2v.ml:849 v2v/v2v.ml:244
 msgid "source has no hard disks!"
 msgstr "у джерелі немає жорстких дисків!"
 
-#: v2v/v2v.ml:858
+#: v2v/v2v.ml:859
 msgid "source has unrecognized hard disk type"
 msgstr "у джерела нерозпізнаний тип жорсткого диска"
 
-#: v2v/v2v.ml:856
+#: v2v/v2v.ml:857
 msgid "source has unsupported hard disk type ‘%s’"
 msgstr "у джерела непідтримуваний тип жорсткого диска, «%s»"
 
-#: v2v/v2v.ml:872
+#: v2v/v2v.ml:873
 msgid "source has unsupported network adapter model ‘%s’"
 msgstr "у джерела непідтримувана модель адаптера мережі, «%s»"
 
-#: v2v/v2v.ml:880
+#: v2v/v2v.ml:881
 msgid "source has unsupported video adapter model ‘%s’"
 msgstr "у джерела непідтримувана модель відеоадаптера, «%s»"
 
@@ -2642,7 +2626,7 @@ msgstr ""
 "не вдалося завантажити модуль Python «ovirtsdk4». Чи встановлено цей модуль? "
 "Див. попередні повідомлення про помилки."
 
-#: v2v/output_rhv_upload.ml:295
+#: v2v/output_rhv_upload.ml:300
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr "на кластері «%s» не передбачено підтримки архітектури %s, але %s"
 
@@ -2650,7 +2634,7 @@ msgstr "на кластері «%s» не передбачено підтрим�
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr "ключа «%s» у списку об’єктів не знайдено"
 
-#: v2v/output_rhv_upload.ml:305
+#: v2v/output_rhv_upload.ml:310
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has "
 "to match the number of guest disk images (for this guest: %d)"
@@ -2826,7 +2810,7 @@ msgstr ""
 "Гостьову систему буде налаштовано на використання повільнішого емульованого "
 "пристрою."
 
-#: v2v/output_rhv_upload.ml:413
+#: v2v/output_rhv_upload.ml:418
 msgid ""
 "there must be ‘-oo rhv-disk-uuid’ parameters passed on the command line to "
 "specify the UUIDs of guest disk images (for this guest: %d)"
@@ -2844,7 +2828,7 @@ msgstr ""
 "не передбачено підтримки мікропрограм %s (підтримувана мікропрограма на "
 "призначенні: %s)"
 
-#: v2v/convert_windows.ml:244
+#: v2v/convert_windows.ml:239
 msgid ""
 "this guest has Anti-Virus (AV) software and a new virtio block device driver "
 "was installed.  In some circumstances, AV may prevent new drivers from "
@@ -2857,7 +2841,7 @@ msgstr ""
 "(результатом є помилка завантаження 7B). Якщо таке трапляється, спробуйте "
 "вимкнути антивірус до перетворення."
 
-#: v2v/convert_windows.ml:242
+#: v2v/convert_windows.ml:237
 msgid ""
 "this guest has Windows Group Policy Objects (GPO) and a new virtio block "
 "device driver was installed.  In some circumstances, Group Policy may "
@@ -2908,12 +2892,12 @@ msgstr ""
 "забагато параметрів командного рядка. Див. сторінку підручника virt-v2v-copy-"
 "to-local(1)."
 
-#: v2v/output_rhv_upload.ml:404
+#: v2v/output_rhv_upload.ml:409
 msgid "transfer of disk %d/%d failed, see earlier error messages"
 msgstr ""
 "не вдалося перенести диск %d з %d; див. попередні повідомлення про помилку"
 
-#: v2v/convert_linux.ml:899
+#: v2v/convert_linux.ml:900
 msgid ""
 "unable to find any valid modprobe configuration file such as /etc/modprobe."
 "conf"
@@ -2940,7 +2924,7 @@ msgstr ""
 msgid "unable to parse line from manifest file: %S"
 msgstr "не вдалося обробити рядок з файла маніфесту: %S"
 
-#: v2v/convert_linux.ml:749
+#: v2v/convert_linux.ml:750
 msgid ""
 "unable to rebuild initrd (%s) because mkinitrd or dracut was not found in "
 "the guest"
@@ -2948,7 +2932,7 @@ msgstr ""
 "не вдалося перебудувати initrd (%s), оскільки у гостьовій системі не "
 "знайдено mkinitrd або dracut"
 
-#: v2v/convert_linux.ml:655
+#: v2v/convert_linux.ml:656
 msgid ""
 "unable to rebuild initrd (%s) because update-initramfs was not found in the "
 "guest"
@@ -3179,17 +3163,17 @@ msgstr "%s: «%s» не є числовим значенням.\n"
 msgid "%s: %s: integer out of range\n"
 msgstr "%s: %s: ціле значення поза межами діапазону\n"
 
-#: common/mltools/getopt-c.c:385
+#: common/mltools/getopt-c.c:388
 #, c-format
 msgid "%s: ‘%s’ is not allowed for -%c; allowed values are:\n"
 msgstr "%s: «%s» не можна використовувати з -%c; дозволені значення:\n"
 
-#: common/mltools/getopt-c.c:388
+#: common/mltools/getopt-c.c:391
 #, c-format
 msgid "%s: ‘%s’ is not allowed for %s%s; allowed values are:\n"
 msgstr "%s: «%s» не можна використовувати з %s%s; дозволені значення:\n"
 
-#: common/mltools/getopt-c.c:423
+#: common/mltools/getopt-c.c:426
 #, c-format
 msgid "Extra parameter on the command line: ‘%s’.\n"
 msgstr "Зайвий параметр у рядку команди: «%s».\n"
@@ -3386,6 +3370,21 @@ msgstr "Роботу %s завершено за допомогою сигнал�
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "Роботу %s завершено з невідомої причини (стан %d)"
+
+#~ msgid ""
+#~ "because of libvirt bug https://bugzilla.redhat.com/1140166 you must set "
+#~ "this environment variable:\n"
+#~ "\n"
+#~ "export LIBGUESTFS_BACKEND=direct\n"
+#~ "\n"
+#~ "and then rerun the virt-v2v command."
+#~ msgstr ""
+#~ "через ваду у libvirt, https://bugzilla.redhat.com/1140166 вам слід "
+#~ "встановити таке значення змінної середовища:\n"
+#~ "\n"
+#~ "export LIBGUESTFS_BACKEND=direct\n"
+#~ "\n"
+#~ "а потім перезапустити програму virt-v2v."
 
 #~ msgid "package ‘%s’ contains no files"
 #~ msgstr "у пакунку «%s» не міститься файлів"
