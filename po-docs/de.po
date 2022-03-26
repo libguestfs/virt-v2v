@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: libguestfs@redhat.com\n"
 "POT-Creation-Date: 2020-08-13 13:17+0200\n"
-"PO-Revision-Date: 2015-02-21 09:57+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/libguestfs/"
-"language/de/)\n"
+"PO-Revision-Date: 2021-11-18 22:16+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"Language-Team: German <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-docs-master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -26,7 +26,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:141
 #: docs/virt-v2v-release-notes-1.42.pod:145
 msgid "comment"
-msgstr ""
+msgstr "Kommentar"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:3
