@@ -61,8 +61,9 @@ let print_kernel_info chan prefix ki =
   fpf "virtio: blk=%b net=%b rng=%b balloon=%b\n"
       ki.ki_supports_virtio_blk ki.ki_supports_virtio_net
       ki.ki_supports_virtio_rng ki.ki_supports_virtio_balloon;
-  fpf "pvpanic=%b xen=%b debug=%b\n"
-      ki.ki_supports_isa_pvpanic ki.ki_is_xen_pv_only_kernel ki.ki_is_debug
+  fpf "pvpanic=%b vsock=%b xen=%b debug=%b\n"
+      ki.ki_supports_isa_pvpanic ki.ki_supports_virtio_socket
+      ki.ki_is_xen_pv_only_kernel ki.ki_is_debug
 
 let rex_ko = PCRE.compile "\\.k?o(?:\\.xz)?$"
 let rex_ko_extract = PCRE.compile "/([^/]+)\\.k?o(?:\\.xz)?$"
@@ -248,7 +249,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
            let supports_isa_pvpanic =
              kernel_supports "pvpanic" "PVPANIC" in
            let supports_virtio_socket =
-               kernel_supports "virtio_socket" "VIRTIO_SOCKET" in
+               kernel_supports "vmw_vsock_virtio_transport" "VIRTIO_VSOCKETS" in
            let is_xen_pv_only_kernel =
              check_config "X86_XEN" config_file ||
              check_config "X86_64_XEN" config_file in
