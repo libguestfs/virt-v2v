@@ -1552,11 +1552,19 @@ script in the guest during conversion of Windows guests.
 
 See also: C<https://github.com/rwmjones/rhsrvany>
 
+=item F<pnp_wait.exe>
+
+(Recommended when doing conversions of Windows guests)
+
+This tool waits for newly installed Windows devices to become
+available before trying to configure them, for example to set network
+configuration.  It is part of the RHSrvAny project.
+
 =item F<pvvxsvc.exe>
 
-This is a Windows binary shipped with SUSE VMDP, used to install a "firstboot"
-script in Windows guests.  It is required if you intend to use the
-I<--firstboot> or I<--firstboot-command> options with Windows guests.
+This is a Windows binary shipped with SUSE VMDP, used to install a
+"firstboot" script in Windows guests.  It is an alternative to
+RHSrvAny.
 
 =back
 
