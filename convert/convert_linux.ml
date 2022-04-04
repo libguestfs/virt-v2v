@@ -1032,7 +1032,9 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
                ide_block_prefix ^ drive_name i
             | Some (Source_virtio_SCSI | Source_SCSI | Source_SATA) ->
                "sd" ^ drive_name i
-            | Some Source_virtio_blk -> "vd" ^ drive_name i in
+            | Some Source_virtio_blk -> "vd" ^ drive_name i
+            (* For NVMe assume no one is using namespaces. *)
+            | Some Source_NVME -> sprintf "nvme%dn1" i in
           let source_dev = device_name_before_conversion i in
           let target_dev = block_prefix_after_conversion ^ drive_name i in
           source_dev, target_dev

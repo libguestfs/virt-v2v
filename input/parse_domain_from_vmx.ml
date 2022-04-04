@@ -103,6 +103,7 @@ let remote_file_exists uri path =
 
 let rec find_disks vmx vmx_source =
   find_scsi_disks vmx vmx_source
+  @ find_nvme_disks vmx vmx_source
   @ find_ide_disks vmx vmx_source
 
 (* Find all SCSI hard disks.
@@ -129,6 +130,27 @@ and find_scsi_disks vmx vmx_source =
             get_scsi_controller_target is_scsi_controller_target
             scsi_device_types scsi_controller
 
+(* Find all NVMe hard disks.
+ *
+ * In the VMX file:
+ *   nvme0.pcislotnumber = "192"
+ *   nvme0:0.fileName = "guest.vmdk"
+ *)
+and find_nvme_disks vmx vmx_source =
+  let get_nvme_controller_target ns =
+    sscanf ns "nvme%d:%d" (fun c t -> c, t)
+  in
+  let is_nvme_controller_target ns =
+    try ignore (get_nvme_controller_target ns); true
+    with Scanf.Scan_failure _ | End_of_file | Failure _ -> false
+  in
+  let nvme_device_types = [ None ] in
+  let nvme_controller = Source_NVME in
+
+  find_hdds vmx vmx_source
+            get_nvme_controller_target is_nvme_controller_target
+            nvme_device_types nvme_controller
+
 (* Find all IDE hard disks.
  *
  * In the VMX file:
@@ -153,12 +175,12 @@ and find_ide_disks vmx vmx_source =
 and find_hdds vmx vmx_source
               get_controller_target is_controller_target
               device_types controller =
-  (* Find namespaces matching '(ide|scsi)X:Y' with suitable deviceType. *)
+  (* Find namespaces matching '(ide|scsi|nvme)X:Y' with suitable deviceType. *)
   let hdds =
     Parse_vmx.select_namespaces (
       function
       | [ns] ->
-         (* Check the namespace is '(ide|scsi)X:Y' *)
+         (* Check the namespace is '(ide|scsi|nvme)X:Y' *)
          if not (is_controller_target ns) then false
          else (
            (* Check the deviceType is one we are looking for. *)

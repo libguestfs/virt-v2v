@@ -1,0 +1,22 @@
+
+Source guest information (--print-source option):
+
+    source name: esx6.7-rhel8.6-nvme-disk
+hypervisor type: vmware
+       VM genid: 
+         memory: 2147483648 (bytes)
+       nr vCPUs: 1
+     CPU vendor: 
+      CPU model: 
+   CPU topology: 
+   CPU features: 
+       firmware: bios
+        display: 
+          sound: 
+disks:
+	0 [nvme]
+removable media:
+
+NICs:
+	Network "VM Network" mac: 00:50:56:ac:cf:51 [vmxnet3]
+

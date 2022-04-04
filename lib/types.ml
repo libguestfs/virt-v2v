@@ -56,7 +56,7 @@ and source_disk = {
   s_disk_id : int;
   s_controller : s_controller option;
 }
-and s_controller = Source_IDE | Source_SATA | Source_SCSI |
+and s_controller = Source_IDE | Source_SATA | Source_SCSI | Source_NVME |
                    Source_virtio_blk | Source_virtio_SCSI
 and source_removable = {
   s_removable_type : s_removable_type;
@@ -194,6 +194,7 @@ and string_of_controller = function
   | Source_IDE -> "ide"
   | Source_SATA -> "sata"
   | Source_SCSI -> "scsi"
+  | Source_NVME -> "nvme"
   | Source_virtio_blk -> "virtio-blk"
   | Source_virtio_SCSI -> "virtio-scsi"
 
