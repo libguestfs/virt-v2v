@@ -103,7 +103,7 @@ and source_disk = {
 }
 (** A source disk. *)
 
-and s_controller = Source_IDE | Source_SATA | Source_SCSI |
+and s_controller = Source_IDE | Source_SATA | Source_SCSI | Source_NVME |
                    Source_virtio_blk | Source_virtio_SCSI
 (** Source disk controller. *)
 
