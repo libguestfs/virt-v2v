@@ -1022,16 +1022,18 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
 
     let map =
       List.mapi (
-        fun i disk ->
-          let block_prefix_before_conversion =
-            match disk.s_controller with
-            | Some Source_IDE -> ide_block_prefix
-            | Some (Source_virtio_SCSI | Source_SCSI | Source_SATA) -> "sd"
-            | Some Source_virtio_blk -> "vd"
-            | None ->
-              (* This is basically a guess.  It assumes the source used IDE. *)
-              ide_block_prefix in
-          let source_dev = block_prefix_before_conversion ^ drive_name i in
+        fun i { s_controller } ->
+          let device_name_before_conversion i =
+            match s_controller with
+            | None (* If we don't have a controller, guess.  Assumes the
+                    * source used IDE.
+                    *)
+            | Some Source_IDE ->
+               ide_block_prefix ^ drive_name i
+            | Some (Source_virtio_SCSI | Source_SCSI | Source_SATA) ->
+               "sd" ^ drive_name i
+            | Some Source_virtio_blk -> "vd" ^ drive_name i in
+          let source_dev = device_name_before_conversion i in
           let target_dev = block_prefix_after_conversion ^ drive_name i in
           source_dev, target_dev
       ) source.s_disks in
