@@ -81,23 +81,16 @@ module VMX = struct
 
             let vmx_path = path_of_uri uri in
             let abs_path = absolute_path_from_other_file vmx_path filename in
-            let format = "vmdk" in
+            let flat_vmdk = PCRE.replace (PCRE.compile "\\.vmdk$")
+                              "-flat.vmdk" abs_path in
 
-            (* XXX This is a hack to work around qemu / VMDK limitation
-             *   "Cannot use relative extent paths with VMDK descriptor file"
-             * We can remove this if the above is fixed.
-             *)
-            let abs_path, format =
-              let flat_vmdk =
-                PCRE.replace (PCRE.compile "\\.vmdk$") "-flat.vmdk" abs_path in
-              if remote_file_exists uri flat_vmdk then (flat_vmdk, "raw")
-              else (abs_path, format) in
-
-            (* XXX In virt-v2v 1.42+ importing from VMX over SSH
-             * was broken if the -flat.vmdk file did not exist.
-             * It is still broken here.
-             *)
-            ignore format;
+            (* RHBZ#1774386 *)
+            if not (remote_file_exists uri flat_vmdk) then
+              error (f_"This transport does not support guests with snapshots. \
+                        Either collapse the snapshots for this guest and try \
+                        the conversion again, or use one of the alternate \
+                        conversion methods described in \
+                        virt-v2v-input-vmware(1) section \"NOTES\".");
 
             let server = server_of_uri uri in
             let port = Option.map string_of_int (port_of_uri uri) in
@@ -110,7 +103,7 @@ module VMX = struct
             let cor = dir // "convert" in
             let bandwidth = options.bandwidth in
             let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
-                           ~server ?port ?user abs_path in
+                           ~server ?port ?user flat_vmdk in
             let _, pid = Nbdkit.run_unix socket nbdkit in
             On_exit.kill pid
         ) filenames

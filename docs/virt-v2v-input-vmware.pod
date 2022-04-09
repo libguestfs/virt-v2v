@@ -51,6 +51,9 @@ to ESXi to read the F<GUEST.vmx> file and associated disks.  This
 requires that you have enabled SSH access to the VMware ESXi
 hypervisor - in the default ESXi configuration this is turned off.
 
+This transport is incompatible with guests that have snapshots; refer
+to L</NOTES>.
+
 =item B<-ic vpx://...> B<-it vddk>
 
 =item B<-ic esx://...> B<-it vddk>
@@ -84,6 +87,18 @@ import a guest from VMware vCenter.  This is the slowest method.
 
 =back
 
+=head1 NOTES
+
+When accessing the F<I<guest>.vmx> file on ESXi over an SSH connection
+(that is, when using the I<-i vmx> I<-it ssh> options), the conversion
+will not work if the guest has snapshots (files called
+F<I<guest>-000001.vmdk> and similar).  Either collapse the snapshots
+for the guest and retry the conversion with the same
+I<-i vmx> I<-it ssh> options, or leave the snapshots intact and use a
+transport different from SSH: just I<-i vmx>, or
+I<-ic vpx://...> I<-it vddk> or I<-ic esx://...> I<-it vddk>.  Refer
+to L<https://bugzilla.redhat.com/1774386>.
+
 =head1 INPUT FROM VMWARE VMX
 
 Virt-v2v is able to import guests from VMware’s vmx files.
@@ -106,7 +121,8 @@ a C</vmfs/volumes> folder containing the virtual machines.
 
 If you find a folder of files called F<I<guest>.vmx>,
 F<I<guest>.vmxf>, F<I<guest>.nvram> and one or more F<.vmdk> disk
-images, then you can use this method.
+images, then you can use this method.  The SSH transport is not usable
+if the guest has snapshots; refer to L</NOTES>.
 
 =head2 VMX: Guest must be shut down
 
