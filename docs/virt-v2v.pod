@@ -409,10 +409,6 @@ See L</Networks and bridges> below.
 
 This is the same as I<-o local>.
 
-=item B<-o> B<json>
-
-This option is deprecated and will be removed in S<virt-v2v 2.2>.
-
 =item B<-o> B<libvirt>
 
 Set the output method to I<libvirt>.  This is the default.

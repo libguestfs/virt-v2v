@@ -194,7 +194,6 @@ let rec main () =
     match mode with
     | "libvirt" -> output_mode := `Libvirt
     | "disk" | "local" -> output_mode := `Disk
-    | "json" -> output_mode := `JSON
     | "null" -> output_mode := `Null
     | "openstack" | "osp" | "rhosp" -> output_mode := `Openstack
     | "ovirt" | "rhv" | "rhev" -> output_mode := `RHV
@@ -241,7 +240,7 @@ let rec main () =
       s_"Map network ‘in’ to ‘out’";
     [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
       s_"Ignored for backwards compatibility";
-    [ S 'o' ],       Getopt.String ("json|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
+    [ S 'o' ],       Getopt.String ("libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
                                     s_"Set output allocation mode";
@@ -376,7 +375,6 @@ read the man page virt-v2v(1).
       pr "input:libvirtxml\n";
       pr "input:ova\n";
       pr "input:vmx\n";
-      pr "output:json\n";
       pr "output:libvirt\n";
       pr "output:local\n";
       pr "output:null\n";
@@ -472,8 +470,7 @@ read the man page virt-v2v(1).
     | `Openstack -> (module Output_openstack.Openstack)
     | `RHV_Upload -> (module Output_rhv_upload.RHVUpload)
     | `RHV -> (module Output_rhv.RHV)
-    | `VDSM -> (module Output_vdsm.VDSM)
-    | `JSON -> (module Output_json.Json) in
+    | `VDSM -> (module Output_vdsm.VDSM) in
 
   let output_options = {
     Output.output_alloc = output_alloc;
