@@ -429,10 +429,6 @@ instead.
 Set the output method to OpenStack Glance.  In this mode the converted
 guest is uploaded to Glance.  See L<virt-v2v-output-openstack(1)>.
 
-=item B<-o> B<json>
-
-This option is deprecated and will be removed in S<virt-v2v 2.2>.
-
 =item B<-o> B<libvirt>
 
 Set the output method to I<libvirt>.  This is the default.

@@ -39,18 +39,15 @@ EXTRA_DIST = \
 	rhv-upload-precheck.py \
 	rhv-upload-transfer.py \
 	rhv-upload-vmcheck.py \
-	test-v2v-python-syntax.sh \
-	var_expander_tests.ml
+	test-v2v-python-syntax.sh
 
 SOURCES_MLI = \
 	changeuid.mli \
-	create_json.mli \
 	create_libvirt_xml.mli \
 	openstack_image_properties.mli \
 	output.mli \
 	output_disk.mli \
 	output_glance.mli \
-	output_json.mli \
 	output_libvirt.mli \
 	output_null.mli \
 	output_openstack.mli \
@@ -66,14 +63,11 @@ SOURCES_MLI = \
 	output_rhv_upload_transfer_source.mli \
 	output_rhv_upload_vmcheck_source.mli \
 	python_script.mli \
-	qemuopts.mli \
-	var_expander.mli
+	qemuopts.mli
 
 SOURCES_ML = \
 	changeuid.ml \
 	python_script.ml \
-	var_expander.ml \
-	create_json.ml \
 	create_libvirt_xml.ml \
 	qemuopts.ml \
 	openstack_image_properties.ml \
@@ -87,7 +81,6 @@ SOURCES_ML = \
 	output.ml \
 	output_disk.ml \
 	output_glance.ml \
-	output_json.ml \
 	output_libvirt.ml \
 	output_null.ml \
 	output_openstack.ml \
@@ -204,46 +197,8 @@ $(MLOUTPUT_CMA): $(OBJECTS) libmloutput.a
 	    $(OBJECTS) $(libmloutput_a_OBJECTS) -o mloutput
 
 # Unit tests.
-TESTS =
-if HAVE_OCAML_PKG_OUNIT
-TESTS += \
-	var_expander_tests
-check_PROGRAMS = \
-	var_expander_tests
-endif
-
-var_expander_tests_BOBJECTS = \
-	var_expander.cmo \
-	var_expander_tests.cmo
-var_expander_tests_XOBJECTS = $(var_expander_tests_BOBJECTS:.cmo=.cmx)
-
-var_expander_tests_SOURCES = dummy.c
-var_expander_tests_CPPFLAGS = $(virt_v2v_CPPFLAGS)
-var_expander_tests_CFLAGS = $(virt_v2v_CFLAGS)
-
-if !HAVE_OCAMLOPT
-# Can't call this var_expander_tests_OBJECTS because automake gets confused.
-var_expander_tests_THEOBJECTS = $(var_expander_tests_BOBJECTS)
-var_expander_tests.cmo: OCAMLPACKAGES += -package ounit2
-else
-var_expander_tests_THEOBJECTS = $(var_expander_tests_XOBJECTS)
-var_expander_tests.cmx: OCAMLPACKAGES += -package ounit2
-endif
-
-var_expander_tests_DEPENDENCIES = \
-	$(var_expander_tests_THEOBJECTS) \
-	$(top_builddir)/common/mlpcre/mlpcre.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
-var_expander_tests_LINK = \
-	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
-	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) \
-	  $(OCAMLPACKAGES) -package ounit2 \
-	  $(OCAMLLINKFLAGS) \
-	  $(var_expander_tests_THEOBJECTS) -o $@
-
-# Unit tests.
 TESTS_ENVIRONMENT = $(top_builddir)/run --test
-TESTS += test-v2v-python-syntax.sh
+TESTS = test-v2v-python-syntax.sh
 
 # Dependencies.
 .depend: \
