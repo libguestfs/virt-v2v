@@ -214,11 +214,13 @@ EXTRA_DIST += \
 	test-v2v-i-vmx-3.expected \
 	test-v2v-i-vmx-4.expected \
 	test-v2v-i-vmx-5.expected \
+	test-v2v-i-vmx-6.expected \
 	test-v2v-i-vmx-1.vmx \
 	test-v2v-i-vmx-2.vmx \
 	test-v2v-i-vmx-3.vmx \
 	test-v2v-i-vmx-4.vmx \
 	test-v2v-i-vmx-5.vmx \
+	test-v2v-i-vmx-6.vmx \
 	test-v2v-in-place.sh \
 	test-v2v-it-vddk-io-query.sh \
 	test-v2v-machine-readable.sh \
