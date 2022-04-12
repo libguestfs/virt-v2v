@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.0.2\n"
+"Project-Id-Version: virt-v2v 2.0.3\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-04-04 13:38+0100\n"
+"POT-Creation-Date: 2022-04-12 11:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -913,6 +913,14 @@ msgid ""
 "This guest required a password for connection to its display, but this is "
 "not supported by RHV.  Therefore the converted guest’s display will not "
 "require a separate password to connect."
+msgstr ""
+
+#: input/input_vmx.ml:89
+msgid ""
+"This transport does not support guests with snapshots. Either collapse the "
+"snapshots for this guest and try the conversion again, or use one of the "
+"alternate conversion methods described in virt-v2v-input-vmware(1) section "
+"\"NOTES\"."
 msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:385
@@ -1999,7 +2007,7 @@ msgstr ""
 msgid "string size overflow"
 msgstr ""
 
-#: common/options/decrypt.c:170
+#: common/options/decrypt.c:169
 #, c-format
 msgid ""
 "could not find key to open LUKS encrypted %s.\n"
