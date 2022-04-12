@@ -57,10 +57,6 @@ prepend()
 s="$(cd @abs_srcdir@ && pwd)"
 b="$(cd @abs_builddir@ && pwd)"
 
-# Set T to current date & time (mainly for valgrind logfile name).
-T=`date +%Y%m%d.%H.%M.%S`
-export T
-
 # Set tmpdir and cachedir so the appliance doesn't conflict with
 # globally installed libguestfs.
 #
@@ -77,11 +73,14 @@ prepend PATH "$b/in-place"
 export PATH
 
 # This is a cheap way to find some use-after-free and uninitialized
-# read problems when using glibc.
-random_val="$(@AWK@ 'BEGIN{srand(); print 1+int(255*rand())}' < /dev/null)"
-LD_PRELOAD="${LD_PRELOAD:+"$LD_PRELOAD:"}libc_malloc_debug.so.0"
-GLIBC_TUNABLES=glibc.malloc.check=1:glibc.malloc.perturb=$random_val
-export LD_PRELOAD GLIBC_TUNABLES
+# read problems when using glibc.  But if we are valgrinding then
+# don't use this because it can stop valgrind from working.
+if [ -z "$VG" ]; then
+    random_val="$(@AWK@ 'BEGIN{srand(); print 1+int(255*rand())}' < /dev/null)"
+    LD_PRELOAD="${LD_PRELOAD:+"$LD_PRELOAD:"}libc_malloc_debug.so.0"
+    GLIBC_TUNABLES=glibc.malloc.check=1:glibc.malloc.perturb=$random_val
+    export LD_PRELOAD GLIBC_TUNABLES
+fi
 
 # Do we have libtool?  If we have it then we can use it to make
 # running valgrind simpler.  However don't depend on it.
