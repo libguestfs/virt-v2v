@@ -292,8 +292,30 @@ module QEMU = struct
       arg "-device" "virtio-balloon";
     if guestcaps.gcaps_isa_pvpanic then
       arg_list "-device" ["pvpanic"; "ioport=0x505"];
-    if guestcaps.gcaps_virtio_socket then
-      arg "-device" "vhost-vsock-pci";
+    if guestcaps.gcaps_virtio_socket then (
+      (* qemu requires a free guest CID to be chosen.  If you use libvirt
+       * then it does this by iterating over the CIDs doing
+       * ioctl(fd, VHOST_VSOCK_SET_GUEST_CID, &val) on each one until
+       * it finds a free CID.  See:
+       * https://bugzilla.redhat.com/show_bug.cgi?id=1291851#c6
+       *
+       * As that is essentially impossible to do from the shell script,
+       * instead assign a semi-random one here.  Using the PID of
+       * virt-v2v means that we're most likely to assign an unused
+       * CID, especially with modern Linux which has a very large
+       * PID space.  Note that CID must be [3..UINT32_MAX-1] and
+       * max PID in Linux is 2^22.
+       *)
+      let pid = getpid () in
+      let pid = max 3 pid in
+      (* In OCaml 4.13 we could use this, if we were worried about a
+         future system having very large PIDs:
+         let pid = Int64.( min (max 3L (of_int (getpid ())))
+                               (of_int32 Int32.max_int) ) in
+       *)
+      let guest_cid = sprintf "guest-cid=%d" pid in
+      arg_list "-device" ["vhost-vsock-pci"; guest_cid ]
+    );
 
     (* Add a serial console to Linux guests. *)
     if inspect.i_type = "linux" then
