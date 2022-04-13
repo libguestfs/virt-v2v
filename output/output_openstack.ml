@@ -277,9 +277,7 @@ The os-* parameters and environment variables are optional.
       List.push_back_list args [ "volume"; "create";
                                  "-f"; "json";
                                  "--size"; size_gb;
-                                 "--description"; description;
-                                 "--non-bootable";
-                                 "--read-write" ];
+                                 "--description"; description ];
       Option.may (
         fun os -> List.push_back_list args [ "--type"; os ]
       ) output_storage;
