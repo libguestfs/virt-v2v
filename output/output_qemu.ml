@@ -289,9 +289,7 @@ module QEMU = struct
       arg_list "-device" ["virtio-rng-pci"; "rng=rng0"];
     );
     if guestcaps.gcaps_virtio_balloon then
-      arg "-balloon" "virtio"
-    else
-      arg "-balloon" "none";
+      arg "-device" "virtio-balloon";
     if guestcaps.gcaps_isa_pvpanic then
       arg_list "-device" ["pvpanic"; "ioport=0x505"];
     if guestcaps.gcaps_virtio_socket then
