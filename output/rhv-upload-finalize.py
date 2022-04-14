@@ -73,7 +73,7 @@ def finalize_transfer(connection, transfer_id, disk_id):
                         .image_transfers_service()
                         .image_transfer_service(transfer_id))
 
-    start = time.time()
+    start = time.monotonic()
 
     transfer_service.finalize()
 
@@ -125,14 +125,14 @@ def finalize_transfer(connection, transfer_id, disk_id):
                 raise RuntimeError(
                     "transfer %s was paused by system" % (transfer.id,))
 
-            if time.time() > start + timeout:
+            if time.monotonic() > start + timeout:
                 raise RuntimeError(
                     "timed out waiting for transfer %s to finalize, "
                     "transfer is %s"
                     % (transfer.id, transfer.phase))
 
     debug("transfer %s finalized in %.3f seconds"
-          % (transfer_id, time.time() - start))
+          % (transfer_id, time.monotonic() - start))
 
 
 # Parameters are passed in via a JSON doc from the OCaml code.
