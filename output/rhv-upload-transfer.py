@@ -128,13 +128,13 @@ def create_disk(connection):
     # can't start if the disk is locked.
 
     disk_service = disks_service.disk_service(disk.id)
-    endt = time.time() + timeout
+    endt = time.monotonic() + timeout
     while True:
         time.sleep(1)
         disk = disk_service.get()
         if disk.status == types.DiskStatus.OK:
             break
-        if time.time() > endt:
+        if time.monotonic() > endt:
             raise RuntimeError(
                 "timed out waiting for disk %s to become unlocked" % disk.id)
 
@@ -176,7 +176,7 @@ def create_transfer(connection, disk, host):
     # If the transfer was paused, we need to cancel it to remove the disk,
     # otherwise the system will remove the disk and transfer shortly after.
 
-    endt = time.time() + timeout
+    endt = time.monotonic() + timeout
     while True:
         time.sleep(1)
         try:
@@ -204,7 +204,7 @@ def create_transfer(connection, disk, host):
                 "unexpected transfer %s phase %s"
                 % (transfer.id, transfer.phase))
 
-        if time.time() > endt:
+        if time.monotonic() > endt:
             transfer_service.cancel()
             raise RuntimeError(
                 "timed out waiting for transfer %s" % transfer.id)
