@@ -127,7 +127,7 @@ module QEMU = struct
          machine, false in
     let smm = secure_boot_required in
 
-    let machine =
+    let machine_str =
       match machine with
       | I440FX -> "pc"
       | Q35 -> "q35"
@@ -153,7 +153,7 @@ module QEMU = struct
         arg_list "-device" ["vmgenid"; sprintf "guid=%s" genid; "id=vmgenid0"]
     );
 
-    arg_list "-machine" (machine ::
+    arg_list "-machine" (machine_str ::
                            (if smm then ["smm=on"] else []) @
                            ["accel=kvm:tcg"]);
 
@@ -184,52 +184,179 @@ module QEMU = struct
       );
     );
 
-    let make_disk if_name i = function
-      | BusSlotEmpty -> ()
-
-      | BusSlotDisk d ->
-         (* Find the corresponding target disk. *)
-         let outdisk = disk_path output_storage output_name d.s_disk_id in
-
-         arg_list "-drive" ["file=" ^ outdisk; "format=" ^ output_format;
-                            "if=" ^ if_name; "index=" ^ string_of_int i;
-                            "media=disk"]
-
-      | BusSlotRemovable { s_removable_type = CDROM } ->
-         arg_list "-drive" ["format=raw"; "if=" ^ if_name;
-                            "index=" ^ string_of_int i; "media=cdrom"]
-
-      | BusSlotRemovable { s_removable_type = Floppy } ->
-         arg_list "-drive" ["format=raw"; "if=" ^ if_name;
-                            "index=" ^ string_of_int i; "media=floppy"]
-    in
-    Array.iteri (make_disk "virtio") target_buses.target_virtio_blk_bus;
-    Array.iteri (make_disk "ide") target_buses.target_ide_bus;
-
-    let make_scsi i = function
-      | BusSlotEmpty -> ()
-
-      | BusSlotDisk d ->
-         (* Find the corresponding target disk. *)
-         let outdisk = disk_path output_storage output_name d.s_disk_id in
-
-         arg_list "-drive" ["file=" ^ outdisk; "format=" ^ output_format;
-                            "if=scsi"; "bus=0"; "unit=" ^ string_of_int i;
-                            "media=disk"]
-
-      | BusSlotRemovable { s_removable_type = CDROM } ->
-         arg_list "-drive" ["format=raw"; "if=scsi"; "bus=0";
-                            "unit=" ^ string_of_int i; "media=cdrom"]
-
-      | BusSlotRemovable { s_removable_type = Floppy } ->
-         arg_list "-drive" ["format=raw"; "if=scsi"; "bus=0";
-                            "unit=" ^ string_of_int i; "media=floppy"]
-    in
-    Array.iteri make_scsi target_buses.target_scsi_bus;
-
-    (* XXX Highly unlikely that anyone cares, but the current
-     * code ignores target_buses.target_floppy_bus.
+    (* For IDE disks, IDE CD-ROMs, SCSI disks, SCSI CD-ROMs, and floppies, we
+     * need host-bus adapters (HBAs) between these devices and the PCI(e) root
+     * bus. Some machine types create these HBAs automatically (despite
+     * "-no-user-config -nodefaults"), some don't...
      *)
+    let disk_cdrom_filter =
+      function
+      | BusSlotDisk _
+      | BusSlotRemovable { s_removable_type = CDROM } -> true
+      | _ -> false
+    and floppy_filter =
+      function
+      | BusSlotRemovable { s_removable_type = Floppy } -> true
+      | _ -> false
+    in
+    let ide_ctrl_needed =
+      Array.exists disk_cdrom_filter target_buses.target_ide_bus
+    and scsi_ctrl_needed =
+      Array.exists disk_cdrom_filter target_buses.target_scsi_bus
+    and floppy_ctrl_needed =
+      Array.exists floppy_filter target_buses.target_floppy_bus in
+
+    if ide_ctrl_needed then (
+      match machine with
+      | I440FX -> ()
+        (* The PC machine has a built-in controller of type "piix3-ide"
+         * providing buses "ide.0" and "ide.1", with each bus fitting two
+         * devices.
+         *)
+      | Q35 -> ()
+        (* The Q35 machine has a built-in controller of type "ich9-ahci"
+         * providing buses "ide.0" through "ide.5", with each bus fitting one
+         * device.
+         *)
+      | Virt -> warning (f_"The Virt machine has no support for IDE. Please \
+                            report a bug for virt-v2v -- refer to virt-v2v(1) \
+                            section \"BUGS\".")
+    );
+
+    if scsi_ctrl_needed then
+      (* We need to add the virtio-scsi HBA on all three machine types. The bus
+       * provided by this device will be called "scsi0.0".
+       *)
+      arg_list "-device" [ "virtio-scsi-pci"; "id=scsi0" ];
+
+    if floppy_ctrl_needed then (
+      match machine with
+      | I440FX -> ()
+        (* The PC machine has a built-in controller of type "isa-fdc"
+         * providing bus "floppy-bus.0", fitting two devices.
+         *)
+      | Q35 -> arg_list "-device" [ "isa-fdc"; "id=floppy-bus" ]
+        (* On the Q35 machine, we need to add the same HBA manually. Note that
+         * the bus name will have ".0" appended automatically.
+         *)
+      | Virt -> warning (f_"The Virt machine has no support for floppies. \
+                            Please report a bug for virt-v2v -- refer to \
+                            virt-v2v(1) section \"BUGS\".")
+    );
+
+    let add_disk_backend disk_id backend_name =
+      (* Add a drive (back-end) for a "virtio-blk-pci", "ide-hd", or "scsi-hd"
+       * device (front-end). The drive has a backing file, identified by
+       * "disk_id".
+       *)
+      let outdisk = disk_path output_storage output_name disk_id in
+      arg_list "-drive" [ "file=" ^ outdisk; "format=" ^ output_format;
+                          "if=none"; "id=" ^ backend_name; "media=disk" ]
+
+    and add_cdrom_backend backend_name =
+      (* Add a drive (back-end) for an "ide-cd" or "scsi-cd" device (front-end).
+       * The drive is empty -- there is no backing file.
+       *)
+      arg_list "-drive" [ "if=none"; "id=" ^ backend_name; "media=cdrom" ]
+
+    and add_floppy_backend backend_name =
+      (* Add a drive (back-end) for a "floppy" device (front-end). The drive is
+       * empty -- there is no backing file. *)
+      arg_list "-drive" [ "if=none"; "id=" ^ backend_name; "media=disk" ]
+    in
+
+    let add_virtio_blk disk_id frontend_ctr =
+      (* Create a "virtio-blk-pci" device (front-end), together with its drive
+       * (back-end). The disk identifier is mandatory.
+       *)
+      let backend_name = sprintf "drive-vblk-%d" frontend_ctr in
+      add_disk_backend disk_id backend_name;
+      arg_list "-device" [ "virtio-blk-pci"; "drive=" ^ backend_name ]
+
+    and add_ide disk_id frontend_ctr =
+      (* Create an "ide-hd" or "ide-cd" device (front-end), together with its
+       * drive (back-end). If a disk identifier is passed in, then "ide-hd" is
+       * created (with a non-empty drive); otherwise, "ide-cd" is created (with
+       * an empty drive).
+       *)
+      let backend_name = sprintf "drive-ide-%d" frontend_ctr
+      and ide_bus, ide_unit =
+        match machine with
+        | I440FX -> frontend_ctr / 2, frontend_ctr mod 2
+        | Q35 -> frontend_ctr, 0
+        | Virt -> 0, 0 (* should never happen, see warning above *) in
+      let common_props = [ sprintf "bus=ide.%d" ide_bus;
+                           sprintf "unit=%d" ide_unit;
+                           "drive=" ^ backend_name ] in
+      (match disk_id with
+       | Some id ->
+           add_disk_backend id backend_name;
+           arg_list "-device" ("ide-hd" :: common_props)
+       | None ->
+           add_cdrom_backend backend_name;
+           arg_list "-device" ("ide-cd" :: common_props))
+
+    and add_scsi disk_id frontend_ctr =
+      (* Create a "scsi-hd" or "scsi-cd" device (front-end), together with its
+       * drive (back-end). If a disk identifier is passed in, then "scsi-hd" is
+       * created (with a non-empty drive); otherwise, "scsi-cd" is created (with
+       * an empty drive).
+       *)
+      let backend_name = sprintf "drive-scsi-%d" frontend_ctr in
+      let common_props = [ "bus=scsi0.0";
+                           sprintf "lun=%d" frontend_ctr;
+                           "drive=" ^ backend_name ] in
+      (match disk_id with
+       | Some id ->
+           add_disk_backend id backend_name;
+           arg_list "-device" ("scsi-hd" :: common_props)
+       | None ->
+           add_cdrom_backend backend_name;
+           arg_list "-device" ("scsi-cd" :: common_props))
+
+    and add_floppy frontend_ctr =
+      (* Create a "floppy" (front-end), together with its empty drive
+       * (back-end).
+       *)
+      let backend_name = sprintf "drive-floppy-%d" frontend_ctr in
+      add_floppy_backend backend_name;
+      arg_list "-device" [ "floppy"; "bus=floppy-bus.0";
+                           sprintf "unit=%d" frontend_ctr;
+                           "drive=" ^ backend_name ]
+    in
+
+    (* Add virtio-blk-pci devices for BusSlotDisk elements on
+     * "target_virtio_blk_bus".
+     *)
+    Array.iteri
+      (fun frontend_ctr disk ->
+         match disk with
+         | BusSlotDisk d -> add_virtio_blk d.s_disk_id frontend_ctr
+         | _ -> ())
+      target_buses.target_virtio_blk_bus;
+
+    let add_disk_or_cdrom bus_adder frontend_ctr slot =
+      (* Add a disk or CD-ROM front-end to the IDE or SCSI bus. *)
+      match slot with
+      | BusSlotDisk d ->
+          bus_adder (Some d.s_disk_id) frontend_ctr
+      | BusSlotRemovable { s_removable_type = CDROM } ->
+          bus_adder None frontend_ctr
+      | _ -> ()
+    in
+
+    (* Add disks and CD-ROMs to the IDE and SCSI buses. *)
+    Array.iteri (add_disk_or_cdrom add_ide) target_buses.target_ide_bus;
+    Array.iteri (add_disk_or_cdrom add_scsi) target_buses.target_scsi_bus;
+
+    (* Add floppies. *)
+    Array.iteri
+      (fun frontend_ctr disk ->
+         match disk with
+         | BusSlotRemovable { s_removable_type = Floppy } ->
+             add_floppy frontend_ctr
+         | _ -> ())
+      target_buses.target_floppy_bus;
 
     let net_bus =
       match guestcaps.gcaps_net_bus with
