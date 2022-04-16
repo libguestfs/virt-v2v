@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-03-23 13:47+0000\n"
+"POT-Creation-Date: 2022-04-12 11:55+0100\n"
 "PO-Revision-Date: 2015-02-21 10:51+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Oriya (http://www.transifex.com/projects/p/libguestfs/"
@@ -73,7 +73,7 @@ msgid ""
 "%!"
 msgstr ""
 
-#: v2v/v2v.ml:311
+#: v2v/v2v.ml:310
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -218,26 +218,6 @@ msgstr ""
 msgid "-o disk: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: output/output_json.ml:62
-msgid "-o json: -oo json-disks-pattern set more than once"
-msgstr ""
-
-#: output/output_json.ml:66
-msgid "-o json: -oo json-disks-pattern: invalid variable %%{%s}"
-msgstr ""
-
-#: output/output_json.ml:71
-msgid "-o json: -oo json-disks-pattern: unhandled variable %%{%s}"
-msgstr ""
-
-#: output/output_json.ml:86
-msgid "-o json: output directory was not specified, use '-os /dir'"
-msgstr ""
-
-#: output/output_json.ml:76
-msgid "-o json: unknown output option ‘-oo %s’"
-msgstr ""
-
 #: output/output_libvirt.ml:104
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
@@ -340,8 +320,7 @@ msgstr ""
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr ""
 
-#. output/output_disk.ml:58
-#: output/output_vdsm.ml:111 output/output_qemu.ml:72 output/output_json.ml:88
+#: output/output_vdsm.ml:111 output/output_qemu.ml:72 output/output_disk.ml:58
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
@@ -393,7 +372,7 @@ msgstr ""
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
-#: v2v/v2v.ml:274
+#: v2v/v2v.ml:273
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
@@ -401,7 +380,7 @@ msgstr ""
 msgid "Change the permissions of a file"
 msgstr ""
 
-#: v2v/v2v.ml:232
+#: v2v/v2v.ml:231
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
@@ -413,7 +392,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:586
+#: v2v/v2v.ml:583
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -425,7 +404,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:607
+#: v2v/v2v.ml:604
 msgid "Creating output metadata"
 msgstr ""
 
@@ -499,7 +478,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:611 in-place/in_place.ml:341
+#: v2v/v2v.ml:608 in-place/in_place.ml:341
 msgid "Finishing off"
 msgstr ""
 
@@ -507,7 +486,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:276 in-place/in_place.ml:174
+#: v2v/v2v.ml:275 in-place/in_place.ml:174
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -519,7 +498,7 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: v2v/v2v.ml:306 v2v/v2v.ml:252
+#: v2v/v2v.ml:305 v2v/v2v.ml:251
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
@@ -527,7 +506,7 @@ msgstr ""
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: v2v/v2v.ml:238 in-place/in_place.ml:162
+#: v2v/v2v.ml:237 in-place/in_place.ml:162
 msgid "Input format"
 msgstr ""
 
@@ -554,7 +533,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:244
+#: v2v/v2v.ml:243
 msgid "Input transport"
 msgstr ""
 
@@ -562,7 +541,7 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/v2v.ml:236 in-place/in_place.ml:160
+#: v2v/v2v.ml:235 in-place/in_place.ml:160
 msgid "Libvirt URI"
 msgstr ""
 
@@ -570,15 +549,15 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr ""
 
-#: v2v/v2v.ml:248 in-place/in_place.ml:168
+#: v2v/v2v.ml:247 in-place/in_place.ml:168
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:230 in-place/in_place.ml:156
+#: v2v/v2v.ml:229 in-place/in_place.ml:156
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:250 in-place/in_place.ml:170
+#: v2v/v2v.ml:249 in-place/in_place.ml:170
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -612,15 +591,8 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:258
+#: v2v/v2v.ml:257
 msgid "Output hypervisor connection"
-msgstr ""
-
-#: output/output_json.ml:44
-msgid ""
-"Output options (-oo) which can be used with -o json:\n"
-"\n"
-"  -oo json-disks-pattern=PATTERN   Pattern for the disks.\n"
 msgstr ""
 
 #: output/output_qemu.ml:43
@@ -680,7 +652,7 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:272 in-place/in_place.ml:172
+#: v2v/v2v.ml:271 in-place/in_place.ml:172
 msgid "Print source and stop"
 msgstr ""
 
@@ -712,7 +684,7 @@ msgstr ""
 msgid "Remove all the subscriptions"
 msgstr ""
 
-#: v2v/v2v.ml:262
+#: v2v/v2v.ml:261
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -753,63 +725,63 @@ msgstr ""
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: v2v/v2v.ml:278
+#: v2v/v2v.ml:277
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:280
+#: v2v/v2v.ml:279
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:282
+#: v2v/v2v.ml:281
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr ""
 
-#: v2v/v2v.ml:284
+#: v2v/v2v.ml:283
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr ""
 
-#: v2v/v2v.ml:286
+#: v2v/v2v.ml:285
 msgid "Same as ‘-io vddk-port=port’"
 msgstr ""
 
-#: v2v/v2v.ml:288
+#: v2v/v2v.ml:287
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr ""
 
-#: v2v/v2v.ml:290
+#: v2v/v2v.ml:289
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr ""
 
-#: v2v/v2v.ml:292
+#: v2v/v2v.ml:291
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr ""
 
-#: v2v/v2v.ml:270
+#: v2v/v2v.ml:269
 msgid "Same as ‘-ip filename’"
 msgstr ""
 
-#: v2v/v2v.ml:294
+#: v2v/v2v.ml:293
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr ""
 
-#: v2v/v2v.ml:296
+#: v2v/v2v.ml:295
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:304
+#: v2v/v2v.ml:303
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr ""
 
-#: v2v/v2v.ml:302
+#: v2v/v2v.ml:301
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr ""
 
-#: v2v/v2v.ml:300
+#: v2v/v2v.ml:299
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:298
+#: v2v/v2v.ml:297
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
@@ -821,39 +793,39 @@ msgstr ""
 msgid "Scrub build log file"
 msgstr ""
 
-#: v2v/v2v.ml:228
+#: v2v/v2v.ml:227
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:226
+#: v2v/v2v.ml:225
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: v2v/v2v.ml:234 in-place/in_place.ml:158
+#: v2v/v2v.ml:233 in-place/in_place.ml:158
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:240 in-place/in_place.ml:164
+#: v2v/v2v.ml:239 in-place/in_place.ml:164
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:264
+#: v2v/v2v.ml:263
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:256
+#: v2v/v2v.ml:255
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:260
+#: v2v/v2v.ml:259
 msgid "Set output format"
 msgstr ""
 
-#: v2v/v2v.ml:254
+#: v2v/v2v.ml:253
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:268
+#: v2v/v2v.ml:267
 msgid "Set output storage location"
 msgstr ""
 
@@ -881,15 +853,15 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:558
+#: v2v/v2v.ml:555
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:534 in-place/in_place.ml:307
+#: v2v/v2v.ml:531 in-place/in_place.ml:307
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:540 in-place/in_place.ml:313
+#: v2v/v2v.ml:537 in-place/in_place.ml:313
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -905,7 +877,7 @@ msgstr ""
 msgid "TIMEZONE"
 msgstr ""
 
-#: v2v/v2v.ml:220
+#: v2v/v2v.ml:219
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
@@ -915,6 +887,14 @@ msgid ""
 "This guest required a password for connection to its display, but this is "
 "not supported by RHV.  Therefore the converted guest’s display will not "
 "require a separate password to connect."
+msgstr ""
+
+#: input/input_vmx.ml:89
+msgid ""
+"This transport does not support guests with snapshots. Either collapse the "
+"snapshots for this guest and try the conversion again, or use one of the "
+"alternate conversion methods described in virt-v2v-input-vmware(1) section "
+"\"NOTES\"."
 msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:385
@@ -949,15 +929,15 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/v2v.ml:242 in-place/in_place.ml:166
+#: v2v/v2v.ml:241 in-place/in_place.ml:166
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:266
+#: v2v/v2v.ml:265
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:246
+#: v2v/v2v.ml:245
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
@@ -1081,7 +1061,7 @@ msgstr ""
 
 #. input/input_vcenter_https.ml:91
 #. in-place/in_place.ml:257
-#: v2v/v2v.ml:423 input/input_xen_ssh.ml:69 input/input_vddk.ml:122
+#: v2v/v2v.ml:421 input/input_xen_ssh.ml:69 input/input_vddk.ml:122
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1205,7 +1185,7 @@ msgstr ""
 msgid "failed to finalize the transfers, see earlier errors"
 msgstr ""
 
-#: input/OVA.ml:447
+#: input/OVA.ml:450
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
@@ -1289,7 +1269,7 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#: v2v/v2v.ml:630 in-place/in_place.ml:360
+#: v2v/v2v.ml:627 in-place/in_place.ml:360
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1326,7 +1306,7 @@ msgstr ""
 msgid "invalid -n/--network parameter"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:388
+#: input/parse_domain_from_vmx.ml:410
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
@@ -1343,7 +1323,7 @@ msgstr ""
 msgid "invalid input filename (%s)"
 msgstr ""
 
-#: input/OVA.ml:431
+#: input/OVA.ml:434
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
@@ -1363,7 +1343,7 @@ msgstr ""
 msgid "invalid selector string for --key: %s"
 msgstr ""
 
-#: input/OVA.ml:436
+#: input/OVA.ml:439
 msgid "invalid size returned by tar: %S"
 msgstr ""
 
@@ -1419,7 +1399,7 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: v2v/v2v.ml:663
+#: v2v/v2v.ml:660
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
@@ -1565,7 +1545,7 @@ msgstr ""
 msgid "no .ovf file was found in %s"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:348
+#: input/parse_domain_from_vmx.ml:370
 msgid "no displayName key found in VMX file"
 msgstr ""
 
@@ -1577,7 +1557,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: v2v/v2v.ml:453
+#: v2v/v2v.ml:451
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -1684,11 +1664,11 @@ msgstr ""
 msgid "subprocess signalled or stopped by signal %d"
 msgstr ""
 
-#: v2v/v2v.ml:212
+#: v2v/v2v.ml:211
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 
-#: v2v/v2v.ml:215
+#: v2v/v2v.ml:214
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
@@ -1813,7 +1793,7 @@ msgstr ""
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:207
+#: v2v/v2v.ml:206
 msgid "unknown -o option: %s"
 msgstr ""
 
@@ -1825,7 +1805,7 @@ msgstr ""
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:401
+#: input/parse_domain_from_vmx.ml:423
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
@@ -1833,11 +1813,11 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:359
+#: v2v/v2v.ml:358
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:410
+#: input/parse_domain_from_vmx.ml:432
 msgid "unknown sound device '%s' ignored"
 msgstr ""
 
@@ -2001,7 +1981,7 @@ msgstr ""
 msgid "string size overflow"
 msgstr ""
 
-#: common/options/decrypt.c:170
+#: common/options/decrypt.c:169
 #, c-format
 msgid ""
 "could not find key to open LUKS encrypted %s.\n"
