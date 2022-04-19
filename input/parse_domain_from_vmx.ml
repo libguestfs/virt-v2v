@@ -102,9 +102,12 @@ let remote_file_exists uri path =
   Sys.command cmd = 0
 
 let rec find_disks vmx vmx_source =
-  find_scsi_disks vmx vmx_source
-  @ find_nvme_disks vmx vmx_source
-  @ find_ide_disks vmx vmx_source
+  (* Set the s_disk_id field to an incrementing number. *)
+  List.mapi
+    (fun i (source, filename) -> { source with s_disk_id = i }, filename)
+    (find_scsi_disks vmx vmx_source @
+     find_nvme_disks vmx vmx_source @
+     find_ide_disks vmx vmx_source)
 
 (* Find all SCSI hard disks.
  *
@@ -209,12 +212,7 @@ and find_hdds vmx vmx_source
    * won't return them in any particular order.
    *)
   let hdds = List.sort compare hdds in
-  let hdds = List.map (fun (_, _, source, filename) -> source, filename) hdds in
-
-  (* Set the s_disk_id field to an incrementing number. *)
-  let hdds = List.mapi (fun i (source, filename) ->
-                 { source with s_disk_id = i }, filename) hdds in
-  hdds
+  List.map (fun (_, _, source, filename) -> source, filename) hdds
 
 (* Find all removable disks.
  *
