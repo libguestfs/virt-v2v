@@ -63,7 +63,7 @@ and do_remove g { i_package_format = package_format } packages =
     ignore (g#command cmd);
 
   | "rpm" ->
-    let cmd = [ "rpm"; "-e" ] @ packages in
+    let cmd = [ "rpm"; "-e"; "--allmatches" ] @ packages in
     let cmd = Array.of_list cmd in
     ignore (g#command cmd)
 
