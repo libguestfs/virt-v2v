@@ -107,6 +107,7 @@ let rec find_disks vmx vmx_source =
     (fun i (source, filename) -> { source with s_disk_id = i }, filename)
     (find_scsi_disks vmx vmx_source @
      find_nvme_disks vmx vmx_source @
+     find_sata_disks vmx vmx_source @
      find_ide_disks vmx vmx_source)
 
 (* Find all SCSI hard disks.
@@ -154,6 +155,30 @@ and find_nvme_disks vmx vmx_source =
             get_nvme_controller_target is_nvme_controller_target
             nvme_device_types nvme_controller
 
+(* Find all SATA hard disks.
+ *
+ * In the VMX file:
+ *   sata0.pciSlotNumber = "33"
+ *   sata0:3.fileName = "win2019_1.vmdk"
+ *
+ * The "deviceType" field must be absent; that field is only used for various
+ * CD-ROM types.
+ *)
+and find_sata_disks vmx vmx_source =
+  let get_sata_controller_target ns =
+    sscanf ns "sata%d:%d" (fun c t -> c, t)
+  in
+  let is_sata_controller_target ns =
+    try ignore (get_sata_controller_target ns); true
+    with Scanf.Scan_failure _ | End_of_file | Failure _ -> false
+  in
+  let sata_device_types = [ None ] in
+  let sata_controller = Source_SATA in
+
+  find_hdds vmx vmx_source
+            get_sata_controller_target is_sata_controller_target
+            sata_device_types sata_controller
+
 (* Find all IDE hard disks.
  *
  * In the VMX file:
@@ -178,12 +203,14 @@ and find_ide_disks vmx vmx_source =
 and find_hdds vmx vmx_source
               get_controller_target is_controller_target
               device_types controller =
-  (* Find namespaces matching '(ide|scsi|nvme)X:Y' with suitable deviceType. *)
+  (* Find namespaces matching '(ide|scsi|nvme|sata)X:Y' with suitable
+   * deviceType.
+   *)
   let hdds =
     Parse_vmx.select_namespaces (
       function
       | [ns] ->
-         (* Check the namespace is '(ide|scsi|nvme)X:Y' *)
+         (* Check the namespace is '(ide|scsi|nvme|sata)X:Y' *)
          if not (is_controller_target ns) then false
          else (
            (* Check the deviceType is one we are looking for. *)
@@ -220,8 +247,8 @@ and find_hdds vmx vmx_source
  *   ide1:0.deviceType = "cdrom-image"
  *   ide1:0.fileName = "boot.iso"
  *
- * XXX This only supports IDE CD-ROMs, but we could support SCSI
- * CD-ROMs and floppies in future.
+ * XXX This only supports IDE CD-ROMs, but we could support SCSI CD-ROMs, SATA
+ * CD-ROMs, and floppies in future.
  *)
 and find_removables vmx =
   let get_ide_controller_target ns =
