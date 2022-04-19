@@ -43,10 +43,11 @@ fns="BZ1308535_21disks.vmdk Fedora-20.vmdk RHEL-7.1-UEFI.vmdk Windows-7-x64.vmdk
 for fn in BZ1308535_21disks_{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}.vmdk; do
     fns="$fns $fn"
 done
+fns="$fns win2019.vmdk win2019_1.vmdk"
 
 for fn in $fns; do qemu-img create -f vmdk $fn 512; done
 
-for i in 1 2 3 4 5 6; do
+for i in 1 2 3 4 5 6 7; do
     $VG virt-v2v --debug-gc \
         -i vmx test-v2v-i-vmx-$i.vmx \
         --print-source > test-v2v-i-vmx-$i.actual

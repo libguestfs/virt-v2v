@@ -1,0 +1,23 @@
+
+Source guest information (--print-source option):
+
+    source name: win2019
+hypervisor type: vmware
+       VM genid: 2f0de9ad-5b7c-f4de-d53f-23b1115d28b9
+         memory: 4294967296 (bytes)
+       nr vCPUs: 2
+     CPU vendor: 
+      CPU model: 
+   CPU topology: 
+   CPU features: 
+       firmware: uefi
+        display: 
+          sound: 
+disks:
+	0 [scsi]
+	1 [sata]
+removable media:
+
+NICs:
+	Network "VM Network" mac: 00:0c:29:46:9b:0b [vmxnet3]
+
