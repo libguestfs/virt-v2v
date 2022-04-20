@@ -180,7 +180,7 @@ let create_libvirt_xml ?pool source inspect
     e "vcpu" [] [PCData (string_of_int source.s_vcpu)]
   ];
 
-  if source.s_cpu_vendor <> None || source.s_cpu_model <> None ||
+  if source.s_cpu_model <> None ||
      source.s_cpu_topology <> None then (
     let cpu = ref [] in
 
