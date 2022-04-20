@@ -182,11 +182,13 @@ let create_libvirt_xml ?pool source inspect
 
   if source.s_cpu_model <> None ||
      source.s_cpu_topology <> None then (
-    let cpu = ref [] in
+    let cpu_attrs = ref []
+    and cpu = ref [] in
 
     (match source.s_cpu_model with
      | None -> ()
      | Some model ->
+         List.push_back cpu_attrs ("match", "minimum");
          (match source.s_cpu_vendor with
           | None -> ()
           | Some vendor ->
@@ -205,7 +207,7 @@ let create_libvirt_xml ?pool source inspect
         List.push_back cpu (e "topology" topology_attrs [])
     );
 
-    List.push_back_list body [ e "cpu" [ "match", "minimum" ] !cpu ]
+    List.push_back_list body [ e "cpu" !cpu_attrs !cpu ]
   );
 
   let uefi_firmware =
