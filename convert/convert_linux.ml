@@ -174,6 +174,7 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = acpi;
       gcaps_virtio_1_0 = virtio_1_0;
+      gcaps_default_cpu = true;
     } in
 
     guestcaps
