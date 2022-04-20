@@ -169,6 +169,12 @@ module QEMU = struct
     );
 
     arg "-m" (Int64.to_string (source.s_memory /^ 1024L /^ 1024L));
+
+    (match source.s_cpu_model with
+      | None -> ()
+      | Some model -> arg "-cpu" model
+    );
+
     if source.s_vcpu > 1 then (
       (match source.s_cpu_topology with
        | None ->
