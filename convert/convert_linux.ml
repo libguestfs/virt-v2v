@@ -162,6 +162,14 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       | _ -> Virt, true
     in
 
+    (* RHEL >= 9.0 on x86_64 requires the processor to support the "x86-64-v2"
+     * microarchitecture level, which the default QEMU VCPU model does not
+     * satisfy.  Refer to RHBZ#2076013.
+     *)
+    let default_cpu_suffices = inspect.i_distro <> "rhel" ||
+                               inspect.i_arch <> "x86_64" ||
+                               inspect.i_major_version < 9 in
+
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
       gcaps_block_bus = block_type;
@@ -174,7 +182,7 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = acpi;
       gcaps_virtio_1_0 = virtio_1_0;
-      gcaps_default_cpu = true;
+      gcaps_default_cpu = default_cpu_suffices;
     } in
 
     guestcaps
