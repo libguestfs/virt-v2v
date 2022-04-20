@@ -305,6 +305,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = true;
       gcaps_virtio_1_0 = virtio_1_0;
+      gcaps_default_cpu = true;
     } in
 
     guestcaps
