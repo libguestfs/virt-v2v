@@ -181,12 +181,15 @@ let create_libvirt_xml ?pool source inspect
   ];
 
   if source.s_cpu_model <> None ||
+     not guestcaps.gcaps_default_cpu ||
      source.s_cpu_topology <> None then (
     let cpu_attrs = ref []
     and cpu = ref [] in
 
     (match source.s_cpu_model with
-     | None -> ()
+     | None ->
+         if not guestcaps.gcaps_default_cpu then
+           List.push_back cpu_attrs ("mode", "host-passthrough");
      | Some model ->
          List.push_back cpu_attrs ("match", "minimum");
          (match source.s_cpu_vendor with
