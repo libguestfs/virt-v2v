@@ -138,6 +138,25 @@ class Initialization(object):
         pass
 
 
+class JobStatus(Enum):
+    ABORTED = "aborted"
+    FAILED = "failed"
+    FINISHED = "finished"
+    STARTED = "started"
+    UNKNOWN = "unknown"
+
+    def __init__(self, image):
+        self._image = image
+
+    def __str__(self):
+        return self._image
+
+
+class Job(object):
+    description = "Fake job"
+    status = JobStatus.FINISHED
+
+
 class StorageDomain(object):
     def __init__(self, name=None):
         pass
