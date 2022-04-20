@@ -59,6 +59,9 @@ class SystemService(object):
     def disks_service(self):
         return DisksService()
 
+    def jobs_service(self):
+        return JobsService()
+
     def image_transfers_service(self):
         return ImageTransfersService()
 
@@ -104,6 +107,11 @@ class DisksService(object):
         return DiskService(disk_id)
 
 
+class JobsService(object):
+    def list(self, search=None):
+        return [types.Job()]
+
+
 class ImageTransferService(object):
     def __init__(self):
         self._finalized = False
@@ -135,7 +143,7 @@ class StorageDomainsService(object):
 
 
 class VmsService(object):
-    def add(self, vm):
+    def add(self, vm, query=None):
         return vm
 
     def list(self, search=None):
