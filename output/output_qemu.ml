@@ -170,9 +170,10 @@ module QEMU = struct
 
     arg "-m" (Int64.to_string (source.s_memory /^ 1024L /^ 1024L));
 
-    (match source.s_cpu_model with
-      | None -> ()
-      | Some model -> arg "-cpu" model
+    (match source.s_cpu_model, guestcaps.gcaps_default_cpu with
+      | None, true -> ()
+      | None, false -> arg "-cpu" "host"
+      | Some model, _ -> arg "-cpu" model
     );
 
     if source.s_vcpu > 1 then (
