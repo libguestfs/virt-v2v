@@ -185,9 +185,11 @@ let create_libvirt_xml ?pool source inspect
     let cpu = ref [] in
 
     (match source.s_cpu_vendor, source.s_cpu_model with
-     | None, None
-     (* Avoid libvirt error: "CPU vendor specified without CPU model" *)
-     | Some _, None -> ()
+     | _, None ->
+         (* This also avoids the libvirt error:
+          * "CPU vendor specified without CPU model".
+          *)
+         ()
      | None, Some model ->
         List.push_back cpu (e "model" ["fallback", "allow"] [PCData model])
      | Some vendor, Some model ->
