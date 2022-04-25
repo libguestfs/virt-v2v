@@ -44,10 +44,12 @@ EXTRA_DIST = \
 SOURCES_MLI = \
 	changeuid.mli \
 	create_libvirt_xml.mli \
+	create_kubevirt_yaml.mli \
 	openstack_image_properties.mli \
 	output.mli \
 	output_disk.mli \
 	output_glance.mli \
+	output_kubevirt.mli \
 	output_libvirt.mli \
 	output_null.mli \
 	output_openstack.mli \
@@ -69,6 +71,7 @@ SOURCES_ML = \
 	changeuid.ml \
 	python_script.ml \
 	create_libvirt_xml.ml \
+	create_kubevirt_yaml.ml \
 	qemuopts.ml \
 	openstack_image_properties.ml \
 	output_rhv_upload_cancel_source.ml \
@@ -81,6 +84,7 @@ SOURCES_ML = \
 	output.ml \
 	output_disk.ml \
 	output_glance.ml \
+	output_kubevirt.ml \
 	output_libvirt.ml \
 	output_null.ml \
 	output_openstack.ml \

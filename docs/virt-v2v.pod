@@ -432,6 +432,25 @@ instead.
 Set the output method to OpenStack Glance.  In this mode the converted
 guest is uploaded to Glance.  See L<virt-v2v-output-openstack(1)>.
 
+=item B<-o> B<kubevirt>
+
+Set the output method to I<kubevirt>.  B<Note the way this mode works
+is experimental and will change in future.>
+
+In this mode, the converted guest is written to a local directory
+specified by I<-os /dir> (the directory must exist).  The converted
+guest’s disks are written to:
+
+ /dir/name-sda
+ /dir/name-sdb
+ [etc]
+
+and guest metadata is created in the associated YAML file:
+
+ /dir/name.yaml
+
+where C<name> is the guest name.
+
 =item B<-o> B<libvirt>
 
 Set the output method to I<libvirt>.  This is the default.

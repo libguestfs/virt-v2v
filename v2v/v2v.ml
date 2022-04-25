@@ -193,6 +193,7 @@ let rec main () =
       error (f_"%s option used more than once on the command line") "-o";
     match mode with
     | "glance" -> output_mode := `Glance
+    | "kubevirt" -> output_mode := `Kubevirt
     | "libvirt" -> output_mode := `Libvirt
     | "disk" | "local" -> output_mode := `Disk
     | "null" -> output_mode := `Null
@@ -249,7 +250,7 @@ let rec main () =
       s_"Map network ‘in’ to ‘out’";
     [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
       s_"Ignored for backwards compatibility";
-    [ S 'o' ],       Getopt.String ("glance|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
+    [ S 'o' ],       Getopt.String ("glance|kubevirt|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
                                     s_"Set output allocation mode";
@@ -389,6 +390,7 @@ read the man page virt-v2v(1).
       pr "input:ova\n";
       pr "input:vmx\n";
       pr "output:glance\n";
+      pr "output:kubevirt\n";
       pr "output:libvirt\n";
       pr "output:local\n";
       pr "output:null\n";
@@ -482,6 +484,7 @@ read the man page virt-v2v(1).
     | `Null -> (module Output_null.Null)
     | `QEmu -> (module Output_qemu.QEMU)
     | `Glance -> (module Output_glance.Glance)
+    | `Kubevirt -> (module Output_kubevirt.Kubevirt)
     | `Openstack -> (module Output_openstack.Openstack)
     | `RHV_Upload -> (module Output_rhv_upload.RHVUpload)
     | `RHV -> (module Output_rhv.RHV)
