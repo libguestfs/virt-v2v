@@ -31,6 +31,7 @@ SOURCES_MLI = \
 	config.mli \
 	create_ovf.mli \
 	DOM.mli \
+	YAML.mli \
 	libvirt_utils.mli \
 	nbdkit.mli \
 	networks.mli \
@@ -45,6 +46,7 @@ SOURCES_ML = \
 	qemuNBD.ml \
 	networks.ml \
 	DOM.ml \
+	YAML.ml \
 	create_ovf.ml \
 	libvirt_utils.ml
 
