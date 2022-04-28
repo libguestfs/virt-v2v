@@ -53,7 +53,7 @@ BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
 
 OCAMLPACKAGES = \
-	-package str,unix,guestfs,nbd \
+	-package str,unix,guestfs,libvirt,nbd \
 	-I $(top_builddir)/common/utils/.libs \
 	-I $(top_builddir)/common/qemuopts/.libs \
 	-I $(top_builddir)/gnulib/lib/.libs \
@@ -67,7 +67,6 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
-	-I $(top_builddir)/bundled/libvirt-ocaml \
 	-I $(top_builddir)/common/mlcustomize \
 	-I $(top_builddir)/common/mlv2v
 if HAVE_OCAML_PKG_GETTEXT

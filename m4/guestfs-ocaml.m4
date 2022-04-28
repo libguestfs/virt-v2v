@@ -84,6 +84,13 @@ if test "x$OCAML_PKG_guestfs" = "xno"; then
     AC_MSG_ERROR([the OCaml module 'guestfs' is required])
 fi
 
+dnl ocaml libvirt module is required.
+OCAML_PKG_libvirt=no
+AC_CHECK_OCAML_PKG(libvirt)
+if test "x$OCAML_PKG_libvirt" = "xno"; then
+    AC_MSG_ERROR([the OCaml module 'libvirt' is required])
+fi
+
 dnl ocaml nbd (libnbd) module is required.
 OCAML_PKG_nbd=no
 AC_CHECK_OCAML_PKG(nbd)

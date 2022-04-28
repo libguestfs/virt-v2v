@@ -93,7 +93,7 @@ BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
 
 OCAMLPACKAGES = \
-	-package str,unix,guestfs \
+	-package str,unix,guestfs,libvirt \
 	-I $(top_builddir)/common/utils/.libs \
 	-I $(top_builddir)/gnulib/lib/.libs \
 	-I $(top_builddir)/lib \
@@ -102,7 +102,6 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlgettext \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mltools \
-	-I $(top_builddir)/bundled/libvirt-ocaml \
 	-I $(top_builddir)/common/mlv2v \
 	-I $(top_builddir)/common/mlxml
 if HAVE_OCAML_PKG_GETTEXT

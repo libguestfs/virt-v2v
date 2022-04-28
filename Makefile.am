@@ -37,7 +37,6 @@ SUBDIRS += common/mlxml
 SUBDIRS += common/mltools
 SUBDIRS += common/mlcustomize
 SUBDIRS += common/mlv2v
-SUBDIRS += bundled/libvirt-ocaml
 SUBDIRS += lib
 SUBDIRS += input
 SUBDIRS += output
@@ -102,7 +101,7 @@ po/POTFILES: configure.ac
 	rm -f $@ $@-t
 	cd $(srcdir); \
 	find $(DIST_SUBDIRS) -name '*.c' | \
-	grep -v -E '^(po-docs|tests|test-data|bundled)/' | \
+	grep -v -E '^(po-docs|tests|test-data)/' | \
 	grep -v -E '/(dummy\.c)$$' | \
 	grep -v -E '.*-(tests)\.c$$' | \
 	LC_ALL=C sort -u > $@-t

@@ -33,8 +33,6 @@ Makefile.in
 /aclocal.m4
 /autom4te.cache/
 /build-aux/
-/bundled/libvirt-ocaml/.depend
-/bundled/libvirt-ocaml/libvirt_generated.c
 /compile
 /config.cache
 /config.guess

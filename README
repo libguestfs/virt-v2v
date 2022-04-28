@@ -49,6 +49,8 @@ REQUIREMENTS
 
 * OCaml bindings for libguestfs
 
+* OCaml bindings for libvirt (https://gitlab.com/libvirt/libvirt-ocaml)
+
 * libnbd >= 1.9.3 (https://gitlab.com/nbdkit/libnbd)
 
 * OCaml bindings for libnbd

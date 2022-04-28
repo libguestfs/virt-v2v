@@ -128,7 +128,6 @@ AC_CONFIG_FILES([run],
 dnl NB: Remove common/mlstdutils/guestfs_config.ml in future XXX
 AC_CONFIG_FILES([Makefile
                  bash/Makefile
-                 bundled/libvirt-ocaml/Makefile
                  common/options/Makefile
                  common/mlcustomize/Makefile
                  common/mlgettext/Makefile

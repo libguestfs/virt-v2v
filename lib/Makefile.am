@@ -80,14 +80,13 @@ BOBJECTS = config.cmo $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
 
 OCAMLPACKAGES = \
-	-package str,unix,nbd \
+	-package str,unix,libvirt,nbd \
 	-I $(builddir) \
 	-I $(top_builddir)/common/mlgettext \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mlutils \
-	-I $(top_builddir)/bundled/libvirt-ocaml \
 	-I $(top_builddir)/common/mlv2v \
 	-I $(top_builddir)/common/mlxml
 OCAMLPACKAGES_TESTS = $(MLV2VLIB_CMA)
