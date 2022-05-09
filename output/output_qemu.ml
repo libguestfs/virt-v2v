@@ -164,7 +164,7 @@ module QEMU = struct
           arg_list "-global"
             ["driver=cfi.pflash01"; "property=secure"; "value=on"];
         arg_list "-drive"
-          ["if=pflash"; "format=raw"; "file=" ^ code; "readonly"];
+          ["if=pflash"; "format=raw"; "file=" ^ code; "readonly=on"];
         arg_noquote "-drive" "if=pflash,format=raw,file=\"$uefi_vars\"";
     );
 
