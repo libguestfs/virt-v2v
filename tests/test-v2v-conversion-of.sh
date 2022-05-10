@@ -53,13 +53,6 @@ fi
 # Some guests need special virt-builder parameters.
 # See virt-builder --notes "$guestname"
 declare -a extra
-case "$guestname" in
-    fedora*|rhel*|centos*)
-        extra[${#extra[*]}]='--selinux-relabel'
-        ;;
-    *)
-        ;;
-esac
 
 # Don't try to update Windows versions.
 case "$guestname" in
