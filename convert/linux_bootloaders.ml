@@ -345,7 +345,14 @@ object (self)
   method remove_console = self#grub2_update_console ~remove:true
 
   method update () =
-    ignore (g#command [| grub2_mkconfig_cmd; "-o"; grub_config |])
+    ignore (g#command [| grub2_mkconfig_cmd; "-o"; grub_config |]);
+
+    (* Grub2 runs osprober which sometimes leaves around read-only
+     * device-mapper maps covering existing filesystems.  These
+     * confuse later steps (especially fstrim).  So just delete
+     * any if found. (RHBZ#2003503).
+     *)
+    ignore (g#command [| "sh"; "-c"; "rm -f /dev/mapper/osprober-linux-*" |])
 
   method get_config_file () =
     grub_config
