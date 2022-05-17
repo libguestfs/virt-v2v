@@ -333,7 +333,7 @@ object (self)
         g#aug_save ();
 
         try
-          ignore (g#command [| grub2_mkconfig_cmd; "-o"; grub_config |])
+          self#update ()
         with
           G.Error msg ->
             warning (f_"could not rebuild grub2 configuration file (%s).  This may mean that grub output will not be sent to the serial port, but otherwise should be harmless.  Original error message: %s")
