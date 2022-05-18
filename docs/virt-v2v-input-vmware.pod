@@ -167,13 +167,26 @@ C<ssh://...> URI pointing to the VMX file.  A typical URI looks like:
 
  ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx
 
-Any space must be escaped with C<%20> and other non-ASCII characters
-may also need to be URI-escaped.
-
 The username is not required if it is the same as your local username.
 
 You may optionally supply a port number after the hostname if the SSH
 server is not listening on the default port (22).
+
+For determining the pathname component of the URI, log in to the ESXi
+server via SSH interactively, and identify the absolute pathname of the
+VMX file on the ESXi server, such as:
+
+ /vmfs/volumes/datastore1/my guest/my guest.vmx
+
+Subsequently, on the virt-v2v command line, L<percent-encode any
+reserved
+characters|https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters>
+that you find in the individual pathname components.  For example, space
+characters must be specified as C<%20>:
+
+ /vmfs/volumes/datastore1/my%20guest/my%20guest.vmx
+
+Refer to L<https://bugzilla.redhat.com/1938954>.
 
 =head2 VMX: Importing a guest
 
