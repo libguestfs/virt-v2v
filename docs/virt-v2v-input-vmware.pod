@@ -559,8 +559,9 @@ write to libvirt or any other supported target.
 
 Instead of using the vCenter Administrator role, you can create a
 custom non-administrator role to perform the conversion.  You will
-however need to give it a minimum set of permissions as follows
-(using VMware vCenter 6.5):
+however need enable the following permissions (or as many as are
+available, older versions of VMware were missing some of these
+settings):
 
 =over 4
 
@@ -585,6 +586,7 @@ Enable (check) the following objects:
    Provisioning:
      - Allow disk access
      - Allow read-only disk access
+     - Allow virtual machine download
  
  Cryptographic operations:
   - Decrypt
