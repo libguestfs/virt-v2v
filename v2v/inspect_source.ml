@@ -34,6 +34,7 @@ let rec inspect_source root_choice g =
   reject_if_not_installed_image g root;
 
   let typ = g#inspect_get_type root in
+  let package_format = g#inspect_get_package_format root in
 
   (* Mount up the filesystems. *)
   let mps = g#inspect_get_mountpoints root in
@@ -71,7 +72,7 @@ let rec inspect_source root_choice g =
   ) mps;
 
   (* Get list of applications/packages installed. *)
-  let apps = g#inspect_list_applications2 root in
+  let apps = list_applications g root package_format in
   let apps = Array.to_list apps in
 
   (* A map of app2_name -> application2, for easier lookups.  Note
@@ -106,7 +107,7 @@ let rec inspect_source root_choice g =
     i_arch = g#inspect_get_arch root;
     i_major_version = g#inspect_get_major_version root;
     i_minor_version = g#inspect_get_minor_version root;
-    i_package_format = g#inspect_get_package_format root;
+    i_package_format = package_format;
     i_package_management = g#inspect_get_package_management root;
     i_product_name = g#inspect_get_product_name root;
     i_product_variant = g#inspect_get_product_variant root;
@@ -185,6 +186,35 @@ and reject_if_not_installed_image g root =
   let fmt = g#inspect_get_format root in
   if fmt <> "installed" then
     error (f_"libguestfs thinks this is not an installed operating system (it might be, for example, an installer disk or live CD).  If this is wrong, it is probably a bug in libguestfs.  root=%s fmt=%s") root fmt
+
+(* Wrapper around g#inspect_list_applications2 which, for RPM
+ * guests, on failure tries to rebuild the RPM database before
+ * repeating the operation.
+ *)
+and list_applications g root = function
+  | "rpm" ->
+     (* RPM guest.
+      *
+      * In libguestfs before commit 488245ed6c ("daemon: rpm: Check
+      * return values from librpm calls"), a corrupt RPM database
+      * would return an empty array here with no exception.  Hence
+      * the check below which turns empty array => exception.  In
+      * libguestfs after that commit, inspect_list_applications2
+      * will raise an exception if it detects a corrupt RPM database.
+      *)
+     (try
+        let apps = g#inspect_list_applications2 root in
+        if apps = [||] then raise (G.Error "no applications returned");
+        apps
+      with G.Error msg ->
+        debug "%s" msg;
+        debug "rebuilding RPM database and retrying ...";
+        ignore (g#sh "rpmdb --rebuilddb");
+        g#inspect_list_applications2 root
+     )
+  | _ ->
+     (* Non-RPM guest, just do it. *)
+     g#inspect_list_applications2 root
 
 (* See if this guest could use UEFI to boot.  It should use GPT and
  * it should have an EFI System Partition (ESP).
