@@ -240,6 +240,7 @@ $g->mount ($bootdev, '/boot');
 $g->mkdir ('/bin');
 $g->mkdir ('/etc');
 $g->mkdir ('/etc/sysconfig');
+$g->mkdir ('/sbin');
 $g->mkdir ('/usr');
 $g->mkdir ('/usr/share');
 $g->mkdir ('/usr/share/zoneinfo');
@@ -276,8 +277,17 @@ $g->upload ($ENV{SRCDIR}.'/../binaries/bin-x86_64-dynamic', '/bin/ls');
 
 $g->tar_in ($ENV{SRCDIR}.'/fedora-journal.tar.xz', '/var/log/journal', compress => "xz");
 
+# NB: This is also defined in fedora.c
+my $kver = "5.19.0-0.rc1.14.fc37.x86_64";
 $g->mkdir ('/boot/grub');
-$g->touch ('/boot/grub/grub.conf');
+$g->write ('/boot/grub/grub.conf', <<EOF);
+title Fedora
+    root (hd0,0)
+    kernel /vmlinuz-$kver
+    initrd /initramfs-$kver.img
+EOF
+
+$g->touch ('/etc/modprobe.conf');
 
 # Test files.
 $g->write ('/etc/test1', 'abcdefg');
@@ -299,6 +309,20 @@ $g->write ('/bin/test4', '');
 $g->ln_s ('/bin/test1', '/bin/test5');
 $g->mkfifo (0777, '/bin/test6');
 $g->mknod (0777, 10, 10, '/bin/test7');
+
+# Virt-v2v needs an RPM command, or at least something which acts
+# similarly, and also a dracut command.
+$g->upload ('fedora-static-bin', '/bin/rpm');
+$g->chmod (0777, '/bin/rpm');
+$g->upload ('fedora-static-bin', '/sbin/dracut');
+$g->chmod (0777, '/sbin/dracut');
+
+# Virt-v2v also needs a kernel, initrd and modules path.
+$g->touch ("/boot/vmlinuz-$kver");
+$g->touch ("/boot/initramfs-$kver.img");
+$g->mkdir_p ("/lib/modules/$kver/kernel/drivers/block");
+$g->upload ($ENV{SRCDIR}.'/../binaries/bin-x86_64-dynamic',
+            "/lib/modules/$kver/kernel/drivers/block/virtio_blk.ko");
 
 # Cleanup
 $g->shutdown ();
