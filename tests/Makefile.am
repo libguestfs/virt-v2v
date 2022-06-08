@@ -96,6 +96,10 @@ TESTS = \
 	test-v2v-print-source.sh \
 	test-v2v-sound.sh \
 	test-v2v-virtio-win-iso.sh \
+	test-v2v-fedora-conversion.sh \
+	test-v2v-fedora-btrfs-conversion.sh \
+	test-v2v-fedora-luks-conversion.sh \
+	test-v2v-fedora-md-conversion.sh \
 	test-v2v-windows-conversion.sh \
 	rhbz1232192.sh \
 	$(SLOW_TESTS) \
@@ -171,6 +175,10 @@ EXTRA_DIST += \
 	test-v2v-bad-networks-and-bridges.sh \
 	test-v2v-cdrom.expected \
 	test-v2v-cdrom.sh \
+	test-v2v-fedora-conversion.sh \
+	test-v2v-fedora-btrfs-conversion.sh \
+	test-v2v-fedora-luks-conversion.sh \
+	test-v2v-fedora-md-conversion.sh \
 	test-v2v-floppy.expected \
 	test-v2v-floppy.sh \
 	test-v2v-i-disk.sh \
