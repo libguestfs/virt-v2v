@@ -113,48 +113,6 @@ let rec install_drivers ((g, _) as reg) inspect =
      virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported, virtio_socket_supported)
   )
 
-and install_linux_tools g inspect =
-  let os =
-    match inspect.i_distro with
-    | "fedora" -> Some "fc28"
-    | "rhel" | "centos" | "scientificlinux" | "redhat-based"
-    | "oraclelinux" ->
-       (* map 6 -> "el6" etc. *)
-       if inspect.i_major_version >= 6 then
-         Some (sprintf "el%d" inspect.i_major_version)
-       else
-         None
-    | "sles" | "suse-based" | "opensuse" -> Some "lp151"
-    | _ -> None in
-
-  match os with
-  | None -> ()
-  | Some os ->
-      let src_path = "linux" // os in
-      let dst_path = "/var/tmp" in
-      let pkg_arch = Linux.architecture_string inspect in
-      let pkg_ext = Linux.binary_package_extension inspect in
-      let package_suffixes = [
-        sprintf ".%s.%s" pkg_arch pkg_ext;
-        sprintf "_%s.%s" pkg_arch pkg_ext;
-      ] in
-      let package_filter path _ =
-        List.exists (String.is_suffix path) package_suffixes
-      in
-      debug "locating packages in %s" src_path;
-      let packages =
-        copy_from_virtio_win g inspect src_path dst_path
-                             package_filter
-                             (fun () -> ()) in
-      debug "done copying %d files" (List.length packages);
-      let packages = List.map ((//) dst_path) packages in
-      try
-        Linux.install_local g inspect packages;
-        if packages <> [] then
-          info (f_"QEMU Guest Agent installed for this guest.");
-      with G.Error msg ->
-        warning (f_"failed to install QEMU Guest Agent: %s") msg
-
 and add_guestor_to_registry ((g, root) as reg) inspect drv_name drv_pciid =
   let ddb_node = g#hivex_node_get_child root "DriverDatabase" in
 

@@ -23,9 +23,6 @@ val augeas_reload : Guestfs.guestfs -> unit
     additional debugging information about parsing problems
     that augeas found. *)
 
-val install_local: Guestfs.guestfs -> Types.inspect -> string list -> unit
-(** Install package(s). *)
-
 val remove : Guestfs.guestfs -> Types.inspect -> string list -> unit
 (** Uninstall package(s). *)
 
@@ -38,11 +35,3 @@ val is_file_owned : Guestfs.guestfs -> Types.inspect -> string -> bool
 val is_package_manager_save_file : string -> bool
 (** Return true if the filename is something like [*.rpmsave], ie.
     a package manager save-file. *)
-
-val binary_package_extension : Types.inspect -> string
-(** Return the extension typically used for binary packages in the
-    specified package format. *)
-
-val architecture_string : Types.inspect -> string
-(** Return the architecture string typically used for binary packages
-    in the specified package format, and for the specified distro. *)
