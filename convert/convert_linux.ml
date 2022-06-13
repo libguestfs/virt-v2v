@@ -56,6 +56,16 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     | "debian" | "ubuntu" | "linuxmint" | "kalilinux" -> `Debian_family
     | _ -> assert false in
 
+  (* map the OS family name to the qemu-guest-agent package name *)
+  let qga_pkg_of_family =
+    function
+    | `RHEL_family
+    | `ALT_family
+    | `SUSE_family
+    | `Debian_family -> Some "qemu-guest-agent"
+    | _ -> None
+  in
+
   assert (inspect.i_package_format = "rpm" || inspect.i_package_format = "deb");
 
   (* Fail early if i_apps is empty.  Certain steps such as kernel
@@ -539,14 +549,21 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
 
   and install_linux_tools () =
     (* It is not fatal if we fail to install the QEMU guest agent. *)
-    let has_qemu_guest_agent =
-      List.exists (
-        fun { G.app2_name = name } ->
-          name = "qemu-guest-agent"
-      ) inspect.i_apps in
-    if not has_qemu_guest_agent then
-      (* FIXME -- install qemu-guest-agent here *)
-      ()
+    match qga_pkg_of_family family with
+    | None -> warning (f_"The name of the package that provides the QEMU Guest \
+                          Agent for this guest OS is unknown.  The guest agent \
+                          will not be installed.  Please consider reporting a \
+                          bug according to the BUGS section of the virt-v2v(1) \
+                          manual.")
+    | Some qga_pkg ->
+        let has_qemu_guest_agent =
+          List.exists (
+            fun { G.app2_name = name } ->
+              name = qga_pkg
+          ) inspect.i_apps in
+        if not has_qemu_guest_agent then
+          (* FIXME -- install qemu-guest-agent here *)
+          ()
 
   and configure_kernel () =
     (* Previously this function would try to install kernels, but we
