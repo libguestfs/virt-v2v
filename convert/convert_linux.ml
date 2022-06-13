@@ -538,13 +538,15 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     )
 
   and install_linux_tools () =
+    (* It is not fatal if we fail to install the QEMU guest agent. *)
     let has_qemu_guest_agent =
       List.exists (
         fun { G.app2_name = name } ->
           name = "qemu-guest-agent"
       ) inspect.i_apps in
     if not has_qemu_guest_agent then
-      Windows_virtio.install_linux_tools g inspect
+      (* FIXME -- install qemu-guest-agent here *)
+      ()
 
   and configure_kernel () =
     (* Previously this function would try to install kernels, but we
