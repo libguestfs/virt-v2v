@@ -49,5 +49,9 @@
     <input type='tablet' bus='usb'/>
     <input type='mouse' bus='ps2'/>
     <console type='pty'/>
+    <controller type='virtio-serial' model='virtio'/>
+    <channel type='unix'>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+    </channel>
   </devices>
 </domain>
