@@ -524,6 +524,17 @@ let create_libvirt_xml ?pool source inspect
     e "console" ["type", "pty"] [];
   ];
 
+  (* Given that we install the QEMU Guest Agent for both Linux and Windows
+   * guests unconditionally, create the virtio-serial device that's needed for
+   * communication between the host and the agent.
+   *)
+  List.push_back_list devices [
+    e "controller" ["type", "virtio-serial"; "model", virtio_model] [];
+    e "channel" ["type", "unix"] [
+      e "target" ["type", "virtio"; "name", "org.qemu.guest_agent.0"] []
+    ]
+  ];
+
   List.push_back_list body [
     e "devices" [] !devices;
   ];
