@@ -49,7 +49,7 @@ disk_images = \
 	fedora-md1.img \
 	fedora-md2.img \
 	fedora-btrfs.img \
-	fedora-luks.img \
+	fedora-lvm-on-luks.img \
 	ubuntu.img \
 	archlinux.img \
 	coreos.img \
@@ -99,12 +99,12 @@ fedora-btrfs.img: make-fedora-img.pl \
 		fedora-static-bin
 	SRCDIR=$(srcdir) LAYOUT=btrfs $(top_builddir)/run --test ./$<
 
-# Make a (dummy) Fedora image with LVM encrypted with LUKS.
-fedora-luks.img: make-fedora-img.pl \
+# Make a (dummy) Fedora image with LVM-on-LUKS.
+fedora-lvm-on-luks.img: make-fedora-img.pl \
 		fedora-journal.tar.xz \
 		fedora.db \
 		fedora-static-bin
-	SRCDIR=$(srcdir) LAYOUT=lvm-luks $(top_builddir)/run --test ./$<
+	SRCDIR=$(srcdir) LAYOUT=lvm-on-luks $(top_builddir)/run --test ./$<
 
 # Make a (dummy) Debian image.
 debian.img: make-debian-img.sh

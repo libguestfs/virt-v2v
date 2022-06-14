@@ -25,7 +25,7 @@ set -e
 set -x
 
 skip_if_skipped
-f=../test-data/phony-guests/fedora-luks.img
+f=../test-data/phony-guests/fedora-lvm-on-luks.img
 requires test -f $f
 
 # The disk is encrypted with password "FEDORA".
