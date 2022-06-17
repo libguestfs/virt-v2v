@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.1.5\n"
+"Project-Id-Version: virt-v2v 2.1.6\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-06-11 10:37+0100\n"
+"POT-Creation-Date: 2022-06-17 13:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "%s did not return any output"
 msgstr ""
 
-#: output/output_rhv.ml:249
+#: output/output_rhv.ml:250
 msgid ""
 "%s does not exist or is not a directory.\n"
 "\n"
@@ -129,8 +129,8 @@ msgstr ""
 msgid "%s: warning: %s"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:240
-#: common/mlcustomize/customize_cmdline.ml:331
+#. common/mlcustomize/customize_cmdline.ml:244
+#: common/mlcustomize/customize_cmdline.ml:335
 msgid "'CMD+ARGS'"
 msgstr ""
 
@@ -354,19 +354,19 @@ msgid ""
 "3.7."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:269
+#: common/mlcustomize/customize_cmdline.ml:273
 msgid "Add package(s) to install"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:252
+#: common/mlcustomize/customize_cmdline.ml:256
 msgid "Add package(s) to install at first boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:168
+#: common/mlcustomize/customize_cmdline.ml:172
 msgid "Append line(s) to the file"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:349
+#: common/mlcustomize/customize_cmdline.ml:353
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
@@ -374,19 +374,23 @@ msgstr ""
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:179
+#: common/mlcustomize/customize_cmdline.ml:183
 msgid "Change the permissions of a file"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:474
+msgid "Compatibility option doing nothing"
 msgstr ""
 
 #: v2v/v2v.ml:231
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:201
+#: common/mlcustomize/customize_cmdline.ml:205
 msgid "Copy files in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:212
+#: common/mlcustomize/customize_cmdline.ml:216
 msgid "Copy local files or directories into image"
 msgstr ""
 
@@ -394,11 +398,11 @@ msgstr ""
 msgid "Copying disk %d/%d"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:286
+#: common/mlcustomize/customize_cmdline.ml:290
 msgid "Create a directory"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:280
+#: common/mlcustomize/customize_cmdline.ml:284
 msgid "Create symbolic links"
 msgstr ""
 
@@ -406,15 +410,15 @@ msgstr ""
 msgid "Creating output metadata"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:474
+#: common/mlcustomize/customize_cmdline.ml:484
 msgid "Credentials for subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:285
+#: common/mlcustomize/customize_cmdline.ml:289
 msgid "DIR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:218
+#: common/mlcustomize/customize_cmdline.ml:222
 msgid "Delete a file or directory"
 msgstr ""
 
@@ -426,7 +430,7 @@ msgstr ""
 msgid "Display version and exit"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:464
+#: common/mlcustomize/customize_cmdline.ml:468
 msgid "Do not relabel files with correct SELinux labels"
 msgstr ""
 
@@ -438,7 +442,7 @@ msgstr ""
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:229
+#: common/mlcustomize/customize_cmdline.ml:233
 msgid "Edit file using Perl expression"
 msgstr ""
 
@@ -450,33 +454,33 @@ msgstr ""
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
-#: output/output_rhv.ml:76
+#: output/output_rhv.ml:77
 msgid "Export Storage Domain"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:384
-#. common/mlcustomize/customize_cmdline.ml:337
-#: common/mlcustomize/customize_cmdline.ml:402
+#. common/mlcustomize/customize_cmdline.ml:388
+#. common/mlcustomize/customize_cmdline.ml:341
+#: common/mlcustomize/customize_cmdline.ml:406
 msgid "FILE"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:437
+#: common/mlcustomize/customize_cmdline.ml:441
 msgid "FILE:CONTENT"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:426
+#: common/mlcustomize/customize_cmdline.ml:430
 msgid "FILE:DEST"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:224
+#: common/mlcustomize/customize_cmdline.ml:228
 msgid "FILE:EXPR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:163
+#: common/mlcustomize/customize_cmdline.ml:167
 msgid "FILE:LINE"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:185
+#: common/mlcustomize/customize_cmdline.ml:189
 msgid "FILENAME"
 msgstr ""
 
@@ -484,7 +488,7 @@ msgstr ""
 msgid "Finishing off"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:257
+#: common/mlcustomize/customize_cmdline.ml:261
 msgid "HOSTNAME"
 msgstr ""
 
@@ -504,7 +508,7 @@ msgstr ""
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:379
+#: common/mlcustomize/customize_cmdline.ml:383
 msgid "Inject a public key into the guest"
 msgstr ""
 
@@ -539,7 +543,7 @@ msgstr ""
 msgid "Input transport"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:207
+#: common/mlcustomize/customize_cmdline.ml:211
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
@@ -563,7 +567,7 @@ msgstr ""
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:297
+#: common/mlcustomize/customize_cmdline.ml:301
 msgid "Move files in disk image"
 msgstr ""
 
@@ -582,7 +586,7 @@ msgstr ""
 msgid "No output options can be used in this mode.\n"
 msgstr ""
 
-#: output/output_vdsm.ml:160
+#: output/output_vdsm.ml:161
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
 msgstr ""
 
@@ -639,18 +643,18 @@ msgid ""
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:217
-#: common/mlcustomize/customize_cmdline.ml:390
+#. common/mlcustomize/customize_cmdline.ml:221
+#: common/mlcustomize/customize_cmdline.ml:394
 msgid "PATH"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:174
+#: common/mlcustomize/customize_cmdline.ml:178
 msgid "PERMISSIONS:FILE"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:264
-#. common/mlcustomize/customize_cmdline.ml:247
-#: common/mlcustomize/customize_cmdline.ml:409
+#. common/mlcustomize/customize_cmdline.ml:268
+#. common/mlcustomize/customize_cmdline.ml:251
+#: common/mlcustomize/customize_cmdline.ml:413
 msgid "PKG,PKG.."
 msgstr ""
 
@@ -662,7 +666,7 @@ msgstr ""
 msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:190
+#: common/mlcustomize/customize_cmdline.ml:194
 msgid "Read customize commands from file"
 msgstr ""
 
@@ -670,15 +674,15 @@ msgstr ""
 msgid "Read passphrases from stdin"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:391
+#: common/mlcustomize/customize_cmdline.ml:395
 msgid "Recursively truncate all files in directory"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:355
+#: common/mlcustomize/customize_cmdline.ml:359
 msgid "Register using subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:361
+#: common/mlcustomize/customize_cmdline.ml:365
 msgid "Remove all the subscriptions"
 msgstr ""
 
@@ -686,40 +690,40 @@ msgstr ""
 msgid "Rename guest when converting"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:241
+#: common/mlcustomize/customize_cmdline.ml:245
 msgid "Run command at first guest boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:332
+#: common/mlcustomize/customize_cmdline.ml:336
 msgid "Run command in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:235
+#: common/mlcustomize/customize_cmdline.ml:239
 msgid "Run script at first guest boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:326
+#: common/mlcustomize/customize_cmdline.ml:330
 msgid "Run script in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:403
+#: common/mlcustomize/customize_cmdline.ml:407
 msgid "Run touch on a file"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:234
-#: common/mlcustomize/customize_cmdline.ml:325
+#. common/mlcustomize/customize_cmdline.ml:238
+#: common/mlcustomize/customize_cmdline.ml:329
 msgid "SCRIPT"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:344
-#. common/mlcustomize/customize_cmdline.ml:315
+#. common/mlcustomize/customize_cmdline.ml:348
+#. common/mlcustomize/customize_cmdline.ml:319
 #: common/mltools/tools_utils.ml:407
-#: common/mlcustomize/customize_cmdline.ml:470
+#: common/mlcustomize/customize_cmdline.ml:480
 msgid "SELECTOR"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:196
-#: common/mlcustomize/customize_cmdline.ml:292
+#. common/mlcustomize/customize_cmdline.ml:200
+#: common/mlcustomize/customize_cmdline.ml:296
 msgid "SOURCE:DEST"
 msgstr ""
 
@@ -783,11 +787,11 @@ msgstr ""
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:338
+#: common/mlcustomize/customize_cmdline.ml:342
 msgid "Scrub a file"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:448
+#: common/mlcustomize/customize_cmdline.ml:452
 msgid "Scrub build log file"
 msgstr ""
 
@@ -827,7 +831,7 @@ msgstr ""
 msgid "Set output storage location"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:458
+#: common/mlcustomize/customize_cmdline.ml:462
 msgid "Set password crypto"
 msgstr ""
 
@@ -835,19 +839,19 @@ msgstr ""
 msgid "Set program name"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:320
+#: common/mlcustomize/customize_cmdline.ml:324
 msgid "Set root password"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:397
+#: common/mlcustomize/customize_cmdline.ml:401
 msgid "Set the default timezone"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:258
+#: common/mlcustomize/customize_cmdline.ml:262
 msgid "Set the hostname"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:309
+#: common/mlcustomize/customize_cmdline.ml:313
 msgid "Set user password"
 msgstr ""
 
@@ -867,11 +871,11 @@ msgstr ""
 msgid "Specify a LUKS key"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:275
+#: common/mlcustomize/customize_cmdline.ml:279
 msgid "TARGET:LINK[:LINK..]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:396
+#: common/mlcustomize/customize_cmdline.ml:400
 msgid "TIMEZONE"
 msgstr ""
 
@@ -907,31 +911,31 @@ msgid ""
 "\"NOTES\"."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:385
+#: common/mlcustomize/customize_cmdline.ml:389
 msgid "Truncate a file to zero size"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:303
+#: common/mlcustomize/customize_cmdline.ml:307
 msgid "USER:SELECTOR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:373
+#: common/mlcustomize/customize_cmdline.ml:377
 msgid "USER[:SELECTOR]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:414
+#: common/mlcustomize/customize_cmdline.ml:418
 msgid "Uninstall package(s)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:367
+#: common/mlcustomize/customize_cmdline.ml:371
 msgid "Unregister using subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:420
+#: common/mlcustomize/customize_cmdline.ml:424
 msgid "Update packages"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:431
+#: common/mlcustomize/customize_cmdline.ml:435
 msgid "Upload local file to destination"
 msgstr ""
 
@@ -955,7 +959,7 @@ msgstr ""
 msgid "Wrap log messages even if not tty"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:442
+#: common/mlcustomize/customize_cmdline.ml:446
 msgid "Write file"
 msgstr ""
 
@@ -1026,7 +1030,7 @@ msgstr ""
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
-#: output/output_rhv.ml:90
+#: output/output_rhv.ml:91
 msgid ""
 "cannot write files to the NFS server as %d:%d, even though we appear to be "
 "running as root. This probably means the NFS client or idmapd is not "
@@ -1036,17 +1040,17 @@ msgid ""
 "otherwise RHV-M will not be able to import the VM."
 msgstr ""
 
-#: output/output_rhv.ml:92
+#: output/output_rhv.ml:93
 msgid ""
 "cannot write files to the NFS server as %d:%d. You might want to stop virt-"
 "v2v (^C) and rerun it as root."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:494
+#: common/mlcustomize/customize_cmdline.ml:504
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:511
+#: common/mlcustomize/customize_cmdline.ml:521
 msgid "command '%s' not valid, see the man page"
 msgstr ""
 
@@ -1087,7 +1091,7 @@ msgstr ""
 msgid "could not parse ovf:Name from OVF document"
 msgstr ""
 
-#: output/output_rhv.ml:227
+#: output/output_rhv.ml:228
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt or RHV-M %s?  The original error is: %s"
@@ -1183,15 +1187,15 @@ msgstr ""
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr ""
 
-#: output/output_rhv_upload.ml:262
+#: output/output_rhv_upload.ml:263
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 
-#: output/output_rhv_upload.ml:488
+#: output/output_rhv_upload.ml:489
 msgid "failed to create virtual machine, see earlier errors"
 msgstr ""
 
-#: output/output_rhv_upload.ml:460
+#: output/output_rhv_upload.ml:461
 msgid "failed to finalize the transfers, see earlier errors"
 msgstr ""
 
@@ -1199,11 +1203,11 @@ msgstr ""
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
-#: output/output_rhv_upload.ml:381
+#: output/output_rhv_upload.ml:382
 msgid "failed to start transfer, see earlier errors"
 msgstr ""
 
-#: output/output_rhv_upload.ml:304
+#: output/output_rhv_upload.ml:305
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
@@ -1244,7 +1248,7 @@ msgstr ""
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
-#: output/output_vdsm.ml:154
+#: output/output_vdsm.ml:155
 msgid "image directory (%s) does not exist or is not a directory"
 msgstr ""
 
@@ -1320,8 +1324,8 @@ msgstr ""
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:143
-#: common/mlcustomize/customize_cmdline.ml:154
+#. common/mlcustomize/customize_cmdline.ml:147
+#: common/mlcustomize/customize_cmdline.ml:158
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
@@ -1385,7 +1389,7 @@ msgstr ""
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:454
+#: common/mlcustomize/customize_cmdline.ml:458
 msgid "md5|sha256|sha512"
 msgstr ""
 
@@ -1401,7 +1405,7 @@ msgstr ""
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
-#: output/output_rhv.ml:204
+#: output/output_rhv.ml:205
 msgid ""
 "mount command failed, see earlier errors.\n"
 "\n"
@@ -1464,7 +1468,7 @@ msgid ""
 "libvirtxml’."
 msgstr ""
 
-#: output/output.ml:71
+#: output/output.ml:76
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
@@ -1474,13 +1478,13 @@ msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o null’."
 msgstr ""
 
-#: output/output_rhv_upload.ml:159
+#: output/output_rhv_upload.ml:160
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
 "upload’.  See the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: output/output_rhv_upload.ml:165
+#: output/output_rhv_upload.ml:166
 msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s"
 msgstr ""
 
@@ -1488,7 +1492,7 @@ msgstr ""
 msgid "nbdkit is too old.  nbdkit >= %d.%d.%d is required."
 msgstr ""
 
-#: output/output_rhv_upload.ml:177
+#: output/output_rhv_upload.ml:178
 msgid ""
 "nbdkit python plugin is not installed or not working.  It is required if you "
 "want to use ‘-o rhv-upload’.\n"
@@ -1496,7 +1500,7 @@ msgid ""
 "See also the virt-v2v-output-rhv(1) manual."
 msgstr ""
 
-#: output/output_rhv_upload.ml:189
+#: output/output_rhv_upload.ml:190
 msgid ""
 "nbdkit was compiled without SELinux support.  You will have to recompile "
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
@@ -1513,7 +1517,7 @@ msgstr ""
 msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
-#: output/output.ml:73 input/input_libvirt.ml:69 input/input_disk.ml:94
+#: output/output.ml:78 input/input_libvirt.ml:69 input/input_disk.ml:94
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
@@ -1615,7 +1619,7 @@ msgid ""
 "\"available\""
 msgstr ""
 
-#: output/output.ml:108
+#: output/output.ml:113
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 
@@ -1652,7 +1656,7 @@ msgstr ""
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr ""
 
-#: output/output_rhv_upload.ml:359
+#: output/output_rhv_upload.ml:360
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
@@ -1682,13 +1686,13 @@ msgstr ""
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
-#: output/output_rhv_upload.ml:153
+#: output/output_rhv_upload.ml:154
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
 msgstr ""
 
-#: output/output_rhv_upload.ml:435
+#: output/output_rhv_upload.ml:436
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
@@ -1696,14 +1700,14 @@ msgstr ""
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
-#: output/output_rhv_upload.ml:282
+#: output/output_rhv_upload.ml:283
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on th\n"
 "e command line has to match the number of guest disk images (for this guest: "
 "%d)"
 msgstr ""
 
-#: output/output_vdsm.ml:130
+#: output/output_vdsm.ml:131
 msgid ""
 "the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters "
 "passed on the command line has to match the number of guest disk images (for "
@@ -1757,13 +1761,13 @@ msgid ""
 "OpenStack."
 msgstr ""
 
-#: output/output_rhv.ml:241
+#: output/output_rhv.ml:242
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
 msgstr ""
 
-#: output/output_rhv.ml:239
+#: output/output_rhv.ml:240
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr ""
 
@@ -1781,6 +1785,10 @@ msgstr[1] ""
 
 #: input/parse_libvirt_xml.ml:234
 msgid "this guest has no non-removable disks"
+msgstr ""
+
+#: output/output.ml:70
+msgid "this output module doesn't support copying more than %d disks"
 msgstr ""
 
 #: input/OVA.ml:308
@@ -1867,7 +1875,7 @@ msgstr ""
 msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr ""
 
-#: output/output_vdsm.ml:143
+#: output/output_vdsm.ml:144
 msgid "vdsm: invalid -os parameter does not contain a valid UUID: %s"
 msgstr ""
 
