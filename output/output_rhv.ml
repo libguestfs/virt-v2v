@@ -56,6 +56,7 @@ module RHV = struct
     (options.output_alloc, options.output_format, output_name, output_storage)
 
   let rec setup dir options source =
+    error_if_disk_count_gt dir 23;
     let disks = get_disks dir in
     let output_alloc, output_format, output_name, output_storage = options in
 

@@ -133,6 +133,7 @@ after their uploads (if you do, you must supply one for each disk):
     else PCRE.matches (Lazy.force rex_uuid) uuid
 
   let rec setup dir options source =
+    error_if_disk_count_gt dir 23;
     let disks = get_disks dir in
     let output_conn, output_format,
         output_password, output_name, output_storage,
