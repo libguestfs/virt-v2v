@@ -119,6 +119,7 @@ For each disk you must supply one of each of these options:
      compat, ovf_flavour)
 
   let setup dir options source =
+    error_if_disk_count_gt dir 23;
     let disks = get_disks dir in
     let output_alloc, output_format,
         output_name, output_storage,

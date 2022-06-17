@@ -76,6 +76,13 @@ val get_disks : string -> (int * int64) list
 (** Examines the v2v directory and opens each input socket (in0 etc),
     returning a list of input disk index and size. *)
 
+val error_if_disk_count_gt : string -> int -> unit
+(** This function lets an output module enforce a maximum disk count.
+    [error_if_disk_count_gt dir n] checks whether the domain has more than [n]
+    disks that need to be copied, by examining the existence of input NBD socket
+    "in[n]" in the v2v directory [dir].  If the socket exists, [error] is
+    called. *)
+
 val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->
                            Types.output_allocation ->
                            string -> string -> int64 -> string ->

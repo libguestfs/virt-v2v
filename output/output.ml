@@ -64,6 +64,11 @@ let get_disks dir =
   in
   loop [] 0
 
+let error_if_disk_count_gt dir n =
+  let socket = sprintf "%s/in%d" dir n in
+  if Sys.file_exists socket then
+    error (f_"this output module doesn't support copying more than %d disks") n
+
 let output_to_local_file ?(changeuid = fun f -> f ())
       output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
