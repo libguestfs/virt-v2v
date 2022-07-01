@@ -82,6 +82,7 @@ TESTS = \
 	test-v2v-networks-and-bridges.sh \
 	test-v2v-o-glance.sh \
 	test-v2v-o-libvirt.sh \
+	test-v2v-o-local-qcow2-compressed.sh \
 	test-v2v-o-null.sh \
 	test-v2v-o-openstack.sh \
 	test-v2v-o-qemu.sh \
@@ -241,6 +242,7 @@ EXTRA_DIST += \
 	test-v2v-networks-and-bridges-expected.xml \
 	test-v2v-o-glance.sh \
 	test-v2v-o-libvirt.sh \
+	test-v2v-o-local-qcow2-compressed.sh \
 	test-v2v-o-null.sh \
 	test-v2v-o-openstack.sh \
 	test-v2v-o-qemu.sh \
