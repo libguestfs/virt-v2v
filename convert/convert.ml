@@ -56,7 +56,8 @@ let rec convert dir options source =
    * sure this is not too large because each vCPU consumes guest RAM.
    *)
   g#set_smp (min 8 (Sysconf.nr_processors_online ()));
-  (* The network is only used by the unconfigure_vmware () function. *)
+  (* The network is used by the unconfigure_vmware () function, and the "--key
+   * ID:clevis" command line options (if any). *)
   g#set_network true;
   List.iter (
     fun { s_disk_id = i } ->
