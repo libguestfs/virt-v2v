@@ -101,7 +101,6 @@ TESTS = \
 	test-v2v-sound.sh \
 	test-v2v-virtio-win-iso.sh \
 	test-v2v-fedora-conversion.sh \
-	test-v2v-fedora-btrfs-conversion.sh \
 	test-v2v-fedora-luks-on-lvm-conversion.sh \
 	test-v2v-fedora-lvm-on-luks-conversion.sh \
 	test-v2v-fedora-md-conversion.sh \
