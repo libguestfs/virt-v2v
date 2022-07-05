@@ -86,17 +86,6 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
     if output_format <> "qcow2" then
       error (f_"‘-oo compressed’ is only allowed when the output format \
                 is a local qcow2-format file, i.e. ‘-of qcow2’");
-
-    (* Check nbdcopy is new enough.  This assumes that the version of
-     * libnbd is the same as the version of nbdcopy, but parsing this
-     * is easier.  We can remove this check when we build-depend on
-     * libnbd >= 1.14.
-     *)
-    let version =
-      NBD.create () |> NBD.get_version |>
-      String.nsplit "." |> List.map int_of_string in
-    if version < [1; 13; 5] then
-      error (f_"-oo compressed option requires nbdcopy >= 1.13.5")
   );
 
   let g = open_guestfs () in
