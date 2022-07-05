@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.1.6\n"
+"Project-Id-Version: virt-v2v 2.1.7\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-06-17 13:01+0100\n"
+"POT-Creation-Date: 2022-07-05 13:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: input/input_ova.ml:134 common/mltools/tools_utils.ml:234
+#: input/input_ova.ml:134 common/mltools/tools_utils.ml:235
 msgid "%s"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:681
+#: common/mltools/tools_utils.ml:686
 msgid "%s (ignored)"
 msgstr ""
 
@@ -57,11 +57,11 @@ msgstr ""
 msgid "%s option used more than once on the command line"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:230 common/mltools/tools_utils.ml:201
+#: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:232
+#: common/mltools/tools_utils.ml:233
 msgid "%s: %s: %s"
 msgstr ""
 
@@ -109,11 +109,11 @@ msgid ""
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:171
+#: common/mltools/tools_utils.ml:172
 msgid "%s: error: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:714
+#: common/mltools/tools_utils.ml:717
 msgid "%s: operation timed out"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgid ""
 "compress with gzip or xz), zip"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:190
+#: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
 msgstr ""
 
@@ -212,23 +212,27 @@ msgstr ""
 msgid "-o %s: %s option cannot be used in this output mode"
 msgstr ""
 
-#: output/output_disk.ml:56
+#: output/output_disk.ml:66
 msgid "-o disk: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: output/output_libvirt.ml:104
+#: output/output_libvirt.ml:59 output/output_disk.ml:56
+msgid "-o disk: unknown output option ‘-oo %s’"
+msgstr ""
+
+#: output/output_libvirt.ml:115
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
 "virt-v2v-output-local(1)"
 msgstr ""
 
-#: output/output_libvirt.ml:106
+#: output/output_libvirt.ml:117
 msgid ""
 "-o libvirt: output pool ‘%s’ has type='dir' but the /pool/target/path "
 "element is not a local directory.  See virt-v2v-output-local(1)"
 msgstr ""
 
-#: output/output_libvirt.ml:100
+#: output/output_libvirt.ml:111
 msgid ""
 "-o libvirt: output pool ‘%s’ is not a directory (type='dir').  See virt-v2v-"
 "output-local(1)"
@@ -242,16 +246,12 @@ msgstr ""
 msgid "-o openstack: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: output/output_qemu.ml:70
+#: output/output_qemu.ml:72
 msgid "-o qemu: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: output/output_qemu.ml:62
+#: output/output_qemu.ml:63
 msgid "-o qemu: unknown output option ‘-oo %s’"
-msgstr ""
-
-#: output/output_qemu.ml:60
-msgid "-o qemu: use -oo qemu-boot[=true|false]"
 msgstr ""
 
 #: output/output_rhv_upload.ml:92
@@ -318,7 +318,11 @@ msgstr ""
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr ""
 
-#: output/output_vdsm.ml:111 output/output_qemu.ml:72 output/output_disk.ml:58
+#: output/output.ml:96
+msgid "-oo compressed option requires nbdcopy >= 1.13.5"
+msgstr ""
+
+#: output/output_vdsm.ml:111 output/output_qemu.ml:74 output/output_disk.ml:68
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
@@ -426,7 +430,7 @@ msgstr ""
 msgid "Display brief help"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:384
+#: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
 msgstr ""
 
@@ -434,11 +438,11 @@ msgstr ""
 msgid "Do not relabel files with correct SELinux labels"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:388
+#: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:405
+#: common/mltools/tools_utils.ml:420
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
@@ -446,11 +450,11 @@ msgstr ""
 msgid "Edit file using Perl expression"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:385
+#: common/mltools/tools_utils.ml:386
 msgid "Enable libguestfs debugging messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:387
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
@@ -496,7 +500,7 @@ msgstr ""
 msgid "How to choose root filesystem"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:176
+#: common/mltools/tools_utils.ml:177
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -551,7 +555,7 @@ msgstr ""
 msgid "Libvirt URI"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:411
+#: common/mltools/tools_utils.ml:426
 msgid "Make output machine readable"
 msgstr ""
 
@@ -580,9 +584,7 @@ msgstr ""
 msgid "No input options can be used in this mode.\n"
 msgstr ""
 
-#. output/output_glance.ml:40
-#. output/output_disk.ml:44
-#: output/output_rhv.ml:40 output/output_null.ml:38 output/output_libvirt.ml:47
+#: output/output_rhv.ml:40 output/output_null.ml:38 output/output_glance.ml:40
 msgid "No output options can be used in this mode.\n"
 msgstr ""
 
@@ -601,10 +603,11 @@ msgstr ""
 msgid "Output hypervisor connection"
 msgstr ""
 
-#: output/output_qemu.ml:43
+#: output/output_qemu.ml:44
 msgid ""
 "Output options (-oo) which can be used with -o qemu:\n"
 "\n"
+"  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 "  -oo qemu-boot       Boot the guest in qemu after conversion\n"
 msgstr ""
 
@@ -643,6 +646,20 @@ msgid ""
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
 
+#: output/output_disk.ml:44
+msgid ""
+"Output options that can be used with -o disk:\n"
+"\n"
+"  -oo compressed      Compress the output file (used only with -of qcow2)\n"
+msgstr ""
+
+#: output/output_libvirt.ml:47
+msgid ""
+"Output options that can be used with -o libvirt:\n"
+"\n"
+"  -oo compressed      Compress the output file (used only with -of qcow2)\n"
+msgstr ""
+
 #. common/mlcustomize/customize_cmdline.ml:221
 #: common/mlcustomize/customize_cmdline.ml:394
 msgid "PATH"
@@ -670,7 +687,7 @@ msgstr ""
 msgid "Read customize commands from file"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:406
+#: common/mltools/tools_utils.ml:421
 msgid "Read passphrases from stdin"
 msgstr ""
 
@@ -717,7 +734,7 @@ msgstr ""
 
 #. common/mlcustomize/customize_cmdline.ml:348
 #. common/mlcustomize/customize_cmdline.ml:319
-#: common/mltools/tools_utils.ml:407
+#: common/mltools/tools_utils.ml:422
 #: common/mlcustomize/customize_cmdline.ml:480
 msgid "SELECTOR"
 msgstr ""
@@ -835,7 +852,7 @@ msgstr ""
 msgid "Set password crypto"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:415
+#: common/mltools/tools_utils.ml:430
 msgid "Set program name"
 msgstr ""
 
@@ -867,7 +884,7 @@ msgstr ""
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:407
+#: common/mltools/tools_utils.ml:422
 msgid "Specify a LUKS key"
 msgstr ""
 
@@ -884,13 +901,13 @@ msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
 
-#: output/output_qemu.ml:228
+#: output/output_qemu.ml:232
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
 
-#: output/output_qemu.ml:249
+#: output/output_qemu.ml:253
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
@@ -939,7 +956,7 @@ msgstr ""
 msgid "Upload local file to destination"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:390
+#: common/mltools/tools_utils.ml:391
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
@@ -955,7 +972,7 @@ msgstr ""
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:391
+#: common/mltools/tools_utils.ml:392
 msgid "Wrap log messages even if not tty"
 msgstr ""
 
@@ -970,7 +987,7 @@ msgid ""
 "manual.  See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: output/output_libvirt.ml:86
+#: output/output_libvirt.ml:97
 msgid ""
 "a libvirt domain called ‘%s’ already exists on the target.\n"
 "\n"
@@ -1014,7 +1031,7 @@ msgid ""
 "at boot."
 msgstr ""
 
-#: output/output_libvirt.ml:75
+#: output/output_libvirt.ml:86
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
@@ -1028,6 +1045,19 @@ msgstr ""
 
 #: v2v/v2v.ml:137 in-place/in_place.ml:118
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
+msgstr ""
+
+#: common/mlcustomize/guest_packages.ml:29
+msgid ""
+"cannot use ‘%s’ because no package manager has been detected for this guest "
+"OS.\n"
+"\n"
+"If this guest OS is a common one with ordinary package management then this "
+"may have been caused by a failure of libguestfs inspection.\n"
+"\n"
+"For OSes such as Windows that lack package management, this is not "
+"possible.  Try using one of the ‘--firstboot*’ flags instead (described in "
+"the virt-customize(1) manual)."
 msgstr ""
 
 #: output/output_rhv.ml:91
@@ -1060,7 +1090,7 @@ msgid ""
 "messages"
 msgstr ""
 
-#: output/output_libvirt.ml:184
+#: output/output_libvirt.ml:197
 msgid ""
 "could not define libvirt domain: %s.\n"
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
@@ -1097,7 +1127,7 @@ msgid ""
 "line.  Is it really an OVirt or RHV-M %s?  The original error is: %s"
 msgstr ""
 
-#: output/output_libvirt.ml:151
+#: output/output_libvirt.ml:164
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr ""
 
@@ -1161,7 +1191,7 @@ msgstr ""
 msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:247
+#: common/mltools/tools_utils.ml:248
 msgid "exception: %s"
 msgstr ""
 
@@ -1175,15 +1205,15 @@ msgid ""
 "string: %s)"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:446
+#: common/mltools/tools_utils.ml:451
 msgid "external command ‘%s’ exited with error %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:527 common/mltools/tools_utils.ml:448
+#: common/mltools/tools_utils.ml:532 common/mltools/tools_utils.ml:453
 msgid "external command ‘%s’ killed by signal %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:529 common/mltools/tools_utils.ml:450
+#: common/mltools/tools_utils.ml:534 common/mltools/tools_utils.ml:455
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr ""
 
@@ -1211,7 +1241,7 @@ msgstr ""
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:238
+#: common/mltools/tools_utils.ml:239
 msgid "failure: %s"
 msgstr ""
 
@@ -1225,7 +1255,7 @@ msgid ""
 "will not be removed"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:257
+#: common/mltools/tools_utils.ml:258
 msgid "generated by %s %s"
 msgstr ""
 
@@ -1296,15 +1326,15 @@ msgid ""
 "host\"."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:245
+#: common/mltools/tools_utils.ml:246
 msgid "internal error: Not_found exception was thrown"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:242
+#: common/mltools/tools_utils.ml:243
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:240
+#: common/mltools/tools_utils.ml:241
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
@@ -1329,7 +1359,7 @@ msgstr ""
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:358
+#: common/mltools/tools_utils.ml:359
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
@@ -1341,20 +1371,16 @@ msgstr ""
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:373
+#: common/mltools/tools_utils.ml:374
 msgid "invalid output fd for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:375
+#: common/mltools/tools_utils.ml:376
 msgid "invalid output for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:367
+#: common/mltools/tools_utils.ml:368
 msgid "invalid output stream for --machine-readable: %s"
-msgstr ""
-
-#: common/mltools/tools_utils.ml:402
-msgid "invalid selector string for --key: %s"
 msgstr ""
 
 #: input/OVA.ml:439
@@ -1369,7 +1395,7 @@ msgstr ""
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:236
+#: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
 msgstr ""
 
@@ -1549,9 +1575,7 @@ msgstr ""
 msgid "no -io (input options) are allowed here"
 msgstr ""
 
-#. output/output_glance.ml:44
-#. output/output_disk.ml:48
-#: output/output_rhv.ml:44 output/output_null.ml:42 output/output_libvirt.ml:51
+#: output/output_rhv.ml:44 output/output_null.ml:42 output/output_glance.ml:44
 msgid "no -oo (output options) are allowed here"
 msgstr ""
 
@@ -1619,7 +1643,7 @@ msgid ""
 "\"available\""
 msgstr ""
 
-#: output/output.ml:113
+#: output/output.ml:146
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 
@@ -1635,12 +1659,12 @@ msgid ""
 "*.ovf file extracted from the ova"
 msgstr ""
 
-#: lib/qemuNBD.ml:118
+#: lib/qemuNBD.ml:125
 msgid ""
 "qemu-nbd did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: lib/qemuNBD.ml:120
+#: lib/qemuNBD.ml:127
 msgid ""
 "qemu-nbd did not start up.  There may be errors printed by qemu-nbd above.\n"
 "\n"
@@ -1661,6 +1685,44 @@ msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
+msgstr ""
+
+#: common/mltools/tools_utils.ml:417 common/options/keys.c:258
+#, c-format
+msgid "selector '%s': invalid TYPE"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:409 common/options/keys.c:248
+#, c-format
+msgid "selector '%s': missing FILENAME, or too many fields"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:399 common/options/keys.c:226
+#, c-format
+msgid "selector '%s': missing ID"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:239
+#, c-format
+msgid "selector '%s': missing KEY_STRING, or too many fields"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:401 common/options/keys.c:233
+#, c-format
+msgid "selector '%s': missing TYPE"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:256
+#, c-format
+msgid "selector '%s': too many fields"
+msgstr ""
+
+#: common/mlcustomize/guest_packages.ml:40
+msgid ""
+"sorry, ‘%s’ with the ‘%s’ package manager has not been implemented yet.\n"
+"\n"
+"You can work around this by using one of the ‘--run*’ or ‘--firstboot*’ "
+"options instead (described in the virt-customize(1) manual)."
 msgstr ""
 
 #: lib/utils.ml:200
@@ -1714,7 +1776,7 @@ msgid ""
 "this guest: %d)"
 msgstr ""
 
-#: output/output_libvirt.ml:210
+#: output/output_libvirt.ml:223
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 
@@ -1959,6 +2021,12 @@ msgid ""
 "vmware(1) manual."
 msgstr ""
 
+#: output/output.ml:84
+msgid ""
+"‘-oo compressed’ is only allowed when the output format is a local qcow2-"
+"format file, i.e. ‘-of qcow2’"
+msgstr ""
+
 #: common/mltools/getopt-c.c:73
 #, c-format
 msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
@@ -1999,7 +2067,14 @@ msgstr ""
 msgid "string size overflow"
 msgstr ""
 
-#: common/options/decrypt.c:169
+#: common/options/decrypt.c:166
+#, c-format
+msgid ""
+"'clevis_luks_unlock', needed for decrypting %s, is unavailable in this "
+"libguestfs version"
+msgstr ""
+
+#: common/options/decrypt.c:180
 #, c-format
 msgid ""
 "could not find key to open LUKS encrypted %s.\n"
@@ -2067,7 +2142,12 @@ msgstr ""
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr ""
 
-#: common/options/keys.c:173
+#: common/options/keys.c:144
+#, c-format
+msgid "size_t overflow"
+msgstr ""
+
+#: common/options/keys.c:187
 #, c-format
 msgid "could not read key from user"
 msgstr ""
