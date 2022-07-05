@@ -86,7 +86,6 @@ TESTS = \
 	test-v2v-o-kubevirt-fedora.sh \
 	test-v2v-o-kubevirt-windows.sh \
 	test-v2v-o-libvirt.sh \
-	test-v2v-o-local-qcow2-compressed.sh \
 	test-v2v-o-null.sh \
 	test-v2v-o-openstack.sh \
 	test-v2v-o-qemu.sh \
