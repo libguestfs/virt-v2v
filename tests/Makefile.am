@@ -64,7 +64,6 @@ TESTS = \
 	test-checksum-good.sh \
 	test-checksum-print.sh \
 	test-customize.sh \
-	test-fedora-btrfs-conversion.sh \
 	test-fedora-conversion.sh \
 	test-fedora-luks-on-lvm-conversion.sh \
 	test-fedora-lvm-on-luks-conversion.sh \
