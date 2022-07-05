@@ -71,6 +71,7 @@ EXTRA_DIST = \
 	COPYING \
 	ocaml-link.sh \
 	podcheck.pl \
+	scripts/git.orderfile \
 	tmp/.gitignore \
 	valgrind-suppressions \
 	website/bugs.png \
