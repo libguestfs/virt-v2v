@@ -1,6 +1,7 @@
 common/mlcustomize/SELinux_relabel.ml
 common/mlcustomize/customize_cmdline.ml
 common/mlcustomize/firstboot.ml
+common/mlcustomize/guest_packages.ml
 common/mlgettext/common_gettext.ml
 common/mlpcre/PCRE.ml
 common/mlstdutils/guestfs_config.ml
