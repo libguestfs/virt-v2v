@@ -1199,6 +1199,7 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     (* Map device names for each entry. *)
     let rex_resume = PCRE.compile "^resume=(/dev/[-a-z\\d/_]+)(.*)$"
     and rex_device_cciss = PCRE.compile "^/dev/(cciss/c\\d+d\\d+)(?:p(\\d+))?$"
+    and rex_device_nvme = PCRE.compile "^/dev/(nvme\\d+n1)(?:p(\\d+))?$"
     and rex_device = PCRE.compile "^/dev/([a-z]+)(\\d*)?$" in
 
     let rec replace_if_device path value =
@@ -1217,6 +1218,11 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       in
 
       if PCRE.matches rex_device_cciss value then (
+        let device = PCRE.sub 1
+        and part = try PCRE.sub 2 with Not_found -> "" in
+        "/dev/" ^ replace device ^ part
+      )
+      else if PCRE.matches rex_device_nvme value then (
         let device = PCRE.sub 1
         and part = try PCRE.sub 2 with Not_found -> "" in
         "/dev/" ^ replace device ^ part
