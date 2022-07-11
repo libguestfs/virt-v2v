@@ -37,12 +37,22 @@ option is incomplete.  Some operations remain that still require the
 user to enter the password manually.  Therefore ssh-agent is recommended
 over the I<-ip> option.  See L<https://bugzilla.redhat.com/1854275>.
 
-With some modern ssh implementations, legacy crypto policies required
-to interoperate with RHEL 5 sshd are disabled.  To enable them you may
-need to run this command on the conversion server (ie. ssh client),
-but read L<update-crypto-policies(8)> first:
+With some modern ssh implementations, legacy crypto algorithms required
+to interoperate with RHEL 5 sshd are disabled.  To enable them, you may
+need to add the following C<Host> stanza to your F<~/.ssh/config>:
 
- # update-crypto-policies --set LEGACY
+ Host xen.example.com
+   KexAlgorithms            +diffie-hellman-group14-sha1
+   MACs                     +hmac-sha1
+   HostKeyAlgorithms        +ssh-rsa
+   PubkeyAcceptedKeyTypes   +ssh-rsa
+   PubkeyAcceptedAlgorithms +ssh-rsa
+
+(C<PubkeyAcceptedKeyTypes> and C<PubkeyAcceptedAlgorithms> have
+identical meaning; the former is the old option name, the latter is the
+new one. Virt-v2v uses both C<libssh> and C<ssh> when converting a guest
+from Xen, and on some operating systems, C<libssh> and C<ssh> may not
+both accept the same option variant.)
 
 =head2 Test libvirt connection to remote Xen host
 
