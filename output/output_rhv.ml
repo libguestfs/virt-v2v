@@ -204,8 +204,8 @@ module RHV = struct
        if run_command cmd <> 0 then
          error (f_"mount command failed, see earlier errors.\n\nThis probably means you didn't specify the right %s path [-os %s], or else you need to rerun virt-v2v as root.") domain_class os;
 
-       (* Make sure it is unmounted at exit. *)
-       On_exit.f (
+       (* Make sure it is unmounted at exit, as late as possible (prio=9999) *)
+       On_exit.f ~prio:9999 (
          fun () ->
            let cmd = [ "umount"; mp ] in
            ignore (run_command cmd);
