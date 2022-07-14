@@ -204,7 +204,7 @@ let error_if_no_ssh_agent () =
 let create_v2v_directory () =
   let d = Mkdtemp.temp_dir "v2v." in
   chown_for_libvirt_rhbz_1045069 d;
-  On_exit.rmdir d;
+  On_exit.rm_rf d;
   d
 
 (* Wait for a file to appear until a timeout. *)

@@ -105,7 +105,7 @@ let add_filter_if_available cmd filter =
 let run_unix socket cmd =
   (* Create a temporary directory where we place the PID file. *)
   let piddir = Mkdtemp.temp_dir "v2vnbdkit." in
-  On_exit.rmdir piddir;
+  On_exit.rm_rf piddir;
 
   let id = unique () in
   let pidfile = piddir // sprintf "nbdkit%d.pid" id in

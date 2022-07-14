@@ -33,7 +33,7 @@ type script = {
 
 let create ?(name = "script.py") code =
   let tmpdir = Mkdtemp.temp_dir "v2v." in
-  On_exit.rmdir tmpdir;
+  On_exit.rm_rf tmpdir;
   let path = tmpdir // name in
   with_open_out path (fun chan -> output_string chan code);
   { tmpdir; path }

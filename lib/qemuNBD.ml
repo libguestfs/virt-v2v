@@ -69,7 +69,7 @@ let run_unix socket { disk; snapshot; format; imgopts } =
 
   (* Create a temporary directory where we place the PID file. *)
   let piddir = Mkdtemp.temp_dir "v2vqemunbd." in
-  On_exit.rmdir piddir;
+  On_exit.rm_rf piddir;
 
   let id = unique () in
   let pidfile = piddir // sprintf "qemunbd%d.pid" id in
