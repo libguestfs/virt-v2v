@@ -175,7 +175,14 @@ module RHV = struct
               chmod filename 0o666
           )
         in
-        output_to_local_file ~changeuid
+
+        (* We have to wait for the NBD server to exit rather than just
+         * killing it, otherwise it races with unmounting.  See:
+         * https://bugzilla.redhat.com/show_bug.cgi?id=1953286#c26
+         *)
+        let on_exit_kill = Output.KillAndWait in
+
+        output_to_local_file ~changeuid ~on_exit_kill
           output_alloc output_format filename size socket
     ) (List.combine disks filenames);
 
