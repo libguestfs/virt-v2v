@@ -83,14 +83,27 @@ val error_if_disk_count_gt : string -> int -> unit
     "in[n]" in the v2v directory [dir].  If the socket exists, [error] is
     called. *)
 
+type on_exit_kill = Kill | KillAndWait
+
 val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->
-                           ?compressed:bool ->
+                           ?compressed:bool -> ?on_exit_kill:on_exit_kill ->
                            Types.output_allocation ->
                            string -> string -> int64 -> string ->
                            unit
 (** When an output mode wants to create a local file with a
     particular format (only "raw" or "qcow2" allowed) then
-    this common function can be used. *)
+    this common function can be used.
+
+    Optional parameter [?on_exit_kill] controls how the NBD server
+    is cleaned up.  The default is {!Kill} which registers an
+    {!On_exit.kill} handler that kills (but does not wait for)
+    the server when virt-v2v exits.  Most callers should use this.
+
+    Setting [~on_exit_kill:KillAndWait] should be used if the NBD
+    server must fully exit before we continue with the rest of
+    virt-v2v shut down.  This is only necessary if some other action
+    (such as unmounting a host filesystem or removing a host device)
+    depends on the NBD server releasing resources. *)
 
 val disk_path : string -> string -> int -> string
 (** For [-o disk|qemu], return the output disk name of the i'th disk,

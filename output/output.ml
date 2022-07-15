@@ -69,7 +69,10 @@ let error_if_disk_count_gt dir n =
   if Sys.file_exists socket then
     error (f_"this output module doesn't support copying more than %d disks") n
 
+type on_exit_kill = Kill | KillAndWait
+
 let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
+      ?(on_exit_kill = Kill)
       output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
   if not (Nbdkit.is_installed ()) then
@@ -105,46 +108,60 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
     fun () -> g#disk_create ?preallocation filename output_format size
   );
 
-  match output_format with
-  | "raw" ->
-     let cmd = Nbdkit.create "file" in
-     Nbdkit.add_arg cmd "file" filename;
-     if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
-       let cmd = Nbdkit.add_arg cmd "cache" "none" in
-       cmd
-     );
-     let _, pid = Nbdkit.run_unix socket cmd in
-
-     (* --exit-with-parent should ensure nbdkit is cleaned
-      * up when we exit, but it's not supported everywhere.
-      *)
-     On_exit.kill pid
-
-  | "qcow2" ->
-     let cmd =
-       if compressed then (
-         let qemu_quote str = String.replace str "," ",," in
-         let image_opts = [ "driver=compress";
-                            "file.driver=qcow2";
-                            "file.file.driver=file";
-                            "file.file.filename=" ^ qemu_quote filename ] in
-         let image_opts = String.concat "," image_opts in
-         let cmd = QemuNBD.create image_opts in
-         QemuNBD.set_image_opts cmd true;
+  let pid =
+    match output_format with
+    | "raw" ->
+       let cmd = Nbdkit.create "file" in
+       Nbdkit.add_arg cmd "file" filename;
+       if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
+         let cmd = Nbdkit.add_arg cmd "cache" "none" in
          cmd
-       )
-       else (* not compressed *) (
-         let cmd = QemuNBD.create filename in
-         QemuNBD.set_format cmd (Some "qcow2");
-         cmd
-       ) in
-     QemuNBD.set_snapshot cmd false;
-     let _, pid = QemuNBD.run_unix socket cmd in
-     On_exit.kill pid
+       );
+       let _, pid = Nbdkit.run_unix socket cmd in
+       pid
 
-  | _ ->
-     error (f_"output mode only supports raw or qcow2 format (format: %s)")
-       output_format
+    | "qcow2" ->
+       let cmd =
+         if compressed then (
+           let qemu_quote str = String.replace str "," ",," in
+           let image_opts = [ "driver=compress";
+                              "file.driver=qcow2";
+                              "file.file.driver=file";
+                              "file.file.filename=" ^ qemu_quote filename ] in
+           let image_opts = String.concat "," image_opts in
+           let cmd = QemuNBD.create image_opts in
+           QemuNBD.set_image_opts cmd true;
+           cmd
+         )
+         else (* not compressed *) (
+           let cmd = QemuNBD.create filename in
+           QemuNBD.set_format cmd (Some "qcow2");
+           cmd
+         ) in
+       QemuNBD.set_snapshot cmd false;
+       let _, pid = QemuNBD.run_unix socket cmd in
+       pid
+
+    | _ ->
+       error (f_"output mode only supports raw or qcow2 format (format: %s)")
+         output_format in
+
+  match on_exit_kill with
+  | Kill ->
+    (* Kill the NBD server on exit.  (For nbdkit we use --exit-with-parent
+     * but it's not supported everywhere).
+     *)
+    On_exit.kill pid
+
+  | KillAndWait ->
+     On_exit.f (
+       fun () ->
+         kill pid Sys.sigterm;
+         (* Errors from the NBD server don't matter.  On successful
+          * completion we've already committed the data to disk.
+          *)
+         ignore (waitpid [] pid)
+     )
 
 let disk_path os name i =
   let outdisk = sprintf "%s/%s-sd%s" os name (drive_name i) in
