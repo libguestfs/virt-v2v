@@ -192,6 +192,8 @@ let create_libvirt_xml ?pool source inspect
            List.push_back cpu_attrs ("mode", "host-passthrough");
      | Some model ->
          List.push_back cpu_attrs ("match", "minimum");
+         if model = "qemu64" then
+           List.push_back cpu_attrs ("check", "none");
          (match source.s_cpu_vendor with
           | None -> ()
           | Some vendor ->
