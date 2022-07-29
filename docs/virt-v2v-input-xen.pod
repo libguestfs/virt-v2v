@@ -54,6 +54,26 @@ new one. Virt-v2v uses both C<libssh> and C<ssh> when converting a guest
 from Xen, and on some operating systems, C<libssh> and C<ssh> may not
 both accept the same option variant.)
 
+When connecting to RHEL 5 sshd from RHEL 9, the SHA1 algorithm's use in
+signatures has to be re-enabled at the OpenSSL level, in addition to the
+above SSH configuration.  Create a file called F<$HOME/openssl-sha1.cnf>
+with the following contents:
+
+ .include /etc/ssl/openssl.cnf
+ [openssl_init]
+ alg_section = evp_properties
+ [evp_properties]
+ rh-allow-sha1-signatures = yes
+
+and export the following variable into the environment of the
+C<virt-v2v> process:
+
+ OPENSSL_CONF=$HOME/openssl-sha1.cnf
+
+Note that the C<OPENSSL_CONF> environment variable will only take effect
+if the libvirt client library used by virt-v2v is at least version
+8.6.0.
+
 =head2 Test libvirt connection to remote Xen host
 
 Use the L<virsh(1)> command to list the guests on the remote Xen host:
