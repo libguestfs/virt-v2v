@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-04-12 11:55+0100\n"
-"PO-Revision-Date: 2022-04-17 06:17+0000\n"
+"POT-Creation-Date: 2022-07-05 13:48+0100\n"
+"PO-Revision-Date: 2022-08-01 08:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
@@ -25,9 +25,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.13\n"
 
-#: input/input_ova.ml:134 common/mltools/tools_utils.ml:234
+#: input/input_ova.ml:134 common/mltools/tools_utils.ml:235
 msgid "%s"
 msgstr "%s"
 
@@ -39,7 +39,7 @@ msgstr ""
 "%s\n"
 "Параметри:\n"
 
-#: common/mltools/tools_utils.ml:681
+#: common/mltools/tools_utils.ml:686
 msgid "%s (ignored)"
 msgstr "%s (проігноровано)"
 
@@ -47,7 +47,7 @@ msgstr "%s (проігноровано)"
 msgid "%s did not return any output"
 msgstr "%s не повернуто жодних даних"
 
-#: output/output_rhv.ml:249
+#: output/output_rhv.ml:250
 msgid ""
 "%s does not exist or is not a directory.\n"
 "\n"
@@ -77,11 +77,11 @@ msgstr ""
 msgid "%s option used more than once on the command line"
 msgstr "у командному рядку параметр %s використано декілька разів"
 
-#: common/mltools/tools_utils.ml:230 common/mltools/tools_utils.ml:201
+#: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: common/mltools/tools_utils.ml:232
+#: common/mltools/tools_utils.ml:233
 msgid "%s: %s: %s"
 msgstr "%s: %s: %s"
 
@@ -164,11 +164,11 @@ msgstr ""
 "Нижче наведено коротке резюме щодо параметрів. Докладніший опис\n"
 "можна знайти на сторінці man virt-v2v-in-place(1).\n"
 
-#: common/mltools/tools_utils.ml:171
+#: common/mltools/tools_utils.ml:172
 msgid "%s: error: %s"
 msgstr "%s: помилка: %s"
 
-#: common/mltools/tools_utils.ml:714
+#: common/mltools/tools_utils.ml:717
 msgid "%s: operation timed out"
 msgstr "%s: перевищено час виконання дії"
 
@@ -184,12 +184,12 @@ msgstr ""
 "У поточній версії передбачено підтримку таких форматів для «-i ova»: "
 "нестиснений tar (нестиснений, стиснений за допомогою gzip або xz), zip"
 
-#: common/mltools/tools_utils.ml:190
+#: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
 msgstr "%s: попередження: %s"
 
-#. common/mlcustomize/customize_cmdline.ml:240
-#: common/mlcustomize/customize_cmdline.ml:331
+#. common/mlcustomize/customize_cmdline.ml:244
+#: common/mlcustomize/customize_cmdline.ml:335
 msgid "'CMD+ARGS'"
 msgstr "'КОМАНДА+ПАРАМЕТРИ'"
 
@@ -287,13 +287,17 @@ msgid "-o %s: %s option cannot be used in this output mode"
 msgstr ""
 "-o %s: параметр %s не можна використовувати у цьому режимі виведення даних"
 
-#: output/output_disk.ml:56
+#: output/output_disk.ml:66
 msgid "-o disk: output directory was not specified, use '-os /dir'"
 msgstr ""
 "-o disk: не вказано каталогу для виведення даних, скористайтеся «-os /"
 "каталог»"
 
-#: output/output_libvirt.ml:104
+#: output/output_libvirt.ml:59 output/output_disk.ml:56
+msgid "-o disk: unknown output option ‘-oo %s’"
+msgstr "-o disk: невідомий параметр виведення — «-oo %s»"
+
+#: output/output_libvirt.ml:115
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
 "virt-v2v-output-local(1)"
@@ -301,7 +305,7 @@ msgstr ""
 "-o libvirt: у буфері виведення «%s» немає елемента /pool/target/path. Див. "
 "virt-v2v-output-local(1)"
 
-#: output/output_libvirt.ml:106
+#: output/output_libvirt.ml:117
 msgid ""
 "-o libvirt: output pool ‘%s’ has type='dir' but the /pool/target/path "
 "element is not a local directory.  See virt-v2v-output-local(1)"
@@ -309,7 +313,7 @@ msgstr ""
 "-o libvirt: буфер виведення «%s» належить до типу «dir», але елемент /pool/"
 "target/path не є локальним каталогом. Див. virt-v2v-output-local(1)"
 
-#: output/output_libvirt.ml:100
+#: output/output_libvirt.ml:111
 msgid ""
 "-o libvirt: output pool ‘%s’ is not a directory (type='dir').  See virt-v2v-"
 "output-local(1)"
@@ -325,19 +329,15 @@ msgstr "у режимі -o openstack передбачено підтримку �
 msgid "-o openstack: unknown output option ‘-oo %s’"
 msgstr "-o openstack: невідомий параметр виведення — «-oo %s»"
 
-#: output/output_qemu.ml:70
+#: output/output_qemu.ml:72
 msgid "-o qemu: output directory was not specified, use '-os /dir'"
 msgstr ""
 "-o qemu: не вказано каталогу для виведення даних, скористайтеся «-os /"
 "каталог»"
 
-#: output/output_qemu.ml:62
+#: output/output_qemu.ml:63
 msgid "-o qemu: unknown output option ‘-oo %s’"
 msgstr "-o qemu: невідомий параметр виведення — «-oo %s»"
-
-#: output/output_qemu.ml:60
-msgid "-o qemu: use -oo qemu-boot[=true|false]"
-msgstr "-o qemu: використати -oo qemu-boot[=true|false]"
 
 #: output/output_rhv_upload.ml:92
 msgid "-o rhv-upload: -oo rhv-cafile set more than once"
@@ -409,7 +409,11 @@ msgstr "-o vdsm: невідомий параметр виведення — «-o
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr "-o vdsm: невідомий рівень vdsm-compat «%s»"
 
-#: output/output_vdsm.ml:111 output/output_qemu.ml:72 output/output_disk.ml:58
+#: output/output.ml:96
+msgid "-oo compressed option requires nbdcopy >= 1.13.5"
+msgstr "використання параметра -oo compressed потребує nbdcopy >= 1.13.5"
+
+#: output/output_vdsm.ml:111 output/output_qemu.ml:74 output/output_disk.ml:68
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr "-os %s: каталогу виведення даних не існує або вказано не каталог"
 
@@ -450,19 +454,19 @@ msgstr ""
 "Найімовірнішою причиною є те, що встановлена версія libvirt є застарілою. "
 "Спробуйте оновити libvirt до ≥ 3.7."
 
-#: common/mlcustomize/customize_cmdline.ml:269
+#: common/mlcustomize/customize_cmdline.ml:273
 msgid "Add package(s) to install"
 msgstr "Додати пакунки для встановлення"
 
-#: common/mlcustomize/customize_cmdline.ml:252
+#: common/mlcustomize/customize_cmdline.ml:256
 msgid "Add package(s) to install at first boot"
 msgstr "Додати пакунки для встановлення під час першого завантаження"
 
-#: common/mlcustomize/customize_cmdline.ml:168
+#: common/mlcustomize/customize_cmdline.ml:172
 msgid "Append line(s) to the file"
 msgstr "Дописати рядки до файла"
 
-#: common/mlcustomize/customize_cmdline.ml:349
+#: common/mlcustomize/customize_cmdline.ml:353
 msgid "Attach to a subscription-manager pool"
 msgstr "Долучити до буфера subscription-manager"
 
@@ -470,19 +474,23 @@ msgstr "Долучити до буфера subscription-manager"
 msgid "Boot in qemu (-o qemu only)"
 msgstr "Завантажитися у qemu (лише для -o qemu)"
 
-#: common/mlcustomize/customize_cmdline.ml:179
+#: common/mlcustomize/customize_cmdline.ml:183
 msgid "Change the permissions of a file"
 msgstr "Змінити права доступу до файла"
+
+#: common/mlcustomize/customize_cmdline.ml:474
+msgid "Compatibility option doing nothing"
+msgstr "Параметр сумісності ні на що не впливає"
 
 #: v2v/v2v.ml:231
 msgid "Compress output file (-of qcow2 only)"
 msgstr "Стиснути файл виведення (лише для -of qcow2)"
 
-#: common/mlcustomize/customize_cmdline.ml:201
+#: common/mlcustomize/customize_cmdline.ml:205
 msgid "Copy files in disk image"
 msgstr "Копіювати файли на образ диска"
 
-#: common/mlcustomize/customize_cmdline.ml:212
+#: common/mlcustomize/customize_cmdline.ml:216
 msgid "Copy local files or directories into image"
 msgstr "Копіювати локальні файли або каталоги до образу"
 
@@ -490,11 +498,11 @@ msgstr "Копіювати локальні файли або каталоги �
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
-#: common/mlcustomize/customize_cmdline.ml:286
+#: common/mlcustomize/customize_cmdline.ml:290
 msgid "Create a directory"
 msgstr "Створити каталог"
 
-#: common/mlcustomize/customize_cmdline.ml:280
+#: common/mlcustomize/customize_cmdline.ml:284
 msgid "Create symbolic links"
 msgstr "Створювати символічні посилання"
 
@@ -502,15 +510,15 @@ msgstr "Створювати символічні посилання"
 msgid "Creating output metadata"
 msgstr "Створюємо метадані результатів"
 
-#: common/mlcustomize/customize_cmdline.ml:474
+#: common/mlcustomize/customize_cmdline.ml:484
 msgid "Credentials for subscription-manager"
 msgstr "Реєстраційні дані для subscription-manager"
 
-#: common/mlcustomize/customize_cmdline.ml:285
+#: common/mlcustomize/customize_cmdline.ml:289
 msgid "DIR"
 msgstr "КАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:218
+#: common/mlcustomize/customize_cmdline.ml:222
 msgid "Delete a file or directory"
 msgstr "Вилучити файл або каталог"
 
@@ -518,57 +526,61 @@ msgstr "Вилучити файл або каталог"
 msgid "Display brief help"
 msgstr "Показати коротку довідку"
 
-#: common/mltools/tools_utils.ml:384
+#: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
 msgstr "Вивести версію та вийти"
 
-#: common/mltools/tools_utils.ml:388
+#: common/mlcustomize/customize_cmdline.ml:468
+msgid "Do not relabel files with correct SELinux labels"
+msgstr "Не змінити мітки файлів на коректні мітки SELinux"
+
+#: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
 msgstr "Не виводити повідомлень щодо поступу"
 
-#: common/mltools/tools_utils.ml:405
+#: common/mltools/tools_utils.ml:420
 msgid "Don’t turn off echo for passphrases"
 msgstr "Не вимикати луна-повторення у паролях"
 
-#: common/mlcustomize/customize_cmdline.ml:229
+#: common/mlcustomize/customize_cmdline.ml:233
 msgid "Edit file using Perl expression"
 msgstr "Редагувати файл за допомогою виразу Perl"
 
-#: common/mltools/tools_utils.ml:385
+#: common/mltools/tools_utils.ml:386
 msgid "Enable libguestfs debugging messages"
 msgstr "Увімкнути діагностичні повідомлення libguestfs"
 
-#: common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:387
 msgid "Enable tracing of libguestfs calls"
 msgstr "Увімкнути трасування викликів libguestfs"
 
-#: output/output_rhv.ml:76
+#: output/output_rhv.ml:77
 msgid "Export Storage Domain"
 msgstr "Експортувати домен сховища"
 
-#. common/mlcustomize/customize_cmdline.ml:384
-#. common/mlcustomize/customize_cmdline.ml:337
-#: common/mlcustomize/customize_cmdline.ml:402
+#. common/mlcustomize/customize_cmdline.ml:388
+#. common/mlcustomize/customize_cmdline.ml:341
+#: common/mlcustomize/customize_cmdline.ml:406
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: common/mlcustomize/customize_cmdline.ml:437
+#: common/mlcustomize/customize_cmdline.ml:441
 msgid "FILE:CONTENT"
 msgstr "ФАЙЛ:ВМІСТ"
 
-#: common/mlcustomize/customize_cmdline.ml:426
+#: common/mlcustomize/customize_cmdline.ml:430
 msgid "FILE:DEST"
 msgstr "ФАЙЛ:ПРИЗНАЧЕННЯ"
 
-#: common/mlcustomize/customize_cmdline.ml:224
+#: common/mlcustomize/customize_cmdline.ml:228
 msgid "FILE:EXPR"
 msgstr "ФАЙЛ:ВИРАЗ"
 
-#: common/mlcustomize/customize_cmdline.ml:163
+#: common/mlcustomize/customize_cmdline.ml:167
 msgid "FILE:LINE"
 msgstr "ФАЙЛ:РЯДОК"
 
-#: common/mlcustomize/customize_cmdline.ml:185
+#: common/mlcustomize/customize_cmdline.ml:189
 msgid "FILENAME"
 msgstr "НАЗВА_ФАЙЛА"
 
@@ -576,7 +588,7 @@ msgstr "НАЗВА_ФАЙЛА"
 msgid "Finishing off"
 msgstr "Завершуємо"
 
-#: common/mlcustomize/customize_cmdline.ml:257
+#: common/mlcustomize/customize_cmdline.ml:261
 msgid "HOSTNAME"
 msgstr "НАЗВА_ВУЗЛА"
 
@@ -584,7 +596,7 @@ msgstr "НАЗВА_ВУЗЛА"
 msgid "How to choose root filesystem"
 msgstr "Як вибрати кореневу файлову систему"
 
-#: common/mltools/tools_utils.ml:176
+#: common/mltools/tools_utils.ml:177
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -600,7 +612,7 @@ msgstr ""
 msgid "Ignored for backwards compatibility"
 msgstr "Ігноровано, для зворотної сумісності"
 
-#: common/mlcustomize/customize_cmdline.ml:379
+#: common/mlcustomize/customize_cmdline.ml:383
 msgid "Inject a public key into the guest"
 msgstr "Вставити відкритий ключ до гостьової системи"
 
@@ -656,7 +668,7 @@ msgstr ""
 msgid "Input transport"
 msgstr "Вхідне передавання"
 
-#: common/mlcustomize/customize_cmdline.ml:207
+#: common/mlcustomize/customize_cmdline.ml:211
 msgid "LOCALPATH:REMOTEDIR"
 msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 
@@ -664,7 +676,7 @@ msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 msgid "Libvirt URI"
 msgstr "Адреса libvirt"
 
-#: common/mltools/tools_utils.ml:411
+#: common/mltools/tools_utils.ml:426
 msgid "Make output machine readable"
 msgstr "Зробити машину виведення придатною до читання"
 
@@ -681,7 +693,7 @@ msgstr "Відобразити місток «in» на «out»"
 msgid "Map network ‘in’ to ‘out’"
 msgstr "Пов'язати мережу «in» із мережею «out»"
 
-#: common/mlcustomize/customize_cmdline.ml:297
+#: common/mlcustomize/customize_cmdline.ml:301
 msgid "Move files in disk image"
 msgstr "Пересунути файли на образ диска"
 
@@ -694,13 +706,11 @@ msgstr "Пересунути файли на образ диска"
 msgid "No input options can be used in this mode.\n"
 msgstr "У цьому режимі не можна використовувати параметри вхідних даних.\n"
 
-#. output/output_glance.ml:40
-#. output/output_disk.ml:44
-#: output/output_rhv.ml:40 output/output_null.ml:38 output/output_libvirt.ml:47
+#: output/output_rhv.ml:40 output/output_null.ml:38 output/output_glance.ml:40
 msgid "No output options can be used in this mode.\n"
 msgstr "У цьому режимі не можна використовувати параметри виведення.\n"
 
-#: output/output_vdsm.ml:160
+#: output/output_vdsm.ml:161
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
 msgstr "Каталогу OVF (метаданих) (%s) не існує або це не каталог"
 
@@ -719,14 +729,17 @@ msgstr ""
 msgid "Output hypervisor connection"
 msgstr "Вивести з'єднання гіпервізора"
 
-#: output/output_qemu.ml:43
+#: output/output_qemu.ml:44
 msgid ""
 "Output options (-oo) which can be used with -o qemu:\n"
 "\n"
+"  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 "  -oo qemu-boot       Boot the guest in qemu after conversion\n"
 msgstr ""
 "Параметри виведення (-oo), якими можна скористатися із -o qemu:\n"
 "\n"
+"  -oo compressed      стиснути файл виведених даних (можна використовувати "
+"лише з -of qcow2)\n"
 "  -oo qemu-boot       завантажити гостьову систему до qemu після "
 "перетворення\n"
 
@@ -795,18 +808,40 @@ msgstr ""
 "  -oo vdsm-image-uuid=UUID     UUID каталогу образу\n"
 "  -oo vdsm-vol-uuid=UUID       UUID тому диска\n"
 
-#. common/mlcustomize/customize_cmdline.ml:217
-#: common/mlcustomize/customize_cmdline.ml:390
+#: output/output_disk.ml:44
+msgid ""
+"Output options that can be used with -o disk:\n"
+"\n"
+"  -oo compressed      Compress the output file (used only with -of qcow2)\n"
+msgstr ""
+"Параметри виведення, якими можна скористатися з -o disk:\n"
+"\n"
+"  -oo compressed      стиснути файл виведення (можна використовувати лише з -"
+"of qcow2)\n"
+
+#: output/output_libvirt.ml:47
+msgid ""
+"Output options that can be used with -o libvirt:\n"
+"\n"
+"  -oo compressed      Compress the output file (used only with -of qcow2)\n"
+msgstr ""
+"Параметри виведення, якими можна скористатися з -o libvirt:\n"
+"\n"
+"  -oo compressed      стиснути файл виведення (можна використовувати лише з -"
+"of qcow2)\n"
+
+#. common/mlcustomize/customize_cmdline.ml:221
+#: common/mlcustomize/customize_cmdline.ml:394
 msgid "PATH"
 msgstr "ШЛЯХ"
 
-#: common/mlcustomize/customize_cmdline.ml:174
+#: common/mlcustomize/customize_cmdline.ml:178
 msgid "PERMISSIONS:FILE"
 msgstr "ПРАВА_ДОСТУПУ:ФАЙЛ"
 
-#. common/mlcustomize/customize_cmdline.ml:264
-#. common/mlcustomize/customize_cmdline.ml:247
-#: common/mlcustomize/customize_cmdline.ml:409
+#. common/mlcustomize/customize_cmdline.ml:268
+#. common/mlcustomize/customize_cmdline.ml:251
+#: common/mlcustomize/customize_cmdline.ml:413
 msgid "PKG,PKG.."
 msgstr "ПАКУНОК,ПАКУНОК.."
 
@@ -819,27 +854,23 @@ msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 "У RHV не передбачено формату виведення даних «‘%s», лише формати raw та qcow2"
 
-#: common/mlcustomize/customize_cmdline.ml:190
+#: common/mlcustomize/customize_cmdline.ml:194
 msgid "Read customize commands from file"
 msgstr "Прочитати команди налаштовування з файла"
 
-#: common/mltools/tools_utils.ml:406
+#: common/mltools/tools_utils.ml:421
 msgid "Read passphrases from stdin"
 msgstr "Читати паролі зі стандартного введення (stdin)"
 
-#: common/mlcustomize/customize_cmdline.ml:391
+#: common/mlcustomize/customize_cmdline.ml:395
 msgid "Recursively truncate all files in directory"
 msgstr "Рекурсивно обрізати усі файли у каталозі"
 
-#: common/mlcustomize/customize_cmdline.ml:355
+#: common/mlcustomize/customize_cmdline.ml:359
 msgid "Register using subscription-manager"
 msgstr "Зареєструвати за допомогою subscription-manager"
 
-#: common/mlcustomize/customize_cmdline.ml:464
-msgid "Relabel files with correct SELinux labels"
-msgstr "Змінити мітки файлів на коректні мітки SELinux"
-
-#: common/mlcustomize/customize_cmdline.ml:361
+#: common/mlcustomize/customize_cmdline.ml:365
 msgid "Remove all the subscriptions"
 msgstr "Вилучити усі підписки"
 
@@ -847,40 +878,40 @@ msgstr "Вилучити усі підписки"
 msgid "Rename guest when converting"
 msgstr "Перейменувати гостьову систему під час перетворення"
 
-#: common/mlcustomize/customize_cmdline.ml:241
+#: common/mlcustomize/customize_cmdline.ml:245
 msgid "Run command at first guest boot"
 msgstr "Виконати команду під час першого завантаження гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:332
+#: common/mlcustomize/customize_cmdline.ml:336
 msgid "Run command in disk image"
 msgstr "Виконати команду у образі диска"
 
-#: common/mlcustomize/customize_cmdline.ml:235
+#: common/mlcustomize/customize_cmdline.ml:239
 msgid "Run script at first guest boot"
 msgstr "Виконати скрипт під час першого завантаження гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:326
+#: common/mlcustomize/customize_cmdline.ml:330
 msgid "Run script in disk image"
 msgstr "Виконати скрипт у образі диска"
 
-#: common/mlcustomize/customize_cmdline.ml:403
+#: common/mlcustomize/customize_cmdline.ml:407
 msgid "Run touch on a file"
 msgstr "Обробити файл за допомогою touch"
 
-#. common/mlcustomize/customize_cmdline.ml:234
-#: common/mlcustomize/customize_cmdline.ml:325
+#. common/mlcustomize/customize_cmdline.ml:238
+#: common/mlcustomize/customize_cmdline.ml:329
 msgid "SCRIPT"
 msgstr "СКРИПТ"
 
-#. common/mlcustomize/customize_cmdline.ml:344
-#. common/mlcustomize/customize_cmdline.ml:315
-#: common/mltools/tools_utils.ml:407
-#: common/mlcustomize/customize_cmdline.ml:470
+#. common/mlcustomize/customize_cmdline.ml:348
+#. common/mlcustomize/customize_cmdline.ml:319
+#: common/mltools/tools_utils.ml:422
+#: common/mlcustomize/customize_cmdline.ml:480
 msgid "SELECTOR"
 msgstr "СЕЛЕКТОР"
 
-#. common/mlcustomize/customize_cmdline.ml:196
-#: common/mlcustomize/customize_cmdline.ml:292
+#. common/mlcustomize/customize_cmdline.ml:200
+#: common/mlcustomize/customize_cmdline.ml:296
 msgid "SOURCE:DEST"
 msgstr "ДЖЕРЕЛО:ПРИЗНАЧЕННЯ"
 
@@ -944,11 +975,11 @@ msgstr "Те саме, що і «-oo vdsm-vm-uuid=uuid»"
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr "Те саме, що і «-oo vdsm-vol-uuid=uuid»"
 
-#: common/mlcustomize/customize_cmdline.ml:338
+#: common/mlcustomize/customize_cmdline.ml:342
 msgid "Scrub a file"
 msgstr "Витерти файл"
 
-#: common/mlcustomize/customize_cmdline.ml:448
+#: common/mlcustomize/customize_cmdline.ml:452
 msgid "Scrub build log file"
 msgstr "Витерти файл журналу збирання"
 
@@ -988,27 +1019,27 @@ msgstr "Встановити режим виведення (типовий: libv
 msgid "Set output storage location"
 msgstr "Встановити розташування сховища виведених даних"
 
-#: common/mlcustomize/customize_cmdline.ml:458
+#: common/mlcustomize/customize_cmdline.ml:462
 msgid "Set password crypto"
 msgstr "Встановити алгоритм шифрування пароля"
 
-#: common/mltools/tools_utils.ml:415
+#: common/mltools/tools_utils.ml:430
 msgid "Set program name"
 msgstr "Встановити назву програми"
 
-#: common/mlcustomize/customize_cmdline.ml:320
+#: common/mlcustomize/customize_cmdline.ml:324
 msgid "Set root password"
 msgstr "Встановлення пароля root"
 
-#: common/mlcustomize/customize_cmdline.ml:397
+#: common/mlcustomize/customize_cmdline.ml:401
 msgid "Set the default timezone"
 msgstr "Встановити типовий часовий пояс"
 
-#: common/mlcustomize/customize_cmdline.ml:258
+#: common/mlcustomize/customize_cmdline.ml:262
 msgid "Set the hostname"
 msgstr "Встановити назву вузла"
 
-#: common/mlcustomize/customize_cmdline.ml:309
+#: common/mlcustomize/customize_cmdline.ml:313
 msgid "Set user password"
 msgstr "Встановити пароль користувача"
 
@@ -1024,15 +1055,15 @@ msgstr "Налаштовуємо джерело: %s"
 msgid "Source guest information (--print-source option):\n"
 msgstr "Дані щодо гостьової системи джерела (параметр --print-source):\n"
 
-#: common/mltools/tools_utils.ml:407
+#: common/mltools/tools_utils.ml:422
 msgid "Specify a LUKS key"
 msgstr "Вказати ключ LUKS"
 
-#: common/mlcustomize/customize_cmdline.ml:275
+#: common/mlcustomize/customize_cmdline.ml:279
 msgid "TARGET:LINK[:LINK..]"
 msgstr "ПРИЗНАЧЕННЯ:ПОСИЛАННЯ[:ПОСИЛАННЯ..]"
 
-#: common/mlcustomize/customize_cmdline.ml:396
+#: common/mlcustomize/customize_cmdline.ml:400
 msgid "TIMEZONE"
 msgstr "ЧАСОВИЙ_ПОЯС"
 
@@ -1040,6 +1071,24 @@ msgstr "ЧАСОВИЙ_ПОЯС"
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr "Параметр --in-place замінено на програму «virt-v2v-in-place»"
+
+#: output/output_qemu.ml:232
+msgid ""
+"The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
+"refer to virt-v2v(1) section \"BUGS\"."
+msgstr ""
+"У віртуальній машині не передбачено підтримки комплексних середовищ "
+"розробки. Будь ласка, повідомте про ваду у virt-v2v — скористайтеся розділом "
+"«BUGS» сторінки підручника virt-v2v(1)."
+
+#: output/output_qemu.ml:253
+msgid ""
+"The Virt machine has no support for floppies. Please report a bug for virt-"
+"v2v -- refer to virt-v2v(1) section \"BUGS\"."
+msgstr ""
+"У віртуальній машині не передбачено підтримки дискет. Будь ласка, повідомте "
+"про ваду у virt-v2v — скористайтеся розділом «BUGS» сторінки підручника virt-"
+"v2v(1)."
 
 #: lib/create_ovf.ml:767
 msgid ""
@@ -1064,35 +1113,35 @@ msgstr ""
 "перетворення, які описано у підручнику з virt-v2v-input-vmware(1), розділ "
 "«ПРИМІТКИ»."
 
-#: common/mlcustomize/customize_cmdline.ml:385
+#: common/mlcustomize/customize_cmdline.ml:389
 msgid "Truncate a file to zero size"
 msgstr "Обрізати файл до нульового розміру"
 
-#: common/mlcustomize/customize_cmdline.ml:303
+#: common/mlcustomize/customize_cmdline.ml:307
 msgid "USER:SELECTOR"
 msgstr "КОРИСТУВАЧ:ВАРІАНТ"
 
-#: common/mlcustomize/customize_cmdline.ml:373
+#: common/mlcustomize/customize_cmdline.ml:377
 msgid "USER[:SELECTOR]"
 msgstr "КОРИСТУВАЧ[:СЕЛЕКТОР]"
 
-#: common/mlcustomize/customize_cmdline.ml:414
+#: common/mlcustomize/customize_cmdline.ml:418
 msgid "Uninstall package(s)"
 msgstr "Вилучити пакунки"
 
-#: common/mlcustomize/customize_cmdline.ml:367
+#: common/mlcustomize/customize_cmdline.ml:371
 msgid "Unregister using subscription-manager"
 msgstr "Скасувати реєстрацію за допомогою subscription-manager"
 
-#: common/mlcustomize/customize_cmdline.ml:420
+#: common/mlcustomize/customize_cmdline.ml:424
 msgid "Update packages"
 msgstr "Оновити пакунки"
 
-#: common/mlcustomize/customize_cmdline.ml:431
+#: common/mlcustomize/customize_cmdline.ml:435
 msgid "Upload local file to destination"
 msgstr "Вивантажити локальний файл у систему призначення"
 
-#: common/mltools/tools_utils.ml:390
+#: common/mltools/tools_utils.ml:391
 msgid "Use ANSI colour sequences even if not tty"
 msgstr "Використовувати послідовності ANSI для кольорів, навіть якщо це не tty"
 
@@ -1108,11 +1157,11 @@ msgstr "Скористатися паролем з файла для з'єдна
 msgid "Use virt-v2v-in-place instead"
 msgstr "Скористайтеся краще virt-v2v-in-place"
 
-#: common/mltools/tools_utils.ml:391
+#: common/mltools/tools_utils.ml:392
 msgid "Wrap log messages even if not tty"
 msgstr "Переносити рядки повідомлень журналу, навіть якщо це не tty"
 
-#: common/mlcustomize/customize_cmdline.ml:442
+#: common/mlcustomize/customize_cmdline.ml:446
 msgid "Write file"
 msgstr "Записати файл"
 
@@ -1126,7 +1175,7 @@ msgstr ""
 "VMware. Для визначення відбитка скористайтеся порадами з підручника з nbdkit-"
 "vddk-plugin(). Див. також підручник з virt-v2v-input-vmware(1)."
 
-#: output/output_libvirt.ml:86
+#: output/output_libvirt.ml:97
 msgid ""
 "a libvirt domain called ‘%s’ already exists on the target.\n"
 "\n"
@@ -1193,7 +1242,7 @@ msgstr ""
 "основної системи (%s) та архітектура гостьової системи (%s) є несумісними. "
 "Служба firstboot може не запуститися під час завантаження."
 
-#: output/output_libvirt.ml:75
+#: output/output_libvirt.ml:86
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr "не вдалося отримати список можливостей гіпервізора libvirt: %s"
 
@@ -1209,7 +1258,29 @@ msgstr "Не вдалося обробити --mac ip %s: здається, «%s
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr "не вдалося обробити поле довжини префікса --mac ip як ціле число: %s"
 
-#: output/output_rhv.ml:90
+#: common/mlcustomize/guest_packages.ml:29
+msgid ""
+"cannot use ‘%s’ because no package manager has been detected for this guest "
+"OS.\n"
+"\n"
+"If this guest OS is a common one with ordinary package management then this "
+"may have been caused by a failure of libguestfs inspection.\n"
+"\n"
+"For OSes such as Windows that lack package management, this is not "
+"possible.  Try using one of the ‘--firstboot*’ flags instead (described in "
+"the virt-customize(1) manual)."
+msgstr ""
+"не вдалося скористатися «%s», оскільки для цієї гостьової системи не було "
+"виявлено засобу для керування пакунками.\n"
+"\n"
+"Якщо ця гостьова система є типовою зі звичайним керуванням пакунками, "
+"причиною можуть бути проблеми із виявленням у libguestfs.\n"
+"\n"
+"Для операційних систем, подібних до Windows, де немає керування пакунками, "
+"це неможливо. Спробуйте натомість скористатися прапорцями «--firstboot*» (їх "
+"описано на сторінці підручника щодо virt-customize(1))."
+
+#: output/output_rhv.ml:91
 msgid ""
 "cannot write files to the NFS server as %d:%d, even though we appear to be "
 "running as root. This probably means the NFS client or idmapd is not "
@@ -1225,7 +1296,7 @@ msgstr ""
 "Вам доведеться змінити власника файлів, які virt-v2v створює після запуску, "
 "інакше RHV-M не зможе імпортувати віртуальну машину."
 
-#: output/output_rhv.ml:92
+#: output/output_rhv.ml:93
 msgid ""
 "cannot write files to the NFS server as %d:%d. You might want to stop virt-"
 "v2v (^C) and rerun it as root."
@@ -1234,12 +1305,12 @@ msgstr ""
 "роботу virt-v2v (^C), а потім повторно запустити програму від імені "
 "користувача root."
 
-#: common/mlcustomize/customize_cmdline.ml:494
+#: common/mlcustomize/customize_cmdline.ml:504
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 "у командних файлах не можна використовувати команду «%s», див. сторінку man"
 
-#: common/mlcustomize/customize_cmdline.ml:511
+#: common/mlcustomize/customize_cmdline.ml:521
 msgid "command '%s' not valid, see the man page"
 msgstr "команда «%s» є некоректною, див. сторінку man"
 
@@ -1251,7 +1322,7 @@ msgstr ""
 "не вдалося скопіювати файл VMX з віддаленого сервера; див. попередні "
 "повідомлення про помилки"
 
-#: output/output_libvirt.ml:184
+#: output/output_libvirt.ml:197
 msgid ""
 "could not define libvirt domain: %s.\n"
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
@@ -1289,7 +1360,7 @@ msgstr "не вдалося обробити значення rasd:HostResource 
 msgid "could not parse ovf:Name from OVF document"
 msgstr "не вдалося обробити значення ovf:Name з документа OVF"
 
-#: output/output_rhv.ml:227
+#: output/output_rhv.ml:228
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt or RHV-M %s?  The original error is: %s"
@@ -1298,7 +1369,7 @@ msgstr ""
 "командному рядку. Чи справді це %s OVirt або RHV-M? Початкове повідомлення "
 "щодо помилки: %s"
 
-#: output/output_libvirt.ml:151
+#: output/output_libvirt.ml:164
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr "не вдалося оновити буфер libvirt «%s»: %s"
 
@@ -1371,7 +1442,7 @@ msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 "помилка під час розпаковування %s, див. попередні повідомлення щодо помилок"
 
-#: common/mltools/tools_utils.ml:247
+#: common/mltools/tools_utils.ml:248
 msgid "exception: %s"
 msgstr "виключення: %s"
 
@@ -1386,31 +1457,31 @@ msgid ""
 msgstr ""
 "очікуємо, що вираз XML поверне ціле число (вираз: %s, відповідний рядок: %s)"
 
-#: common/mltools/tools_utils.ml:446
+#: common/mltools/tools_utils.ml:451
 msgid "external command ‘%s’ exited with error %d"
 msgstr "виконання зовнішньої програми «%s» завершилося помилкою %d"
 
-#: common/mltools/tools_utils.ml:527 common/mltools/tools_utils.ml:448
+#: common/mltools/tools_utils.ml:532 common/mltools/tools_utils.ml:453
 msgid "external command ‘%s’ killed by signal %d"
 msgstr "виконання зовнішньої програми «%s» завершено сигналом %d"
 
-#: common/mltools/tools_utils.ml:529 common/mltools/tools_utils.ml:450
+#: common/mltools/tools_utils.ml:534 common/mltools/tools_utils.ml:455
 msgid "external command ‘%s’ stopped by signal %d"
 msgstr "виконання зовнішньої програми «%s» зупинено сигналом %d"
 
-#: output/output_rhv_upload.ml:262
+#: output/output_rhv_upload.ml:263
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 "не пройдено попередніх перевірок сервера; див. попередні повідомлення про "
 "помилки"
 
-#: output/output_rhv_upload.ml:488
+#: output/output_rhv_upload.ml:489
 msgid "failed to create virtual machine, see earlier errors"
 msgstr ""
 "не вдалося створити віртуальну машину; див. попередні повідомлення про "
 "помилки"
 
-#: output/output_rhv_upload.ml:460
+#: output/output_rhv_upload.ml:461
 msgid "failed to finalize the transfers, see earlier errors"
 msgstr ""
 "не вдалося завершити перенесення; див. попередні повідомлення про помилки"
@@ -1419,18 +1490,18 @@ msgstr ""
 msgid "failed to parse line returned by tar: %S"
 msgstr "не вдалося обробити рядок, який повернуто tar: %S"
 
-#: output/output_rhv_upload.ml:381
+#: output/output_rhv_upload.ml:382
 msgid "failed to start transfer, see earlier errors"
 msgstr ""
 "не вдалося розпочати перенесення; див. попередні повідомлення про помилки"
 
-#: output/output_rhv_upload.ml:304
+#: output/output_rhv_upload.ml:305
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 "не вдалося пройти перевірки віртуальної машини; див. попередні повідомлення "
 "про помилки"
 
-#: common/mltools/tools_utils.ml:238
+#: common/mltools/tools_utils.ml:239
 msgid "failure: %s"
 msgstr "помилка: %s"
 
@@ -1446,7 +1517,7 @@ msgstr ""
 "firstboot: невідома версія старого файла firstboot.service %s (md5=%s), його "
 "не буде вилучено"
 
-#: common/mltools/tools_utils.ml:257
+#: common/mltools/tools_utils.ml:258
 msgid "generated by %s %s"
 msgstr "створено за допомогою %s %s"
 
@@ -1475,7 +1546,7 @@ msgstr "підтримки типу гостьової системи %s не п
 msgid "guest type %s/%s is not supported"
 msgstr "підтримки типу гостьової системи %s/%s не передбачено"
 
-#: output/output_vdsm.ml:154
+#: output/output_vdsm.ml:155
 msgid "image directory (%s) does not exist or is not a directory"
 msgstr "каталогу образу (%s) не існує, або ж це не каталог"
 
@@ -1537,15 +1608,15 @@ msgstr ""
 "Також ознайомтеся із підручником з virt-v2v(1), розділ «Minimum free space "
 "check in the host» («Мінімальний розмір вільного місця у основній системі»)."
 
-#: common/mltools/tools_utils.ml:245
+#: common/mltools/tools_utils.ml:246
 msgid "internal error: Not_found exception was thrown"
 msgstr "внутрішня помилка: надіслано виключення Not_found"
 
-#: common/mltools/tools_utils.ml:242
+#: common/mltools/tools_utils.ml:243
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr "внутрішня помилка: помилка оцінки у %s, рядок %d, символ %d"
 
-#: common/mltools/tools_utils.ml:240
+#: common/mltools/tools_utils.ml:241
 msgid "internal error: invalid argument: %s"
 msgstr "внутрішня помилка: некоректний аргумент: %s"
 
@@ -1561,17 +1632,17 @@ msgstr "некоректний параметр -b/--bridge"
 msgid "invalid -n/--network parameter"
 msgstr "некоректний параметр -n/--network"
 
-#: input/parse_domain_from_vmx.ml:410
+#: input/parse_domain_from_vmx.ml:435
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 "некоректне значення cpuid.coresPerSocket < кількості віртуальних процесорів"
 
-#. common/mlcustomize/customize_cmdline.ml:143
-#: common/mlcustomize/customize_cmdline.ml:154
+#. common/mlcustomize/customize_cmdline.ml:147
+#: common/mlcustomize/customize_cmdline.ml:158
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "некоректний формат параметра «--%s», див. сторінку підручника"
 
-#: common/mltools/tools_utils.ml:358
+#: common/mltools/tools_utils.ml:359
 msgid "invalid format string for --machine-readable: %s"
 msgstr "некоректний рядок форматування для --machine-readable: %s"
 
@@ -1583,21 +1654,17 @@ msgstr "некоректна назва файла вхідних даних (%s
 msgid "invalid offset returned by tar: %S"
 msgstr "tar повернуто некоректний відступ: %S"
 
-#: common/mltools/tools_utils.ml:373
+#: common/mltools/tools_utils.ml:374
 msgid "invalid output fd for --machine-readable: %s"
 msgstr "некоректне виведення fd для --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:375
+#: common/mltools/tools_utils.ml:376
 msgid "invalid output for --machine-readable: %s"
 msgstr "некоректне виведення для --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:367
+#: common/mltools/tools_utils.ml:368
 msgid "invalid output stream for --machine-readable: %s"
 msgstr "некоректне потік виведення для --machine-readable: %s"
-
-#: common/mltools/tools_utils.ml:402
-msgid "invalid selector string for --key: %s"
-msgstr "некоректний рядок вибору для --key: %s"
 
 #: input/OVA.ml:439
 msgid "invalid size returned by tar: %S"
@@ -1611,7 +1678,7 @@ msgstr "некоректне значення vmw:CoresPerSocket (%d) проіг
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr "некоректне значення vmw:CoresPerSocket < кількості ядер"
 
-#: common/mltools/tools_utils.ml:236
+#: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
 msgstr "помилка libguestfs: %s"
 
@@ -1635,7 +1702,7 @@ msgstr ""
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr "у маніфесті є контрольна сума файла, якого не існує %s (проігноровано)"
 
-#: common/mlcustomize/customize_cmdline.ml:454
+#: common/mlcustomize/customize_cmdline.ml:458
 msgid "md5|sha256|sha512"
 msgstr "md5|sha256|sha512"
 
@@ -1651,7 +1718,7 @@ msgstr "у %s виявлено декілька файлів .ovf"
 msgid "more than value for the key ‘%s’"
 msgstr "декілька значень для ключа «%s»"
 
-#: output/output_rhv.ml:204
+#: output/output_rhv.ml:205
 msgid ""
 "mount command failed, see earlier errors.\n"
 "\n"
@@ -1749,7 +1816,7 @@ msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
 "використання «-i libvirt|libvirtxml»."
 
-#: output/output.ml:71
+#: output/output.ml:76
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
@@ -1763,7 +1830,7 @@ msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
 "використання «-o null»."
 
-#: output/output_rhv_upload.ml:159
+#: output/output_rhv_upload.ml:160
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o rhv-"
 "upload’.  See the virt-v2v-output-rhv(1) manual."
@@ -1771,7 +1838,7 @@ msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
 "використання «-o rhv-upload». Див. підручник virt-v2v-output-rhv(1)."
 
-#: output/output_rhv_upload.ml:165
+#: output/output_rhv_upload.ml:166
 msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s"
 msgstr ""
 "nbdkit є недостатньо новим, вам слід оновити nbdkit принаймні до версії "
@@ -1781,7 +1848,7 @@ msgstr ""
 msgid "nbdkit is too old.  nbdkit >= %d.%d.%d is required."
 msgstr "nbdkit є надто старим. Потрібен nbdkit >= %d.%d.%d."
 
-#: output/output_rhv_upload.ml:177
+#: output/output_rhv_upload.ml:178
 msgid ""
 "nbdkit python plugin is not installed or not working.  It is required if you "
 "want to use ‘-o rhv-upload’.\n"
@@ -1793,7 +1860,7 @@ msgstr ""
 "\n"
 "Див. також підручник virt-v2v-output-rhv(1)."
 
-#: output/output_rhv_upload.ml:189
+#: output/output_rhv_upload.ml:190
 msgid ""
 "nbdkit was compiled without SELinux support.  You will have to recompile "
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
@@ -1813,7 +1880,7 @@ msgstr "nbdkit-cow-filter не встановлено або програма н
 msgid "nbdkit-curl-plugin is not installed"
 msgstr "Додаток nbdkit-curl не встановлено"
 
-#: output/output.ml:73 input/input_libvirt.ml:69 input/input_disk.ml:94
+#: output/output.ml:78 input/input_libvirt.ml:69 input/input_disk.ml:94
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr "nbdkit-file-plugin не встановлено або програма не працює"
 
@@ -1845,9 +1912,7 @@ msgstr "nbdkit: неочікувана версія у --dump-config: %s"
 msgid "no -io (input options) are allowed here"
 msgstr "тут не можна використовувати -io (вхідні параметри)"
 
-#. output/output_glance.ml:44
-#. output/output_disk.ml:48
-#: output/output_rhv.ml:44 output/output_null.ml:42 output/output_libvirt.ml:51
+#: output/output_rhv.ml:44 output/output_null.ml:42 output/output_glance.ml:44
 msgid "no -oo (output options) are allowed here"
 msgstr "тут не можна використовувати -oo (параметри виведення)"
 
@@ -1855,7 +1920,7 @@ msgstr "тут не можна використовувати -oo (параме�
 msgid "no .ovf file was found in %s"
 msgstr "у %s не знайдено файла .ovf"
 
-#: input/parse_domain_from_vmx.ml:370
+#: input/parse_domain_from_vmx.ml:395
 msgid "no displayName key found in VMX file"
 msgstr "у файлі VMX не виявлено ключа displayName"
 
@@ -1887,27 +1952,27 @@ msgstr ""
 msgid "openstack: -oo server-id=<NAME|UUID> not present"
 msgstr "openstack: немає -oo server-id=<НАЗВА|UUID>"
 
-#: output/output_openstack.ml:335
+#: output/output_openstack.ml:333
 msgid ""
 "openstack: failed to attach cinder volume to VM, see earlier error messages"
 msgstr ""
 "openstack: не вдалося долучити том cinder до ВМ; див попередні повідомлення "
 "про помилки"
 
-#: output/output_openstack.ml:291
+#: output/output_openstack.ml:289
 msgid "openstack: failed to create a cinder volume, see earlier error messages"
 msgstr ""
 "openstack: не вдалося створити том cinder; див. попередні повідомлення про "
 "помилки"
 
-#: output/output_openstack.ml:303
+#: output/output_openstack.ml:301
 msgid ""
 "openstack: failed to query cinder volume status, see earlier error messages"
 msgstr ""
 "openstack: не вдалося опитати стан тому cinder; див. попередні повідомлення "
 "про помилки"
 
-#: output/output_openstack.ml:433
+#: output/output_openstack.ml:431
 msgid ""
 "openstack: failed to set image properties on cinder volume, see earlier "
 "error messages"
@@ -1923,14 +1988,14 @@ msgstr ""
 "openstack: не вдалося пройти попередню перевірку; можливі проблеми із "
 "розпізнаванням; див. попередні повідомлення про помилки"
 
-#: output/output_openstack.ml:309
+#: output/output_openstack.ml:307
 msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or \"available"
 "\""
 msgstr ""
 "openstack: невідомий стан тому «%s»: стан мав бути «creating» або «available»"
 
-#: output/output.ml:108
+#: output/output.ml:146
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 "для режиму введення передбачено підтримку лише форматів raw і qcow2 (формат: "
@@ -1952,14 +2017,14 @@ msgstr ""
 "Диск ova не має батьківського контролера. Будь ласка, повідомте про цю ваду, "
 "додавши файл *.ovf, видобутий з ova"
 
-#: lib/qemuNBD.ml:118
+#: lib/qemuNBD.ml:125
 msgid ""
 "qemu-nbd did not start up.  See previous debugging messages for problems."
 msgstr ""
 "qemu-nbd не запустилася. Див. попередні діагностичні повідомлення, щоб "
 "виявити джерело проблеми."
 
-#: lib/qemuNBD.ml:120
+#: lib/qemuNBD.ml:127
 msgid ""
 "qemu-nbd did not start up.  There may be errors printed by qemu-nbd above.\n"
 "\n"
@@ -1981,7 +2046,7 @@ msgstr "qemu-nbd: неочікувана версія у --version: %s"
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr "«%s» для віддаленого vmx не вдалося обробити як адресу"
 
-#: output/output_rhv_upload.ml:359
+#: output/output_rhv_upload.ml:360
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
@@ -1991,6 +2056,48 @@ msgstr ""
 "«qcow2». Якщо вхідні дані записано у іншому форматі, примусово вкажіть один "
 "з цих форматів виведення за допомогою додавання до командного рядка "
 "параметра «-of raw» або «-of qcow2»."
+
+#: common/mltools/tools_utils.ml:417 common/options/keys.c:258
+#, c-format
+msgid "selector '%s': invalid TYPE"
+msgstr "вибір «%s»: некоректне значення TYPE"
+
+#: common/mltools/tools_utils.ml:409 common/options/keys.c:248
+#, c-format
+msgid "selector '%s': missing FILENAME, or too many fields"
+msgstr "вибір «%s»: пропущено FILENAME або забагато полів"
+
+#: common/mltools/tools_utils.ml:399 common/options/keys.c:226
+#, c-format
+msgid "selector '%s': missing ID"
+msgstr "вибір «%s»: пропущено ідентифікатор"
+
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:239
+#, c-format
+msgid "selector '%s': missing KEY_STRING, or too many fields"
+msgstr "вибір «%s»: пропущено KEY_STRING або забагато полів"
+
+#: common/mltools/tools_utils.ml:401 common/options/keys.c:233
+#, c-format
+msgid "selector '%s': missing TYPE"
+msgstr "вибір «%s»: пропущено TYPE"
+
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:256
+#, c-format
+msgid "selector '%s': too many fields"
+msgstr "вибір «%s»: забагато полів"
+
+#: common/mlcustomize/guest_packages.ml:40
+msgid ""
+"sorry, ‘%s’ with the ‘%s’ package manager has not been implemented yet.\n"
+"\n"
+"You can work around this by using one of the ‘--run*’ or ‘--firstboot*’ "
+"options instead (described in the virt-customize(1) manual)."
+msgstr ""
+"вибачте, «%s» із засобом керування пакунками «%s» ще не реалізовано.\n"
+"\n"
+"Ви можете обійти цю проблему, скориставшись параметром «--run*» або "
+"«--firstboot*» (описано у підручнику щодо virt-customize(1))."
 
 #: lib/utils.ml:200
 msgid ""
@@ -2020,7 +2127,7 @@ msgstr ""
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr "параметр --vmtype вилучено зі списку параметрів, тепер він не потрібен"
 
-#: output/output_rhv_upload.ml:153
+#: output/output_rhv_upload.ml:154
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
@@ -2028,7 +2135,7 @@ msgstr ""
 "не вдалося завантажити модуль Python «ovirtsdk4». Чи встановлено цей модуль? "
 "Див. попередні повідомлення про помилки."
 
-#: output/output_rhv_upload.ml:435
+#: output/output_rhv_upload.ml:436
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr "на кластері «%s» не передбачено підтримки архітектури %s, але %s"
 
@@ -2036,7 +2143,7 @@ msgstr "на кластері «%s» не передбачено підтрим�
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr "ключа «%s» у списку об’єктів не знайдено"
 
-#: output/output_rhv_upload.ml:282
+#: output/output_rhv_upload.ml:283
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on th\n"
 "e command line has to match the number of guest disk images (for this guest: "
@@ -2046,7 +2153,7 @@ msgstr ""
 "рядка, має дорівнювати кількості образів дисків гостьових систем (для цієї "
 "гостьової системи: %d)"
 
-#: output/output_vdsm.ml:130
+#: output/output_vdsm.ml:131
 msgid ""
 "the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters "
 "passed on the command line has to match the number of guest disk images (for "
@@ -2056,7 +2163,7 @@ msgstr ""
 "переданих за допомогою командного рядка, має дорівнювати кількості образів "
 "дисків гостьових систем (для цієї гостьової системи: %d)"
 
-#: output/output_libvirt.ml:210
+#: output/output_libvirt.ml:223
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 "у гіпервізорі призначення не передбачено підтримки гостьових систем KVM %s"
@@ -2110,7 +2217,7 @@ msgid ""
 msgstr ""
 "програма «%s» недоступна. Ця програма потрібна для обміну даними з OpenStack."
 
-#: output/output_rhv.ml:241
+#: output/output_rhv.ml:242
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
@@ -2118,7 +2225,7 @@ msgstr ""
 "у %s (%s) є декілька UUID. Цього не повинно було статися. Можливо, це "
 "пов’язано із вадою у virt-v2v або OVirt."
 
-#: output/output_rhv.ml:239
+#: output/output_rhv.ml:240
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr "у %s (%s) немає UUID. Це справді OVirt чи RHV-M %s?"
 
@@ -2152,6 +2259,11 @@ msgstr[2] ""
 msgid "this guest has no non-removable disks"
 msgstr "у цій гостьовій системі немає непортативних дисків"
 
+#: output/output.ml:70
+msgid "this output module doesn't support copying more than %d disks"
+msgstr ""
+"у цьому модулі виведення не передбачено підтримки копіювання понад %d дисків"
+
 #: input/OVA.ml:308
 msgid "unable to parse line from manifest file: %S"
 msgstr "не вдалося обробити рядок з файла маніфесту: %S"
@@ -2184,7 +2296,7 @@ msgstr "невідомий параметр -oa: %s"
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr "невідоме значення Config:firmware %s (мало бути «bios» або «efi»)"
 
-#: input/parse_domain_from_vmx.ml:423
+#: input/parse_domain_from_vmx.ml:448
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "невідоме значення мікропрограми, «%s», припускаємо BIOS"
 
@@ -2196,7 +2308,7 @@ msgstr "невідома гостьова операційна система: %
 msgid "unknown input transport ‘-it %s’"
 msgstr "невідомий вхідний канал передавання «-it %s»"
 
-#: input/parse_domain_from_vmx.ml:432
+#: input/parse_domain_from_vmx.ml:457
 msgid "unknown sound device '%s' ignored"
 msgstr "невідомий звуковий пристрій «%s» проігноровано"
 
@@ -2241,7 +2353,7 @@ msgstr "vcenter: некоректна відповідь від сервера: 
 msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr "vcenter: у виведених програмою «curl» даних немає коду стану."
 
-#: output/output_vdsm.ml:143
+#: output/output_vdsm.ml:144
 msgid "vdsm: invalid -os parameter does not contain a valid UUID: %s"
 msgstr "vdsm: некоректний параметр -os не містить коректного UUID: %s"
 
@@ -2337,11 +2449,11 @@ msgstr "обробник vmx: не вдалося обробити цей ряд
 msgid "vmx parser: duplicate key '%s' ignored"
 msgstr "обробник vmx: дублікат ключа «%s» проігноровано"
 
-#: output/output_openstack.ml:298
+#: output/output_openstack.ml:296
 msgid "wait for cinder volume status to change to \"available\""
 msgstr "зачекати на зміну стану тому cinder на «доступний»"
 
-#: output/output_openstack.ml:356
+#: output/output_openstack.ml:354
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr "очікуємо на долучення тому cinder %s до базової системи перетворення"
 
@@ -2356,6 +2468,14 @@ msgid ""
 msgstr ""
 "«-io vddk-libdir=%s» не вказує на каталог. Див. підручник з virt-v2v-input-"
 "vmware(1)."
+
+#: output/output.ml:84
+msgid ""
+"‘-oo compressed’ is only allowed when the output format is a local qcow2-"
+"format file, i.e. ‘-of qcow2’"
+msgstr ""
+"«-oo compressed» можна використовувати, лише якщо форматом виведення є "
+"локальний файл у форматі qcow2, тобто лише з «-of qcow2»"
 
 #: common/mltools/getopt-c.c:73
 #, c-format
@@ -2399,7 +2519,16 @@ msgstr "%s: рядок %d: помилка під час спроби оброб�
 msgid "string size overflow"
 msgstr "переповнення розміру рядка"
 
-#: common/options/decrypt.c:169
+#: common/options/decrypt.c:166
+#, c-format
+msgid ""
+"'clevis_luks_unlock', needed for decrypting %s, is unavailable in this "
+"libguestfs version"
+msgstr ""
+"у цій версії libguestfs «clevis_luks_unlock», потрібна для розшифрування %s, "
+"є недоступною"
+
+#: common/options/decrypt.c:180
 #, c-format
 msgid ""
 "could not find key to open LUKS encrypted %s.\n"
@@ -2510,7 +2639,12 @@ msgstr "%s змонтовано до %s\n"
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Введіть ключ або пароль («%s»): "
 
-#: common/options/keys.c:173
+#: common/options/keys.c:144
+#, c-format
+msgid "size_t overflow"
+msgstr "переповнення size_t"
+
+#: common/options/keys.c:187
 #, c-format
 msgid "could not read key from user"
 msgstr "не вдалося прочитати ключ з запису користувача"
@@ -2552,7 +2686,7 @@ msgstr "%s: %s: схема адреси є нульовою або порожн�
 
 #: common/options/uri.c:138
 #, c-format
-msgid "%s: %s: cannot both a server name and a socket query parameter\n"
+msgid "%s: %s: cannot have both a server name and a socket query parameter\n"
 msgstr ""
 "%s: %s: не можна вказувати одразу назву сервера та параметр запиту до "
 "сокета\n"
@@ -2581,6 +2715,12 @@ msgstr "Роботу %s завершено за допомогою сигнал�
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "Роботу %s завершено з невідомої причини (стан %d)"
+
+#~ msgid "-o qemu: use -oo qemu-boot[=true|false]"
+#~ msgstr "-o qemu: використати -oo qemu-boot[=true|false]"
+
+#~ msgid "invalid selector string for --key: %s"
+#~ msgstr "некоректний рядок вибору для --key: %s"
 
 #~ msgid "-o json: -oo json-disks-pattern set more than once"
 #~ msgstr "-o json: -oo json-disks-pattern встановлено декілька разів"
@@ -3313,13 +3453,6 @@ msgstr "Роботу %s завершено з невідомої причини 
 #~ "Це проблема або з метаданими джерела, або із модулем вхідних даних virt-"
 #~ "v2v. За певних умов це може призвести до неможливості завантаження "
 #~ "гостьової системи на цільовій системі."
-
-#~ msgid ""
-#~ "the --compressed flag is only allowed when the output format is qcow2 (-"
-#~ "of qcow2)"
-#~ msgstr ""
-#~ "прапорець --compressed є чинним, лише якщо форматом виведених даних є "
-#~ "qcow2 (-of qcow2)"
 
 #~ msgid ""
 #~ "the ‘%s’ program is not available.  It is needed to communicate with "
