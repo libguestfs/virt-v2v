@@ -1402,11 +1402,11 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
      * device names.  blkid will rebuild these on demand.
      *
      * Delete the LVM cache since it will contain references to the
-     * old devices (RHBZ#1164853).
+     * old devices (RHBZ#1164853, RHBZ#2112801).
      *)
     List.iter g#rm_f [
       "/etc/blkid/blkid.tab"; "/etc/blkid.tab";
-      "/etc/lvm/cache/.cache"
+      "/etc/lvm/cache/.cache"; "/etc/lvm/devices/system.devices"
     ];
   in
 
