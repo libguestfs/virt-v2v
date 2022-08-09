@@ -65,8 +65,8 @@ let print_kernel_info chan prefix ki =
       ki.ki_supports_isa_pvpanic ki.ki_supports_virtio_socket
       ki.ki_is_xen_pv_only_kernel ki.ki_is_debug
 
-let rex_ko = PCRE.compile "\\.k?o(?:\\.xz)?$"
-let rex_ko_extract = PCRE.compile "/([^/]+)\\.k?o(?:\\.xz)?$"
+let rex_ko = PCRE.compile "\\.k?o(?:\\.(?:xz|zst))?$"
+let rex_ko_extract = PCRE.compile "/([^/]+)\\.k?o(?:\\.(?:xz|zst))?$"
 
 let detect_kernels (g : G.guestfs) inspect family bootloader =
   (* What kernel/kernel-like packages are installed on the current guest? *)
@@ -203,7 +203,11 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
              let all_candidates = List.flatten (
                List.map (
                  fun f ->
-                   [ "/" ^ f ^ ".o"; "/" ^ f ^ ".ko"; "/" ^ f ^ ".ko.xz" ]
+                   [ "/" ^ f ^ ".o";
+                     "/" ^ f ^ ".ko";
+                     "/" ^ f ^ ".ko.xz";
+                     "/" ^ f ^ ".ko.zst";
+                   ]
                ) candidates
              ) in
              let candidate =
