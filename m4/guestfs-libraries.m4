@@ -23,6 +23,9 @@ PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.44])
 dnl And libnbd.
 PKG_CHECK_MODULES([LIBNBD], [libnbd])
 
+dnl Test if it's GNU or XSI strerror_r.
+AC_FUNC_STRERROR_R
+
 dnl Define a C symbol for the host CPU architecture.
 AC_DEFINE_UNQUOTED([host_cpu],["$host_cpu"],[Host architecture.])
 
