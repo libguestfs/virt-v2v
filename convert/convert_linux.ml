@@ -66,6 +66,34 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     | _ -> None
   in
 
+  let qga_svc_start_cmd family distro major =
+    match family, distro, major with
+    | `RHEL_family, ( "rhel" | "centos" | "scientificlinux" | "redhat-based" |
+                      "oraclelinux" ), 6 ->
+      (* https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c52 *)
+      Some "service qemu-ga start"
+
+    | `RHEL_family, _, _ ->
+      (* https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c52 *)
+      Some "systemctl start qemu-guest-agent"
+
+    | `ALT_family, _, _ ->
+      (* https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c45 *)
+      Some "systemctl start qemu-guest-agent"
+
+    | `SUSE_family, _, _ ->
+      (* https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c51 *)
+      None
+
+    | `Debian_family, _, _ ->
+      (* https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c42 *)
+      Some "service qemu-guest-agent start"
+
+    | _ ->
+      (* should never be called when "qga_pkg_of_family" returns None *)
+      assert false
+  in
+
   assert (inspect.i_package_format = "rpm" || inspect.i_package_format = "deb");
 
   (* Fail early if i_apps is empty.  Certain steps such as kernel
@@ -615,23 +643,19 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
                         \ \ rm -f %s\n\
                         fi\n" selinux_enforcing selinux_enforcing);
 
-            (* Start the agent now and at subsequent boots. The following
-             * commands should work on both sysvinit distros / distro versions
-             * (regardless of "/etc/rc.d/" vs. "/etc/init.d/" being the scheme
-             * in use) and systemd distros (via redirection to systemctl).
-             *
-             * On distros where the chkconfig command is redirected to
-             * systemctl, the chkconfig command is likely superfluous. That's
-             * because on systemd distros, the QGA package comes with such
-             * runtime dependencies / triggers that the presence of the
-             * virtio-serial port named "org.qemu.guest_agent.0" automatically
-             * starts the agent during (second and later) boots. However, even
-             * on such distros, the chkconfig command should do no harm.
+            (* On all the distro families covered by "qga_pkg_of_family" and
+             * "qga_svc_start_cmd", the QEMU guest agent service is always
+             * enabled by package installation for *subsequent* boots. Package
+             * installation may or may not enable the service for the current
+             * (i.e., first) boot, however, so try that here manually.
              *)
-            fbs "start qga"
-              (sprintf "#!/bin/sh\n\
-                        service %s start\n\
-                        chkconfig %s on\n" qga_pkg qga_pkg)
+            match qga_svc_start_cmd family inspect.i_distro inspect.i_major_version
+            with
+            | None -> ()
+            | Some start_cmd ->
+              fbs "start qga"
+                (sprintf "#!/bin/sh\n\
+                          %s\n" start_cmd)
           with
           | Guest_packages.Unknown_package_manager msg
           | Guest_packages.Unimplemented_package_manager msg ->
