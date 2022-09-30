@@ -731,8 +731,13 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     match kernel.ki_initrd with
     | None -> ()
     | Some initrd ->
-      (* Enable the basic virtio modules in the kernel. *)
-      (* Also forcibly include the "xts" module; see RHBZ#1658126. *)
+      (* Enable the basic virtio modules in the kernel.
+       *
+       * Also forcibly include the "xts" module; see RHBZ#1658126.
+       *
+       * Include the BOCHS DRM paravirt video driver; see RHBZ#2131123.  This
+       * driver is known under two names -- "bochs-drm" and "bochs".
+       *)
       let modules =
         let modules =
           (* The order of modules here is deliberately the same as the
@@ -743,7 +748,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
            *)
           List.filter (fun m -> List.mem m kernel.ki_modules)
                       [ "virtio"; "virtio_ring"; "virtio_blk";
-                        "virtio_scsi"; "virtio_net"; "virtio_pci"; "xts" ] in
+                        "virtio_scsi"; "virtio_net"; "virtio_pci"; "xts";
+                        "bochs-drm"; "bochs" ] in
         if modules <> [] then modules
         else
           (* Fallback copied from old virt-v2v.  XXX Why not "ide"? *)
