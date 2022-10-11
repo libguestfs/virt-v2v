@@ -64,7 +64,7 @@ AC_CHECK_PROG([VALGRIND],[valgrind],[valgrind],[no])
 AS_IF([test "x$VALGRIND" != "xno"],[
     # Substitute the whole valgrind command.
     # --read-inline-info=no is a temporary workaround for RHBZ#1662656.
-    VG='libtool --mode=execute $(VALGRIND) --vgdb=no --leak-check=full --show-leak-kinds=all --error-exitcode=119 --suppressions=$(abs_top_srcdir)/valgrind-suppressions --trace-children=no --child-silent-after-fork=yes --run-libc-freeres=no --num-callers=100 --read-inline-info=no'
+    VG='libtool --mode=execute $(VALGRIND) --vgdb=no --leak-check=full --error-exitcode=119 --suppressions=$(abs_top_srcdir)/valgrind-suppressions --trace-children=no --child-silent-after-fork=yes --run-libc-freeres=no --num-callers=100 --read-inline-info=no'
     ],[
     # No valgrind, so substitute VG with something that will break.
     VG=VALGRIND_IS_NOT_INSTALLED
