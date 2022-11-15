@@ -953,6 +953,15 @@ For more information, see L<https://bugzilla.redhat.com/1592061>
 
 =head2 Windows
 
+=head3 System disk on a Dynamic Disk is not supported
+
+If the Windows system disk (the drive containing C<\windows>) is
+located on a Dynamic Disk then it cannot be converted.  Data disks —
+that is, disks which are part of the guest but do not contain parts of
+the Windows operating system — may be Dynamic Disks.
+
+See L<https://bugzilla.redhat.com/2140548>.
+
 =head3 Windows E<ge> 8 Fast Startup is incompatible with virt-v2v
 
 Guests which use the Windows E<ge> 8 "Fast Startup" feature (or guests
