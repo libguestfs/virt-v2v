@@ -179,7 +179,7 @@ let rec main () =
     sprintf (f_"\
 %s: convert a guest to use KVM in-place
 
-Note this program modified the guest in-place with no backup.
+Note this program modifies the guest in-place with no backup.
 Normally you should use virt-v2v.
 
 virt-v2v -i libvirtxml guest-domain.xml
