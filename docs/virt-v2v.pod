@@ -21,6 +21,9 @@ There is also a companion front-end called L<virt-p2v(1)> which comes
 as an ISO, CD or PXE image that can be booted on physical machines to
 virtualize those machines (physical to virtual, or p2v).
 
+To estimate the disk space needed before conversion, see
+L<virt-v2v-inspector(1)>.
+
 For in-place conversion, there is a separate tool called
 L<virt-v2v-in-place(1)>.
 
@@ -1624,6 +1627,7 @@ L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-rhev/#c
 =head1 SEE ALSO
 
 L<virt-p2v(1)>,
+L<virt-v2v-inspector(1)>,
 L<virt-v2v-in-place(1)>,
 L<virt-customize(1)>,
 L<virt-df(1)>,

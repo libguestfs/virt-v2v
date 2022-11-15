@@ -146,6 +146,7 @@ AC_CONFIG_FILES([Makefile
                  gnulib/lib/Makefile
                  in-place/Makefile
                  input/Makefile
+                 inspector/Makefile
                  lib/Makefile
                  lib/config.ml
                  output/Makefile

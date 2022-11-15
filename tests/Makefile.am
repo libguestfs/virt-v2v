@@ -78,6 +78,7 @@ TESTS = \
 	test-v2v-i-disk.sh \
 	test-v2v-i-ova.sh \
 	test-v2v-in-place.sh \
+	test-v2v-inspector.sh \
 	test-v2v-mac.sh \
 	test-v2v-machine-readable.sh \
 	test-v2v-networks-and-bridges.sh \
@@ -235,6 +236,7 @@ EXTRA_DIST += \
 	test-v2v-i-vmx-6.vmx \
 	test-v2v-i-vmx-7.vmx \
 	test-v2v-in-place.sh \
+	test-v2v-inspector.sh \
 	test-v2v-it-vddk-io-query.sh \
 	test-v2v-machine-readable.sh \
 	test-v2v-mac-expected.xml \

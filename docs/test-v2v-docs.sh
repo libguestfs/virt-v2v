@@ -75,3 +75,12 @@ $srcdir/../podcheck.pl virt-v2v-in-place.pod virt-v2v-in-place \
 --oo,\
 --op,\
 --os
+
+$srcdir/../podcheck.pl virt-v2v-inspector.pod virt-v2v-inspector \
+  --path $srcdir/../common/options \
+  --ignore=\
+--ic,\
+--if,\
+--io,\
+--ip,\
+--it

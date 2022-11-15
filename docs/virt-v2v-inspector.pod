@@ -1,0 +1,260 @@
+=head1 NAME
+
+virt-v2v-inspector - Estimate disk space needed before virt-v2v conversion
+
+=head1 SYNOPSIS
+
+ virt-v2v-inspector [-i* options] guest [-O output.xml]
+
+=head1 DESCRIPTION
+
+Virt-v2v-inspector is a companion tool for L<virt-v2v(1)> which can be
+used before conversion to estimate the number of output disks and disk
+space that will be required to complete the virt-v2v conversion.  The
+common use for this is to preallocate target disks on management
+systems that need this (like Kubevirt).
+
+This manual page only documents the estimation feature, not all of the
+I<-i*> options which are the same as virt-v2v.  You should read
+L<virt-v2v(1)> first.
+
+=head2 Selecting the input guest
+
+You can run virt-v2v-inspector with the same I<-i*> options as
+virt-v2v.  (Don't use any I<-o*> options).  This will select the guest
+that you want to estimate.
+
+For example to estimate the space required for a guest in a stored
+local disk called F<filename.img> you could do:
+
+ virt-v2v-inspector -i disk filename.img
+
+=head2 Output
+
+The output from this tool is an XML document.
+
+=over 4
+
+=item *
+
+Fields which are annotated with an C<estimated='true'> attribute are
+estimated.  Virt-v2v cannot always know exactly the final size of some
+things, such as the exact real size of the output disk, since there
+might be small perturbations between runs.  Estimates are usually very
+close to the final values.
+
+=item *
+
+Numbers representing sizes are always given in bytes.
+
+=item *
+
+By default the output is written to stdout.  This is useful when using
+the program interactively.  However if you want to use this tool from
+another program it is better to send the output to a specific file
+using I<-O output.xml>
+
+=back
+
+ <?xml version='1.0' encoding='utf-8'?>
+ <v2v-inspection>
+   <program>virt-v2v-inspector</program>
+   <package>virt-v2v</package>
+   <version>2.1.9</version>
+
+The E<lt>programE<gt>, E<lt>packageE<gt> and E<lt>versionE<gt>
+elements refer to the current version of virt-v2v-inspector and are
+useful for debugging.  Make sure you use the same version of
+virt-v2v-inspector and virt-v2v.
+
+   <disks>
+     <disk index='0'>
+       <virtual-size>6442450944</virtual-size>
+       <allocated estimated='true'>1400897536</allocated>
+     </disk>
+     <disk index='1'>
+       <virtual-size>6442450944</virtual-size>
+       <allocated estimated='true'>45131520</allocated>
+     </disk>
+   </disks>
+
+The E<lt>disksE<gt> element lists information about each guest disk.
+The example virtual machine above has two disks.
+E<lt>virtual-sizeE<gt> describes the size of the disk as seen from
+inside the guest, while E<lt>allocatedE<gt> is an estimate of how much
+storage will be needed on the host after conversion.  This is assuming
+you use S<I<-oa sparse>> - see the notes below.
+
+   <operatingsystem>
+     <name>linux</name>
+     <distro>fedora</distro>
+     <osinfo>fedora32</osinfo>
+     <arch>x86_64</arch>
+     [...]
+   </operatingsystem>
+
+The E<lt>operatingsystemE<gt> element lists information about the
+guest operating system gleaned during conversion, in a manner similar
+to the L<virt-inspector(1)> tool from guestfs-tools.
+
+=head2 Output allocation mode and output format
+
+Virt-v2v supports selecting the output allocation mode (I<-oa> option)
+and output format (I<-of> option, eg. S<I<-of qcow2>>).  Since it is
+difficult to predict the effect of these options on the actual space
+occupied by the final image this tool does not account for them.
+
+As a rule of thumb:
+
+=over 4
+
+=item S<virt-v2v -oa preallocated>
+
+causes the disk images on the target to consume their full virtual
+size (excluding the effect of zero allocations will depends so much on
+the underlying storage that it is often hard even for experts to
+predict).
+
+=item S<virt-v2v -of qcow2>
+
+uses the QCOW2 format where supported which means that the apparent
+size of the file will be equal to its sparse size, but otherwise
+should not affect estimates very much.
+
+=back
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<--help>
+
+Display help.
+
+=item B<-O> F<output.xml>
+
+Write the output to a file called F<output.xml>.
+
+=item B<-O> -
+
+Write the output to stdout.  This is also the default if the I<-O>
+option is omitted.
+
+=item B<-v>
+
+=item B<--verbose>
+
+Enable verbose messages for debugging.
+
+=item B<-V>
+
+=item B<--version>
+
+Display version number and exit.
+
+=item B<-x>
+
+Enable tracing of libguestfs API calls.
+
+=item B<-i> ...
+
+=item B<-ic> ...
+
+=item B<-if> ...
+
+=item B<-io> ...
+
+=item B<-ip> ...
+
+=item B<-it> ...
+
+All of the I<-i*> options supported by virt-v2v and also supported by
+virt-v2v-inspector.
+
+=item B<-b> ...
+
+=item B<--bridge> ...
+
+=item B<--colors>
+
+=item B<--colours>
+
+=item B<--echo-keys>
+
+=item B<--key> ...
+
+=item B<--keys-from-stdin>
+
+=item B<--mac> ...
+
+=item B<--machine-readable>
+
+=item B<--machine-readable>=format
+
+=item B<-n> ...
+
+=item B<--network> ...
+
+=item B<-q>
+
+=item B<--quiet>
+
+=item B<--root> ...
+
+=item B<--wrap>
+
+These options work in the same way as the equivalent virt-v2v options.
+
+=back
+
+=head1 FILES
+
+Files used are the same as for virt-v2v.  See L<virt-v2v(1)/FILES>.
+
+=head1 ENVIRONMENT VARIABLES
+
+Environment variables used are the same as for virt-v2v.  See
+L<virt-v2v(1)/ENVIRONMENT VARIABLES>.
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>,
+L<virt-p2v(1)>,
+L<virt-inspector(1)>,
+L<guestfs(3)>,
+L<guestfish(1)>,
+L<qemu-img(1)>,
+L<nbdkit(1)>,
+L<http://libguestfs.org/>.
+
+=head1 AUTHORS
+
+Matthew Booth
+
+Cédric Bosdonnat
+
+Laszlo Ersek
+
+Tomáš Golembiovský
+
+Shahar Havivi
+
+Richard W.M. Jones
+
+Roman Kagan
+
+Mike Latimer
+
+Nir Soffer
+
+Pino Toscano
+
+Xiaodai Wang
+
+Ming Xie
+
+Tingting Zheng
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2022 Red Hat Inc.

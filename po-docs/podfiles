@@ -7,6 +7,7 @@ docs/virt-v2v-hacking.pod
 docs/virt-v2v-in-place.pod
 docs/virt-v2v-input-vmware.pod
 docs/virt-v2v-input-xen.pod
+docs/virt-v2v-inspector.pod
 docs/virt-v2v-output-local.pod
 docs/virt-v2v-output-openstack.pod
 docs/virt-v2v-output-rhv.pod

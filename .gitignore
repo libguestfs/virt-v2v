@@ -51,6 +51,7 @@ Makefile.in
 /docs/virt-v2v-in-place.1
 /docs/virt-v2v-input-vmware.1
 /docs/virt-v2v-input-xen.1
+/docs/virt-v2v-inspector.1
 /docs/virt-v2v-output-local.1
 /docs/virt-v2v-output-openstack.1
 /docs/virt-v2v-output-rhv.1
@@ -62,6 +63,8 @@ Makefile.in
 /in-place/.depend
 /in-place/virt-v2v-in-place
 /input/.depend
+/inspector/.depend
+/inspector/virt-v2v-inspector
 /installcheck.sh
 /install-sh
 /libtool
