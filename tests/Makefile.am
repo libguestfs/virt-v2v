@@ -147,14 +147,14 @@ real_guests_scripts = \
 	test-v2v-conversion-of-debian-7.sh \
 	test-v2v-conversion-of-debian-8.sh \
 	test-v2v-conversion-of-debian-9.sh \
-	test-v2v-conversion-of-fedora-35.sh \
+	test-v2v-conversion-of-fedora-37.sh \
 	test-v2v-conversion-of-opensuse-13.1.sh \
 	test-v2v-conversion-of-opensuse-13.2.sh \
 	test-v2v-conversion-of-opensuse-42.1.sh \
 	test-v2v-conversion-of-rhel-5.11.sh \
 	test-v2v-conversion-of-rhel-6.10.sh \
 	test-v2v-conversion-of-rhel-7.9.sh \
-	test-v2v-conversion-of-rhel-8.4.sh \
+	test-v2v-conversion-of-rhel-8.7.sh \
 	test-v2v-conversion-of-ubuntu-16.04.sh \
 	test-v2v-conversion-of-ubuntu-18.04.sh \
 	test-v2v-conversion-of-ubuntu-20.04.sh \
