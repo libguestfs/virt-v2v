@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
-"cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-07-05 13:48+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2022-08-01 14:00+0100\n"
 "PO-Revision-Date: 2022-08-01 08:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -47,7 +47,7 @@ msgstr "%s (проігноровано)"
 msgid "%s did not return any output"
 msgstr "%s не повернуто жодних даних"
 
-#: output/output_rhv.ml:250
+#: output/output_rhv.ml:257
 msgid ""
 "%s does not exist or is not a directory.\n"
 "\n"
@@ -409,7 +409,7 @@ msgstr "-o vdsm: невідомий параметр виведення — «-o
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr "-o vdsm: невідомий рівень vdsm-compat «%s»"
 
-#: output/output.ml:96
+#: output/output.ml:99
 msgid "-oo compressed option requires nbdcopy >= 1.13.5"
 msgstr "використання параметра -oo compressed потребує nbdcopy >= 1.13.5"
 
@@ -1360,7 +1360,7 @@ msgstr "не вдалося обробити значення rasd:HostResource 
 msgid "could not parse ovf:Name from OVF document"
 msgstr "не вдалося обробити значення ovf:Name з документа OVF"
 
-#: output/output_rhv.ml:228
+#: output/output_rhv.ml:235
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt or RHV-M %s?  The original error is: %s"
@@ -1718,7 +1718,7 @@ msgstr "у %s виявлено декілька файлів .ovf"
 msgid "more than value for the key ‘%s’"
 msgstr "декілька значень для ключа «%s»"
 
-#: output/output_rhv.ml:205
+#: output/output_rhv.ml:212
 msgid ""
 "mount command failed, see earlier errors.\n"
 "\n"
@@ -1816,7 +1816,7 @@ msgstr ""
 "Не встановлено nbdkit або програма не працює. Програма потрібна для "
 "використання «-i libvirt|libvirtxml»."
 
-#: output/output.ml:76
+#: output/output.ml:79
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
@@ -1880,7 +1880,7 @@ msgstr "nbdkit-cow-filter не встановлено або програма н
 msgid "nbdkit-curl-plugin is not installed"
 msgstr "Додаток nbdkit-curl не встановлено"
 
-#: output/output.ml:78 input/input_libvirt.ml:69 input/input_disk.ml:94
+#: output/output.ml:81 input/input_libvirt.ml:69 input/input_disk.ml:94
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr "nbdkit-file-plugin не встановлено або програма не працює"
 
@@ -2096,8 +2096,8 @@ msgid ""
 msgstr ""
 "вибачте, «%s» із засобом керування пакунками «%s» ще не реалізовано.\n"
 "\n"
-"Ви можете обійти цю проблему, скориставшись параметром «--run*» або "
-"«--firstboot*» (описано у підручнику щодо virt-customize(1))."
+"Ви можете обійти цю проблему, скориставшись параметром «--run*» або «--"
+"firstboot*» (описано у підручнику щодо virt-customize(1))."
 
 #: lib/utils.ml:200
 msgid ""
@@ -2217,7 +2217,7 @@ msgid ""
 msgstr ""
 "програма «%s» недоступна. Ця програма потрібна для обміну даними з OpenStack."
 
-#: output/output_rhv.ml:242
+#: output/output_rhv.ml:249
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
@@ -2225,7 +2225,7 @@ msgstr ""
 "у %s (%s) є декілька UUID. Цього не повинно було статися. Можливо, це "
 "пов’язано із вадою у virt-v2v або OVirt."
 
-#: output/output_rhv.ml:240
+#: output/output_rhv.ml:247
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr "у %s (%s) немає UUID. Це справді OVirt чи RHV-M %s?"
 
@@ -2469,7 +2469,7 @@ msgstr ""
 "«-io vddk-libdir=%s» не вказує на каталог. Див. підручник з virt-v2v-input-"
 "vmware(1)."
 
-#: output/output.ml:84
+#: output/output.ml:87
 msgid ""
 "‘-oo compressed’ is only allowed when the output format is a local qcow2-"
 "format file, i.e. ‘-of qcow2’"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.3\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-07-05 13:48+0100\n"
+"POT-Creation-Date: 2022-08-01 14:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "%s did not return any output"
 msgstr ""
 
-#: output/output_rhv.ml:250
+#: output/output_rhv.ml:257
 msgid ""
 "%s does not exist or is not a directory.\n"
 "\n"
@@ -317,7 +317,7 @@ msgstr ""
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr ""
 
-#: output/output.ml:96
+#: output/output.ml:99
 msgid "-oo compressed option requires nbdcopy >= 1.13.5"
 msgstr ""
 
@@ -1120,7 +1120,7 @@ msgstr ""
 msgid "could not parse ovf:Name from OVF document"
 msgstr ""
 
-#: output/output_rhv.ml:228
+#: output/output_rhv.ml:235
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt or RHV-M %s?  The original error is: %s"
@@ -1430,7 +1430,7 @@ msgstr ""
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
-#: output/output_rhv.ml:205
+#: output/output_rhv.ml:212
 msgid ""
 "mount command failed, see earlier errors.\n"
 "\n"
@@ -1493,7 +1493,7 @@ msgid ""
 "libvirtxml’."
 msgstr ""
 
-#: output/output.ml:76
+#: output/output.ml:79
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
@@ -1542,7 +1542,7 @@ msgstr ""
 msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
-#: output/output.ml:78 input/input_libvirt.ml:69 input/input_disk.ml:94
+#: output/output.ml:81 input/input_libvirt.ml:69 input/input_disk.ml:94
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
@@ -1822,13 +1822,13 @@ msgid ""
 "OpenStack."
 msgstr ""
 
-#: output/output_rhv.ml:242
+#: output/output_rhv.ml:249
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
 msgstr ""
 
-#: output/output_rhv.ml:240
+#: output/output_rhv.ml:247
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr ""
 
@@ -2020,7 +2020,7 @@ msgid ""
 "vmware(1) manual."
 msgstr ""
 
-#: output/output.ml:84
+#: output/output.ml:87
 msgid ""
 "‘-oo compressed’ is only allowed when the output format is a local qcow2-"
 "format file, i.e. ‘-of qcow2’"
