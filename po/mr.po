@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-08-01 14:00+0100\n"
+"POT-Creation-Date: 2022-11-26 15:26+0000\n"
 "PO-Revision-Date: 2015-02-21 10:51+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/libguestfs/"
@@ -54,6 +54,8 @@ msgid ""
 "this out through the RHV-M user interface."
 msgstr ""
 
+#. inspector/inspector.ml:147
+#. inspector/inspector.ml:40
 #. in-place/in_place.ml:143
 #. in-place/in_place.ml:39
 #: v2v/v2v.ml:193 v2v/v2v.ml:179 v2v/v2v.ml:159 v2v/v2v.ml:44
@@ -101,7 +103,7 @@ msgstr ""
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
-"Note this program modified the guest in-place with no backup.\n"
+"Note this program modifies the guest in-place with no backup.\n"
 "Normally you should use virt-v2v.\n"
 "\n"
 "virt-v2v -i libvirtxml guest-domain.xml\n"
@@ -114,6 +116,16 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:172
 msgid "%s: error: %s"
+msgstr ""
+
+#: inspector/inspector.ml:185
+msgid ""
+"%s: estimate disk space needed before virt-v2v conversion\n"
+"\n"
+"virt-v2v-inspector -i disk disk.img [-O output.xml]\n"
+"\n"
+"A short summary of the options is given below.  For detailed help please\n"
+"read the man page virt-v2v-inspector(1).\n"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:717
@@ -137,7 +149,7 @@ msgstr ""
 msgid "'CMD+ARGS'"
 msgstr ""
 
-#: v2v/v2v.ml:139 in-place/in_place.ml:120
+#: v2v/v2v.ml:139 inspector/inspector.ml:127 in-place/in_place.ml:120
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 
@@ -491,7 +503,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:608 in-place/in_place.ml:341
+#: v2v/v2v.ml:608 inspector/inspector.ml:358 in-place/in_place.ml:341
 msgid "Finishing off"
 msgstr ""
 
@@ -499,7 +511,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:275 in-place/in_place.ml:174
+#: v2v/v2v.ml:275 inspector/inspector.ml:178 in-place/in_place.ml:174
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -519,7 +531,7 @@ msgstr ""
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: v2v/v2v.ml:237 in-place/in_place.ml:162
+#: v2v/v2v.ml:237 inspector/inspector.ml:166 in-place/in_place.ml:162
 msgid "Input format"
 msgstr ""
 
@@ -546,7 +558,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:243
+#: v2v/v2v.ml:243 inspector/inspector.ml:172
 msgid "Input transport"
 msgstr ""
 
@@ -554,7 +566,7 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/v2v.ml:235 in-place/in_place.ml:160
+#: v2v/v2v.ml:235 inspector/inspector.ml:164 in-place/in_place.ml:160
 msgid "Libvirt URI"
 msgstr ""
 
@@ -562,15 +574,15 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr ""
 
-#: v2v/v2v.ml:247 in-place/in_place.ml:168
+#: v2v/v2v.ml:247 inspector/inspector.ml:174 in-place/in_place.ml:168
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:229 in-place/in_place.ml:156
+#: v2v/v2v.ml:229 inspector/inspector.ml:160 in-place/in_place.ml:156
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:249 in-place/in_place.ml:170
+#: v2v/v2v.ml:249 inspector/inspector.ml:176 in-place/in_place.ml:170
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -595,7 +607,7 @@ msgstr ""
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:253
+#: common/mlcustomize/firstboot.ml:254
 msgid ""
 "One of rhsrvany.exe or pvvxsvc.exe is missing in %s.  One of them is "
 "required in order to install Windows firstboot scripts.  You can get one by "
@@ -823,11 +835,11 @@ msgstr ""
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: v2v/v2v.ml:233 in-place/in_place.ml:158
+#: v2v/v2v.ml:233 inspector/inspector.ml:162 in-place/in_place.ml:158
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:239 in-place/in_place.ml:164
+#: v2v/v2v.ml:239 inspector/inspector.ml:168 in-place/in_place.ml:164
 msgid "Set option for input mode"
 msgstr ""
 
@@ -871,6 +883,10 @@ msgstr ""
 msgid "Set the hostname"
 msgstr ""
 
+#: inspector/inspector.ml:180
+msgid "Set the output filename"
+msgstr ""
+
 #: common/mlcustomize/customize_cmdline.ml:313
 msgid "Set user password"
 msgstr ""
@@ -879,7 +895,7 @@ msgstr ""
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:531 in-place/in_place.ml:307
+#: v2v/v2v.ml:531 inspector/inspector.ml:334 in-place/in_place.ml:307
 msgid "Setting up the source: %s"
 msgstr ""
 
@@ -963,7 +979,7 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/v2v.ml:241 in-place/in_place.ml:166
+#: v2v/v2v.ml:241 inspector/inspector.ml:170 in-place/in_place.ml:166
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
@@ -1027,7 +1043,7 @@ msgstr ""
 msgid "cannot find libvirt volume ‘%s’: %s"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:235
+#: common/mlcustomize/firstboot.ml:236
 msgid ""
 "cannot finish firstboot installation by running ‘%s’ because host cpu (%s) "
 "and guest arch (%s) are not compatible.  The firstboot service may not run "
@@ -1038,15 +1054,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: v2v/v2v.ml:102 in-place/in_place.ml:83
+#: v2v/v2v.ml:102 inspector/inspector.ml:90 in-place/in_place.ml:83
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:126 in-place/in_place.ml:107
+#: v2v/v2v.ml:126 inspector/inspector.ml:114 in-place/in_place.ml:107
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:137 in-place/in_place.ml:118
+#: v2v/v2v.ml:137 inspector/inspector.ml:125 in-place/in_place.ml:118
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
@@ -1100,15 +1116,16 @@ msgid ""
 "%s’ yourself instead."
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:232
+#: common/mlcustomize/firstboot.ml:233
 msgid ""
 "could not finish firstboot installation by running ‘%s’ because the command "
 "failed: %s"
 msgstr ""
 
+#. input/input_vddk.ml:122
 #. input/input_vcenter_https.ml:91
 #. in-place/in_place.ml:257
-#: v2v/v2v.ml:421 input/input_xen_ssh.ml:69 input/input_vddk.ml:122
+#: v2v/v2v.ml:421 inspector/inspector.ml:263 input/input_xen_ssh.ml:69
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1275,11 +1292,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:165
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:370
+#: common/mlcustomize/firstboot.ml:371
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
@@ -1318,7 +1335,7 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#: v2v/v2v.ml:627 in-place/in_place.ml:360
+#: v2v/v2v.ml:627 inspector/inspector.ml:377 in-place/in_place.ml:360
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1343,15 +1360,15 @@ msgstr ""
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
-#: v2v/v2v.ml:111 in-place/in_place.ml:92
+#: v2v/v2v.ml:111 inspector/inspector.ml:99 in-place/in_place.ml:92
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:95 in-place/in_place.ml:76
+#: v2v/v2v.ml:95 inspector/inspector.ml:83 in-place/in_place.ml:76
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:87 in-place/in_place.ml:68
+#: v2v/v2v.ml:87 inspector/inspector.ml:75 in-place/in_place.ml:68
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -1600,7 +1617,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: v2v/v2v.ml:451
+#: v2v/v2v.ml:451 inspector/inspector.ml:293
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -1870,11 +1887,11 @@ msgstr ""
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:153 in-place/in_place.ml:134
+#: v2v/v2v.ml:153 inspector/inspector.ml:141 in-place/in_place.ml:134
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:187 in-place/in_place.ml:151
+#: v2v/v2v.ml:187 inspector/inspector.ml:155 in-place/in_place.ml:151
 msgid "unknown -i option: %s"
 msgstr ""
 
@@ -1898,7 +1915,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:358
+#: v2v/v2v.ml:358 inspector/inspector.ml:222
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
@@ -2067,19 +2084,19 @@ msgstr ""
 msgid "%s: line %d: error parsing configuration file: %s"
 msgstr ""
 
-#: common/options/decrypt.c:48
+#: common/options/decrypt.c:52
 #, c-format
 msgid "string size overflow"
 msgstr ""
 
-#: common/options/decrypt.c:166
+#: common/options/decrypt.c:170
 #, c-format
 msgid ""
 "'clevis_luks_unlock', needed for decrypting %s, is unavailable in this "
 "libguestfs version"
 msgstr ""
 
-#: common/options/decrypt.c:180
+#: common/options/decrypt.c:184
 #, c-format
 msgid ""
 "could not find key to open LUKS encrypted %s.\n"
