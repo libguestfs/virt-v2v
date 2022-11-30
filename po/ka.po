@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2022-08-01 14:00+0100\n"
-"PO-Revision-Date: 2022-07-31 07:19+0000\n"
+"PO-Revision-Date: 2022-11-29 17:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: input/input_ova.ml:134 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -2131,7 +2131,7 @@ msgstr ""
 #: common/options/inspect.c:178
 #, c-format
 msgid "Operating system: %s\n"
-msgstr ""
+msgstr "ოპერაციული სისტემა: %s\n"
 
 #: common/options/inspect.c:196
 #, c-format
@@ -2146,7 +2146,7 @@ msgstr ""
 #: common/options/keys.c:144
 #, c-format
 msgid "size_t overflow"
-msgstr ""
+msgstr "size_t -ის გადავსება"
 
 #: common/options/keys.c:187
 #, c-format
