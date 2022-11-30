@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2022-07-05 13:48+0100\n"
-"PO-Revision-Date: 2021-05-02 19:02+0000\n"
+"PO-Revision-Date: 2022-08-07 07:19+0000\n"
 "Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6.1\n"
+"X-Generator: Weblate 4.13\n"
 
 #: input/input_ova.ml:134 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -387,7 +387,7 @@ msgstr "Muuta tiedoston käyttöoikeuksia"
 
 #: common/mlcustomize/customize_cmdline.ml:474
 msgid "Compatibility option doing nothing"
-msgstr ""
+msgstr "Yhteensopivuusvaihtoehto, ei tee mitään"
 
 #: v2v/v2v.ml:231
 msgid "Compress output file (-of qcow2 only)"
@@ -1742,10 +1742,8 @@ msgid "subprocess exited with non-zero error code %d"
 msgstr ""
 
 #: output/changeuid.ml:60
-#, fuzzy
-#| msgid "external command ‘%s’ stopped by signal %d"
 msgid "subprocess signalled or stopped by signal %d"
-msgstr "signaalin %d pyrähtämänä ulkoinen komento '%s'"
+msgstr "aliprosessi, joka on signaloitu tai pysäytetty signaalilla %d"
 
 #: v2v/v2v.ml:211
 msgid "the --no-trim option has been removed and now does nothing"
@@ -1873,10 +1871,8 @@ msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
 #: v2v/v2v.ml:153 in-place/in_place.ml:134
-#, fuzzy
-#| msgid "unknown -o option: %s"
 msgid "unknown --root option: %s"
-msgstr "tuntematon -o vaihtoehto: %s"
+msgstr "tuntematon --root vaihtoehto: %s"
 
 #: v2v/v2v.ml:187 in-place/in_place.ml:151
 msgid "unknown -i option: %s"
