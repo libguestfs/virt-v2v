@@ -325,9 +325,15 @@ and virtio_iso_path_matches_guest_os path inspect =
       else if pathelem "2k12r2" || pathelem "win2012r2" then
         (6, 3, not_client, any_osinfo)
       else if pathelem "w10" || pathelem "win10" then
-        (10, 0, is_client, any_osinfo)
+        (10, 0, is_client, ((=) "win10"))
+      else if pathelem "w11" || pathelem "win11" then
+        (10, 0, is_client, ((=) "win11"))
       else if pathelem "2k16" || pathelem "win2016" then
-        (10, 0, not_client, any_osinfo)
+        (10, 0, not_client, ((=) "win2k16"))
+      else if pathelem "2k19" || pathelem "win2019" then
+        (10, 0, not_client, ((=) "win2k19"))
+      else if pathelem "2k22" || pathelem "win2022" then
+        (10, 0, not_client, ((=) "win2k22"))
       else
         raise Not_found in
 
