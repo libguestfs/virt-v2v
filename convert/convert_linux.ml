@@ -1327,12 +1327,6 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
         info (f_"Can't fix UEFI bootloader. VM may not boot.")
       in
 
-      let get_uefi_arch_suffix = function
-        | "x86_64" -> Some "X64"
-        | "i386" -> Some "X32"
-        | _ -> None
-      in
-
       match get_uefi_arch_suffix inspect.i_arch with
       | None -> cant_fix_uefi ()
       | Some suffix -> (

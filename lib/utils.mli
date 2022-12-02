@@ -98,3 +98,8 @@ val get_disk_allocated : dir:string -> disknr:int -> int64 option
     image, according to the "base:allocation" metadata context. If the context
     is not supported by the NBD server behind the socket, the function returns
     None. *)
+
+val get_uefi_arch_suffix : string -> string option
+(** [get_uefi_arch_suffix arch] maps [arch] from [inspect.i_arch] representation
+    to UEFI spec representation.  If a mapping cannot be found, [None] is
+    returned. *)

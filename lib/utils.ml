@@ -258,3 +258,8 @@ let get_disk_allocated ~dir ~disknr =
            Some !allocated
          ) else None
        )
+
+let get_uefi_arch_suffix = function
+  | "x86_64" -> Some "X64"
+  | "i386" -> Some "X32"
+  | _ -> None
