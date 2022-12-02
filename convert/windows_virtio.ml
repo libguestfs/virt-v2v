@@ -50,9 +50,9 @@ let rec install_drivers ((g, _) as reg) inspect =
   g#mkdir_p driverdir;
 
   if not (copy_drivers g inspect driverdir) then (
-      warning (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s).  virt-v2v looks for drivers in %s\n\nThe guest will be configured to use slower emulated devices.")
+      warning (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s %s).  virt-v2v looks for drivers in %s\n\nThe guest will be configured to use slower emulated devices.")
               inspect.i_major_version inspect.i_minor_version inspect.i_arch
-              inspect.i_product_variant virtio_win;
+              inspect.i_product_variant inspect.i_osinfo virtio_win;
       (IDE, RTL8139, false, false, false, false)
   )
   else (
@@ -279,7 +279,8 @@ and copy_from_virtio_win g inspect srcdir destdir filter missing =
  *)
 and virtio_iso_path_matches_guest_os path inspect =
   let { i_major_version = os_major; i_minor_version = os_minor;
-        i_arch = arch; i_product_variant = os_variant } = inspect in
+        i_arch = arch; i_product_variant = os_variant;
+        i_osinfo = osinfo } = inspect in
   try
     (* Lowercased path, since the ISO may contain upper or lowercase path
      * elements.
@@ -300,37 +301,39 @@ and virtio_iso_path_matches_guest_os path inspect =
 
     let is_client os_variant = os_variant = "Client"
     and not_client os_variant = os_variant <> "Client"
-    and any_variant os_variant = true in
-    let p_os_major, p_os_minor, match_os_variant =
+    and any_variant os_variant = true
+    and any_osinfo osinfo = true in
+    let p_os_major, p_os_minor, match_os_variant, match_osinfo =
       if pathelem "xp" || pathelem "winxp" then
-        (5, 1, any_variant)
+        (5, 1, any_variant, any_osinfo)
       else if pathelem "2k3" || pathelem "win2003" then
-        (5, 2, any_variant)
+        (5, 2, any_variant, any_osinfo)
       else if pathelem "vista" then
-        (6, 0, is_client)
+        (6, 0, is_client, any_osinfo)
       else if pathelem "2k8" || pathelem "win2008" then
-        (6, 0, not_client)
+        (6, 0, not_client, any_osinfo)
       else if pathelem "w7" || pathelem "win7" then
-        (6, 1, is_client)
+        (6, 1, is_client, any_osinfo)
       else if pathelem "2k8r2" || pathelem "win2008r2" then
-        (6, 1, not_client)
+        (6, 1, not_client, any_osinfo)
       else if pathelem "w8" || pathelem "win8" then
-        (6, 2, is_client)
+        (6, 2, is_client, any_osinfo)
       else if pathelem "2k12" || pathelem "win2012" then
-        (6, 2, not_client)
+        (6, 2, not_client, any_osinfo)
       else if pathelem "w8.1" || pathelem "win8.1" then
-        (6, 3, is_client)
+        (6, 3, is_client, any_osinfo)
       else if pathelem "2k12r2" || pathelem "win2012r2" then
-        (6, 3, not_client)
+        (6, 3, not_client, any_osinfo)
       else if pathelem "w10" || pathelem "win10" then
-        (10, 0, is_client)
+        (10, 0, is_client, any_osinfo)
       else if pathelem "2k16" || pathelem "win2016" then
-        (10, 0, not_client)
+        (10, 0, not_client, any_osinfo)
       else
         raise Not_found in
 
     arch = p_arch && os_major = p_os_major && os_minor = p_os_minor &&
-      match_os_variant os_variant
+    match_os_variant os_variant &&
+    match_osinfo osinfo
 
   with Not_found -> false
 
