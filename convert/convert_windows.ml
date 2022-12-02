@@ -836,17 +836,42 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
         );
       with
         Not_found -> ()
+
+    and fix_win_uefi_fallback esp_path uefi_arch =
+      (* [esp_path] is on NTFS, and therefore it is considered case-sensitive;
+       * refer to
+       * <https://libguestfs.org/guestfs.3.html#guestfs_case_sensitive_path>.
+       * However, the EFI system partition mounted under [esp_path] is FAT32 per
+       * UEFI spec, and the Linux vfat driver in the libguestfs appliance treats
+       * pathnames case-insensitively. Therefore, we're free to use any case in
+       * the ESP-relative pathnames below.
+       *)
+      let bootmgfw = sprintf "%s/efi/microsoft/boot/bootmgfw.efi" esp_path in
+      if g#is_file bootmgfw then
+        let bootdir = sprintf "%s/efi/boot" esp_path in
+        let fallback = sprintf "%s/boot%s.efi" bootdir uefi_arch in
+        if not (g#is_file fallback) || not (g#equal fallback bootmgfw) then (
+          info (f_"Fixing UEFI bootloader.");
+          g#rm_rf bootdir;
+          g#mkdir_p bootdir;
+          g#cp_a bootmgfw fallback
+        )
     in
 
     match inspect.i_firmware with
     | I_BIOS -> ()
     | I_UEFI esp_list ->
       let esp_temp_path = g#mkdtemp "/Windows/Temp/ESP_XXXXXX" in
+      let uefi_arch = get_uefi_arch_suffix inspect.i_arch in
 
       List.iter (
         fun dev_path ->
         g#mount dev_path esp_temp_path;
         fix_win_uefi_bcd esp_temp_path;
+        (match uefi_arch with
+         | Some uefi_arch -> fix_win_uefi_fallback esp_temp_path uefi_arch
+         | None -> ()
+        );
         g#umount esp_temp_path;
       ) esp_list;
 
