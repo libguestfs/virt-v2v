@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2022-11-26 15:26+0000\n"
-"PO-Revision-Date: 2022-11-30 21:19+0000\n"
+"PO-Revision-Date: 2022-12-06 18:19+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -62,7 +62,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: common/mltools/tools_utils.ml:233
 msgid "%s: %s: %s"
@@ -433,7 +433,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:289
 msgid "DIR"
-msgstr ""
+msgstr "საქაღალდე"
 
 #: common/mlcustomize/customize_cmdline.ml:222
 msgid "Delete a file or directory"
@@ -445,7 +445,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
-msgstr ""
+msgstr "ვერსიის ჩვენება და გამოსვლა"
 
 #: common/mlcustomize/customize_cmdline.ml:468
 msgid "Do not relabel files with correct SELinux labels"
@@ -479,7 +479,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:341
 #: common/mlcustomize/customize_cmdline.ml:406
 msgid "FILE"
-msgstr ""
+msgstr "ფაილი"
 
 #: common/mlcustomize/customize_cmdline.ml:441
 msgid "FILE:CONTENT"
@@ -499,7 +499,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:189
 msgid "FILENAME"
-msgstr ""
+msgstr "ფაილის სახელი"
 
 #: v2v/v2v.ml:608 inspector/inspector.ml:358 in-place/in_place.ml:341
 msgid "Finishing off"
@@ -507,7 +507,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:261
 msgid "HOSTNAME"
-msgstr ""
+msgstr "ჰოსტის სახელი"
 
 #: v2v/v2v.ml:275 inspector/inspector.ml:178 in-place/in_place.ml:174
 msgid "How to choose root filesystem"
@@ -566,7 +566,7 @@ msgstr ""
 
 #: v2v/v2v.ml:235 inspector/inspector.ml:164 in-place/in_place.ml:160
 msgid "Libvirt URI"
-msgstr ""
+msgstr "Libvirt-ის URI"
 
 #: common/mltools/tools_utils.ml:426
 msgid "Make output machine readable"
@@ -743,7 +743,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:238
 #: common/mlcustomize/customize_cmdline.ml:329
 msgid "SCRIPT"
-msgstr ""
+msgstr "სკრიპტი"
 
 #. common/mlcustomize/customize_cmdline.ml:348
 #. common/mlcustomize/customize_cmdline.ml:319
@@ -959,7 +959,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:418
 msgid "Uninstall package(s)"
-msgstr ""
+msgstr "პაკეტების წაშლა"
 
 #: common/mlcustomize/customize_cmdline.ml:371
 msgid "Unregister using subscription-manager"
@@ -1261,7 +1261,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:239
 msgid "failure: %s"
-msgstr ""
+msgstr "შეცდომა: %s"
 
 #: input/input_ova.ml:133
 msgid "file ‘%s’ not found in the ova"
