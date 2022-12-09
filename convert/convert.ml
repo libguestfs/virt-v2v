@@ -228,7 +228,7 @@ and do_convert g source inspect keep_serial_console interfaces =
     | { i_type = "linux";
         i_distro = ("fedora"
                     | "rhel" | "centos" | "scientificlinux" | "redhat-based"
-                    | "oraclelinux"
+                    | "oraclelinux" | "rocky"
                     | "sles" | "suse-based" | "opensuse"
                     | "altlinux"
                     | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } ->
