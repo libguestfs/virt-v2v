@@ -46,6 +46,7 @@ input/parse_vmx.ml
 input/vCenter.ml
 inspector/inspector.ml
 lib/DOM.ml
+lib/YAML.ml
 lib/create_ovf.ml
 lib/libvirt_utils.ml
 lib/nbdkit.ml
