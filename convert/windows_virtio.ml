@@ -44,7 +44,7 @@ let viostor_modern_pciid = "VEN_1AF4&DEV_1042&SUBSYS_11001AF4&REV_01"
 let vioscsi_legacy_pciid = "VEN_1AF4&DEV_1004&SUBSYS_00081AF4&REV_00"
 let vioscsi_modern_pciid = "VEN_1AF4&DEV_1048&SUBSYS_11001AF4&REV_01"
 
-let rec install_drivers ((g, _) as reg) inspect =
+let rec install_drivers ((g, _) as reg : Registry.t) inspect =
   (* Copy the virtio drivers to the guest. *)
   let driverdir = sprintf "%s/Drivers/VirtIO" inspect.i_windows_systemroot in
   g#mkdir_p driverdir;
@@ -102,6 +102,23 @@ let rec install_drivers ((g, _) as reg) inspect =
       )
       else
         Virtio_net in
+
+    (* The "fwcfg" driver binds the fw_cfg device for real, and provides three
+     * files -- ".cat", ".inf", ".sys".  (Possibly ".pdb" too.)
+     *
+     * The "qemufwcfg" driver is only a stub driver; it placates Device Manager
+     * (hides the "unknown device" question mark) but does not actually drive
+     * the fw_cfg device.  It provides two files only -- ".cat", ".inf".
+     *
+     * These drivers conflict with each other (RHBZ#2151752).  If we've copied
+     * both (either from libosinfo of virtio-win), let "fwcfg" take priority:
+     * remove "qemufwcfg".
+     *)
+    if g#exists (driverdir // "fwcfg.inf") &&
+       g#exists (driverdir // "qemufwcfg.inf") then (
+      debug "windows: skipping qemufwcfg stub driver in favor of fwcfg driver";
+      Array.iter g#rm (g#glob_expand (driverdir // "qemufwcfg.*"))
+    );
 
     (* Did we install the miscellaneous drivers? *)
     let virtio_rng_supported = g#exists (driverdir // "viorng.inf") in
