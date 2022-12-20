@@ -446,12 +446,23 @@ let parse_libvirt_xml ?conn xml =
     done;
     List.rev !nics in
 
-  (* Firmware. *)
+  (* Firmware.
+   * If "/domain/os" node doesn't contain "firmware" attribute (automatic
+   * firmware), we look for the presence of "pflash" in
+   * "/domain/os/loader/@type" attribute (manual firmware), with the latter
+   * indicating the UEFI firmware.
+   * See https://libvirt.org/formatdomain.html#bios-bootloader
+   *)
   let firmware =
     match xpath_string "/domain/os/@firmware" with
     | Some "bios" -> BIOS
     | Some "efi" -> UEFI
-    | None | Some _ -> UnknownFirmware in
+    | Some _ -> UnknownFirmware
+    | None -> (
+        match xpath_string "/domain/os/loader/@type" with
+        | Some "pflash" -> UEFI
+        | _ -> UnknownFirmware
+      ) in
 
   (* Check for hostdev devices. (RHBZ#1472719) *)
   let () =
