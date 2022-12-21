@@ -225,26 +225,30 @@ and list_applications g root = function
  * Otherwise, [BIOS] is returned.
  *)
 and get_firmware_bootable_device g =
-  let rec uefi_ESP_guid = "C12A7328-F81F-11D2-BA4B-00A0C93EC93B"
-  and is_uefi_ESP dev part =
-    let partnum = g#part_to_partnum part in
-    g#part_get_gpt_type dev partnum = uefi_ESP_guid
-  and parttype_is_gpt dev =
+  let parttype_is_gpt dev =
     try g#part_get_parttype dev = "gpt"
     with G.Error msg as exn ->
          (* If it's _not_ "unrecognised disk label" then re-raise it. *)
          if g#last_errno () <> G.Errno.errno_EINVAL then raise exn;
          debug "%s (ignored)" msg;
          false
-  and is_uefi_bootable_part part =
+  in
+  let accumulate_partition esp_parts part =
     let dev = g#part_to_dev part in
-    parttype_is_gpt dev && is_uefi_ESP dev part
+    if parttype_is_gpt dev then
+      let partnum = g#part_to_partnum part in
+      let part_type_guid = g#part_get_gpt_type dev partnum in
+      match part_type_guid with
+      (* EFI system partition *)
+      | "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" -> part :: esp_parts
+      | _ -> esp_parts
+    else esp_parts
   in
 
-  let partitions = Array.to_list (g#list_partitions ()) in
-  let partitions = List.filter is_uefi_bootable_part partitions in
+  let esp_partitions =
+    Array.fold_left accumulate_partition [] (g#list_partitions ()) in
 
-  match partitions with
+  match esp_partitions with
   | [] -> I_BIOS
   | partitions -> I_UEFI partitions
 
