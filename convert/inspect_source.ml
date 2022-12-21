@@ -219,6 +219,9 @@ and list_applications g root = function
 (* See if this guest could use UEFI to boot.  It should use GPT and
  * it should have an EFI System Partition (ESP).
  *
+ * If the guest has BIOS boot partition present, this is likely a BIOS+GPT
+ * setup, so [BIOS] is returned.
+ *
  * If it has ESP(s), then [UEFI devs] is returned where [devs] is the
  * list of at least one ESP.
  *
@@ -233,24 +236,31 @@ and get_firmware_bootable_device g =
          debug "%s (ignored)" msg;
          false
   in
-  let accumulate_partition esp_parts part =
+  let accumulate_partition (esp_parts, bboot) part =
     let dev = g#part_to_dev part in
     if parttype_is_gpt dev then
       let partnum = g#part_to_partnum part in
       let part_type_guid = g#part_get_gpt_type dev partnum in
       match part_type_guid with
       (* EFI system partition *)
-      | "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" -> part :: esp_parts
-      | _ -> esp_parts
-    else esp_parts
+      | "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" -> part :: esp_parts, bboot
+      (* BIOS boot partition *)
+      | "21686148-6449-6E6F-744E-656564454649" -> esp_parts, true
+      | _ -> esp_parts, bboot
+    else esp_parts, bboot
   in
 
-  let esp_partitions =
-    Array.fold_left accumulate_partition [] (g#list_partitions ()) in
+  let esp_partitions, bios_boot =
+    Array.fold_left accumulate_partition ([], false) (g#list_partitions ()) in
 
-  match esp_partitions with
-  | [] -> I_BIOS
-  | partitions -> I_UEFI partitions
+  (* If there's a BIOS boot partition present (0xef02 type for gdisk,
+   * "bios_grub" flag for parted), then this is likely a BIOS+GPT setup.
+   * In this case we prioritize BIOS boot partition and detect BIOS firmware,
+   * no matter how many ESPs we've found.
+   *)
+  match esp_partitions, bios_boot with
+  | _ :: _, false -> I_UEFI esp_partitions
+  | _ -> I_BIOS
 
 (* If some inspection fields are "unknown", then that indicates a
  * failure in inspection, and we shouldn't continue.  For an example
