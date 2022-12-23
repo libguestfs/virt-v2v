@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2022-11-26 15:26+0000\n"
-"PO-Revision-Date: 2022-08-07 07:19+0000\n"
+"PO-Revision-Date: 2022-12-23 18:20+0000\n"
 "Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.15\n"
 
 #: input/input_ova.ml:134 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -1901,7 +1901,7 @@ msgstr "tuntematon -o vaihtoehto: %s"
 
 #: v2v/v2v.ml:164
 msgid "unknown -oa option: %s"
-msgstr ""
+msgstr "tuntematon -oa vaihtoehto: %s"
 
 #: input/OVF.ml:102
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
