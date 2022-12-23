@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-11-26 15:26+0000\n"
-"PO-Revision-Date: 2022-08-07 07:19+0000\n"
+"POT-Creation-Date: 2022-12-10 12:01+0000\n"
+"PO-Revision-Date: 2022-12-23 18:20+0000\n"
 "Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13\n"
+"X-Generator: Weblate 4.15\n"
 
 #: input/input_ova.ml:134 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -694,7 +694,7 @@ msgstr ""
 msgid "Print source and stop"
 msgstr ""
 
-#: lib/create_ovf.ml:856 lib/create_ovf.ml:500
+#: lib/create_ovf.ml:865 lib/create_ovf.ml:509
 msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 
@@ -932,7 +932,7 @@ msgid ""
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
 
-#: lib/create_ovf.ml:767
+#: lib/create_ovf.ml:776
 msgid ""
 "This guest required a password for connection to its display, but this is "
 "not supported by RHV.  Therefore the converted guest’s display will not "
@@ -1623,7 +1623,7 @@ msgid ""
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: lib/create_ovf.ml:1006
+#: lib/create_ovf.ml:1015
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
@@ -1830,7 +1830,7 @@ msgstr ""
 msgid "the value of the key ‘%s’ is not an object"
 msgstr ""
 
-#: lib/create_ovf.ml:506
+#: lib/create_ovf.ml:515
 msgid ""
 "the virtual size of the input disk %d is not an exact multiple of 512 "
 "bytes.  The virtual size is: %Ld.\n"
@@ -1901,17 +1901,21 @@ msgstr "tuntematon -o vaihtoehto: %s"
 
 #: v2v/v2v.ml:164
 msgid "unknown -oa option: %s"
-msgstr ""
+msgstr "tuntematon -oa vaihtoehto: %s"
 
 #: input/OVF.ml:102
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
+msgstr ""
+
+#: lib/create_ovf.ml:246
+msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
 #: input/parse_domain_from_vmx.ml:448
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
-#: output/create_libvirt_xml.ml:143 lib/create_ovf.ml:442 lib/create_ovf.ml:245
+#: output/create_libvirt_xml.ml:143 lib/create_ovf.ml:451 lib/create_ovf.ml:254
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
