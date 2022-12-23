@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
-"cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2022-11-26 15:26+0000\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2022-12-10 12:01+0000\n"
 "PO-Revision-Date: 2022-11-30 21:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -152,8 +152,8 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
-"%s: виконати перетворення гостьової системи для використання у KVM «на місці»"
-"\n"
+"%s: виконати перетворення гостьової системи для використання у KVM «на "
+"місці»\n"
 "\n"
 "Зауважте, що ця програма змінює гостьову систему на місці без резервного "
 "копіювання.\n"
@@ -867,7 +867,7 @@ msgstr "ПАКУНОК,ПАКУНОК.."
 msgid "Print source and stop"
 msgstr "Вивести джерело і припинити обробку"
 
-#: lib/create_ovf.ml:856 lib/create_ovf.ml:500
+#: lib/create_ovf.ml:865 lib/create_ovf.ml:509
 msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 "У RHV не передбачено формату виведення даних «‘%s», лише формати raw та qcow2"
@@ -1112,7 +1112,7 @@ msgstr ""
 "про ваду у virt-v2v — скористайтеся розділом «BUGS» сторінки підручника virt-"
 "v2v(1)."
 
-#: lib/create_ovf.ml:767
+#: lib/create_ovf.ml:776
 msgid ""
 "This guest required a password for connection to its display, but this is "
 "not supported by RHV.  Therefore the converted guest’s display will not "
@@ -1963,7 +1963,7 @@ msgstr ""
 "немає підтримки віддалених з’єднань libvirt з «-ic %s». Перетворення може "
 "призвести до помилок під час спроб прочитати диски джерел даних."
 
-#: lib/create_ovf.ml:1006
+#: lib/create_ovf.ml:1015
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
@@ -2219,7 +2219,7 @@ msgstr "значення не є об’єктом"
 msgid "the value of the key ‘%s’ is not an object"
 msgstr "значенням ключа «%s» не є об’єкт"
 
-#: lib/create_ovf.ml:506
+#: lib/create_ovf.ml:515
 msgid ""
 "the virtual size of the input disk %d is not an exact multiple of 512 "
 "bytes.  The virtual size is: %Ld.\n"
@@ -2319,11 +2319,15 @@ msgstr "невідомий параметр -oa: %s"
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr "невідоме значення Config:firmware %s (мало бути «bios» або «efi»)"
 
+#: lib/create_ovf.ml:246
+msgid "unknown Windows 10 variant: %s (%s)"
+msgstr ""
+
 #: input/parse_domain_from_vmx.ml:448
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "невідоме значення мікропрограми, «%s», припускаємо BIOS"
 
-#: output/create_libvirt_xml.ml:143 lib/create_ovf.ml:442 lib/create_ovf.ml:245
+#: output/create_libvirt_xml.ml:143 lib/create_ovf.ml:451 lib/create_ovf.ml:254
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "невідома гостьова операційна система: %s %s %d.%d %s (%s)"
 
