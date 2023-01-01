@@ -437,13 +437,22 @@ and get_ovirt_osid = function
       i_arch = "i386" } ->
     26
 
+  (* For Windows NT 10.0 always use the <osinfo> field since the
+   * other fields will not accurately reflect the version.
+   *)
   | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
-      i_arch = "x86_64"; i_product_variant = "Client" } ->
-    27
-
-  | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
-      i_arch = "x86_64" } ->
-    29
+      i_arch = "x86_64"; i_osinfo = osinfo; i_product_name = product } ->
+     (match osinfo with
+      | "win10" -> (* windows_10x64 *) 27
+      | "win11" -> (* windows_11 *) 36
+      | "win2k16" -> (* windows_2016x64 *) 29
+      | "win2k19" -> (* windows_2019x64 *) 31
+      | "win2k22" -> (* windows_2022 *) 37
+      | _ ->
+         warning (f_"unknown Windows 10 variant: %s (%s)")
+           osinfo product;
+         (* windows_2022 *) 37
+     )
 
   | { i_type = typ; i_distro = distro;
       i_major_version = major; i_minor_version = minor; i_arch = arch;
