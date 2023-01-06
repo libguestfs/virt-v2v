@@ -1,0 +1,329 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v release notes for 2.2
+
+=head1 DESCRIPTION
+
+These are the release notes for S<B<virt-v2v 2.2>>.
+This describes the major changes since 2.0.
+
+Virt-v2v 2.2.0 was released on S<B<9 January 2023>>.
+
+=head2 Security
+
+When running virt-v2v as root, NBD Unix domain sockets in the v2v
+directory were openable by any user.  We now set the directory owner
+so only qemu can access the sockets.  See:
+https://bugzilla.redhat.com/show_bug.cgi?id=2066773 (Xiaodai Wang,
+S<Dr David Gilbert>, Daniel Berrangé, Laszlo Ersek).
+
+=head2 New features
+
+New L<virt-v2v-inspector(1)> tool.  This tool can be used before
+conversion to collect facts about the source guest, such as number of
+disks, and to estimate the disk space required after conversion.
+
+Add support for NVMe devices and SATA hard disks when importing from
+VMware VMX files (Laszlo Ersek).
+
+Add support for importing to KubeVirt using the new experimental
+I<-o kubevirt> mode.
+
+Windows 11 guests are now supported.
+
+Rocky Linux guest support has been added (Andrey Drobyshev).
+
+=head2 Feature removed
+
+The I<-o json> mode was removed.  It was intended to be used with
+KubeVirt but was never actually used there.  Use I<-o kubevirt>
+instead.
+
+=head2 Other fixes
+
+Fix detection of virtio-socket support in Linux guests (Laszlo Ersek).
+In addition, a semi-random guest CID is chosen in I<-o qemu> mode,
+avoiding an error.
+
+Allow importing OVAs where the user or group name inside the tarball
+contains a space (Jiří Sléžka).
+
+Reject guests with snapshots when using -i vmx -it ssh (Laszlo Ersek).
+
+Improve documentation for the need to enable PasswordAuthentication on
+the server side when importing over SSH (Laszlo Ersek).
+
+Don't use the deprecated qemu I<-balloon> option.  This caused
+deprecation warnings with I<-o qemu> mode.  Use I<-device> instead.
+
+Rewrite device mapping in I<-o qemu> mode, removing some strange /
+non-existent cases like SCSI floppies.  This should result in more
+consistent device layout when using this mode (Laszlo Ersek).
+
+Remove more left over open-vm-tools packages from Linux guests (Tim
+Kent).
+
+In I<-o rhv-upload> mode, do not return until the VM has been created
+(Tomáš Golembiovský).
+
+Greatly improved vCPU model handling (Laszlo Ersek).
+
+Document extra permissions needed for non-admin conversion with
+S<VMware 7> (Ming Xie).
+
+QEMU guest agent is now installed unconditionally and a virtio-serial
+socket is created in the guest metadata (where possible) (Laszlo
+Ersek).
+
+In the various RHV output modes, the number of disks is now limited to
+23.  RHV doesn't support anything greater and would break (Laszlo
+Ersek).
+
+I<-oo compressed> is now working again.  It was temporarily broken in
+virt-v2v 2.0.
+
+The documentation no longer advises you to use the dangerous global
+"LEGACY crypto" option, but provides more targeted advice (Laszlo
+Ersek).
+
+Remove the LVM2 devices file during conversion (Laszlo Ersek).
+
+Add support for guests using Zstandard compressed kernel modules.
+
+Add the BOCHS DRM display driver in Linux guest initrd, to avoid a
+crash with some guests with graphical boot displays (Laszlo Ersek).
+
+The UEFI fallback boot loader is now fixed up if we detect that it was
+broken (Laszlo Ersek).
+
+Improve detection of guests using BIOS boot with GPT partitions so
+that we no longer confuse them with UEFI guests (Andrey Drobyshev).
+
+Fix conflict between fwcfg and qemufwcfg Windows drivers (Laszlo
+Ersek).
+
+Fix Windows 11 support for RHV outputs (Laszlo Ersek).
+
+=head2 Build changes
+
+Support enhanced tests with glibc E<ge> 2.34.
+
+When using C<make check-valgrind>, valgrind output is no longer
+written to separate files under F<tmp/>.  Instead it is written to the
+normal test log file.
+
+We now require ocamldep I<-one-line> and I<-all> options (added to
+ocamldep in Jan 2012).
+
+The OCaml libvirt bindings are no longer bundled.  They must be
+available at build time.
+
+Updated the phony test images.  The tests should all pass.
+
+Add compatibility with OCaml 4.14.
+
+We now require PCRE2 instead of PCRE.
+
+=head2 Internals
+
+New LUKS-on-LVM test added (Laszlo Ersek).
+
+Added F<scripts/git.orderfile> which orders files when we prepare
+patches.
+
+=head2 Bugs fixed
+
+=begin comment
+
+https_proxy= ./bugs-in-changelog.sh v2.0.0..
+
+=end comment
+
+=over 4
+
+=item L<https://bugzilla.redhat.com/2152465>
+
+v2v should set ovirt:id correctly after coverting windows11/2019/2022 guests to rhv via -o rhv-upload
+
+=item L<https://bugzilla.redhat.com/2151752>
+
+qemufwcfg device cannot start or has no driver after v2v converting windows guests
+
+=item L<https://bugzilla.redhat.com/2149863>
+
+The version of Win 11/Win 2019/Win 2022 shows incorrect on RHV after virt-v2v conversion
+
+=item L<https://bugzilla.redhat.com/2149811>
+
+Copy newer versions of drivers for Win 11/Win 2019/Win 2022 during virt-v2v conversion
+
+=item L<https://bugzilla.redhat.com/2149629>
+
+Win 2022 fails to boot after virt-p2v conversion from physical host with nvme disk
+
+=item L<https://bugzilla.redhat.com/2131123>
+
+RHEL7 UEFI guest turns into black after v2v conversion
+
+=item L<https://bugzilla.redhat.com/2116811>
+
+virt-v2v: error: internal error: assertion failed at linux_kernels.ml, line 190, char 11
+
+=item L<https://bugzilla.redhat.com/2112801>
+
+RHEL9 guest hangs during boot after conversion by virt-p2v
+
+=item L<https://bugzilla.redhat.com/2107503>
+
+RHEL 8.6 VM with "qemu64" CPU model can't start because "the CPU is incompatible with host CPU: Host CPU does not provide required features: svm"
+
+=item L<https://bugzilla.redhat.com/2101665>
+
+"/dev/nvme0n1" is not remapped to "/dev/vda" (etc) in boot config files such as "/boot/grub2/device.map"
+
+=item L<https://bugzilla.redhat.com/2089623>
+
+Virt-v2v can't convert rhel8.6 guest from VMware on rhel8.6
+
+=item L<https://bugzilla.redhat.com/2082603>
+
+virt-v2v -o qemu prints cosmetic warning: "warning: short-form boolean option 'readonly' deprecated"
+
+=item L<https://bugzilla.redhat.com/2076013>
+
+RHEL9.1 guest can't boot into OS after v2v conversion
+
+=item L<https://bugzilla.redhat.com/2074805>
+
+-o qemu mode fails with: qemu-system-x86_64: -balloon: invalid option and other problems
+
+=item L<https://bugzilla.redhat.com/2074801>
+
+do not pass "--non-bootable --read-write" to "volume create " in openstack output module
+
+=item L<https://bugzilla.redhat.com/2070530>
+
+Virt-v2v can't convert guest when os is installed on nvme disk via vmx+ssh
+
+=item L<https://bugzilla.redhat.com/2070186>
+
+fix virtio-vsock check (for Linux guests) in virt-v2v
+
+=item L<https://bugzilla.redhat.com/2069768>
+
+Import of OVA fails if the user/group name contains spaces
+
+=item L<https://bugzilla.redhat.com/2066773>
+
+The /tmp/v2v.XXXX directory has incorrect permisison if run v2v by root
+
+=item L<https://bugzilla.redhat.com/2062360>
+
+RFE: Virt-v2v should replace hairy "enable LEGACY crypto" advice which a more targeted mechanism
+
+=item L<https://bugzilla.redhat.com/2059287>
+
+RFE: Rebase virt-v2v to 2.0 in RHEL 9.1
+
+=item L<https://bugzilla.redhat.com/2051564>
+
+[RFE]Limiting the maximum number of disks per guest for v2v conversions
+
+=item L<https://bugzilla.redhat.com/2047660>
+
+Add '--compressed' support in modular v2v
+
+=item L<https://bugzilla.redhat.com/2028764>
+
+Install the qemu-guest-agent package during the conversion process
+
+=item L<https://bugzilla.redhat.com/2003503>
+
+There is virt-v2v warning: fstrim on guest filesystem /dev/mapper/osprober-linux-sdb1 failed if non-os disk of source guest has few/no inodes lef
+
+=item L<https://bugzilla.redhat.com/1985827>
+
+Start or remove VM failure even v2v has already finished
+
+=item L<https://bugzilla.redhat.com/1953286>
+
+No error shows when using virt-v2v -o rhv to convert guest to data domain
+
+=item L<https://bugzilla.redhat.com/1938954>
+
+-i vmx -it ssh: document percent encoding in ssh URIs
+
+=item L<https://bugzilla.redhat.com/1883802>
+
+-i vmx: SATA disks are not parsed
+
+=item L<https://bugzilla.redhat.com/1854275>
+
+document that vmx+ssh "-ip" auth doesn't cover ssh / scp shell commands
+
+=item L<https://bugzilla.redhat.com/1817050>
+
+Can't convert guest from VMware with non-admin account and vddk >=7.0  by virt-v2v
+
+=item L<https://bugzilla.redhat.com/1774386>
+
+input_vmx: cleanly reject guests with snapshots when using "-it ssh"
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>,
+L<virt-v2v-release-notes-2.0(1)>,
+L<virt-v2v-release-notes-1.42(1)>,
+L<guestfs-release-notes-1.40(1)>.
+
+=head1 AUTHORS
+
+Authors of virt-v2v 2.2:
+
+=begin comment
+
+git shortlog -s v2.0.0..
+
+=end comment
+
+=over 4
+
+=item Andrey Drobyshev
+
+=item Emilio Herrera
+
+=item Ettore Atalan
+
+=item Hela Basa
+
+=item Jan Kuparinen
+
+=item Laszlo Ersek
+
+=item Marcin Stanclik
+
+=item Ming Xie
+
+=item Pavel Borecki
+
+=item Piotr Drąg
+
+=item Richard W.M. Jones
+
+=item Ricky Tigg
+
+=item Temuri Doghonadze
+
+=item Tim Kent
+
+=item Tomáš Golembiovský
+
+=item Yuri Chornoivan
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2023 Red Hat Inc.
