@@ -55,11 +55,13 @@ lib/qemuNBD.ml
 lib/types.ml
 lib/utils.ml
 output/changeuid.ml
+output/create_kubevirt_yaml.ml
 output/create_libvirt_xml.ml
 output/openstack_image_properties.ml
 output/output.ml
 output/output_disk.ml
 output/output_glance.ml
+output/output_kubevirt.ml
 output/output_libvirt.ml
 output/output_null.ml
 output/output_openstack.ml
