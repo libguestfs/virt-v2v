@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.1.12\n"
+"Project-Id-Version: virt-v2v 2.2.0\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-01-06 10:55+0000\n"
+"POT-Creation-Date: 2023-01-10 14:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,6 +232,10 @@ msgstr ""
 msgid "-o disk: unknown output option ‘-oo %s’"
 msgstr ""
 
+#: output/output_kubevirt.ml:56
+msgid "-o kubevirt: output directory was not specified, use '-os /dir'"
+msgstr ""
+
 #: output/output_libvirt.ml:115
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
@@ -334,7 +338,9 @@ msgstr ""
 msgid "-oo compressed option requires nbdcopy >= 1.13.5"
 msgstr ""
 
-#: output/output_vdsm.ml:111 output/output_qemu.ml:74 output/output_disk.ml:68
+#. output/output_kubevirt.ml:58
+#. output/output_disk.ml:68
+#: output/output_vdsm.ml:111 output/output_qemu.ml:74
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
@@ -596,7 +602,9 @@ msgstr ""
 msgid "No input options can be used in this mode.\n"
 msgstr ""
 
-#: output/output_rhv.ml:40 output/output_null.ml:38 output/output_glance.ml:40
+#. output/output_glance.ml:40
+#: output/output_rhv.ml:40 output/output_null.ml:38
+#: output/output_kubevirt.ml:44
 msgid "No output options can be used in this mode.\n"
 msgstr ""
 
@@ -1598,7 +1606,9 @@ msgstr ""
 msgid "no -io (input options) are allowed here"
 msgstr ""
 
-#: output/output_rhv.ml:44 output/output_null.ml:42 output/output_glance.ml:44
+#. output/output_glance.ml:44
+#: output/output_rhv.ml:44 output/output_null.ml:42
+#: output/output_kubevirt.ml:48
 msgid "no -oo (output options) are allowed here"
 msgstr ""
 

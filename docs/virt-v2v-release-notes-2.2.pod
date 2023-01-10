@@ -7,15 +7,15 @@ virt-v2v-release-notes - virt-v2v release notes for 2.2
 These are the release notes for S<B<virt-v2v 2.2>>.
 This describes the major changes since 2.0.
 
-Virt-v2v 2.2.0 was released on S<B<9 January 2023>>.
+Virt-v2v 2.2.0 was released on S<B<Tuesday 10 January 2023>>.
 
 =head2 Security
 
 When running virt-v2v as root, NBD Unix domain sockets in the v2v
 directory were openable by any user.  We now set the directory owner
 so only qemu can access the sockets.  See:
-https://bugzilla.redhat.com/show_bug.cgi?id=2066773 (Xiaodai Wang,
-S<Dr David Gilbert>, Daniel Berrangé, Laszlo Ersek).
+https://bugzilla.redhat.com/show_bug.cgi?id=2066773 (thanks
+Xiaodai Wang, S<Dr David Gilbert>, Daniel Berrangé, Laszlo Ersek).
 
 =head2 New features
 
@@ -26,7 +26,7 @@ disks, and to estimate the disk space required after conversion.
 Add support for NVMe devices and SATA hard disks when importing from
 VMware VMX files (Laszlo Ersek).
 
-Add support for importing to KubeVirt using the new experimental
+Add support for importing to KubeVirt using the new B<experimental>
 I<-o kubevirt> mode.
 
 Windows 11 guests are now supported.
@@ -71,9 +71,8 @@ Greatly improved vCPU model handling (Laszlo Ersek).
 Document extra permissions needed for non-admin conversion with
 S<VMware 7> (Ming Xie).
 
-QEMU guest agent is now installed unconditionally and a virtio-serial
-socket is created in the guest metadata (where possible) (Laszlo
-Ersek).
+QEMU guest agent is now installed unconditionally and where possible a
+virtio-serial socket is created in the guest metadata (Laszlo Ersek).
 
 In the various RHV output modes, the number of disks is now limited to
 23.  RHV doesn't support anything greater and would break (Laszlo
@@ -106,7 +105,7 @@ Fix Windows 11 support for RHV outputs (Laszlo Ersek).
 
 =head2 Build changes
 
-Support enhanced tests with glibc E<ge> 2.34.
+Enable malloc debugging in tests with glibc E<ge> 2.34.
 
 When using C<make check-valgrind>, valgrind output is no longer
 written to separate files under F<tmp/>.  Instead it is written to the
