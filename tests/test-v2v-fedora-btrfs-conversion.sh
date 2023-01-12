@@ -27,5 +27,6 @@ set -x
 skip_if_skipped
 f=../test-data/phony-guests/fedora-btrfs.img
 requires test -f $f
+requires test -s $f
 
 $VG virt-v2v --debug-gc -i disk $f -o null
