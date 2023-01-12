@@ -25,7 +25,9 @@ set -e
 set -x
 
 skip_if_skipped
-requires test -f ../test-data/phony-guests/windows.img
+f=../test-data/phony-guests/windows.img
+requires test -f $f
+requires test -s $f
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
@@ -41,8 +43,7 @@ mf=test-ova.mf
 ova=test-ova.ova
 raw=TestOva-sda
 
-qemu-img convert ../test-data/phony-guests/windows.img \
-         -O vmdk $d/$vmdk
+qemu-img convert $f -O vmdk $d/$vmdk
 cp "$srcdir/$ovf" $d/$ovf
 sha1=`do_sha1 $d/$ovf`
 echo "SHA1($ovf)= $sha1" > $d/$mf
