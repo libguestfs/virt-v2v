@@ -467,7 +467,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
        add (sprintf "  /TR \"C:\\%s /forcerestart /qn /l+*vx C:\\%s.log\""
               msi_path msi_path);
 
-      Windows.install_firstboot_powershell g inspect
+      Firstboot.add_firstboot_powershell g inspect.i_root
         (sprintf "install-%s.ps1" msi_path) !psh_script;
     ) files
 
@@ -738,8 +738,8 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
        *
        * Place it first among the firstboot scripts (RHBZ#1788823).
        *)
-      Windows.install_firstboot_powershell g inspect ~prio:2500 psh_filename
-        !psh
+      Firstboot.add_firstboot_powershell g inspect.i_root ~prio:2500
+        psh_filename !psh
     ) (* static_ips <> [] *)
 
   and fix_ntfs_heads () =
