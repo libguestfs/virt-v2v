@@ -50,8 +50,11 @@ val inject_virtio_win_drivers : Registry.t -> Types.inspect ->
     install those, or legacy devices if we didn't. *)
 
 val copy_qemu_ga : Guestfs.guestfs -> Types.inspect -> string list
-(** copy MSIs (idealy just one) with QEMU Guest Agent to Windows guest. The
-    MSIs are not installed by this function. *)
+(** copy MSIs (ideally just one) with QEMU Guest Agent to Windows guest. The
+    MSIs are not installed by this function.
+
+    Returns a list of the copied [*.msi] files (empty list indicates no
+    qemu-ga installer(s) could be located). *)
 
 (**/**)
 
