@@ -38,6 +38,15 @@ let virtio_win, virtio_win_from_env =
       (if Sys.file_exists iso then iso
        else Config.datadir // "virtio-win"), false
 
+type virtio_win_installed = {
+  block_driver : guestcaps_block_type;
+  net_driver : guestcaps_net_type;
+  virtio_rng : bool;
+  virtio_balloon : bool;
+  isa_pvpanic : bool;
+  virtio_socket : bool;
+}
+
 let scsi_class_guid = "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
 let viostor_legacy_pciid = "VEN_1AF4&DEV_1001&SUBSYS_00021AF4&REV_00"
 let viostor_modern_pciid = "VEN_1AF4&DEV_1042&SUBSYS_11001AF4&REV_01"
@@ -53,7 +62,9 @@ let rec install_drivers ((g, _) as reg : Registry.t) inspect =
       warning (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s %s).  virt-v2v looks for drivers in %s\n\nThe guest will be configured to use slower emulated devices.")
               inspect.i_major_version inspect.i_minor_version inspect.i_arch
               inspect.i_product_variant inspect.i_osinfo virtio_win;
-      (IDE, RTL8139, false, false, false, false)
+      { block_driver = IDE; net_driver = RTL8139;
+        virtio_rng = false; virtio_balloon = false;
+        isa_pvpanic = false; virtio_socket = false }
   )
   else (
     (* Can we install the block driver? *)
@@ -121,13 +132,13 @@ let rec install_drivers ((g, _) as reg : Registry.t) inspect =
     );
 
     (* Did we install the miscellaneous drivers? *)
-    let virtio_rng_supported = g#exists (driverdir // "viorng.inf") in
-    let virtio_ballon_supported = g#exists (driverdir // "balloon.inf") in
-    let isa_pvpanic_supported = g#exists (driverdir // "pvpanic.inf") in
-    let virtio_socket_supported = g#exists (driverdir // "viosock.inf") in
-
-    (block, net,
-     virtio_rng_supported, virtio_ballon_supported, isa_pvpanic_supported, virtio_socket_supported)
+    { block_driver = block;
+      net_driver = net;
+      virtio_rng = g#exists (driverdir // "viorng.inf");
+      virtio_balloon = g#exists (driverdir // "balloon.inf");
+      isa_pvpanic = g#exists (driverdir // "pvpanic.inf");
+      virtio_socket = g#exists (driverdir // "viosock.inf");
+    }
   )
 
 and add_guestor_to_registry ((g, root) as reg) inspect drv_name drv_pciid =

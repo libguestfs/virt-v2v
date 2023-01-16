@@ -22,9 +22,20 @@ val virtio_win_from_env : bool
 (** [virtio_win_from_env] is true iff at least one of the VIRTIO_WIN and
     VIRTIO_WIN_DIR variables is present in the environment. *)
 
-val install_drivers
-    : Registry.t -> Types.inspect ->
-      Types.guestcaps_block_type * Types.guestcaps_net_type * bool * bool * bool * bool
+type virtio_win_installed = {
+  block_driver : Types.guestcaps_block_type;
+  net_driver : Types.guestcaps_net_type;
+  virtio_rng : bool;
+  virtio_balloon : bool;
+  isa_pvpanic : bool;
+  virtio_socket : bool;
+}
+(** After calling {!install_drivers}, this describes what virtio-win
+    drivers we were able to install (and hence, what the guest requires).
+    eg. if [virtio_rng] is true then we installed the virtio RNG
+    device, otherwise we didn't. *)
+
+val install_drivers : Registry.t -> Types.inspect -> virtio_win_installed
 (** [install_drivers reg inspect]
     installs virtio drivers from the driver directory or driver
     ISO into the guest driver directory and updates the registry
@@ -33,10 +44,9 @@ val install_drivers
     [reg] is the system hive which is open for writes when this
     function is called.
 
-    This returns the tuple [(block_driver, net_driver, virtio_rng_supported,
-    virtio_ballon_supported, isa_pvpanic_supported, virtio_socket_supported)]
-    reflecting what devices are now required by the guest, either virtio
-    devices if we managed to install those, or legacy devices if we didn't. *)
+    This returns a {!virtio_win_installed} struct reflecting what devices
+    are now required by the guest, either virtio devices if we managed to
+    install those, or legacy devices if we didn't. *)
 
 val copy_qemu_ga : Guestfs.guestfs -> Types.inspect -> string list
 (** copy MSIs (idealy just one) with QEMU Guest Agent to Windows guest. The
