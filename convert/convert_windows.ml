@@ -42,6 +42,12 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
   (*----------------------------------------------------------------------*)
   (* Inspect the Windows guest. *)
 
+  (* Locate virtio-win ISO or directory using the [VIRTIO_WIN]
+   * environment variable.
+   *)
+  let virtio_win =
+    Windows_virtio.from_environment g inspect.i_root Config.datadir in
+
   (* If the Windows guest appears to be using group policy.
    *
    * Since this was written, it has been noted that it may be possible
@@ -282,7 +288,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       configure_vmdp tool_path;
 
     (* Install QEMU Guest Agent unconditionally and warn if missing *)
-    if not (Windows_virtio.inject_qemu_ga g inspect) then
+    if not (Windows_virtio.inject_qemu_ga virtio_win) then
       warning (f_"QEMU Guest Agent MSI not found on tools ISO/directory. You \
                   may want to install the guest agent manually after \
                   conversion.");
@@ -447,7 +453,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     disable_xenpv_win_drivers reg;
     disable_prl_drivers reg;
     disable_autoreboot reg;
-    Windows_virtio.inject_virtio_win_drivers reg inspect
+    Windows_virtio.inject_virtio_win_drivers virtio_win reg
 
   and disable_xenpv_win_drivers reg =
     (* Disable xenpv-win service (RHBZ#809273). *)

@@ -18,6 +18,8 @@
 
 (** Values and functions for installing Windows virtio drivers. *)
 
+type t (** Handle *)
+
 type virtio_win_installed = {
   block_driver : Types.guestcaps_block_type;
   net_driver : Types.guestcaps_net_type;
@@ -33,9 +35,17 @@ type virtio_win_installed = {
     eg. if [virtio_rng] is true then we installed the virtio RNG
     device, otherwise we didn't. *)
 
-val inject_virtio_win_drivers : Registry.t -> Types.inspect ->
-                                virtio_win_installed
-(** [inject_virtio_win_drivers reg inspect]
+val from_environment : Guestfs.guestfs -> string -> string -> t
+(** Using the [VIRTIO_WIN] environment variable (if present), set up
+    the injection handle.
+
+    The parameters are: [g root datadir].  The [datadir] is the path
+    from ./configure (eg. {!Config.datadir}).
+
+    This should only be used by [virt-v2v] and is considered a legacy method. *)
+
+val inject_virtio_win_drivers : t -> Registry.t -> virtio_win_installed
+(** [inject_virtio_win_drivers t reg]
     installs virtio drivers from the driver directory or driver
     ISO into the guest driver directory and updates the registry
     so that the [viostor.sys] driver gets loaded by Windows at boot.
@@ -47,7 +57,7 @@ val inject_virtio_win_drivers : Registry.t -> Types.inspect ->
     are now required by the guest, either virtio devices if we managed to
     install those, or legacy devices if we didn't. *)
 
-val inject_qemu_ga : Guestfs.guestfs -> Types.inspect -> bool
+val inject_qemu_ga : t -> bool
 (** Inject MSIs (ideally just one) with QEMU Guest Agent into a Windows
     guest.  A firstboot script is also injected which should install
     the MSI(s).
