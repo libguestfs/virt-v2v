@@ -25,7 +25,6 @@ open Common_gettext.Gettext
 open Regedit
 
 open Types
-open Utils
 
 module G = Guestfs
 
