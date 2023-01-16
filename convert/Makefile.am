@@ -27,8 +27,6 @@ SOURCES_MLI = \
 	convert_linux.mli \
 	convert_windows.mli \
 	inspect_source.mli \
-	libosinfo.mli \
-	libosinfo_utils.mli \
 	linux.mli \
 	linux_bootloaders.mli \
 	linux_kernels.mli \
@@ -37,8 +35,6 @@ SOURCES_MLI = \
 	windows_virtio.mli
 
 SOURCES_ML = \
-	libosinfo.ml \
-	libosinfo_utils.ml \
 	linux.ml \
 	windows.ml \
 	windows_virtio.ml \
@@ -50,8 +46,7 @@ SOURCES_ML = \
 	target_bus_assignment.ml \
 	convert.ml
 
-SOURCES_C = \
-	libosinfo-c.c
+SOURCES_C = dummy.c
 
 # We pretend that we're building a C library.  automake handles the
 # compilation of the C sources for us.  At the end we take the C
@@ -79,8 +74,7 @@ libmlconvert_a_CFLAGS = \
 	-pthread \
 	-fPIC \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
-	$(LIBGUESTFS_CFLAGS) \
-	$(LIBOSINFO_CFLAGS)
+	$(LIBGUESTFS_CFLAGS)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -106,7 +100,6 @@ OCAMLCLIBS = \
 	-pthread \
 	$(LIBGUESTFS_LIBS) \
 	$(LIBXML2_LIBS) \
-	$(LIBOSINFO_LIBS) \
 	$(LIBNBD_LIBS) \
 	-lgnu
 

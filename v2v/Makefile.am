@@ -46,8 +46,7 @@ virt_v2v_CFLAGS = \
 	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
-	$(LIBVIRT_CFLAGS) \
-	$(LIBOSINFO_CFLAGS)
+	$(LIBVIRT_CFLAGS)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -134,8 +133,6 @@ endif
 
 v2v_unit_tests_BOBJECTS = \
 	../lib/create_ovf.cmo \
-	../convert/libosinfo.cmo \
-	../convert/libosinfo_utils.cmo \
 	../convert/windows.cmo \
 	../convert/linux.cmo \
 	../convert/windows_virtio.cmo \

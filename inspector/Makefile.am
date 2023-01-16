@@ -44,8 +44,7 @@ virt_v2v_inspector_CFLAGS = \
 	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
-	$(LIBVIRT_CFLAGS) \
-	$(LIBOSINFO_CFLAGS)
+	$(LIBVIRT_CFLAGS)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
