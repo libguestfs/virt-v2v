@@ -516,8 +516,3 @@ and configure_qemu_ga g { i_root } files =
       Firstboot.add_firstboot_powershell g i_root
         (sprintf "install-%s.ps1" msi_path) !psh_script;
   ) files
-
-(* The following function is only exported for unit tests. *)
-module UNIT_TESTS = struct
-  let virtio_iso_path_matches_guest_os = virtio_iso_path_matches_guest_os
-end

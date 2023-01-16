@@ -53,10 +53,3 @@ val inject_qemu_ga : Guestfs.guestfs -> Types.inspect -> bool
     the MSI(s).
 
     Returns [true] iff we were able to inject qemu-ga. *)
-
-(**/**)
-
-(* The following function is only exported for unit tests. *)
-module UNIT_TESTS : sig
-  val virtio_iso_path_matches_guest_os : string -> Types.inspect -> bool
-end
