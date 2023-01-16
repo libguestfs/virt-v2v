@@ -46,7 +46,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
    * environment variable.
    *)
   let virtio_win =
-    Windows_virtio.from_environment g inspect.i_root Config.datadir in
+    Inject_virtio_win.from_environment g inspect.i_root Config.datadir in
 
   (* If the Windows guest appears to be using group policy.
    *
@@ -220,7 +220,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     configure_firstboot ();
 
     (* Open the system hive for writes and update it. *)
-    let { Windows_virtio.block_driver; net_driver} as virtio_win_installed =
+    let { Inject_virtio_win.block_driver; net_driver} as virtio_win_installed =
       Registry.with_hive_write g inspect.i_windows_system_hive
                                update_system_hive in
 
@@ -254,20 +254,37 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
 
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
-      gcaps_block_bus = block_driver;
-      gcaps_net_bus = net_driver;
-      gcaps_virtio_rng = virtio_win_installed.Windows_virtio.virtio_rng;
-      gcaps_virtio_balloon = virtio_win_installed.Windows_virtio.virtio_balloon;
-      gcaps_isa_pvpanic = virtio_win_installed.Windows_virtio.isa_pvpanic;
-      gcaps_virtio_socket = virtio_win_installed.Windows_virtio.virtio_socket;
-      gcaps_machine = virtio_win_installed.Windows_virtio.machine;
+      gcaps_block_bus = of_virtio_win_block_type block_driver;
+      gcaps_net_bus = of_virtio_win_net_type net_driver;
+      gcaps_virtio_rng = virtio_win_installed.Inject_virtio_win.virtio_rng;
+      gcaps_virtio_balloon =
+        virtio_win_installed.Inject_virtio_win.virtio_balloon;
+      gcaps_isa_pvpanic = virtio_win_installed.Inject_virtio_win.isa_pvpanic;
+      gcaps_virtio_socket =
+        virtio_win_installed.Inject_virtio_win.virtio_socket;
+      gcaps_machine = of_virtio_win_machine_type
+                        virtio_win_installed.Inject_virtio_win.machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = true;
-      gcaps_virtio_1_0 = virtio_win_installed.Windows_virtio.virtio_1_0;
+      gcaps_virtio_1_0 = virtio_win_installed.Inject_virtio_win.virtio_1_0;
       gcaps_default_cpu = true;
     } in
 
     guestcaps
+
+  and of_virtio_win_block_type = function
+    | Inject_virtio_win.Virtio_blk -> Virtio_blk
+    | IDE -> IDE
+
+  and of_virtio_win_net_type = function
+    | Inject_virtio_win.Virtio_net -> Virtio_net
+    | E1000 -> E1000
+    | RTL8139 -> RTL8139
+
+  and of_virtio_win_machine_type = function
+    | Inject_virtio_win.I440FX -> I440FX
+    | Q35 -> Q35
+    | Virt -> Virt
 
   and configure_firstboot () =
     (* Note that pnp_wait.exe must be the first firstboot script as it
@@ -288,7 +305,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       configure_vmdp tool_path;
 
     (* Install QEMU Guest Agent unconditionally and warn if missing *)
-    if not (Windows_virtio.inject_qemu_ga virtio_win) then
+    if not (Inject_virtio_win.inject_qemu_ga virtio_win) then
       warning (f_"QEMU Guest Agent MSI not found on tools ISO/directory. You \
                   may want to install the guest agent manually after \
                   conversion.");
@@ -453,7 +470,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     disable_xenpv_win_drivers reg;
     disable_prl_drivers reg;
     disable_autoreboot reg;
-    Windows_virtio.inject_virtio_win_drivers virtio_win reg
+    Inject_virtio_win.inject_virtio_win_drivers virtio_win reg
 
   and disable_xenpv_win_drivers reg =
     (* Disable xenpv-win service (RHBZ#809273). *)

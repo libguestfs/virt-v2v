@@ -135,7 +135,6 @@ v2v_unit_tests_BOBJECTS = \
 	../lib/create_ovf.cmo \
 	../convert/windows.cmo \
 	../convert/linux.cmo \
-	../convert/windows_virtio.cmo \
 	../input/parse_vmx.cmo \
 	v2v_unit_tests.cmo
 v2v_unit_tests_XOBJECTS = $(v2v_unit_tests_BOBJECTS:.cmo=.cmx)

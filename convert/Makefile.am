@@ -31,13 +31,11 @@ SOURCES_MLI = \
 	linux_bootloaders.mli \
 	linux_kernels.mli \
 	target_bus_assignment.mli \
-	windows.mli \
-	windows_virtio.mli
+	windows.mli
 
 SOURCES_ML = \
 	linux.ml \
 	windows.ml \
-	windows_virtio.ml \
 	linux_bootloaders.ml \
 	linux_kernels.ml \
 	convert_linux.ml \
