@@ -44,6 +44,8 @@ type virtio_win_installed = {
   virtio_balloon : bool;
   isa_pvpanic : bool;
   virtio_socket : bool;
+  machine : Types.guestcaps_machine;
+  virtio_1_0 : bool;
 }
 
 let scsi_class_guid = "{4D36E97B-E325-11CE-BFC1-08002BE10318}"
@@ -57,13 +59,58 @@ let rec inject_virtio_win_drivers ((g, _) as reg : Registry.t) inspect =
   let driverdir = sprintf "%s/Drivers/VirtIO" inspect.i_windows_systemroot in
   g#mkdir_p driverdir;
 
+  (* XXX Inelegant hack copied originally from [Convert_windows].
+   * We should be able to work this into the code properly later.
+   *)
+  let machine, virtio_1_0 =
+    match inspect.i_arch with
+    | ("i386"|"x86_64") ->
+       (try
+          (* Fall back to the decision that's based on the year that the OS
+           * was released in under three circumstances:
+           * - the user specified the location of the Windows virtio drivers
+           *   through an environment variable, or
+           * - "Libosinfo_utils.get_os_by_short_id" fails to look up the OS,
+           *   or
+           * - "Libosinfo_utils.best_driver" cannot find any matching driver.
+           * In each of these cases, a "Not_found" exception is raised.  This
+           * behavior exactly mirrors that of "Windows_virtio.copy_drivers".
+           *)
+          if virtio_win_from_env then raise Not_found;
+          let os = Libosinfo_utils.get_os_by_short_id inspect.i_osinfo in
+          let devices = os#get_devices ()
+          and drivers = os#get_device_drivers () in
+          let best_drv_devs =
+            (Libosinfo_utils.best_driver drivers inspect.i_arch).devices in
+          debug "libosinfo internal devices for OS \"%s\":\n%s"
+            inspect.i_osinfo
+            (Libosinfo_utils.string_of_osinfo_device_list devices);
+          debug "libosinfo \"best driver\" devices for OS \"%s\":\n%s"
+            inspect.i_osinfo
+            (Libosinfo_utils.string_of_osinfo_device_list best_drv_devs);
+          let { Libosinfo_utils.q35; vio10 } =
+            Libosinfo_utils.os_support_of_osinfo_device_list
+              (devices @ best_drv_devs) in
+          (if q35 then Q35 else I440FX), vio10
+        with
+        | Not_found ->
+           (* Pivot on the year 2007.  Any Windows version from earlier than
+            * 2007 should use i440fx, anything 2007 or newer should use q35.
+            * Luckily this coincides almost exactly with the release of NT 6.
+            *)
+           (if inspect.i_major_version < 6 then I440FX else Q35), true
+       )
+    | _ -> Virt, true
+  in
+
   if not (copy_drivers g inspect driverdir) then (
       warning (f_"there are no virtio drivers available for this version of Windows (%d.%d %s %s %s).  virt-v2v looks for drivers in %s\n\nThe guest will be configured to use slower emulated devices.")
               inspect.i_major_version inspect.i_minor_version inspect.i_arch
               inspect.i_product_variant inspect.i_osinfo virtio_win;
       { block_driver = IDE; net_driver = RTL8139;
         virtio_rng = false; virtio_balloon = false;
-        isa_pvpanic = false; virtio_socket = false }
+        isa_pvpanic = false; virtio_socket = false;
+        machine; virtio_1_0; }
   )
   else (
     (* Can we install the block driver? *)
@@ -137,6 +184,7 @@ let rec inject_virtio_win_drivers ((g, _) as reg : Registry.t) inspect =
       virtio_balloon = g#exists (driverdir // "balloon.inf");
       isa_pvpanic = g#exists (driverdir // "pvpanic.inf");
       virtio_socket = g#exists (driverdir // "viosock.inf");
+      machine; virtio_1_0;
     }
   )
 

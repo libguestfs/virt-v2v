@@ -18,10 +18,6 @@
 
 (** Values and functions for installing Windows virtio drivers. *)
 
-val virtio_win_from_env : bool
-(** [virtio_win_from_env] is true iff at least one of the VIRTIO_WIN and
-    VIRTIO_WIN_DIR variables is present in the environment. *)
-
 type virtio_win_installed = {
   block_driver : Types.guestcaps_block_type;
   net_driver : Types.guestcaps_net_type;
@@ -29,6 +25,8 @@ type virtio_win_installed = {
   virtio_balloon : bool;
   isa_pvpanic : bool;
   virtio_socket : bool;
+  machine : Types.guestcaps_machine;
+  virtio_1_0 : bool;
 }
 (** After calling {!install_drivers}, this describes what virtio-win
     drivers we were able to install (and hence, what the guest requires).

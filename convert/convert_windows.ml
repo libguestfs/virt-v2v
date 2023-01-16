@@ -246,48 +246,6 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
                     disabling AV before doing the conversion.");
     );
 
-    let machine, virtio_1_0 =
-      match inspect.i_arch with
-      | ("i386"|"x86_64") ->
-        (try
-           (* Fall back to the decision that's based on the year that the OS
-            * was released in under three circumstances:
-            * - the user specified the location of the Windows virtio drivers
-            *   through an environment variable, or
-            * - "Libosinfo_utils.get_os_by_short_id" fails to look up the OS,
-            *   or
-            * - "Libosinfo_utils.best_driver" cannot find any matching driver.
-            * In each of these cases, a "Not_found" exception is raised.  This
-            * behavior exactly mirrors that of "Windows_virtio.copy_drivers".
-            *)
-           if Windows_virtio.virtio_win_from_env then
-             raise Not_found;
-           let os = Libosinfo_utils.get_os_by_short_id inspect.i_osinfo in
-           let devices = os#get_devices ()
-           and drivers = os#get_device_drivers () in
-           let best_drv_devs =
-             (Libosinfo_utils.best_driver drivers inspect.i_arch).devices in
-           debug "libosinfo internal devices for OS \"%s\":\n%s"
-             inspect.i_osinfo
-             (Libosinfo_utils.string_of_osinfo_device_list devices);
-           debug "libosinfo \"best driver\" devices for OS \"%s\":\n%s"
-             inspect.i_osinfo
-             (Libosinfo_utils.string_of_osinfo_device_list best_drv_devs);
-           let { Libosinfo_utils.q35; vio10 } =
-             Libosinfo_utils.os_support_of_osinfo_device_list
-               (devices @ best_drv_devs) in
-           (if q35 then Q35 else I440FX), vio10
-         with
-         | Not_found ->
-           (* Pivot on the year 2007.  Any Windows version from earlier than
-            * 2007 should use i440fx, anything 2007 or newer should use q35.
-            * Luckily this coincides almost exactly with the release of NT 6.
-            *)
-           (if inspect.i_major_version < 6 then I440FX else Q35), true
-        )
-      | _ -> Virt, true
-    in
-
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
       gcaps_block_bus = block_driver;
@@ -296,10 +254,10 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       gcaps_virtio_balloon = virtio_win_installed.Windows_virtio.virtio_balloon;
       gcaps_isa_pvpanic = virtio_win_installed.Windows_virtio.isa_pvpanic;
       gcaps_virtio_socket = virtio_win_installed.Windows_virtio.virtio_socket;
-      gcaps_machine = machine;
+      gcaps_machine = virtio_win_installed.Windows_virtio.machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_acpi = true;
-      gcaps_virtio_1_0 = virtio_1_0;
+      gcaps_virtio_1_0 = virtio_win_installed.Windows_virtio.virtio_1_0;
       gcaps_default_cpu = true;
     } in
 
