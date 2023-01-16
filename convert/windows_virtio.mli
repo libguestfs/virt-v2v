@@ -35,8 +35,9 @@ type virtio_win_installed = {
     eg. if [virtio_rng] is true then we installed the virtio RNG
     device, otherwise we didn't. *)
 
-val install_drivers : Registry.t -> Types.inspect -> virtio_win_installed
-(** [install_drivers reg inspect]
+val inject_virtio_win_drivers : Registry.t -> Types.inspect ->
+                                virtio_win_installed
+(** [inject_virtio_win_drivers reg inspect]
     installs virtio drivers from the driver directory or driver
     ISO into the guest driver directory and updates the registry
     so that the [viostor.sys] driver gets loaded by Windows at boot.

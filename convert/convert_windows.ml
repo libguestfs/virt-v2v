@@ -527,7 +527,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
     disable_xenpv_win_drivers reg;
     disable_prl_drivers reg;
     disable_autoreboot reg;
-    Windows_virtio.install_drivers reg inspect
+    Windows_virtio.inject_virtio_win_drivers reg inspect
 
   and disable_xenpv_win_drivers reg =
     (* Disable xenpv-win service (RHBZ#809273). *)
