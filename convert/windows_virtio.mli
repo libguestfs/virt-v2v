@@ -49,12 +49,12 @@ val inject_virtio_win_drivers : Registry.t -> Types.inspect ->
     are now required by the guest, either virtio devices if we managed to
     install those, or legacy devices if we didn't. *)
 
-val copy_qemu_ga : Guestfs.guestfs -> Types.inspect -> string list
-(** copy MSIs (ideally just one) with QEMU Guest Agent to Windows guest. The
-    MSIs are not installed by this function.
+val inject_qemu_ga : Guestfs.guestfs -> Types.inspect -> bool
+(** Inject MSIs (ideally just one) with QEMU Guest Agent into a Windows
+    guest.  A firstboot script is also injected which should install
+    the MSI(s).
 
-    Returns a list of the copied [*.msi] files (empty list indicates no
-    qemu-ga installer(s) could be located). *)
+    Returns [true] iff we were able to inject qemu-ga. *)
 
 (**/**)
 

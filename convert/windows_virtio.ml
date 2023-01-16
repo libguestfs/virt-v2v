@@ -141,6 +141,12 @@ let rec inject_virtio_win_drivers ((g, _) as reg : Registry.t) inspect =
     }
   )
 
+and inject_qemu_ga g inspect =
+  let msi_files = copy_qemu_ga g inspect in
+  if msi_files <> [] then
+    configure_qemu_ga g inspect msi_files;
+  msi_files <> [] (* return true if we found some qemu-ga MSI files *)
+
 and add_guestor_to_registry ((g, root) as reg) inspect drv_name drv_pciid =
   let ddb_node = g#hivex_node_get_child root "DriverDatabase" in
 
@@ -428,6 +434,41 @@ and copy_from_libosinfo g inspect destdir =
         )
     ) driver.Libosinfo.files
   with Not_found -> []
+
+and configure_qemu_ga g { i_root } files =
+  List.iter (
+    fun msi_path ->
+      (* Windows is a trashfire.
+       * https://stackoverflow.com/a/18730884
+       * https://bugzilla.redhat.com/show_bug.cgi?id=1895323
+       *)
+      let psh_script = ref [] in
+      let add = List.push_back psh_script in
+
+      add "# Uncomment this line for lots of debug output.";
+      add "# Set-PSDebug -Trace 2";
+      add "";
+      add "Write-Host Removing any previously scheduled qemu-ga installation";
+      add "schtasks.exe /Delete /TN Firstboot-qemu-ga /F";
+      add "";
+      add (sprintf
+             "Write-Host Scheduling delayed installation of qemu-ga from %s"
+             msi_path);
+      add "$d = (get-date).AddSeconds(120)";
+      add "$dtfinfo = [System.Globalization.DateTimeFormatInfo]::CurrentInfo";
+      add "$sdp = $dtfinfo.ShortDatePattern";
+      add "$sdp = $sdp -replace 'y+', 'yyyy'";
+      add "$sdp = $sdp -replace 'M+', 'MM'";
+      add "$sdp = $sdp -replace 'd+', 'dd'";
+      add "schtasks.exe /Create /SC ONCE `";
+      add "  /ST $d.ToString('HH:mm') /SD $d.ToString($sdp) `";
+      add "  /RU SYSTEM /TN Firstboot-qemu-ga `";
+      add (sprintf "  /TR \"C:\\%s /forcerestart /qn /l+*vx C:\\%s.log\""
+             msi_path msi_path);
+
+      Firstboot.add_firstboot_powershell g i_root
+        (sprintf "install-%s.ps1" msi_path) !psh_script;
+  ) files
 
 (* The following function is only exported for unit tests. *)
 module UNIT_TESTS = struct

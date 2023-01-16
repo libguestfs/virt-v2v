@@ -324,10 +324,7 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       configure_vmdp tool_path;
 
     (* Install QEMU Guest Agent unconditionally and warn if missing *)
-    let qemu_ga_files = Windows_virtio.copy_qemu_ga g inspect in
-    if qemu_ga_files <> [] then
-      configure_qemu_ga qemu_ga_files
-    else
+    if not (Windows_virtio.inject_qemu_ga g inspect) then
       warning (f_"QEMU Guest Agent MSI not found on tools ISO/directory. You \
                   may want to install the guest agent manually after \
                   conversion.");
@@ -435,41 +432,6 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
 
     Firstboot.add_firstboot_script g inspect.i_root
       "finish vmdp setup" fb_recover_script
-
- and configure_qemu_ga files =
-   List.iter (
-     fun msi_path ->
-       (* Windows is a trashfire.
-        * https://stackoverflow.com/a/18730884
-        * https://bugzilla.redhat.com/show_bug.cgi?id=1895323
-        *)
-       let psh_script = ref [] in
-       let add = List.push_back psh_script in
-
-       add "# Uncomment this line for lots of debug output.";
-       add "# Set-PSDebug -Trace 2";
-       add "";
-       add "Write-Host Removing any previously scheduled qemu-ga installation";
-       add "schtasks.exe /Delete /TN Firstboot-qemu-ga /F";
-       add "";
-       add (sprintf
-              "Write-Host Scheduling delayed installation of qemu-ga from %s"
-              msi_path);
-       add "$d = (get-date).AddSeconds(120)";
-       add "$dtfinfo = [System.Globalization.DateTimeFormatInfo]::CurrentInfo";
-       add "$sdp = $dtfinfo.ShortDatePattern";
-       add "$sdp = $sdp -replace 'y+', 'yyyy'";
-       add "$sdp = $sdp -replace 'M+', 'MM'";
-       add "$sdp = $sdp -replace 'd+', 'dd'";
-       add "schtasks.exe /Create /SC ONCE `";
-       add "  /ST $d.ToString('HH:mm') /SD $d.ToString($sdp) `";
-       add "  /RU SYSTEM /TN Firstboot-qemu-ga `";
-       add (sprintf "  /TR \"C:\\%s /forcerestart /qn /l+*vx C:\\%s.log\""
-              msi_path msi_path);
-
-      Firstboot.add_firstboot_powershell g inspect.i_root
-        (sprintf "install-%s.ps1" msi_path) !psh_script;
-    ) files
 
   and unconfigure_xenpv () =
     match xenpv_uninst with
