@@ -476,7 +476,6 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
         (sprintf "install-%s.ps1" msi_path) !psh_script;
     ) files
 
-
   and unconfigure_xenpv () =
     match xenpv_uninst with
     | None -> () (* nothing to be uninstalled *)

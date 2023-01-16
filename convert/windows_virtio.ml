@@ -215,7 +215,6 @@ and copy_qemu_ga g inspect =
     (fun () ->
       error (f_"root directory ‘/’ is missing from the virtio-win directory or ISO.\n\nThis should not happen and may indicate that virtio-win or virt-v2v is broken in some way.  Please report this as a bug with a full debug log."))
 
-
 (* Copy all files from virtio_win directory/ISO located in [srcdir]
  * subdirectory and all its subdirectories to the [destdir]. The directory
  * hierarchy is not preserved, meaning all files will be directly in [destdir].
