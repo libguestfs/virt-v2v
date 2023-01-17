@@ -21,7 +21,6 @@ common/utils/libxml2-cleanups.c
 common/utils/pcre2-cleanups.c
 common/utils/stringlists-utils.c
 common/utils/utils.c
-convert/libosinfo-c.c
 gnulib/lib/hash.c
 gnulib/lib/xstrtol.c
 gnulib/lib/xstrtoll.c
