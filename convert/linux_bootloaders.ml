@@ -22,9 +22,6 @@ open Std_utils
 open Tools_utils
 open Common_gettext.Gettext
 
-open Types
-open Utils
-
 module G = Guestfs
 
 class virtual bootloader = object
@@ -45,7 +42,7 @@ let remove_hd_prefix =
   PCRE.replace rex ""
 
 (* Grub1 (AKA grub-legacy) representation. *)
-class bootloader_grub1 (g : G.guestfs) inspect grub_config =
+class bootloader_grub1 (g : G.guestfs) root grub_config =
   let () =
   (* Apply the "grub" lens if it is not handling the file
    * already -- Augeas < 1.7.0 will error out otherwise.
@@ -55,7 +52,7 @@ class bootloader_grub1 (g : G.guestfs) inspect grub_config =
 
   (* Grub prefix?  Usually "/boot". *)
   let grub_prefix =
-    let mounts = g#inspect_get_mountpoints inspect.i_root in
+    let mounts = g#inspect_get_mountpoints root in
     try
       List.find (
         fun path -> List.mem_assoc path mounts
@@ -363,7 +360,7 @@ type bootloader_type =
   | Grub1
   | Grub2
 
-let detect_bootloader (g : G.guestfs) inspect i_firmware =
+let detect_bootloader (g : G.guestfs) root i_firmware =
   (* Where to start searching for bootloaders. *)
   let mp =
     match i_firmware with
@@ -403,7 +400,7 @@ let detect_bootloader (g : G.guestfs) inspect i_firmware =
 
   let bl =
     match typ with
-    | Grub1 -> new bootloader_grub1 g inspect grub_config
+    | Grub1 -> new bootloader_grub1 g root grub_config
     | Grub2 -> new bootloader_grub2 g grub_config in
   debug "detected bootloader %s at %s" bl#name grub_config;
   bl

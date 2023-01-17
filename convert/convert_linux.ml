@@ -121,12 +121,12 @@ let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
 
   (* Detect the installed bootloader. *)
   let bootloader =
-    Linux_bootloaders.detect_bootloader g inspect i_firmware in
+    Linux_bootloaders.detect_bootloader g inspect.i_root i_firmware in
   Linux.augeas_reload g;
 
   (* Detect which kernels are installed and offered by the bootloader. *)
   let bootloader_kernels =
-    Linux_kernels.detect_kernels g inspect family bootloader in
+    Linux_kernels.detect_kernels g inspect.i_root bootloader inspect.i_apps in
 
   (*----------------------------------------------------------------------*)
   (* Conversion step. *)

@@ -24,8 +24,6 @@ open Std_utils
 open Tools_utils
 open Common_gettext.Gettext
 
-open Types
-
 module G = Guestfs
 
 (* Kernel information. *)
@@ -68,7 +66,7 @@ let print_kernel_info chan prefix ki =
 let rex_ko = PCRE.compile "\\.k?o(?:\\.(?:xz|zst))?$"
 let rex_ko_extract = PCRE.compile "/([^/]+)\\.k?o(?:\\.(?:xz|zst))?$"
 
-let detect_kernels (g : G.guestfs) inspect family bootloader =
+let detect_kernels (g : G.guestfs) root bootloader apps =
   (* What kernel/kernel-like packages are installed on the current guest? *)
   let installed_kernels : kernel_info list =
     let check_config feature = function
@@ -87,7 +85,12 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
           )
     in
     let rex_initrd =
-      if family = `Debian_family then
+      let is_debian_family =
+        let distro = g#inspect_get_distro root in
+        match distro with
+        | "debian" | "ubuntu" | "linuxmint" | "kalilinux" -> true
+        | _ -> false in
+      if is_debian_family then
         PCRE.compile "^initrd.img-.*$"
       else
         PCRE.compile "^initr(?:d|amfs)-.*(?:\\.img)?$" in
@@ -96,7 +99,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
         name = "kernel"
           || (String.is_prefix name "kernel-" && not (String.is_suffix name "-devel"))
           || String.is_prefix name "linux-image-"
-    ) inspect.i_apps in
+    ) apps in
     if verbose () then (
       let names = List.map (fun { G.app2_name = name } -> name) kernel_pkgs in
       eprintf "candidate kernel packages in this guest: %s%!\n"
@@ -106,7 +109,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
       fun ({ G.app2_name = name } as app) ->
         (try
            (* For each kernel, list the files directly owned by the kernel. *)
-           let files = Linux.file_list_of_package g inspect.i_root app in
+           let files = Linux.file_list_of_package g root app in
 
            (* Which of these is the kernel itself?  Also, make sure to check
             * it exists by stat'ing it.

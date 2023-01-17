@@ -51,8 +51,7 @@ class virtual bootloader : object
 end
 (** Encapsulates a Linux boot loader as object. *)
 
-val detect_bootloader : Guestfs.guestfs ->
-                        Types.inspect -> Firmware.i_firmware ->
+val detect_bootloader : Guestfs.guestfs -> string -> Firmware.i_firmware ->
                         bootloader
-(** [detect_bootloader g inspect i_firmware] detects the bootloader on the
+(** [detect_bootloader g root i_firmware] detects the bootloader on the
     guest, and creates the object representing it. *)

@@ -40,11 +40,12 @@ type kernel_info = {
 }
 (** Kernel information. *)
 
-val detect_kernels : Guestfs.guestfs -> Types.inspect ->
-                     [> `Debian_family ] -> Linux_bootloaders.bootloader ->
+val detect_kernels : Guestfs.guestfs -> string ->
+                     Linux_bootloaders.bootloader ->
+                     Guestfs.application2 list ->
                      kernel_info list
-(** This function detects the kernels offered by the Linux
-    bootloader (eg. grub).
+(** [detect_kernels g rot bootloader apps] detects the kernels offered
+    by the Linux bootloader (eg. grub).
 
     It will only return the intersection of kernels that are
     installed and kernels that the bootloader knows about.  The
