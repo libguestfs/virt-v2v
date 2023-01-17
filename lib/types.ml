@@ -404,7 +404,6 @@ type guestcaps = {
   gcaps_virtio_socket : bool;
   gcaps_machine : guestcaps_machine;
   gcaps_arch : string;
-  gcaps_acpi : bool;
   gcaps_virtio_1_0 : bool;
   gcaps_default_cpu : bool;
 }
@@ -434,7 +433,6 @@ let string_of_guestcaps gcaps =
            gcaps_virtio_socket = %b\n\
            gcaps_machine = %s\n\
            gcaps_arch = %s\n\
-           gcaps_acpi = %b\n\
            gcaps_virtio_1_0 = %b\n\
            gcaps_default_cpu = %b\n\
           "
@@ -446,7 +444,6 @@ let string_of_guestcaps gcaps =
   gcaps.gcaps_virtio_socket
   (string_of_machine gcaps.gcaps_machine)
   gcaps.gcaps_arch
-  gcaps.gcaps_acpi
   gcaps.gcaps_virtio_1_0
   gcaps.gcaps_default_cpu
 

@@ -233,24 +233,13 @@ let create_libvirt_xml ?pool source inspect
   let smm = secure_boot_required in
 
   (* We have the machine features of the guest when it was on the
-   * source hypervisor (source.s_features).  We have the acpi flag
-   * which tells us whether acpi is required by this guest
-   * (guestcaps.gcaps_acpi).  And we have the set of hypervisor
-   * features supported by the target (target_features).  Combine all
-   * this into a final list of features.
+   * source hypervisor (source.s_features).  We have the set of
+   * hypervisor features supported by the target (target_features).
+   * Combine these into a final list of features.
    *)
   let features = string_set_of_list source.s_features in
+  let features = StringSet.add "acpi" features in
   let target_features = string_set_of_list target_features in
-
-  (* If the guest supports ACPI, add it to the output XML.  Conversely
-   * if the guest does not support ACPI, then we must drop it.
-   * (RHBZ#1159258)
-   *)
-  let features =
-    if guestcaps.gcaps_acpi then
-      StringSet.add "acpi" features
-    else
-      StringSet.remove "acpi" features in
 
   (* Make sure we don't add any features which are not supported by
    * the target hypervisor.

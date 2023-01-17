@@ -152,8 +152,6 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       bootloader#remove_console ();
     );
 
-    let acpi = supports_acpi () in
-
     let block_type =
       if kernel.ki_supports_virtio_blk then Virtio_blk else IDE in
     let net_type =
@@ -218,7 +216,6 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
       gcaps_virtio_socket = kernel.ki_supports_virtio_socket;
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
-      gcaps_acpi = acpi;
       gcaps_virtio_1_0 = virtio_1_0;
       gcaps_default_cpu = default_cpu_suffices;
     } in
@@ -969,13 +966,6 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
     ) paths;
 
     g#aug_save ()
-
-  and supports_acpi () =
-    (* ACPI known to cause RHEL 3 to fail. *)
-    if family = `RHEL_family && inspect.i_major_version == 3 then
-      false
-    else
-      true
 
   and configure_display_driver () =
     let video_driver = "modesetting" in

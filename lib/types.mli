@@ -269,7 +269,6 @@ type guestcaps = {
   gcaps_virtio_socket : bool;   (** Guest supports virtio socket. *)
   gcaps_machine : guestcaps_machine; (** Machine model. *)
   gcaps_arch : string;          (** Architecture that KVM must emulate. *)
-  gcaps_acpi : bool;            (** True if guest supports acpi. *)
 
   gcaps_virtio_1_0 : bool;
   (** The guest supports the virtio devices that it does at the virtio-1.0

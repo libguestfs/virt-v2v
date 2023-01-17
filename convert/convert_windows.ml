@@ -265,7 +265,6 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
       gcaps_machine = of_virtio_win_machine_type
                         virtio_win_installed.Inject_virtio_win.machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
-      gcaps_acpi = true;
       gcaps_virtio_1_0 = virtio_win_installed.Inject_virtio_win.virtio_1_0;
       gcaps_default_cpu = true;
     } in
