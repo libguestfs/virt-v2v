@@ -26,6 +26,7 @@ SOURCES_MLI = \
 	convert.mli \
 	convert_linux.mli \
 	convert_windows.mli \
+	firmware.mli \
 	inspect_source.mli \
 	linux.mli \
 	linux_bootloaders.mli \
@@ -34,6 +35,7 @@ SOURCES_MLI = \
 	windows.mli
 
 SOURCES_ML = \
+	firmware.ml \
 	linux.ml \
 	windows.ml \
 	linux_bootloaders.ml \

@@ -363,11 +363,11 @@ type bootloader_type =
   | Grub1
   | Grub2
 
-let detect_bootloader (g : G.guestfs) inspect =
+let detect_bootloader (g : G.guestfs) inspect i_firmware =
   (* Where to start searching for bootloaders. *)
   let mp =
-    match inspect.i_firmware with
-    | I_BIOS -> "/boot"
+    match i_firmware with
+    | Firmware.I_BIOS -> "/boot"
     | I_UEFI _ -> "/boot/efi/EFI" in
 
   (* Find all paths below the mountpoint, then filter them to find

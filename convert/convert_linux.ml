@@ -34,7 +34,7 @@ open Linux_kernels
 module G = Guestfs
 
 (* The conversion function. *)
-let convert (g : G.guestfs) source inspect keep_serial_console _ =
+let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
   (*----------------------------------------------------------------------*)
   (* Inspect the guest first.  We already did some basic inspection in
    * the common v2v.ml code, but that has to deal with generic guests
@@ -120,7 +120,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
   Array.iter g#rm_f (g#glob_expand "/var/lib/rpm/__db.00?");
 
   (* Detect the installed bootloader. *)
-  let bootloader = Linux_bootloaders.detect_bootloader g inspect in
+  let bootloader =
+    Linux_bootloaders.detect_bootloader g inspect i_firmware in
   Linux.augeas_reload g;
 
   (* Detect which kernels are installed and offered by the bootloader. *)
@@ -1307,8 +1308,8 @@ let convert (g : G.guestfs) source inspect keep_serial_console _ =
        The following code tries to make an uefi fallback path for
        a uefi linux vm.
     *)
-    (match inspect.i_firmware with
-    | I_BIOS -> ()
+    (match i_firmware with
+    | Firmware.I_BIOS -> ()
     | I_UEFI _ ->
       (* Standard uefi fallback path *)
       let uefi_fallback_path = "/boot/efi/EFI/BOOT/" in

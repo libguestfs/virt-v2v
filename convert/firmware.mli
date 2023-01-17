@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2020 Red Hat Inc.
+ * Copyright (C) 2009-2023 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,10 +16,20 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Convert a Windows guest to run on KVM.
+type i_firmware =
+  | I_BIOS
+  | I_UEFI of string list
+(** Firmware type returned through inspection (as opposed to source
+    hypervisor information which could be different or missing). *)
 
-    This module converts a Windows guest to run on KVM. *)
+val detect_firmware : Guestfs.guestfs -> i_firmware
+(** [detect_firmware g] sees if this guest could use UEFI to boot.  It
+    should use GPT and it should have an EFI System Partition (ESP).
 
-val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
-              Firmware.i_firmware -> bool -> Types.static_ip list ->
-              Types.guestcaps
+    If the guest has BIOS boot partition present, this is likely a BIOS+GPT
+    setup, so [I_BIOS] is returned.
+
+    If it has ESP(s), then [I_UEFI devs] is returned where [devs] is the
+    list of at least one ESP.
+
+    Otherwise, [I_BIOS] is returned. *)

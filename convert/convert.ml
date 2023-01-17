@@ -80,13 +80,14 @@ let rec convert dir options source =
   (* Inspection - this also mounts up the filesystems. *)
   message (f_"Inspecting the source");
   let inspect = Inspect_source.inspect_source options.root_choice g in
+  let i_firmware = Firmware.detect_firmware g in
 
   let mpstats = get_mpstats g in
   check_guest_free_space inspect mpstats;
 
   (* Conversion. *)
   let guestcaps =
-    do_convert g source inspect
+    do_convert g source inspect i_firmware
       options.keep_serial_console options.static_ips in
 
   g#umount_all ();
@@ -111,7 +112,7 @@ let rec convert dir options source =
   debug "%s" (string_of_target_buses target_buses);
 
   let target_firmware =
-    get_target_firmware inspect guestcaps source output in
+    get_target_firmware i_firmware guestcaps source output in
 
   (* Create target metadata file. *)
   let target_meta = { guestcaps; target_buses; target_firmware; target_nics } in
@@ -215,7 +216,7 @@ and do_fstrim g inspect =
   ) fses
 
 (* Conversion. *)
-and do_convert g source inspect keep_serial_console interfaces =
+and do_convert g source inspect i_firmware keep_serial_console interfaces =
   (match inspect.i_product_name with
   | "unknown" ->
     message (f_"Converting the guest to run on KVM")
@@ -240,7 +241,7 @@ and do_convert g source inspect keep_serial_console interfaces =
          inspect.i_type inspect.i_distro in
   debug "picked conversion module %s" conversion_name;
   let guestcaps =
-    convert g source inspect keep_serial_console interfaces in
+    convert g source inspect i_firmware keep_serial_console interfaces in
   debug "%s" (string_of_guestcaps guestcaps);
 
   (* Did we manage to install virtio drivers? *)
@@ -255,14 +256,14 @@ and do_convert g source inspect keep_serial_console interfaces =
   guestcaps
 
 (* Does the guest require UEFI on the target? *)
-and get_target_firmware inspect guestcaps source output =
+and get_target_firmware i_firmware guestcaps source output =
   message (f_"Checking if the guest needs BIOS or UEFI to boot");
   let target_firmware =
     match source.s_firmware with
     | BIOS -> TargetBIOS
     | UEFI -> TargetUEFI
     | UnknownFirmware ->
-       match inspect.i_firmware with
+       match i_firmware with
        | I_BIOS -> TargetBIOS
        | I_UEFI _ -> TargetUEFI
   in

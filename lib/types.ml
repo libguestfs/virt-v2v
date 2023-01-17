@@ -298,15 +298,11 @@ type inspect = {
   i_mountpoints : (string * string) list;
   i_apps : Guestfs.application2 list;
   i_apps_map : Guestfs.application2 list StringMap.t;
-  i_firmware : i_firmware;
   i_windows_systemroot : string;
   i_windows_software_hive : string;
   i_windows_system_hive : string;
   i_windows_current_control_set : string;
 }
-and i_firmware =
-  | I_BIOS
-  | I_UEFI of string list
 
 let string_of_inspect inspect =
   sprintf "\
@@ -321,7 +317,6 @@ i_package_format = %s
 i_package_management = %s
 i_product_name = %s
 i_product_variant = %s
-i_firmware = %s
 i_windows_systemroot = %s
 i_windows_software_hive = %s
 i_windows_system_hive = %s
@@ -337,9 +332,6 @@ i_windows_current_control_set = %s
   inspect.i_package_management
   inspect.i_product_name
   inspect.i_product_variant
-  (match inspect.i_firmware with
-   | I_BIOS -> "BIOS"
-   | I_UEFI devices -> sprintf "UEFI [%s]" (String.concat ", " devices))
   inspect.i_windows_systemroot
   inspect.i_windows_software_hive
   inspect.i_windows_system_hive

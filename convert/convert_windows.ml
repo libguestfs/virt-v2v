@@ -38,7 +38,7 @@ module G = Guestfs
  * time the Windows VM is booted on KVM.
  *)
 
-let convert (g : G.guestfs) _ inspect _ static_ips =
+let convert (g : G.guestfs) _ inspect i_firmware _ static_ips =
   (*----------------------------------------------------------------------*)
   (* Inspect the Windows guest. *)
 
@@ -794,8 +794,8 @@ let convert (g : G.guestfs) _ inspect _ static_ips =
         )
     in
 
-    match inspect.i_firmware with
-    | I_BIOS -> ()
+    match i_firmware with
+    | Firmware.I_BIOS -> ()
     | I_UEFI esp_list ->
       let esp_temp_path = g#mkdtemp "/Windows/Temp/ESP_XXXXXX" in
       let uefi_arch = get_uefi_arch_suffix inspect.i_arch in

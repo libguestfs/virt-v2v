@@ -189,18 +189,11 @@ type inspect = {
     (** This is a map from the app name to the application object.
         Since RPM allows multiple packages with the same name to be
         installed, the value is a list. *)
-  i_firmware : i_firmware;
-    (** The list of EFI system partitions for the guest with UEFI,
-        otherwise the BIOS identifier. *)
   i_windows_systemroot : string;
   i_windows_software_hive : string;
   i_windows_system_hive : string;
   i_windows_current_control_set : string;
 }
-and i_firmware =
-  | I_BIOS
-  | I_UEFI of string list
-(** Inspection information. *)
 
 val string_of_inspect : inspect -> string
 
