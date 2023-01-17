@@ -22,9 +22,6 @@ open Std_utils
 open Tools_utils
 open Common_gettext.Gettext
 
-open Types
-open Utils
-
 module G = Guestfs
 
 let re_version = PCRE.compile "(\\d+)\\.(\\d+)"
@@ -33,15 +30,17 @@ let augeas_reload g =
   g#aug_load ();
   debug_augeas_errors g
 
-let rec remove g inspect packages =
+let rec remove g root packages =
   if packages <> [] then (
-    do_remove g inspect packages;
+    do_remove g root packages;
     (* Reload Augeas in case anything changed. *)
     augeas_reload g
   )
 
-and do_remove g { i_package_format = package_format } packages =
+and do_remove g root packages =
   assert (List.length packages > 0);
+
+  let package_format = g#inspect_get_package_format root in
   match package_format with
   | "deb" ->
     let cmd = [ "dpkg"; "--purge" ] @ packages in
@@ -57,8 +56,9 @@ and do_remove g { i_package_format = package_format } packages =
     error (f_"don’t know how to remove packages using %s: packages: %s")
       format (String.concat " " packages)
 
-let file_list_of_package (g : Guestfs.guestfs) inspect app =
-  match inspect.i_package_format with
+let file_list_of_package (g : Guestfs.guestfs) root app =
+  let package_format = g#inspect_get_package_format root in
+  match package_format with
   | "deb" ->
     let cmd = [| "dpkg"; "-L"; app.G.app2_name |] in
     debug "%s" (String.concat " " (Array.to_list cmd));
@@ -84,16 +84,21 @@ let file_list_of_package (g : Guestfs.guestfs) inspect app =
     let is_rpm_lt_4_11 () =
       let ver =
         try
-          let ver = List.find_map (
-            function
-            | { G.app2_name = name; G.app2_version = version }
-                when name = "rpm" -> Some version
-            | _ -> None
-          ) inspect.i_apps in
-          if PCRE.matches re_version ver then
-            (int_of_string (PCRE.sub 1), int_of_string (PCRE.sub 2))
-          else
-            (0, 0)
+          (* Since we're going to run 'rpm' below anyway, seems safe
+           * to run it here and assume the binary works.
+           *)
+          let cmd = [| "rpm"; "--version" |] in
+          debug "%s" (String.concat " " (Array.to_list cmd));
+          let ver = g#command_lines cmd in
+          let ver = if Array.length ver > 0 then ver.(0) else raise Not_found in
+          debug "%s" ver;
+          let ver = String.nsplit " " ver in
+          let ver =
+            match ver with
+            | [ "RPM"; "version"; ver ] -> ver
+            | _ -> raise Not_found in
+          if not (PCRE.matches re_version ver) then raise Not_found;
+          (int_of_string (PCRE.sub 1), int_of_string (PCRE.sub 2))
         with Not_found ->
           (* 'rpm' not installed? Hmm... *)
           (0, 0) in
@@ -124,7 +129,8 @@ let file_list_of_package (g : Guestfs.guestfs) inspect app =
     error (f_"don’t know how to get list of files from package using %s")
       format
 
-let is_file_owned (g : G.guestfs) { i_package_format = package_format } path =
+let is_file_owned (g : G.guestfs) root path =
+  let package_format = g#inspect_get_package_format root in
   match package_format with
   | "deb" ->
       (* With dpkg usually the directories are owned by all the packages

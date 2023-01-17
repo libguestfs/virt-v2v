@@ -106,7 +106,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
       fun ({ G.app2_name = name } as app) ->
         (try
            (* For each kernel, list the files directly owned by the kernel. *)
-           let files = Linux.file_list_of_package g inspect app in
+           let files = Linux.file_list_of_package g inspect.i_root app in
 
            (* Which of these is the kernel itself?  Also, make sure to check
             * it exists by stat'ing it.

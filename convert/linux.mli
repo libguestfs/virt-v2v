@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2020 Red Hat Inc.
+ * Copyright (C) 2009-2023 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,14 +23,17 @@ val augeas_reload : Guestfs.guestfs -> unit
     additional debugging information about parsing problems
     that augeas found. *)
 
-val remove : Guestfs.guestfs -> Types.inspect -> string list -> unit
-(** Uninstall package(s). *)
+val remove : Guestfs.guestfs -> string -> string list -> unit
+(** [remove g root pkgs] uninstalls the package(s). *)
 
-val file_list_of_package : Guestfs.guestfs -> Types.inspect -> Guestfs.application2 -> string list
-(** Return list of files owned by package. *)
+val file_list_of_package : Guestfs.guestfs -> string ->
+                           Guestfs.application2 -> string list
+(** [file_list_of_package g root app] returns the list of files
+    owned by a package. *)
 
-val is_file_owned : Guestfs.guestfs -> Types.inspect -> string -> bool
-(** Returns true if the file is owned by an installed package. *)
+val is_file_owned : Guestfs.guestfs -> string -> string -> bool
+(** [is_file_owned g root path] returns true if the file is owned
+    by any installed package. *)
 
 val is_package_manager_save_file : string -> bool
 (** Return true if the filename is something like [*.rpmsave], ie.
