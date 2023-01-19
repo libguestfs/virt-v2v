@@ -3,6 +3,10 @@ common/mlcustomize/customize_cmdline.ml
 common/mlcustomize/firstboot.ml
 common/mlcustomize/guest_packages.ml
 common/mlcustomize/inject_virtio_win.ml
+common/mldrivers/firmware.ml
+common/mldrivers/linux.ml
+common/mldrivers/linux_bootloaders.ml
+common/mldrivers/linux_kernels.ml
 common/mlgettext/common_gettext.ml
 common/mlpcre/PCRE.ml
 common/mlstdutils/guestfs_config.ml
