@@ -67,6 +67,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mlcustomize \
+	-I $(top_builddir)/common/mldrivers \
 	-I $(top_builddir)/common/mlv2v
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
@@ -101,6 +102,7 @@ OCAMLLINKFLAGS = \
 	mltools.$(MLARCHIVE) \
 	mllibvirt.$(MLARCHIVE) \
 	mlcustomize.$(MLARCHIVE) \
+	mldrivers.$(MLARCHIVE) \
 	mlv2v.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
 	mlconvert.$(MLARCHIVE) \
@@ -134,7 +136,6 @@ endif
 v2v_unit_tests_BOBJECTS = \
 	../lib/create_ovf.cmo \
 	../convert/windows.cmo \
-	../convert/linux.cmo \
 	../input/parse_vmx.cmo \
 	v2v_unit_tests.cmo
 v2v_unit_tests_XOBJECTS = $(v2v_unit_tests_BOBJECTS:.cmo=.cmx)
@@ -161,6 +162,7 @@ v2v_unit_tests_DEPENDENCIES = \
 	../common/mlutils/mlcutils.$(MLARCHIVE) \
 	../common/mltools/mltools.$(MLARCHIVE) \
 	../common/mlcustomize/mlcustomize.$(MLARCHIVE) \
+	../common/mldrivers/mldrivers.$(MLARCHIVE) \
 	../common/mlv2v/mlv2v.$(MLARCHIVE) \
 	$(top_srcdir)/ocaml-link.sh
 v2v_unit_tests_LINK = \

@@ -26,20 +26,12 @@ SOURCES_MLI = \
 	convert.mli \
 	convert_linux.mli \
 	convert_windows.mli \
-	firmware.mli \
 	inspect_source.mli \
-	linux.mli \
-	linux_bootloaders.mli \
-	linux_kernels.mli \
 	target_bus_assignment.mli \
 	windows.mli
 
 SOURCES_ML = \
-	firmware.ml \
-	linux.ml \
 	windows.ml \
-	linux_bootloaders.ml \
-	linux_kernels.ml \
 	convert_linux.ml \
 	convert_windows.ml \
 	inspect_source.ml \
@@ -90,6 +82,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlgettext \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mltools \
+	-I $(top_builddir)/common/mldrivers \
 	-I $(top_builddir)/common/mlv2v \
 	-I $(top_builddir)/common/mlxml
 if HAVE_OCAML_PKG_GETTEXT
@@ -119,6 +112,7 @@ OCAMLLINKFLAGS = \
 	mlxml.$(MLARCHIVE) \
 	mltools.$(MLARCHIVE) \
 	mlcustomize.$(MLARCHIVE) \
+	mldrivers.$(MLARCHIVE) \
 	mlv2v.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)

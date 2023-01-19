@@ -130,6 +130,7 @@ AC_CONFIG_FILES([Makefile
                  bash/Makefile
                  common/options/Makefile
                  common/mlcustomize/Makefile
+                 common/mldrivers/Makefile
                  common/mlgettext/Makefile
                  common/mlpcre/Makefile
                  common/mlstdutils/Makefile
