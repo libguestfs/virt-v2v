@@ -30,7 +30,6 @@ EXTRA_DIST = \
 SOURCES_MLI = \
 	config.mli \
 	create_ovf.mli \
-	DOM.mli \
 	YAML.mli \
 	libvirt_utils.mli \
 	nbdkit.mli \
@@ -45,7 +44,6 @@ SOURCES_ML = \
 	nbdkit.ml \
 	qemuNBD.ml \
 	networks.ml \
-	DOM.ml \
 	YAML.ml \
 	create_ovf.ml \
 	libvirt_utils.ml
