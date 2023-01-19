@@ -47,7 +47,7 @@ module Kubevirt = struct
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
     if options.output_password <> None then
-      error_option_cannot_be_used_in_output_mode "local" "-op";
+      error_option_cannot_be_used_in_output_mode "kubevirt" "-op";
 
     (* -os must be set to a directory. *)
     let output_storage =
