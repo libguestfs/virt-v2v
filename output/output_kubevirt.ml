@@ -35,7 +35,7 @@ let rfc1123_re =
     "[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*"
 
 module Kubevirt = struct
-  type poptions = output_allocation * string * string * string
+  type poptions = bool * output_allocation * string * string * string
 
   type t = unit
 
@@ -46,11 +46,22 @@ module Kubevirt = struct
       | None -> ""
 
   let query_output_options () =
-    printf (f_"No output options can be used in this mode.\n")
+    printf (f_"Output options that can be used with -o kubevirt:
+
+  -oo compressed      Compress the output file (used only with -of qcow2)
+")
+
 
   let parse_options options source =
-    if options.output_options <> [] then
-      error (f_"no -oo (output options) are allowed here");
+    let compressed = ref false in
+    List.iter (
+      function
+      | "compressed", "" -> compressed := true
+      | "compressed", v -> compressed := bool_of_string v
+      | k, _ ->
+         error (f_"-o kubevirt: unknown output option ‘-oo %s’") k
+    ) options.output_options;
+
     if options.output_password <> None then
       error_option_cannot_be_used_in_output_mode "kubevirt" "-op";
 
@@ -73,11 +84,13 @@ module Kubevirt = struct
                 end with an alphanumeric character.  Rerun virt-v2v with \
                 the '-on name' option to rename it.");
 
-    options.output_alloc, options.output_format, output_name, output_storage
+    !compressed, options.output_alloc, options.output_format,
+    output_name, output_storage
 
   let setup dir options source =
     let disks = get_disks dir in
-    let output_alloc, output_format, output_name, output_storage = options in
+    let compressed, output_alloc, output_format, output_name, output_storage =
+      options in
 
     List.iter (
       fun (i, size) ->
@@ -86,11 +99,12 @@ module Kubevirt = struct
 
         (* Create the actual output disk. *)
         let outdisk = disk_path output_storage output_name i in
-        output_to_local_file output_alloc output_format outdisk size socket
+        output_to_local_file ~compressed output_alloc output_format
+          outdisk size socket
     ) disks
 
   let finalize dir options () source inspect target_meta =
-    let output_alloc, output_format, output_name, output_storage = options in
+    let _, output_alloc, output_format, output_name, output_storage = options in
 
     let doc = create_kubevirt_yaml source inspect target_meta
                 (disk_path output_storage output_name)
