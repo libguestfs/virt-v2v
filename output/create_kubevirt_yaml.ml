@@ -65,12 +65,12 @@ let create_kubevirt_yaml source inspect
   let memory_str = sprintf "%LdMi" (source.s_memory /^ 1024_L /^ 1024_L) in
   List.push_back resources ("requests", Assoc ["memory", String memory_str]);
 
-  (* # vCPUs. XXX vendor, model, topology *)
-  List.push_back resources ("cpu", Assoc ["cores", Int source.s_vcpu]);
-
   (* Machine features. *)
   let features = List.map (fun name -> name, List []) source.s_features in
   List.push_back resources ("features", Assoc features);
+
+  (* # vCPUs. XXX vendor, model, topology *)
+  let cpu = "cpu", Assoc ["cores", Int source.s_vcpu] in
 
   (* XXX firmware, display, sound *)
 
@@ -109,6 +109,7 @@ let create_kubevirt_yaml source inspect
   if !devices <> [] then
     List.push_back domain ("devices", Assoc !devices);
   List.push_back domain ("resources", Assoc !resources);
+  List.push_back domain cpu;
 
   let spec = ref [] in
   List.push_back spec ("domain", Assoc !domain);
