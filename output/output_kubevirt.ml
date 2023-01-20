@@ -29,6 +29,11 @@ open Utils
 open Output
 open Create_kubevirt_yaml
 
+(* Valid output names for Kubevirt (RHBZ#2162332). *)
+let rfc1123_re =
+  PCRE.compile ~anchored:true
+    "[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*"
+
 module Kubevirt = struct
   type poptions = output_allocation * string * string * string
 
@@ -59,6 +64,12 @@ module Kubevirt = struct
       | Some d -> d in
 
     let output_name = Option.default source.s_name options.output_name in
+
+    if not (PCRE.matches rfc1123_re output_name) then
+      error (f_"-o kubevirt: the guest name must contain only lowercase \
+                alphanumeric characters, '-' or '.', and must start and \
+                end with an alphanumeric character.  Rerun virt-v2v with \
+                the '-on name' option to rename it.");
 
     options.output_alloc, options.output_format, output_name, output_storage
 
