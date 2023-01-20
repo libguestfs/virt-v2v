@@ -45,8 +45,13 @@ let rec inspect_source root_choice g =
       (try g#mount dev mp
        with G.Error msg ->
          if mp = "/" then ( (* RHBZ#1145995 *)
-           if String.find msg "Windows" >= 0 && String.find msg "NTFS partition is in an unsafe state" >= 0 then
-             error (f_"unable to mount the disk image for writing. This has probably happened because Windows Hibernation or Fast Restart is being used in this guest. You have to disable this (in the guest) in order to use virt-v2v.\n\nOriginal error message: %s") msg
+           if String.find msg "Windows" >= 0 &&
+                String.find msg "NTFS partition is in an unsafe state" >= 0 then
+             error (f_"unable to mount the disk image for writing. This has \
+                       probably happened because Windows Hibernation or \
+                       Fast Restart is being used in this guest. You have \
+                       to disable this (in the guest) in order to use \
+                       virt-v2v.\n\nOriginal error message: %s") msg
            else
              error "%s" msg
          )
@@ -63,7 +68,12 @@ let rec inspect_source root_choice g =
         (try g#touch file
          with G.Error msg ->
            if g#last_errno () = G.Errno.errno_EROFS then
-             error (f_"filesystem was mounted read-only, even though we asked for it to be mounted read-write.  This usually means that the filesystem was not cleanly unmounted.  Possible causes include trying to convert a guest which is running, or using Windows Hibernation or Fast Restart.\n\nOriginal error message: %s") msg
+             error (f_"filesystem was mounted read-only, even though we \
+                       asked for it to be mounted read-write.  This usually \
+                       means that the filesystem was not cleanly unmounted.  \
+                       Possible causes include trying to convert a guest \
+                       which is running, or using Windows Hibernation or \
+                       Fast Restart.\n\nOriginal error message: %s") msg
            else
              error (f_"could not write to the guest filesystem: %s") msg
         );
@@ -127,7 +137,12 @@ let rec inspect_source root_choice g =
 
 and choose_root root_choice g = function
   | [] ->
-     error (f_"inspection could not detect the source guest (or physical machine).\n\nAssuming that you are running virt-v2v/virt-p2v on a source which is supported (and not, for example, a blank disk), then this should not happen.\n\nNo root device found in this operating system image.");
+     error (f_"inspection could not detect the source guest \
+               (or physical machine).\n\nAssuming that you are \
+               running virt-v2v/virt-p2v on a source which is \
+               supported (and not, for example, a blank disk), \
+               then this should not happen.\n\nNo root device \
+               found in this operating system image.");
   | [root] -> root (* only one root, so return it *)
   | roots ->
      (* If there are multiple roots, use the [--root] option supplied
@@ -137,7 +152,9 @@ and choose_root root_choice g = function
      | AskRoot ->
         (* List out the roots and ask the user to choose. *)
         printf "\n***\n";
-        printf (f_"Dual- or multi-boot operating system detected.  Choose the root filesystem\nthat contains the main operating system from the list below:\n");
+        printf (f_"Dual- or multi-boot operating system detected.  \
+                   Choose the root filesystem\nthat contains the main \
+                   operating system from the list below:\n");
         printf "\n";
         List.iteri (
           fun i root ->
@@ -164,7 +181,9 @@ and choose_root root_choice g = function
         List.nth roots (!i - 1)
 
       | SingleRoot ->
-        error (f_"multi-boot operating systems are not supported by virt-v2v. Use the --root option to change how virt-v2v handles this.")
+        error (f_"multi-boot operating systems are not supported by \
+                  virt-v2v. Use the --root option to change how virt-v2v \
+                  handles this.")
 
       | FirstRoot ->
         let root = List.hd roots in
@@ -184,7 +203,10 @@ and choose_root root_choice g = function
 and reject_if_not_installed_image g root =
   let fmt = g#inspect_get_format root in
   if fmt <> "installed" then
-    error (f_"libguestfs thinks this is not an installed operating system (it might be, for example, an installer disk or live CD).  If this is wrong, it is probably a bug in libguestfs.  root=%s fmt=%s") root fmt
+    error (f_"libguestfs thinks this is not an installed operating \
+              system (it might be, for example, an installer disk \
+              or live CD).  If this is wrong, it is probably a bug \
+              in libguestfs.  root=%s fmt=%s") root fmt
 
 (* Wrapper around g#inspect_list_applications2 which, for RPM
  * guests, on failure tries to rebuild the RPM database before
@@ -228,5 +250,9 @@ and sanity_check_inspection inspect =
 
 and error_if_unknown fieldname value =
   if value = "unknown" then
-    error (f_"inspection could not detect the source guest (or physical machine).\n\nAssuming that you are running virt-v2v/virt-p2v on a source which is supported (and not, for example, a blank disk), then this should not happen.\n\nInspection field ‘%s’ was ‘unknown’.")
+    error (f_"inspection could not detect the source guest (or \
+              physical machine).\n\nAssuming that you are running \
+              virt-v2v/virt-p2v on a source which is supported (and \
+              not, for example, a blank disk), then this should not \
+              happen.\n\nInspection field ‘%s’ was ‘unknown’.")
           fieldname

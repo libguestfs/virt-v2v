@@ -118,11 +118,15 @@ let rec parse_ova ova =
              untar ~format ova tmpdir;
              tmpdir, Directory
           | `Zip | `GZip | `XZ | `Unknown ->
-             error (f_"%s: unsupported file format\n\nFormats which we currently understand for '-i ova' are: tar (uncompressed, compress with gzip or xz), zip") ova
+             error (f_"%s: unsupported file format\n\nFormats which we \
+                       currently understand for '-i ova' are: tar \
+                       (uncompressed, compress with gzip or xz), zip") ova
          )
 
       | `Unknown ->
-         error (f_"%s: unsupported file format\n\nFormats which we currently understand for '-i ova' are: tar (uncompressed, compress with gzip or xz), zip") ova
+         error (f_"%s: unsupported file format\n\nFormats which we \
+                   currently understand for '-i ova' are: tar (uncompressed, \
+                   compress with gzip or xz), zip") ova
     ) in
 
   (* Exploded path must be absolute (RHBZ#1155121). *)
@@ -140,7 +144,8 @@ let rec parse_ova ova =
    * so it is readable by qemu.qemu.  This is libvirt bug RHBZ#890291.
    *)
   if Unix.geteuid () = 0 && backend_is_libvirt () then (
-    warning (f_"making OVA directory public readable to work around libvirt bug https://bugzilla.redhat.com/1045069");
+    warning (f_"making OVA directory public readable to work around \
+                libvirt bug https://bugzilla.redhat.com/1045069");
     let what =
       match ova_type with
       | Directory -> [ top_dir ]
@@ -348,7 +353,8 @@ let resolve_href ({ top_dir; ova_type } as t) href =
      (try
         let filename = Realpath.realpath filename in
         if not (String.is_prefix filename real_top_dir) then
-          error (f_"-i ova: invalid OVA file: path ‘%s’ references a file outside the archive") href;
+          error (f_"-i ova: invalid OVA file: path ‘%s’ references a file \
+                    outside the archive") href;
         Some (LocalFile filename)
       with
         Unix_error (ENOENT, "realpath", _) -> None

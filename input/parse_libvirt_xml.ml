@@ -44,7 +44,8 @@ let get_drive_slot str offset =
   let name = String.sub str offset (String.length str - offset) in
   try Some (drive_index name)
   with Invalid_argument _ ->
-       warning (f_"could not parse device name ‘%s’ from the source libvirt XML") str;
+       warning (f_"could not parse device name ‘%s’ \
+                   from the source libvirt XML") str;
        None
 
 let parse_libvirt_xml ?conn xml =
@@ -70,7 +71,8 @@ let parse_libvirt_xml ?conn xml =
   let hypervisor =
     match xpath_string "/domain/@type" with
     | None | Some "" ->
-       error (f_"in the libvirt XML metadata, <domain type='...'> is missing or empty")
+       error (f_"in the libvirt XML metadata, <domain type='...'> \
+                 is missing or empty")
     | Some s -> source_hypervisor_of_string s in
   let name =
     match xpath_string "/domain/name/text()" with
@@ -155,7 +157,8 @@ let parse_libvirt_xml ?conn xml =
           | Some "none" ->
             LNone
           | Some t ->
-            warning (f_"<listen type='%s'> in the input libvirt XML was ignored") t;
+            warning (f_"<listen type='%s'> in the input libvirt XML \
+                        was ignored") t;
             LNoListen
         ) in
       let port =
@@ -176,10 +179,13 @@ let parse_libvirt_xml ?conn xml =
                s_keymap = keymap; s_password = password; s_listen = listen;
                s_port = port }
       | Some ("sdl"|"desktop" as t) ->
-        warning (f_"virt-v2v does not support local displays, so <graphics type='%s'> in the input libvirt XML was ignored") t;
+        warning (f_"virt-v2v does not support local displays, so \
+                    <graphics type='%s'> in the input libvirt XML was ignored")
+          t;
         None
       | Some t ->
-        warning (f_"display <graphics type='%s'> in the input libvirt XML was ignored") t;
+        warning (f_"display <graphics type='%s'> in the input \
+                    libvirt XML was ignored") t;
         None
     ) in
 
@@ -297,7 +303,8 @@ let parse_libvirt_xml ?conn xml =
              sprintf "%s://%s%s%s" driver host port (uri_quote path) in
            add_disk format controller (HTTP url)
         | Some protocol, _, _ ->
-           warning (f_"<disk type='network'> with <source protocol='%s'> was ignored")
+           warning (f_"<disk type='network'> with <source protocol='%s'> \
+                       was ignored")
                    protocol
         )
       | Some "volume" ->
@@ -323,7 +330,8 @@ let parse_libvirt_xml ?conn xml =
              | None -> ()
             );
           | Some vol_type ->
-            warning (f_"<disk type='volume'> with <volume type='%s'> was ignored") vol_type
+            warning (f_"<disk type='volume'> with <volume type='%s'> \
+                        was ignored") vol_type
           )
         )
       | Some disk_type ->
@@ -364,13 +372,15 @@ let parse_libvirt_xml ?conn xml =
            let name = String.sub dev 2 (String.length dev - 2) in
            (try Some (int_of_string name)
             with Failure _ ->
-              warning (f_"could not parse device name ‘%s’ from the source libvirt XML") dev;
+              warning (f_"could not parse device name ‘%s’ \
+                          from the source libvirt XML") dev;
               None
            )
         | Some dev ->
            let rec loop = function
              | [] ->
-                warning (f_"<target dev='%s'> was ignored because the device name could not be recognized") dev;
+                warning (f_"<target dev='%s'> was ignored because \
+                            the device name could not be recognized") dev;
                 None
              | prefix :: rest ->
                 if String.is_prefix dev prefix then (

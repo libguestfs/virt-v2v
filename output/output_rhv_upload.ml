@@ -65,13 +65,17 @@ after their uploads (if you do, you must supply one for each disk):
     let output_conn =
       match options.output_conn with
       | None ->
-         error (f_"-o rhv-upload: use ‘-oc’ to point to the oVirt or RHV server REST API URL, which is usually https://servername/ovirt-engine/api")
+         error (f_"-o rhv-upload: use ‘-oc’ to point to the oVirt \
+                   or RHV server REST API URL, which is usually \
+                   https://servername/ovirt-engine/api")
       | Some oc -> oc in
     (* In theory we could make the password optional in future. *)
     let output_password =
       match options.output_password with
       | None ->
-         error (f_"-o rhv-upload: output password file was not specified, use ‘-op’ to point to a file which contains the password used to connect to the oVirt or RHV server")
+         error (f_"-o rhv-upload: output password file was not specified, \
+                   use ‘-op’ to point to a file which contains the password \
+                   used to connect to the oVirt or RHV server")
       | Some op -> op in
     let output_storage =
       match options.output_storage with
@@ -126,7 +130,8 @@ after their uploads (if you do, you must supply one for each disk):
     let nil_uuid = "00000000-0000-0000-0000-000000000000" in
     let rex_uuid = lazy (
       let hex = "[a-fA-F0-9]" in
-      let str = sprintf "^%s{8}-%s{4}-%s{4}-%s{4}-%s{12}$" hex hex hex hex hex in
+      let str = sprintf "^%s{8}-%s{4}-%s{4}-%s{4}-%s{12}$"
+                  hex hex hex hex hex in
       PCRE.compile str
     ) in
     if uuid = nil_uuid then false
@@ -151,13 +156,16 @@ after their uploads (if you do, you must supply one for each disk):
       let res = run_command [ Python_script.python; "-c";
                               "import ovirtsdk4" ] in
       if res <> 0 then
-        error (f_"the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See previous messages for problems.")
+        error (f_"the Python module ‘ovirtsdk4’ could not be loaded, \
+                  is it installed?  See previous messages for problems.")
     in
 
     (* Check that nbdkit is available and new enough. *)
     let error_unless_nbdkit_working () =
       if not (Nbdkit.is_installed ()) then
-        error (f_"nbdkit is not installed or not working.  It is required to use ‘-o rhv-upload’.  See the virt-v2v-output-rhv(1) manual.")
+        error (f_"nbdkit is not installed or not working.  It is required \
+                  to use ‘-o rhv-upload’.  See the virt-v2v-output-rhv(1) \
+                  manual.")
     in
 
     let error_unless_nbdkit_min_version config =
@@ -175,7 +183,8 @@ after their uploads (if you do, you must supply one for each disk):
                   (quote (Python_script.path plugin_script)) in
       debug "%s" cmd;
       if Sys.command cmd <> 0 then
-        error (f_"nbdkit python plugin is not installed or not working.  It is required if you want to use ‘-o rhv-upload’.
+        error (f_"nbdkit python plugin is not installed or not working.  \
+                  It is required if you want to use ‘-o rhv-upload’.
 
 See also the virt-v2v-output-rhv(1) manual.");
     in
@@ -187,7 +196,10 @@ See also the virt-v2v-output-rhv(1) manual.");
       if have_selinux then (
         let selinux = try List.assoc "selinux" config with Not_found -> "no" in
         if selinux = "no" then
-          error (f_"nbdkit was compiled without SELinux support.  You will have to recompile nbdkit with libselinux-devel installed, or else set SELinux to Permissive mode while doing the conversion.")
+          error (f_"nbdkit was compiled without SELinux support.  You will \
+                    have to recompile nbdkit with libselinux-devel installed, \
+                    or else set SELinux to Permissive mode while doing the \
+                    conversion.")
       )
     in
 
@@ -280,8 +292,9 @@ See also the virt-v2v-output-rhv(1) manual.");
       | Some uuids ->
          let nr_disks = List.length disks in
          if List.length uuids <> nr_disks then
-           error (f_"the number of ‘-oo rhv-disk-uuid’ parameters passed on th
-e command line has to match the number of guest disk images (for this guest: %d)") nr_disks;
+           error (f_"the number of ‘-oo rhv-disk-uuid’ parameters passed on \
+                     the command line has to match the number of guest \
+                     disk images (for this guest: %d)") nr_disks;
          uuids
       | None -> List.map (fun _ -> uuidgen ()) disks in
 
@@ -357,7 +370,10 @@ e command line has to match the number of guest disk images (for this guest: %d)
           | "raw" as fmt -> fmt
           | "qcow2" as fmt -> fmt
           | _ ->
-             error (f_"rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If the input is in a different format then force one of these output formats by adding either ‘-of raw’ or ‘-of qcow2’ on the command line.")
+             error (f_"rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ \
+                       is supported.  If the input is in a different format \
+                       then force one of these output formats by adding \
+                       either ‘-of raw’ or ‘-of qcow2’ on the command line.")
                output_format in
         let json_params =
           ("disk_format", JSON.String disk_format) :: json_params in
@@ -433,7 +449,8 @@ e command line has to match the number of guest disk images (for this guest: %d)
      | None -> assert false
      | Some arch ->
         if arch <> target_meta.guestcaps.gcaps_arch then
-          error (f_"the cluster ‘%s’ does not support the architecture %s but %s")
+          error (f_"the cluster ‘%s’ does not support the architecture %s \
+                    but %s")
             rhv_cluster_name target_meta.guestcaps.gcaps_arch arch
     );
 

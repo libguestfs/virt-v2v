@@ -56,7 +56,8 @@ module Null = struct
 
     (* Check nbdkit is installed and has the required plugin. *)
     if not (Nbdkit.is_installed ()) then
-      error (f_"nbdkit is not installed or not working.  It is required to use ‘-o null’.");
+      error (f_"nbdkit is not installed or not working.  \
+                It is required to use ‘-o null’.");
     if not (Nbdkit.probe_plugin "null") then
       error (f_"nbdkit-null-plugin is not installed or not working");
 

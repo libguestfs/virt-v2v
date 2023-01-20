@@ -381,7 +381,9 @@ let create_libvirt_xml ?pool source inspect
           * so target_ide_bus must be empty, otherwise we give a warning.
           *)
          if Array.length target_buses.target_ide_bus > 0 then
-           warning "machine type virt does not support IDE and SATA legacy devices, some legacy devices of this guest have been dropped from the libvirt output";
+           warning "machine type virt does not support IDE and SATA legacy \
+                    devices, some legacy devices of this guest have been \
+                    dropped from the libvirt output";
          [] in
     List.push_back_list devices ide_disks;
     List.push_back_list devices

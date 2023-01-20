@@ -104,7 +104,8 @@ let rec main () =
      *)
     let rec error_unless_ip_addr what addr =
       if not (PCRE.matches mac_ip_re addr) then
-        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” is an IP address") what addr
+        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” is \
+                  an IP address") what addr
     in
     error_unless_ip_addr "ipaddr" if_ip_address;
     Option.may (error_unless_ip_addr "gw") if_default_gateway;
@@ -115,7 +116,8 @@ let rec main () =
       | Some len ->
          let len =
            try int_of_string len with
-           | Failure _ -> error (f_"cannot parse --mac ip prefix length field as an integer: %s") len in
+           | Failure _ -> error (f_"cannot parse --mac ip prefix length \
+                                    field as an integer: %s") len in
          if len < 0 || len > 128 then
            error (f_"--mac ip prefix length field is out of range");
          Some len in
@@ -254,7 +256,8 @@ read the man page virt-v2v-in-place(1).
           let { Xml.uri_server = server; uri_scheme = scheme } =
             try Xml.parse_uri orig_uri
             with Invalid_argument msg ->
-              error (f_"could not parse '-ic %s'.  Original error message was: %s")
+              error (f_"could not parse '-ic %s'.  Original error \
+                        message was: %s")
                 orig_uri msg in
 
           match server, scheme with
@@ -357,7 +360,12 @@ and check_host_free_space () =
   debug "check_host_free_space: large_tmpdir=%s free_space=%Ld"
         large_tmpdir free_space;
   if free_space < 1_073_741_824L then
-    error (f_"insufficient free space in the conversion server temporary directory %s (%s).\n\nEither free up space in that directory, or set the LIBGUESTFS_CACHEDIR environment variable to point to another directory with more than 1GB of free space.\n\nSee also the virt-v2v(1) manual, section \"Minimum free space check in the host\".")
+    error (f_"insufficient free space in the conversion server temporary \
+              directory %s (%s).\n\nEither free up space in that directory, \
+              or set the LIBGUESTFS_CACHEDIR environment variable to point \
+              to another directory with more than 1GB of free space.\n\n\
+              See also the virt-v2v(1) manual, section \"Minimum free \
+              space check in the host\".")
           large_tmpdir (human_size free_space)
 
 let () = run_main_and_handle_errors main

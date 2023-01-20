@@ -182,12 +182,14 @@ and check_guest_free_space inspect mpstats =
       let needed_bytes = Int64.of_int needed_megabytes *^ 1024L *^ 1024L in
       if free_bytes < needed_bytes then (
         let mb i = Int64.to_float i /. 1024. /. 1024. in
-        error (f_"not enough free space for conversion on filesystem ‘%s’.  %.1f MB free < %d MB needed")
+        error (f_"not enough free space for conversion on filesystem ‘%s’.  \
+                  %.1f MB free < %d MB needed")
           mp_path (mb free_bytes) needed_megabytes
       );
       (* Not all the filesystems have inode counts. *)
       if files > 0L && ffree < needed_inodes then
-        error (f_"not enough available inodes for conversion on filesystem ‘%s’.  %Ld inodes available < %Ld inodes needed")
+        error (f_"not enough available inodes for conversion on \
+                  filesystem ‘%s’.  %Ld inodes available < %Ld inodes needed")
           mp_path ffree needed_inodes
   ) mpstats
 
@@ -211,7 +213,10 @@ and do_fstrim g inspect =
       if mounted then (
         try g#fstrim "/"
         with G.Error msg ->
-          warning (f_"fstrim on guest filesystem %s failed.  Usually you can ignore this message.  To find out more read \"Trimming\" in virt-v2v(1).\n\nOriginal message: %s") dev msg
+          warning (f_"fstrim on guest filesystem %s failed.  Usually you \
+                      can ignore this message.  To find out more read \
+                      \"Trimming\" in virt-v2v(1).\n\n\
+                      Original message: %s") dev msg
       )
   ) fses
 

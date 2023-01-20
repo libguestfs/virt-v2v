@@ -38,7 +38,8 @@ let rec get_source_from_libvirt options args =
     match args with
     | [arg] -> arg
     | _ ->
-       error (f_"-i libvirt: expecting a libvirt guest name on the command line") in
+       error (f_"-i libvirt: expecting a libvirt guest name \
+                 on the command line") in
 
   (* Connect to the hypervisor. *)
   let conn =
@@ -55,7 +56,8 @@ and get_source_from_libvirt_xml _ args =
     match args with
     | [arg] -> arg
     | _ ->
-       error (f_"-i libvirtxml: expecting a libvirt XML filename on the command line") in
+       error (f_"-i libvirtxml: expecting a libvirt XML filename \
+                 on the command line") in
   let xml = read_whole_file xmlfile in
   let source, disks = parse_libvirt_xml xml in
   source, disks
@@ -63,7 +65,8 @@ and get_source_from_libvirt_xml _ args =
 and setup_servers options dir disks =
   (* Check nbdkit is installed. *)
   if not (Nbdkit.is_installed ()) then
-    error (f_"nbdkit is not installed or not working.  It is required to use ‘-i libvirt|libvirtxml’.");
+    error (f_"nbdkit is not installed or not working.  It is required to \
+              use ‘-i libvirt|libvirtxml’.");
 
   if not (Nbdkit.probe_plugin "file") then
     error (f_"nbdkit-file-plugin is not installed or not working");

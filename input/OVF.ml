@@ -99,7 +99,8 @@ let rec parse_ovf_from_ova ovf_filename =
     | "bios" -> BIOS
     | "efi" -> UEFI
     | s ->
-       error (f_"unknown Config:firmware value %s (expected \"bios\" or \"efi\")") s in
+       error (f_"unknown Config:firmware value %s (expected \"bios\" \
+                 or \"efi\")") s in
 
   name, memory, vcpu, cpu_topology, firmware,
   parse_disks xpathctx, parse_removables xpathctx, parse_nics xpathctx
@@ -254,10 +255,13 @@ and parent_controller xpathctx id =
   | Some 6 -> Some Source_SCSI
   | Some 20 -> Some Source_SATA
   | None ->
-     warning (f_"ova disk has no parent controller, please report this as a bug supplying the *.ovf file extracted from the ova");
+     warning (f_"ova disk has no parent controller, please report this as \
+                 a bug supplying the *.ovf file extracted from the ova");
      None
   | Some controller ->
-     warning (f_"ova disk has an unknown VMware controller type (%d), please report this as a bug supplying the *.ovf file extracted from the ova")
+     warning (f_"ova disk has an unknown VMware controller type (%d), please \
+                 report this as a bug supplying the *.ovf file extracted \
+                 from the ova")
              controller;
      None
 
