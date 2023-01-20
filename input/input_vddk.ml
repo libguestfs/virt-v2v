@@ -95,14 +95,18 @@ information on these settings.
 
     (* thumbprint is mandatory. *)
     if not (List.mem_assoc "thumbprint" io_options) then
-      error (f_"You must pass the ‘-io vddk-thumbprint’ option with the SSL thumbprint of the VMware server.  To find the thumbprint, see the nbdkit-vddk-plugin(1) manual.  See also the virt-v2v-input-vmware(1) manual.");
+      error (f_"You must pass the ‘-io vddk-thumbprint’ option with the \
+                SSL thumbprint of the VMware server.  To find the thumbprint, \
+                see the nbdkit-vddk-plugin(1) manual.  See also the \
+                virt-v2v-input-vmware(1) manual.");
 
     (* Get the guest name. *)
     let guest =
       match args with
       | [arg] -> arg
       | _ ->
-         error (f_"-i libvirt: expecting a libvirt guest name on the command line") in
+         error (f_"-i libvirt: expecting a libvirt guest name \
+                   on the command line") in
 
     (* -ic must be set and it must contain a server.  This is
      * enforced by virt-v2v.
@@ -111,7 +115,8 @@ information on these settings.
       match options.input_conn with
       | Some ic -> ic
       | None ->
-         error (f_"-i libvirt: expecting -ic parameter for vcenter connection") in
+         error (f_"-i libvirt: expecting -ic parameter \
+                   for vcenter connection") in
 
     if not options.read_only then
       error (f_"in-place mode does not work with VDDK source");
@@ -143,7 +148,10 @@ information on these settings.
       match xpath_string "/domain/vmware:moref" with
       | Some moref -> moref
       | None ->
-         error (f_"<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The most likely reason is that libvirt is too old, try upgrading libvirt to ≥ 3.7.") guest in
+         error (f_"<vmware:moref> was not found in the output of \
+                   ‘virsh dumpxml \"%s\"’.  The most likely reason is that \
+                   libvirt is too old, try upgrading \
+                   libvirt to ≥ 3.7.") guest in
 
     (* It probably never happens that the server name can be missing
      * from the libvirt URI, but we need a server name to pass to

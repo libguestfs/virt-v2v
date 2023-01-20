@@ -80,7 +80,8 @@ let find_uefi_firmware guest_arch =
              guest_arch in
   let rec loop = function
     | [] ->
-       error (f_"cannot find firmware for UEFI guests.\n\nYou probably need to install OVMF (x86-64), or AAVMF (aarch64)")
+       error (f_"cannot find firmware for UEFI guests.\n\nYou probably \
+                 need to install OVMF (x86-64), or AAVMF (aarch64)")
     | ({ Uefi.code; vars = vars_template } as ret) :: rest ->
        if Sys.file_exists code && Sys.file_exists vars_template then ret
        else loop rest
@@ -197,7 +198,9 @@ and libvirt_qemu_user =
 let error_if_no_ssh_agent () =
   try ignore (Sys.getenv "SSH_AUTH_SOCK")
   with Not_found ->
-    error (f_"ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) man page for more information.")
+    error (f_"ssh-agent authentication has not been set up ($SSH_AUTH_SOCK \
+              is not set).  This is required by qemu to do passwordless \
+              ssh access.  See the virt-v2v(1) man page for more information.")
 
 (* Create the directory containing inX and outX sockets. *)
 let create_v2v_directory () =

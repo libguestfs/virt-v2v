@@ -67,14 +67,16 @@ module VCenterHTTPS = struct
       match args with
       | [arg] -> arg
       | _ ->
-         error (f_"-i libvirt: expecting a libvirt guest name on the command line") in
+         error (f_"-i libvirt: expecting a libvirt guest name \
+                   on the command line") in
 
     (* -ip is required in this mode, see RHBZ#1960087 *)
     let password_file =
       match options.input_password with
       | Some file -> file
       | None ->
-         error (f_"-i libvirt: expecting -ip passwordfile parameter for vCenter connection") in
+         error (f_"-i libvirt: expecting -ip passwordfile parameter for \
+                   vCenter connection") in
 
     (* -ic must be set and it must contain a server.  This is
      * enforced by virt-v2v.
@@ -83,7 +85,8 @@ module VCenterHTTPS = struct
       match options.input_conn with
       | Some ic -> ic
       | None ->
-         error (f_"-i libvirt: expecting -ic parameter for vcenter connection") in
+         error (f_"-i libvirt: expecting -ic parameter for \
+                   vcenter connection") in
 
     let uri =
       try Xml.parse_uri input_conn
@@ -95,7 +98,8 @@ module VCenterHTTPS = struct
       match uri with
       | { Xml.uri_server = Some server } -> server
       | { Xml.uri_server = None } ->
-         error (f_"-i libvirt: expecting -ic parameter to contain vcenter server name") in
+         error (f_"-i libvirt: expecting -ic parameter to contain \
+                   vcenter server name") in
 
     (* Connect to the hypervisor. *)
     let conn =
@@ -116,7 +120,8 @@ module VCenterHTTPS = struct
       match xpath_string xpathctx "/domain/vmware:datacenterpath" with
       | Some dcPath -> dcPath
       | None ->
-         error (f_"vcenter: <vmware:datacenterpath> was not found in the XML.  You need to upgrade to libvirt ≥ 1.2.20.") in
+         error (f_"vcenter: <vmware:datacenterpath> was not found in the XML.  \
+                   You need to upgrade to libvirt ≥ 1.2.20.") in
 
     List.iteri (
       fun i { d_format = format; d_type } ->

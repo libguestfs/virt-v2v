@@ -94,7 +94,13 @@ module Libvirt_ = struct
 
     (* Does the domain already exist on the target?  (RHBZ#889082) *)
     if Libvirt_utils.domain_exists conn output_name then
-      error (f_"a libvirt domain called ‘%s’ already exists on the target.\n\nIf using virt-v2v directly, use the ‘-on’ option to select a different name. Or delete the existing domain on the target using the ‘virsh undefine’ command.\n\nIf using virt-p2v, select a different ‘Name’ in the ‘Target properties’. Or delete the existing domain on the target using the ‘virsh undefine’ command.")
+      error (f_"a libvirt domain called ‘%s’ already exists on the \
+                target.\n\nIf using virt-v2v directly, use the ‘-on’ \
+                option to select a different name. Or delete the \
+                existing domain on the target using the ‘virsh undefine’ \
+                command.\n\nIf using virt-p2v, select a different ‘Name’ \
+                in the ‘Target properties’. Or delete the existing domain \
+                on the target using the ‘virsh undefine’ command.")
         output_name;
 
     (* Connect to output libvirt instance and check that the pool exists
@@ -112,9 +118,13 @@ module Libvirt_ = struct
     let target_path =
       match xpath_string "/pool/target/path/text()" with
       | None ->
-         error (f_"-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See virt-v2v-output-local(1)") output_pool
+         error (f_"-o libvirt: output pool ‘%s’ does not have \
+                   /pool/target/path element.  See \
+                   virt-v2v-output-local(1)") output_pool
       | Some dir when not (is_directory dir) ->
-         error (f_"-o libvirt: output pool ‘%s’ has type='dir' but the /pool/target/path element is not a local directory.  See virt-v2v-output-local(1)") output_pool
+         error (f_"-o libvirt: output pool ‘%s’ has type='dir' but the \
+                   /pool/target/path element is not a local directory.  \
+                   See virt-v2v-output-local(1)") output_pool
       | Some dir -> dir in
 
     (* Get the name of the pool, since we have to use that
@@ -194,7 +204,9 @@ module Libvirt_ = struct
        (try Unix.unlink tmpfile with _ -> ())
      with
        Libvirt.Virterror { message } ->
-       warning (f_"could not define libvirt domain: %s.\nThe libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define %s’ yourself instead.")
+       warning (f_"could not define libvirt domain: %s.\nThe libvirt XML \
+                   is still available in ‘%s’.  Try running \
+                   ‘virsh -c %s define %s’ yourself instead.")
          (Option.default "" message) tmpfile
          (Libvirt.Connect.get_uri conn) tmpfile
     )

@@ -248,7 +248,8 @@ and string_of_source_display { s_display_type = typ;
     | LAddress a -> sprintf " listening on address %s" a
     | LNetwork n -> sprintf " listening on network %s" n
     | LSocket (Some s) -> sprintf " listening on Unix domain socket %s" s
-    | LSocket None -> sprintf " listening on automatically created Unix domain socket"
+    | LSocket None ->
+       sprintf " listening on automatically created Unix domain socket"
     | LNone -> " listening on private fd"
     )
 

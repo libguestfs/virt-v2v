@@ -82,7 +82,8 @@ let scp_from_remote_to_temporary uri tmpdir filename =
   if verbose () then
     eprintf "%s\n%!" cmd;
   if Sys.command cmd <> 0 then
-    error (f_"could not copy the VMX file from the remote server, see earlier error messages");
+    error (f_"could not copy the VMX file from the remote server, \
+              see earlier error messages");
   localfile
 
 (* Test if [path] exists on the remote server. *)

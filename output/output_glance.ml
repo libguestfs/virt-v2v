@@ -63,7 +63,10 @@ module Glance = struct
      * program exits early.
      *)
     if shell_command "glance image-list > /dev/null" <> 0 then
-      error (f_"glance: glance client is not installed or set up correctly.  You may need to set environment variables or source a script to enable authentication.  See preceding messages for details.");
+      error (f_"glance: glance client is not installed or set up correctly.  \
+                You may need to set environment variables or source a script \
+                to enable authentication.  \
+                See preceding messages for details.");
 
     (* When debugging, query the glance client for its version. *)
     if verbose () then (

@@ -123,7 +123,8 @@ let rec main () =
      *)
     let rec error_unless_ip_addr what addr =
       if not (PCRE.matches mac_ip_re addr) then
-        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” is an IP address") what addr
+        error (f_"cannot parse --mac ip %s: doesn’t look like “%s” \
+                  is an IP address") what addr
     in
     error_unless_ip_addr "ipaddr" if_ip_address;
     Option.may (error_unless_ip_addr "gw") if_default_gateway;
@@ -134,7 +135,8 @@ let rec main () =
       | Some len ->
          let len =
            try int_of_string len with
-           | Failure _ -> error (f_"cannot parse --mac ip prefix length field as an integer: %s") len in
+           | Failure _ -> error (f_"cannot parse --mac ip prefix length field \
+                                    as an integer: %s") len in
          if len < 0 || len > 128 then
            error (f_"--mac ip prefix length field is out of range");
          Some len in
@@ -329,7 +331,8 @@ A short summary of the options is given below.  For detailed help please
 read the man page virt-v2v(1).
 ")
       prog in
-  let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true ~machine_readable:true usage_msg in
+  let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true
+                    ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
 
   (* Print the version, easier than asking users to tell us. *)
@@ -420,7 +423,8 @@ read the man page virt-v2v(1).
           let { Xml.uri_server = server; uri_scheme = scheme } =
             try Xml.parse_uri orig_uri
             with Invalid_argument msg ->
-              error (f_"could not parse '-ic %s'.  Original error message was: %s")
+              error (f_"could not parse '-ic %s'.  \
+                        Original error message was: %s")
                 orig_uri msg in
 
           match server, scheme, input_transport with
@@ -450,7 +454,9 @@ read the man page virt-v2v(1).
 
           (* Unknown remote scheme. *)
           | Some _, Some _, _ ->
-             warning (f_"no support for remote libvirt connections to '-ic %s'.  The conversion may fail when it tries to read the source disks.") orig_uri;
+             warning (f_"no support for remote libvirt connections to \
+                         '-ic %s'.  The conversion may fail when it tries \
+                         to read the source disks.") orig_uri;
              (module Input_libvirt.Libvirt_) in
 
   let input_options = {
@@ -627,8 +633,14 @@ and check_host_free_space () =
   debug "check_host_free_space: large_tmpdir=%s free_space=%Ld"
         large_tmpdir free_space;
   if free_space < 1_073_741_824L then
-    error (f_"insufficient free space in the conversion server temporary directory %s (%s).\n\nEither free up space in that directory, or set the LIBGUESTFS_CACHEDIR environment variable to point to another directory with more than 1GB of free space.\n\nSee also the virt-v2v(1) manual, section \"Minimum free space check in the host\".")
-          large_tmpdir (human_size free_space)
+    error (f_"insufficient free space in the conversion server \
+              temporary directory %s (%s).\n\nEither free up space \
+              in that directory, or set the LIBGUESTFS_CACHEDIR \
+              environment variable to point to another directory \
+              with more than 1GB of free space.\n\nSee also the \
+              virt-v2v(1) manual, section \
+              \"Minimum free space check in the host\".")
+      large_tmpdir (human_size free_space)
 
 and nbdcopy ?request_size output_alloc input_uri output_uri =
   (* XXX It's possible that some output modes know whether
