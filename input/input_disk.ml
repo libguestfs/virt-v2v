@@ -40,7 +40,8 @@ module Disk = struct
       error (f_"no -io (input options) are allowed here");
 
     if args = [] then
-      error (f_"-i disk: expecting a disk image (filename) on the command line");
+      error (f_"-i disk: expecting a disk image (filename) \
+                on the command line");
 
     (* Check the input files exist and are readable. *)
     List.iter (fun disk -> access disk [R_OK]) args;
@@ -88,7 +89,8 @@ module Disk = struct
 
     (* Check nbdkit is installed. *)
     if not (Nbdkit.is_installed ()) then
-      error (f_"nbdkit is not installed or not working.  It is required to use ‘-i disk’.");
+      error (f_"nbdkit is not installed or not working.  It is required to \
+                use ‘-i disk’.");
 
     if not (Nbdkit.probe_plugin "file") then
       error (f_"nbdkit-file-plugin is not installed or not working");

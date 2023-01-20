@@ -515,13 +515,17 @@ let create_meta_files output_alloc output_format sd_uuid image_uuids sizes =
     | "raw" -> "RAW"
     | "qcow2" -> "COW"
     | _ ->
-       error (f_"RHV does not support the output format ‘%s’, only raw or qcow2") output_format in
+       error (f_"RHV does not support the output format ‘%s’, \
+                 only raw or qcow2") output_format in
 
   List.mapi (
     fun i (virtual_size, image_uuid) ->
       let size_in_sectors =
         if virtual_size &^ 511L <> 0L then
-          error (f_"the virtual size of the input disk %d is not an exact multiple of 512 bytes.  The virtual size is: %Ld.\n\nThis probably means something unexpected is going on, so please file a bug about this issue.")
+          error (f_"the virtual size of the input disk %d is not an \
+                    exact multiple of 512 bytes.  The virtual size is: \
+                    %Ld.\n\nThis probably means something unexpected is \
+                    going on, so please file a bug about this issue.")
             i virtual_size;
         virtual_size /^ 512L in
 
@@ -782,7 +786,10 @@ let rec create_ovf source inspect
    *)
   (match source with
   | { s_display = Some { s_password = Some _ } } ->
-    warning (f_"This guest required a password for connection to its display, but this is not supported by RHV.  Therefore the converted guest’s display will not require a separate password to connect.");
+    warning (f_"This guest required a password for connection to its display, \
+                but this is not supported by RHV.  Therefore the converted \
+                guest’s display will not require a separate password \
+                to connect.");
     | _ -> ());
 
   if verbose () then (
@@ -871,7 +878,8 @@ and add_disks sizes guestcaps output_alloc output_format
         | "raw" -> "RAW"
         | "qcow2" -> "COW"
         | _ ->
-          error (f_"RHV does not support the output format ‘%s’, only raw or qcow2") output_format in
+          error (f_"RHV does not support the output format ‘%s’, \
+                    only raw or qcow2") output_format in
 
       (* Note: Upper case in the .meta, mixed case in the OVF. *)
       let output_alloc_for_rhv =

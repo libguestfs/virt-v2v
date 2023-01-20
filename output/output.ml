@@ -76,7 +76,8 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
       output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
   if not (Nbdkit.is_installed ()) then
-    error (f_"nbdkit is not installed or not working.  It is required to use ‘-o disk’.");
+    error (f_"nbdkit is not installed or not working.  It is required \
+              to use ‘-o disk’.");
   if not (Nbdkit.probe_plugin "file") then
     error (f_"nbdkit-file-plugin is not installed or not working");
   let nbdkit_config = Nbdkit.config () in

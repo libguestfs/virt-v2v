@@ -69,7 +69,9 @@ let rec start_nbdkit_for_path ?bandwidth ?cor ?password_file
       if uri.uri_user <> None then
         error (f_"vcenter: incorrect username or password")
       else
-        error (f_"vcenter: incorrect username or password.  You might need to specify the username in the URI like this: [vpx|esx|..]://USERNAME@[etc]")
+        error (f_"vcenter: incorrect username or password.  You might need \
+                  to specify the username in the URI like this: \
+                  [vpx|esx|..]://USERNAME@[etc]")
     );
 
     if status = "404" then (
@@ -150,7 +152,8 @@ and fetch_headers_from_url password_file uri sslverify https_url =
   (match uri.uri_user, password_file with
    | None, None -> ()
    | None, Some _ ->
-      warning (f_"-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL")
+      warning (f_"-ip PASSWORD_FILE parameter ignored because \
+                  'user@' was not given in the URL")
    | Some user, None ->
       List.push_back curl_args ("user", Some user)
    | Some user, Some password_file ->

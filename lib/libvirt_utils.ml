@@ -28,7 +28,8 @@ let auth_for_password_file ?password_file () =
   let auth_fn creds =
     List.map (
       function
-      | { Libvirt.Connect.typ = Libvirt.Connect.CredentialPassphrase } -> password
+      | { Libvirt.Connect.typ = Libvirt.Connect.CredentialPassphrase } ->
+         password
       | _ -> None
     ) creds
   in
@@ -65,7 +66,8 @@ let get_domain conn name =
   if not (String.is_prefix uri "test:") then (
     (match (Libvirt.Domain.get_info dom).Libvirt.Domain.state with
     | InfoRunning | InfoBlocked | InfoPaused ->
-      error (f_"libvirt domain ‘%s’ is running or paused.  It must be shut down in order to perform virt-v2v conversion")
+      error (f_"libvirt domain ‘%s’ is running or paused.  It must be \
+                shut down in order to perform virt-v2v conversion")
         (Libvirt.Domain.get_name dom)
     | InfoNoState | InfoShutdown | InfoShutoff | InfoCrashed | InfoPMSuspended ->
       ()
@@ -84,7 +86,11 @@ let get_pool conn name =
     (try
       Libvirt.Pool.lookup_by_name conn name
     with Libvirt.Virterror { code = VIR_ERR_NO_STORAGE_POOL; message } ->
-      error (f_"cannot find libvirt pool ‘%s’: %s\n\nUse ‘virsh pool-list --all’ to list all available pools, and ‘virsh pool-dumpxml <pool>’ to display details about a particular pool.\n\nTo set the pool which virt-v2v uses, add the ‘-os <pool>’ option.")
+      error (f_"cannot find libvirt pool ‘%s’: %s\n\nUse \
+                ‘virsh pool-list --all’ to list all available pools, \
+                and ‘virsh pool-dumpxml <pool>’ to display details \
+                about a particular pool.\n\nTo set the pool which \
+                virt-v2v uses, add the ‘-os <pool>’ option.")
         name (Option.default "" message)
     )
 

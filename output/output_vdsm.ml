@@ -94,7 +94,8 @@ For each disk you must supply one of each of these options:
     let image_uuids = List.rev !image_uuids in
     let vol_uuids = List.rev !vol_uuids in
     if image_uuids = [] || vol_uuids = [] then
-      error (f_"-o vdsm: either -oo vdsm-vol-uuid or -oo vdsm-vm-uuid was not specified");
+      error (f_"-o vdsm: either -oo vdsm-vol-uuid or \
+                -oo vdsm-vm-uuid was not specified");
     let vm_uuid =
       match !vm_uuid with
       | None ->
@@ -108,7 +109,8 @@ For each disk you must supply one of each of these options:
       match options.output_storage with
       | None -> error (f_"-o vdsm: -os option was not specified")
       | Some d when not (is_directory d) ->
-         error (f_"-os %s: output directory does not exist or is not a directory") d
+         error (f_"-os %s: output directory does not exist \
+                   or is not a directory") d
       | Some d -> d in
 
     let output_name = Option.default source.s_name options.output_name in
@@ -128,7 +130,9 @@ For each disk you must supply one of each of these options:
 
     if List.length image_uuids <> List.length disks ||
        List.length vol_uuids <> List.length disks then
-      error (f_"the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ parameters passed on the command line has to match the number of guest disk images (for this guest: %d)")
+      error (f_"the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ \
+                parameters passed on the command line has to match the \
+                number of guest disk images (for this guest: %d)")
         (List.length disks);
 
     let dd_mp, dd_uuid =
@@ -141,7 +145,8 @@ For each disk you must supply one of each of these options:
          let mp = String.concat "/" (List.rev rest) in
          mp, uuid
       | _ ->
-         error (f_"vdsm: invalid -os parameter does not contain a valid UUID: %s")
+         error (f_"vdsm: invalid -os parameter \
+                   does not contain a valid UUID: %s")
            output_storage in
 
     debug "VDSM: DD mountpoint: %s\nVDSM: DD UUID: %s" dd_mp dd_uuid;
@@ -158,7 +163,8 @@ For each disk you must supply one of each of these options:
 
     (* Note that VDSM has to create this directory too. *)
     if not (is_directory ovf_output) then
-      error (f_"OVF (metadata) directory (%s) does not exist or is not a directory")
+      error (f_"OVF (metadata) directory (%s) does not exist or \
+                is not a directory")
         ovf_output;
 
     debug "VDSM: OVF (metadata) directory: %s" ovf_output;

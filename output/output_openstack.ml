@@ -141,7 +141,8 @@ The os-* parameters and environment variables are optional.
     let error_unless_openstack_command_exists () =
       try ignore (which openstack_binary)
       with Executable_not_found _ ->
-        error (f_"the ‘%s’ program is not available.  It is needed to communicate with OpenStack.")
+        error (f_"the ‘%s’ program is not available.  \
+                  It is needed to communicate with OpenStack.")
           openstack_binary
     in
     error_unless_openstack_command_exists ();
@@ -195,7 +196,8 @@ The os-* parameters and environment variables are optional.
      *)
     let args = [ "token"; "issue" ] in
     if run_openstack_command args <> 0 then
-      error (f_"openstack: precheck failed, there may be a problem with authentication, see earlier error messages");
+      error (f_"openstack: precheck failed, there may be a problem with \
+                authentication, see earlier error messages");
 
     let output_name = Option.default source.s_name options.output_name in
 
@@ -286,7 +288,8 @@ The os-* parameters and environment variables are optional.
       let json =
         match run_openstack_command_capture_json !args with
         | None ->
-           error (f_"openstack: failed to create a cinder volume, see earlier error messages")
+           error (f_"openstack: failed to create a cinder volume, \
+                     see earlier error messages")
         | Some json -> json in
       let id = JSON_parser.object_get_string "id" json in
 
@@ -298,13 +301,15 @@ The os-* parameters and environment variables are optional.
         (fun () ->
           match run_openstack_command_capture_json args with
           | None ->
-             error (f_"openstack: failed to query cinder volume status, see earlier error messages")
+             error (f_"openstack: failed to query cinder volume status, \
+                       see earlier error messages")
           | Some json ->
              match JSON_parser.object_get_string "status" json with
              | "creating" -> None
              | "available" -> Some () (* done *)
              | status ->
-                error (f_"openstack: unknown volume status \"%s\": expected \"creating\" or \"available\"") status
+                error (f_"openstack: unknown volume status \"%s\": \
+                          expected \"creating\" or \"available\"") status
       );
 
       id
@@ -330,7 +335,8 @@ The os-* parameters and environment variables are optional.
     let attach_volume id =
       let args = [ "server"; "add"; "volume"; server_id; id ] in
       if run_openstack_command args <> 0 then
-        error (f_"openstack: failed to attach cinder volume to VM, see earlier error messages");
+        error (f_"openstack: failed to attach cinder volume to VM, \
+                  see earlier error messages");
 
       (* We expect the disk to appear under /dev/disk/by-id.
        *
@@ -351,7 +357,8 @@ The os-* parameters and environment variables are optional.
         else id in
 
       with_timeout ~sleep:5
-        (sprintf (f_"waiting for cinder volume %s to attach to the conversion appliance") id)
+        (sprintf (f_"waiting for cinder volume %s to attach to the \
+                     conversion appliance") id)
         attach_timeout
         (fun () ->
           let entries =
@@ -428,7 +435,8 @@ The os-* parameters and environment variables are optional.
       List.push_back args id;
 
       if run_openstack_command !args <> 0 then
-        error (f_"openstack: failed to set image properties on cinder volume, see earlier error messages")
+        error (f_"openstack: failed to set image properties on cinder volume, \
+                  see earlier error messages")
     in
 
     (* Image properties are only set on the first disk.

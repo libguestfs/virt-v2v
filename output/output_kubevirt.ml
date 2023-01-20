@@ -58,9 +58,11 @@ module Kubevirt = struct
     let output_storage =
       match options.output_storage with
       | None ->
-         error (f_"-o kubevirt: output directory was not specified, use '-os /dir'")
+         error (f_"-o kubevirt: output directory was not specified, \
+                   use '-os /dir'")
       | Some d when not (is_directory d) ->
-         error (f_"-os %s: output directory does not exist or is not a directory") d
+         error (f_"-os %s: output directory does not exist or \
+                   is not a directory") d
       | Some d -> d in
 
     let output_name = Option.default source.s_name options.output_name in

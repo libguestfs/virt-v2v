@@ -54,14 +54,16 @@ module XenSSH = struct
       match args with
       | [arg] -> arg
       | _ ->
-         error (f_"-i libvirt: expecting a libvirt guest name on the command line") in
+         error (f_"-i libvirt: expecting a libvirt guest name \
+                   on the command line") in
 
     (* -ic must be set. *)
     let input_conn =
       match options.input_conn with
       | Some ic -> ic
       | None ->
-         error (f_"-i libvirt: expecting -ic parameter for Xen over SSH connection") in
+         error (f_"-i libvirt: expecting -ic parameter for \
+                   Xen over SSH connection") in
 
     let uri =
       try Xml.parse_uri input_conn
@@ -82,7 +84,8 @@ module XenSSH = struct
       match uri.Xml.uri_server with
       | Some server -> server
       | None ->
-         error (f_"‘-ic %s’ URL does not contain a host name field") input_conn in
+         error (f_"‘-ic %s’ URL does not contain a host name field")
+           input_conn in
 
     let port =
       match uri.uri_port with

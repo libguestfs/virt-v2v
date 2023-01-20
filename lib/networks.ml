@@ -81,25 +81,30 @@ let create () = {
 let add_mac t mac vnet_type vnet =
   let mac = String.lowercase_ascii mac in
   if StringMap.mem mac t.macs then
-    error (f_"duplicate --mac parameter.  Duplicate mappings specified for MAC address %s.") mac;
+    error (f_"duplicate --mac parameter.  Duplicate mappings specified \
+              for MAC address %s.") mac;
   t.macs <- StringMap.add mac (vnet_type, vnet) t.macs
 
 let add_network t i o =
   if StringMap.mem i t.network_map then
-    error (f_"duplicate -n/--network parameter.  Duplicate mappings specified for network %s.") i;
+    error (f_"duplicate -n/--network parameter.  Duplicate mappings \
+              specified for network %s.") i;
   t.network_map <- StringMap.add i o t.network_map
 
 let add_default_network t o =
   if t.default_network <> None then
-    error (f_"duplicate -n/--network parameter.  Only one default mapping is allowed.");
+    error (f_"duplicate -n/--network parameter.  Only one \
+              default mapping is allowed.");
   t.default_network <- Some o
 
 let add_bridge t i o =
   if StringMap.mem i t.bridge_map then
-    error (f_"duplicate -b/--bridge parameter.  Duplicate mappings specified for bridge %s.") i;
+    error (f_"duplicate -b/--bridge parameter.  Duplicate mappings \
+              specified for bridge %s.") i;
   t.bridge_map <- StringMap.add i o t.bridge_map
 
 let add_default_bridge t o =
   if t.default_bridge <> None then
-    error (f_"duplicate -b/--bridge parameter.  Only one default mapping is allowed.");
+    error (f_"duplicate -b/--bridge parameter.  Only one default mapping \
+              is allowed.");
   t.default_bridge <- Some o

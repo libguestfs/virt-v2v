@@ -88,9 +88,17 @@ module RHV = struct
       debug "RHV: actual UID:GID of new files is %d:%d" actual_uid actual_gid;
       if uid <> actual_uid || gid <> actual_gid then (
         if running_as_root then
-          warning (f_"cannot write files to the NFS server as %d:%d, even though we appear to be running as root. This probably means the NFS client or idmapd is not configured properly.\n\nYou will have to chown the files that virt-v2v creates after the run, otherwise RHV-M will not be able to import the VM.") uid gid
+          warning (f_"cannot write files to the NFS server as %d:%d, \
+                      even though we appear to be running as root. This \
+                      probably means the NFS client or idmapd is not \
+                      configured properly.\n\nYou will have to chown \
+                      the files that virt-v2v creates after the run, \
+                      otherwise RHV-M will not be able to import the VM.")
+            uid gid
         else
-          warning (f_"cannot write files to the NFS server as %d:%d. You might want to stop virt-v2v (^C) and rerun it as root.") uid gid
+          warning (f_"cannot write files to the NFS server as %d:%d. \
+                      You might want to stop virt-v2v (^C) and rerun it \
+                      as root.") uid gid
       ) in
 
     (* Create unique UUIDs for everything *)
@@ -209,7 +217,9 @@ module RHV = struct
        (* Try mounting it. *)
        let cmd = [ "mount"; sprintf "%s:%s" server export; mp ] in
        if run_command cmd <> 0 then
-         error (f_"mount command failed, see earlier errors.\n\nThis probably means you didn't specify the right %s path [-os %s], or else you need to rerun virt-v2v as root.") domain_class os;
+         error (f_"mount command failed, see earlier errors.\n\nThis probably \
+                   means you didn't specify the right %s path [-os %s], or \
+                   else you need to rerun virt-v2v as root.") domain_class os;
 
        (* Make sure it is unmounted at exit, as late as possible (prio=9999) *)
        On_exit.f ~prio:9999 (
@@ -232,7 +242,10 @@ module RHV = struct
     let entries =
       try Sys.readdir mp
       with Sys_error msg ->
-        error (f_"could not read the %s specified by the '-os %s' parameter on the command line.  Is it really an OVirt or RHV-M %s?  The original error is: %s") domain_class os domain_class msg in
+        error (f_"could not read the %s specified by the '-os %s' \
+                  parameter on the command line.  Is it really an \
+                  OVirt or RHV-M %s?  The original error is: %s")
+          domain_class os domain_class msg in
     let entries = Array.to_list entries in
     let uuids = List.filter (
         fun entry ->
@@ -244,9 +257,12 @@ module RHV = struct
       match uuids with
       | [uuid] -> uuid
       | [] ->
-         error (f_"there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?") domain_class os domain_class
+         error (f_"there are no UUIDs in the %s (%s).  Is it really an \
+                   OVirt or RHV-M %s?") domain_class os domain_class
       | _::_ ->
-         error (f_"there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a bug in virt-v2v or OVirt.") domain_class os in
+         error (f_"there are multiple UUIDs in the %s (%s).  This is \
+                   unexpected, and may be a bug in virt-v2v or OVirt.")
+           domain_class os in
 
     (* Check that the domain has been attached to a Data Center by
      * checking that the master/vms directory exists.
@@ -254,7 +270,13 @@ module RHV = struct
     let () =
       let master_vms_dir = mp // uuid // "master" // "vms" in
       if not (is_directory master_vms_dir) then
-        error (f_"%s does not exist or is not a directory.\n\nMost likely cause: Either the %s (%s) has not been attached to any Data Center, or the path %s is not an %s at all.\n\nYou have to attach the %s to a Data Center using the RHV-M / OVirt user interface first.\n\nIf you don’t know what the %s mount point should be then you can also find this out through the RHV-M user interface.")
+        error (f_"%s does not exist or is not a directory.\n\nMost likely \
+                  cause: Either the %s (%s) has not been attached to any \
+                  Data Center, or the path %s is not an %s at all.\n\n\
+                  You have to attach the %s to a Data Center using the \
+                  RHV-M / OVirt user interface first.\n\nIf you don’t \
+                  know what the %s mount point should be then you can \
+                  also find this out through the RHV-M user interface.")
           master_vms_dir domain_class os os
           domain_class domain_class domain_class in
 

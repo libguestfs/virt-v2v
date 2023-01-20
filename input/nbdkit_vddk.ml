@@ -70,7 +70,8 @@ let create_vddk ?bandwidth ?config ?cookie ?cor ?libdir ~moref
     | None -> ()
     | Some libdir ->
        if not (is_directory libdir) then
-         error (f_"‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-vmware(1) manual.") libdir
+         error (f_"‘-io vddk-libdir=%s’ does not point to a directory.  \
+                   See the virt-v2v-input-vmware(1) manual.") libdir
   in
 
   (* Check that the VDDK plugin is installed and working.  We also

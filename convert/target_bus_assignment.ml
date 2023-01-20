@@ -81,7 +81,13 @@ let rec target_bus_assignment source_disks source_removables guestcaps =
            ignore (insert_after bus 0 t)
         | Some desired_slot_nr ->
            if not (insert_after bus desired_slot_nr t) then
-             warning (f_"removable %s device in slot %d clashes with another disk, so it has been moved to a higher numbered slot on the same bus.  This may mean that this removable device has a different name inside the guest (for example a CD-ROM originally called /dev/hdc might move to /dev/hdd, or from D: to E: on a Windows guest).")
+             warning (f_"removable %s device in slot %d clashes with another \
+                         disk, so it has been moved to a higher numbered slot \
+                         on the same bus.  This may mean that this removable \
+                         device has a different name inside the guest (for \
+                         example a CD-ROM originally called /dev/hdc might \
+                         move to /dev/hdd, or from D: to E: on a Windows \
+                         guest).")
                      (match r.s_removable_type with
                       | CDROM -> s_"CD-ROM"
                       | Floppy -> s_"floppy disk")
