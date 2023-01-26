@@ -18,6 +18,7 @@
 
 import json
 import logging
+import re
 import sys
 
 from urllib.parse import urlparse
@@ -46,6 +47,15 @@ output_password = output_password.rstrip()
 parsed = urlparse(params['output_conn'])
 username = parsed.username or "admin@internal"
 
+# Check the storage domain name is valid
+# (https://bugzilla.redhat.com/show_bug.cgi?id=1986386#c1)
+# Also this means it cannot contain spaces or glob symbols, so
+# the search below is valid.
+output_storage = params['output_storage']
+if not re.match('^[-a-zA-Z0-9_]+$', output_storage):
+    raise RuntimeError("The storage domain (-os) parameter ‘%s’ is not valid" %
+                       output_storage)
+
 # Connect to the server.
 connection = sdk.Connection(
     url=params['output_conn'],
@@ -60,28 +70,33 @@ system_service = connection.system_service()
 
 # Check whether there is a datacenter for the specified storage.
 data_centers = system_service.data_centers_service().list(
-    search='storage.name=%s' % params['output_storage'],
+    search='storage.name=%s' % output_storage,
     case_sensitive=True,
 )
 if len(data_centers) == 0:
     storage_domains = system_service.storage_domains_service().list(
-        search='name=%s' % params['output_storage'],
+        search='name=%s' % output_storage,
         case_sensitive=True,
     )
     if len(storage_domains) == 0:
         # The storage domain does not even exist.
         raise RuntimeError("The storage domain ‘%s’ does not exist" %
-                           (params['output_storage']))
+                           output_storage)
 
     # The storage domain is not attached to a datacenter
     # (shouldn't happen, would fail on disk creation).
     raise RuntimeError("The storage domain ‘%s’ is not attached to a DC" %
-                       (params['output_storage']))
+                       output_storage)
 datacenter = data_centers[0]
 
 # Get the storage domain.
 storage_domains = connection.follow_link(datacenter.storage_domains)
-storage_domain = [sd for sd in storage_domains if sd.name == params['output_storage']][0]
+try:
+    storage_domain = [sd for sd in storage_domains
+                      if sd.name == output_storage][0]
+except IndexError:
+    raise RuntimeError("The storage domain ‘%s’ does not exist" %
+                       output_storage)
 
 # Get the cluster.
 clusters = connection.follow_link(datacenter.clusters)
@@ -90,7 +105,7 @@ if len(clusters) == 0:
     raise RuntimeError("The cluster ‘%s’ is not part of the DC ‘%s’, "
                        "where the storage domain ‘%s’ is" %
                        (params['rhv_cluster'], datacenter.name,
-                        params['output_storage']))
+                        output_storage))
 cluster = clusters[0]
 cpu = cluster.cpu
 if cpu.architecture == types.Architecture.UNDEFINED:
