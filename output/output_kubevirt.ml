@@ -31,8 +31,8 @@ open Create_kubevirt_yaml
 
 (* Valid output names for Kubevirt (RHBZ#2162332). *)
 let rfc1123_re =
-  PCRE.compile ~anchored:true
-    "[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*"
+  PCRE.compile
+    "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
 
 module Kubevirt = struct
   type poptions = bool * output_allocation * string * string * string
