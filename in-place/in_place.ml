@@ -29,8 +29,8 @@ open Types
 open Utils
 
 (* Matches --mac command line parameters. *)
-let mac_re = PCRE.compile ~anchored:true "([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)"
-let mac_ip_re = PCRE.compile ~anchored:true "([[:xdigit:]]|:|\\.)+"
+let mac_re = PCRE.compile "^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)$"
+let mac_ip_re = PCRE.compile "^([[:xdigit:]]|:|\\.)+$"
 
 let rec main () =
   let set_string_option_once optname optref arg =
