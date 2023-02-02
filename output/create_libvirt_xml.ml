@@ -47,6 +47,10 @@ let get_osinfo_id = function
     when major >= 8 ->
     Some (sprintf "http://centos.org/centos/%d" major)
 
+  | { i_type = "linux"; i_distro = "rocky";
+      i_major_version = major; i_minor_version = minor } ->
+    Some (sprintf "http://rockylinux.org/rocky/%d.%d" major minor)
+
   | { i_type = "linux"; i_distro = "sles";
       i_major_version = major; i_minor_version = 0;
       i_product_name = product } when String.find product "Desktop" >= 0 ->
@@ -140,7 +144,8 @@ let get_osinfo_id = function
   | { i_type = typ; i_distro = distro;
       i_major_version = major; i_minor_version = minor; i_arch = arch;
       i_product_name = product } ->
-    warning (f_"unknown guest operating system: %s %s %d.%d %s (%s)")
+    warning (f_"get_osinfo_id: unknown guest operating system: \
+                %s %s %d.%d %s (%s)")
       typ distro major minor arch product;
     None
 
@@ -159,7 +164,6 @@ let create_libvirt_xml ?pool source inspect
    | None -> ()
    | Some genid -> List.push_back body (e "genid" [] [PCData genid])
   );
-
 
   (match get_osinfo_id inspect with
    | None -> ()
