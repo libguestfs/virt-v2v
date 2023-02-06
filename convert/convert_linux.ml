@@ -201,9 +201,9 @@ let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
 
     (* RHEL >= 9.0 on x86_64 requires the processor to support the "x86-64-v2"
      * microarchitecture level, which the default QEMU VCPU model does not
-     * satisfy.  Refer to RHBZ#2076013.
+     * satisfy.  Refer to RHBZ#2076013 RHBZ#2166619.
      *)
-    let default_cpu_suffices = inspect.i_distro <> "rhel" ||
+    let default_cpu_suffices = family <> `RHEL_family ||
                                inspect.i_arch <> "x86_64" ||
                                inspect.i_major_version < 9 in
 
