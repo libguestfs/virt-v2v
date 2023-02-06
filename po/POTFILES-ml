@@ -7,12 +7,14 @@ common/mldrivers/firmware.ml
 common/mldrivers/linux.ml
 common/mldrivers/linux_bootloaders.ml
 common/mldrivers/linux_kernels.ml
+common/mldrivers/windows_drivers.ml
 common/mlgettext/common_gettext.ml
 common/mlpcre/PCRE.ml
 common/mlstdutils/guestfs_config.ml
 common/mlstdutils/std_utils.ml
 common/mlstdutils/stringMap.ml
 common/mlstdutils/stringSet.ml
+common/mltools/DOM.ml
 common/mltools/JSON.ml
 common/mltools/JSON_parser.ml
 common/mltools/URI.ml
@@ -52,7 +54,6 @@ input/parse_libvirt_xml.ml
 input/parse_vmx.ml
 input/vCenter.ml
 inspector/inspector.ml
-lib/DOM.ml
 lib/YAML.ml
 lib/create_ovf.ml
 lib/libvirt_utils.ml
