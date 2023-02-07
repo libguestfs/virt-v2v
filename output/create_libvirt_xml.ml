@@ -193,7 +193,7 @@ let create_libvirt_xml ?pool source inspect
     (match source.s_cpu_model with
      | None ->
          if not guestcaps.gcaps_default_cpu then
-           List.push_back cpu_attrs ("mode", "host-passthrough");
+           List.push_back cpu_attrs ("mode", "host-model");
      | Some model ->
          List.push_back cpu_attrs ("match", "minimum");
          if model = "qemu64" then
