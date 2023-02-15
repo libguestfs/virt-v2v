@@ -185,14 +185,14 @@ let create_libvirt_xml ?pool source inspect
   ];
 
   if source.s_cpu_model <> None ||
-     not guestcaps.gcaps_default_cpu ||
+     guestcaps.gcaps_arch_min_version >= 1 ||
      source.s_cpu_topology <> None then (
     let cpu_attrs = ref []
     and cpu = ref [] in
 
     (match source.s_cpu_model with
      | None ->
-         if not guestcaps.gcaps_default_cpu then
+         if guestcaps.gcaps_arch_min_version >= 1 then
            List.push_back cpu_attrs ("mode", "host-model");
      | Some model ->
          List.push_back cpu_attrs ("match", "minimum");

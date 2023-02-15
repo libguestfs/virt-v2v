@@ -397,8 +397,8 @@ type guestcaps = {
   gcaps_virtio_socket : bool;
   gcaps_machine : guestcaps_machine;
   gcaps_arch : string;
+  gcaps_arch_min_version : int;
   gcaps_virtio_1_0 : bool;
-  gcaps_default_cpu : bool;
 }
 and guestcaps_block_type = Virtio_blk | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
@@ -426,8 +426,8 @@ let string_of_guestcaps gcaps =
            gcaps_virtio_socket = %b\n\
            gcaps_machine = %s\n\
            gcaps_arch = %s\n\
+           gcaps_arch_min_version = %d\n\
            gcaps_virtio_1_0 = %b\n\
-           gcaps_default_cpu = %b\n\
           "
   (string_of_block_type gcaps.gcaps_block_bus)
   (string_of_net_type gcaps.gcaps_net_bus)
@@ -437,8 +437,8 @@ let string_of_guestcaps gcaps =
   gcaps.gcaps_virtio_socket
   (string_of_machine gcaps.gcaps_machine)
   gcaps.gcaps_arch
+  gcaps.gcaps_arch_min_version
   gcaps.gcaps_virtio_1_0
-  gcaps.gcaps_default_cpu
 
 type target_buses = {
   target_virtio_blk_bus : target_bus_slot array;

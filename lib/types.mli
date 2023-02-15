@@ -263,24 +263,16 @@ type guestcaps = {
   gcaps_machine : guestcaps_machine; (** Machine model. *)
   gcaps_arch : string;          (** Architecture that KVM must emulate. *)
 
+  gcaps_arch_min_version : int;
+  (** Some guest OSes require not just a specific architecture, but a
+      minimum version.  Notably RHEL >= 9 requires at least x86_64-v2.
+
+      If the guest is capable of running on QEMU's default VCPU model
+      for the architecture ([-cpu qemu64]) then this is set to [0]. *)
+
   gcaps_virtio_1_0 : bool;
   (** The guest supports the virtio devices that it does at the virtio-1.0
       protocol level. *)
-
-  gcaps_default_cpu : bool;
-  (** True iff the guest OS is capable of running on QEMU's default VCPU model
-      (eg. "-cpu qemu64" with the Q35 and I440FX machine types).
-
-      This capability only matters for the QEMU and libvirt output modules,
-      where, in case the capability is false *and* the source hypervisor does
-      not specify a VCPU model, we must manually present the guest OS with a
-      VCPU that looks as close as possible to a physical CPU.  (In that case, we
-      specify host-passthrough.)
-
-      The management applications targeted by the RHV and OpenStack output
-      modules have their own explicit VCPU defaults, overriding the QEMU default
-      model even in case the source hypervisor does not specify a VCPU model;
-      those modules ignore this capability therefore.  Refer to RHBZ#2076013. *)
 }
 (** Guest capabilities after conversion.  eg. Was virtio found or installed? *)
 

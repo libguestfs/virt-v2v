@@ -203,9 +203,10 @@ let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
      * microarchitecture level, which the default QEMU VCPU model does not
      * satisfy.  Refer to RHBZ#2076013 RHBZ#2166619.
      *)
-    let default_cpu_suffices = family <> `RHEL_family ||
-                               inspect.i_arch <> "x86_64" ||
-                               inspect.i_major_version < 9 in
+    let arch_min_version =
+      if family <> `RHEL_family || inspect.i_arch <> "x86_64" ||
+         inspect.i_major_version < 9
+      then 0 else 2 in
 
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
@@ -217,8 +218,8 @@ let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
       gcaps_virtio_socket = kernel.ki_supports_virtio_socket;
       gcaps_machine = machine;
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
+      gcaps_arch_min_version = arch_min_version;
       gcaps_virtio_1_0 = virtio_1_0;
-      gcaps_default_cpu = default_cpu_suffices;
     } in
 
     guestcaps
