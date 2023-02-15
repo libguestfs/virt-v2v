@@ -268,7 +268,11 @@ type guestcaps = {
       minimum version.  Notably RHEL >= 9 requires at least x86_64-v2.
 
       If the guest is capable of running on QEMU's default VCPU model
-      for the architecture ([-cpu qemu64]) then this is set to [0]. *)
+      for the architecture ([-cpu qemu64]) then this is set to [0].
+
+      Note this capability is not actually used by any current output
+      mode.  It is retained in case we might use it in future, but we
+      might remove it if it is not used. *)
 
   gcaps_virtio_1_0 : bool;
   (** The guest supports the virtio devices that it does at the virtio-1.0

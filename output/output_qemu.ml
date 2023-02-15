@@ -175,11 +175,7 @@ module QEMU = struct
 
     arg "-m" (Int64.to_string (source.s_memory /^ 1024L /^ 1024L));
 
-    (match source.s_cpu_model, guestcaps.gcaps_arch_min_version with
-      | None, 0 -> ()
-      | None, _ -> arg "-cpu" "host"
-      | Some model, _ -> arg "-cpu" model
-    );
+    arg "-cpu" (Option.default "host" source.s_cpu_model);
 
     if source.s_vcpu > 1 then (
       (match source.s_cpu_topology with
