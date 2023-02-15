@@ -184,40 +184,35 @@ let create_libvirt_xml ?pool source inspect
     e "vcpu" [] [PCData (string_of_int source.s_vcpu)]
   ];
 
-  if source.s_cpu_model <> None ||
-     guestcaps.gcaps_arch_min_version >= 1 ||
-     source.s_cpu_topology <> None then (
-    let cpu_attrs = ref []
-    and cpu = ref [] in
+  let cpu_attrs = ref []
+  and cpu = ref [] in
 
-    (match source.s_cpu_model with
-     | None ->
-         if guestcaps.gcaps_arch_min_version >= 1 then
-           List.push_back cpu_attrs ("mode", "host-model");
-     | Some model ->
-         List.push_back cpu_attrs ("match", "minimum");
-         if model = "qemu64" then
-           List.push_back cpu_attrs ("check", "none");
-         (match source.s_cpu_vendor with
-          | None -> ()
-          | Some vendor ->
-              List.push_back cpu (e "vendor" [] [PCData vendor])
-         );
-         List.push_back cpu (e "model" ["fallback", "allow"] [PCData model])
-    );
-    (match source.s_cpu_topology with
-     | None -> ()
-     | Some { s_cpu_sockets; s_cpu_cores; s_cpu_threads } ->
-        let topology_attrs = [
-          "sockets", string_of_int s_cpu_sockets;
-          "cores", string_of_int s_cpu_cores;
-          "threads", string_of_int s_cpu_threads;
-        ] in
-        List.push_back cpu (e "topology" topology_attrs [])
-    );
-
-    List.push_back_list body [ e "cpu" !cpu_attrs !cpu ]
+  (match source.s_cpu_model with
+   | None ->
+      List.push_back cpu_attrs ("mode", "host-model");
+   | Some model ->
+      List.push_back cpu_attrs ("match", "minimum");
+      if model = "qemu64" then
+        List.push_back cpu_attrs ("check", "none");
+      (match source.s_cpu_vendor with
+       | None -> ()
+       | Some vendor ->
+          List.push_back cpu (e "vendor" [] [PCData vendor])
+      );
+      List.push_back cpu (e "model" ["fallback", "allow"] [PCData model])
   );
+  (match source.s_cpu_topology with
+   | None -> ()
+   | Some { s_cpu_sockets; s_cpu_cores; s_cpu_threads } ->
+      let topology_attrs = [
+        "sockets", string_of_int s_cpu_sockets;
+        "cores", string_of_int s_cpu_cores;
+        "threads", string_of_int s_cpu_threads;
+      ] in
+      List.push_back cpu (e "topology" topology_attrs [])
+  );
+
+  List.push_back_list body [ e "cpu" !cpu_attrs !cpu ];
 
   let uefi_firmware =
     match target_firmware with
