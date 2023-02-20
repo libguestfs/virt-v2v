@@ -108,7 +108,7 @@ after their uploads (if you do, you must supply one for each disk):
       | "rhv-disk-uuid", v ->
          if not (is_nonnil_uuid v) then
            error (f_"-o rhv-upload: invalid UUID for -oo rhv-disk-uuid");
-         rhv_disk_uuids := Some (v :: (Option.default [] !rhv_disk_uuids))
+         rhv_disk_uuids := Some (v :: (Option.value ~default:[] !rhv_disk_uuids))
       | k, _ ->
          error (f_"-o rhv-upload: unknown output option ‘-oo %s’") k
     ) options.output_options;
@@ -119,7 +119,7 @@ after their uploads (if you do, you must supply one for each disk):
     let rhv_verifypeer = !rhv_verifypeer in
     let rhv_disk_uuids = Option.map List.rev !rhv_disk_uuids in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     (output_conn, options.output_format,
      output_password, output_name, output_storage,
@@ -243,7 +243,7 @@ See also the virt-v2v-output-rhv(1) manual.");
       "output_password", JSON.String output_password;
       "output_storage", JSON.String output_storage;
       "rhv_cafile", json_optstring rhv_cafile;
-      "rhv_cluster", JSON.String (Option.default "Default" rhv_cluster);
+      "rhv_cluster", JSON.String (Option.value ~default:"Default" rhv_cluster);
       "rhv_direct", JSON.Bool rhv_direct;
 
       (* The 'Insecure' flag seems to be a number with various possible
@@ -410,7 +410,7 @@ See also the virt-v2v-output-rhv(1) manual.");
         (* Create the nbdkit instance. *)
         Nbdkit.add_arg cmd "size" (Int64.to_string size);
         Nbdkit.add_arg cmd "url" destination_url;
-        Option.may (Nbdkit.add_arg cmd "cafile") rhv_cafile;
+        Option.iter (Nbdkit.add_arg cmd "cafile") rhv_cafile;
         if not rhv_verifypeer then
           Nbdkit.add_arg cmd "insecure" "true";
         if is_ovirt_host then

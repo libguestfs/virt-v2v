@@ -49,7 +49,7 @@ module Glance = struct
     if options.output_storage <> None then
       error_option_cannot_be_used_in_output_mode "glance" "-os";
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     options.output_format, output_name
 

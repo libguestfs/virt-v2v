@@ -65,9 +65,9 @@ module Libvirt_ = struct
     let conn = lazy (Libvirt.Connect.connect ?name:options.output_conn ()) in
 
     (* -os is the name of the output pool.  It defaults to "default". *)
-    let output_pool = Option.default "default" options.output_storage in
+    let output_pool = Option.value ~default:"default" options.output_storage in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     (conn, !compressed, options.output_alloc, options.output_format,
      output_name, output_pool)
@@ -84,7 +84,7 @@ module Libvirt_ = struct
       with
         Libvirt.Virterror { message } ->
         error (f_"cannot get libvirt hypervisor capabilities: %s")
-          (Option.default "" message) in
+          (Option.value ~default:"" message) in
     debug "libvirt capabilities XML:\n%s" capabilities_xml;
 
     (* This just checks that the capabilities XML is well-formed,
@@ -172,7 +172,7 @@ module Libvirt_ = struct
      with
        Libvirt.Virterror { message } ->
        warning (f_"could not refresh libvirt pool ‘%s’: %s")
-         output_pool (Option.default "" message)
+         output_pool (Option.value ~default:"" message)
     );
 
     (* Parse the capabilities XML in order to get the supported features. *)
@@ -207,7 +207,7 @@ module Libvirt_ = struct
        warning (f_"could not define libvirt domain: %s.\nThe libvirt XML \
                    is still available in ‘%s’.  Try running \
                    ‘virsh -c %s define %s’ yourself instead.")
-         (Option.default "" message) tmpfile
+         (Option.value ~default:"" message) tmpfile
          (Libvirt.Connect.get_uri conn) tmpfile
     )
 

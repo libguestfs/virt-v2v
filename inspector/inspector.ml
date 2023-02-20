@@ -115,7 +115,7 @@ let rec main () =
                   is an IP address") what addr
     in
     error_unless_ip_addr "ipaddr" if_ip_address;
-    Option.may (error_unless_ip_addr "gw") if_default_gateway;
+    Option.iter (error_unless_ip_addr "gw") if_default_gateway;
     List.iter (error_unless_ip_addr "nameserver") if_nameservers;
     let if_prefix_length =
       match if_prefix_length_str with

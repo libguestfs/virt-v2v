@@ -68,7 +68,7 @@ module Disk = struct
          error (f_"-os %s: output directory does not exist or is not a directory") d
       | Some d -> d in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     !compressed, options.output_alloc, options.output_format,
     output_name, output_storage

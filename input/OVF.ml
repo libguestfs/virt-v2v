@@ -65,11 +65,11 @@ let rec parse_ovf_from_ova ovf_filename =
     | Some _ as name -> name in
 
   (* Search for memory. *)
-  let memory = Option.default (1024L *^ 1024L) (xpath_int64 "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType/text()=4]/rasd:VirtualQuantity/text()") in
+  let memory = Option.value ~default:(1024L *^ 1024L) (xpath_int64 "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType/text()=4]/rasd:VirtualQuantity/text()") in
   let memory = memory *^ 1024L *^ 1024L in
 
   (* Search for number of vCPUs. *)
-  let vcpu = Option.default 1 (xpath_int "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType/text()=3]/rasd:VirtualQuantity/text()") in
+  let vcpu = Option.value ~default:1 (xpath_int "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/ovf:Item[rasd:ResourceType/text()=3]/rasd:VirtualQuantity/text()") in
 
   (* CPU topology.  coresPerSocket is a VMware proprietary extension.
    * I couldn't find out how hyperthreads is specified in the OVF.
@@ -93,7 +93,7 @@ let rec parse_ovf_from_ova ovf_filename =
                 s_cpu_threads = 1 } in
 
   (* BIOS or EFI firmware? *)
-  let firmware = Option.default "bios" (xpath_string "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/vmw:Config[@vmw:key=\"firmware\"]/@vmw:value") in
+  let firmware = Option.value ~default:"bios" (xpath_string "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/vmw:Config[@vmw:key=\"firmware\"]/@vmw:value") in
   let firmware =
     match firmware with
     | "bios" -> BIOS
@@ -131,7 +131,7 @@ and parse_disks xpathctx =
 
     Xml.xpathctx_set_current_context xpathctx n;
     let file_id =
-      Option.default "" (xpath_string "rasd:HostResource/text()") in
+      Option.value ~default:"" (xpath_string "rasd:HostResource/text()") in
     let rex = PCRE.compile "^(?:ovf:)?/disk/(.*)" in
     if PCRE.matches rex file_id then (
       (* Chase the references through to the actual file name. *)

@@ -101,7 +101,7 @@ For each disk you must supply one of each of these options:
       | None ->
          error (f_"-o vdsm: -oo vdsm-image-uuid was not specified")
       | Some uuid -> uuid in
-    let ovf_output = Option.default "." !ovf_output in
+    let ovf_output = Option.value ~default:"." !ovf_output in
     let ovf_flavour = !ovf_flavour in
 
     (* -os must be set, but at this point we cannot check it. *)
@@ -113,7 +113,7 @@ For each disk you must supply one of each of these options:
                    or is not a directory") d
       | Some d -> d in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     (options.output_alloc, options.output_format,
      output_name, output_storage,

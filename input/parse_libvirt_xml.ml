@@ -84,7 +84,7 @@ let parse_libvirt_xml ?conn xml =
     | None | Some "" -> None
     | Some _ as s -> s in
   let memory =
-    Option.default (1024L *^ 1024L) (xpath_int64 "/domain/memory/text()") in
+    Option.value ~default:(1024L *^ 1024L) (xpath_int64 "/domain/memory/text()") in
   let memory = memory *^ 1024L in
 
   let cpu_vendor = xpath_string "/domain/cpu/vendor/text()" in
@@ -103,9 +103,9 @@ let parse_libvirt_xml ?conn xml =
     | Some vcpu, _,    _,    _    -> vcpu
     | None,      None, None, None -> 1
     | None,      _,    _,    _    ->
-       let sockets = Option.default 1 cpu_sockets
-       and cores = Option.default 1 cpu_cores
-       and threads = Option.default 1 cpu_threads in
+       let sockets = Option.value ~default:1 cpu_sockets
+       and cores = Option.value ~default:1 cpu_cores
+       and threads = Option.value ~default:1 cpu_threads in
        sockets * cores * threads in
 
   let cpu_topology =
@@ -290,7 +290,7 @@ let parse_libvirt_xml ?conn xml =
            (* This is for testing curl, eg for testing VMware conversions
             * without needing VMware around.
             *)
-           let path = Option.default "" (xpath_string "source/@name") in
+           let path = Option.value ~default:"" (xpath_string "source/@name") in
            let url =
              let port =
                match driver, port with

@@ -97,7 +97,7 @@ let run_unix socket { disk; snapshot; format; imgopts } =
     List.push_back args "system_u:object_r:svirt_socket_t:s0"
   );
 
-  Option.may (
+  Option.iter (
     fun format ->
       List.push_back args "--format";
       List.push_back args format

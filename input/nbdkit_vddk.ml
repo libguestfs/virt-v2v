@@ -117,7 +117,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
   Nbdkit.add_arg cmd "file" path;
 
   (* For VDDK we require some user.  If it's not supplied, assume root. *)
-  let user = Option.default "root" user in
+  let user = Option.value ~default:"root" user in
   Nbdkit.add_arg cmd "user" user;
 
   let password =
@@ -126,7 +126,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     | Some password_file -> PasswordFile password_file in
 
   (* The passthrough parameters. *)
-  let passthru cmd name v = Option.may (Nbdkit.add_arg cmd name) v in
+  let passthru cmd name v = Option.iter (Nbdkit.add_arg cmd name) v in
   passthru cmd "config" config;
   passthru cmd "libdir" libdir;
   passthru cmd "nfchostport" nfchostport;

@@ -121,11 +121,11 @@ NICs:
 "
     s.s_name
     (string_of_source_hypervisor s.s_hypervisor)
-    (Option.default "" s.s_genid)
+    (Option.value ~default:"" s.s_genid)
     s.s_memory
     s.s_vcpu
-    (Option.default "" s.s_cpu_vendor)
-    (Option.default "" s.s_cpu_model)
+    (Option.value ~default:"" s.s_cpu_vendor)
+    (Option.value ~default:"" s.s_cpu_model)
     (match s.s_cpu_topology with
     | None -> ""
     | Some topology -> string_of_source_cpu_topology topology)

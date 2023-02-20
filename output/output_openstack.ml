@@ -130,7 +130,7 @@ The os-* parameters and environment variables are optional.
     (* The extra command line parameters derived from -oo etc. *)
     let extra_args =
       let args = ref authentication in
-      Option.may
+      Option.iter
         (fun oc -> List.push_back args (sprintf "--os-auth-url=%s" oc))
         options.output_conn;
       if not verify_server_certificate then
@@ -199,7 +199,7 @@ The os-* parameters and environment variables are optional.
       error (f_"openstack: precheck failed, there may be a problem with \
                 authentication, see earlier error messages");
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     (options.output_storage, output_name,
      server_id, guest_id, dev_disk_by_id,
@@ -280,7 +280,7 @@ The os-* parameters and environment variables are optional.
                                  "-f"; "json";
                                  "--size"; size_gb;
                                  "--description"; description ];
-      Option.may (
+      Option.iter (
         fun os -> List.push_back_list args [ "--type"; os ]
       ) output_storage;
       List.push_back args name;
@@ -350,7 +350,7 @@ The os-* parameters and environment variables are optional.
        * the prefix of the volume ID as a substring.
        *)
       let dev_disk_by_id =
-        Option.default "/dev/disk/by-id" dev_disk_by_id in
+        Option.value ~default:"/dev/disk/by-id" dev_disk_by_id in
       let prefix_len = 16 (* maybe 20, but be safe *) in
       let prefix_id =
         if String.length id > prefix_len then String.sub id 0 prefix_len
@@ -405,13 +405,13 @@ The os-* parameters and environment variables are optional.
                                       id =
       let args = ref [ "volume"; "set" ] in
 
-      Option.may (
+      Option.iter (
         fun bootable ->
           List.push_back args
             (if bootable then "--bootable" else "--non-bootable")
       ) bootable;
 
-      Option.may (
+      Option.iter (
         fun description ->
           List.push_back_list args ["--description"; description]
       ) description;

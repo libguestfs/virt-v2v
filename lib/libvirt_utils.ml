@@ -57,7 +57,7 @@ let get_domain conn name =
       with
         Libvirt.Virterror { code = VIR_ERR_NO_DOMAIN; message } ->
           error (f_"cannot find libvirt domain ‘%s’: %s")
-            name (Option.default "" message)
+            name (Option.value ~default:"" message)
       ) in
   let uri = Libvirt.Connect.get_uri conn in
   (* As a side-effect we check that the domain is shut down.  Of course
@@ -91,7 +91,7 @@ let get_pool conn name =
                 and ‘virsh pool-dumpxml <pool>’ to display details \
                 about a particular pool.\n\nTo set the pool which \
                 virt-v2v uses, add the ‘-os <pool>’ option.")
-        name (Option.default "" message)
+        name (Option.value ~default:"" message)
     )
 
 let get_volume pool name =
@@ -101,7 +101,7 @@ let get_volume pool name =
   (* No such volume. *)
   | Libvirt.Virterror { code = VIR_ERR_NO_STORAGE_VOL; message } ->
     error (f_"cannot find libvirt volume ‘%s’: %s")
-      name (Option.default "" message)
+      name (Option.value ~default:"" message)
 
 let domain_exists conn dom =
   try

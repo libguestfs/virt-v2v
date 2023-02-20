@@ -127,7 +127,7 @@ let rec main () =
                   is an IP address") what addr
     in
     error_unless_ip_addr "ipaddr" if_ip_address;
-    Option.may (error_unless_ip_addr "gw") if_default_gateway;
+    Option.iter (error_unless_ip_addr "gw") if_default_gateway;
     List.iter (error_unless_ip_addr "nameserver") if_nameservers;
     let if_prefix_length =
       match if_prefix_length_str with
@@ -499,7 +499,7 @@ read the man page virt-v2v(1).
   let output_options = {
     Output.output_alloc = output_alloc;
     output_conn = !output_conn;
-    output_format = Option.default "raw" !output_format;
+    output_format = Option.value ~default:"raw" !output_format;
     output_name = output_name;
     output_options = !output_options;
     output_password = !output_password;

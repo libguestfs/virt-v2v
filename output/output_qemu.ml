@@ -75,7 +75,7 @@ module QEMU = struct
                    not a directory") d
       | Some d -> d in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     (compressed, qemu_boot, options.output_alloc, options.output_format,
      output_name, output_storage)
@@ -175,7 +175,7 @@ module QEMU = struct
 
     arg "-m" (Int64.to_string (source.s_memory /^ 1024L /^ 1024L));
 
-    arg "-cpu" (Option.default "host" source.s_cpu_model);
+    arg "-cpu" (Option.value ~default:"host" source.s_cpu_model);
 
     if source.s_vcpu > 1 then (
       (match source.s_cpu_topology with

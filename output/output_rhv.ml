@@ -51,7 +51,7 @@ module RHV = struct
       | None -> error (f_"-o rhv: -os option was not specified")
       | Some d -> d in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     (options.output_alloc, options.output_format, output_name, output_storage)
 

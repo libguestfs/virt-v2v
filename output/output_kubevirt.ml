@@ -76,7 +76,7 @@ module Kubevirt = struct
                    is not a directory") d
       | Some d -> d in
 
-    let output_name = Option.default source.s_name options.output_name in
+    let output_name = Option.value ~default:source.s_name options.output_name in
 
     if not (PCRE.matches rfc1123_re output_name) then
       error (f_"-o kubevirt: the guest name must contain only lowercase \

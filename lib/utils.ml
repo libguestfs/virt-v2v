@@ -151,7 +151,7 @@ let rec chown_for_libvirt_rhbz_1045069 file =
   let running_as_root = Unix.geteuid () = 0 in
   if running_as_root && backend_is_libvirt () then (
     try
-      let user = Option.default "qemu" (libvirt_qemu_user ()) in
+      let user = Option.value ~default:"qemu" (libvirt_qemu_user ()) in
       let uid =
         if String.is_prefix user "+" then
           int_of_string (String.sub user 1 (String.length user - 1))
