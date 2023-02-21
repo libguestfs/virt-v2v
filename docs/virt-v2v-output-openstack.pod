@@ -89,9 +89,6 @@ endpoints.  You will need to either set up your C<$OS_*> environment
 variables or use output options on the virt-v2v command line to
 authenticate with OpenStack.
 
-Normally there is a file called C<overcloudrc> or C<keystonerc_admin>
-which you can simply C<source> to set everything up.
-
 For example:
 
  export OS_USERNAME=admin
@@ -102,6 +99,15 @@ or:
 
 are equivalent, and have the same effect as using I<--os-username> on
 the command line of OpenStack tools.
+
+Normally there is a file called F<overcloudrc> or F<keystonerc_admin>
+which you can simply C<source> to set everything up.
+
+If you need to copy F<overcloudrc> to another machine, check if it
+references the C<OS_CLOUD> environment variable.  If so, you may have
+to copy the F<clouds.yaml> file from F</etc/openstack/> or
+F<$HOME/.config/openstack/> to the other machine as well.  See the
+section "CLOUD CONFIGURATION" in the openstack CLI manual.
 
 =head2 OpenStack: Running as root
 
@@ -179,10 +185,8 @@ To output to OpenStack Glance, use the I<-o glance> option.
 
 This runs the L<glance(1)> CLI program which must be installed on the
 virt-v2v conversion host.  For authentication to work, you will need
-to set C<OS_*> environment variables.
-
-Normally there is a file called C<overcloudrc> or C<keystonerc_admin>
-which you can simply C<source> to set everything up.
+to set C<OS_*> environment variables.  See
+L</OpenStack: Authentication> above.
 
 Virt-v2v adds metadata for the guest to Glance, describing such things
 as the guest operating system and what drivers it requires.  The
