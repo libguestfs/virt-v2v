@@ -1068,8 +1068,12 @@ let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
     (* Update 'alias scsi_hostadapter ...' *)
     let paths = augeas_modprobe ". =~ regexp('scsi_hostadapter.*')" in
     (match block_type with
-    | Virtio_blk ->
-      let block_module = "virtio_blk" in
+    | Virtio_blk | Virtio_SCSI ->
+      let block_module =
+        match block_type with
+        | Virtio_blk -> "virtio_blk"
+        | Virtio_SCSI -> "virtio_scsi"
+        | IDE -> assert false in
 
       if paths <> [] then (
         (* There's only 1 scsi controller in the converted guest.
@@ -1142,6 +1146,7 @@ let convert (g : G.guestfs) source inspect i_firmware keep_serial_console _ =
     let block_prefix_after_conversion =
       match block_type with
       | Virtio_blk -> "vd"
+      | Virtio_SCSI -> "sd"
       | IDE -> ide_block_prefix in
 
     let map =

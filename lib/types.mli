@@ -280,7 +280,7 @@ type guestcaps = {
 }
 (** Guest capabilities after conversion.  eg. Was virtio found or installed? *)
 
-and guestcaps_block_type = Virtio_blk | IDE
+and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
 and guestcaps_machine = I440FX | Q35 | Virt
 

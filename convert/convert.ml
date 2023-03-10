@@ -252,7 +252,7 @@ and do_convert g source inspect i_firmware keep_serial_console interfaces =
   (* Did we manage to install virtio drivers? *)
   if not (quiet ()) then (
     match guestcaps.gcaps_block_bus with
-    | Virtio_blk ->
+    | Virtio_blk | Virtio_SCSI ->
         info (f_"This guest has virtio drivers installed.")
     | IDE ->
         info (f_"This guest does not have virtio drivers installed.")

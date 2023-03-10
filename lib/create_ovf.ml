@@ -920,6 +920,7 @@ and add_disks sizes guestcaps output_alloc output_format
           "ovf:disk-interface",
           (match guestcaps.gcaps_block_bus with
           | Virtio_blk -> "VirtIO"
+          | Virtio_SCSI -> "VirtIO_SCSI"
           | IDE -> "IDE");
           "ovf:disk-type", "System"; (* RHBZ#744538 *)
           "ovf:boot", if is_bootable_drive then "True" else "False";
