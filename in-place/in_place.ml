@@ -294,7 +294,8 @@ read the man page virt-v2v-in-place(1).
 
   (* Get the conversion options. *)
   let conv_options = {
-    Convert.keep_serial_console = true;
+    Convert.block_driver = Virtio_blk;
+    keep_serial_console = true;
     ks = opthandle.ks;
     network_map;
     root_choice;

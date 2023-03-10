@@ -31,6 +31,7 @@ open Utils
 module G = Guestfs
 
 type options = {
+  block_driver : guestcaps_block_type;
   keep_serial_console : bool;
   ks : key_store;
   network_map : Networks.t;
@@ -88,7 +89,7 @@ let rec convert dir options source =
   (* Conversion. *)
   let guestcaps =
     do_convert g source inspect i_firmware
-      options.keep_serial_console options.static_ips in
+      options.block_driver options.keep_serial_console options.static_ips in
 
   g#umount_all ();
 
@@ -221,7 +222,8 @@ and do_fstrim g inspect =
   ) fses
 
 (* Conversion. *)
-and do_convert g source inspect i_firmware keep_serial_console interfaces =
+and do_convert g source inspect i_firmware
+               block_driver keep_serial_console interfaces =
   (match inspect.i_product_name with
   | "unknown" ->
     message (f_"Converting the guest to run on KVM")
@@ -246,7 +248,8 @@ and do_convert g source inspect i_firmware keep_serial_console interfaces =
          inspect.i_type inspect.i_distro in
   debug "picked conversion module %s" conversion_name;
   let guestcaps =
-    convert g source inspect i_firmware keep_serial_console interfaces in
+    convert g source inspect i_firmware
+            block_driver keep_serial_console interfaces in
   debug "%s" (string_of_guestcaps guestcaps);
 
   (* Did we manage to install virtio drivers? *)

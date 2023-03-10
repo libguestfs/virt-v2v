@@ -23,5 +23,6 @@
     Mint and Kali are supported by this module. *)
 
 val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
-              Firmware.i_firmware -> bool -> Types.static_ip list ->
+              Firmware.i_firmware -> Types.guestcaps_block_type ->
+              bool -> Types.static_ip list ->
               Types.guestcaps

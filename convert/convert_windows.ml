@@ -38,7 +38,7 @@ module G = Guestfs
  * time the Windows VM is booted on KVM.
  *)
 
-let convert (g : G.guestfs) _ inspect i_firmware _ static_ips =
+let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
   (*----------------------------------------------------------------------*)
   (* Inspect the Windows guest. *)
 

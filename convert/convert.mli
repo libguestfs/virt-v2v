@@ -17,6 +17,7 @@
  *)
 
 type options = {
+  block_driver : Types.guestcaps_block_type; (** [--block-driver] option *)
   keep_serial_console : bool;
   ks : Tools_utils.key_store;      (** [--key] option *)
   network_map : Networks.t;        (** [-b] and [-n] options *)
