@@ -273,6 +273,7 @@ let convert (g : G.guestfs) _ inspect i_firmware _ static_ips =
 
   and of_virtio_win_block_type = function
     | Inject_virtio_win.Virtio_blk -> Virtio_blk
+    | Virtio_SCSI -> Virtio_SCSI
     | IDE -> IDE
 
   and of_virtio_win_net_type = function
