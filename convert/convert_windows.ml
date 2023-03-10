@@ -47,6 +47,14 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
    *)
   let virtio_win =
     Inject_virtio_win.from_environment g inspect.i_root Config.datadir in
+  (match block_driver with
+   | Virtio_blk -> () (* the default, no need to do anything *)
+   | Virtio_SCSI ->
+      let drivers = Inject_virtio_win.get_block_driver_priority virtio_win in
+      let drivers = "vioscsi" :: drivers in
+      Inject_virtio_win.set_block_driver_priority virtio_win drivers
+   | IDE -> assert false (* not possible - but maybe ...? *)
+  );
 
   (* If the Windows guest appears to be using group policy.
    *
