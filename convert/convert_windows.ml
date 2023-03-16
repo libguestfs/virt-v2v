@@ -400,7 +400,7 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
                       "@echo off\n\
                        \n\
                        echo Wait for PnP to complete\n\
-                       \"%s\" >\"%%~dpn0.log\" 2>&1\n\
+                       \"%s\"\n\
                        %s"
                       (String.replace_char pnp_wait_path '/' '\\')
                       reg_restore_str in
