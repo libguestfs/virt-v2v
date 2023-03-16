@@ -295,9 +295,11 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
     | Virt -> Virt
 
   and configure_firstboot () =
-    (* Note that pnp_wait.exe must be the first firstboot script as it
-     * suppresses PnP for all following scripts.
+    (* Run the firstboot script with pnputil.exe before the one with
+     * pnp_wait.exe as the latter suppresses PnP for all following scripts.
      *)
+    configure_pnputil_install ();
+
     let tool_path = virt_tools_data_dir () // "pnp_wait.exe" in
     if Sys.file_exists tool_path then
       configure_wait_pnp tool_path
@@ -344,6 +346,17 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
     | Some value -> sprintf "reg add \"%s\" /v %s /t REG_DWORD /d %Ld /f"
                       strkey name value
     | None -> sprintf "reg delete \"%s\" /v %s /f" strkey name
+
+  and configure_pnputil_install () =
+    let fb_script = "@echo off\n\
+                     \n\
+                     echo Wait for VirtIO drivers to be installed\n\
+                     %systemroot%\\Sysnative\\PnPutil -i -a \
+                     %systemroot%\\Drivers\\Virtio\\*.inf" in
+
+    (* Set priority higher than that of "v2vnetcf.ps1" firstboot script. *)
+    Firstboot.add_firstboot_script g inspect.i_root ~prio:2000
+      "pnputil install drivers" fb_script;
 
   and configure_wait_pnp tool_path =
     (* Prevent destructive interactions of firstboot with PnP. *)
