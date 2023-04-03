@@ -270,7 +270,7 @@ and get_ovf_file { orig_ova; top_dir } =
   | _ :: _ ->
      error (f_"more than one .ovf file was found in %s") orig_ova
 
-let rex = PCRE.compile "^(SHA1|SHA256)\\((.*)\\)= ([0-9a-fA-F]+)\r?$"
+let rex = PCRE.compile "^(SHA1|SHA256)[[:space:]]*\\((.*)\\)[[:space:]]*= ([0-9a-fA-F]+)\r?$"
 
 let get_manifest { top_dir; ova_type } =
   let mf_files = find_files top_dir ".mf" in
