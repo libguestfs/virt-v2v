@@ -124,7 +124,7 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
              let prefix = "/lib/modules/" in
              let prefix_len = String.length prefix in
              try
-               List.find_map (
+               let modpath, version = List.find_map (
                  fun filename ->
                    let filename_len = String.length filename in
                    if filename_len > prefix_len &&
@@ -134,16 +134,28 @@ let detect_kernels (g : G.guestfs) inspect family bootloader =
                      Some (filename, version)
                    ) else
                      None
-               ) files
+               ) files in
+               (* Fall back to the version in the vmlinuz file name not only if
+                * a candidate pathname couldn't be found under /lib/modules/,
+                * but also in case the candidate pathname doesn't reference a
+                * directory. See RHBZ#2175703.
+                *
+                * Note that this "is_dir" check is deliberately kept outside of
+                * the "find_map"'s mapper function above: we want the first
+                * candidate *to be* a directory, and not the first candidate
+                * *that is* a directory.
+                *)
+               if not (g#is_dir ~followsymlinks:true modpath) then
+                 raise Not_found;
+               modpath, version
              with Not_found ->
                let version =
                  String.sub vmlinuz 14 (String.length vmlinuz - 14) in
                let modpath = prefix ^ version in
+               (* Check that the modpath exists. *)
+               if not (g#is_dir ~followsymlinks:true modpath) then
+                 raise Not_found;
                modpath, version in
-
-           (* Check that the modpath exists. *)
-           if not (g#is_dir ~followsymlinks:true modpath) then
-             raise Not_found;
 
            (* Find the initramfs which corresponds to the kernel.
             * Since the initramfs is built at runtime, and doesn't have
