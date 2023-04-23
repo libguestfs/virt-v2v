@@ -21,6 +21,9 @@ the source tree.
 BUILDING FROM SOURCE
 ======================================================================
 
+Install dependencies
+  sudo apt install build-essential ca-certificates gcc make automake libtool libguestfs-tools libguestfs-dev libnbd-dev gettext libpcre2-dev libvirt-dev libxml2-dev libjansson-dev libosinfo-1.0-dev ocaml-findlib libvirt-ocaml-dev libguestfs-ocaml-dev libnbd-ocaml-dev
+
 To build from git:
 
   git submodule update --init
