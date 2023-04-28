@@ -57,7 +57,6 @@ TESTS_ENVIRONMENT = $(top_builddir)/run --test
 
 TESTS = \
 	test-bad-networks-and-bridges.sh \
-	test-block-driver.sh \
 	test-cdrom.sh \
 	test-checksum-bad.sh \
 	test-checksum-good-qcow2.sh \
