@@ -49,7 +49,6 @@ let rec main () =
 
   let bandwidth = ref None in
   let bandwidth_file = ref None in
-  let block_driver = ref None in
   let input_conn = ref None in
   let input_format = ref None in
   let input_password = ref None in
@@ -162,8 +161,6 @@ let rec main () =
   let argspec = [
     [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
                                     s_"Map bridge ‘in’ to ‘out’";
-    [ L"block-driver" ], Getopt.String ("driver", set_string_option_once "--block-driver" block_driver),
-                                    s_"Prefer 'virtio-blk' or 'virtio-scsi'";
     [ S 'i' ],       Getopt.String (input_modes, set_input_mode),
                                     s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
@@ -230,12 +227,6 @@ read the man page virt-v2v-in-place(1).
 
   (* Dereference the arguments. *)
   let args = List.rev !args in
-  let block_driver =
-    match !block_driver with
-    | None | Some "virtio-blk" -> Virtio_blk
-    | Some "virtio-scsi" -> Virtio_SCSI
-    | Some driver ->
-       error (f_"unknown block driver ‘--block-driver %s’") driver in
   let customize_ops = get_customize_ops () in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
@@ -298,7 +289,7 @@ read the man page virt-v2v-in-place(1).
 
   (* Get the conversion options. *)
   let conv_options = {
-    Convert.block_driver = block_driver;
+    Convert.block_driver = Virtio_blk;
     keep_serial_console = true;
     ks = opthandle.ks;
     network_map;
