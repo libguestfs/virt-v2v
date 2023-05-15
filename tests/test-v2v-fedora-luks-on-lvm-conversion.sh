@@ -28,9 +28,9 @@ skip_if_skipped
 f=../test-data/phony-guests/fedora-luks-on-lvm.img
 requires test -f $f
 
-keys=(--key /dev/VG/Root:key:FEDORA-Root
-      --key /dev/VG/LV1:key:FEDORA-LV1
-      --key /dev/VG/LV2:key:FEDORA-LV2
-      --key /dev/VG/LV3:key:FEDORA-LV3)
+keys=(--key /dev/Volume-Group/Root:key:FEDORA-Root
+      --key /dev/Volume-Group/Logical-Volume-1:key:FEDORA-LV1
+      --key /dev/Volume-Group/Logical-Volume-2:key:FEDORA-LV2
+      --key /dev/Volume-Group/Logical-Volume-3:key:FEDORA-LV3)
 
 $VG virt-v2v --debug-gc -i disk $f -o null "${keys[@]}"
