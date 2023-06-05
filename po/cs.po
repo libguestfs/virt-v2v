@@ -2,10 +2,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2023-02-06 14:38+0000\n"
-"PO-Revision-Date: 2022-04-15 20:17+0000\n"
+"PO-Revision-Date: 2023-04-08 18:20+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/cs/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -58,11 +58,11 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: common/mltools/tools_utils.ml:233
 msgid "%s: %s: %s"
-msgstr ""
+msgstr "%s: %s: %s"
 
 #: common/mltools/on_exit.ml:77
 msgid ""
@@ -72,7 +72,7 @@ msgstr ""
 
 #: common/mlcustomize/inject_virtio_win.ml:389
 msgid "%s: cannot open virtio-win ISO file: %s"
-msgstr ""
+msgstr "%s: nedaří se otevřít ISO soubor s virtio-win: %s"
 
 #: v2v/v2v.ml:313
 msgid ""
@@ -114,7 +114,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:172
 msgid "%s: error: %s"
-msgstr ""
+msgstr "%s: chyba: %s%c"
 
 #: inspector/inspector.ml:187
 msgid ""
@@ -140,7 +140,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
-msgstr ""
+msgstr "%s: varování: %s%c"
 
 #. common/mlcustomize/customize_cmdline.ml:248
 #: common/mlcustomize/customize_cmdline.ml:351
@@ -434,19 +434,19 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:306
 msgid "Create a directory"
-msgstr ""
+msgstr "Vytvořit složku"
 
 #: common/mlcustomize/customize_cmdline.ml:300
 msgid "Create symbolic links"
-msgstr ""
+msgstr "Vytvořit symbolické odkazy"
 
 #: v2v/v2v.ml:613
 msgid "Creating output metadata"
-msgstr ""
+msgstr "Jsou vytvářena metadata výstupu"
 
 #: common/mlcustomize/customize_cmdline.ml:500
 msgid "Credentials for subscription-manager"
-msgstr ""
+msgstr "Přihlašovací údaje pro subscription-manager"
 
 #: common/mlcustomize/customize_cmdline.ml:305
 msgid "DIR"
@@ -454,15 +454,15 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:226
 msgid "Delete a file or directory"
-msgstr ""
+msgstr "Smazat soubor či složku"
 
 #: common/mltools/getopt.ml:229
 msgid "Display brief help"
-msgstr ""
+msgstr "Zobrazit stručnou nápovědu"
 
 #: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
-msgstr ""
+msgstr "Zobrazit verzi a skončit"
 
 #: common/mlcustomize/customize_cmdline.ml:484
 msgid "Do not relabel files with correct SELinux labels"
@@ -470,7 +470,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
-msgstr ""
+msgstr "Nevypisovat zprávy o míře postupu"
 
 #: common/mltools/tools_utils.ml:420
 msgid "Don’t turn off echo for passphrases"
@@ -478,11 +478,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:237
 msgid "Edit file using Perl expression"
-msgstr ""
+msgstr "Upravit soubor pomocí výrazu v Perl"
 
 #: common/mltools/tools_utils.ml:386
 msgid "Enable libguestfs debugging messages"
-msgstr ""
+msgstr "Zapnout ladící zprávy z libguestfs"
 
 #: common/mltools/tools_utils.ml:387
 msgid "Enable tracing of libguestfs calls"
@@ -490,13 +490,13 @@ msgstr ""
 
 #: output/output_rhv.ml:77
 msgid "Export Storage Domain"
-msgstr ""
+msgstr "Exportovat úložnou doménu"
 
 #. common/mlcustomize/customize_cmdline.ml:404
 #. common/mlcustomize/customize_cmdline.ml:357
 #: common/mlcustomize/customize_cmdline.ml:422
 msgid "FILE"
-msgstr ""
+msgstr "SOUBOR"
 
 #: common/mlcustomize/customize_cmdline.ml:457
 msgid "FILE:CONTENT"
@@ -528,7 +528,7 @@ msgstr ""
 
 #: v2v/v2v.ml:278 inspector/inspector.ml:180 in-place/in_place.ml:176
 msgid "How to choose root filesystem"
-msgstr ""
+msgstr "Jak zvolit kořenový souborový systém"
 
 #: common/mltools/tools_utils.ml:177
 msgid ""
@@ -540,23 +540,23 @@ msgstr ""
 
 #: v2v/v2v.ml:308 v2v/v2v.ml:254
 msgid "Ignored for backwards compatibility"
-msgstr ""
+msgstr "Ignorováno kvůli zpětné kompatibilitě"
 
 #: common/mlcustomize/customize_cmdline.ml:399
 msgid "Inject a public key into the guest"
-msgstr ""
+msgstr "Vpravit do hosta veřejný klíč"
 
 #: common/mlcustomize/customize_cmdline.ml:272
 msgid "Inject the QEMU Guest Agent into a Windows guest"
-msgstr ""
+msgstr "Vpravit QEMU agenta do Windows hosta"
 
 #: common/mlcustomize/customize_cmdline.ml:278
 msgid "Inject virtio-win drivers into a Windows guest"
-msgstr ""
+msgstr "Vpravit ovladače virtio-win do Windows hosta"
 
 #: v2v/v2v.ml:240 inspector/inspector.ml:168 in-place/in_place.ml:164
 msgid "Input format"
-msgstr ""
+msgstr "Vstupní formát"
 
 #: input/input_vddk.ml:44
 msgid ""
@@ -583,7 +583,7 @@ msgstr ""
 
 #: v2v/v2v.ml:246 inspector/inspector.ml:174
 msgid "Input transport"
-msgstr ""
+msgstr "Vstupní transport"
 
 #: common/mlcustomize/customize_cmdline.ml:215
 msgid "LOCALPATH:REMOTEDIR"
@@ -591,7 +591,7 @@ msgstr ""
 
 #: v2v/v2v.ml:238 inspector/inspector.ml:166 in-place/in_place.ml:162
 msgid "Libvirt URI"
-msgstr ""
+msgstr "Libvirt URI"
 
 #. common/mlcustomize/customize_cmdline.ml:271
 #: common/mlcustomize/customize_cmdline.ml:277
@@ -780,7 +780,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:242
 #: common/mlcustomize/customize_cmdline.ml:345
 msgid "SCRIPT"
-msgstr ""
+msgstr "SKRIPT"
 
 #. common/mlcustomize/customize_cmdline.ml:364
 #. common/mlcustomize/customize_cmdline.ml:335
@@ -996,7 +996,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:434
 msgid "Uninstall package(s)"
-msgstr ""
+msgstr "Odinstalovat balíčky"
 
 #: common/mlcustomize/customize_cmdline.ml:387
 msgid "Unregister using subscription-manager"
@@ -1354,7 +1354,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:239
 msgid "failure: %s"
-msgstr ""
+msgstr "nezdar: %s"
 
 #: input/input_ova.ml:135
 msgid "file ‘%s’ not found in the ova"
@@ -1387,7 +1387,7 @@ msgstr ""
 
 #: common/mlcustomize/firstboot.ml:165
 msgid "guest type %s is not supported"
-msgstr ""
+msgstr "host typu %s není podporován"
 
 #: common/mlcustomize/firstboot.ml:371
 msgid "guest type %s/%s is not supported"
@@ -1867,7 +1867,7 @@ msgstr ""
 #: common/mltools/tools_utils.ml:399 common/options/keys.c:226
 #, c-format
 msgid "selector '%s': missing ID"
-msgstr ""
+msgstr "sektor „%s“: chybí identifikátor"
 
 #: common/mltools/tools_utils.ml:404 common/options/keys.c:239
 #, c-format
@@ -2063,11 +2063,11 @@ msgstr ""
 
 #: v2v/v2v.ml:189 inspector/inspector.ml:157 in-place/in_place.ml:153
 msgid "unknown -i option: %s"
-msgstr ""
+msgstr "neznámá volba -i: %s"
 
 #: v2v/v2v.ml:209
 msgid "unknown -o option: %s"
-msgstr ""
+msgstr "neznámá volba -o: %s"
 
 #: v2v/v2v.ml:166
 msgid "unknown -oa option: %s"
@@ -2328,17 +2328,17 @@ msgstr ""
 #: common/options/inspect.c:178
 #, c-format
 msgid "Operating system: %s\n"
-msgstr ""
+msgstr "Operační systém: %s\n"
 
 #: common/options/inspect.c:196
 #, c-format
 msgid "%s mounted on %s\n"
-msgstr ""
+msgstr "%s připojeno na %s\n"
 
 #: common/options/keys.c:62
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
-msgstr ""
+msgstr "Zadejte klíč nebo heslovou frázi („%s“): "
 
 #: common/options/keys.c:144
 #, c-format
@@ -2348,7 +2348,7 @@ msgstr ""
 #: common/options/keys.c:187
 #, c-format
 msgid "could not read key from user"
-msgstr ""
+msgstr "nepodařilo se načíst klíč od uživatele"
 
 #: common/options/options.c:283
 #, c-format
@@ -2366,11 +2366,12 @@ msgstr ""
 #, c-format
 msgid "%s: Did you mean to mount one of these filesystems?\n"
 msgstr ""
+"%s: Měli jste na mysli připojení některého z těchto souborových systémů?\n"
 
 #: common/options/options.c:304
 #, c-format
 msgid "cannot determine the subvolume for %s: %s (%d)"
-msgstr ""
+msgstr "nedaří se zjistit svazky pro %s: %s (%d)"
 
 #: common/options/uri.c:119
 #, c-format
@@ -2390,24 +2391,24 @@ msgstr ""
 #: common/utils/utils.c:107
 #, c-format
 msgid "%s exited successfully"
-msgstr ""
+msgstr "%s úspěšně ukončeno"
 
 #: common/utils/utils.c:110
 #, c-format
 msgid "%s exited with error status %d"
-msgstr ""
+msgstr "%s ukončeno s chybovým stavem %d"
 
 #: common/utils/utils.c:114
 #, c-format
 msgid "%s killed by signal %d (%s)"
-msgstr ""
+msgstr "%s vynuceně ukončeno signálem %d (%s)"
 
 #: common/utils/utils.c:118
 #, c-format
 msgid "%s stopped by signal %d (%s)"
-msgstr ""
+msgstr "%s zastaveno signálem %d (%s)"
 
 #: common/utils/utils.c:122
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
-msgstr ""
+msgstr "%s ukončeno z neznámého důvodu (stav %d)"
