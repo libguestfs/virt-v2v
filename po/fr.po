@@ -12,17 +12,17 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-02-06 14:38+0000\n"
-"PO-Revision-Date: 2015-02-21 10:49+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/libguestfs/"
-"language/fr/)\n"
+"POT-Creation-Date: 2023-04-19 12:15+0100\n"
+"PO-Revision-Date: 2023-03-21 09:20+0000\n"
+"Last-Translator: grimst <grimaitres@gmail.com>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -58,9 +58,9 @@ msgstr ""
 
 #. inspector/inspector.ml:149
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:145
+#. in-place/in_place.ml:146
 #. in-place/in_place.ml:39
-#: v2v/v2v.ml:195 v2v/v2v.ml:181 v2v/v2v.ml:161 v2v/v2v.ml:44
+#: v2v/v2v.ml:196 v2v/v2v.ml:182 v2v/v2v.ml:162 v2v/v2v.ml:44
 msgid "%s option used more than once on the command line"
 msgstr ""
 
@@ -78,11 +78,11 @@ msgid ""
 "%!"
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:389
+#: common/mlcustomize/inject_virtio_win.ml:401
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
-#: v2v/v2v.ml:313
+#: v2v/v2v.ml:316
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -105,7 +105,7 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: in-place/in_place.ml:181
+#: in-place/in_place.ml:184
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -155,7 +155,7 @@ msgstr ""
 msgid "'CMD+ARGS'"
 msgstr ""
 
-#: v2v/v2v.ml:141 inspector/inspector.ml:129 in-place/in_place.ml:122
+#: v2v/v2v.ml:142 inspector/inspector.ml:129 in-place/in_place.ml:123
 #, fuzzy
 #| msgid "credential index out of range"
 msgid "--mac ip prefix length field is out of range"
@@ -414,7 +414,7 @@ msgstr ""
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
-#: v2v/v2v.ml:276
+#: v2v/v2v.ml:279
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 msgid "Compatibility option doing nothing"
 msgstr ""
 
-#: v2v/v2v.ml:234
+#: v2v/v2v.ml:237
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
@@ -438,7 +438,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:592
+#: v2v/v2v.ml:602
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:613
+#: v2v/v2v.ml:623
 msgid "Creating output metadata"
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:617 inspector/inspector.ml:364 in-place/in_place.ml:344
+#: v2v/v2v.ml:627 inspector/inspector.ml:365 in-place/in_place.ml:354
 msgid "Finishing off"
 msgstr ""
 
@@ -536,7 +536,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:278 inspector/inspector.ml:180 in-place/in_place.ml:176
+#: v2v/v2v.ml:281 inspector/inspector.ml:180 in-place/in_place.ml:179
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -548,7 +548,7 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: v2v/v2v.ml:308 v2v/v2v.ml:254
+#: v2v/v2v.ml:311 v2v/v2v.ml:257
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
@@ -564,7 +564,7 @@ msgstr ""
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
-#: v2v/v2v.ml:240 inspector/inspector.ml:168 in-place/in_place.ml:164
+#: v2v/v2v.ml:243 inspector/inspector.ml:168 in-place/in_place.ml:167
 msgid "Input format"
 msgstr ""
 
@@ -591,7 +591,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:246 inspector/inspector.ml:174
+#: v2v/v2v.ml:249 inspector/inspector.ml:174
 msgid "Input transport"
 msgstr ""
 
@@ -599,7 +599,7 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/v2v.ml:238 inspector/inspector.ml:166 in-place/in_place.ml:162
+#: v2v/v2v.ml:241 inspector/inspector.ml:166 in-place/in_place.ml:165
 msgid "Libvirt URI"
 msgstr ""
 
@@ -612,15 +612,15 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr ""
 
-#: v2v/v2v.ml:250 inspector/inspector.ml:176 in-place/in_place.ml:170
+#: v2v/v2v.ml:253 inspector/inspector.ml:176 in-place/in_place.ml:173
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:232 inspector/inspector.ml:162 in-place/in_place.ml:158
+#: v2v/v2v.ml:233 inspector/inspector.ml:162 in-place/in_place.ml:159
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:252 inspector/inspector.ml:178 in-place/in_place.ml:172
+#: v2v/v2v.ml:255 inspector/inspector.ml:178 in-place/in_place.ml:175
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -652,7 +652,7 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:260
+#: v2v/v2v.ml:263
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -723,7 +723,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:225
 #: common/mlcustomize/customize_cmdline.ml:410
 msgid "PATH"
-msgstr ""
+msgstr "CHEMIN"
 
 #: common/mlcustomize/customize_cmdline.ml:182
 msgid "PERMISSIONS:FILE"
@@ -735,7 +735,11 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:274 in-place/in_place.ml:174
+#: v2v/v2v.ml:235 in-place/in_place.ml:161
+msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
+msgstr ""
+
+#: v2v/v2v.ml:277 in-place/in_place.ml:177
 msgid "Print source and stop"
 msgstr ""
 
@@ -763,7 +767,7 @@ msgstr ""
 msgid "Remove all the subscriptions"
 msgstr ""
 
-#: v2v/v2v.ml:264
+#: v2v/v2v.ml:267
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -804,63 +808,63 @@ msgstr ""
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: v2v/v2v.ml:280
+#: v2v/v2v.ml:283
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:282
+#: v2v/v2v.ml:285
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:284
+#: v2v/v2v.ml:287
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr ""
 
-#: v2v/v2v.ml:286
+#: v2v/v2v.ml:289
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr ""
 
-#: v2v/v2v.ml:288
+#: v2v/v2v.ml:291
 msgid "Same as ‘-io vddk-port=port’"
 msgstr ""
 
-#: v2v/v2v.ml:290
+#: v2v/v2v.ml:293
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr ""
 
-#: v2v/v2v.ml:292
+#: v2v/v2v.ml:295
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr ""
 
-#: v2v/v2v.ml:294
+#: v2v/v2v.ml:297
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr ""
 
-#: v2v/v2v.ml:272
+#: v2v/v2v.ml:275
 msgid "Same as ‘-ip filename’"
 msgstr ""
 
-#: v2v/v2v.ml:296
+#: v2v/v2v.ml:299
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr ""
 
-#: v2v/v2v.ml:298
+#: v2v/v2v.ml:301
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:306
+#: v2v/v2v.ml:309
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr ""
 
-#: v2v/v2v.ml:304
+#: v2v/v2v.ml:307
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr ""
 
-#: v2v/v2v.ml:302
+#: v2v/v2v.ml:305
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:300
+#: v2v/v2v.ml:303
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
@@ -872,39 +876,39 @@ msgstr ""
 msgid "Scrub build log file"
 msgstr ""
 
-#: v2v/v2v.ml:230
+#: v2v/v2v.ml:231
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:228
+#: v2v/v2v.ml:229
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: v2v/v2v.ml:236 inspector/inspector.ml:164 in-place/in_place.ml:160
+#: v2v/v2v.ml:239 inspector/inspector.ml:164 in-place/in_place.ml:163
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:242 inspector/inspector.ml:170 in-place/in_place.ml:166
+#: v2v/v2v.ml:245 inspector/inspector.ml:170 in-place/in_place.ml:169
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:266
+#: v2v/v2v.ml:269
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:258
+#: v2v/v2v.ml:261
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:262
+#: v2v/v2v.ml:265
 msgid "Set output format"
 msgstr ""
 
-#: v2v/v2v.ml:256
+#: v2v/v2v.ml:259
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:270
+#: v2v/v2v.ml:273
 msgid "Set output storage location"
 msgstr ""
 
@@ -936,15 +940,15 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:564
+#: v2v/v2v.ml:574
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:540 inspector/inspector.ml:340 in-place/in_place.ml:310
+#: v2v/v2v.ml:550 inspector/inspector.ml:341 in-place/in_place.ml:320
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:546 in-place/in_place.ml:316
+#: v2v/v2v.ml:556 in-place/in_place.ml:326
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -960,18 +964,18 @@ msgstr ""
 msgid "TIMEZONE"
 msgstr ""
 
-#: v2v/v2v.ml:222
+#: v2v/v2v.ml:223
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
 
-#: output/output_qemu.ml:233
+#: output/output_qemu.ml:229
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
 
-#: output/output_qemu.ml:254
+#: output/output_qemu.ml:250
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
@@ -1024,15 +1028,15 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/v2v.ml:244 inspector/inspector.ml:172 in-place/in_place.ml:168
+#: v2v/v2v.ml:247 inspector/inspector.ml:172 in-place/in_place.ml:171
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:268
+#: v2v/v2v.ml:271
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:248
+#: v2v/v2v.ml:251
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
@@ -1105,15 +1109,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: v2v/v2v.ml:102 inspector/inspector.ml:90 in-place/in_place.ml:83
+#: v2v/v2v.ml:103 inspector/inspector.ml:90 in-place/in_place.ml:84
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:126 inspector/inspector.ml:114 in-place/in_place.ml:107
+#: v2v/v2v.ml:127 inspector/inspector.ml:114 in-place/in_place.ml:108
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:138 inspector/inspector.ml:126 in-place/in_place.ml:119
+#: v2v/v2v.ml:139 inspector/inspector.ml:126 in-place/in_place.ml:120
 #, fuzzy
 #| msgid "credential index out of range"
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
@@ -1183,9 +1187,10 @@ msgstr ""
 
 #: common/mldrivers/windows_drivers.ml:91
 msgid ""
-"could not find registry entry HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase"
-"\\DeviceIds in this Windows guest.  It may be either a very old or very new "
-"version of Windows that we cannot process."
+"could not find registry entry "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds in this Windows "
+"guest.  It may be either a very old or very new version of Windows that we "
+"cannot process."
 msgstr ""
 
 #: common/mlcustomize/firstboot.ml:233
@@ -1196,8 +1201,8 @@ msgstr ""
 
 #. input/input_vddk.ml:127
 #. input/input_vcenter_https.ml:94
-#. in-place/in_place.ml:259
-#: v2v/v2v.ml:426 inspector/inspector.ml:266 input/input_xen_ssh.ml:71
+#. in-place/in_place.ml:268
+#: v2v/v2v.ml:435 inspector/inspector.ml:266 input/input_xen_ssh.ml:71
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1407,7 +1412,7 @@ msgstr ""
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
-#: common/mldrivers/linux_kernels.ml:328
+#: common/mldrivers/linux_kernels.ml:340
 msgid "ignoring kernel %s in bootloader, as it does not exist."
 msgstr ""
 
@@ -1446,7 +1451,7 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#: v2v/v2v.ml:636 inspector/inspector.ml:383 in-place/in_place.ml:363
+#: v2v/v2v.ml:646 inspector/inspector.ml:384 in-place/in_place.ml:373
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1483,15 +1488,15 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:111 inspector/inspector.ml:99 in-place/in_place.ml:92
+#: v2v/v2v.ml:112 inspector/inspector.ml:99 in-place/in_place.ml:93
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:95 inspector/inspector.ml:83 in-place/in_place.ml:76
+#: v2v/v2v.ml:96 inspector/inspector.ml:83 in-place/in_place.ml:77
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:87 inspector/inspector.ml:75 in-place/in_place.ml:68
+#: v2v/v2v.ml:88 inspector/inspector.ml:75 in-place/in_place.ml:69
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -1588,7 +1593,7 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: v2v/v2v.ml:675
+#: v2v/v2v.ml:685
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
@@ -1744,18 +1749,18 @@ msgstr ""
 msgid "no href in ovf:File (id=%s)"
 msgstr ""
 
-#: common/mldrivers/linux_kernels.ml:181
+#: common/mldrivers/linux_kernels.ml:193
 msgid "no initrd was found in /boot matching %s %s."
 msgstr ""
 
-#: common/mldrivers/linux_kernels.ml:303
+#: common/mldrivers/linux_kernels.ml:315
 msgid ""
 "no installed kernel packages were found.\n"
 "\n"
 "This probably indicates that %s was unable to inspect this guest properly."
 msgstr ""
 
-#: common/mldrivers/linux_kernels.ml:340
+#: common/mldrivers/linux_kernels.ml:352
 msgid ""
 "no kernels were found in the bootloader configuration.\n"
 "\n"
@@ -1767,13 +1772,13 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: v2v/v2v.ml:457 inspector/inspector.ml:297
+#: v2v/v2v.ml:466 inspector/inspector.ml:297
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: lib/create_ovf.ml:1032
+#: lib/create_ovf.ml:1033
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
@@ -1811,8 +1816,8 @@ msgstr ""
 
 #: output/output_openstack.ml:311
 msgid ""
-"openstack: unknown volume status \"%s\": expected \"creating\" or \"available"
-"\""
+"openstack: unknown volume status \"%s\": expected \"creating\" or "
+"\"available\""
 msgstr ""
 
 #: output/output.ml:147
@@ -1859,8 +1864,8 @@ msgid ""
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
 
-#. common/mlcustomize/inject_virtio_win.ml:335
-#: common/mlcustomize/inject_virtio_win.ml:340
+#. common/mlcustomize/inject_virtio_win.ml:347
+#: common/mlcustomize/inject_virtio_win.ml:352
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -1925,11 +1930,11 @@ msgstr "%s s'est terminé avec l'état d'erreur %d"
 msgid "subprocess signalled or stopped by signal %d"
 msgstr "%s a été arrêté par le signal %d (%s)"
 
-#: v2v/v2v.ml:214
+#: v2v/v2v.ml:215
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 
-#: v2v/v2v.ml:217
+#: v2v/v2v.ml:218
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
@@ -2017,7 +2022,7 @@ msgstr ""
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:168
+#: common/mlcustomize/inject_virtio_win.ml:175
 msgid ""
 "there are no virtio drivers available for this version of Windows (%d.%d %s "
 "%s %s).  virt-v2v looks for drivers in %s\n"
@@ -2025,7 +2030,7 @@ msgid ""
 "The guest will be configured to use slower emulated devices."
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:191
+#: common/mlcustomize/inject_virtio_win.ml:197
 msgid ""
 "there is no virtio block device driver for this version of Windows (%d.%d "
 "%s).  virt-v2v looks for this driver in %s\n"
@@ -2033,7 +2038,7 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:216
+#: common/mlcustomize/inject_virtio_win.ml:228
 msgid ""
 "there is no virtio network driver for this version of Windows (%d.%d %s).  "
 "virt-v2v looks for this driver in %s\n"
@@ -2073,19 +2078,19 @@ msgstr ""
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:155 inspector/inspector.ml:143 in-place/in_place.ml:136
+#: v2v/v2v.ml:156 inspector/inspector.ml:143 in-place/in_place.ml:137
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:189 inspector/inspector.ml:157 in-place/in_place.ml:153
+#: v2v/v2v.ml:190 inspector/inspector.ml:157 in-place/in_place.ml:154
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:209
+#: v2v/v2v.ml:210
 msgid "unknown -o option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:166
+#: v2v/v2v.ml:167
 msgid "unknown -oa option: %s"
 msgstr ""
 
@@ -2097,6 +2102,10 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
+#: v2v/v2v.ml:362 in-place/in_place.ml:222
+msgid "unknown block driver ‘--block-driver %s’"
+msgstr ""
+
 #: input/parse_domain_from_vmx.ml:449
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
@@ -2105,7 +2114,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:362 inspector/inspector.ml:225
+#: v2v/v2v.ml:371 inspector/inspector.ml:225
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
@@ -2191,7 +2200,7 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
-#: in-place/in_place.ml:272
+#: in-place/in_place.ml:281
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
 msgstr ""
 
@@ -2361,10 +2370,9 @@ msgid "size_t overflow"
 msgstr ""
 
 #: common/options/keys.c:187
-#, fuzzy, c-format
-#| msgid "could not parse boot size"
+#, c-format
 msgid "could not read key from user"
-msgstr "n'a pas pu analyser la taille de démarrage"
+msgstr "Impossible de lire la clé de l'utilisateur"
 
 #: common/options/options.c:283
 #, c-format
