@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2023-02-06 14:38+0000\n"
-"PO-Revision-Date: 2023-02-25 10:20+0000\n"
+"PO-Revision-Date: 2023-06-04 03:28+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -717,7 +717,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:225
 #: common/mlcustomize/customize_cmdline.ml:410
 msgid "PATH"
-msgstr ""
+msgstr "ბილიკი"
 
 #: common/mlcustomize/customize_cmdline.ml:182
 msgid "PERMISSIONS:FILE"
