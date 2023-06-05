@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-02-06 14:38+0000\n"
+"POT-Creation-Date: 2023-04-19 12:15+0100\n"
 "PO-Revision-Date: 2023-01-14 21:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -23,8 +23,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.15\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
@@ -73,9 +73,9 @@ msgstr ""
 
 #. inspector/inspector.ml:149
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:145
+#. in-place/in_place.ml:146
 #. in-place/in_place.ml:39
-#: v2v/v2v.ml:195 v2v/v2v.ml:181 v2v/v2v.ml:161 v2v/v2v.ml:44
+#: v2v/v2v.ml:196 v2v/v2v.ml:182 v2v/v2v.ml:162 v2v/v2v.ml:44
 msgid "%s option used more than once on the command line"
 msgstr "у командному рядку параметр %s використано декілька разів"
 
@@ -95,11 +95,11 @@ msgstr ""
 "%s: вихід за сигналом %s\n"
 "%!"
 
-#: common/mlcustomize/inject_virtio_win.ml:389
+#: common/mlcustomize/inject_virtio_win.ml:401
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: не вдалося відкрити файл ISO virtio-win: %s"
 
-#: v2v/v2v.ml:313
+#: v2v/v2v.ml:316
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -142,7 +142,7 @@ msgstr ""
 "на\n"
 "сторінці підручника virt-v2v(1).\n"
 
-#: in-place/in_place.ml:181
+#: in-place/in_place.ml:184
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -215,7 +215,7 @@ msgstr "%s: попередження: %s"
 msgid "'CMD+ARGS'"
 msgstr "'КОМАНДА+ПАРАМЕТРИ'"
 
-#: v2v/v2v.ml:141 inspector/inspector.ml:129 in-place/in_place.ml:122
+#: v2v/v2v.ml:142 inspector/inspector.ml:129 in-place/in_place.ml:123
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 "поле довжини префікса IP-адреси --mac лежить поза припустимим діапазоном"
@@ -513,7 +513,7 @@ msgstr "Дописати рядки до файла"
 msgid "Attach to a subscription-manager pool"
 msgstr "Долучити до буфера subscription-manager"
 
-#: v2v/v2v.ml:276
+#: v2v/v2v.ml:279
 msgid "Boot in qemu (-o qemu only)"
 msgstr "Завантажитися у qemu (лише для -o qemu)"
 
@@ -525,7 +525,7 @@ msgstr "Змінити права доступу до файла"
 msgid "Compatibility option doing nothing"
 msgstr "Параметр сумісності ні на що не впливає"
 
-#: v2v/v2v.ml:234
+#: v2v/v2v.ml:237
 msgid "Compress output file (-of qcow2 only)"
 msgstr "Стиснути файл виведення (лише для -of qcow2)"
 
@@ -537,7 +537,7 @@ msgstr "Копіювати файли на образ диска"
 msgid "Copy local files or directories into image"
 msgstr "Копіювати локальні файли або каталоги до образу"
 
-#: v2v/v2v.ml:592
+#: v2v/v2v.ml:602
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
@@ -549,7 +549,7 @@ msgstr "Створити каталог"
 msgid "Create symbolic links"
 msgstr "Створювати символічні посилання"
 
-#: v2v/v2v.ml:613
+#: v2v/v2v.ml:623
 msgid "Creating output metadata"
 msgstr "Створюємо метадані результатів"
 
@@ -627,7 +627,7 @@ msgstr "ФАЙЛ:РЯДОК"
 msgid "FILENAME"
 msgstr "НАЗВА_ФАЙЛА"
 
-#: v2v/v2v.ml:617 inspector/inspector.ml:364 in-place/in_place.ml:344
+#: v2v/v2v.ml:627 inspector/inspector.ml:365 in-place/in_place.ml:354
 msgid "Finishing off"
 msgstr "Завершуємо"
 
@@ -635,7 +635,7 @@ msgstr "Завершуємо"
 msgid "HOSTNAME"
 msgstr "НАЗВА_ВУЗЛА"
 
-#: v2v/v2v.ml:278 inspector/inspector.ml:180 in-place/in_place.ml:176
+#: v2v/v2v.ml:281 inspector/inspector.ml:180 in-place/in_place.ml:179
 msgid "How to choose root filesystem"
 msgstr "Як вибрати кореневу файлову систему"
 
@@ -651,7 +651,7 @@ msgstr ""
 "\n"
 "  %s -v -x [...]"
 
-#: v2v/v2v.ml:308 v2v/v2v.ml:254
+#: v2v/v2v.ml:311 v2v/v2v.ml:257
 msgid "Ignored for backwards compatibility"
 msgstr "Ігноровано, для зворотної сумісності"
 
@@ -669,7 +669,7 @@ msgstr "Агент гостьової системи QEMU встановлено
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
-#: v2v/v2v.ml:240 inspector/inspector.ml:168 in-place/in_place.ml:164
+#: v2v/v2v.ml:243 inspector/inspector.ml:168 in-place/in_place.ml:167
 msgid "Input format"
 msgstr "Формат вхідних даних"
 
@@ -717,7 +717,7 @@ msgstr ""
 "більше\n"
 "про ці параметри.\n"
 
-#: v2v/v2v.ml:246 inspector/inspector.ml:174
+#: v2v/v2v.ml:249 inspector/inspector.ml:174
 msgid "Input transport"
 msgstr "Вхідне передавання"
 
@@ -725,7 +725,7 @@ msgstr "Вхідне передавання"
 msgid "LOCALPATH:REMOTEDIR"
 msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 
-#: v2v/v2v.ml:238 inspector/inspector.ml:166 in-place/in_place.ml:162
+#: v2v/v2v.ml:241 inspector/inspector.ml:166 in-place/in_place.ml:165
 msgid "Libvirt URI"
 msgstr "Адреса libvirt"
 
@@ -738,16 +738,16 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr "Зробити машину виведення придатною до читання"
 
-#: v2v/v2v.ml:250 inspector/inspector.ml:176 in-place/in_place.ml:170
+#: v2v/v2v.ml:253 inspector/inspector.ml:176 in-place/in_place.ml:173
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 "Пов'язати NIC із мережею або містком чи пов'язати із ним статичну IP-адресу"
 
-#: v2v/v2v.ml:232 inspector/inspector.ml:162 in-place/in_place.ml:158
+#: v2v/v2v.ml:233 inspector/inspector.ml:162 in-place/in_place.ml:159
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr "Відобразити місток «in» на «out»"
 
-#: v2v/v2v.ml:252 inspector/inspector.ml:178 in-place/in_place.ml:172
+#: v2v/v2v.ml:255 inspector/inspector.ml:178 in-place/in_place.ml:175
 msgid "Map network ‘in’ to ‘out’"
 msgstr "Пов'язати мережу «in» із мережею «out»"
 
@@ -783,7 +783,7 @@ msgstr ""
 "Windows. Отримати цей файл можна зібравши rhsrvany (https://github.com/"
 "rwmjones/rhsrvany)."
 
-#: v2v/v2v.ml:260
+#: v2v/v2v.ml:263
 msgid "Output hypervisor connection"
 msgstr "Вивести з'єднання гіпервізора"
 
@@ -920,7 +920,11 @@ msgstr "ПРАВА_ДОСТУПУ:ФАЙЛ"
 msgid "PKG,PKG.."
 msgstr "ПАКУНОК,ПАКУНОК.."
 
-#: v2v/v2v.ml:274 in-place/in_place.ml:174
+#: v2v/v2v.ml:235 in-place/in_place.ml:161
+msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
+msgstr ""
+
+#: v2v/v2v.ml:277 in-place/in_place.ml:177
 msgid "Print source and stop"
 msgstr "Вивести джерело і припинити обробку"
 
@@ -949,7 +953,7 @@ msgstr "Зареєструвати за допомогою subscription-manager"
 msgid "Remove all the subscriptions"
 msgstr "Вилучити усі підписки"
 
-#: v2v/v2v.ml:264
+#: v2v/v2v.ml:267
 msgid "Rename guest when converting"
 msgstr "Перейменувати гостьову систему під час перетворення"
 
@@ -990,63 +994,63 @@ msgstr "СЕЛЕКТОР"
 msgid "SOURCE:DEST"
 msgstr "ДЖЕРЕЛО:ПРИЗНАЧЕННЯ"
 
-#: v2v/v2v.ml:280
+#: v2v/v2v.ml:283
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr "Те саме, що і «-io vddk-config=назва_файла»"
 
-#: v2v/v2v.ml:282
+#: v2v/v2v.ml:285
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr "Те саме, що і «-io vddk-cookie=назва_файла»"
 
-#: v2v/v2v.ml:284
+#: v2v/v2v.ml:287
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr "Те саме, що і «-io vddk-libdir=каталог_бібліотек»"
 
-#: v2v/v2v.ml:286
+#: v2v/v2v.ml:289
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr "Те саме, що і «-io vddk-nfchostport=nfchostport»"
 
-#: v2v/v2v.ml:288
+#: v2v/v2v.ml:291
 msgid "Same as ‘-io vddk-port=port’"
 msgstr "Те саме, що і «-io vddk-port=порт»"
 
-#: v2v/v2v.ml:290
+#: v2v/v2v.ml:293
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr "Те саме, що і «-io vddk-snapshot=snapshot-moref»"
 
-#: v2v/v2v.ml:292
+#: v2v/v2v.ml:295
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr "Те саме, що і «-io vddk-thumbprint=відбиток»"
 
-#: v2v/v2v.ml:294
+#: v2v/v2v.ml:297
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr "Те саме, що і «-io vddk-transports=способи_передавання»"
 
-#: v2v/v2v.ml:272
+#: v2v/v2v.ml:275
 msgid "Same as ‘-ip filename’"
 msgstr "Те саме, що і «-ip назва_файла»"
 
-#: v2v/v2v.ml:296
+#: v2v/v2v.ml:299
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr "Те саме, що і «-oo vdsm-compat=0.10|1.1»"
 
-#: v2v/v2v.ml:298
+#: v2v/v2v.ml:301
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr "Те саме, що і «-oo vdsm-image-uuid=uuid»"
 
-#: v2v/v2v.ml:306
+#: v2v/v2v.ml:309
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr "Те саме, що і «-oo vdsm-ovf-flavour=варіант»"
 
-#: v2v/v2v.ml:304
+#: v2v/v2v.ml:307
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr "Те саме, що і «-oo vdsm-ovf-output=каталог»"
 
-#: v2v/v2v.ml:302
+#: v2v/v2v.ml:305
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr "Те саме, що і «-oo vdsm-vm-uuid=uuid»"
 
-#: v2v/v2v.ml:300
+#: v2v/v2v.ml:303
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr "Те саме, що і «-oo vdsm-vol-uuid=uuid»"
 
@@ -1058,39 +1062,39 @@ msgstr "Витерти файл"
 msgid "Scrub build log file"
 msgstr "Витерти файл журналу збирання"
 
-#: v2v/v2v.ml:230
+#: v2v/v2v.ml:231
 msgid "Set bandwidth dynamically from file"
 msgstr "Встановити ширину каналу динамічно з файла"
 
-#: v2v/v2v.ml:228
+#: v2v/v2v.ml:229
 msgid "Set bandwidth to bits per sec"
 msgstr "Встановити ширину каналу у бітах за секунду"
 
-#: v2v/v2v.ml:236 inspector/inspector.ml:164 in-place/in_place.ml:160
+#: v2v/v2v.ml:239 inspector/inspector.ml:164 in-place/in_place.ml:163
 msgid "Set input mode (default: libvirt)"
 msgstr "Встановити режим введення даних (типовий: libvirt)"
 
-#: v2v/v2v.ml:242 inspector/inspector.ml:170 in-place/in_place.ml:166
+#: v2v/v2v.ml:245 inspector/inspector.ml:170 in-place/in_place.ml:169
 msgid "Set option for input mode"
 msgstr "Встановити варіант для режиму вхідних даних"
 
-#: v2v/v2v.ml:266
+#: v2v/v2v.ml:269
 msgid "Set option for output mode"
 msgstr "Встановити варіант для режиму виведення"
 
-#: v2v/v2v.ml:258
+#: v2v/v2v.ml:261
 msgid "Set output allocation mode"
 msgstr "Встановити режим отримання пам’яті для виведення даних"
 
-#: v2v/v2v.ml:262
+#: v2v/v2v.ml:265
 msgid "Set output format"
 msgstr "встановити формат виведення даних"
 
-#: v2v/v2v.ml:256
+#: v2v/v2v.ml:259
 msgid "Set output mode (default: libvirt)"
 msgstr "Встановити режим виведення (типовий: libvirt)"
 
-#: v2v/v2v.ml:270
+#: v2v/v2v.ml:273
 msgid "Set output storage location"
 msgstr "Встановити розташування сховища виведених даних"
 
@@ -1122,15 +1126,15 @@ msgstr "Встановити назву файла результатів"
 msgid "Set user password"
 msgstr "Встановити пароль користувача"
 
-#: v2v/v2v.ml:564
+#: v2v/v2v.ml:574
 msgid "Setting up the destination: %s"
 msgstr "Налаштовуємо призначення: %s"
 
-#: v2v/v2v.ml:540 inspector/inspector.ml:340 in-place/in_place.ml:310
+#: v2v/v2v.ml:550 inspector/inspector.ml:341 in-place/in_place.ml:320
 msgid "Setting up the source: %s"
 msgstr "Налаштовуємо джерело: %s"
 
-#: v2v/v2v.ml:546 in-place/in_place.ml:316
+#: v2v/v2v.ml:556 in-place/in_place.ml:326
 msgid "Source guest information (--print-source option):\n"
 msgstr "Дані щодо гостьової системи джерела (параметр --print-source):\n"
 
@@ -1146,12 +1150,12 @@ msgstr "ПРИЗНАЧЕННЯ:ПОСИЛАННЯ[:ПОСИЛАННЯ..]"
 msgid "TIMEZONE"
 msgstr "ЧАСОВИЙ_ПОЯС"
 
-#: v2v/v2v.ml:222
+#: v2v/v2v.ml:223
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr "Параметр --in-place замінено на програму «virt-v2v-in-place»"
 
-#: output/output_qemu.ml:233
+#: output/output_qemu.ml:229
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
@@ -1160,7 +1164,7 @@ msgstr ""
 "розробки. Будь ласка, повідомте про ваду у virt-v2v — скористайтеся розділом "
 "«BUGS» сторінки підручника virt-v2v(1)."
 
-#: output/output_qemu.ml:254
+#: output/output_qemu.ml:250
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
@@ -1224,15 +1228,15 @@ msgstr "Вивантажити локальний файл у систему п�
 msgid "Use ANSI colour sequences even if not tty"
 msgstr "Використовувати послідовності ANSI для кольорів, навіть якщо це не tty"
 
-#: v2v/v2v.ml:244 inspector/inspector.ml:172 in-place/in_place.ml:168
+#: v2v/v2v.ml:247 inspector/inspector.ml:172 in-place/in_place.ml:171
 msgid "Use password from file to connect to input hypervisor"
 msgstr "Скористатися паролем з файла для з'єднання із вхідним гіпервізором"
 
-#: v2v/v2v.ml:268
+#: v2v/v2v.ml:271
 msgid "Use password from file to connect to output hypervisor"
 msgstr "Скористатися паролем з файла для з'єднання із вихідним гіпервізором"
 
-#: v2v/v2v.ml:248
+#: v2v/v2v.ml:251
 msgid "Use virt-v2v-in-place instead"
 msgstr "Скористайтеся краще virt-v2v-in-place"
 
@@ -1333,15 +1337,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr "не вдалося отримати список можливостей гіпервізора libvirt: %s"
 
-#: v2v/v2v.ml:102 inspector/inspector.ml:90 in-place/in_place.ml:83
+#: v2v/v2v.ml:103 inspector/inspector.ml:90 in-place/in_place.ml:84
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr "не вдалося обробити параметр --mac \"%s\""
 
-#: v2v/v2v.ml:126 inspector/inspector.ml:114 in-place/in_place.ml:107
+#: v2v/v2v.ml:127 inspector/inspector.ml:114 in-place/in_place.ml:108
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr "Не вдалося обробити --mac ip %s: здається, «%s» не є IP-адресою"
 
-#: v2v/v2v.ml:138 inspector/inspector.ml:126 in-place/in_place.ml:119
+#: v2v/v2v.ml:139 inspector/inspector.ml:126 in-place/in_place.ml:120
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr "не вдалося обробити поле довжини префікса --mac ip як ціле число: %s"
 
@@ -1433,9 +1437,10 @@ msgstr "не вдалося виявити точки монтування за�
 
 #: common/mldrivers/windows_drivers.ml:91
 msgid ""
-"could not find registry entry HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase"
-"\\DeviceIds in this Windows guest.  It may be either a very old or very new "
-"version of Windows that we cannot process."
+"could not find registry entry "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds in this Windows "
+"guest.  It may be either a very old or very new version of Windows that we "
+"cannot process."
 msgstr ""
 
 #: common/mlcustomize/firstboot.ml:233
@@ -1448,8 +1453,8 @@ msgstr ""
 
 #. input/input_vddk.ml:127
 #. input/input_vcenter_https.ml:94
-#. in-place/in_place.ml:259
-#: v2v/v2v.ml:426 inspector/inspector.ml:266 input/input_xen_ssh.ml:71
+#. in-place/in_place.ml:268
+#: v2v/v2v.ml:435 inspector/inspector.ml:266 input/input_xen_ssh.ml:71
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 "не вдалося обробити параметр «-ic %s». Початкове повідомлення щодо помилки: "
@@ -1699,7 +1704,7 @@ msgstr "підтримки типу гостьової системи %s не п
 msgid "guest type %s/%s is not supported"
 msgstr "підтримки типу гостьової системи %s/%s не передбачено"
 
-#: common/mldrivers/linux_kernels.ml:328
+#: common/mldrivers/linux_kernels.ml:340
 msgid "ignoring kernel %s in bootloader, as it does not exist."
 msgstr "ігноруємо ядро %s у завантажувачі, оскільки його не існує."
 
@@ -1743,7 +1748,7 @@ msgstr ""
 "дисків, які зберігаються на віддалених блокових пристроях. Див. підручник з "
 "virt-v2v-input-xen(1), розділ «Xen or ssh conversions from block devices»."
 
-#: v2v/v2v.ml:636 inspector/inspector.ml:383 in-place/in_place.ml:363
+#: v2v/v2v.ml:646 inspector/inspector.ml:384 in-place/in_place.ml:373
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1791,15 +1796,15 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "внутрішня помилка: формальний вираз не відповідає «%s»"
 
-#: v2v/v2v.ml:111 inspector/inspector.ml:99 in-place/in_place.ml:92
+#: v2v/v2v.ml:112 inspector/inspector.ml:99 in-place/in_place.ml:93
 msgid "invalid --mac ip option"
 msgstr "некоректний параметр --mac ip"
 
-#: v2v/v2v.ml:95 inspector/inspector.ml:83 in-place/in_place.ml:76
+#: v2v/v2v.ml:96 inspector/inspector.ml:83 in-place/in_place.ml:77
 msgid "invalid -b/--bridge parameter"
 msgstr "некоректний параметр -b/--bridge"
 
-#: v2v/v2v.ml:87 inspector/inspector.ml:75 in-place/in_place.ml:68
+#: v2v/v2v.ml:88 inspector/inspector.ml:75 in-place/in_place.ml:69
 msgid "invalid -n/--network parameter"
 msgstr "некоректний параметр -n/--network"
 
@@ -1906,7 +1911,7 @@ msgstr ""
 "того, можливо, вам слід повторно запустити virt-v2v від імені користувача "
 "root."
 
-#: v2v/v2v.ml:675
+#: v2v/v2v.ml:685
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 "помилка під час спроби виконати nbdcopy, див. попередні повідомлення щодо "
@@ -2107,11 +2112,11 @@ msgstr "у файлі VMX не виявлено ключа displayName"
 msgid "no href in ovf:File (id=%s)"
 msgstr "немає href у ovf:File (id=%s)"
 
-#: common/mldrivers/linux_kernels.ml:181
+#: common/mldrivers/linux_kernels.ml:193
 msgid "no initrd was found in /boot matching %s %s."
 msgstr "у /boot не знайдено initrd, що відповідає %s %s."
 
-#: common/mldrivers/linux_kernels.ml:303
+#: common/mldrivers/linux_kernels.ml:315
 msgid ""
 "no installed kernel packages were found.\n"
 "\n"
@@ -2122,7 +2127,7 @@ msgstr ""
 "Це, ймовірно, означає, що %s не вдасться вивчити належним чином гостьову "
 "систему."
 
-#: common/mldrivers/linux_kernels.ml:340
+#: common/mldrivers/linux_kernels.ml:352
 msgid ""
 "no kernels were found in the bootloader configuration.\n"
 "\n"
@@ -2138,7 +2143,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr "не знайдено виконуваного файла python із назвою «%s» у $PATH"
 
-#: v2v/v2v.ml:457 inspector/inspector.ml:297
+#: v2v/v2v.ml:466 inspector/inspector.ml:297
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -2146,7 +2151,7 @@ msgstr ""
 "немає підтримки віддалених з’єднань libvirt з «-ic %s». Перетворення може "
 "призвести до помилок під час спроб прочитати диски джерел даних."
 
-#: lib/create_ovf.ml:1032
+#: lib/create_ovf.ml:1033
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
@@ -2196,8 +2201,8 @@ msgstr ""
 
 #: output/output_openstack.ml:311
 msgid ""
-"openstack: unknown volume status \"%s\": expected \"creating\" or \"available"
-"\""
+"openstack: unknown volume status \"%s\": expected \"creating\" or "
+"\"available\""
 msgstr ""
 "openstack: невідомий стан тому «%s»: стан мав бути «creating» або «available»"
 
@@ -2263,8 +2268,8 @@ msgstr ""
 "з цих форматів виведення за допомогою додавання до командного рядка "
 "параметра «-of raw» або «-of qcow2»."
 
-#. common/mlcustomize/inject_virtio_win.ml:335
-#: common/mlcustomize/inject_virtio_win.ml:340
+#. common/mlcustomize/inject_virtio_win.ml:347
+#: common/mlcustomize/inject_virtio_win.ml:352
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2338,12 +2343,12 @@ msgstr "підпроцес завершив роботу з ненульовим
 msgid "subprocess signalled or stopped by signal %d"
 msgstr "підпроцес надіслав сигнал або зупинив роботу внаслідок сигналу %d"
 
-#: v2v/v2v.ml:214
+#: v2v/v2v.ml:215
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 "параметр --no-trim вилучено зі списку параметрів, тепер він не потрібен"
 
-#: v2v/v2v.ml:217
+#: v2v/v2v.ml:218
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr "параметр --vmtype вилучено зі списку параметрів, тепер він не потрібен"
 
@@ -2453,7 +2458,7 @@ msgstr ""
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt or RHV-M %s?"
 msgstr "у %s (%s) немає UUID. Це справді OVirt чи RHV-M %s?"
 
-#: common/mlcustomize/inject_virtio_win.ml:168
+#: common/mlcustomize/inject_virtio_win.ml:175
 #, fuzzy
 #| msgid ""
 #| "there are no virtio drivers available for this version of Windows (%d.%d "
@@ -2472,7 +2477,7 @@ msgstr ""
 "Гостьову систему буде налаштовано на використання повільніших емульованих "
 "пристроїв."
 
-#: common/mlcustomize/inject_virtio_win.ml:191
+#: common/mlcustomize/inject_virtio_win.ml:197
 msgid ""
 "there is no virtio block device driver for this version of Windows (%d.%d "
 "%s).  virt-v2v looks for this driver in %s\n"
@@ -2485,7 +2490,7 @@ msgstr ""
 "Гостьову систему буде налаштовано на використання повільнішого емульованого "
 "пристрою."
 
-#: common/mlcustomize/inject_virtio_win.ml:216
+#: common/mlcustomize/inject_virtio_win.ml:228
 msgid ""
 "there is no virtio network driver for this version of Windows (%d.%d %s).  "
 "virt-v2v looks for this driver in %s\n"
@@ -2545,19 +2550,19 @@ msgstr "неочікуване завершення файла під час ч�
 msgid "unhandled checksum type ‘%s’"
 msgstr "непридатний до обробки тип контрольних сум «%s»"
 
-#: v2v/v2v.ml:155 inspector/inspector.ml:143 in-place/in_place.ml:136
+#: v2v/v2v.ml:156 inspector/inspector.ml:143 in-place/in_place.ml:137
 msgid "unknown --root option: %s"
 msgstr "невідомий параметр --root: %s"
 
-#: v2v/v2v.ml:189 inspector/inspector.ml:157 in-place/in_place.ml:153
+#: v2v/v2v.ml:190 inspector/inspector.ml:157 in-place/in_place.ml:154
 msgid "unknown -i option: %s"
 msgstr "невідомий параметр -i: %s"
 
-#: v2v/v2v.ml:209
+#: v2v/v2v.ml:210
 msgid "unknown -o option: %s"
 msgstr "невідомий параметр -o: %s"
 
-#: v2v/v2v.ml:166
+#: v2v/v2v.ml:167
 msgid "unknown -oa option: %s"
 msgstr "невідомий параметр -oa: %s"
 
@@ -2569,6 +2574,10 @@ msgstr "невідоме значення Config:firmware %s (мало бути 
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr "невідомий варіант Windows 10: %s (%s)"
 
+#: v2v/v2v.ml:362 in-place/in_place.ml:222
+msgid "unknown block driver ‘--block-driver %s’"
+msgstr ""
+
 #: input/parse_domain_from_vmx.ml:449
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "невідоме значення мікропрограми, «%s», припускаємо BIOS"
@@ -2577,7 +2586,7 @@ msgstr "невідоме значення мікропрограми, «%s», п
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "невідома гостьова операційна система: %s %s %d.%d %s (%s)"
 
-#: v2v/v2v.ml:362 inspector/inspector.ml:225
+#: v2v/v2v.ml:371 inspector/inspector.ml:225
 msgid "unknown input transport ‘-it %s’"
 msgstr "невідомий вхідний канал передавання «-it %s»"
 
@@ -2698,7 +2707,7 @@ msgstr ""
 "У virt-v2v не передбачено підтримки локальних дисплеїв, отже so <graphics "
 "type='%s'> у вхідних даних XML libvirt проігноровано"
 
-#: in-place/in_place.ml:272
+#: in-place/in_place.ml:281
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
 msgstr "У virt-v2v-in-place не передбачено підтримки віддалених адрес libvirt"
 
@@ -3296,21 +3305,23 @@ msgstr "Роботу %s завершено з невідомої причини 
 #~ "DisplayName «%s» не міститься значення «%s»"
 
 #~ msgid ""
-#~ "cannot uninstall Xen PV drivers: registry key ‘HKLM\\SOFTWARE\\Microsoft"
-#~ "\\Windows\\CurrentVersion\\Uninstall\\%s’ does not contain an ‘%s’ key"
+#~ "cannot uninstall Xen PV drivers: registry key "
+#~ "‘HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\%s’ does "
+#~ "not contain an ‘%s’ key"
 #~ msgstr ""
-#~ "неможливо вилучити драйвери Xen PV: ключ реєстру «HKLM\\SOFTWARE"
-#~ "\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\%s» не містить ключа «%s»"
+#~ "неможливо вилучити драйвери Xen PV: ключ реєстру "
+#~ "«HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\%s» не "
+#~ "містить ключа «%s»"
 
 #~ msgid "connection closed"
 #~ msgstr "з'єднання закрито"
 
 #~ msgid ""
-#~ "could not find registry key HKLM\\SOFTWARE\\Microsoft\\Windows"
-#~ "\\CurrentVersion"
+#~ "could not find registry key "
+#~ "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
 #~ msgstr ""
-#~ "не вдалося знайти ключ реєстру HKLM\\SOFTWARE\\Microsoft\\Windows"
-#~ "\\CurrentVersion"
+#~ "не вдалося знайти ключ реєстру "
+#~ "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion"
 
 #~ msgid "could not write to the guest filesystem: %s"
 #~ msgstr "не вдалося виконати запис до файлової системи гостьової системи: %s"
