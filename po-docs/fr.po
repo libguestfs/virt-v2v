@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: libguestfs@redhat.com\n"
 "POT-Creation-Date: 2020-08-13 13:17+0200\n"
-"PO-Revision-Date: 2015-02-21 10:19+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/libguestfs/"
-"language/fr/)\n"
+"PO-Revision-Date: 2023-03-21 09:20+0000\n"
+"Last-Translator: grimst <grimaitres@gmail.com>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-docs-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -4028,10 +4028,8 @@ msgstr ""
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:10
-#, fuzzy
-#| msgid "C<features>"
 msgid "New features"
-msgstr "C<features>"
+msgstr "Nouvelles fonctionnalités"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:12
@@ -4285,10 +4283,8 @@ msgstr ""
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:126
-#, fuzzy
-#| msgid "C<external>"
 msgid "Internals"
-msgstr "C<external>"
+msgstr "Internes"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:128

@@ -10,19 +10,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2023-02-06 14:38+0000\n"
-"PO-Revision-Date: 2015-02-21 10:49+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/libguestfs/"
-"language/fr/)\n"
+"PO-Revision-Date: 2023-03-21 09:20+0000\n"
+"Last-Translator: grimst <grimaitres@gmail.com>\n"
+"Language-Team: French <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -723,7 +723,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:225
 #: common/mlcustomize/customize_cmdline.ml:410
 msgid "PATH"
-msgstr ""
+msgstr "CHEMIN"
 
 #: common/mlcustomize/customize_cmdline.ml:182
 msgid "PERMISSIONS:FILE"
@@ -2361,10 +2361,9 @@ msgid "size_t overflow"
 msgstr ""
 
 #: common/options/keys.c:187
-#, fuzzy, c-format
-#| msgid "could not parse boot size"
+#, c-format
 msgid "could not read key from user"
-msgstr "n'a pas pu analyser la taille de démarrage"
+msgstr "Impossible de lire la clé de l'utilisateur"
 
 #: common/options/options.c:283
 #, c-format
