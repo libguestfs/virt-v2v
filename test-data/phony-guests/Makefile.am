@@ -103,7 +103,8 @@ fedora-btrfs.img: make-fedora-img.pl \
 # Make a (dummy) Fedora image with LUKS-on-LVM.
 fedora-luks-on-lvm.img: make-fedora-img.pl \
 		fedora-journal.tar.xz \
-		fedora.db
+		fedora.db \
+		fedora-static-bin
 	SRCDIR=$(srcdir) LAYOUT=luks-on-lvm $(top_builddir)/run --test ./$<
 
 # Make a (dummy) Fedora image with LVM-on-LUKS.
