@@ -339,6 +339,16 @@
    fun:virOnce
 }
 
+{
+   libvirt_leak_11
+   Memcheck:Leak
+   ...
+   fun:malloc
+   ...
+   fun:__dcigettext
+   fun:virDomainDefParse
+}
+
 # FUSE leaks the per-thread context (although the code looks
 # like it attempts to clean it up).  In older fuse, it uses
 # malloc.  In newer fuse it uses calloc.
