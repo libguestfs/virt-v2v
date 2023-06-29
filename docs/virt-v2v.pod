@@ -237,6 +237,8 @@ In this mode you have to specify a libvirt guest name or UUID on the
 command line.  You may also specify a libvirt connection URI (see
 I<-ic>).
 
+See L</Starting the libvirt system instance> below.
+
 =item B<-i> B<libvirtxml>
 
 Set the input method to I<libvirtxml>.
@@ -440,7 +442,8 @@ Set the output method to I<libvirt>.  This is the default.
 In this mode, the converted guest is created as a libvirt guest.  You
 may also specify a libvirt connection URI (see I<-oc>).
 
-See L<virt-v2v-output-local(1)>.
+See L</Starting the libvirt system instance> below, and
+L<virt-v2v-output-local(1)>.
 
 =item B<-o> B<local>
 
@@ -1335,6 +1338,8 @@ see L<http://libvirt.org/auth.html>.  Alternatively, use
 I<-oc qemu:///session>, which will write to your per-user libvirt
 instance.
 
+See also L</Starting the libvirt system instance>.
+
 =item Writing to Openstack
 
 Because of how Cinder volumes are presented as F</dev> block devices,
@@ -1475,6 +1480,22 @@ option at all.  The option was added when virt-v2v was rewritten in 2014.
 
 It is possible to specify a format string for controlling the output;
 see L<guestfs(3)/ADVANCED MACHINE READABLE OUTPUT>.
+
+=head2 Starting the libvirt system instance
+
+ Failed to connect socket to '/var/run/libvirt/virtqemud-sock': No such file or directory
+ Failed to connect socket to '/var/run/libvirt/virtqemud-sock-ro': Connection refused
+
+If you have just installed libvirt and virt-v2v, then you may see the
+errors above.  This is caused by libvirt daemons that provide various
+services not running straight after installation.  (This may depend on
+your distribution and vendor presets).
+
+To fix this on systemd-based distributions, do:
+
+ systemctl isolate multi-user.target
+
+See also L<https://bugzilla.redhat.com/2182024>.
 
 =head1 FILES
 
