@@ -147,7 +147,6 @@ and fetch_headers_from_url password_file uri sslverify https_url =
   let curl_args = ref [
     "head", None;
     "silent", None;
-    "url", Some https_url;
   ] in
   (match uri.uri_user, password_file with
    | None, None -> ()
@@ -162,7 +161,7 @@ and fetch_headers_from_url password_file uri sslverify https_url =
   );
   if not sslverify then List.push_back curl_args ("insecure", None);
 
-  let curl_h = Curl.create !curl_args in
+  let curl_h = Curl.create !curl_args https_url in
   let lines = Curl.run curl_h in
 
   let dump_response chan =
