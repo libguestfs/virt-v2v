@@ -62,7 +62,7 @@ val backend_is_libvirt : unit -> bool
 (** Return true iff the current backend is libvirt. *)
 
 val chown_for_libvirt_rhbz_1045069 : string -> unit
-(** If running and root, and if the backend is libvirt, libvirt
+(** If running as root, and if the backend is libvirt, libvirt
     will run qemu as a non-root user.  This prevents access
     to root-owned files and directories.  To fix this, provide
     a function to chown things we might need to qemu:root so
