@@ -67,10 +67,7 @@ val chown_for_libvirt_rhbz_1045069 : string -> unit
     to root-owned files and directories.  To fix this, provide
     a function to chown things we might need to qemu:root so
     qemu can access them.  Note that root normally ignores
-    permissions so can still access the resource.
-
-    This is best-effort.  If something fails then we carry
-    on and hope for the best. *)
+    permissions so can still access the resource. *)
 
 val error_if_no_ssh_agent : unit -> unit
 

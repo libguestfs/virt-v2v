@@ -150,19 +150,14 @@ let backend_is_libvirt () =
 let rec chown_for_libvirt_rhbz_1045069 file =
   let running_as_root = Unix.geteuid () = 0 in
   if running_as_root && backend_is_libvirt () then (
-    try
-      let user = Option.value ~default:"qemu" (libvirt_qemu_user ()) in
-      let uid =
-        if String.is_prefix user "+" then
-          int_of_string (String.sub user 1 (String.length user - 1))
-        else
-          (Unix.getpwnam user).pw_uid in
-      debug "setting owner of %s to %d:root" file uid;
-      Unix.chown file uid 0
-    with
-    | exn -> (* Print exception, but continue. *)
-       debug "could not set owner of %s: %s"
-         file (Printexc.to_string exn)
+    let user = Option.value ~default:"qemu" (libvirt_qemu_user ()) in
+    let uid =
+      if String.is_prefix user "+" then
+        int_of_string (String.sub user 1 (String.length user - 1))
+      else
+        (Unix.getpwnam user).pw_uid in
+    debug "setting owner of %s to %d:root" file uid;
+    Unix.chown file uid 0
   )
 
 (* Get the local user that libvirt uses to run qemu when we are
@@ -205,8 +200,8 @@ let error_if_no_ssh_agent () =
 (* Create the directory containing inX and outX sockets. *)
 let create_v2v_directory () =
   let d = Mkdtemp.temp_dir "v2v." in
-  chown_for_libvirt_rhbz_1045069 d;
   On_exit.rm_rf d;
+  chown_for_libvirt_rhbz_1045069 d;
   d
 
 (* Wait for a file to appear until a timeout. *)
