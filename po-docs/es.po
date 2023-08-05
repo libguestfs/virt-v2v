@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: libguestfs@redhat.com\n"
 "POT-Creation-Date: 2020-08-13 13:17+0200\n"
-"PO-Revision-Date: 2021-12-02 22:16+0000\n"
+"PO-Revision-Date: 2023-08-05 11:21+0000\n"
 "Last-Translator: Emilio Herrera <ehespinosa57@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/es/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -1189,7 +1189,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-copy-to-local.pod:92 docs/virt-v2v.pod:823
 msgid "B<-q>"
-msgstr ""
+msgstr "B<-q>"
 
 #. type: =item
 #: docs/virt-v2v-copy-to-local.pod:94 docs/virt-v2v.pod:825
