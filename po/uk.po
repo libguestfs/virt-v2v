@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
-"cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-04-19 12:15+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2023-07-14 13:52+0100\n"
 "PO-Revision-Date: 2023-06-05 07:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -39,7 +39,7 @@ msgstr ""
 "%s\n"
 "Параметри:\n"
 
-#: common/mltools/tools_utils.ml:686
+#: common/mltools/tools_utils.ml:695
 msgid "%s (ignored)"
 msgstr "%s (проігноровано)"
 
@@ -190,7 +190,7 @@ msgstr ""
 "Нижче наведено коротке резюме щодо параметрів. Докладні довідкові дані\n"
 "можна знайти на сторінці підручника (man) з virt-v2v-inspector(1).\n"
 
-#: common/mltools/tools_utils.ml:717
+#: common/mltools/tools_utils.ml:726
 msgid "%s: operation timed out"
 msgstr "%s: перевищено час виконання дії"
 
@@ -289,7 +289,7 @@ msgstr "-i vmx: не можна використовувати -it vddk у ць�
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr "-i vmx: мало бути вказано файл VMX або адресу ssh://"
 
-#: input/vCenter.ml:155
+#: input/vCenter.ml:154
 msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
@@ -1436,9 +1436,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"не вдалося знайти запис реєстру HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase"
-"\\DeviceIds у цій гостьовій системі Windows. Це може бути або дуже давня або "
-"дуже нова версія Windows, з якою ми не можемо працювати."
+"не вдалося знайти запис реєстру "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds у цій гостьовій "
+"системі Windows. Це може бути або дуже давня або дуже нова версія Windows, з "
+"якою ми не можемо працювати."
 
 #: common/mlcustomize/firstboot.ml:233
 msgid ""
@@ -1544,6 +1545,10 @@ msgid "don’t know how to remove packages using %s: packages: %s"
 msgstr ""
 "спосіб вилучення пакунків за допомогою %s невідомий програмі: пакунки: %s"
 
+#: common/mltools/curl.ml:82
+msgid "downloading %s"
+msgstr ""
+
 #: lib/networks.ml:84
 msgid ""
 "duplicate --mac parameter.  Duplicate mappings specified for MAC address %s."
@@ -1589,6 +1594,12 @@ msgstr ""
 msgid "exception: %s"
 msgstr "виключення: %s"
 
+#: common/mltools/tools_utils.ml:455
+#, fuzzy
+#| msgid "%s exited with error status %d"
+msgid "exited with error %d"
+msgstr "Роботу %s завершено зі станом виходу %d"
+
 #: input/input_disk.ml:145
 msgid "expected >= 1 disk name on the command line"
 msgstr "у рядку команди мало бути >= 1 назви диска"
@@ -1600,17 +1611,9 @@ msgid ""
 msgstr ""
 "очікуємо, що вираз XML поверне ціле число (вираз: %s, відповідний рядок: %s)"
 
-#: common/mltools/tools_utils.ml:451
-msgid "external command ‘%s’ exited with error %d"
-msgstr "виконання зовнішньої програми «%s» завершилося помилкою %d"
-
-#: common/mltools/tools_utils.ml:532 common/mltools/tools_utils.ml:453
-msgid "external command ‘%s’ killed by signal %d"
-msgstr "виконання зовнішньої програми «%s» завершено сигналом %d"
-
-#: common/mltools/tools_utils.ml:534 common/mltools/tools_utils.ml:455
-msgid "external command ‘%s’ stopped by signal %d"
-msgstr "виконання зовнішньої програми «%s» зупинено сигналом %d"
+#: common/mltools/tools_utils.ml:440
+msgid "external command"
+msgstr ""
 
 #: output/output_rhv_upload.ml:275
 msgid "failed server prechecks, see earlier errors"
@@ -1853,6 +1856,12 @@ msgstr "некоректне значення vmw:CoresPerSocket < кілько�
 #: common/mldrivers/linux_bootloaders.ml:114
 msgid "kernel %s is not under grub tree %s"
 msgstr "ядро %s перебуває поза ієрархією grub %s"
+
+#: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
+#, fuzzy
+#| msgid "%s killed by signal %d (%s)"
+msgid "killed by signal %d"
+msgstr "Роботу %s припинено за допомогою сигналу %d (%s)"
 
 #: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
@@ -2320,7 +2329,7 @@ msgstr ""
 "Ви можете обійти цю проблему, скориставшись параметром «--run*» або «--"
 "firstboot*» (описано у підручнику щодо virt-customize(1))."
 
-#: lib/utils.ml:201
+#: lib/utils.ml:196
 msgid ""
 "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
@@ -2330,6 +2339,12 @@ msgstr ""
 "$SSH_AUTH_SOCK). Таке розпізнавання є обов'язковим для встановлення у qemu "
 "доступу до ssh без пароля. Докладніший опис можна знайти на сторінці "
 "підручника virt-v2v(1)."
+
+#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
+#, fuzzy
+#| msgid "%s stopped by signal %d (%s)"
+msgid "stopped by signal %d"
+msgstr "Роботу %s завершено за допомогою сигналу %d (%s)"
 
 #: output/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
@@ -2616,7 +2631,7 @@ msgstr ""
 msgid "vcenter: invalid response from server: %s"
 msgstr "vcenter: некоректна відповідь від сервера: %s"
 
-#: input/vCenter.ml:190
+#: input/vCenter.ml:189
 msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr "vcenter: у виведених програмою «curl» даних немає коду стану."
 
@@ -2982,6 +2997,15 @@ msgstr "Роботу %s завершено за допомогою сигнал�
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "Роботу %s завершено з невідомої причини (стан %d)"
+
+#~ msgid "external command ‘%s’ exited with error %d"
+#~ msgstr "виконання зовнішньої програми «%s» завершилося помилкою %d"
+
+#~ msgid "external command ‘%s’ killed by signal %d"
+#~ msgstr "виконання зовнішньої програми «%s» завершено сигналом %d"
+
+#~ msgid "external command ‘%s’ stopped by signal %d"
+#~ msgstr "виконання зовнішньої програми «%s» зупинено сигналом %d"
 
 #~ msgid "-o qemu: use -oo qemu-boot[=true|false]"
 #~ msgstr "-o qemu: використати -oo qemu-boot[=true|false]"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.3\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-04-19 12:15+0100\n"
+"POT-Creation-Date: 2023-07-14 13:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -28,7 +28,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:686
+#: common/mltools/tools_utils.ml:695
 msgid "%s (ignored)"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgid ""
 "read the man page virt-v2v-inspector(1).\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:717
+#: common/mltools/tools_utils.ml:726
 msgid "%s: operation timed out"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr ""
 
-#: input/vCenter.ml:155
+#: input/vCenter.ml:154
 msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
@@ -1269,6 +1269,10 @@ msgstr ""
 msgid "don’t know how to remove packages using %s: packages: %s"
 msgstr ""
 
+#: common/mltools/curl.ml:82
+msgid "downloading %s"
+msgstr ""
+
 #: lib/networks.ml:84
 msgid ""
 "duplicate --mac parameter.  Duplicate mappings specified for MAC address %s."
@@ -1309,6 +1313,10 @@ msgstr ""
 msgid "exception: %s"
 msgstr ""
 
+#: common/mltools/tools_utils.ml:455
+msgid "exited with error %d"
+msgstr ""
+
 #: input/input_disk.ml:145
 msgid "expected >= 1 disk name on the command line"
 msgstr ""
@@ -1319,16 +1327,8 @@ msgid ""
 "string: %s)"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:451
-msgid "external command ‘%s’ exited with error %d"
-msgstr ""
-
-#: common/mltools/tools_utils.ml:532 common/mltools/tools_utils.ml:453
-msgid "external command ‘%s’ killed by signal %d"
-msgstr ""
-
-#: common/mltools/tools_utils.ml:534 common/mltools/tools_utils.ml:455
-msgid "external command ‘%s’ stopped by signal %d"
+#: common/mltools/tools_utils.ml:440
+msgid "external command"
 msgstr ""
 
 #: output/output_rhv_upload.ml:275
@@ -1535,6 +1535,10 @@ msgstr ""
 
 #: common/mldrivers/linux_bootloaders.ml:114
 msgid "kernel %s is not under grub tree %s"
+msgstr ""
+
+#: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
+msgid "killed by signal %d"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:237
@@ -1899,11 +1903,15 @@ msgid ""
 "options instead (described in the virt-customize(1) manual)."
 msgstr ""
 
-#: lib/utils.ml:201
+#: lib/utils.ml:196
 msgid ""
 "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
 "man page for more information."
+msgstr ""
+
+#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
+msgid "stopped by signal %d"
 msgstr ""
 
 #: output/changeuid.ml:58
@@ -2138,7 +2146,7 @@ msgstr ""
 msgid "vcenter: invalid response from server: %s"
 msgstr ""
 
-#: input/vCenter.ml:190
+#: input/vCenter.ml:189
 msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr ""
 
