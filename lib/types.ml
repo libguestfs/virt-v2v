@@ -399,6 +399,7 @@ type guestcaps = {
   gcaps_arch : string;
   gcaps_arch_min_version : int;
   gcaps_virtio_1_0 : bool;
+  gcaps_rtc_utc : bool;
 }
 and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
@@ -429,6 +430,7 @@ let string_of_guestcaps gcaps =
            gcaps_arch = %s\n\
            gcaps_arch_min_version = %d\n\
            gcaps_virtio_1_0 = %b\n\
+           gcaps_rtc_utc = %b\n\
           "
   (string_of_block_type gcaps.gcaps_block_bus)
   (string_of_net_type gcaps.gcaps_net_bus)
@@ -440,6 +442,7 @@ let string_of_guestcaps gcaps =
   gcaps.gcaps_arch
   gcaps.gcaps_arch_min_version
   gcaps.gcaps_virtio_1_0
+  gcaps.gcaps_rtc_utc
 
 type target_buses = {
   target_virtio_blk_bus : target_bus_slot array;

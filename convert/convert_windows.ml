@@ -275,6 +275,7 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_arch_min_version = 0;
       gcaps_virtio_1_0 = virtio_win_installed.Inject_virtio_win.virtio_1_0;
+      gcaps_rtc_utc = true;
     } in
 
     guestcaps

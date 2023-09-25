@@ -277,6 +277,11 @@ type guestcaps = {
   gcaps_virtio_1_0 : bool;
   (** The guest supports the virtio devices that it does at the virtio-1.0
       protocol level. *)
+
+  gcaps_rtc_utc : bool;
+  (** Is the RTC set to UTC ([true]) or localtime ([false])?  For
+      Linux guests this is always true.  For Windows we find out
+      what the guest is expecting by looking at the registry. *)
 }
 (** Guest capabilities after conversion.  eg. Was virtio found or installed? *)
 

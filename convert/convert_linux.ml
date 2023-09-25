@@ -220,6 +220,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_arch_min_version = arch_min_version;
       gcaps_virtio_1_0 = virtio_1_0;
+      gcaps_rtc_utc = true; (* almost all Linux expect RTC to be UTC *)
     } in
 
     guestcaps
