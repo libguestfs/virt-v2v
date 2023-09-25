@@ -292,10 +292,10 @@ let create_libvirt_xml ?pool source inspect
            e "nvram" ["template", vars_template] [] ] in
 
     List.push_back_list os loader;
-    !os in
+    e "os" [] !os in
 
   List.push_back_list body [
-    e "os" [] os_section;
+    os_section;
 
     e "on_poweroff" [] [PCData "destroy"];
     e "on_reboot" [] [PCData "restart"];
