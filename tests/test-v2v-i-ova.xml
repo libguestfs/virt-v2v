@@ -18,7 +18,7 @@
   <os>
     <type arch='x86_64' machine='q35'>hvm</type>
   </os>
-  <clock offset='utc'/>
+  <clock offset='localtime'/>
   <on_poweroff>destroy</on_poweroff>
   <on_reboot>restart</on_reboot>
   <on_crash>restart</on_crash>

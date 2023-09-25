@@ -103,6 +103,42 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
   (* If the Windows guest has AV installed. *)
   let has_antivirus = Windows.detect_antivirus inspect in
 
+  (* Does the guest expect the RTC to be set to UTC or localtime?
+   * See https://wiki.archlinux.org/title/System_time#UTC_in_Microsoft_Windows
+   * Note this might be a QWORD on 64 bit Windows instances.
+   *)
+  let rtc_utc =
+    Registry.with_hive_readonly g inspect.i_windows_system_hive
+      (fun reg ->
+       try
+         let key_path = [ "Control"; "TimeZoneInformation" ] in
+         let path = inspect.i_windows_current_control_set :: key_path in
+         let node =
+           match Registry.get_node reg path with
+           | None -> raise Not_found
+           | Some node -> node in
+         let valueh = g#hivex_node_get_value node "RealTimeIsUniversal" in
+         if valueh = 0L then raise Not_found;
+         let t = g#hivex_value_type valueh in
+         let data = g#hivex_value_value valueh in
+         let is_utc =
+           match t with
+           | 0_L (* REG_NONE *) -> false (* localtime *)
+           | 4_L (* REG_DWORD *) -> data = "\001\000\000\000"
+           | 11_L (* REG_QWORD *) -> data = "\001\000\000\000\000\000\000\000"
+           | _ (* who knows ... *) ->
+             warning (f_"unknown CurrentControlSet\\Control\\\
+                         TimeZoneInformation key RealTimeIsUniversal \
+                         type 0x%Lx, assuming RTC set to UTC") t;
+             true in
+         is_utc
+       with Not_found ->
+         (* If the key is not found then by default we assume
+          * that Windows is expecting the RTC to be set to localtime.
+          *)
+         false
+      ) in
+
   (* Open the software hive (readonly) and find the Xen PV uninstaller,
    * if it exists.
    *)
@@ -275,7 +311,7 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
       gcaps_arch = Utils.kvm_arch inspect.i_arch;
       gcaps_arch_min_version = 0;
       gcaps_virtio_1_0 = virtio_win_installed.Inject_virtio_win.virtio_1_0;
-      gcaps_rtc_utc = true;
+      gcaps_rtc_utc = rtc_utc;
     } in
 
     guestcaps
