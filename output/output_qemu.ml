@@ -158,6 +158,8 @@ module QEMU = struct
         arg_list "-device" ["vmgenid"; sprintf "guid=%s" genid; "id=vmgenid0"]
     );
 
+    if not guestcaps.gcaps_rtc_utc then arg "-rtc" "base=localtime";
+
     arg_list "-machine" (machine_str ::
                            (if smm then ["smm=on"] else []) @
                            ["accel=kvm:tcg"]);
