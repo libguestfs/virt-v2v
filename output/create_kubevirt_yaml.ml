@@ -54,6 +54,11 @@ let create_kubevirt_yaml source inspect
           "pit", Assoc [ "tickPolicy", String "delay" ];
           "rtc", Assoc [ "tickPolicy", String "catchup" ];
         ];
+        (* XXX Note that we may need to set "localtime" here
+         * depending on guestcaps.gcaps_rtc_utc.  However that
+         * requires the following PR to be merged in Kubevirt:
+         * https://github.com/kubevirt/kubevirt/pull/9587
+         *)
         "utc", List []
       ]
     )
