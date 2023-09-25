@@ -294,8 +294,14 @@ let create_libvirt_xml ?pool source inspect
     List.push_back_list os loader;
     e "os" [] !os in
 
+  (* The <clock> section. *)
+  let clock_section =
+    let offset = if guestcaps.gcaps_rtc_utc then "utc" else "localtime" in
+    e "clock" [ "offset", offset ] [] in
+
   List.push_back_list body [
     os_section;
+    clock_section;
 
     e "on_poweroff" [] [PCData "destroy"];
     e "on_reboot" [] [PCData "restart"];
