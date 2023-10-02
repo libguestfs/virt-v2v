@@ -97,7 +97,11 @@ let remote_file_exists uri path =
              | None -> ""
              | Some user -> quote user ^ "@")
             (quote (server_of_uri uri))
-            (quote path) in
+            (* Double quoting is necessary for 'ssh', first to protect
+             * from the local shell, second to protect from the remote
+             * shell.  https://github.com/libguestfs/virt-v2v/issues/35#issuecomment-1741730963
+             *)
+            (quote (quote path)) in
   if verbose () then
     eprintf "%s\n%!" cmd;
   Sys.command cmd = 0
