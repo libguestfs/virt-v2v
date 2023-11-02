@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
       <!-- standard ESX bridge -->
       <interface type='bridge'>
-        <mac address='00:00:00:00:00:00'/>
+        <mac address='52:54:00:99:99:99'/>
         <source bridge='VM Network'/>
         <model type='e1000'/>
       </interface>

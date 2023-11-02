@@ -1,5 +1,6 @@
     <interface type='bridge'>
       <source bridge='VM Network'/>
+      <mac address='52:54:00:99:99:99'/>
     </interface>
     <interface type='network'>
       <source network='nancy'/>

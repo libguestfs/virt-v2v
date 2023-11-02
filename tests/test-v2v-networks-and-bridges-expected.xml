@@ -1,5 +1,6 @@
     <interface type='bridge'>
       <source bridge='bridge1'/>
+      <mac address='52:54:00:99:99:99'/>
     </interface>
     <interface type='bridge'>
       <source bridge='bridge2'/>
