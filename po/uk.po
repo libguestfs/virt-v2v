@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-07-14 13:52+0100\n"
+"POT-Creation-Date: 2023-11-02 11:07+0000\n"
 "PO-Revision-Date: 2023-06-05 07:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -210,8 +210,8 @@ msgstr ""
 msgid "%s: warning: %s"
 msgstr "%s: попередження: %s"
 
-#. common/mlcustomize/customize_cmdline.ml:248
-#: common/mlcustomize/customize_cmdline.ml:351
+#. common/mlcustomize/customize_cmdline.ml:268
+#: common/mlcustomize/customize_cmdline.ml:371
 msgid "'CMD+ARGS'"
 msgstr "'КОМАНДА+ПАРАМЕТРИ'"
 
@@ -499,19 +499,19 @@ msgstr ""
 "Найімовірнішою причиною є те, що встановлена версія libvirt є застарілою. "
 "Спробуйте оновити libvirt до ≥ 3.7."
 
-#: common/mlcustomize/customize_cmdline.ml:289
+#: common/mlcustomize/customize_cmdline.ml:309
 msgid "Add package(s) to install"
 msgstr "Додати пакунки для встановлення"
 
-#: common/mlcustomize/customize_cmdline.ml:260
+#: common/mlcustomize/customize_cmdline.ml:280
 msgid "Add package(s) to install at first boot"
 msgstr "Додати пакунки для встановлення під час першого завантаження"
 
-#: common/mlcustomize/customize_cmdline.ml:176
+#: common/mlcustomize/customize_cmdline.ml:185
 msgid "Append line(s) to the file"
 msgstr "Дописати рядки до файла"
 
-#: common/mlcustomize/customize_cmdline.ml:369
+#: common/mlcustomize/customize_cmdline.ml:389
 msgid "Attach to a subscription-manager pool"
 msgstr "Долучити до буфера subscription-manager"
 
@@ -519,11 +519,15 @@ msgstr "Долучити до буфера subscription-manager"
 msgid "Boot in qemu (-o qemu only)"
 msgstr "Завантажитися у qemu (лише для -o qemu)"
 
-#: common/mlcustomize/customize_cmdline.ml:187
+#: common/mlcustomize/customize_cmdline.ml:207
+msgid "Change the owner user and group ID of a file or directory"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:196
 msgid "Change the permissions of a file"
 msgstr "Змінити права доступу до файла"
 
-#: common/mlcustomize/customize_cmdline.ml:490
+#: common/mlcustomize/customize_cmdline.ml:521
 msgid "Compatibility option doing nothing"
 msgstr "Параметр сумісності ні на що не впливає"
 
@@ -531,11 +535,17 @@ msgstr "Параметр сумісності ні на що не впливає
 msgid "Compress output file (-of qcow2 only)"
 msgstr "Стиснути файл виведення (лише для -of qcow2)"
 
-#: common/mlcustomize/customize_cmdline.ml:209
+#: common/mlcustomize/customize_cmdline.ml:229
 msgid "Copy files in disk image"
 msgstr "Копіювати файли на образ диска"
 
-#: common/mlcustomize/customize_cmdline.ml:220
+#: common/mlcustomize/customize_cmdline.ml:430
+#, fuzzy
+#| msgid "Copy local files or directories into image"
+msgid "Copy local files or directories from a tarball into image"
+msgstr "Копіювати локальні файли або каталоги до образу"
+
+#: common/mlcustomize/customize_cmdline.ml:240
 msgid "Copy local files or directories into image"
 msgstr "Копіювати локальні файли або каталоги до образу"
 
@@ -543,11 +553,11 @@ msgstr "Копіювати локальні файли або каталоги �
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
-#: common/mlcustomize/customize_cmdline.ml:306
+#: common/mlcustomize/customize_cmdline.ml:326
 msgid "Create a directory"
 msgstr "Створити каталог"
 
-#: common/mlcustomize/customize_cmdline.ml:300
+#: common/mlcustomize/customize_cmdline.ml:320
 msgid "Create symbolic links"
 msgstr "Створювати символічні посилання"
 
@@ -555,15 +565,15 @@ msgstr "Створювати символічні посилання"
 msgid "Creating output metadata"
 msgstr "Створюємо метадані результатів"
 
-#: common/mlcustomize/customize_cmdline.ml:500
+#: common/mlcustomize/customize_cmdline.ml:531
 msgid "Credentials for subscription-manager"
 msgstr "Реєстраційні дані для subscription-manager"
 
-#: common/mlcustomize/customize_cmdline.ml:305
+#: common/mlcustomize/customize_cmdline.ml:325
 msgid "DIR"
 msgstr "КАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:226
+#: common/mlcustomize/customize_cmdline.ml:246
 msgid "Delete a file or directory"
 msgstr "Вилучити файл або каталог"
 
@@ -575,7 +585,7 @@ msgstr "Показати коротку довідку"
 msgid "Display version and exit"
 msgstr "Вивести версію та вийти"
 
-#: common/mlcustomize/customize_cmdline.ml:484
+#: common/mlcustomize/customize_cmdline.ml:515
 msgid "Do not relabel files with correct SELinux labels"
 msgstr "Не змінити мітки файлів на коректні мітки SELinux"
 
@@ -587,7 +597,7 @@ msgstr "Не виводити повідомлень щодо поступу"
 msgid "Don’t turn off echo for passphrases"
 msgstr "Не вимикати луна-повторення у паролях"
 
-#: common/mlcustomize/customize_cmdline.ml:237
+#: common/mlcustomize/customize_cmdline.ml:257
 msgid "Edit file using Perl expression"
 msgstr "Редагувати файл за допомогою виразу Perl"
 
@@ -603,29 +613,29 @@ msgstr "Увімкнути трасування викликів libguestfs"
 msgid "Export Storage Domain"
 msgstr "Експортувати домен сховища"
 
-#. common/mlcustomize/customize_cmdline.ml:404
-#. common/mlcustomize/customize_cmdline.ml:357
-#: common/mlcustomize/customize_cmdline.ml:422
+#. common/mlcustomize/customize_cmdline.ml:441
+#. common/mlcustomize/customize_cmdline.ml:377
+#: common/mlcustomize/customize_cmdline.ml:447
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: common/mlcustomize/customize_cmdline.ml:457
+#: common/mlcustomize/customize_cmdline.ml:488
 msgid "FILE:CONTENT"
 msgstr "ФАЙЛ:ВМІСТ"
 
-#: common/mlcustomize/customize_cmdline.ml:446
+#: common/mlcustomize/customize_cmdline.ml:477
 msgid "FILE:DEST"
 msgstr "ФАЙЛ:ПРИЗНАЧЕННЯ"
 
-#: common/mlcustomize/customize_cmdline.ml:232
+#: common/mlcustomize/customize_cmdline.ml:252
 msgid "FILE:EXPR"
 msgstr "ФАЙЛ:ВИРАЗ"
 
-#: common/mlcustomize/customize_cmdline.ml:171
+#: common/mlcustomize/customize_cmdline.ml:180
 msgid "FILE:LINE"
 msgstr "ФАЙЛ:РЯДОК"
 
-#: common/mlcustomize/customize_cmdline.ml:193
+#: common/mlcustomize/customize_cmdline.ml:213
 msgid "FILENAME"
 msgstr "НАЗВА_ФАЙЛА"
 
@@ -633,7 +643,7 @@ msgstr "НАЗВА_ФАЙЛА"
 msgid "Finishing off"
 msgstr "Завершуємо"
 
-#: common/mlcustomize/customize_cmdline.ml:265
+#: common/mlcustomize/customize_cmdline.ml:285
 msgid "HOSTNAME"
 msgstr "НАЗВА_ВУЗЛА"
 
@@ -657,15 +667,15 @@ msgstr ""
 msgid "Ignored for backwards compatibility"
 msgstr "Ігноровано, для зворотної сумісності"
 
-#: common/mlcustomize/customize_cmdline.ml:399
+#: common/mlcustomize/customize_cmdline.ml:419
 msgid "Inject a public key into the guest"
 msgstr "Вставити відкритий ключ до гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:272
+#: common/mlcustomize/customize_cmdline.ml:292
 msgid "Inject the QEMU Guest Agent into a Windows guest"
 msgstr "Вставити агент гостьової системи QEMU до гостьової системи Windows"
 
-#: common/mlcustomize/customize_cmdline.ml:278
+#: common/mlcustomize/customize_cmdline.ml:298
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr "Вставити драйвери virtio-win до гостьової системи Windows"
 
@@ -721,7 +731,7 @@ msgstr ""
 msgid "Input transport"
 msgstr "Вхідне передавання"
 
-#: common/mlcustomize/customize_cmdline.ml:215
+#: common/mlcustomize/customize_cmdline.ml:235
 msgid "LOCALPATH:REMOTEDIR"
 msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 
@@ -729,8 +739,8 @@ msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 msgid "Libvirt URI"
 msgstr "Адреса libvirt"
 
-#. common/mlcustomize/customize_cmdline.ml:271
-#: common/mlcustomize/customize_cmdline.ml:277
+#. common/mlcustomize/customize_cmdline.ml:291
+#: common/mlcustomize/customize_cmdline.ml:297
 msgid "METHOD"
 msgstr "МЕТОД"
 
@@ -751,7 +761,7 @@ msgstr "Відобразити місток «in» на «out»"
 msgid "Map network ‘in’ to ‘out’"
 msgstr "Пов'язати мережу «in» із мережею «out»"
 
-#: common/mlcustomize/customize_cmdline.ml:317
+#: common/mlcustomize/customize_cmdline.ml:337
 msgid "Move files in disk image"
 msgstr "Пересунути файли на образ диска"
 
@@ -899,18 +909,18 @@ msgstr ""
 "  -oo compressed      стиснути файл виведення (можна використовувати лише з -"
 "of qcow2)\n"
 
-#. common/mlcustomize/customize_cmdline.ml:225
-#: common/mlcustomize/customize_cmdline.ml:410
+#. common/mlcustomize/customize_cmdline.ml:245
+#: common/mlcustomize/customize_cmdline.ml:453
 msgid "PATH"
 msgstr "ШЛЯХ"
 
-#: common/mlcustomize/customize_cmdline.ml:182
+#: common/mlcustomize/customize_cmdline.ml:191
 msgid "PERMISSIONS:FILE"
 msgstr "ПРАВА_ДОСТУПУ:ФАЙЛ"
 
-#. common/mlcustomize/customize_cmdline.ml:284
-#. common/mlcustomize/customize_cmdline.ml:255
-#: common/mlcustomize/customize_cmdline.ml:429
+#. common/mlcustomize/customize_cmdline.ml:304
+#. common/mlcustomize/customize_cmdline.ml:275
+#: common/mlcustomize/customize_cmdline.ml:460
 msgid "PKG,PKG.."
 msgstr "ПАКУНОК,ПАКУНОК.."
 
@@ -927,7 +937,7 @@ msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 "У RHV не передбачено формату виведення даних «‘%s», лише формати raw та qcow2"
 
-#: common/mlcustomize/customize_cmdline.ml:198
+#: common/mlcustomize/customize_cmdline.ml:218
 msgid "Read customize commands from file"
 msgstr "Прочитати команди налаштовування з файла"
 
@@ -935,15 +945,15 @@ msgstr "Прочитати команди налаштовування з фай
 msgid "Read passphrases from stdin"
 msgstr "Читати паролі зі стандартного введення (stdin)"
 
-#: common/mlcustomize/customize_cmdline.ml:411
+#: common/mlcustomize/customize_cmdline.ml:454
 msgid "Recursively truncate all files in directory"
 msgstr "Рекурсивно обрізати усі файли у каталозі"
 
-#: common/mlcustomize/customize_cmdline.ml:375
+#: common/mlcustomize/customize_cmdline.ml:395
 msgid "Register using subscription-manager"
 msgstr "Зареєструвати за допомогою subscription-manager"
 
-#: common/mlcustomize/customize_cmdline.ml:381
+#: common/mlcustomize/customize_cmdline.ml:401
 msgid "Remove all the subscriptions"
 msgstr "Вилучити усі підписки"
 
@@ -951,40 +961,40 @@ msgstr "Вилучити усі підписки"
 msgid "Rename guest when converting"
 msgstr "Перейменувати гостьову систему під час перетворення"
 
-#: common/mlcustomize/customize_cmdline.ml:249
+#: common/mlcustomize/customize_cmdline.ml:269
 msgid "Run command at first guest boot"
 msgstr "Виконати команду під час першого завантаження гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:352
+#: common/mlcustomize/customize_cmdline.ml:372
 msgid "Run command in disk image"
 msgstr "Виконати команду у образі диска"
 
-#: common/mlcustomize/customize_cmdline.ml:243
+#: common/mlcustomize/customize_cmdline.ml:263
 msgid "Run script at first guest boot"
 msgstr "Виконати скрипт під час першого завантаження гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:346
+#: common/mlcustomize/customize_cmdline.ml:366
 msgid "Run script in disk image"
 msgstr "Виконати скрипт у образі диска"
 
-#: common/mlcustomize/customize_cmdline.ml:423
+#: common/mlcustomize/customize_cmdline.ml:442
 msgid "Run touch on a file"
 msgstr "Обробити файл за допомогою touch"
 
-#. common/mlcustomize/customize_cmdline.ml:242
-#: common/mlcustomize/customize_cmdline.ml:345
+#. common/mlcustomize/customize_cmdline.ml:262
+#: common/mlcustomize/customize_cmdline.ml:365
 msgid "SCRIPT"
 msgstr "СКРИПТ"
 
-#. common/mlcustomize/customize_cmdline.ml:364
-#. common/mlcustomize/customize_cmdline.ml:335
+#. common/mlcustomize/customize_cmdline.ml:384
+#. common/mlcustomize/customize_cmdline.ml:355
 #: common/mltools/tools_utils.ml:422
-#: common/mlcustomize/customize_cmdline.ml:496
+#: common/mlcustomize/customize_cmdline.ml:527
 msgid "SELECTOR"
 msgstr "СЕЛЕКТОР"
 
-#. common/mlcustomize/customize_cmdline.ml:204
-#: common/mlcustomize/customize_cmdline.ml:312
+#. common/mlcustomize/customize_cmdline.ml:224
+#: common/mlcustomize/customize_cmdline.ml:332
 msgid "SOURCE:DEST"
 msgstr "ДЖЕРЕЛО:ПРИЗНАЧЕННЯ"
 
@@ -1048,11 +1058,11 @@ msgstr "Те саме, що і «-oo vdsm-vm-uuid=uuid»"
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr "Те саме, що і «-oo vdsm-vol-uuid=uuid»"
 
-#: common/mlcustomize/customize_cmdline.ml:358
+#: common/mlcustomize/customize_cmdline.ml:378
 msgid "Scrub a file"
 msgstr "Витерти файл"
 
-#: common/mlcustomize/customize_cmdline.ml:468
+#: common/mlcustomize/customize_cmdline.ml:499
 msgid "Scrub build log file"
 msgstr "Витерти файл журналу збирання"
 
@@ -1092,7 +1102,7 @@ msgstr "Встановити режим виведення (типовий: libv
 msgid "Set output storage location"
 msgstr "Встановити розташування сховища виведених даних"
 
-#: common/mlcustomize/customize_cmdline.ml:478
+#: common/mlcustomize/customize_cmdline.ml:509
 msgid "Set password crypto"
 msgstr "Встановити алгоритм шифрування пароля"
 
@@ -1100,15 +1110,15 @@ msgstr "Встановити алгоритм шифрування пароля"
 msgid "Set program name"
 msgstr "Встановити назву програми"
 
-#: common/mlcustomize/customize_cmdline.ml:340
+#: common/mlcustomize/customize_cmdline.ml:360
 msgid "Set root password"
 msgstr "Встановлення пароля root"
 
-#: common/mlcustomize/customize_cmdline.ml:417
+#: common/mlcustomize/customize_cmdline.ml:436
 msgid "Set the default timezone"
 msgstr "Встановити типовий часовий пояс"
 
-#: common/mlcustomize/customize_cmdline.ml:266
+#: common/mlcustomize/customize_cmdline.ml:286
 msgid "Set the hostname"
 msgstr "Встановити назву вузла"
 
@@ -1116,7 +1126,7 @@ msgstr "Встановити назву вузла"
 msgid "Set the output filename"
 msgstr "Встановити назву файла результатів"
 
-#: common/mlcustomize/customize_cmdline.ml:329
+#: common/mlcustomize/customize_cmdline.ml:349
 msgid "Set user password"
 msgstr "Встановити пароль користувача"
 
@@ -1136,11 +1146,17 @@ msgstr "Дані щодо гостьової системи джерела (па
 msgid "Specify a LUKS key"
 msgstr "Вказати ключ LUKS"
 
-#: common/mlcustomize/customize_cmdline.ml:295
+#: common/mlcustomize/customize_cmdline.ml:425
+#, fuzzy
+#| msgid "LOCALPATH:REMOTEDIR"
+msgid "TARFILE:REMOTEDIR"
+msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
+
+#: common/mlcustomize/customize_cmdline.ml:315
 msgid "TARGET:LINK[:LINK..]"
 msgstr "ПРИЗНАЧЕННЯ:ПОСИЛАННЯ[:ПОСИЛАННЯ..]"
 
-#: common/mlcustomize/customize_cmdline.ml:416
+#: common/mlcustomize/customize_cmdline.ml:435
 msgid "TIMEZONE"
 msgstr "ЧАСОВИЙ_ПОЯС"
 
@@ -1149,7 +1165,7 @@ msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr "Параметр --in-place замінено на програму «virt-v2v-in-place»"
 
-#: output/output_qemu.ml:229
+#: output/output_qemu.ml:231
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
@@ -1158,7 +1174,7 @@ msgstr ""
 "розробки. Будь ласка, повідомте про ваду у virt-v2v — скористайтеся розділом "
 "«BUGS» сторінки підручника virt-v2v(1)."
 
-#: output/output_qemu.ml:250
+#: output/output_qemu.ml:252
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
@@ -1190,31 +1206,35 @@ msgstr ""
 "перетворення, які описано у підручнику з virt-v2v-input-vmware(1), розділ "
 "«ПРИМІТКИ»."
 
-#: common/mlcustomize/customize_cmdline.ml:405
+#: common/mlcustomize/customize_cmdline.ml:448
 msgid "Truncate a file to zero size"
 msgstr "Обрізати файл до нульового розміру"
 
-#: common/mlcustomize/customize_cmdline.ml:323
+#: common/mlcustomize/customize_cmdline.ml:202
+msgid "UID:GID:PATH"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:343
 msgid "USER:SELECTOR"
 msgstr "КОРИСТУВАЧ:ВАРІАНТ"
 
-#: common/mlcustomize/customize_cmdline.ml:393
+#: common/mlcustomize/customize_cmdline.ml:413
 msgid "USER[:SELECTOR]"
 msgstr "КОРИСТУВАЧ[:СЕЛЕКТОР]"
 
-#: common/mlcustomize/customize_cmdline.ml:434
+#: common/mlcustomize/customize_cmdline.ml:465
 msgid "Uninstall package(s)"
 msgstr "Вилучити пакунки"
 
-#: common/mlcustomize/customize_cmdline.ml:387
+#: common/mlcustomize/customize_cmdline.ml:407
 msgid "Unregister using subscription-manager"
 msgstr "Скасувати реєстрацію за допомогою subscription-manager"
 
-#: common/mlcustomize/customize_cmdline.ml:440
+#: common/mlcustomize/customize_cmdline.ml:471
 msgid "Update packages"
 msgstr "Оновити пакунки"
 
-#: common/mlcustomize/customize_cmdline.ml:451
+#: common/mlcustomize/customize_cmdline.ml:482
 msgid "Upload local file to destination"
 msgstr "Вивантажити локальний файл у систему призначення"
 
@@ -1238,7 +1258,7 @@ msgstr "Скористайтеся краще virt-v2v-in-place"
 msgid "Wrap log messages even if not tty"
 msgstr "Переносити рядки повідомлень журналу, навіть якщо це не tty"
 
-#: common/mlcustomize/customize_cmdline.ml:462
+#: common/mlcustomize/customize_cmdline.ml:493
 msgid "Write file"
 msgstr "Записати файл"
 
@@ -1390,12 +1410,12 @@ msgstr ""
 "роботу virt-v2v (^C), а потім повторно запустити програму від імені "
 "користувача root."
 
-#: common/mlcustomize/customize_cmdline.ml:520
+#: common/mlcustomize/customize_cmdline.ml:551
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 "у командних файлах не можна використовувати команду «%s», див. сторінку man"
 
-#: common/mlcustomize/customize_cmdline.ml:537
+#: common/mlcustomize/customize_cmdline.ml:568
 msgid "command '%s' not valid, see the man page"
 msgstr "команда «%s» є некоректною, див. сторінку man"
 
@@ -1807,13 +1827,14 @@ msgstr "некоректний параметр -b/--bridge"
 msgid "invalid -n/--network parameter"
 msgstr "некоректний параметр -n/--network"
 
-#: input/parse_domain_from_vmx.ml:436
+#: input/parse_domain_from_vmx.ml:440
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 "некоректне значення cpuid.coresPerSocket < кількості віртуальних процесорів"
 
-#. common/mlcustomize/customize_cmdline.ml:151
-#: common/mlcustomize/customize_cmdline.ml:162
+#. common/mlcustomize/customize_cmdline.ml:163
+#. common/mlcustomize/customize_cmdline.ml:155
+#: common/mlcustomize/customize_cmdline.ml:171
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "некоректний формат параметра «--%s», див. сторінку підручника"
 
@@ -1887,7 +1908,7 @@ msgstr ""
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr "у маніфесті є контрольна сума файла, якого не існує %s (проігноровано)"
 
-#: common/mlcustomize/customize_cmdline.ml:474
+#: common/mlcustomize/customize_cmdline.ml:505
 msgid "md5|sha256|sha512"
 msgstr "md5|sha256|sha512"
 
@@ -2105,11 +2126,11 @@ msgstr "тут не можна використовувати -oo (параме�
 msgid "no .ovf file was found in %s"
 msgstr "у %s не знайдено файла .ovf"
 
-#: common/mldrivers/linux_bootloaders.ml:391
+#: common/mldrivers/linux_bootloaders.ml:403
 msgid "no bootloader detected"
 msgstr "не виявлено завантажувача"
 
-#: input/parse_domain_from_vmx.ml:396
+#: input/parse_domain_from_vmx.ml:400
 msgid "no displayName key found in VMX file"
 msgstr "у файлі VMX не виявлено ключа displayName"
 
@@ -2578,7 +2599,7 @@ msgstr "невідомий варіант Windows 10: %s (%s)"
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr "невідомий блоковий драйвер «--block-driver %s»"
 
-#: input/parse_domain_from_vmx.ml:449
+#: input/parse_domain_from_vmx.ml:453
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "невідоме значення мікропрограми, «%s», припускаємо BIOS"
 
@@ -2590,7 +2611,7 @@ msgstr "невідома гостьова операційна система: %
 msgid "unknown input transport ‘-it %s’"
 msgstr "невідомий вхідний канал передавання «-it %s»"
 
-#: input/parse_domain_from_vmx.ml:458
+#: input/parse_domain_from_vmx.ml:462
 msgid "unknown sound device '%s' ignored"
 msgstr "невідомий звуковий пристрій «%s» проігноровано"
 

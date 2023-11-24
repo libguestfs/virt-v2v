@@ -2021,10 +2021,10 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:315
 msgid ""
 "To create an OVA in vSphere, use the \"Export OVF Template\" option (from "
-"the VM context menu, or from the File menu).  Either \"Folder of files"
-"\" (OVF) or \"Single file\" (OVA) will work, but OVA is probably easier to "
-"deal with.  OVA files are really just uncompressed tar files, so you can use "
-"commands like C<tar tf VM.ova> to view their contents."
+"the VM context menu, or from the File menu).  Either \"Folder of "
+"files\" (OVF) or \"Single file\" (OVA) will work, but OVA is probably easier "
+"to deal with.  OVA files are really just uncompressed tar files, so you can "
+"use commands like C<tar tf VM.ova> to view their contents."
 msgstr ""
 
 #. type: =head3
@@ -4944,8 +4944,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:40
 msgid ""
-"Virt-v2v normally copies from the input to the output, called \"copying mode"
-"\".  In this case the source guest is always left unchanged.  In-place "
+"Virt-v2v normally copies from the input to the output, called \"copying "
+"mode\".  In this case the source guest is always left unchanged.  In-place "
 "conversion (I<--in-place>) only uses the I<-i*> options and modifies the "
 "source guest in-place.  (See L</In-place conversion> below.)"
 msgstr ""
@@ -7372,8 +7372,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1222
 msgid ""
-"This temporarily places a full copy of the uncompressed source disks in C<"
-"$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
+"This temporarily places a full copy of the uncompressed source disks in "
+"C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgstr ""
 
 #. type: =item
@@ -7384,8 +7384,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1227
 msgid ""
-"This temporarily places a full copy of the output disks in C<"
-"$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
+"This temporarily places a full copy of the output disks in "
+"C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgstr ""
 
 #. type: =item

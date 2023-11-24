@@ -173,7 +173,8 @@ msgstr ""
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:68
-msgid "Read the customize commands from a file, one (and its arguments)  each line."
+msgid ""
+"Read the customize commands from a file, one (and its arguments)  each line."
 msgstr ""
 
 #. type: textblock
@@ -382,8 +383,8 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:164
 #: common/mlcustomize/customize-options.pod:178
 msgid ""
-"For an overview on the different ways to install packages, see "
-"L<virt-builder(1)/INSTALLING PACKAGES>."
+"For an overview on the different ways to install packages, see L<virt-"
+"builder(1)/INSTALLING PACKAGES>."
 msgstr ""
 
 #. type: =item
@@ -394,8 +395,8 @@ msgstr ""
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:169
 msgid ""
-"Set the hostname of the guest to C<HOSTNAME>.  You can use a dotted "
-"hostname.domainname (FQDN) if you want."
+"Set the hostname of the guest to C<HOSTNAME>.  You can use a dotted hostname."
+"domainname (FQDN) if you want."
 msgstr ""
 
 #. type: =item
@@ -532,9 +533,8 @@ msgstr ""
 msgid ""
 "Note this does not change the default password encryption used by the guest "
 "when you create new user accounts inside the guest.  If you want to do that, "
-"then you should use the I<--edit> option to modify "
-"C</etc/sysconfig/authconfig> (Fedora, RHEL) or C</etc/pam.d/common-password> "
-"(Debian, Ubuntu)."
+"then you should use the I<--edit> option to modify C</etc/sysconfig/"
+"authconfig> (Fedora, RHEL) or C</etc/pam.d/common-password> (Debian, Ubuntu)."
 msgstr ""
 
 #. type: =item
@@ -729,7 +729,8 @@ msgstr ""
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:332
-msgid "Remove all the subscriptions from the guest using C<subscription-manager>."
+msgid ""
+"Remove all the subscriptions from the guest using C<subscription-manager>."
 msgstr ""
 
 #. type: =item
@@ -756,7 +757,8 @@ msgstr ""
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:345
-msgid "See L<virt-builder(1)/SSH KEYS> for the format of the C<SELECTOR> field."
+msgid ""
+"See L<virt-builder(1)/SSH KEYS> for the format of the C<SELECTOR> field."
 msgstr ""
 
 #. type: textblock
@@ -807,7 +809,8 @@ msgstr ""
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:367
-msgid "This command recursively truncates all files under C<PATH> to zero-length."
+msgid ""
+"This command recursively truncates all files under C<PATH> to zero-length."
 msgstr ""
 
 #. type: =item
@@ -909,10 +912,10 @@ msgstr ""
 #: common/options/blocksize-option.pod:7
 msgid ""
 "This parameter sets the sector size of the disk image.  It affects all "
-"explicitly added subsequent disks after this parameter.  Using "
-"I<--blocksize> with no argument switches the disk sector size to the default "
-"value which is usually 512 bytes.  See also "
-"L<guestfs(3)/guestfs_add_drive_opts>."
+"explicitly added subsequent disks after this parameter.  Using I<--"
+"blocksize> with no argument switches the disk sector size to the default "
+"value which is usually 512 bytes.  See also L<guestfs(3)/"
+"guestfs_add_drive_opts>."
 msgstr ""
 
 #. type: =item
@@ -1087,8 +1090,8 @@ msgstr ""
 #: docs/virt-v2v-copy-to-local.pod:50
 msgid ""
 "The libvirt XML is output to a file called F<guest.xml> (where I<guest> is "
-"the name of the guest).  The disk(s) are output to file(s)  called "
-"F<guest-disk1>, F<guest-disk2> and so on."
+"the name of the guest).  The disk(s) are output to file(s)  called F<guest-"
+"disk1>, F<guest-disk2> and so on."
 msgstr ""
 
 #. type: textblock
@@ -1238,8 +1241,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-copy-to-local.pod:114
 msgid ""
-"L<virt-v2v(1)>, L<virsh(1)>, L<http://libguestfs.org/>, "
-"L<https://libvirt.org/uri.html>, L<https://libvirt.org/remote.html>."
+"L<virt-v2v(1)>, L<virsh(1)>, L<http://libguestfs.org/>, L<https://libvirt."
+"org/uri.html>, L<https://libvirt.org/remote.html>."
 msgstr ""
 
 #. type: =head1
@@ -1492,8 +1495,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:70
 msgid ""
-"With this method you must first export the guest (eg. from vSphere) as an "
-"F<.ova> file, which virt-v2v can then read directly.  Note this method only "
+"With this method you must first export the guest (eg. from vSphere) as an F<."
+"ova> file, which virt-v2v can then read directly.  Note this method only "
 "works with files exported from VMware, not OVA files that come from other "
 "hypervisors or management systems, since OVA is only a pretend standard and "
 "is not compatible or interoperable between vendors."
@@ -1555,8 +1558,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:101
 msgid ""
-"You have enabled SSH access to the VMware ESXi hypervisor and there is a "
-"C</vmfs/volumes> folder containing the virtual machines."
+"You have enabled SSH access to the VMware ESXi hypervisor and there is a C</"
+"vmfs/volumes> folder containing the virtual machines."
 msgstr ""
 
 #. type: textblock
@@ -1612,11 +1615,11 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:132
 msgid ""
-"If you are not using password authentication, an alternative is to use "
-"ssh-agent, and add your ssh public key to "
-"F</etc/ssh/keys-root/authorized_keys> (on the ESXi hypervisor).  After doing "
-"this, you should check that passwordless access works from the virt-v2v "
-"server to the ESXi hypervisor.  For example:"
+"If you are not using password authentication, an alternative is to use ssh-"
+"agent, and add your ssh public key to F</etc/ssh/keys-root/authorized_keys> "
+"(on the ESXi hypervisor).  After doing this, you should check that "
+"passwordless access works from the virt-v2v server to the ESXi hypervisor.  "
+"For example:"
 msgstr ""
 
 #. type: verbatim
@@ -1644,8 +1647,7 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:146
 #, no-wrap
 msgid ""
-" "
-"ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
+" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 msgstr ""
 
@@ -1699,8 +1701,7 @@ msgstr ""
 msgid ""
 " $ virt-v2v \\\n"
 "     -i vmx -it ssh \\\n"
-"     \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" "
-"\\\n"
+"     \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\\n"
 "     -o local -os /var/tmp\n"
 "\n"
 msgstr ""
@@ -1720,8 +1721,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:175
 msgid ""
-"Virt-v2v is able to import guests using VMware’s proprietary VDDK library "
-"(a.k.a. VixDiskLib)."
+"Virt-v2v is able to import guests using VMware’s proprietary VDDK library (a."
+"k.a. VixDiskLib)."
 msgstr ""
 
 #. type: =head2
@@ -1799,9 +1800,8 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:217
 msgid ""
 "These can be caused by resource limits set on the VMware server.  You can "
-"increase the limit for the NFC service by editing "
-"F</etc/vmware/hostd/config.xml> and adjusting the C<E<lt>maxMemoryE<gt>> "
-"setting:"
+"increase the limit for the NFC service by editing F</etc/vmware/hostd/config."
+"xml> and adjusting the C<E<lt>maxMemoryE<gt>> setting:"
 msgstr ""
 
 #. type: verbatim
@@ -1903,8 +1903,7 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:260 docs/virt-v2v-input-vmware.pod:453
 #, no-wrap
 msgid ""
-" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' "
-"list --all\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' list --all\n"
 "\n"
 msgstr ""
 
@@ -1920,8 +1919,7 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:265
 #, no-wrap
 msgid ""
-" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml "
-"\"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml \"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -1951,7 +1949,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:281
-msgid "The I<-it vddk> parameter selects VDDK as the input transport for disks."
+msgid ""
+"The I<-it vddk> parameter selects VDDK as the input transport for disks."
 msgstr ""
 
 #. type: textblock
@@ -2019,10 +2018,10 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:315
 msgid ""
 "To create an OVA in vSphere, use the \"Export OVF Template\" option (from "
-"the VM context menu, or from the File menu).  Either \"Folder of files\" "
-"(OVF) or \"Single file\" (OVA) will work, but OVA is probably easier to deal "
-"with.  OVA files are really just uncompressed tar files, so you can use "
-"commands like C<tar tf VM.ova> to view their contents."
+"the VM context menu, or from the File menu).  Either \"Folder of "
+"files\" (OVF) or \"Single file\" (OVA) will work, but OVA is probably easier "
+"to deal with.  OVA files are really just uncompressed tar files, so you can "
+"use commands like C<tar tf VM.ova> to view their contents."
 msgstr ""
 
 #. type: =head3
@@ -2200,7 +2199,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:393
-msgid "If the name contains a space, replace it with the URI-escape code C<%20>."
+msgid ""
+"If the name contains a space, replace it with the URI-escape code C<%20>."
 msgstr ""
 
 #. type: =item
@@ -2230,7 +2230,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:407
-msgid "For full details of libvirt URIs, see: L<http://libvirt.org/drvesx.html>"
+msgid ""
+"For full details of libvirt URIs, see: L<http://libvirt.org/drvesx.html>"
 msgstr ""
 
 #. type: textblock
@@ -2279,8 +2280,7 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:458
 #, no-wrap
 msgid ""
-" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml "
-"\"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml \"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -2310,8 +2310,7 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:472
 #, no-wrap
 msgid ""
-" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' "
-"\\\n"
+" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
 "   \"Windows 2003\" \\\n"
 "   -o local -os /var/tmp\n"
 "\n"
@@ -2319,7 +2318,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:476
-msgid "where C<Windows 2003> is the name of the guest (which must be shut down)."
+msgid ""
+"where C<Windows 2003> is the name of the guest (which must be shut down)."
 msgstr ""
 
 #. type: textblock
@@ -2347,9 +2347,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:490
 msgid ""
-"Instead of using the vCenter Administrator role, you can create a custom "
-"non-administrator role to perform the conversion.  You will however need to "
-"give it a minimum set of permissions as follows (using VMware vCenter 6.5):"
+"Instead of using the vCenter Administrator role, you can create a custom non-"
+"administrator role to perform the conversion.  You will however need to give "
+"it a minimum set of permissions as follows (using VMware vCenter 6.5):"
 msgstr ""
 
 #. type: textblock
@@ -2494,8 +2494,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:570
 msgid ""
-"(You may need to enable debugging with ‘virt-v2v -v -x’ to see this "
-"message)."
+"(You may need to enable debugging with ‘virt-v2v -v -x’ to see this message)."
 msgstr ""
 
 #. type: textblock
@@ -2576,9 +2575,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:25
 msgid ""
-"If you are not using password authentication, an alternative is to use "
-"ssh-agent, and add your ssh public key to F</root/.ssh/authorized_keys> (on "
-"the Xen host).  After doing this, you should check that passwordless access "
+"If you are not using password authentication, an alternative is to use ssh-"
+"agent, and add your ssh public key to F</root/.ssh/authorized_keys> (on the "
+"Xen host).  After doing this, you should check that passwordless access "
 "works from the virt-v2v server to the Xen host.  For example:"
 msgstr ""
 
@@ -2682,8 +2681,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:77
 msgid ""
-"where C<rhel49-x86_64-pv> is the name of the guest (which must be shut "
-"down)."
+"where C<rhel49-x86_64-pv> is the name of the guest (which must be shut down)."
 msgstr ""
 
 #. type: textblock
@@ -2827,15 +2825,14 @@ msgstr ""
 #: docs/virt-v2v-output-local.pod:31
 msgid ""
 "This converts the guest to a libvirt directory pool call C<POOL>, and "
-"instantiates the guest in libvirt (but does not start it running).  See "
-"L</OUTPUT TO LIBVIRT> below."
+"instantiates the guest in libvirt (but does not start it running).  See L</"
+"OUTPUT TO LIBVIRT> below."
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-output-local.pod:35
 msgid ""
-"I<-o libvirt> is the default if no I<-o> option is given, so you can omit "
-"it."
+"I<-o libvirt> is the default if no I<-o> option is given, so you can omit it."
 msgstr ""
 
 #. type: =item
@@ -2922,8 +2919,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-local.pod:76
 msgid ""
-"The I<-o libvirt> option lets you upload the converted guest to a "
-"libvirt-managed host.  There are several limitations:"
+"The I<-o libvirt> option lets you upload the converted guest to a libvirt-"
+"managed host.  There are several limitations:"
 msgstr ""
 
 #. type: textblock
@@ -3075,9 +3072,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-local.pod:162
 msgid ""
-"It is possible to change the pattern of the disks using the I<-oo "
-"json-disks-pattern=...> option: it allows parameters in form of C<%{...}> "
-"variables, for example:"
+"It is possible to change the pattern of the disks using the I<-oo json-disks-"
+"pattern=...> option: it allows parameters in form of C<%{...}> variables, "
+"for example:"
 msgstr ""
 
 #. type: verbatim
@@ -3148,13 +3145,14 @@ msgstr ""
 msgid ""
 "If the literal C<%{...}> text is needed, it is possible to avoid the escape "
 "it with a leading C<%>; for example, C<%%{GuestName}-%{DiskNo}.img> will "
-"create file names for the disks like C<%%{GuestName}-1.img>, "
-"C<%%{GuestName}-2.img>, etc."
+"create file names for the disks like C<%%{GuestName}-1.img>, C<%"
+"%{GuestName}-2.img>, etc."
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:3
-msgid "virt-v2v-output-openstack - Using virt-v2v to convert guests to OpenStack"
+msgid ""
+"virt-v2v-output-openstack - Using virt-v2v to convert guests to OpenStack"
 msgstr ""
 
 #. type: verbatim
@@ -3242,8 +3240,7 @@ msgid ""
 "When virt-v2v is converting to OpenStack, it is unusual in that virt-v2v "
 "B<must> be running inside a virtual machine running on top of the OpenStack "
 "overcloud.  This virtual machine is called the \"conversion appliance\".  "
-"Note this virtual machine is unrelated to the guest which is being "
-"converted."
+"Note this virtual machine is unrelated to the guest which is being converted."
 msgstr ""
 
 #. type: textblock
@@ -3373,8 +3370,8 @@ msgstr ""
 #: docs/virt-v2v-output-openstack.pod:108
 msgid ""
 "Because virt-v2v must access Cinder volumes which are presented as F</dev> "
-"devices to the conversion appliance, virt-v2v must usually run as root in "
-"I<-o openstack> mode."
+"devices to the conversion appliance, virt-v2v must usually run as root in I<-"
+"o openstack> mode."
 msgstr ""
 
 #. type: textblock
@@ -3505,7 +3502,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:170
-msgid "The following options are B<not> supported with OpenStack: I<-oa>, I<-of>."
+msgid ""
+"The following options are B<not> supported with OpenStack: I<-oa>, I<-of>."
 msgstr ""
 
 #. type: =head1
@@ -3528,8 +3526,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:180
 msgid ""
-"This runs the L<glance(1)> CLI program which must be installed on the "
-"virt-v2v conversion host.  For authentication to work, you will need to set "
+"This runs the L<glance(1)> CLI program which must be installed on the virt-"
+"v2v conversion host.  For authentication to work, you will need to set "
 "C<OS_*> environment variables.  In most cases you can do this by sourcing a "
 "file called something like F<keystonerc_admin>."
 msgstr ""
@@ -3583,9 +3581,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:212
 msgid ""
-"L<virt-v2v(1)>, "
-"L<https://docs.openstack.org/python-openstackclient/latest/cli/man/openstack.html>, "
-"L<glance(1)>."
+"L<virt-v2v(1)>, L<https://docs.openstack.org/python-openstackclient/latest/"
+"cli/man/openstack.html>, L<glance(1)>."
 msgstr ""
 
 #. type: textblock
@@ -3672,9 +3669,9 @@ msgstr ""
 #: docs/virt-v2v-output-rhv.pod:45
 msgid ""
 "This is the old method for uploading to oVirt/RHV via the Export Storage "
-"Domain (ESD).  The ESD can either be accessed over NFS (using the I<-os "
-"esd:/path> form) or if you have already NFS-mounted it somewhere specify the "
-"path to the mountpoint as I<-os /path>."
+"Domain (ESD).  The ESD can either be accessed over NFS (using the I<-os esd:/"
+"path> form) or if you have already NFS-mounted it somewhere specify the path "
+"to the mountpoint as I<-os /path>."
 msgstr ""
 
 #. type: textblock
@@ -3723,9 +3720,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-rhv.pod:73
 msgid ""
-"The URL of the REST API which is usually the server name with "
-"C</ovirt-engine/api> appended, but might be different if you installed oVirt "
-"Engine on a different path."
+"The URL of the REST API which is usually the server name with C</ovirt-"
+"engine/api> appended, but might be different if you installed oVirt Engine "
+"on a different path."
 msgstr ""
 
 #. type: textblock
@@ -3743,7 +3740,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-output-rhv.pod:84
-msgid "Currently you must use I<-of raw> and you cannot use I<-oa preallocated>."
+msgid ""
+"Currently you must use I<-of raw> and you cannot use I<-oa preallocated>."
 msgstr ""
 
 #. type: textblock
@@ -3783,8 +3781,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-rhv.pod:101
 msgid ""
-"The F<ca.pem> file (Certificate Authority), copied from "
-"F</etc/pki/ovirt-engine/ca.pem> on the oVirt engine."
+"The F<ca.pem> file (Certificate Authority), copied from F</etc/pki/ovirt-"
+"engine/ca.pem> on the oVirt engine."
 msgstr ""
 
 #. type: textblock
@@ -3886,9 +3884,9 @@ msgid ""
 "You have to specify I<-o rhv> and an I<-os> option that points to the RHV-M "
 "Export Storage Domain.  You can either specify the NFS server and "
 "mountpoint, eg. S<C<-os rhv-storage:/rhv/export>>, or you can mount that "
-"first and point to the directory where it is mounted, eg. S<C<-os "
-"/tmp/mnt>>.  Be careful not to point to the Data Storage Domain by accident "
-"as that will not work."
+"first and point to the directory where it is mounted, eg. S<C<-os /tmp/"
+"mnt>>.  Be careful not to point to the Data Storage Domain by accident as "
+"that will not work."
 msgstr ""
 
 #. type: textblock
@@ -4109,9 +4107,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:51
 msgid ""
-"Check RHV cluster exists before trying to convert when using I<-o "
-"rhv-upload> mode.  Also allows us to detect and reject various other "
-"conditions early.  (Pino Toscano)."
+"Check RHV cluster exists before trying to convert when using I<-o rhv-"
+"upload> mode.  Also allows us to detect and reject various other conditions "
+"early.  (Pino Toscano)."
 msgstr ""
 
 #. type: textblock
@@ -4277,8 +4275,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:128
 msgid ""
-"When converting SUSE guests, always try to install QXL driver (Mike "
-"Latimer)."
+"When converting SUSE guests, always try to install QXL driver (Mike Latimer)."
 msgstr ""
 
 #. type: textblock
@@ -4327,7 +4324,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:155
-msgid "update-crypto-policies command example is incorrect in virt-v2v-input-xen"
+msgid ""
+"update-crypto-policies command example is incorrect in virt-v2v-input-xen"
 msgstr ""
 
 #. type: =item
@@ -4348,8 +4346,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:163
 msgid ""
-"Should remove info about \"Remove VMware tools from Windows guests\" in "
-"virt-v2v-input-vmware man page"
+"Should remove info about \"Remove VMware tools from Windows guests\" in virt-"
+"v2v-input-vmware man page"
 msgstr ""
 
 #. type: =item
@@ -4382,8 +4380,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:175
 msgid ""
-"Delete info \"export PATH=/path/to/nbdkit-1.1.x:$PATH\" in "
-"virt-v2v-input-vmware manual page"
+"Delete info \"export PATH=/path/to/nbdkit-1.1.x:$PATH\" in virt-v2v-input-"
+"vmware manual page"
 msgstr ""
 
 #. type: =item
@@ -4603,8 +4601,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-support.pod:42
 msgid ""
-"Not recently tested.  Requires that you export the disk or use "
-"L<virt-p2v(1)> on Hyper-V."
+"Not recently tested.  Requires that you export the disk or use L<virt-"
+"p2v(1)> on Hyper-V."
 msgstr ""
 
 #. type: =item
@@ -4727,8 +4725,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-support.pod:100
 msgid ""
-"We use Windows internal version numbers, see "
-"L<https://en.wikipedia.org/wiki/List_of_Microsoft_Windows_versions>"
+"We use Windows internal version numbers, see L<https://en.wikipedia.org/wiki/"
+"List_of_Microsoft_Windows_versions>"
 msgstr ""
 
 #. type: textblock
@@ -4738,7 +4736,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:105
-msgid "See L</WINDOWS> below for additional notes on converting Windows guests."
+msgid ""
+"See L</WINDOWS> below for additional notes on converting Windows guests."
 msgstr ""
 
 #. type: =head2
@@ -4962,8 +4961,8 @@ msgstr ""
 #: docs/virt-v2v.pod:77
 msgid ""
 "In this case you will most likely have to run virt-v2v as C<root>, since it "
-"needs to talk to the system libvirt daemon and copy the guest disks to "
-"F</var/lib/libvirt/images>."
+"needs to talk to the system libvirt daemon and copy the guest disks to F</"
+"var/lib/libvirt/images>."
 msgstr ""
 
 #. type: textblock
@@ -5025,8 +5024,7 @@ msgstr ""
 msgid ""
 " virt-v2v \\\n"
 "   -i vmx -it ssh \\\n"
-"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" "
-"\\\n"
+"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\\n"
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
@@ -5041,8 +5039,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:113
 msgid ""
-"For more information about converting from VMX files see "
-"L<virt-v2v-input-vmware(1)>."
+"For more information about converting from VMX files see L<virt-v2v-input-"
+"vmware(1)>."
 msgstr ""
 
 #. type: =head2
@@ -5101,10 +5099,10 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:136
 msgid ""
-"A more complex method is to write some L<libvirt "
-"XML|http://libvirt.org/formatdomain.html> describing the input guest (if you "
-"can get the source hypervisor to provide you with libvirt XML, then so much "
-"the better).  You can then do:"
+"A more complex method is to write some L<libvirt XML|http://libvirt.org/"
+"formatdomain.html> describing the input guest (if you can get the source "
+"hypervisor to provide you with libvirt XML, then so much the better).  You "
+"can then do:"
 msgstr ""
 
 #. type: verbatim
@@ -5124,7 +5122,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:147
-msgid "To convert a local disk image and immediately boot it in local qemu, do:"
+msgid ""
+"To convert a local disk image and immediately boot it in local qemu, do:"
 msgstr ""
 
 #. type: verbatim
@@ -5245,8 +5244,8 @@ msgstr ""
 #: docs/virt-v2v.pod:221
 msgid ""
 "Write a compressed output file.  This is only allowed if the output format "
-"is qcow2 (see I<-of> below), and is equivalent to the I<-c> option of "
-"L<qemu-img(1)>."
+"is qcow2 (see I<-of> below), and is equivalent to the I<-c> option of L<qemu-"
+"img(1)>."
 msgstr ""
 
 #. type: =item
@@ -5363,8 +5362,8 @@ msgstr ""
 msgid ""
 "In this mode you can read a VMware ova file.  Virt-v2v will read the ova "
 "manifest file and check the vmdk volumes for validity (checksums)  as well "
-"as analyzing the ovf file, and then convert the guest.  See "
-"L<virt-v2v-input-vmware(1)>."
+"as analyzing the ovf file, and then convert the guest.  See L<virt-v2v-input-"
+"vmware(1)>."
 msgstr ""
 
 #. type: =item
@@ -5382,8 +5381,8 @@ msgstr ""
 msgid ""
 "In this mode you can read a VMware vmx file directly or over SSH.  This is "
 "useful when VMware VMs are stored on an NFS server which you can mount "
-"directly, or where you have access by SSH to an ESXi hypervisor.  See "
-"L<virt-v2v-input-vmware(1)>."
+"directly, or where you have access by SSH to an ESXi hypervisor.  See L<virt-"
+"v2v-input-vmware(1)>."
 msgstr ""
 
 #. type: textblock
@@ -5567,8 +5566,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:373
 msgid ""
-"When using I<-i vmx>, this enables the ssh transport.  See "
-"L<virt-v2v-input-vmware(1)>."
+"When using I<-i vmx>, this enables the ssh transport.  See L<virt-v2v-input-"
+"vmware(1)>."
 msgstr ""
 
 #. type: =item
@@ -5579,9 +5578,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:378
 msgid ""
-"Use VMware VDDK as a transport to copy the input disks.  See "
-"L<virt-v2v-input-vmware(1)>.  If you use this parameter then you may need to "
-"use other I<-io vddk*> options to specify how to connect through VDDK."
+"Use VMware VDDK as a transport to copy the input disks.  See L<virt-v2v-"
+"input-vmware(1)>.  If you use this parameter then you may need to use other "
+"I<-io vddk*> options to specify how to connect through VDDK."
 msgstr ""
 
 #. type: textblock
@@ -5770,7 +5769,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:468
-msgid "This is a legacy option.  You should probably use I<-o openstack> instead."
+msgid ""
+"This is a legacy option.  You should probably use I<-o openstack> instead."
 msgstr ""
 
 #. type: textblock
@@ -5890,7 +5890,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:522
-msgid "Set the output method to OpenStack.  See L<virt-v2v-output-openstack(1)>."
+msgid ""
+"Set the output method to OpenStack.  See L<virt-v2v-output-openstack(1)>."
 msgstr ""
 
 #. type: =item
@@ -5998,9 +5999,8 @@ msgstr ""
 #: docs/virt-v2v.pod:572
 msgid ""
 "This mode is similar to I<-o rhv>, but the full path to the data domain must "
-"be given: "
-"F</rhv/data-center/E<lt>data-center-uuidE<gt>/E<lt>data-domain-uuidE<gt>>.  "
-"This mode is only used when virt-v2v runs under VDSM control."
+"be given: F</rhv/data-center/E<lt>data-center-uuidE<gt>/E<lt>data-domain-"
+"uuidE<gt>>.  This mode is only used when virt-v2v runs under VDSM control."
 msgstr ""
 
 #. type: =item
@@ -6220,9 +6220,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:671
 msgid ""
-"Currently I<-oo vdsm-compat=0.10> is the default, but this will change to "
-"I<-oo vdsm-compat=1.1> in a future version of virt-v2v (when we can assume "
-"that everyone is using a modern version of qemu)."
+"Currently I<-oo vdsm-compat=0.10> is the default, but this will change to I<-"
+"oo vdsm-compat=1.1> in a future version of virt-v2v (when we can assume that "
+"everyone is using a modern version of qemu)."
 msgstr ""
 
 #. type: textblock
@@ -6289,8 +6289,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:713
 msgid ""
-"the OVF output directory (default current directory) (I<-oo "
-"vdsm-ovf-output>)."
+"the OVF output directory (default current directory) (I<-oo vdsm-ovf-"
+"output>)."
 msgstr ""
 
 #. type: textblock
@@ -6371,8 +6371,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:753
 msgid ""
-"For I<-o libvirt>, this is a libvirt directory pool (see S<C<virsh "
-"pool-list>>) or pool UUID."
+"For I<-o libvirt>, this is a libvirt directory pool (see S<C<virsh pool-"
+"list>>) or pool UUID."
 msgstr ""
 
 #. type: textblock
@@ -6384,7 +6384,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:759
-msgid "For I<-o rhv-upload>, this is the name of the destination Storage Domain."
+msgid ""
+"For I<-o rhv-upload>, this is the name of the destination Storage Domain."
 msgstr ""
 
 #. type: textblock
@@ -6868,7 +6869,8 @@ msgstr ""
 
 #. type: =head3
 #: docs/virt-v2v.pod:991
-msgid "\"warning: could not determine a way to update the configuration of Grub2\""
+msgid ""
+"\"warning: could not determine a way to update the configuration of Grub2\""
 msgstr ""
 
 #. type: textblock
@@ -6914,8 +6916,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1013
 msgid ""
-"You can work around this problem by running this command before running "
-"virt-v2v:"
+"You can work around this problem by running this command before running virt-"
+"v2v:"
 msgstr ""
 
 #. type: verbatim
@@ -6992,16 +6994,15 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1052
 msgid ""
-"First ensure that the guest boots on the source hypervisor before "
-"conversion."
+"First ensure that the guest boots on the source hypervisor before conversion."
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1057
 msgid ""
-"Check you have the Windows virtio drivers available in "
-"F</usr/share/virtio-win>, and that virt-v2v did not print any warning about "
-"not being able to install virtio drivers."
+"Check you have the Windows virtio drivers available in F</usr/share/virtio-"
+"win>, and that virt-v2v did not print any warning about not being able to "
+"install virtio drivers."
 msgstr ""
 
 #. type: textblock
@@ -7052,13 +7053,14 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1086
 msgid ""
-"Check there is no anti-virus or other software which implements Group "
-"Policy-like prohibitions on installing or using new drivers."
+"Check there is no anti-virus or other software which implements Group Policy-"
+"like prohibitions on installing or using new drivers."
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1091
-msgid "Enable boot debugging and check the F<viostor.sys> driver is being loaded."
+msgid ""
+"Enable boot debugging and check the F<viostor.sys> driver is being loaded."
 msgstr ""
 
 #. type: =head3
@@ -7117,16 +7119,16 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1131
 msgid ""
-"To fix this you must apply SHA-2 Code Signing Support from: "
-"L<https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2015/3033929> "
-"before converting the guest."
+"To fix this you must apply SHA-2 Code Signing Support from: L<https://docs."
+"microsoft.com/en-us/security-updates/SecurityAdvisories/2015/3033929> before "
+"converting the guest."
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1135
 msgid ""
-"For further information see: "
-"L<https://bugzilla.redhat.com/show_bug.cgi?id=1624878>"
+"For further information see: L<https://bugzilla.redhat.com/show_bug.cgi?"
+"id=1624878>"
 msgstr ""
 
 #. type: =head2
@@ -7438,8 +7440,7 @@ msgstr ""
 msgid ""
 "Virt-v2v cannot currently reconfigure a guest’s network configuration.  If "
 "the converted guest is not connected to the same subnet as the source, its "
-"network configuration may have to be updated.  See also "
-"L<virt-customize(1)>."
+"network configuration may have to be updated.  See also L<virt-customize(1)>."
 msgstr ""
 
 #. type: =head3
@@ -7614,9 +7615,9 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1373
 msgid ""
-"You can avoid needing root here by mounting it yourself before running "
-"virt-v2v, and passing I<-os /mountpoint> instead, but first of all read the "
-"next S<section ...>"
+"You can avoid needing root here by mounting it yourself before running virt-"
+"v2v, and passing I<-os /mountpoint> instead, but first of all read the next "
+"S<section ...>"
 msgstr ""
 
 #. type: =item
@@ -7628,16 +7629,16 @@ msgstr ""
 #: docs/virt-v2v.pod:1379
 msgid ""
 "RHV-M cannot read files and directories from the Export Storage Domain "
-"unless they have UID:GID 36:36.  You will see VM import problems if the "
-"UID:GID is not correct."
+"unless they have UID:GID 36:36.  You will see VM import problems if the UID:"
+"GID is not correct."
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1383
 msgid ""
 "When you run virt-v2v I<-o rhv> as root, virt-v2v attempts to create files "
-"and directories with the correct ownership.  If you run virt-v2v as "
-"non-root, it will probably still work, but you will need to manually change "
+"and directories with the correct ownership.  If you run virt-v2v as non-"
+"root, it will probably still work, but you will need to manually change "
 "ownership after virt-v2v has finished."
 msgstr ""
 
@@ -7758,8 +7759,8 @@ msgstr ""
 msgid ""
 "In that case it is assumed that a third-party tool has created the target VM "
 "in the supported KVM-based hypervisor based on the source VM configuration "
-"and contents, but using virtual devices more appropriate for KVM "
-"(e.g. virtio storage and network, etc.)."
+"and contents, but using virtual devices more appropriate for KVM (e.g. "
+"virtio storage and network, etc.)."
 msgstr ""
 
 #. type: textblock
@@ -7780,8 +7781,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1467
 msgid ""
-"Virt-v2v will analyze the configuration of C<converted_vm> in the "
-"C<qemu:///system> libvirt instance, and apply various fixups to the guest OS "
+"Virt-v2v will analyze the configuration of C<converted_vm> in the C<qemu:///"
+"system> libvirt instance, and apply various fixups to the guest OS "
 "configuration to make it match the VM configuration.  This may include "
 "installing virtio drivers, configuring the bootloader, the mountpoints, the "
 "network interfaces, and so on."
@@ -8042,8 +8043,7 @@ msgstr ""
 #: docs/virt-v2v.pod:1609
 msgid ""
 "This is where virtio drivers for Windows are searched for.  It can be a "
-"directory I<or> point to F<virtio-win.iso> (CD ROM image containing "
-"drivers)."
+"directory I<or> point to F<virtio-win.iso> (CD ROM image containing drivers)."
 msgstr ""
 
 #. type: textblock
@@ -8077,7 +8077,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1633
-msgid "For other environment variables, see L<guestfs(3)/ENVIRONMENT VARIABLES>."
+msgid ""
+"For other environment variables, see L<guestfs(3)/ENVIRONMENT VARIABLES>."
 msgstr ""
 
 #. type: =head1
@@ -8094,9 +8095,9 @@ msgstr ""
 #: docs/virt-v2v.pod:1641
 msgid ""
 "There are some special cases where virt-v2v cannot directly access the "
-"remote hypervisor.  In that case you have to use "
-"L<virt-v2v-copy-to-local(1)> to make a local copy of the guest first, "
-"followed by running C<virt-v2v -i libvirtxml> to perform the conversion."
+"remote hypervisor.  In that case you have to use L<virt-v2v-copy-to-"
+"local(1)> to make a local copy of the guest first, followed by running "
+"C<virt-v2v -i libvirtxml> to perform the conversion."
 msgstr ""
 
 #. type: =item
@@ -8127,7 +8128,9 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1661
-msgid "L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-rhev/#content>"
+msgid ""
+"L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-"
+"rhev/#content>"
 msgstr ""
 
 #. type: textblock
@@ -8136,9 +8139,9 @@ msgid ""
 "L<virt-p2v(1)>, L<virt-customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, "
 "L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<guestfs(3)>, L<guestfish(1)>, "
 "L<qemu-img(1)>, L<virt-v2v-copy-to-local(1)>, L<virt-v2v-test-harness(1)>, "
-"L<engine-image-uploader(8)>, "
-"L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-ovirt.git>, "
-"L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/>."
+"L<engine-image-uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?"
+"p=import-to-ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://"
+"libguestfs.org/>."
 msgstr ""
 
 #. type: textblock
@@ -8221,9 +8224,9 @@ msgstr ""
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:27
 msgid ""
-"It acts as a test harness, taking a test case, running virt-v2v on it "
-"(non-destructively), then test-booting the result.  It can ensure that the "
-"test case converts successfully, boots successfully, and reaches a milestone "
+"It acts as a test harness, taking a test case, running virt-v2v on it (non-"
+"destructively), then test-booting the result.  It can ensure that the test "
+"case converts successfully, boots successfully, and reaches a milestone "
 "(such as a particular screenshot).  It can also test that the conversion "
 "created, modified or deleted the expected files from within the guest."
 msgstr ""
@@ -8246,18 +8249,16 @@ msgstr ""
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:42
 msgid ""
-"The freely redistributable test cases can be downloaded from: "
-"L<http://git.annexia.org/?p=virt-v2v-test-cases-free.git> I<B<not available "
-"yet>>"
+"The freely redistributable test cases can be downloaded from: L<http://git."
+"annexia.org/?p=virt-v2v-test-cases-free.git> I<B<not available yet>>"
 msgstr ""
 
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:46
 msgid ""
-"The proprietary test cases are available at "
-"L<http://git.annexia.org/?p=virt-v2v-test-cases-nonfree.git> This I<does "
-"not> contain the proprietary images themselves, which are not made available "
-"to the public for licensing reasons."
+"The proprietary test cases are available at L<http://git.annexia.org/?p=virt-"
+"v2v-test-cases-nonfree.git> This I<does not> contain the proprietary images "
+"themselves, which are not made available to the public for licensing reasons."
 msgstr ""
 
 #. type: textblock
@@ -8372,8 +8373,7 @@ msgstr ""
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:99
 msgid ""
-"Using C<make check> picks up whatever C<virt-v2v> binary is on your "
-"C<$PATH>."
+"Using C<make check> picks up whatever C<virt-v2v> binary is on your C<$PATH>."
 msgstr ""
 
 #. type: textblock
@@ -8668,7 +8668,8 @@ msgstr ""
 
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:256
-msgid "The findlib META file allowing you to use the library from L<ocamlfind(1)>."
+msgid ""
+"The findlib META file allowing you to use the library from L<ocamlfind(1)>."
 msgstr ""
 
 #. type: textblock

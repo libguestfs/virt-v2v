@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.3\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-07-14 13:52+0100\n"
+"POT-Creation-Date: 2023-11-02 11:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -144,8 +144,8 @@ msgstr ""
 msgid "%s: warning: %s"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:248
-#: common/mlcustomize/customize_cmdline.ml:351
+#. common/mlcustomize/customize_cmdline.ml:268
+#: common/mlcustomize/customize_cmdline.ml:371
 msgid "'CMD+ARGS'"
 msgstr ""
 
@@ -390,19 +390,19 @@ msgid ""
 "3.7."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:289
+#: common/mlcustomize/customize_cmdline.ml:309
 msgid "Add package(s) to install"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:260
+#: common/mlcustomize/customize_cmdline.ml:280
 msgid "Add package(s) to install at first boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:176
+#: common/mlcustomize/customize_cmdline.ml:185
 msgid "Append line(s) to the file"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:369
+#: common/mlcustomize/customize_cmdline.ml:389
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
@@ -410,11 +410,15 @@ msgstr ""
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:187
+#: common/mlcustomize/customize_cmdline.ml:207
+msgid "Change the owner user and group ID of a file or directory"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:196
 msgid "Change the permissions of a file"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:490
+#: common/mlcustomize/customize_cmdline.ml:521
 msgid "Compatibility option doing nothing"
 msgstr ""
 
@@ -422,11 +426,15 @@ msgstr ""
 msgid "Compress output file (-of qcow2 only)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:209
+#: common/mlcustomize/customize_cmdline.ml:229
 msgid "Copy files in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:220
+#: common/mlcustomize/customize_cmdline.ml:430
+msgid "Copy local files or directories from a tarball into image"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:240
 msgid "Copy local files or directories into image"
 msgstr ""
 
@@ -434,11 +442,11 @@ msgstr ""
 msgid "Copying disk %d/%d"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:306
+#: common/mlcustomize/customize_cmdline.ml:326
 msgid "Create a directory"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:300
+#: common/mlcustomize/customize_cmdline.ml:320
 msgid "Create symbolic links"
 msgstr ""
 
@@ -446,15 +454,15 @@ msgstr ""
 msgid "Creating output metadata"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:500
+#: common/mlcustomize/customize_cmdline.ml:531
 msgid "Credentials for subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:305
+#: common/mlcustomize/customize_cmdline.ml:325
 msgid "DIR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:226
+#: common/mlcustomize/customize_cmdline.ml:246
 msgid "Delete a file or directory"
 msgstr ""
 
@@ -466,7 +474,7 @@ msgstr ""
 msgid "Display version and exit"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:484
+#: common/mlcustomize/customize_cmdline.ml:515
 msgid "Do not relabel files with correct SELinux labels"
 msgstr ""
 
@@ -478,7 +486,7 @@ msgstr ""
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:237
+#: common/mlcustomize/customize_cmdline.ml:257
 msgid "Edit file using Perl expression"
 msgstr ""
 
@@ -494,29 +502,29 @@ msgstr ""
 msgid "Export Storage Domain"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:404
-#. common/mlcustomize/customize_cmdline.ml:357
-#: common/mlcustomize/customize_cmdline.ml:422
+#. common/mlcustomize/customize_cmdline.ml:441
+#. common/mlcustomize/customize_cmdline.ml:377
+#: common/mlcustomize/customize_cmdline.ml:447
 msgid "FILE"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:457
+#: common/mlcustomize/customize_cmdline.ml:488
 msgid "FILE:CONTENT"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:446
+#: common/mlcustomize/customize_cmdline.ml:477
 msgid "FILE:DEST"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:232
+#: common/mlcustomize/customize_cmdline.ml:252
 msgid "FILE:EXPR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:171
+#: common/mlcustomize/customize_cmdline.ml:180
 msgid "FILE:LINE"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:193
+#: common/mlcustomize/customize_cmdline.ml:213
 msgid "FILENAME"
 msgstr ""
 
@@ -524,7 +532,7 @@ msgstr ""
 msgid "Finishing off"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:265
+#: common/mlcustomize/customize_cmdline.ml:285
 msgid "HOSTNAME"
 msgstr ""
 
@@ -544,15 +552,15 @@ msgstr ""
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:399
+#: common/mlcustomize/customize_cmdline.ml:419
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:272
+#: common/mlcustomize/customize_cmdline.ml:292
 msgid "Inject the QEMU Guest Agent into a Windows guest"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:278
+#: common/mlcustomize/customize_cmdline.ml:298
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
@@ -587,7 +595,7 @@ msgstr ""
 msgid "Input transport"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:215
+#: common/mlcustomize/customize_cmdline.ml:235
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
@@ -595,8 +603,8 @@ msgstr ""
 msgid "Libvirt URI"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:271
-#: common/mlcustomize/customize_cmdline.ml:277
+#. common/mlcustomize/customize_cmdline.ml:291
+#: common/mlcustomize/customize_cmdline.ml:297
 msgid "METHOD"
 msgstr ""
 
@@ -616,7 +624,7 @@ msgstr ""
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:317
+#: common/mlcustomize/customize_cmdline.ml:337
 msgid "Move files in disk image"
 msgstr ""
 
@@ -712,18 +720,18 @@ msgid ""
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:225
-#: common/mlcustomize/customize_cmdline.ml:410
+#. common/mlcustomize/customize_cmdline.ml:245
+#: common/mlcustomize/customize_cmdline.ml:453
 msgid "PATH"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:182
+#: common/mlcustomize/customize_cmdline.ml:191
 msgid "PERMISSIONS:FILE"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:284
-#. common/mlcustomize/customize_cmdline.ml:255
-#: common/mlcustomize/customize_cmdline.ml:429
+#. common/mlcustomize/customize_cmdline.ml:304
+#. common/mlcustomize/customize_cmdline.ml:275
+#: common/mlcustomize/customize_cmdline.ml:460
 msgid "PKG,PKG.."
 msgstr ""
 
@@ -739,7 +747,7 @@ msgstr ""
 msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:198
+#: common/mlcustomize/customize_cmdline.ml:218
 msgid "Read customize commands from file"
 msgstr ""
 
@@ -747,15 +755,15 @@ msgstr ""
 msgid "Read passphrases from stdin"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:411
+#: common/mlcustomize/customize_cmdline.ml:454
 msgid "Recursively truncate all files in directory"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:375
+#: common/mlcustomize/customize_cmdline.ml:395
 msgid "Register using subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:381
+#: common/mlcustomize/customize_cmdline.ml:401
 msgid "Remove all the subscriptions"
 msgstr ""
 
@@ -763,40 +771,40 @@ msgstr ""
 msgid "Rename guest when converting"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:249
+#: common/mlcustomize/customize_cmdline.ml:269
 msgid "Run command at first guest boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:352
+#: common/mlcustomize/customize_cmdline.ml:372
 msgid "Run command in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:243
+#: common/mlcustomize/customize_cmdline.ml:263
 msgid "Run script at first guest boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:346
+#: common/mlcustomize/customize_cmdline.ml:366
 msgid "Run script in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:423
+#: common/mlcustomize/customize_cmdline.ml:442
 msgid "Run touch on a file"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:242
-#: common/mlcustomize/customize_cmdline.ml:345
+#. common/mlcustomize/customize_cmdline.ml:262
+#: common/mlcustomize/customize_cmdline.ml:365
 msgid "SCRIPT"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:364
-#. common/mlcustomize/customize_cmdline.ml:335
+#. common/mlcustomize/customize_cmdline.ml:384
+#. common/mlcustomize/customize_cmdline.ml:355
 #: common/mltools/tools_utils.ml:422
-#: common/mlcustomize/customize_cmdline.ml:496
+#: common/mlcustomize/customize_cmdline.ml:527
 msgid "SELECTOR"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:204
-#: common/mlcustomize/customize_cmdline.ml:312
+#. common/mlcustomize/customize_cmdline.ml:224
+#: common/mlcustomize/customize_cmdline.ml:332
 msgid "SOURCE:DEST"
 msgstr ""
 
@@ -860,11 +868,11 @@ msgstr ""
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:358
+#: common/mlcustomize/customize_cmdline.ml:378
 msgid "Scrub a file"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:468
+#: common/mlcustomize/customize_cmdline.ml:499
 msgid "Scrub build log file"
 msgstr ""
 
@@ -904,7 +912,7 @@ msgstr ""
 msgid "Set output storage location"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:478
+#: common/mlcustomize/customize_cmdline.ml:509
 msgid "Set password crypto"
 msgstr ""
 
@@ -912,15 +920,15 @@ msgstr ""
 msgid "Set program name"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:340
+#: common/mlcustomize/customize_cmdline.ml:360
 msgid "Set root password"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:417
+#: common/mlcustomize/customize_cmdline.ml:436
 msgid "Set the default timezone"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:266
+#: common/mlcustomize/customize_cmdline.ml:286
 msgid "Set the hostname"
 msgstr ""
 
@@ -928,7 +936,7 @@ msgstr ""
 msgid "Set the output filename"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:329
+#: common/mlcustomize/customize_cmdline.ml:349
 msgid "Set user password"
 msgstr ""
 
@@ -948,11 +956,15 @@ msgstr ""
 msgid "Specify a LUKS key"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:295
+#: common/mlcustomize/customize_cmdline.ml:425
+msgid "TARFILE:REMOTEDIR"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:315
 msgid "TARGET:LINK[:LINK..]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:416
+#: common/mlcustomize/customize_cmdline.ml:435
 msgid "TIMEZONE"
 msgstr ""
 
@@ -961,13 +973,13 @@ msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
 
-#: output/output_qemu.ml:229
+#: output/output_qemu.ml:231
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
 
-#: output/output_qemu.ml:250
+#: output/output_qemu.ml:252
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
@@ -988,31 +1000,35 @@ msgid ""
 "\"NOTES\"."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:405
+#: common/mlcustomize/customize_cmdline.ml:448
 msgid "Truncate a file to zero size"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:323
+#: common/mlcustomize/customize_cmdline.ml:202
+msgid "UID:GID:PATH"
+msgstr ""
+
+#: common/mlcustomize/customize_cmdline.ml:343
 msgid "USER:SELECTOR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:393
+#: common/mlcustomize/customize_cmdline.ml:413
 msgid "USER[:SELECTOR]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:434
+#: common/mlcustomize/customize_cmdline.ml:465
 msgid "Uninstall package(s)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:387
+#: common/mlcustomize/customize_cmdline.ml:407
 msgid "Unregister using subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:440
+#: common/mlcustomize/customize_cmdline.ml:471
 msgid "Update packages"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:451
+#: common/mlcustomize/customize_cmdline.ml:482
 msgid "Upload local file to destination"
 msgstr ""
 
@@ -1036,7 +1052,7 @@ msgstr ""
 msgid "Wrap log messages even if not tty"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:462
+#: common/mlcustomize/customize_cmdline.ml:493
 msgid "Write file"
 msgstr ""
 
@@ -1142,11 +1158,11 @@ msgid ""
 "v2v (^C) and rerun it as root."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:520
+#: common/mlcustomize/customize_cmdline.ml:551
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:537
+#: common/mlcustomize/customize_cmdline.ml:568
 msgid "command '%s' not valid, see the man page"
 msgstr ""
 
@@ -1488,12 +1504,13 @@ msgstr ""
 msgid "invalid -n/--network parameter"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:436
+#: input/parse_domain_from_vmx.ml:440
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:151
-#: common/mlcustomize/customize_cmdline.ml:162
+#. common/mlcustomize/customize_cmdline.ml:163
+#. common/mlcustomize/customize_cmdline.ml:155
+#: common/mlcustomize/customize_cmdline.ml:171
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
@@ -1561,7 +1578,7 @@ msgstr ""
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:474
+#: common/mlcustomize/customize_cmdline.ml:505
 msgid "md5|sha256|sha512"
 msgstr ""
 
@@ -1729,11 +1746,11 @@ msgstr ""
 msgid "no .ovf file was found in %s"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:391
+#: common/mldrivers/linux_bootloaders.ml:403
 msgid "no bootloader detected"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:396
+#: input/parse_domain_from_vmx.ml:400
 msgid "no displayName key found in VMX file"
 msgstr ""
 
@@ -2098,7 +2115,7 @@ msgstr ""
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:449
+#: input/parse_domain_from_vmx.ml:453
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
@@ -2110,7 +2127,7 @@ msgstr ""
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:458
+#: input/parse_domain_from_vmx.ml:462
 msgid "unknown sound device '%s' ignored"
 msgstr ""
 
