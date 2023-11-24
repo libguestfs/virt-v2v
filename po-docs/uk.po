@@ -24,8 +24,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.1.1\n"
 
 #. type: =end
@@ -2504,10 +2504,10 @@ msgstr "OVA: Створення OVA"
 #: docs/virt-v2v-input-vmware.pod:315
 msgid ""
 "To create an OVA in vSphere, use the \"Export OVF Template\" option (from "
-"the VM context menu, or from the File menu).  Either \"Folder of files"
-"\" (OVF) or \"Single file\" (OVA) will work, but OVA is probably easier to "
-"deal with.  OVA files are really just uncompressed tar files, so you can use "
-"commands like C<tar tf VM.ova> to view their contents."
+"the VM context menu, or from the File menu).  Either \"Folder of "
+"files\" (OVF) or \"Single file\" (OVA) will work, but OVA is probably easier "
+"to deal with.  OVA files are really just uncompressed tar files, so you can "
+"use commands like C<tar tf VM.ova> to view their contents."
 msgstr ""
 "Щоб створити OVA у vSphere, скористайтеся параметром «Export OVF "
 "Template» (з контекстного меню віртуальної машини або з меню «File»). Можна "
@@ -6114,8 +6114,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:40
 msgid ""
-"Virt-v2v normally copies from the input to the output, called \"copying mode"
-"\".  In this case the source guest is always left unchanged.  In-place "
+"Virt-v2v normally copies from the input to the output, called \"copying "
+"mode\".  In this case the source guest is always left unchanged.  In-place "
 "conversion (I<--in-place>) only uses the I<-i*> options and modifies the "
 "source guest in-place.  (See L</In-place conversion> below.)"
 msgstr ""
@@ -9147,8 +9147,8 @@ msgid ""
 "Virt-v2v places potentially large temporary files in C<$LIBGUESTFS_CACHEDIR> "
 "(which is F</var/tmp> if you don't set it).  Using tmpfs is a bad idea."
 msgstr ""
-"Virt-v2v розташовує потенційно великі тимчасові файли у C<"
-"$LIBGUESTFS_CACHEDIR> (тобто у F</var/tmp>, якщо значення цієї змінної "
+"Virt-v2v розташовує потенційно великі тимчасові файли у "
+"C<$LIBGUESTFS_CACHEDIR> (тобто у F</var/tmp>, якщо значення цієї змінної "
 "середовища не встановлено). Використання tmpfs у цьому випадку недоцільне."
 
 #. type: textblock
@@ -9175,11 +9175,11 @@ msgstr "I<-i ova>"
 #. type: textblock
 #: docs/virt-v2v.pod:1222
 msgid ""
-"This temporarily places a full copy of the uncompressed source disks in C<"
-"$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
+"This temporarily places a full copy of the uncompressed source disks in "
+"C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgstr ""
-"Ця команда тимчасово зберігає повну копію нестиснених початкових дисків у C<"
-"$LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
+"Ця команда тимчасово зберігає повну копію нестиснених початкових дисків у "
+"C<$LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
 
 #. type: =item
 #: docs/virt-v2v.pod:1225
@@ -9189,8 +9189,8 @@ msgstr "I<-o glance>"
 #. type: textblock
 #: docs/virt-v2v.pod:1227
 msgid ""
-"This temporarily places a full copy of the output disks in C<"
-"$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
+"This temporarily places a full copy of the output disks in "
+"C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgstr ""
 "Ця команда тимчасово зберігає повну копію виведених у результаті обробки "
 "дисків у C<$LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
@@ -10552,8 +10552,8 @@ msgid ""
 "Using C<make check> picks up whatever C<virt-v2v> binary is on your C<$PATH>."
 msgstr ""
 "Використання C<make check> призведе до використання виконуваного файла "
-"C<virt-v2v>, який зберігається у одному з каталогів зі змінної середовища C<"
-"$PATH>."
+"C<virt-v2v>, який зберігається у одному з каталогів зі змінної середовища "
+"C<$PATH>."
 
 #. type: textblock
 #: test-harness/virt-v2v-test-harness.pod:102
