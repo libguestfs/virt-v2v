@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2023-11-02 11:07+0000\n"
-"PO-Revision-Date: 2023-06-04 03:28+0000\n"
+"PO-Revision-Date: 2023-11-26 21:01+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.2.1\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -1289,7 +1289,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr ""
+msgstr "%1-ის გადმოწერა"
 
 #: lib/networks.ml:84
 msgid ""
@@ -1332,10 +1332,8 @@ msgid "exception: %s"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:455
-#, fuzzy
-#| msgid "%s exited with error status %d"
 msgid "exited with error %d"
-msgstr "%s დასრულდა შეცდომის კოდით %d"
+msgstr "დასრულდა შეცდომით %d"
 
 #: input/input_disk.ml:145
 msgid "expected >= 1 disk name on the command line"
@@ -1559,10 +1557,8 @@ msgid "kernel %s is not under grub tree %s"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
-#, fuzzy
-#| msgid "%s killed by signal %d (%s)"
 msgid "killed by signal %d"
-msgstr "%s მოკვდა სიგნალით %d (%s)"
+msgstr "მოკვდა სიგნალით %d"
 
 #: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
@@ -1934,10 +1930,8 @@ msgid ""
 msgstr ""
 
 #: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
-#, fuzzy
-#| msgid "%s stopped by signal %d (%s)"
 msgid "stopped by signal %d"
-msgstr "%s გაჩერდა სიგნალით %d (%s)"
+msgstr "გაჩერდა სიგნალით %d"
 
 #: output/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
