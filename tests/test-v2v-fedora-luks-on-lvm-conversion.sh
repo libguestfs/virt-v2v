@@ -35,6 +35,13 @@ keys=(--key /dev/Volume-Group/Root:key:FEDORA-Root
 
 $VG virt-v2v --debug-gc -i disk $f -o null "${keys[@]}"
 
+keys=(--key all:key:FEDORA-Root
+      --key all:key:FEDORA-LV1
+      --key all:key:FEDORA-LV2
+      --key all:key:FEDORA-LV3)
+
+$VG virt-v2v --debug-gc -i disk $f -o null "${keys[@]}"
+
 keys=(--key /dev/mapper/Volume--Group-Root:key:FEDORA-Root
       --key /dev/mapper/Volume--Group-Logical--Volume--1:key:FEDORA-LV1
       --key /dev/mapper/Volume--Group-Logical--Volume--2:key:FEDORA-LV2
