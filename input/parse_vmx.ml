@@ -274,6 +274,17 @@ let rec parse_file vmx_filename =
   parse_string str
 
 and parse_string str =
+  (* Reject VMDK files early, since in virt-v2v we have seen users try
+   * to pass a .vmdk file as a .vmx file.  Luckily this is easy to
+   * do with the whole file as a string.
+   *)
+  if String.is_prefix str "VMDK" ||
+     String.is_prefix str "KDMV" ||
+     String.is_prefix str "# Disk DescriptorFile\n" then
+    error "input file is a VMDK (disk image), but we are expecting a \
+           VMX (VMware metadata)";
+
+  (* Split the input into lines. *)
   let lines = String.nsplit "\n" str in
 
   (* I've never seen any VMX file with CR-LF endings, and VMware
