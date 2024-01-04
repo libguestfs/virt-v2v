@@ -20,6 +20,12 @@ Virt-v2v 2.4.0 was released on S<B<XXX XXX 2024>>.
 New I<--block-driver> option which can be used to choose to install
 either virtio-blk or virtio-scsi drivers (Andrey Drobyshev).
 
+The virt-v2v I<--key> option now recognizes LVM names like
+F</dev/mapper/rhel_bootp--73--75--123-root> (Laszlo Ersek).
+
+The I<--key> option also supports a new S<I<--key all:...>> selector
+to try the same key on all devices.
+
 =head2 Feature removed
 
 Support for RHEL 3 conversions has been removed.
