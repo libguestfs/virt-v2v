@@ -1,0 +1,187 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v release notes for 2.4
+
+=head1 DESCRIPTION
+
+These are the release notes for S<B<virt-v2v 2.4>>.
+This describes the major changes since 2.2.
+
+Virt-v2v 2.4.0 was released on S<B<XXX XXX 2024>>.
+
+=begin comment
+
+=head2 Security
+
+=end comment
+
+=head2 New features
+
+New I<--block-driver> option which can be used to choose to install
+either virtio-blk or virtio-scsi drivers (Andrey Drobyshev).
+
+=head2 Feature removed
+
+Support for RHEL 3 conversions has been removed.
+
+=head2 Other fixes
+
+Conversions now set the C<host-model> CPU in the output metadata,
+except where the source hypervisor overrides this.  The exception is
+I<-o qemu> mode which uses I<-cpu host>.  (Thanks Ming Xie, Laszlo
+Ersek, Dr. David Alan Gilbert, Daniel Berrangé)
+
+virt-v2v will now look for bootloader configuration in
+F</boot/grub/grub.cfg> for UEFI guests (Andrey Drobyshev).
+
+Invoke pnputil (if available) to install drivers, fixing some Windows
+conversions (Andrey Drobyshev).
+
+Skip SELinux relabelling if the guest has disabled SELinux (Roman
+Kagan).
+
+Several output modes now generate metadata to indicate whether the
+guest requires the RTC to be set to UTC (Linux) or localtime (most
+Windows).  For example with I<-o libvirt> this generates
+S<E<lt>clock offset="utc|localtime"/E<gt>>.  (Thanks Lee Garrett,
+Laszlo Ersek)
+
+I<-i ova> mode is now less strict about parsing the manifest file,
+which helps when converting some non-conforming OVA files.
+
+Input modes using I<-it ssh> now use the correct quoting (thanks Bill
+Sanders, Laszlo Ersek).
+
+I<-i vmx> mode now rejects VMDK files explicitly, reducing a source of
+user confusion (thanks Ming Xie).
+
+Multiple fixes to I<-o kubevirt> mode.  Also implement I<-oo
+compressed> for this mode.  (Thanks Xiaodai Wang, Ming Xie)
+
+I<-o libvirt> mode now supports Rocky Linux (thanks Ming Xie).
+
+I<-o openstack> documentation for cloud configurations fixed (thanks
+Ming Xie).
+
+I<-o rhv-upload> mode has an improved error when the I<-os> parameter
+is invalid or missing (thanks Junqin Zhou).
+
+=head2 Build changes
+
+Support for OCaml 5, and OCaml E<ge> 4.07 is now the minimum (thanks
+Guillaume Munch-Maccagnoni, Jerry James, Josh Berdine, Jürgen Hötzel,
+Vincent Laviron).
+
+Fix several tests so they can handle the case where the operating
+system does not support btrfs or NTFS, instead of failing (Laszlo
+Ersek).
+
+Fix compatibility issues with libxml2 2.12.
+
+=head2 Internals
+
+Fix an off-by-one error which caused very rare crashes in virt-v2v.
+
+=head2 Bugs fixed
+
+=begin comment
+
+https_proxy= ./bugs-in-changelog.sh v2.2.0..
+
+=end comment
+
+=over 4
+
+=item L<https://bugzilla.redhat.com/2182024>
+
+improve UX when running as root and we can't chown v2v tmpdir or socks
+
+=item L<https://bugzilla.redhat.com/2175703>
+
+virt-v2v failed to inspect RHEL9.2 guest due to kernel-core /
+kernel-modules-core subpackage split
+
+=item L<https://bugzilla.redhat.com/2172075>
+
+Modify virt-v2v-output-openstack man page to add cloud.yaml related
+information
+
+=item L<https://bugzilla.redhat.com/2168506>
+
+RFE: Virt-v2v should recognize partition names like '/dev/mapper/rhel
+boot--73--75--123-root' in related keys option
+
+=item L<https://bugzilla.redhat.com/2168082>
+
+win11/2022 failed to start into OS after converting to local libvirt
+via virt-v2v on AMD EPYC-Milan CPU model host
+
+=item L<https://bugzilla.redhat.com/2166619>
+
+kernel panic when booting into OS with rocky9 guest converted by v2v
+to local libvirt
+
+=item L<https://bugzilla.redhat.com/2166618>
+
+There is virt-v2v: warning: unknown guest operating system: linux
+rocky 9.1 x86_64 when convert rocky guests to local libvirt
+
+=item L<https://bugzilla.redhat.com/2162444>
+
+Enable '--oo compressed' for -o kubevirt
+
+=item L<https://bugzilla.redhat.com/2162332>
+
+-o kubevirt mode must rename guest to comply with KubeVirt
+requirements: metadata.name: Invalid value: "esx8.0-rhel8.8-x86_64":
+a lowercase RFC 1123 subdomain must consist of lower case
+alphanumeric characters, '-' or '.', and must start and end with an a
+
+=item L<https://bugzilla.redhat.com/1986386>
+
+Improve error message when converting to rhv using the wrong data
+domain name which has a specific character
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>.
+
+=head1 AUTHORS
+
+Authors of virt-v2v 2.4:
+
+=begin comment
+
+git shortlog -s v2.2.0..
+
+=end comment
+
+=over 4
+
+=item Andrey Drobyshev
+
+=item Emilio Herrera
+
+=item grimst
+
+=item Jan Kuparinen
+
+=item Laszlo Ersek
+
+=item Pavel Borecki
+
+=item Piotr Drąg
+
+=item Richard W.M. Jones
+
+=item Temuri Doghonadze
+
+=item Yuri Chornoivan
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2024 Red Hat Inc.
