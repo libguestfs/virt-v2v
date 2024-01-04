@@ -172,7 +172,11 @@ git shortlog -s v2.2.0..
 
 =item grimst
 
+=item HATAYAMA Daisuke
+
 =item Jan Kuparinen
+
+=item Jürgen Hötzel
 
 =item Laszlo Ersek
 
@@ -181,6 +185,8 @@ git shortlog -s v2.2.0..
 =item Piotr Drąg
 
 =item Richard W.M. Jones
+
+=item Roman Kagan
 
 =item Temuri Doghonadze
 
