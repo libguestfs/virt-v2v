@@ -7,7 +7,7 @@ virt-v2v-release-notes - virt-v2v release notes for 2.4
 These are the release notes for S<B<virt-v2v 2.4>>.
 This describes the major changes since 2.2.
 
-Virt-v2v 2.4.0 was released on S<B<XXX XXX 2024>>.
+Virt-v2v 2.4.0 was released on S<B<5 January 2024>>.
 
 =begin comment
 
