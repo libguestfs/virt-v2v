@@ -68,7 +68,7 @@ let scp_from_remote_to_temporary uri tmpdir filename =
   let localfile = tmpdir // filename in
 
   let cmd =
-    sprintf "scp -T%s%s %s%s:%s %s"
+    sprintf "scp%s%s %s%s:%s %s"
             (if verbose () then "" else " -q")
             (match port_of_uri uri with
              | None -> ""
