@@ -14,8 +14,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2023-11-02 11:07+0000\n"
-"PO-Revision-Date: 2023-11-26 21:01+0000\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
+"PO-Revision-Date: 2024-01-15 13:36+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Polish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/pl/>\n"
 "Language: pl\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.2.1\n"
+"X-Generator: Weblate 5.3.1\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -735,7 +736,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:245
 #: common/mlcustomize/customize_cmdline.ml:453
 msgid "PATH"
-msgstr ""
+msgstr "ŚCIEŻKA"
 
 #: common/mlcustomize/customize_cmdline.ml:191
 msgid "PERMISSIONS:FILE"
