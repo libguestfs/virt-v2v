@@ -16,7 +16,10 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Wrappers for finding and downloading remote files over ssh. *)
+(** Wrappers for finding and downloading remote files over ssh.
+
+    Internally this uses nbdkit-ssh-plugin (which uses sftp) as
+    that is much more predictable than running external ssh / scp. *)
 
 (** [remote_file_exists password ?port server ?user path]
     checks that [path] exists on the remote server. *)
@@ -25,7 +28,7 @@ val remote_file_exists : password:Nbdkit_ssh.password ->
                          string -> bool
 
 (** [download_file password ?port server ?user path output]
-    uses scp to copy the single remote file at [path] to
+    downloads the single remote file at [path] to
     the local file called [output]. *)
 val download_file : password:Nbdkit_ssh.password ->
                     ?port:string -> server:string -> ?user:string -> string ->
