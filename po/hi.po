@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-11-02 11:07+0000\n"
+"POT-Creation-Date: 2024-01-04 17:06+0000\n"
 "PO-Revision-Date: 2015-02-21 10:49+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hindi (http://www.transifex.com/projects/p/libguestfs/"
@@ -1886,32 +1886,32 @@ msgid ""
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:258
+#: common/mltools/tools_utils.ml:417 common/options/keys.c:263
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:248
+#: common/mltools/tools_utils.ml:409 common/options/keys.c:253
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:226
+#: common/mltools/tools_utils.ml:399 common/options/keys.c:231
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:239
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:244
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:233
+#: common/mltools/tools_utils.ml:401 common/options/keys.c:238
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:256
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:261
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr ""
@@ -2229,11 +2229,11 @@ msgstr ""
 msgid "vmx URI start with ‘ssh://...’"
 msgstr ""
 
-#: input/parse_vmx.ml:302
+#: input/parse_vmx.ml:313
 msgid "vmx parser: cannot parse this line, ignoring: %s"
 msgstr ""
 
-#: input/parse_vmx.ml:335
+#: input/parse_vmx.ml:346
 msgid "vmx parser: duplicate key '%s' ignored"
 msgstr ""
 
@@ -2371,17 +2371,17 @@ msgstr ""
 msgid "%s mounted on %s\n"
 msgstr ""
 
-#: common/options/keys.c:62
+#: common/options/keys.c:63
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr ""
 
-#: common/options/keys.c:144
+#: common/options/keys.c:145
 #, c-format
 msgid "size_t overflow"
 msgstr ""
 
-#: common/options/keys.c:187
+#: common/options/keys.c:192
 #, c-format
 msgid "could not read key from user"
 msgstr ""

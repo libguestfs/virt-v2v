@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2023-11-02 11:07+0000\n"
+"POT-Creation-Date: 2024-01-04 17:06+0000\n"
 "PO-Revision-Date: 2023-06-05 07:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -2308,32 +2308,32 @@ msgstr ""
 "virt-v2v певним чином працюють не так, як належить. Будь ласка, повідомте "
 "про цю ваду, надавши повний діагностичний журнал."
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:258
+#: common/mltools/tools_utils.ml:417 common/options/keys.c:263
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr "вибір «%s»: некоректне значення TYPE"
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:248
+#: common/mltools/tools_utils.ml:409 common/options/keys.c:253
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr "вибір «%s»: пропущено FILENAME або забагато полів"
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:226
+#: common/mltools/tools_utils.ml:399 common/options/keys.c:231
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr "вибір «%s»: пропущено ідентифікатор"
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:239
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:244
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr "вибір «%s»: пропущено KEY_STRING або забагато полів"
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:233
+#: common/mltools/tools_utils.ml:401 common/options/keys.c:238
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr "вибір «%s»: пропущено TYPE"
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:256
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:261
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr "вибір «%s»: забагато полів"
@@ -2744,11 +2744,11 @@ msgstr "пропущено назву віддаленого сервера у �
 msgid "vmx URI start with ‘ssh://...’"
 msgstr "адреса vmx починається з «ssh://...»"
 
-#: input/parse_vmx.ml:302
+#: input/parse_vmx.ml:313
 msgid "vmx parser: cannot parse this line, ignoring: %s"
 msgstr "обробник vmx: не вдалося обробити цей рядок, проігноровано: %s"
 
-#: input/parse_vmx.ml:335
+#: input/parse_vmx.ml:346
 msgid "vmx parser: duplicate key '%s' ignored"
 msgstr "обробник vmx: дублікат ключа «%s» проігноровано"
 
@@ -2937,17 +2937,17 @@ msgstr "Операційна система: %s\n"
 msgid "%s mounted on %s\n"
 msgstr "%s змонтовано до %s\n"
 
-#: common/options/keys.c:62
+#: common/options/keys.c:63
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Введіть ключ або пароль («%s»): "
 
-#: common/options/keys.c:144
+#: common/options/keys.c:145
 #, c-format
 msgid "size_t overflow"
 msgstr "переповнення size_t"
 
-#: common/options/keys.c:187
+#: common/options/keys.c:192
 #, c-format
 msgid "could not read key from user"
 msgstr "не вдалося прочитати ключ з запису користувача"
