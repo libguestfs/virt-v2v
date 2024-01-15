@@ -29,13 +29,13 @@ open Utils
 open Name_from_disk
 
 type vmx_source =
-  | File of string              (* local file or NFS *)
-  | SSH of Xml.uri              (* SSH URI *)
+  | File of string                       (* local file or NFS *)
+  | SSH of Nbdkit_ssh.password * Xml.uri (* SSH URI *)
 
 (* The single filename on the command line is intepreted either as
  * a local file or a remote SSH URI (only if ‘-it ssh’).
  *)
-let vmx_source_of_arg input_transport arg =
+let vmx_source_of_arg input_password input_transport arg =
   match input_transport, arg with
   | None, arg -> File arg
   | Some `SSH, arg ->
@@ -49,7 +49,7 @@ let vmx_source_of_arg input_transport arg =
        error (f_"vmx URI remote server name omitted");
      if uri.Xml.uri_path = None || uri.Xml.uri_path = Some "/" then
        error (f_"vmx URI path component looks incorrect");
-     SSH uri
+     SSH (input_password, uri)
 
 let rec find_disks vmx vmx_source =
   (* Set the s_disk_id field to an incrementing number. *)
@@ -334,7 +334,7 @@ let parse_domain_from_vmx vmx_source =
   let vmx =
     match vmx_source with
     | File filename -> Parse_vmx.parse_file filename
-    | SSH uri ->
+    | SSH (_, uri) ->
        let filename = tmpdir // "source.vmx" in
        Ssh.download_file uri filename;
        Parse_vmx.parse_file filename in
@@ -346,7 +346,7 @@ let parse_domain_from_vmx vmx_source =
        warning (f_"no displayName key found in VMX file");
        match vmx_source with
        | File filename -> name_from_disk filename
-       | SSH uri -> name_from_disk (Ssh.path_of_uri uri) in
+       | SSH (_, uri) -> name_from_disk (Ssh.path_of_uri uri) in
 
   let genid =
     (* See: https://lists.nongnu.org/archive/html/qemu-devel/2018-07/msg02019.html *)

@@ -45,13 +45,17 @@ module VMX = struct
     let vmx_source =
       match args with
       | [arg] ->
+         let input_password =
+           match options.input_password with
+           | None -> Nbdkit_ssh.NoPassword
+           | Some ip -> Nbdkit_ssh.PasswordFile ip in
          let input_transport =
            match options.input_transport with
            | None -> None
            | Some `SSH -> Some `SSH
            | Some `VDDK ->
               error (f_"-i vmx: cannot use -it vddk in this input mode") in
-         vmx_source_of_arg input_transport arg
+         vmx_source_of_arg input_password input_transport arg
       | _ ->
          error (f_"-i vmx: expecting a VMX file or ssh:// URI") in
 
@@ -73,7 +77,7 @@ module VMX = struct
             On_exit.kill pid
         ) filenames
 
-     | SSH uri ->
+     | SSH (password, uri) ->
         List.iteri (
           fun i filename ->
             let socket = sprintf "%s/in%d" dir i in
@@ -95,11 +99,6 @@ module VMX = struct
             let server = Ssh.server_of_uri uri in
             let port = Option.map string_of_int (Ssh.port_of_uri uri) in
             let user = uri.Xml.uri_user in
-            let password =
-              match options.input_password with
-              | None -> Nbdkit_ssh.NoPassword
-              | Some ip -> Nbdkit_ssh.PasswordFile ip in
-
             let cor = dir // "convert" in
             let bandwidth = options.bandwidth in
             let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
