@@ -335,8 +335,8 @@ let parse_domain_from_vmx vmx_source =
     match vmx_source with
     | File filename -> Parse_vmx.parse_file filename
     | SSH uri ->
-       let filename = Ssh.scp_from_remote_to_temporary uri tmpdir
-                        "source.vmx" in
+       let filename = tmpdir // "source.vmx" in
+       Ssh.download_file uri filename;
        Parse_vmx.parse_file filename in
 
   let name =

@@ -32,12 +32,8 @@ let server_of_uri { Xml.uri_server } =
 let path_of_uri { Xml.uri_path } =
   match uri_path with None -> assert false | Some p -> p
 
-(* 'scp' a remote file into a temporary local file, returning the path
- * of the temporary local file.
- *)
-let scp_from_remote_to_temporary uri tmpdir filename =
-  let localfile = tmpdir // filename in
-
+(* 'scp' a remote file into a local file. *)
+let download_file uri output =
   let cmd =
     sprintf "scp%s%s %s%s:%s %s"
             (if verbose () then "" else " -q")
@@ -49,13 +45,12 @@ let scp_from_remote_to_temporary uri tmpdir filename =
              | Some user -> quote user ^ "@")
             (quote (server_of_uri uri))
             (quote (path_of_uri uri))
-            (quote localfile) in
+            (quote output) in
   if verbose () then
     eprintf "%s\n%!" cmd;
   if Sys.command cmd <> 0 then
     error (f_"could not copy the VMX file from the remote server, \
-              see earlier error messages");
-  localfile
+              see earlier error messages")
 
 (* Test if [path] exists on the remote server. *)
 let remote_file_exists uri path =

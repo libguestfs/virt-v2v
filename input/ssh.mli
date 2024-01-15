@@ -27,8 +27,7 @@ val port_of_uri : Xml.uri -> int option
     is ignored). *)
 val remote_file_exists : Xml.uri -> string -> bool
 
-(** [scp_from_remote_to_temporary ssh_uri tmpdir filename]
+(** [download_file ssh_uri output]
     uses scp to copy the single remote file at [ssh_uri] to
-    the local file called [tmpdir/filename].  It returns the
-    final path [tmpdir/filename]. *)
-val scp_from_remote_to_temporary : Xml.uri -> string -> string -> string
+    the local file called [output]. *)
+val download_file : Xml.uri -> string -> unit
