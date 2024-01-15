@@ -44,7 +44,8 @@ let error_unless_nbdkit_min_version config =
   error_unless_nbdkit_version_ge config nbdkit_min_version
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
-let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
+let create_ssh ?bandwidth ?cor ?(retry=true)
+      ~password ?port ~server ?user path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
 
@@ -67,7 +68,8 @@ let create_ssh ?bandwidth ?cor ~password ?port ~server ?user path =
   (* Retry filter (if it exists) can be used to get around brief
    * interruptions in service.  It must be closest to the plugin.
    *)
-  Nbdkit.add_filter_if_available cmd "retry";
+  if retry then
+    Nbdkit.add_filter_if_available cmd "retry";
 
   (* Caching extents speeds up qemu-img, especially its consecutive
    * block_status requests with req_one=1.

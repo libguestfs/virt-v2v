@@ -25,6 +25,7 @@ type password =
 
 val create_ssh : ?bandwidth:Types.bandwidth ->
                  ?cor:string ->
+                 ?retry:bool ->
                  password:password ->
                  ?port:string ->
                  server:string ->
