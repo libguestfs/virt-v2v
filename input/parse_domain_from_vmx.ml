@@ -51,61 +51,6 @@ let vmx_source_of_arg input_transport arg =
        error (f_"vmx URI path component looks incorrect");
      SSH uri
 
-(* Return various fields from the URI.  The checks in vmx_source_of_arg
- * should ensure that none of these assertions fail.
- *)
-let port_of_uri { Xml.uri_port } =
-  match uri_port with i when i <= 0 -> None | i -> Some i
-let server_of_uri { Xml.uri_server } =
-  match uri_server with None -> assert false | Some s -> s
-let path_of_uri { Xml.uri_path } =
-  match uri_path with None -> assert false | Some p -> p
-
-(* 'scp' a remote file into a temporary local file, returning the path
- * of the temporary local file.
- *)
-let scp_from_remote_to_temporary uri tmpdir filename =
-  let localfile = tmpdir // filename in
-
-  let cmd =
-    sprintf "scp%s%s %s%s:%s %s"
-            (if verbose () then "" else " -q")
-            (match port_of_uri uri with
-             | None -> ""
-             | Some port -> sprintf " -P %d" port)
-            (match uri.Xml.uri_user with
-             | None -> ""
-             | Some user -> quote user ^ "@")
-            (quote (server_of_uri uri))
-            (quote (path_of_uri uri))
-            (quote localfile) in
-  if verbose () then
-    eprintf "%s\n%!" cmd;
-  if Sys.command cmd <> 0 then
-    error (f_"could not copy the VMX file from the remote server, \
-              see earlier error messages");
-  localfile
-
-(* Test if [path] exists on the remote server. *)
-let remote_file_exists uri path =
-  let cmd =
-    sprintf "ssh%s %s%s test -f %s"
-            (match port_of_uri uri with
-             | None -> ""
-             | Some port -> sprintf " -p %d" port)
-            (match uri.Xml.uri_user with
-             | None -> ""
-             | Some user -> quote user ^ "@")
-            (quote (server_of_uri uri))
-            (* Double quoting is necessary for 'ssh', first to protect
-             * from the local shell, second to protect from the remote
-             * shell.  https://github.com/libguestfs/virt-v2v/issues/35#issuecomment-1741730963
-             *)
-            (quote (quote path)) in
-  if verbose () then
-    eprintf "%s\n%!" cmd;
-  Sys.command cmd = 0
-
 let rec find_disks vmx vmx_source =
   (* Set the s_disk_id field to an incrementing number. *)
   List.mapi
@@ -390,7 +335,8 @@ let parse_domain_from_vmx vmx_source =
     match vmx_source with
     | File filename -> Parse_vmx.parse_file filename
     | SSH uri ->
-       let filename = scp_from_remote_to_temporary uri tmpdir "source.vmx" in
+       let filename = Ssh.scp_from_remote_to_temporary uri tmpdir
+                        "source.vmx" in
        Parse_vmx.parse_file filename in
 
   let name =
@@ -400,7 +346,7 @@ let parse_domain_from_vmx vmx_source =
        warning (f_"no displayName key found in VMX file");
        match vmx_source with
        | File filename -> name_from_disk filename
-       | SSH uri -> name_from_disk (path_of_uri uri) in
+       | SSH uri -> name_from_disk (Ssh.path_of_uri uri) in
 
   let genid =
     (* See: https://lists.nongnu.org/archive/html/qemu-devel/2018-07/msg02019.html *)

@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2017-2021 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,19 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-type vmx_source =
-  | File of string              (** local file or NFS *)
-  | SSH of Xml.uri              (** SSH URI *)
+(** Wrappers for finding and downloading remote files over ssh. *)
 
-val vmx_source_of_arg : [`SSH] option -> string -> vmx_source
-val parse_domain_from_vmx : vmx_source -> Types.source * string list
+val path_of_uri : Xml.uri -> string
+val server_of_uri : Xml.uri -> string
+val port_of_uri : Xml.uri -> int option
+
+(** [remote_file_exists ssh_uri path] checks that [path] exists
+    on the remote server [ssh_uri] (note any path inside [ssh_uri]
+    is ignored). *)
+val remote_file_exists : Xml.uri -> string -> bool
+
+(** [scp_from_remote_to_temporary ssh_uri tmpdir filename]
+    uses scp to copy the single remote file at [ssh_uri] to
+    the local file called [tmpdir/filename].  It returns the
+    final path [tmpdir/filename]. *)
+val scp_from_remote_to_temporary : Xml.uri -> string -> string -> string

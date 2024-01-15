@@ -39,6 +39,7 @@ SOURCES_MLI = \
 	parse_domain_from_vmx.mli \
 	parse_libvirt_xml.mli \
 	parse_vmx.mli \
+	ssh.mli \
 	vCenter.mli
 
 SOURCES_ML = \
@@ -46,11 +47,12 @@ SOURCES_ML = \
 	parse_libvirt_xml.ml \
 	OVF.ml \
 	OVA.ml \
-	parse_vmx.ml \
-	parse_domain_from_vmx.ml \
 	nbdkit_curl.ml \
 	nbdkit_ssh.ml \
 	nbdkit_vddk.ml \
+	ssh.ml \
+	parse_vmx.ml \
+	parse_domain_from_vmx.ml \
 	vCenter.ml \
 	input.ml \
 	input_disk.ml \
