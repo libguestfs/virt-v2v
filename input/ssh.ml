@@ -22,29 +22,19 @@ open Common_gettext.Gettext
 
 open Printf
 
-(* Return various fields from the URI.  The checks in vmx_source_of_arg
- * should ensure that none of these assertions fail.
- *)
-let port_of_uri { Xml.uri_port } =
-  match uri_port with i when i <= 0 -> None | i -> Some i
-let server_of_uri { Xml.uri_server } =
-  match uri_server with None -> assert false | Some s -> s
-let path_of_uri { Xml.uri_path } =
-  match uri_path with None -> assert false | Some p -> p
-
 (* 'scp' a remote file into a local file. *)
-let download_file uri output =
+let download_file ~password:_ ?port ~server ?user path output =
   let cmd =
     sprintf "scp%s%s %s%s:%s %s"
             (if verbose () then "" else " -q")
-            (match port_of_uri uri with
+            (match port with
              | None -> ""
-             | Some port -> sprintf " -P %d" port)
-            (match uri.Xml.uri_user with
+             | Some port -> sprintf " -P %s" port)
+            (match user with
              | None -> ""
              | Some user -> quote user ^ "@")
-            (quote (server_of_uri uri))
-            (quote (path_of_uri uri))
+            (quote server)
+            (quote path)
             (quote output) in
   if verbose () then
     eprintf "%s\n%!" cmd;
@@ -53,16 +43,16 @@ let download_file uri output =
               see earlier error messages")
 
 (* Test if [path] exists on the remote server. *)
-let remote_file_exists uri path =
+let remote_file_exists ~password:_ ?port ~server ?user path =
   let cmd =
     sprintf "ssh%s %s%s test -f %s"
-            (match port_of_uri uri with
+            (match port with
              | None -> ""
-             | Some port -> sprintf " -p %d" port)
-            (match uri.Xml.uri_user with
+             | Some port -> sprintf " -p %s" port)
+            (match user with
              | None -> ""
              | Some user -> quote user ^ "@")
-            (quote (server_of_uri uri))
+            (quote server)
             (* Double quoting is necessary for 'ssh', first to protect
              * from the local shell, second to protect from the remote
              * shell.  https://github.com/libguestfs/virt-v2v/issues/35#issuecomment-1741730963

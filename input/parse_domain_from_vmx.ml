@@ -334,9 +334,22 @@ let parse_domain_from_vmx vmx_source =
   let vmx =
     match vmx_source with
     | File filename -> Parse_vmx.parse_file filename
-    | SSH (_, uri) ->
+    | SSH (password, uri) ->
+       let server =
+         match uri.uri_server with
+         | None -> assert false (* checked by vmx_source_of_arg *)
+         | Some server -> server in
+       let port =
+         match uri.uri_port with
+         | i when i <= 0 -> None
+         | i -> Some (string_of_int i) in
+       let user = uri.Xml.uri_user in
+       let path =
+         match uri.uri_path with
+         | None -> assert false (* checked by vmx_source_of_arg *)
+         | Some path -> path in
        let filename = tmpdir // "source.vmx" in
-       Ssh.download_file uri filename;
+       Ssh.download_file ~password ?port ~server ?user path filename;
        Parse_vmx.parse_file filename in
 
   let name =
@@ -346,7 +359,10 @@ let parse_domain_from_vmx vmx_source =
        warning (f_"no displayName key found in VMX file");
        match vmx_source with
        | File filename -> name_from_disk filename
-       | SSH (_, uri) -> name_from_disk (Ssh.path_of_uri uri) in
+       | SSH (_, uri) ->
+          match uri.uri_path with
+          | None -> assert false (* checked by vmx_source_of_arg *)
+          | Some path -> name_from_disk path in
 
   let genid =
     (* See: https://lists.nongnu.org/archive/html/qemu-devel/2018-07/msg02019.html *)

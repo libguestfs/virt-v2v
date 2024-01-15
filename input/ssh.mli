@@ -18,16 +18,15 @@
 
 (** Wrappers for finding and downloading remote files over ssh. *)
 
-val path_of_uri : Xml.uri -> string
-val server_of_uri : Xml.uri -> string
-val port_of_uri : Xml.uri -> int option
+(** [remote_file_exists password ?port server ?user path]
+    checks that [path] exists on the remote server. *)
+val remote_file_exists : password:Nbdkit_ssh.password ->
+                         ?port:string -> server:string -> ?user:string ->
+                         string -> bool
 
-(** [remote_file_exists ssh_uri path] checks that [path] exists
-    on the remote server [ssh_uri] (note any path inside [ssh_uri]
-    is ignored). *)
-val remote_file_exists : Xml.uri -> string -> bool
-
-(** [download_file ssh_uri output]
-    uses scp to copy the single remote file at [ssh_uri] to
+(** [download_file password ?port server ?user path output]
+    uses scp to copy the single remote file at [path] to
     the local file called [output]. *)
-val download_file : Xml.uri -> string -> unit
+val download_file : password:Nbdkit_ssh.password ->
+                    ?port:string -> server:string -> ?user:string -> string ->
+                    string -> unit

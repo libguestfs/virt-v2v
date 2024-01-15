@@ -83,22 +83,33 @@ module VMX = struct
             let socket = sprintf "%s/in%d" dir i in
             On_exit.unlink socket;
 
-            let vmx_path = Ssh.path_of_uri uri in
+            let vmx_path =
+              match uri.uri_path with
+              | None -> assert false (* checked by vmx_source_of_arg *)
+              | Some path -> path in
             let abs_path = absolute_path_from_other_file vmx_path filename in
             let flat_vmdk = PCRE.replace (PCRE.compile "\\.vmdk$")
                               "-flat.vmdk" abs_path in
 
+            let server =
+              match uri.uri_server with
+              | None -> assert false (* checked by vmx_source_of_arg *)
+              | Some server -> server in
+            let port =
+              match uri.uri_port with
+              | i when i <= 0 -> None
+              | i -> Some (string_of_int i) in
+            let user = uri.Xml.uri_user in
+
             (* RHBZ#1774386 *)
-            if not (Ssh.remote_file_exists uri flat_vmdk) then
+            if not (Ssh.remote_file_exists ~password ?port ~server ?user
+                      flat_vmdk) then
               error (f_"This transport does not support guests with snapshots. \
                         Either collapse the snapshots for this guest and try \
                         the conversion again, or use one of the alternate \
                         conversion methods described in \
                         virt-v2v-input-vmware(1) section \"NOTES\".");
 
-            let server = Ssh.server_of_uri uri in
-            let port = Option.map string_of_int (Ssh.port_of_uri uri) in
-            let user = uri.Xml.uri_user in
             let cor = dir // "convert" in
             let bandwidth = options.bandwidth in
             let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
