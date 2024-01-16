@@ -29,8 +29,8 @@ open Utils
 open Name_from_disk
 
 type vmx_source =
-  | File of string                       (* local file or NFS *)
-  | SSH of Nbdkit_ssh.password * Xml.uri (* SSH URI *)
+  | File of string              (* local file or NFS *)
+  | SSH of Nbdkit_ssh.password option * Xml.uri (* SSH URI *)
 
 (* The single filename on the command line is intepreted either as
  * a local file or a remote SSH URI (only if ‘-it ssh’).
@@ -349,7 +349,7 @@ let parse_domain_from_vmx vmx_source =
          | None -> assert false (* checked by vmx_source_of_arg *)
          | Some path -> path in
        let filename = tmpdir // "source.vmx" in
-       Ssh.download_file ~password ?port ~server ?user path filename;
+       Ssh.download_file ?password ?port ~server ?user path filename;
        Parse_vmx.parse_file filename in
 
   let name =

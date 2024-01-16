@@ -17,9 +17,9 @@
  *)
 
 type vmx_source =
-  | File of string                       (** local file or NFS *)
-  | SSH of Nbdkit_ssh.password * Xml.uri (** SSH URI *)
+  | File of string              (** local file or NFS *)
+  | SSH of Nbdkit_ssh.password option * Xml.uri (** SSH URI *)
 
-val vmx_source_of_arg : Nbdkit_ssh.password -> [`SSH] option -> string ->
-                        vmx_source
+val vmx_source_of_arg : Nbdkit_ssh.password option -> [`SSH] option ->
+                        string -> vmx_source
 val parse_domain_from_vmx : vmx_source -> Types.source * string list

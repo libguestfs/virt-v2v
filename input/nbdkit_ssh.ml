@@ -28,9 +28,8 @@ open Utils
 let nbdkit_min_version = (1, 12, 0)
 
 type password =
-| NoPassword                    (* no password option at all *)
-| AskForPassword                (* password=- *)
-| PasswordFile of string        (* password=+file *)
+  | AskForPassword
+  | PasswordFile of string
 
 let error_unless_nbdkit_version_ge config min_version =
   let version = Nbdkit.version config in
@@ -45,7 +44,7 @@ let error_unless_nbdkit_min_version config =
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
 let create_ssh ?bandwidth ?cor ?(retry=true)
-      ~password ?port ~server ?user path =
+      ?password ?port ~server ?user path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
 
@@ -108,8 +107,8 @@ let create_ssh ?bandwidth ?cor ?(retry=true)
 
   (* Handle the password parameter specially. *)
   (match password with
-   | NoPassword -> ()
-   | AskForPassword ->
+   | None -> ()
+   | Some AskForPassword ->
       (* Because we will start nbdkit in the background and then wait
        * for 30 seconds for it to start up, we cannot use the
        * password=- feature of nbdkit to read the password
@@ -130,7 +129,7 @@ let create_ssh ?bandwidth ?cor ?(retry=true)
       On_exit.unlink password_file;
       with_open_out password_file (fun chan -> output_string chan password);
       Nbdkit.add_arg cmd "password" ("+" ^ password_file)
-   | PasswordFile password_file ->
+   | Some (PasswordFile password_file) ->
       Nbdkit.add_arg cmd "password" ("+" ^ password_file)
   );
 

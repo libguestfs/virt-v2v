@@ -21,15 +21,15 @@
     Internally this uses nbdkit-ssh-plugin (which uses sftp) as
     that is much more predictable than running external ssh / scp. *)
 
-(** [remote_file_exists password ?port server ?user path]
+(** [remote_file_exists ?password ?port server ?user path]
     checks that [path] exists on the remote server. *)
-val remote_file_exists : password:Nbdkit_ssh.password ->
+val remote_file_exists : ?password:Nbdkit_ssh.password ->
                          ?port:string -> server:string -> ?user:string ->
                          string -> bool
 
-(** [download_file password ?port server ?user path output]
+(** [download_file ?password ?port server ?user path output]
     downloads the single remote file at [path] to
     the local file called [output]. *)
-val download_file : password:Nbdkit_ssh.password ->
+val download_file : ?password:Nbdkit_ssh.password ->
                     ?port:string -> server:string -> ?user:string -> string ->
                     string -> unit

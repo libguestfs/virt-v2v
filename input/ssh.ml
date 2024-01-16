@@ -23,7 +23,7 @@ open Common_gettext.Gettext
 
 open Printf
 
-let start_nbdkit ~password ?port ~server ?user path =
+let start_nbdkit ?password ?port ~server ?user path =
   (* Create a random location for the socket used to talk to nbdkit. *)
   let sockdir = Mkdtemp.temp_dir "v2vssh." in
   On_exit.rm_rf sockdir;
@@ -35,7 +35,7 @@ let start_nbdkit ~password ?port ~server ?user path =
    * the VMX file is large, so using this filter isn't necessary.
    *)
   let nbdkit =
-    Nbdkit_ssh.create_ssh ~retry:false ~password ~server ?port ?user path in
+    Nbdkit_ssh.create_ssh ~retry:false ?password ~server ?port ?user path in
   Nbdkit.set_readonly nbdkit true;
   let _, pid = Nbdkit.run_unix socket nbdkit in
   On_exit.kill pid;
@@ -44,8 +44,8 @@ let start_nbdkit ~password ?port ~server ?user path =
   "nbd+unix://?socket=" ^ socket
 
 (* Download a remote file into a local file. *)
-let download_file ~password ?port ~server ?user path output =
-  let uri = start_nbdkit ~password ?port ~server ?user path in
+let download_file ?password ?port ~server ?user path output =
+  let uri = start_nbdkit ?password ?port ~server ?user path in
 
   let cmd = [ "nbdcopy"; uri; output ] in
   if run_command cmd <> 0 then
@@ -53,8 +53,8 @@ let download_file ~password ?port ~server ?user path output =
               see earlier error messages")
 
 (* Test if [path] exists on the remote server. *)
-let remote_file_exists ~password ?port ~server ?user path =
-  let uri = start_nbdkit ~password ?port ~server ?user path in
+let remote_file_exists ?password ?port ~server ?user path =
+  let uri = start_nbdkit ?password ?port ~server ?user path in
 
   (* Testing for remote size using nbdinfo should be sufficient to
    * prove the remote file exists.

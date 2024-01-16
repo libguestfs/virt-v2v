@@ -47,8 +47,8 @@ module VMX = struct
       | [arg] ->
          let input_password =
            match options.input_password with
-           | None -> Nbdkit_ssh.NoPassword
-           | Some ip -> Nbdkit_ssh.PasswordFile ip in
+           | None -> None
+           | Some ip -> Some (Nbdkit_ssh.PasswordFile ip) in
          let input_transport =
            match options.input_transport with
            | None -> None
@@ -102,7 +102,7 @@ module VMX = struct
             let user = uri.Xml.uri_user in
 
             (* RHBZ#1774386 *)
-            if not (Ssh.remote_file_exists ~password ?port ~server ?user
+            if not (Ssh.remote_file_exists ?password ?port ~server ?user
                       flat_vmdk) then
               error (f_"This transport does not support guests with snapshots. \
                         Either collapse the snapshots for this guest and try \
@@ -112,7 +112,7 @@ module VMX = struct
 
             let cor = dir // "convert" in
             let bandwidth = options.bandwidth in
-            let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
+            let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
                            ~server ?port ?user flat_vmdk in
             let _, pid = Nbdkit.run_unix socket nbdkit in
             On_exit.kill pid

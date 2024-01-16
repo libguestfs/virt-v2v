@@ -18,15 +18,14 @@
 
 (** nbdkit when used as a source. *)
 
-type password =
-| NoPassword
-| AskForPassword
-| PasswordFile of string
+type password =                 (** Use [None] for no password *)
+  | AskForPassword              (** [password=-] *)
+  | PasswordFile of string      (** [password=+file] *)
 
 val create_ssh : ?bandwidth:Types.bandwidth ->
                  ?cor:string ->
                  ?retry:bool ->
-                 password:password ->
+                 ?password:password ->
                  ?port:string ->
                  server:string ->
                  ?user:string ->

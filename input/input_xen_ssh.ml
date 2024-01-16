@@ -96,8 +96,8 @@ module XenSSH = struct
 
     let password =
       match options.input_password with
-      | None -> Nbdkit_ssh.NoPassword
-      | Some ip -> Nbdkit_ssh.PasswordFile ip in
+      | None -> None
+      | Some ip -> Some (Nbdkit_ssh.PasswordFile ip) in
 
     (* Create an nbdkit instance for each disk. *)
     List.iteri (
@@ -122,7 +122,7 @@ module XenSSH = struct
         | LocalFile path ->
            let cor = dir // "convert" in
            let bandwidth = options.bandwidth in
-           let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ~password
+           let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
                           ?port ~server ?user path in
            let _, pid = Nbdkit.run_unix socket nbdkit in
            On_exit.kill pid
