@@ -44,7 +44,7 @@ let error_unless_nbdkit_min_version config =
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
 let create_ssh ?bandwidth ?cor ?(retry=true)
-      ?password ?port ~server ?user path =
+      ~server ?port ?user ?password path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
 

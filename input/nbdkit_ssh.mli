@@ -25,10 +25,10 @@ type password =                 (** Use [None] for no password *)
 val create_ssh : ?bandwidth:Types.bandwidth ->
                  ?cor:string ->
                  ?retry:bool ->
-                 ?password:password ->
-                 ?port:string ->
                  server:string ->
+                 ?port:string ->
                  ?user:string ->
+                 ?password:password ->
                  string -> Nbdkit.cmd
 (** Create a nbdkit object using the SSH plugin.  The required
     string parameter is the remote path.

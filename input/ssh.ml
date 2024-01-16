@@ -23,7 +23,7 @@ open Common_gettext.Gettext
 
 open Printf
 
-let start_nbdkit ?password ?port ~server ?user path =
+let start_nbdkit ~server ?port ?user ?password path =
   (* Create a random location for the socket used to talk to nbdkit. *)
   let sockdir = Mkdtemp.temp_dir "v2vssh." in
   On_exit.rm_rf sockdir;
@@ -44,8 +44,8 @@ let start_nbdkit ?password ?port ~server ?user path =
   "nbd+unix://?socket=" ^ socket
 
 (* Download a remote file into a local file. *)
-let download_file ?password ?port ~server ?user path output =
-  let uri = start_nbdkit ?password ?port ~server ?user path in
+let download_file ~server ?port ?user ?password path output =
+  let uri = start_nbdkit ~server ?port ?user ?password path in
 
   let cmd = [ "nbdcopy"; uri; output ] in
   if run_command cmd <> 0 then
@@ -53,8 +53,8 @@ let download_file ?password ?port ~server ?user path output =
               see earlier error messages")
 
 (* Test if [path] exists on the remote server. *)
-let remote_file_exists ?password ?port ~server ?user path =
-  let uri = start_nbdkit ?password ?port ~server ?user path in
+let remote_file_exists ~server ?port ?user ?password path =
+  let uri = start_nbdkit ~server ?port ?user ?password path in
 
   (* Testing for remote size using nbdinfo should be sufficient to
    * prove the remote file exists.
