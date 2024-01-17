@@ -32,11 +32,6 @@ server to the Xen host.  For example:
  $ ssh root@xen.example.com
  [ logs straight into the shell, no password is requested ]
 
-Note that support for non-interactive authentication via the I<-ip>
-option is incomplete.  Some operations remain that still require the
-user to enter the password manually.  Therefore ssh-agent is recommended
-over the I<-ip> option.  See L<https://bugzilla.redhat.com/1854275>.
-
 With some modern ssh implementations, legacy crypto algorithms required
 to interoperate with RHEL 5 sshd are disabled.  To enable them, you may
 need to add the following C<Host> stanza to your F<~/.ssh/config>:

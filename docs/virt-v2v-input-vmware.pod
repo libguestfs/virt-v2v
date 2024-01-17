@@ -155,11 +155,6 @@ virt-v2v server to the ESXi hypervisor.  For example:
  $ ssh root@esxi.example.com
  [ logs straight into the shell, no password is requested ]
 
-Note that support for non-interactive authentication via the I<-ip>
-option is incomplete.  Some operations remain that still require the
-user to enter the password manually.  Therefore ssh-agent is recommended
-over the I<-ip> option.  See L<https://bugzilla.redhat.com/1854275>.
-
 =head3 VMX: Construct the SSH URI
 
 When using the SSH input transport you must specify a remote
