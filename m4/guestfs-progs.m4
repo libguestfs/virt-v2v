@@ -59,6 +59,12 @@ AM_CONDITIONAL([HAVE_ZIP],[test "x$ZIP" != "xno"])
 AC_PATH_PROGS([UNZIP],[unzip],[no])
 AC_DEFINE_UNQUOTED([UNZIP],["$UNZIP"],[Name of unzip program.])
 
+dnl nbdinfo, nbdcopy, required by virt-v2v
+AC_CHECK_PROG([NBDINFO], [nbdinfo], [nbdinfo], [no])
+AC_CHECK_PROG([NBDCOPY], [nbdcopy], [nbdcopy], [no])
+AS_IF([test "x$NBDINFO" = "xno" || test "x$NBDCOPY" = "xno"],
+      [AC_MSG_ERROR([nbdinfo and nbdcopy (from libnbd) must be installed])])
+
 dnl Check for valgrind
 AC_CHECK_PROG([VALGRIND],[valgrind],[valgrind],[no])
 AS_IF([test "x$VALGRIND" != "xno"],[
