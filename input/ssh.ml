@@ -56,8 +56,8 @@ let download_file ~server ?port ?user ?password path output =
 let remote_file_exists ~server ?port ?user ?password path =
   let uri = start_nbdkit ~server ?port ?user ?password path in
 
-  (* Testing for remote size using nbdinfo should be sufficient to
+  (* Testing that we can connect to the nbdkit server is enough to
    * prove the remote file exists.
    *)
-  let cmd = [ "nbdinfo"; "--size"; uri ] in
+  let cmd = [ "nbdinfo"; "--can"; "connect"; uri ] in
   run_command cmd = 0
