@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.4.0\n"
+"Project-Id-Version: virt-v2v 2.5.1\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2024-01-04 17:06+0000\n"
+"POT-Creation-Date: 2024-01-18 17:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,11 +203,11 @@ msgid ""
 "-i ova: invalid OVA file: path ‘%s’ references a file outside the archive"
 msgstr ""
 
-#: input/input_vmx.ml:53
+#: input/input_vmx.ml:57
 msgid "-i vmx: cannot use -it vddk in this input mode"
 msgstr ""
 
-#: input/input_vmx.ml:56
+#: input/input_vmx.ml:60
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr ""
 
@@ -993,7 +993,7 @@ msgid ""
 "require a separate password to connect."
 msgstr ""
 
-#: input/input_vmx.ml:89
+#: input/input_vmx.ml:107
 msgid ""
 "This transport does not support guests with snapshots. Either collapse the "
 "snapshots for this guest and try the conversion again, or use one of the "
@@ -1171,7 +1171,7 @@ msgstr ""
 msgid "could not add grub2 serial console (ignored)"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:85
+#: input/ssh.ml:52
 msgid ""
 "could not copy the VMX file from the remote server, see earlier error "
 "messages"
@@ -1505,7 +1505,7 @@ msgstr ""
 msgid "invalid -n/--network parameter"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:440
+#: input/parse_domain_from_vmx.ml:402
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
@@ -1678,7 +1678,7 @@ msgstr ""
 msgid "nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s"
 msgstr ""
 
-#: input/nbdkit_vddk.ml:40 input/nbdkit_ssh.ml:39 input/nbdkit_curl.ml:32
+#: input/nbdkit_vddk.ml:40 input/nbdkit_ssh.ml:38 input/nbdkit_curl.ml:32
 msgid "nbdkit is too old.  nbdkit >= %d.%d.%d is required."
 msgstr ""
 
@@ -1751,7 +1751,7 @@ msgstr ""
 msgid "no bootloader detected"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:400
+#: input/parse_domain_from_vmx.ml:359
 msgid "no displayName key found in VMX file"
 msgstr ""
 
@@ -2116,7 +2116,7 @@ msgstr ""
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:453
+#: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
@@ -2128,7 +2128,7 @@ msgstr ""
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:462
+#: input/parse_domain_from_vmx.ml:424
 msgid "unknown sound device '%s' ignored"
 msgstr ""
 
