@@ -49,7 +49,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
   let family =
     match inspect.i_distro with
     | "fedora"
-    | "rhel" | "centos" | "scientificlinux" | "redhat-based"
+    | "rhel" | "centos" | "circle" | "scientificlinux" | "redhat-based"
     | "oraclelinux" | "rocky" -> `RHEL_family
     | "altlinux" -> `ALT_family
     | "sles" | "suse-based" | "opensuse" -> `SUSE_family
@@ -68,8 +68,8 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
 
   let qga_svc_start_cmd family distro major =
     match family, distro, major with
-    | `RHEL_family, ( "rhel" | "centos" | "scientificlinux" | "redhat-based" |
-                      "oraclelinux" | "rocky" ), 6 ->
+    | `RHEL_family, ( "rhel" | "centos" | "circle" | "scientificlinux" |
+                      "redhat-based" | "oraclelinux" | "rocky" ), 6 ->
       (* https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c52 *)
       Some "service qemu-ga start"
 
@@ -183,8 +183,8 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
             *)
            (match inspect.i_distro, inspect.i_major_version with
             | "fedora", _ -> Q35
-            | ("rhel"|"centos"|"scientificlinux"|"redhat-based"|"oraclelinux"|
-               "rocky"), major ->
+            | ("rhel"|"centos"|"circle"|"scientificlinux"|"redhat-based"|
+               "oraclelinux"|"rocky"), major ->
               if major <= 4 then I440FX else Q35
             | ("sles"|"suse-based"|"opensuse"), major ->
               if major < 10 then I440FX else Q35

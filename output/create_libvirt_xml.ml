@@ -47,6 +47,10 @@ let get_osinfo_id = function
     when major >= 8 ->
     Some (sprintf "http://centos.org/centos/%d" major)
 
+  | { i_type = "linux"; i_distro = "circle";
+      i_major_version = major; i_minor_version = minor } ->
+    Some (sprintf "http://cclinux.org/circle/%d.%d" major minor)
+
   | { i_type = "linux"; i_distro = "rocky";
       i_major_version = major; i_minor_version = minor } ->
     Some (sprintf "http://rockylinux.org/rocky/%d.%d" major minor)
