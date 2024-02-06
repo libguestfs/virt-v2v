@@ -235,8 +235,8 @@ and do_convert g source inspect i_firmware
     match inspect with
     | { i_type = "linux";
         i_distro = ("fedora"
-                    | "rhel" | "centos" | "scientificlinux" | "redhat-based"
-                    | "oraclelinux" | "rocky"
+                    | "rhel" | "centos" | "circle" | "scientificlinux"
+                    | "redhat-based" | "oraclelinux" | "rocky"
                     | "sles" | "suse-based" | "opensuse"
                     | "altlinux"
                     | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } ->
