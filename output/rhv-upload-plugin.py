@@ -25,7 +25,7 @@ import time
 
 from contextlib import contextmanager
 from http.client import HTTPSConnection, HTTPConnection
-from urllib.parse import urlparse, urlunparse
+from urllib.parse import urlparse
 
 import nbdkit
 

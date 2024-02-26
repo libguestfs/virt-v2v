@@ -59,7 +59,7 @@ if not re.match('^[-a-zA-Z0-9_]+$', output_storage):
 
 # Connect to the server.
 connection = sdk.Connection(
-    url=urlunparse(parsed._replace(netloc=netloc)),        
+    url=urlunparse(parsed._replace(netloc=netloc)),
     username=username,
     password=output_password,
     ca_file=params['rhv_cafile'],
