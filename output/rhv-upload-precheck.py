@@ -21,7 +21,7 @@ import logging
 import re
 import sys
 
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse
 
 import ovirtsdk4 as sdk
 import ovirtsdk4.types as types
@@ -46,6 +46,7 @@ output_password = output_password.rstrip()
 # Parse out the username from the output_conn URL.
 parsed = urlparse(params['output_conn'])
 username = parsed.username or "admin@internal"
+netloc = f"{parsed.hostname:parsed.port}" if parsed.port else parsed.hostname
 
 # Check the storage domain name is valid
 # (https://bugzilla.redhat.com/show_bug.cgi?id=1986386#c1)
@@ -58,7 +59,7 @@ if not re.match('^[-a-zA-Z0-9_]+$', output_storage):
 
 # Connect to the server.
 connection = sdk.Connection(
-    url=params['output_conn'],
+    url=urlunparse(parsed._replace(netloc=netloc)),        
     username=username,
     password=output_password,
     ca_file=params['rhv_cafile'],
