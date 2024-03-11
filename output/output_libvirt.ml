@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2021 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -150,16 +150,6 @@ module Libvirt_ = struct
     let conn, _, output_alloc, output_format, output_name, output_pool =
       options in
     let capabilities_xml, pool_name = t in
-
-    (match target_meta.target_firmware with
-     | TargetBIOS -> ()
-     | TargetUEFI ->
-        (* XXX Can remove this method when libvirt supports
-         * <loader type="efi"/> since then it will be up to
-         * libvirt to check this.
-         *)
-        error_unless_uefi_firmware target_meta.guestcaps.gcaps_arch
-    );
 
     let conn = Lazy.force conn in
 

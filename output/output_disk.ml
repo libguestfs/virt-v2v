@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2021 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -91,17 +91,6 @@ module Disk = struct
 
   let finalize dir options () source inspect target_meta =
     let _, output_alloc, output_format, output_name, output_storage = options in
-
-    (* Convert metadata to libvirt XML. *)
-    (match target_meta.target_firmware with
-     | TargetBIOS -> ()
-     | TargetUEFI ->
-        (* XXX Can remove this method when libvirt supports
-         * <loader type="efi"/> since then it will be up to
-         * libvirt to check this.
-         *)
-        error_unless_uefi_firmware target_meta.guestcaps.gcaps_arch
-    );
 
     (* We don't know what target features the hypervisor supports, but
      * assume a common set that libvirt supports.

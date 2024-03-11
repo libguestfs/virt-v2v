@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2020 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -218,23 +218,6 @@ let create_libvirt_xml ?pool source inspect
 
   List.push_back_list body [ e "cpu" !cpu_attrs !cpu ];
 
-  let uefi_firmware =
-    match target_firmware with
-    | TargetBIOS -> None
-    | TargetUEFI -> Some (find_uefi_firmware guestcaps.gcaps_arch) in
-  let machine, secure_boot_required =
-    match guestcaps.gcaps_machine, uefi_firmware with
-    | _, Some { Uefi.flags = flags }
-         when List.mem Uefi.UEFI_FLAG_SECURE_BOOT_REQUIRED flags ->
-       (* Force machine type to Q35 because PC does not support
-        * secure boot.  We must remove this when we get the
-        * correct machine type from libosinfo in future. XXX
-        *)
-       Q35, true
-    | machine, _ ->
-       machine, false in
-  let smm = secure_boot_required in
-
   (* We have the machine features of the guest when it was on the
    * source hypervisor (source.s_features).  We have the set of
    * hypervisor features supported by the target (target_features).
@@ -257,13 +240,6 @@ let create_libvirt_xml ?pool source inspect
     StringSet.inter(*section*) force_features target_features in
   let features = StringSet.union features force_features in
 
-  (* Add <smm> feature if UEFI requires it.  Note that libvirt
-   * capabilities doesn't list this feature even if it is supported
-   * by qemu, so we have to blindly add it, which might cause libvirt
-   * to fail. (XXX)
-   *)
-  let features = if smm then StringSet.add "smm" features else features in
-
   let features = List.sort compare (StringSet.elements features) in
 
   List.push_back_list body [
@@ -274,8 +250,13 @@ let create_libvirt_xml ?pool source inspect
   let os_section =
     let os = ref [] in
 
+    let firmware =
+      match target_firmware with
+      | TargetBIOS -> []
+      | TargetUEFI -> [ "firmware", "efi" ] in
+
     let machine =
-      match machine with
+      match guestcaps.gcaps_machine with
       | I440FX -> "pc"
       | Q35 -> "q35"
       | Virt -> "virt" in
@@ -285,18 +266,11 @@ let create_libvirt_xml ?pool source inspect
                               "machine", machine]
                       [PCData "hvm"]);
 
-    let loader =
-      match uefi_firmware with
-      | None -> []
-      | Some { Uefi.code = code; vars = vars_template } ->
-         let secure =
-           if secure_boot_required then [ "secure", "yes" ] else [] in
-         [ e "loader" (["readonly", "yes"; "type", "pflash"] @ secure)
-             [ PCData code ];
-           e "nvram" ["template", vars_template] [] ] in
-
-    List.push_back_list os loader;
-    e "os" [] !os in
+    (* We used to sometimes put <loader secure='yes'/> here.  However
+     * that is likely wrong since by its nature virt-v2v can't really
+     * support secure boot ever.  So for now we omit it.
+     *)
+    e "os" firmware !os in
 
   (* The <clock> section. *)
   let clock_section =
