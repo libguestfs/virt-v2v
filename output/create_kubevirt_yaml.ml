@@ -97,7 +97,14 @@ let create_kubevirt_yaml source inspect
     match target_firmware with TargetBIOS -> "bios" | TargetUEFI -> "uefi" in
   List.push_back os ("firmware", String firmware_str);
 
-  (* XXX display *)
+  (* Display.
+   *
+   * Kubevirt has only "AutoattachGraphicsDevice" under devices, and
+   * it is very limited in how it behaves.  However it is the default
+   * so we don't need to do anything special.
+   * See also:
+   * https://github.com/kubevirt/kubevirt/blob/cecea2696cdc63154e3540252ef44161378bee2e/pkg/virt-launcher/virtwrap/converter/converter.go#L1915-L1977
+   *)
 
   (* Add a sound device.  Kubevirt only supports ich9 or ac97. *)
   (match source.s_sound with
