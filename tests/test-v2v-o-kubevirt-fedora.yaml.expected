@@ -15,6 +15,7 @@ spec:
     cpu:
       cores: 1
     devices:
+      useVirtioTransitional: true
       disks:
       - disk:
           bus: virtio

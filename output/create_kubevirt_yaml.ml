@@ -103,7 +103,11 @@ let create_kubevirt_yaml source inspect
   if guestcaps.gcaps_virtio_rng then
     List.push_back devices ("rng", List []);
 
-  (* XXX guestcaps: balloon, vsock, virtio 1.0 *)
+  (* Use virtio transitional for ancient guests. *)
+  if not guestcaps.gcaps_virtio_1_0 then
+    List.push_back devices ("useVirtioTransitional", Bool true);
+
+  (* XXX guestcaps: balloon, vsock *)
 
   (* We're using local ("host") disks here which is not realistic. *)
   Array.iter (
