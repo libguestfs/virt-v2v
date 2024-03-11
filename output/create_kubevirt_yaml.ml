@@ -37,6 +37,7 @@ let create_kubevirt_yaml source inspect
   let devices = ref [] in
   let disks = ref [] in
   let resources = ref [] in
+  let cpu = ref [] in
   let volumes = ref [] in
 
   (* The guest name. *)
@@ -76,7 +77,20 @@ let create_kubevirt_yaml source inspect
   List.push_back resources ("features", Assoc features);
 
   (* # vCPUs. XXX vendor, model, topology *)
-  let cpu = "cpu", Assoc ["cores", Int source.s_vcpu] in
+  (match source.s_cpu_model with
+   | None -> ()
+   | Some model -> List.push_back cpu ("model", String model)
+  );
+  (match source.s_cpu_topology with
+   | None ->
+      List.push_back cpu ("cores", Int source.s_vcpu);
+   | Some { s_cpu_sockets; s_cpu_cores; s_cpu_threads } ->
+      List.push_back_list cpu [
+         "sockets", Int s_cpu_sockets;
+         "cores", Int s_cpu_cores;
+         "thread", Int s_cpu_threads
+      ]
+  );
 
   (* Firmware. *)
   let firmware_str =
@@ -119,10 +133,10 @@ let create_kubevirt_yaml source inspect
   let domain = ref [] in
   if !os <> [] then
     List.push_back domain ("os", Assoc !os);
+  List.push_back domain ("resources", Assoc !resources);
+  List.push_back domain ("cpu", Assoc !cpu);
   if !devices <> [] then
     List.push_back domain ("devices", Assoc !devices);
-  List.push_back domain ("resources", Assoc !resources);
-  List.push_back domain cpu;
 
   let spec = ref [] in
   List.push_back spec ("domain", Assoc !domain);

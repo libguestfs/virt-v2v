@@ -8,17 +8,17 @@ spec:
   domain:
     os:
       firmware: bios
-    devices:
-      disks:
-      - disk:
-          bus: virtio
-        name: disk-0
     resources:
       requests:
         memory: 1024Mi
       features:
     cpu:
       cores: 1
+    devices:
+      disks:
+      - disk:
+          bus: virtio
+        name: disk-0
   volumes:
   - hostDisk:
       path: test-sda
