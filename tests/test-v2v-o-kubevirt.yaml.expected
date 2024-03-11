@@ -6,6 +6,8 @@ metadata:
   name: test
 spec:
   domain:
+    os:
+      firmware: bios
     resources:
       clock:
         timer:

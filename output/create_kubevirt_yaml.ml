@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2022 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ let create_kubevirt_yaml source inspect
    * a tree.  We fill in these sections first.
    *)
   let metadata = ref [] in
+  let os = ref [] in
   let devices = ref [] in
   let disks = ref [] in
   let resources = ref [] in
@@ -77,7 +78,12 @@ let create_kubevirt_yaml source inspect
   (* # vCPUs. XXX vendor, model, topology *)
   let cpu = "cpu", Assoc ["cores", Int source.s_vcpu] in
 
-  (* XXX firmware, display, sound *)
+  (* Firmware. *)
+  let firmware_str =
+    match target_firmware with TargetBIOS -> "bios" | TargetUEFI -> "uefi" in
+  List.push_back os ("firmware", String firmware_str);
+
+  (* XXX display, sound *)
 
   (* XXX guestcaps: rng, balloon, vsock, virtio 1.0 *)
 
@@ -111,6 +117,8 @@ let create_kubevirt_yaml source inspect
   if !disks <> [] then
     List.push_back devices ("disks", List !disks);
   let domain = ref [] in
+  if !os <> [] then
+    List.push_back domain ("os", Assoc !os);
   if !devices <> [] then
     List.push_back domain ("devices", Assoc !devices);
   List.push_back domain ("resources", Assoc !resources);
