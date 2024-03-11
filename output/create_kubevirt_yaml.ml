@@ -99,7 +99,11 @@ let create_kubevirt_yaml source inspect
 
   (* XXX display, sound *)
 
-  (* XXX guestcaps: rng, balloon, vsock, virtio 1.0 *)
+  (* Add an RNG if the guest has virtio_rng. *)
+  if guestcaps.gcaps_virtio_rng then
+    List.push_back devices ("rng", List []);
+
+  (* XXX guestcaps: balloon, vsock, virtio 1.0 *)
 
   (* We're using local ("host") disks here which is not realistic. *)
   Array.iter (
