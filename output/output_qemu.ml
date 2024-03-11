@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2021 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,17 +101,6 @@ module QEMU = struct
         output_name, output_storage = options in
 
     let { guestcaps; target_buses; target_firmware } = target_meta in
-
-    (* Convert metadata to libvirt XML. *)
-    (match target_firmware with
-     | TargetBIOS -> ()
-     | TargetUEFI ->
-        (* XXX Can remove this method when libvirt supports
-         * <loader type="efi"/> since then it will be up to
-         * libvirt to check this.
-         *)
-        error_unless_uefi_firmware guestcaps.gcaps_arch
-    );
 
     let file = output_storage // output_name ^ ".sh" in
 

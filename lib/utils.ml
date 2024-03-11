@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2020 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,9 +87,6 @@ let find_uefi_firmware guest_arch =
        else loop rest
   in
   loop files
-
-let error_unless_uefi_firmware guest_arch =
-  ignore (find_uefi_firmware guest_arch)
 
 let compare_app2_versions app1 app2 =
   let i = compare app1.Guestfs.app2_epoch app2.Guestfs.app2_epoch in

@@ -1,5 +1,5 @@
 (* virt-v2v
- * Copyright (C) 2009-2020 Red Hat Inc.
+ * Copyright (C) 2009-2024 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,9 +39,6 @@ val qemu_supports_sound_card : Types.source_sound_model -> bool
 val find_uefi_firmware : string -> Uefi.uefi_firmware
 (** Find the UEFI firmware for the guest architecture.
     This cannot return an error, it calls [error] and fails instead. *)
-
-val error_unless_uefi_firmware : string -> unit
-(** Check UEFI firmware is installed on the local host and error out if not. *)
 
 val compare_app2_versions : Guestfs.application2 -> Guestfs.application2 -> int
 (** Compare two app versions. *)
