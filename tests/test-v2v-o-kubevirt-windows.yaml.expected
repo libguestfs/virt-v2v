@@ -24,4 +24,13 @@ spec:
       features:
     cpu:
       cores: 1
+    devices:
+      interfaces:
+      - name: net_default
+        masquerade: {}
+        macAddress: 00:11:22:33:44:55
+        model: virtio
+  networks:
+  - networkName: default
+    name: net_default
   terminationGracePeriodSeconds: 0

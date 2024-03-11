@@ -125,11 +125,47 @@ let create_kubevirt_yaml source inspect
        (* XXX removables *) ()
   ) target_buses.target_virtio_blk_bus;
 
-  (* XXX ide, scsi, floppy, NICs *)
+  (* XXX ide, scsi, floppy *)
+
+  (* Interfaces and networks. *)
+  let interfaces =
+    List.map (
+      fun { s_mac = mac; s_nic_model = model;
+            s_vnet_type = vnet_type; s_vnet = vnet } ->
+        let nic = ref [] in
+        List.push_back nic ("name", String ("net_" ^ vnet));
+        (match vnet_type with
+         | Bridge -> List.push_back nic ("bridge", List [])
+         | Network -> List.push_back nic ("masquerade", List [])
+        );
+        (match mac with
+         | Some mac -> List.push_back nic ("macAddress", String mac)
+         | None -> ()
+        );
+        (match model with
+         | Some Source_virtio_net ->
+            List.push_back nic ("model", String "virtio")
+         | Some Source_e1000 ->
+            List.push_back nic ("model", String "e1000")
+         | Some Source_rtl8139 ->
+            List.push_back nic ("model", String "rtl8139")
+         | Some Source_other_nic other ->
+            List.push_back nic ("model", String other)
+         | None -> ()
+        );
+        Assoc !nic
+    ) target_nics in
+  let networks =
+    List.map (
+      fun { s_vnet_type = vnet_type; s_vnet = vnet } ->
+        Assoc [ "networkName", String vnet; "name", String ("net_" ^ vnet) ]
+    ) target_nics in
 
   (* Create the final document. *)
   if !disks <> [] then
     List.push_back devices ("disks", List !disks);
+  if interfaces <> [] then
+    List.push_back devices ("interfaces", List interfaces);
   let domain = ref [] in
   if !os <> [] then
     List.push_back domain ("os", Assoc !os);
@@ -142,6 +178,8 @@ let create_kubevirt_yaml source inspect
   List.push_back spec ("domain", Assoc !domain);
   if !volumes <> [] then
     List.push_back spec ("volumes", List !volumes);
+  if networks <> [] then
+    List.push_back spec ("networks", List networks);
   List.push_back spec ("terminationGracePeriodSeconds", Int 0);
 
   let body = [
