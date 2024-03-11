@@ -97,7 +97,17 @@ let create_kubevirt_yaml source inspect
     match target_firmware with TargetBIOS -> "bios" | TargetUEFI -> "uefi" in
   List.push_back os ("firmware", String firmware_str);
 
-  (* XXX display, sound *)
+  (* XXX display *)
+
+  (* Add a sound device.  Kubevirt only supports ich9 or ac97. *)
+  (match source.s_sound with
+   | Some { s_sound_model = (AC97|ICH9) as model } ->
+      let model =
+        match model with AC97 -> "ac97" | ICH9 -> "ich9" | _ -> assert false in
+      List.push_back devices
+        ("sound", Assoc [ "name", String "sound"; "model", String model ])
+   | _ -> ()
+  );
 
   (* Add an RNG if the guest has virtio_rng. *)
   if guestcaps.gcaps_virtio_rng then
