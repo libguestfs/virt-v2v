@@ -248,6 +248,8 @@ EXTRA_DIST += \
 	test-v2v-networks-and-bridges.sh \
 	test-v2v-networks-and-bridges-expected.xml \
 	test-v2v-o-glance.sh \
+	test-v2v-o-kubevirt-fedora.sh \
+	test-v2v-o-kubevirt-windows.sh \
 	test-v2v-o-kubevirt-fedora.yaml.expected \
 	test-v2v-o-kubevirt-windows.yaml.expected \
 	test-v2v-o-libvirt.sh \
