@@ -172,8 +172,10 @@ test-v2v-conversion-of-%.sh:
 	chmod 0755 $@-t
 	mv $@-t $@
 
+DISTCLEANFILES += \
+	$(real_guests_scripts)
+
 CLEANFILES += \
-	$(real_guests_scripts) \
 	real-*.img \
 	real-*.xml
 
