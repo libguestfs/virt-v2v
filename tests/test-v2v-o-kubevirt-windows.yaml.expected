@@ -25,11 +25,21 @@ spec:
     cpu:
       cores: 1
     devices:
+      rng: {}
+      disks:
+      - disk:
+          bus: virtio
+        name: disk-0
       interfaces:
       - name: net_default
         masquerade: {}
         macAddress: 00:11:22:33:44:55
         model: virtio
+  volumes:
+  - hostDisk:
+      path: test-sda
+      type: Disk
+    name: disk-0
   networks:
   - networkName: default
     name: net_default
