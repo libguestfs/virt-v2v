@@ -273,6 +273,9 @@ See also the virt-v2v-output-rhv(1) manual.");
     if Python_script.run_command ~stdout_fd:fd
          precheck_script json_params [] <> 0 then
       error (f_"failed server prechecks, see earlier errors");
+    if verbose () then
+      debug "precheck output before parsing: %s"
+            (read_whole_file precheck_json);
     let json = JSON_parser.json_parser_tree_parse_file precheck_json in
     debug "precheck output parsed as: %s"
       (JSON.string_of_doc ~fmt:JSON.Indented ["", json]);
@@ -396,6 +399,9 @@ See also the virt-v2v-output-rhv(1) manual.");
         if Python_script.run_command ~stdout_fd:fd
              transfer_script json_params [] <> 0 then
           error (f_"failed to start transfer, see earlier errors");
+        if verbose () then
+          debug "transfer output before parsing: %s"
+                (read_whole_file transfer_json);
         let json = JSON_parser.json_parser_tree_parse_file transfer_json in
         debug "transfer output parsed as: %s"
           (JSON.string_of_doc ~fmt:JSON.Indented ["", json]);
