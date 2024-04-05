@@ -285,10 +285,10 @@ with closing(connection):
     transfer = create_transfer(connection, disk, host)
     destination_url = get_transfer_url(transfer)
 
-    # Send the destination URL, transfer ID, and host flag back to OCaml code.
-    results = {
-        "transfer_id": transfer.id,
-        "destination_url": destination_url,
-        "is_ovirt_host": host is not None,
-    }
-    json.dump(results, sys.stdout)
+# Send the destination URL, transfer ID, and host flag back to OCaml code.
+results = {
+    "transfer_id": transfer.id,
+    "destination_url": destination_url,
+    "is_ovirt_host": host is not None,
+}
+json.dump(results, sys.stdout)
