@@ -249,7 +249,14 @@ if len(sys.argv) != 2:
 
 # Parameters are passed in via a JSON document.
 with open(sys.argv[1], 'r') as fp:
-    params = json.load(fp)
+    data = fp.read()
+
+try:
+    params = json.loads(data)
+except ValueError as e:
+    raise RuntimeError(f"Cannot parse params {data!r}: {e}").with_traceback(
+        e.__traceback__
+    ) from None
 
 # What is passed in is a password file, read the actual password.
 with open(params['output_password'], 'r') as fp:
