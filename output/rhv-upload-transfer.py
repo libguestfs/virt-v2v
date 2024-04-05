@@ -45,7 +45,7 @@ def find_host(connection):
             vdsm_id = f.readline().strip()
     except Exception as e:
         # This is most likely not an oVirt host.
-        debug("cannot read /etc/vdsm/vdsm.id, using any host: %s" % e)
+        debug("cannot read /etc/vdsm/vdsm.id, not running on an ovirt host [this is not an error]: original exception: %s" % e)
         return None
 
     debug("hw_id = %r" % vdsm_id)
