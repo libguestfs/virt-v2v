@@ -43,9 +43,13 @@ def find_host(connection):
     try:
         with open("/etc/vdsm/vdsm.id") as f:
             vdsm_id = f.readline().strip()
+    except FileNotFoundError:
+        # Expected condition when running on non-oVirt host.
+        debug("not an oVirt host, using non-oVirt host")
+        return None
     except Exception as e:
-        # This is most likely not an oVirt host.
-        debug("cannot read /etc/vdsm/vdsm.id, not running on an ovirt host [this is not an error]: original exception: %s" % e)
+        # Unexpected but we can degrade to remote transfer.
+        debug(f"warning: cannot read host id, using non-oVirt host: {e}")
         return None
 
     debug("hw_id = %r" % vdsm_id)
