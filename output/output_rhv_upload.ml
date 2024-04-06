@@ -269,7 +269,7 @@ See also the virt-v2v-output-rhv(1) manual.");
          ("rhv_disk_uuids", JSON.List ids) :: json_params
     in
     let precheck_json = dir // "v2vprecheck.json" in
-    let fd = Unix.openfile transfer_json [O_WRONLY; O_CREAT; O_TRUNC;] 0o600 in
+    let fd = Unix.openfile precheck_json [O_WRONLY; O_CREAT; O_TRUNC;] 0o600 in
     if Python_script.run_command ~stdout_fd:fd
          precheck_script json_params [] <> 0 then
       error (f_"failed server prechecks, see earlier errors");
