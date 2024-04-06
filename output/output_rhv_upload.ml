@@ -394,7 +394,7 @@ See also the virt-v2v-output-rhv(1) manual.");
           (fun chan -> output_string chan (JSON.string_of_doc json_params));
 
         (* Start the transfer. *)
-        let transfer_json = dir // "v2vtransfer.json" in
+        let transfer_json = dir // sprintf "v2vtransfer%d.json" i in
         let fd = Unix.openfile transfer_json [O_WRONLY; O_CREAT] 0o600 in
         if Python_script.run_command ~stdout_fd:fd
              transfer_script json_params [] <> 0 then
