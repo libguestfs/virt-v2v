@@ -93,14 +93,15 @@ let rec parse_ovf_from_ova ovf_filename =
                 s_cpu_threads = 1 } in
 
   (* BIOS or EFI firmware? *)
-  let firmware = Option.value ~default:"bios" (xpath_string "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/vmw:Config[@vmw:key=\"firmware\"]/@vmw:value") in
+  let firmware_opt = xpath_string "/ovf:Envelope/ovf:VirtualSystem/ovf:VirtualHardwareSection/vmw:Config[@vmw:key=\"firmware\"]/@vmw:value" in
   let firmware =
-    match firmware with
-    | "bios" -> BIOS
-    | "efi" -> UEFI
-    | s ->
-       error (f_"unknown Config:firmware value %s (expected \"bios\" \
-                 or \"efi\")") s in
+    match firmware_opt with
+    | Some "efi" -> UEFI
+    | Some "bios" -> BIOS
+    | None -> UnknownFirmware
+    | Some s ->
+      error (f_"unknown Config:firmware value %s (expected \"bios\" or \"efi\")") s;
+  in
 
   name, memory, vcpu, cpu_topology, firmware,
   parse_disks xpathctx, parse_removables xpathctx, parse_nics xpathctx
