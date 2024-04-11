@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.5.2\n"
+"Project-Id-Version: virt-v2v 2.5.3\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2024-03-12 09:51+0000\n"
+"POT-Creation-Date: 2024-04-11 17:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1217,7 +1217,7 @@ msgstr ""
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
-#: input/OVF.ml:167
+#: input/OVF.ml:168
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 
@@ -1314,7 +1314,7 @@ msgstr ""
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
 
-#: input/OVF.ml:142
+#: input/OVF.ml:143
 msgid "error parsing disk fileRef"
 msgstr ""
 
@@ -1352,11 +1352,11 @@ msgstr ""
 msgid "failed server prechecks, see earlier errors"
 msgstr ""
 
-#: output/output_rhv_upload.ml:506
+#: output/output_rhv_upload.ml:513
 msgid "failed to create virtual machine, see earlier errors"
 msgstr ""
 
-#: output/output_rhv_upload.ml:478
+#: output/output_rhv_upload.ml:485
 msgid "failed to finalize the transfers, see earlier errors"
 msgstr ""
 
@@ -1368,11 +1368,11 @@ msgstr ""
 msgid "failed to parse line returned by tar: %S"
 msgstr ""
 
-#: output/output_rhv_upload.ml:398
+#: output/output_rhv_upload.ml:402
 msgid "failed to start transfer, see earlier errors"
 msgstr ""
 
-#: output/output_rhv_upload.ml:318
+#: output/output_rhv_upload.ml:321
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
@@ -1755,7 +1755,7 @@ msgstr ""
 msgid "no displayName key found in VMX file"
 msgstr ""
 
-#: input/OVF.ml:147
+#: input/OVF.ml:148
 msgid "no href in ovf:File (id=%s)"
 msgstr ""
 
@@ -1834,13 +1834,13 @@ msgstr ""
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 
-#: input/OVF.ml:262
+#: input/OVF.ml:263
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
 msgstr ""
 
-#: input/OVF.ml:258
+#: input/OVF.ml:259
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
@@ -1867,7 +1867,7 @@ msgstr ""
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr ""
 
-#: output/output_rhv_upload.ml:373
+#: output/output_rhv_upload.ml:376
 msgid ""
 "rhv-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ is supported.  If "
 "the input is in a different format then force one of these output formats by "
@@ -1954,7 +1954,7 @@ msgid ""
 "previous messages for problems."
 msgstr ""
 
-#: output/output_rhv_upload.ml:452
+#: output/output_rhv_upload.ml:459
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
@@ -1962,7 +1962,7 @@ msgstr ""
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
-#: output/output_rhv_upload.ml:295
+#: output/output_rhv_upload.ml:298
 msgid ""
 "the number of ‘-oo rhv-disk-uuid’ parameters passed on the command line has "
 "to match the number of guest disk images (for this guest: %d)"
@@ -2104,7 +2104,7 @@ msgstr ""
 msgid "unknown -oa option: %s"
 msgstr ""
 
-#: input/OVF.ml:102
+#: input/OVF.ml:103
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 
@@ -2136,7 +2136,7 @@ msgstr ""
 msgid "unknown sound model %s ignored"
 msgstr ""
 
-#: input/OVF.ml:155
+#: input/OVF.ml:156
 msgid "unsupported compression in OVF: %s"
 msgstr ""
 
