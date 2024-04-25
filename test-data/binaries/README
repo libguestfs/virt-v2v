@@ -1,5 +1,5 @@
-The bin-* and lib-* files are used for testing the
-guestfs_file_architecture API.
+The bin-* and lib-* files are used for building phony guest images
+(see test-data/phony-guests).
 
 The bin-* files are generated from empty source files (ie.
 "main(){}") on the respective architectures.
