@@ -21,7 +21,6 @@ SUBDIRS  = binaries
 SUBDIRS += blank-disks
 SUBDIRS += phony-guests
 SUBDIRS += fake-virtio-win fake-virt-tools
-SUBDIRS += files
 SUBDIRS += .
 
 # Build an ISO containing various files from the subdirectories, which
@@ -57,36 +56,13 @@ image_files = \
 	$(srcdir)/binaries/lib-win32.dll \
 	$(srcdir)/binaries/lib-win64.dll \
 	$(srcdir)/binaries/lib-x86_64.so \
-	$(srcdir)/files/helloworld.tar \
-	$(srcdir)/files/helloworld.tar.gz \
-	$(srcdir)/files/helloworld.tar.xz \
-	$(srcdir)/files/empty \
-	$(srcdir)/files/known-1 \
-	$(srcdir)/files/known-2 \
-	$(srcdir)/files/known-3 \
-	$(srcdir)/files/known-4 \
-	$(srcdir)/files/known-5 \
-	$(srcdir)/files/test-grep.txt \
-	$(srcdir)/files/minimal \
 	blank-disks/blank-disk-1s.raw \
 	blank-disks/blank-disk-1s.qcow2 \
 	blank-disks/blank-disk-1K.raw \
 	blank-disks/blank-disk-1K.qcow2 \
 	blank-disks/blank-disk-1M.raw \
 	blank-disks/blank-disk-1M.qcow2 \
-	blank-disks/blank-disk-with-backing.qcow2 \
-	files/100kallzeroes \
-	files/100kallnewlines \
-	files/100kallspaces \
-	files/100krandom \
-	files/10klines \
-	files/bin-x86_64-dynamic.gz \
-	files/hello.b64 \
-	files/initrd \
-	files/initrd-x86_64.img \
-	files/initrd-x86_64.img.gz \
-	files/lib-i586.so.xz \
-	files/test-grep.txt.gz
+	blank-disks/blank-disk-with-backing.qcow2
 
 noinst_DATA = test.iso
 
