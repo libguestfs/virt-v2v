@@ -97,7 +97,6 @@ Makefile.in
 /po/*.gmo
 /run
 /stamp-h1
-/test-data/test.iso
 /test-data/blank-disks/blank-disk-*
 /test-data/fake-virtio-win/fake-virtio-win.iso
 /test-data/phony-guests/archlinux.img
