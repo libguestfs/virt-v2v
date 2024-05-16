@@ -231,6 +231,10 @@ link above.
 
 VDDK imports require a feature added in libvirt E<ge> 3.7.
 
+=item 5.
+
+The VMware server must not be in maintenance mode.
+
 =back
 
 =head2 VDDK: ESXi NFC service memory limits
