@@ -357,6 +357,12 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
                   may want to install the guest agent manually after \
                   conversion.");
 
+    (* Install Balloon Server unconditionally and warn if missing *)
+    if not (Inject_virtio_win.inject_blnsvr virtio_win) then
+      warning (f_"Balloon Server (blnsvr.exe) not found on tools \
+                  ISO/directory. You may want to install this component \
+                  manually after conversion.");
+
     unconfigure_xenpv ();
     unconfigure_prltools ();
     unconfigure_vmwaretools ()
