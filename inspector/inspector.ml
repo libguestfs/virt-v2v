@@ -490,6 +490,31 @@ and inspector_xml v2vdir inspect =
                          [PCData inspect.i_package_management]);
   if inspect.i_product_name <> "" then
     List.push_back os (e "product_name" [] [PCData inspect.i_product_name]);
+  if inspect.i_product_variant <> "" then
+    List.push_back os (e "product_variant" []
+                         [PCData inspect.i_product_variant]);
+
+  if inspect.i_windows_systemroot <> "" then
+    List.push_back os (e "windows_systemroot" []
+                         [PCData inspect.i_windows_systemroot]);
+  if inspect.i_windows_software_hive <> "" then
+    List.push_back os (e "windows_software_hive" []
+                         [PCData inspect.i_windows_software_hive]);
+  if inspect.i_windows_systemroot <> "" then
+    List.push_back os (e "windows_system_hive" []
+                         [PCData inspect.i_windows_system_hive]);
+  if inspect.i_windows_current_control_set <> "" then
+    List.push_back os (e "windows_current_control_set" []
+                         [PCData inspect.i_windows_current_control_set]);
+
+  List.push_back os (e "root" [] [PCData inspect.i_root]);
+  let mps = ref [] in
+  List.iter (
+    fun (fs, dev) ->
+      List.push_back mps (e "mountpoint" [ "dev", dev ] [PCData fs])
+  ) inspect.i_mountpoints;
+  List.push_back os (e "mountpoints" [] !mps);
+
   List.push_back body (e "operatingsystem" [] !os);
 
   (* Construct the final document. *)
