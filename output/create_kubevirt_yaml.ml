@@ -43,6 +43,29 @@ let create_kubevirt_yaml source inspect
   (* The guest name. *)
   List.push_back metadata ("name", String output_name);
 
+  (* Put some information into labels
+   * here that we cannot otherwise store in the yaml.
+   * Labels are NOT arbitrary strings, see:
+   * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set
+   *)
+  let () =
+    let labels = ref [] in
+    let key n = sprintf "libguestfs.org/%s" n in
+    List.push_back labels (key "virt-v2v-version",
+                           String Guestfs_config.package_version);
+    Option.iter (
+      fun genid ->
+        List.push_back labels (key "genid", String genid)
+      ) source.s_genid;
+    List.push_back labels (key "osinfo", String inspect.i_osinfo);
+    (match source.s_hypervisor with
+     | UnknownHV -> ()
+     | hv ->
+        let hv = string_of_source_hypervisor hv in
+        List.push_back labels (key "source", String hv)
+    );
+    List.push_back metadata ("labels", Assoc !labels) in
+
   (* The one Windows example I have includes this clock section, and
    * the other non-Windows examples do not.  I'm not certain this
    * is correct. XXX
