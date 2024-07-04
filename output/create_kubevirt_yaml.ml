@@ -233,9 +233,9 @@ let create_kubevirt_yaml source inspect
   let body = [
     "#", String generated_by;
     "apiVersion", String "kubevirt.io/v1";
-    "kind", String "VirtualMachineInstance";
+    "kind", String "VirtualMachine";
     "metadata", Assoc !metadata;
-    "spec", Assoc !spec;
+    "spec", Assoc ["template", Assoc ["spec", Assoc !spec]];
   ] in
 
   (* Return the YAML document. *)
