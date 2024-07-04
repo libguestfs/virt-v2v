@@ -4,6 +4,10 @@ apiVersion: kubevirt.io/v1
 kind: VirtualMachineInstance
 metadata:
   name: test
+  labels:
+    libguestfs.org/virt-v2v-version: 
+    libguestfs.org/osinfo: win7
+    libguestfs.org/source: test
 spec:
   domain:
     os:
