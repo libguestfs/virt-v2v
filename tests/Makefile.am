@@ -99,11 +99,6 @@ TESTS = \
 	test-o-null.sh \
 	test-o-openstack.sh \
 	test-o-qemu.sh \
-	test-o-rhv-upload-oo-query.sh \
-	test-o-rhv-upload.sh \
-	test-o-rhv.sh \
-	test-o-vdsm-oo-query.sh \
-	test-o-vdsm-options.sh \
 	test-oa-option-qcow2.sh \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
@@ -291,16 +286,6 @@ EXTRA_DIST += \
 	test-o-null.sh \
 	test-o-openstack.sh \
 	test-o-qemu.sh \
-	test-o-rhv-upload-module/imageio.py \
-	test-o-rhv-upload-module/ovirtsdk4/__init__.py \
-	test-o-rhv-upload-module/ovirtsdk4/types.py \
-	test-o-rhv-upload-oo-query.sh \
-	test-o-rhv-upload.sh \
-	test-o-rhv.ovf.expected \
-	test-o-rhv.sh \
-	test-o-vdsm-oo-query.sh \
-	test-o-vdsm-options.ovf.expected \
-	test-o-vdsm-options.sh \
 	test-oa-option-qcow2.sh \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
