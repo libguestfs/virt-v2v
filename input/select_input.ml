@@ -90,10 +90,6 @@ let select_input ?(allow_remote = true) input_mode input_conn input_transport =
         | Some server, Some ("esx"|"gsx"|"vpx"), Some Input.VDDK, true ->
            (module Input_vddk.VDDK)
 
-        (* Xen over SSH *)
-        | Some server, Some "xen+ssh", _, true ->
-           (module Input_xen_ssh.XenSSH)
-
         (* Old virt-v2v also supported qemu+ssh://.  However I am
          * deliberately not supporting this in new virt-v2v.  Don't
          * use virt-v2v if a guest already runs on KVM.
