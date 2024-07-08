@@ -22,10 +22,7 @@ type output_mode =
   | Libvirt
   | Null
   | Openstack
-  | OVirt
-  | OVirt_Upload
   | QEmu
-  | VDSM
 (** [-o] option on the command line *)
 
 val output_modes : output_mode list
