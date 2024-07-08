@@ -27,7 +27,6 @@ EXTRA_DIST = \
 	virt-v2v-open.pod \
 	virt-v2v-output-local.pod \
 	virt-v2v-output-openstack.pod \
-	virt-v2v-output-ovirt.pod \
 	virt-v2v-release-notes-1.42.pod \
 	virt-v2v-release-notes-2.0.pod \
 	virt-v2v-release-notes-2.2.pod \
@@ -48,7 +47,6 @@ man_MANS = \
 	virt-v2v-open.1 \
 	virt-v2v-output-local.1 \
 	virt-v2v-output-openstack.1 \
-	virt-v2v-output-ovirt.1 \
 	virt-v2v-release-notes-1.42.1 \
 	virt-v2v-release-notes-2.0.1 \
 	virt-v2v-release-notes-2.2.1 \
@@ -66,7 +64,6 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-open.1.html \
 	$(top_builddir)/website/virt-v2v-output-local.1.html \
 	$(top_builddir)/website/virt-v2v-output-openstack.1.html \
-	$(top_builddir)/website/virt-v2v-output-ovirt.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-1.42.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-2.0.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-2.2.1.html \
@@ -163,17 +160,6 @@ stamp-virt-v2v-output-openstack.pod: virt-v2v-output-openstack.pod
 	$(PODWRAPPER) \
 	  --man virt-v2v-output-openstack.1 \
 	  --html $(top_builddir)/website/virt-v2v-output-openstack.1.html \
-	  --license GPLv2+ \
-	  --warning safe \
-	  $<
-	touch $@
-
-virt-v2v-output-ovirt.1 $(top_builddir)/website/virt-v2v-output-ovirt.1.html: stamp-virt-v2v-output-ovirt.pod
-
-stamp-virt-v2v-output-ovirt.pod: virt-v2v-output-ovirt.pod
-	$(PODWRAPPER) \
-	  --man virt-v2v-output-ovirt.1 \
-	  --html $(top_builddir)/website/virt-v2v-output-ovirt.1.html \
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
