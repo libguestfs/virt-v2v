@@ -29,7 +29,6 @@ SOURCES_MLI = \
 	input_vcenter_https.mli \
 	input_vddk.mli \
 	input_vmx.mli \
-	input_xen_ssh.mli \
 	name_from_disk.mli \
 	nbdkit_curl.mli \
 	nbdkit_ssh.mli \
@@ -60,7 +59,6 @@ SOURCES_ML = \
 	input_vcenter_https.ml \
 	input_vddk.ml \
 	input_vmx.ml \
-	input_xen_ssh.ml \
 	select_input.ml
 
 # We pretend that we're building a C library.  automake handles the
