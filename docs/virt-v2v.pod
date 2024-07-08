@@ -589,7 +589,11 @@ the output name is the same as the input name.
 Set output option(s) related to the current output mode.
 To display short help on what options are available you can use:
 
- virt-v2v -o rhv-upload -oo "?"
+ $ virt-v2v -o libvirt -oo "?"
+ Output options that can be used with -o libvirt:
+ 
+  -oo compressed      Compress the output file (used only with
+                      -of qcow2)
 
 =item B<-oo compressed>
 
