@@ -257,9 +257,6 @@ let rec main () =
 
 virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi -os imported esx_guest
 
-virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi esx_guest \
-         -o ovirt -os ovirt.nfs:/export_domain --network ovirtmgmt
-
 virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
 virt-v2v -i disk disk.img -o local -os /var/tmp
@@ -326,7 +323,6 @@ read the man page virt-v2v(1).
       pr "vcenter-https\n";
       pr "vddk\n";
       pr "colours-option\n";
-      pr "vdsm-compat-option\n";
       pr "io/oo\n";
       pr "mac-option\n";
       pr "bandwidth-option\n";
@@ -399,7 +395,6 @@ read the man page virt-v2v(1).
    *)
   let remove_serial_console =
     match output_mode with
-    | Some Select_output.OVirt | Some VDSM -> true
     | _ -> false in
 
   (* Get the conversion options. *)

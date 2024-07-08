@@ -25,10 +25,7 @@ type output_mode =
   | Libvirt
   | Null
   | Openstack
-  | OVirt
-  | OVirt_Upload
   | QEmu
-  | VDSM
 
 let output_modes = [
     Disk;
@@ -36,10 +33,7 @@ let output_modes = [
     Libvirt;
     Null;
     Openstack;
-    OVirt;
-    OVirt_Upload;
     QEmu;
-    VDSM;
   ]
 
 let string_of_output_mode = function
@@ -48,10 +42,7 @@ let string_of_output_mode = function
   | Libvirt -> "libvirt"
   | Null -> "null"
   | Openstack -> "openstack"
-  | OVirt -> "ovirt"
-  | OVirt_Upload -> "ovirt-upload"
   | QEmu -> "qemu"
-  | VDSM -> "vdsm"
 
 let output_mode_of_string = function
   | "kubevirt" -> Kubevirt
@@ -59,11 +50,7 @@ let output_mode_of_string = function
   | "disk" | "local" -> Disk
   | "null" -> Null
   | "openstack" | "osp" | "rhosp" -> Openstack
-  | "ovirt" | "rhv" | "rhev" -> OVirt
-  | "ovirt-upload" | "ovirt_upload" | "rhv-upload" | "rhv_upload" ->
-     OVirt_Upload
   | "qemu" -> QEmu
-  | "vdsm" -> VDSM
   | s -> error (f_"unknown -o option: %s") s
 
 let select_output = function
@@ -73,6 +60,3 @@ let select_output = function
   | Some QEmu -> (module Output_qemu.QEMU)
   | Some Kubevirt -> (module Output_kubevirt.Kubevirt)
   | Some Openstack -> (module Output_openstack.Openstack)
-  | Some OVirt_Upload -> (module Output_ovirt_upload.OVirtUpload)
-  | Some OVirt -> (module Output_ovirt.OVirt)
-  | Some VDSM -> (module Output_vdsm.VDSM)
