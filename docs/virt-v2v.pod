@@ -12,7 +12,7 @@ virt-v2v - Convert a guest to use KVM
 =head1 DESCRIPTION
 
 Virt-v2v converts a single guest from a foreign hypervisor to run on
-KVM.  It can read Linux and Windows guests running on VMware, Xen,
+KVM.  It can read Linux and Windows guests running on VMware,
 Hyper-V and some other hypervisors, and convert them to KVM managed by
 libvirt, OpenStack, oVirt, or several other targets.  It can modify
 the guest to make it bootable on KVM and install virtio drivers so it
@@ -58,8 +58,6 @@ L<virt-v2v-support(1)> — Supported hypervisors, virtualization
 management systems, guests.
 
 L<virt-v2v-input-vmware(1)> — Input from VMware.
-
-L<virt-v2v-input-xen(1)> — Input from Xen.
 
 L<virt-v2v-output-local(1)> — Output to local files or local libvirt.
 
@@ -189,10 +187,6 @@ This is only supported for:
 
 =item *
 
-L<input from Xen|virt-v2v-input-xen(1)>
-
-=item *
-
 L<input from VMware VMX|virt-v2v-input-vmware(1)/INPUT FROM VMWARE VMX>
 when using the SSH transport method
 
@@ -304,12 +298,10 @@ hypervisor.  See L<virt-v2v-input-vmware(1)>.
 Specify a libvirt connection URI to use when reading the guest.  This
 is only used when S<I<-i libvirt>>.
 
-Only local libvirt connections, VMware vCenter connections, or RHEL 5
-Xen remote connections can be used.  Other remote libvirt connections
-will not work in general.
+Only local libvirt connections or VMware vCenter connections.
+Other remote libvirt connections will not work in general.
 
-See also L<virt-v2v-input-vmware(1)>,
-L<virt-v2v-input-xen(1)>.
+See also L<virt-v2v-input-vmware(1)>.
 
 =item B<-if> format
 
@@ -883,7 +875,7 @@ bandwidth.  Virt-v2v should be able to copy guest data at gigabit
 ethernet speeds or greater.
 
 Ensure that the network connections between servers (conversion
-server, NFS server, vCenter, Xen) are as fast and as low latency as
+server, NFS server, vCenter) are as fast and as low latency as
 possible.
 
 =head2 Disk space
@@ -1181,38 +1173,6 @@ You should carefully check this script since it makes very invasive
 changes to the Windows Registry and filesystem.
 
 =head1 NOTES
-
-=head2 Xen paravirtualized guests
-
-Older versions of virt-v2v could turn a Xen paravirtualized (PV) guest
-into a KVM guest by installing a new kernel.  This version of virt-v2v
-does I<not> attempt to install any new kernels.  Instead it will give
-you an error if there are I<only> Xen PV kernels available.
-
-Therefore before conversion you should check that a regular kernel is
-installed.  For some older Linux distributions, this means installing
-a kernel from the table below:
-
- RHEL 4         i686 with > 10GB of RAM: install 'kernel-hugemem'
-                i686 SMP: install 'kernel-smp'
-                other i686: install 'kernel'
-                x86-64 SMP with > 8 CPUs: install 'kernel-largesmp'
-                x86-64 SMP: install 'kernel-smp'
-                other x86-64: install 'kernel'
- 
- RHEL 5         i686: install 'kernel-PAE'
-                x86-64: install 'kernel'
- 
- SLES 10        i586 with > 10GB of RAM: install 'kernel-bigsmp'
-                i586 SMP: install 'kernel-smp'
-                other i586: install 'kernel-default'
-                x86-64 SMP: install 'kernel-smp'
-                other x86-64: install 'kernel-default'
- 
- SLES 11+       i586: install 'kernel-pae'
-                x86-64: install 'kernel-default'
-
- Windows        (Does not apply, as there is no Xen PV Windows kernel)
 
 =head2 Enabling virtio
 

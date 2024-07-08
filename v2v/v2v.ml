@@ -335,7 +335,6 @@ read the man page virt-v2v(1).
       pr "virt-v2v-2.0\n";
       pr "libguestfs-rewrite\n";
       pr "vcenter-https\n";
-      pr "xen-ssh\n";
       pr "vddk\n";
       pr "colours-option\n";
       pr "vdsm-compat-option\n";
