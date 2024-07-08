@@ -398,7 +398,6 @@ read the man page virt-v2v(1).
       pr "virt-v2v-2.0\n";
       pr "libguestfs-rewrite\n";
       pr "vcenter-https\n";
-      pr "xen-ssh\n";
       pr "vddk\n";
       pr "colours-option\n";
       pr "vdsm-compat-option\n";
@@ -462,10 +461,6 @@ read the man page virt-v2v(1).
           (* vCenter or ESXi using nbdkit vddk plugin *)
           | Some server, Some ("esx"|"gsx"|"vpx"), Some `VDDK ->
              (module Input_vddk.VDDK)
-
-          (* Xen over SSH *)
-          | Some server, Some "xen+ssh", _ ->
-             (module Input_xen_ssh.XenSSH)
 
           (* Old virt-v2v also supported qemu+ssh://.  However I am
            * deliberately not supporting this in new virt-v2v.  Don't
