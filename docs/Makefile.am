@@ -23,7 +23,6 @@ EXTRA_DIST = \
 	virt-v2v-hacking.pod \
 	virt-v2v-in-place.pod \
 	virt-v2v-input-vmware.pod \
-	virt-v2v-input-xen.pod \
 	virt-v2v-inspector.pod \
 	virt-v2v-output-local.pod \
 	virt-v2v-output-openstack.pod \
@@ -44,7 +43,6 @@ man_MANS = \
 	virt-v2v-hacking.1 \
 	virt-v2v-in-place.1 \
 	virt-v2v-input-vmware.1 \
-	virt-v2v-input-xen.1 \
 	virt-v2v-inspector.1 \
 	virt-v2v-output-local.1 \
 	virt-v2v-output-openstack.1 \
@@ -62,7 +60,6 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-hacking.1.html \
 	$(top_builddir)/website/virt-v2v-in-place.1.html \
 	$(top_builddir)/website/virt-v2v-input-vmware.1.html \
-	$(top_builddir)/website/virt-v2v-input-xen.1.html \
 	$(top_builddir)/website/virt-v2v-inspector.1.html \
 	$(top_builddir)/website/virt-v2v-output-local.1.html \
 	$(top_builddir)/website/virt-v2v-output-openstack.1.html \
@@ -117,17 +114,6 @@ stamp-virt-v2v-input-vmware.pod: virt-v2v-input-vmware.pod
 	$(PODWRAPPER) \
 	  --man virt-v2v-input-vmware.1 \
 	  --html $(top_builddir)/website/virt-v2v-input-vmware.1.html \
-	  --license GPLv2+ \
-	  --warning safe \
-	  $<
-	touch $@
-
-virt-v2v-input-xen.1 $(top_builddir)/website/virt-v2v-input-xen.1.html: stamp-virt-v2v-input-xen.pod
-
-stamp-virt-v2v-input-xen.pod: virt-v2v-input-xen.pod
-	$(PODWRAPPER) \
-	  --man virt-v2v-input-xen.1 \
-	  --html $(top_builddir)/website/virt-v2v-input-xen.1.html \
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
