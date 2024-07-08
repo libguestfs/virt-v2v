@@ -296,10 +296,6 @@ read the man page virt-v2v-inspector(1).
           | Some server, Some ("esx"|"gsx"|"vpx"), Some `VDDK ->
              (module Input_vddk.VDDK)
 
-          (* Xen over SSH *)
-          | Some server, Some "xen+ssh", _ ->
-             (module Input_xen_ssh.XenSSH)
-
           (* Old virt-v2v also supported qemu+ssh://.  However I am
            * deliberately not supporting this in new virt-v2v.  Don't
            * use virt-v2v if a guest already runs on KVM.
