@@ -14,7 +14,7 @@ virt-v2v - Convert a guest to use KVM
 Virt-v2v converts a single guest from a foreign hypervisor to run on
 KVM.  It can read Linux and Windows guests running on VMware,
 Hyper-V and some other hypervisors, and convert them to KVM managed by
-libvirt, OpenStack, oVirt, Red Hat Virtualisation (RHV) or several
+libvirt, OpenStack or several
 other targets.  It can modify the guest to make it bootable on KVM and
 install virtio drivers so it will run quickly.
 
@@ -54,8 +54,6 @@ L<virt-v2v-input-vmware(1)> — Input from VMware.
 
 L<virt-v2v-output-local(1)> — Output to local files or local libvirt.
 
-L<virt-v2v-output-rhv(1)> — Output to oVirt or RHV.
-
 L<virt-v2v-output-openstack(1)> — Output to OpenStack.
 
 L<virt-v2v-release-notes-1.42(1)> — Release notes for 1.42 release.
@@ -84,21 +82,6 @@ since it needs to talk to the system libvirt daemon and copy the guest
 disks to F</var/lib/libvirt/images>.
 
 For more information see L<virt-v2v-input-vmware(1)>.
-
-=head2 Convert from VMware to RHV/oVirt
-
-This is the same as the previous example, except you want to send the
-guest to a RHV Data Domain using the RHV REST API.  Guest network
-interface(s) are connected to the target network called C<ovirtmgmt>.
-
- virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest \
-   -o rhv-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \
-   -os ovirt-data -op /tmp/ovirt-admin-password -of raw \
-   -oo rhv-cafile=/tmp/ca.pem --bridge ovirtmgmt
-
-In this case the host running virt-v2v acts as a B<conversion server>.
-
-For more information see L<virt-v2v-output-rhv(1)>.
 
 =head2 Convert from ESXi hypervisor over SSH to local libvirt
 
@@ -479,14 +462,6 @@ no metadata is written.
 
 Set the output method to OpenStack.  See L<virt-v2v-output-openstack(1)>.
 
-=item B<-o> B<ovirt>
-
-This is the same as I<-o rhv>.
-
-=item B<-o> B<ovirt-upload>
-
-This is the same as I<-o rhv-upload>.
-
 =item B<-o> B<qemu>
 
 Set the output method to I<qemu>.
@@ -494,40 +469,6 @@ Set the output method to I<qemu>.
 This is similar to I<-o local>, except that a shell script is written
 which you can use to boot the guest in qemu.  The converted disks and
 shell script are written to the directory specified by I<-os>.
-
-=item B<-o> B<rhev>
-
-This is the same as I<-o rhv>.
-
-=item B<-o> B<rhv>
-
-Set the output method to I<rhv>.
-
-The converted guest is written to a RHV Export Storage Domain.  The
-I<-os> parameter must also be used to specify the location of the
-Export Storage Domain.  Note this does not actually import the guest
-into RHV.  You have to do that manually later using the UI.
-
-See L<virt-v2v-output-rhv(1)>.
-
-=item B<-o> B<rhv-upload>
-
-Set the output method to I<rhv-upload>.
-
-The converted guest is written directly to a RHV Data Domain.
-This is a faster method than I<-o rhv>, but requires oVirt
-or RHV E<ge> 4.2.
-
-See L<virt-v2v-output-rhv(1)>.
-
-=item B<-o> B<vdsm>
-
-Set the output method to I<vdsm>.
-
-This mode is similar to I<-o rhv>, but the full path to the
-data domain must be given:
-F</rhv/data-center/E<lt>data-center-uuidE<gt>/E<lt>data-domain-uuidE<gt>>.
-This mode is only used when virt-v2v runs under VDSM control.
 
 =item B<-oa> B<sparse>
 
@@ -591,116 +532,10 @@ For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, set optional
 OpenStack authentication.  For example I<-oo os-username=>NAME is
 equivalent to C<openstack --os-username=NAME>.
 
-=item B<-oo rhv-cafile=>F<ca.pem>
-
-For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, the F<ca.pem> file
-(Certificate Authority), copied from F</etc/pki/ovirt-engine/ca.pem>
-on the oVirt engine.
-
-=item B<-oo rhv-cluster=>C<CLUSTERNAME>
-
-For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, set the RHV Cluster
-Name.  If not given it uses C<Default>.
-
-=item B<-oo rhv-proxy>
-
-For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, proxy the
-upload through oVirt Engine.  This is slower than uploading directly
-to the oVirt node but may be necessary if you do not have direct
-network access to the nodes.
-
-=item B<-oo rhv-verifypeer>
-
-For I<-o rhv-upload> (L<virt-v2v-output-rhv(1)>) only, verify the oVirt/RHV
-server’s identity by checking the server‘s certificate against the
-Certificate Authority.
-
 =item B<-oo server-id=>C<NAME|UUID>
 
 For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, set the name
 of the conversion appliance where virt-v2v is running.
-
-=item B<-oo vdsm-compat=0.10>
-
-=item B<-oo vdsm-compat=1.1>
-
-If I<-o vdsm> and the output format is qcow2, then we add the qcow2
-I<compat=0.10> option to the output file for compatibility with RHEL 6
-(see L<https://bugzilla.redhat.com/1145582>).
-
-If I<-oo vdsm-compat=1.1> is used then modern qcow2 (I<compat=1.1>)
-files are generated instead.
-
-Currently I<-oo vdsm-compat=0.10> is the default, but this will change
-to I<-oo vdsm-compat=1.1> in a future version of virt-v2v (when we can
-assume that everyone is using a modern version of qemu).
-
-B<Note this option only affects I<-o vdsm> output>.  All other output
-modes (including I<-o rhv>) generate modern qcow2 I<compat=1.1>
-files, always.
-
-If this option is available, then C<vdsm-compat-option> will appear in
-the I<--machine-readable> output.
-
-=item B<-oo vdsm-image-uuid=>UUID
-
-=item B<-oo vdsm-vol-uuid=>UUID
-
-=item B<-oo vdsm-vm-uuid=>UUID
-
-=item B<-oo vdsm-ovf-output=>DIR
-
-Normally the RHV output mode chooses random UUIDs for the target
-guest.  However VDSM needs to control the UUIDs and passes these
-parameters when virt-v2v runs under VDSM control.  The parameters
-control:
-
-=over 4
-
-=item *
-
-the image directory of each guest disk (I<-oo vdsm-image-uuid>) (this
-option is passed once for each guest disk)
-
-=item *
-
-UUIDs for each guest disk (I<-oo vdsm-vol-uuid>) (this option
-is passed once for each guest disk)
-
-=item *
-
-the OVF file name (I<-oo vdsm-vm-uuid>).
-
-=item *
-
-the OVF output directory (default current directory) (I<-oo vdsm-ovf-output>).
-
-=back
-
-The format of UUIDs is: C<12345678-1234-1234-1234-123456789abc> (each
-hex digit can be C<0-9> or C<a-f>), conforming to S<OSF DCE 1.1>.
-
-These options can only be used with I<-o vdsm>.
-
-=item B<-oo vdsm-ovf-flavour=>flavour
-
-This option controls the format of the OVF generated at the end of conversion.
-Currently there are two possible flavours:
-
-=over 4
-
-=item rhvexp
-
-The OVF format used in RHV export storage domain.
-
-=item ovirt
-
-The OVF format understood by oVirt REST API.
-
-=back
-
-For backward compatibility the default is I<rhvexp>, but this may change in
-the future.
 
 =item B<-op> file
 
@@ -719,27 +554,7 @@ For I<-o libvirt>, this is a libvirt directory pool
 For I<-o local> and I<-o qemu>, this is a directory name.
 The directory must exist.
 
-For I<-o rhv-upload>, this is the name of the destination Storage
-Domain.
-
 For I<-o openstack>, this is the optional Cinder volume type.
-
-For I<-o rhv>, this can be an NFS path of the Export Storage Domain
-of the form C<E<lt>hostE<gt>:E<lt>pathE<gt>>, eg:
-
- rhv-storage.example.com:/rhv/export
-
-The NFS export must be mountable and writable by the user and host
-running virt-v2v, since the virt-v2v program has to actually mount it
-when it runs.  So you probably have to run virt-v2v as C<root>.
-
-B<Or:> You can mount the Export Storage Domain yourself, and point
-I<-os> to the mountpoint.  Note that virt-v2v will still need to write
-to this remote directory, so virt-v2v will still need to run as
-C<root>.
-
-You will get an error if virt-v2v is unable to mount/write to the
-Export Storage Domain.
 
 =item B<--print-source>
 
@@ -1302,26 +1117,6 @@ require either root or a special user:
 
 =over 4
 
-=item Mounting the Export Storage Domain
-
-When using I<-o rhv -os server:/esd> virt-v2v has to have sufficient
-privileges to NFS mount the Export Storage Domain from C<server>.
-
-You can avoid needing root here by mounting it yourself before running
-virt-v2v, and passing I<-os /mountpoint> instead, but first of all
-read the next S<section ...>
-
-=item Writing to the Export Storage Domain as 36:36
-
-RHV-M cannot read files and directories from the Export Storage
-Domain unless they have UID:GID 36:36.  You will see VM import
-problems if the UID:GID is not correct.
-
-When you run virt-v2v I<-o rhv> as root, virt-v2v attempts to create
-files and directories with the correct ownership.  If you run virt-v2v
-as non-root, it will probably still work, but you will need to
-manually change ownership after virt-v2v has finished.
-
 =item Writing to libvirt
 
 When using I<-o libvirt>, you may need to run virt-v2v as root so that
@@ -1428,7 +1223,6 @@ virt-v2v binary.  Typical output looks like this:
  virt-v2v
  libguestfs-rewrite
  colours-option
- vdsm-compat-option
  input:disk
  [...]
  output:local

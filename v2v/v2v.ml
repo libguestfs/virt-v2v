@@ -201,11 +201,7 @@ let rec main () =
     | "disk" | "local" -> output_mode := `Disk
     | "null" -> output_mode := `Null
     | "openstack" | "osp" | "rhosp" -> output_mode := `Openstack
-    | "ovirt" | "rhv" | "rhev" -> output_mode := `RHV
-    | "ovirt-upload" | "ovirt_upload" | "rhv-upload" | "rhv_upload" ->
-       output_mode := `RHV_Upload
     | "qemu" -> output_mode := `QEmu
-    | "vdsm" -> output_mode := `VDSM
     | s ->
        error (f_"unknown -o option: %s") s
   in
@@ -245,7 +241,7 @@ let rec main () =
       s_"Map network ‘in’ to ‘out’";
     [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
       s_"Ignored for backwards compatibility";
-    [ S 'o' ],       Getopt.String ("kubevirt|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
+    [ S 'o' ],       Getopt.String ("kubevirt|libvirt|local|null|openstack|qemu", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
                                     s_"Set output allocation mode";
@@ -283,18 +279,6 @@ let rec main () =
       s_"Same as ‘-io vddk-thumbprint=thumbprint’";
     [ L"vddk-transports" ], Getopt.String ("transports", set_input_option_compat "vddk-transports"),
       s_"Same as ‘-io vddk-transports=transports’";
-    [ L"vdsm-compat" ], Getopt.String ("0.10|1.1", set_output_option_compat "vdsm-compat"),
-      s_"Same as ‘-oo vdsm-compat=0.10|1.1’";
-    [ L"vdsm-image-uuid" ], Getopt.String ("uuid", set_output_option_compat "vdsm-image-uuid"),
-      s_"Same as ‘-oo vdsm-image-uuid=uuid’";
-    [ L"vdsm-vol-uuid" ], Getopt.String ("uuid", set_output_option_compat "vdsm-vol-uuid"),
-      s_"Same as ‘-oo vdsm-vol-uuid=uuid’";
-    [ L"vdsm-vm-uuid" ], Getopt.String ("uuid", set_output_option_compat "vdsm-vm-uuid"),
-      s_"Same as ‘-oo vdsm-vm-uuid=uuid’";
-    [ L"vdsm-ovf-output" ], Getopt.String ("dir", set_output_option_compat "vdsm-ovf-output"),
-      s_"Same as ‘-oo vdsm-ovf-output=dir’";
-    [ L"vdsm-ovf-flavour" ], Getopt.String ("ovirt|rhvexp", set_output_option_compat "vdsm-ovf-flavour"),
-      s_"Same as ‘-oo vdsm-ovf-flavour=flavour’";
     [ L"vmtype" ],   Getopt.String ("-", vmtype_warning),
       s_"Ignored for backwards compatibility";
   ] in
@@ -313,9 +297,6 @@ let rec main () =
 %s: convert a guest to use KVM
 
 virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi -os imported esx_guest
-
-virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi esx_guest \
-         -o rhv -os rhv.nfs:/export_domain --network ovirtmgmt
 
 virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
@@ -380,7 +361,6 @@ read the man page virt-v2v(1).
       pr "vcenter-https\n";
       pr "vddk\n";
       pr "colours-option\n";
-      pr "vdsm-compat-option\n";
       pr "io/oo\n";
       pr "mac-option\n";
       pr "bandwidth-option\n";
@@ -397,9 +377,6 @@ read the man page virt-v2v(1).
       pr "output:null\n";
       pr "output:openstack\n";
       pr "output:qemu\n";
-      pr "output:rhv\n";
-      pr "output:rhv-upload\n";
-      pr "output:vdsm\n";
       pr "convert:linux\n";
       pr "convert:windows\n";
       List.iter (pr "ovf:%s\n") Create_ovf.ovf_flavours;
@@ -484,10 +461,7 @@ read the man page virt-v2v(1).
     | `Null -> (module Output_null.Null)
     | `QEmu -> (module Output_qemu.QEMU)
     | `Kubevirt -> (module Output_kubevirt.Kubevirt)
-    | `Openstack -> (module Output_openstack.Openstack)
-    | `RHV_Upload -> (module Output_rhv_upload.RHVUpload)
-    | `RHV -> (module Output_rhv.RHV)
-    | `VDSM -> (module Output_vdsm.VDSM) in
+    | `Openstack -> (module Output_openstack.Openstack) in
 
   let output_options = {
     Output.output_alloc = output_alloc;
@@ -512,7 +486,6 @@ read the man page virt-v2v(1).
    *)
   let remove_serial_console =
     match output_mode with
-    | `RHV | `VDSM -> true
     | _ -> false in
 
   (* Get the conversion options. *)
