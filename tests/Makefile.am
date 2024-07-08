@@ -70,8 +70,6 @@ TESTS = \
 	test-v2v-i-ova-two-disks.sh \
 	test-v2v-i-vmx.sh \
 	test-v2v-it-vddk-io-query.sh \
-	test-v2v-o-rhv-upload-oo-query.sh \
-	test-v2v-o-vdsm-oo-query.sh \
 	test-v2v-bad-networks-and-bridges.sh \
 	test-v2v-cdrom.sh \
 	test-v2v-floppy.sh \
@@ -89,9 +87,6 @@ TESTS = \
 	test-v2v-o-null.sh \
 	test-v2v-o-openstack.sh \
 	test-v2v-o-qemu.sh \
-	test-v2v-o-rhv.sh \
-	test-v2v-o-rhv-upload.sh \
-	test-v2v-o-vdsm-options.sh \
 	test-v2v-oa-option-qcow2.sh \
 	test-v2v-oa-option-raw.sh \
 	test-v2v-of-option.sh \
@@ -258,16 +253,6 @@ EXTRA_DIST += \
 	test-v2v-o-null.sh \
 	test-v2v-o-openstack.sh \
 	test-v2v-o-qemu.sh \
-	test-v2v-o-rhv.ovf.expected \
-	test-v2v-o-rhv.sh \
-	test-v2v-o-rhv-upload.sh \
-	test-v2v-o-rhv-upload-module/imageio.py \
-	test-v2v-o-rhv-upload-module/ovirtsdk4/__init__.py \
-	test-v2v-o-rhv-upload-module/ovirtsdk4/types.py \
-	test-v2v-o-rhv-upload-oo-query.sh \
-	test-v2v-o-vdsm-oo-query.sh \
-	test-v2v-o-vdsm-options.ovf.expected \
-	test-v2v-o-vdsm-options.sh \
 	test-v2v-oa-option-qcow2.sh \
 	test-v2v-oa-option-raw.sh \
 	test-v2v-of-option.sh \
