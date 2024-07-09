@@ -16,6 +16,10 @@ virt-v2v-in-place - Convert a guest to use KVM in-place
 
 =head1 DESCRIPTION
 
+B<virt-v2v-in-place is NOT SUPPORTED for command line use in Red Hat
+Enterprise Linux>.  It is almost always better to use L<virt-v2v(1)>
+instead of this tool.
+
 Virt-v2v-in-place converts a single guest from a foreign hypervisor to
 run on KVM.  It does this conversion in place, modifying the original
 disk.
