@@ -229,6 +229,9 @@ read the man page virt-v2v-in-place(1).
   let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
 
+  warning "virt-v2v-in-place is NOT SUPPORTED for command line use. \
+           It is almost always better to use virt-v2v instead of this tool.";
+
   (* Print the version, easier than asking users to tell us. *)
   debug "info: %s: %s %s (%s)"
         prog Config.package_name Config.package_version_full
