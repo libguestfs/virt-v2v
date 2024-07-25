@@ -253,8 +253,13 @@ and find_files dir ext =
     | [] -> []
     | dir :: rest ->
        let files = Array.to_list (Sys.readdir dir) in
+       (* Ignore dot-underscore-files, added when using 'tar' on some Macs. *)
+       let files =
+         List.filter (fun x -> not (String.is_prefix x "._")) files in
+       (* Prefix with the directory to form a path. *)
        let files = List.map (Filename.concat dir) files in
        let dirs, files = List.partition Sys.is_directory files in
+       (* Only files with the given extension. *)
        let files =
          List.filter (fun x -> Filename.check_suffix x ext) files in
        files @ loop (rest @ dirs)
