@@ -109,10 +109,10 @@ let rec main () =
     | "ip" ->
        (match String.nsplit "," out with
         | [] -> error (f_"invalid --mac ip option")
-        | [ip] -> add_static_ip mac ip None None []
-        | [ip; gw] -> add_static_ip mac ip (Some gw) None []
+        | [ip] -> add_static_ip mac ip "" "" []
+        | [ip; gw] -> add_static_ip mac ip gw "" []
         | ip :: gw :: len :: nameservers ->
-           add_static_ip mac ip (Some gw) (Some len) nameservers
+           add_static_ip mac ip gw len nameservers
        )
     | _ -> assert false
   and add_static_ip if_mac_addr if_ip_address if_default_gateway
@@ -127,12 +127,14 @@ let rec main () =
                   is an IP address") what addr
     in
     error_unless_ip_addr "ipaddr" if_ip_address;
+    let if_default_gateway =
+      match if_default_gateway with "" -> None | gw -> Some gw in
     Option.iter (error_unless_ip_addr "gw") if_default_gateway;
     List.iter (error_unless_ip_addr "nameserver") if_nameservers;
     let if_prefix_length =
       match if_prefix_length_str with
-      | None -> None
-      | Some len ->
+      | "" -> None
+      | len ->
          let len =
            try int_of_string len with
            | Failure _ -> error (f_"cannot parse --mac ip prefix length field \
