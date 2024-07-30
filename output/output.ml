@@ -80,7 +80,6 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
               to use ‘-o disk’.");
   if not (Nbdkit.probe_plugin "file") then
     error (f_"nbdkit-file-plugin is not installed or not working");
-  let nbdkit_config = Nbdkit.config () in
 
   if compressed then (
     (* Only allow compressed with -of qcow2. *)
@@ -114,7 +113,7 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
     | "raw" ->
        let cmd = Nbdkit.create "file" in
        Nbdkit.add_arg cmd "file" filename;
-       if Nbdkit.version nbdkit_config >= (1, 22, 0) then (
+       if Nbdkit.version () >= (1, 22, 0) then (
          let cmd = Nbdkit.add_arg cmd "cache" "none" in
          cmd
        );

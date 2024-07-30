@@ -97,8 +97,6 @@ module Disk = struct
     if options.read_only && not (Nbdkit.probe_filter "cow") then
       error (f_"nbdkit-cow-filter is not installed or not working");
 
-    let nbdkit_config = Nbdkit.config () in
-
     List.iteri (
       fun i disk ->
         let socket = sprintf "%s/in%d" dir i in
@@ -110,7 +108,7 @@ module Disk = struct
            if options.read_only then
              Nbdkit.add_filter cmd "cow";
            Nbdkit.add_arg cmd "file" disk;
-           if Nbdkit.version nbdkit_config >= (1, 22, 0) then
+           if Nbdkit.version () >= (1, 22, 0) then
              Nbdkit.add_arg cmd "cache" "none";
            let _, pid = Nbdkit.run_unix socket cmd in
 

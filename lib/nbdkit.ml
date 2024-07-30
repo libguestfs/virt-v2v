@@ -32,26 +32,30 @@ let is_installed =
 
 type config = (string * string) list
 
-let config () =
+let get_config = lazy (
   let cmd = "nbdkit --dump-config" in
   let lines = external_command cmd in
   List.map (String.split "=") lines
+)
+let config () = Lazy.force get_config
 
 type version = int * int * int
 
-let version =
-  let rex = PCRE.compile "^(\\d+)\\.(\\d+)\\.(\\d+)" in
-  fun config ->
-    let version =
-      try List.assoc "version" config
-      with Not_found -> failwith "nbdkit: no version in --dump-config" in
-    if not (PCRE.matches rex version) then
-      error (f_"nbdkit: unexpected version in --dump-config: %s") version;
-    let major = int_of_string (PCRE.sub 1)
-    and minor = int_of_string (PCRE.sub 2)
-    and release = int_of_string (PCRE.sub 3) in
-    debug "nbdkit version: %d.%d.%d" major minor release;
-    (major, minor, release)
+let rex = PCRE.compile "^(\\d+)\\.(\\d+)\\.(\\d+)"
+let get_version = lazy (
+  let config = config () in
+  let version =
+    try List.assoc "version" config
+    with Not_found -> failwith "nbdkit: no version in --dump-config" in
+  if not (PCRE.matches rex version) then
+    error (f_"nbdkit: unexpected version in --dump-config: %s") version;
+  let major = int_of_string (PCRE.sub 1)
+  and minor = int_of_string (PCRE.sub 2)
+  and release = int_of_string (PCRE.sub 3) in
+  debug "nbdkit version: %d.%d.%d" major minor release;
+  (major, minor, release)
+)
+let version () = Lazy.force get_version
 
 let probe_plugin name =
   let cmd = sprintf "nbdkit %s --version >/dev/null 2>&1" (quote name) in
@@ -132,7 +136,7 @@ let run_unix socket cmd =
   );
 
   (* Reduce verbosity in nbdkit >= 1.17.4. *)
-  let version = version (config ()) in
+  let version = version () in
   if version >= (1, 17, 4) then (
     add_arg "-D"; add_arg "nbdkit.backend.datapath=0"
   );

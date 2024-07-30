@@ -168,8 +168,8 @@ after their uploads (if you do, you must supply one for each disk):
                   manual.")
     in
 
-    let error_unless_nbdkit_min_version config =
-      let version = Nbdkit.version config in
+    let error_unless_nbdkit_min_version () =
+      let version = Nbdkit.version () in
       if version < nbdkit_min_version then
         error (f_"nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s")
           nbdkit_min_version_string
@@ -192,8 +192,9 @@ See also the virt-v2v-output-rhv(1) manual.");
     (* Check that nbdkit was compiled with SELinux support (for the
      * --selinux-label option).
      *)
-    let error_unless_nbdkit_compiled_with_selinux config =
+    let error_unless_nbdkit_compiled_with_selinux () =
       if have_selinux then (
+        let config = Nbdkit.config () in
         let selinux = try List.assoc "selinux" config with Not_found -> "no" in
         if selinux = "no" then
           error (f_"nbdkit was compiled without SELinux support.  You will \
@@ -206,9 +207,8 @@ See also the virt-v2v-output-rhv(1) manual.");
     Python_script.error_unless_python_interpreter_found ();
     error_unless_ovirtsdk4_module_available ();
     error_unless_nbdkit_working ();
-    let config = Nbdkit.config () in
-    error_unless_nbdkit_min_version config;
-    error_unless_nbdkit_compiled_with_selinux config;
+    error_unless_nbdkit_min_version ();
+    error_unless_nbdkit_compiled_with_selinux ();
 
     (* Python code. *)
     let precheck_script =

@@ -37,7 +37,7 @@ type version = int * int * int
 (** Version of nbdkit: (major, minor, release).  The major
     will always be [1]. *)
 
-val version : config -> version
+val version : unit -> version
 (** Get the installed version of nbdkit. *)
 
 val probe_plugin : string -> bool

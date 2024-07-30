@@ -25,8 +25,8 @@ open Tools_utils
 open Types
 open Utils
 
-let error_unless_nbdkit_version_ge config min_version =
-  let version = Nbdkit.version config in
+let error_unless_nbdkit_version_ge min_version =
+  let version = Nbdkit.version () in
   if version < min_version then (
     let min_major, min_minor, min_release = min_version in
     error (f_"nbdkit is too old.  nbdkit >= %d.%d.%d is required.")
@@ -47,8 +47,7 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
 
   (* The cookie* parameters require nbdkit 1.22, so check that early. *)
   if cookie_script <> None || cookie_script_renew <> None then (
-    let config = Nbdkit.config () in
-    error_unless_nbdkit_version_ge config (1, 22, 0)
+    error_unless_nbdkit_version_ge (1, 22, 0)
   );
 
   (* Construct the nbdkit command. *)
