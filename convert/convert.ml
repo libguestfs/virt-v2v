@@ -118,6 +118,9 @@ let rec convert dir options source =
   (* Create target metadata file. *)
   let target_meta = { guestcaps; target_buses; target_firmware; target_nics } in
 
+  (* This is a good place to dump everything we know about the guest. *)
+  if verbose () then debug_info source inspect target_meta mpstats;
+
   (* Return inspection data and target metadata. *)
   inspect, target_meta
 
@@ -130,19 +133,7 @@ and get_mpstats g =
       { mp_dev = dev; mp_path = path; mp_statvfs = statvfs; mp_vfs = vfs }
   ) (g#mountpoints ()) in
 
-  if verbose () then (
-    (* This is useful for debugging speed / fstrim issues. *)
-    eprintf "mpstats:\n";
-    List.iter (print_mpstat Stdlib.stderr) mpstats
-  );
-
   mpstats
-
-and print_mpstat chan { mp_dev = dev; mp_path = path;
-                        mp_statvfs = s; mp_vfs = vfs } =
-  fprintf chan "mountpoint statvfs %s %s (%s):\n" dev path vfs;
-  fprintf chan "  bsize=%Ld blocks=%Ld bfree=%Ld bavail=%Ld\n"
-    s.Guestfs.bsize s.Guestfs.blocks s.Guestfs.bfree s.Guestfs.bavail
 
 (* Conversion can fail if there is no space on the guest filesystems
  * (RHBZ#1139543).  To avoid this situation, check there is some
@@ -282,3 +273,28 @@ and get_target_firmware i_firmware guestcaps source output =
    | TargetUEFI -> info (f_"This guest requires UEFI on the target to boot."));
 
   target_firmware
+
+(* After conversion we dump as much information about the guest
+ * as we can in one place.  Note this is only called when verbose
+ * is enabled.
+ *)
+and debug_info source inspect
+               { guestcaps; target_buses; target_firmware; target_nics }
+               mpstats =
+  eprintf "info:\n";
+  eprintf "%s\n" (string_of_source source);
+  eprintf "%s\n" (string_of_inspect inspect);
+  eprintf "%s\n" (string_of_guestcaps guestcaps);
+  eprintf "%s\n" (string_of_target_buses target_buses);
+  eprintf "target firmware: %s\n" (string_of_target_firmware target_firmware);
+  eprintf "target NICs:\n";
+  List.iter (fun nic -> eprintf "%s\n" (string_of_source_nic nic))
+    target_nics;
+  eprintf "mountpoint stats:\n";
+  List.iter debug_mpstat mpstats;
+
+and debug_mpstat { mp_dev = dev; mp_path = path;
+                   mp_statvfs = s; mp_vfs = vfs } =
+  eprintf "    mountpoint statvfs %s %s (%s):\n" dev path vfs;
+  eprintf "        bsize=%Ld blocks=%Ld bfree=%Ld bavail=%Ld\n"
+    s.Guestfs.bsize s.Guestfs.blocks s.Guestfs.bfree s.Guestfs.bavail
