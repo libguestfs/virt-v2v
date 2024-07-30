@@ -194,6 +194,7 @@ type inspect = {
   i_windows_software_hive : string;
   i_windows_system_hive : string;
   i_windows_current_control_set : string;
+  i_drive_mappings : (string * string) list;
 }
 
 val string_of_inspect : inspect -> string

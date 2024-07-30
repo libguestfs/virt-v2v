@@ -96,6 +96,8 @@ let rec inspect_source root_choice g =
       StringMap.add name (app :: vs) map
   ) StringMap.empty apps in
 
+  let drive_mappings = g#inspect_get_drive_mappings root in
+
   (* If the guest is Windows, get some Windows-specific inspection
    * data, else (for simplicity when accessing) use empty strings.
    *)
@@ -128,6 +130,7 @@ let rec inspect_source root_choice g =
     i_windows_software_hive = software_hive;
     i_windows_system_hive = system_hive;
     i_windows_current_control_set = current_cs;
+    i_drive_mappings = drive_mappings;
   } in
   debug "%s" (string_of_inspect inspect);
 

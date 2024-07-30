@@ -303,6 +303,7 @@ type inspect = {
   i_windows_software_hive : string;
   i_windows_system_hive : string;
   i_windows_current_control_set : string;
+  i_drive_mappings : (string * string) list;
 }
 
 let string_of_inspect inspect =
@@ -322,6 +323,7 @@ i_windows_systemroot = %s
 i_windows_software_hive = %s
 i_windows_system_hive = %s
 i_windows_current_control_set = %s
+i_drive_mappings = %s
 " inspect.i_root
   inspect.i_type
   inspect.i_distro
@@ -337,6 +339,9 @@ i_windows_current_control_set = %s
   inspect.i_windows_software_hive
   inspect.i_windows_system_hive
   inspect.i_windows_current_control_set
+  (String.concat "; "
+     (List.map (fun (d, dev) -> sprintf "%s => %s" d dev)
+        inspect.i_drive_mappings))
 
 type disk_stats = {
   mutable target_actual_size : int64 option;
