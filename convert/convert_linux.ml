@@ -700,8 +700,9 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       let kernels = List.rev kernels (* so best is first *) in
       List.hd kernels in
     if verbose () then (
-      eprintf "best kernel for this guest:\n";
-      print_kernel_info stderr "\t" best_kernel
+      eprintf "info: best kernel for this guest:\n";
+      print_kernel_info stderr "\t" best_kernel;
+      flush stderr
     );
     if best_kernel <> List.hd bootloader_kernels then (
       debug "best kernel is not the bootloader default, \
@@ -1204,7 +1205,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       ) in
 
     if verbose () then (
-      eprintf "block device map:\n";
+      eprintf "info: block device map:\n";
       List.iter (
         fun (source_dev, target_dev) ->
           eprintf "\t%s\t-> %s\n" source_dev target_dev

@@ -212,6 +212,7 @@ and do_fstrim g inspect =
         with G.Error _ -> false in
 
       if mounted then (
+        debug "info: trimming %s" dev;
         try g#fstrim "/"
         with G.Error msg ->
           warning (f_"fstrim on guest filesystem %s failed.  Usually you \

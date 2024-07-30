@@ -201,14 +201,14 @@ read the man page virt-v2v-in-place(1).
   Getopt.parse opthandle.getopt;
 
   (* Print the version, easier than asking users to tell us. *)
-  debug "%s: %s %s (%s)"
+  debug "info: %s: %s %s (%s)"
         prog Config.package_name Config.package_version_full
         Config.host_cpu;
 
   (* Print the libvirt version if debugging. *)
   if verbose () then (
     let major, minor, release = Libvirt_utils.libvirt_get_version () in
-    debug "libvirt version: %d.%d.%d" major minor release
+    debug "info: libvirt version: %d.%d.%d" major minor release
   );
 
   (* Create the v2v directory to control conversion. *)

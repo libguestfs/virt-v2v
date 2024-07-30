@@ -52,7 +52,11 @@ let get_version = lazy (
   let major = int_of_string (PCRE.sub 1)
   and minor = int_of_string (PCRE.sub 2)
   and release = int_of_string (PCRE.sub 3) in
-  debug "nbdkit version: %d.%d.%d" major minor release;
+  if verbose () then (
+    eprintf "info: nbdkit version:\n%!";
+    ignore (Sys.command "nbdkit --version >&2");
+    eprintf "parsed version: %d.%d.%d\n%!" major minor release
+  );
   (major, minor, release)
 )
 let version () = Lazy.force get_version

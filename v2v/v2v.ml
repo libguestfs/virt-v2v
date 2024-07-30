@@ -341,14 +341,14 @@ read the man page virt-v2v(1).
   Getopt.parse opthandle.getopt;
 
   (* Print the version, easier than asking users to tell us. *)
-  debug "%s: %s %s (%s)"
+  debug "info: %s: %s %s (%s)"
         prog Config.package_name Config.package_version_full
         Config.host_cpu;
 
   (* Print the libvirt version if debugging. *)
   if verbose () then (
     let major, minor, release = Libvirt_utils.libvirt_get_version () in
-    debug "libvirt version: %d.%d.%d" major minor release
+    debug "info: libvirt version: %d.%d.%d" major minor release
   );
 
   (* Create the temporary directory to control conversion. *)
@@ -611,8 +611,13 @@ read the man page virt-v2v(1).
        * side of the pipeline.
        *)
       if verbose () then (
-        nbdinfo ~content:true input_uri;
-        nbdinfo ~content:false output_uri
+        let input_info = nbdinfo ~content:true input_uri
+        and output_info = nbdinfo ~content:false output_uri in
+        eprintf "info: input disk %d/%d:\n" (i+1) nr_disks;
+        eprintf "%s\n" (String.concat "\n" input_info);
+        eprintf "info: output disk %d/%d:\n" (i+1) nr_disks;
+        eprintf "%s\n" (String.concat "\n" output_info);
+        flush Stdlib.stderr
       );
 
       nbdcopy ?request_size output_alloc input_uri output_uri
@@ -686,15 +691,14 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
   if run_command cmd <> 0 then
     error (f_"nbdcopy command failed, see earlier error messages")
 
-(* Run nbdinfo on a URI and dump the information to stderr.
- * However don't fail if nbdinfo is not installed since
- * this is just used for debugging.
+(* Run nbdinfo on a URI and collect the information.  However don't
+ * fail if nbdinfo is not installed since this is just used for debugging.
  *)
 and nbdinfo ?(content = false) uri =
   let cmd =
-    sprintf "nbdinfo%s %s >&2"
+    sprintf "nbdinfo%s %s ||:"
       (if content then " --content" else " --no-content") (quote uri) in
-  ignore (Sys.command cmd)
+  external_command cmd
 
 (* Convert a Unix domain socket path to an NBD URI. *)
 and nbd_uri_of_socket = sprintf "nbd+unix:///?socket=%s"
