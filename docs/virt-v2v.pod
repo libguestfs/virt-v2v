@@ -394,9 +394,9 @@ Force a particular interface (controlled by its MAC address) to have a
 static IP address after boot.
 
 The fields in the parameter are: C<ipaddr> is the IP address.  C<gw>
-is the optional gateway IP address.  C<len> is the subnet mask length
-(an integer).  The final parameters are zero or more nameserver IP
-addresses.
+is the optional gateway IP address.  C<len> is the optional subnet
+mask length (an integer).  The final parameters are zero or more
+nameserver IP addresses.
 
 This option can be supplied zero or more times.
 
