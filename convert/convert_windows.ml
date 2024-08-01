@@ -397,7 +397,7 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
                      %systemroot%\\Sysnative\\PnPutil -i -a \
                      %systemroot%\\Drivers\\Virtio\\*.inf" in
 
-    (* Set priority higher than that of "v2vnetcf.ps1" firstboot script. *)
+    (* Set priority higher than that of "network-configure" firstboot script. *)
     Firstboot.add_firstboot_script g inspect.i_root ~prio:2000
       "pnputil install drivers" fb_script;
 
@@ -674,7 +674,7 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
      * Powershell script which runs at boot.
      *)
     if static_ips <> [] then (
-      let psh_filename = "v2vnetcf.ps1" in
+      let psh_filename = "network-configure" in
       let psh = ref [] in
       let add = List.push_back psh in
 
