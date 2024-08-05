@@ -1299,6 +1299,21 @@ B<N.B.> Take care not to interrupt the automatic driver installation
 process when logging in to the guest for the first time, as this may
 prevent the guest from subsequently booting correctly.
 
+=head3 Removing VMware Tools from Windows guests
+
+Virt-v2v attempts to remove VMware Tools.  For Windows guests this is
+supposed to happen during the first boot after conversion.
+
+We use VMware's recommended uninstallation method as that is the
+safest choice.  However our experience has shown that this method
+usually fails.  If so, VMware Tools must be removed by some other
+method.
+
+One possible method is described here:
+L<https://gist.github.com/broestls/f872872a00acee2fca02017160840624>
+You should carefully check this script since it makes very invasive
+changes to the Windows Registry and filesystem.
+
 =head2 Free space for conversion
 
 =head3 Free space in the guest
