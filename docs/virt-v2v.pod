@@ -1295,9 +1295,12 @@ The guest will be bootable after the offline conversion stage, but
 will not yet have all necessary drivers installed to work correctly.
 These will be installed automatically the first time the guest boots.
 
-B<N.B.> Take care not to interrupt the automatic driver installation
-process when logging in to the guest for the first time, as this may
-prevent the guest from subsequently booting correctly.
+B<N.B.> Windows may reboot 4 or more times the first time after
+conversion.  This is required to install the required drivers, guest
+agents, remove VMware Tools, and configure the network.  Take care not
+to interrupt the automatic driver installation process when logging in
+to the guest for the first time, as this may prevent the guest from
+subsequently booting correctly.
 
 =head3 Removing VMware Tools from Windows guests
 
