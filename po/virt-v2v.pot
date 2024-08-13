@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.5.6\n"
+"Project-Id-Version: virt-v2v 2.5.7\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2024-07-30 16:57+0100\n"
+"POT-Creation-Date: 2024-08-13 11:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgid ""
 "%!"
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:420
+#: common/mlcustomize/inject_virtio_win.ml:434
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
@@ -651,7 +651,7 @@ msgstr ""
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:254
+#: common/mlcustomize/firstboot.ml:269
 msgid ""
 "One of rhsrvany.exe or pvvxsvc.exe is missing in %s.  One of them is "
 "required in order to install Windows firstboot scripts.  You can get one by "
@@ -1414,11 +1414,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:165
+#: common/mlcustomize/firstboot.ml:374 common/mlcustomize/firstboot.ml:165
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:371
+#: common/mlcustomize/firstboot.ml:401
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
@@ -1879,9 +1879,9 @@ msgid ""
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
 
-#. common/mlcustomize/inject_virtio_win.ml:366
-#. common/mlcustomize/inject_virtio_win.ml:361
-#: common/mlcustomize/inject_virtio_win.ml:371
+#. common/mlcustomize/inject_virtio_win.ml:380
+#. common/mlcustomize/inject_virtio_win.ml:375
+#: common/mlcustomize/inject_virtio_win.ml:385
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
