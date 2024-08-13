@@ -687,13 +687,16 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
        *)
       if net_driver = Virtio_net then (
         add "# Wait for the netkvm (virtio-net) driver to become active.";
+        add "$startdate = Get-Date";
         add "$adapters = @()";
-        add "While (-Not $adapters) {";
+        add "While (-Not $adapters -and \
+                    $startdate.AddMinutes(5) -gt (Get-Date)) {";
         add "    Start-Sleep -Seconds 5";
         add "    $adapters = Get-NetAdapter -Physical \
                              | Where DriverFileName -eq \"netkvm.sys\"";
         add "    Write-Host \"adapters = '$adapters'\"";
         add "}";
+        add "# In the timeout case $ifindex will not be set below.";
         add ""
       );
 
