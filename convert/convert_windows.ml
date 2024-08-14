@@ -630,43 +630,62 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
      *)
     let node =
       Registry.get_node reg ["Microsoft"; "Windows"; "CurrentVersion"] in
-    match node with
-    | Some node ->
-       let append = Registry.encode_utf16le ";%SystemRoot%\\Drivers\\VirtIO" in
-       let values = Array.to_list (g#hivex_node_values node) in
-       let rec loop = function
-         | [] -> () (* DevicePath not found -- ignore this case *)
-         | { G.hivex_value_h = valueh } :: values ->
-            let key = g#hivex_value_key valueh in
-            if key <> "DevicePath" then
-              loop values
-            else (
-              let data = g#hivex_value_value valueh in
-              let len = String.length data in
-              let t = g#hivex_value_type valueh in
+    (match node with
+     | Some node ->
+        let append = Registry.encode_utf16le ";%SystemRoot%\\Drivers\\VirtIO" in
+        let values = Array.to_list (g#hivex_node_values node) in
+        let rec loop = function
+          | [] -> () (* DevicePath not found -- ignore this case *)
+          | { G.hivex_value_h = valueh } :: values ->
+             let key = g#hivex_value_key valueh in
+             if key <> "DevicePath" then
+               loop values
+             else (
+               let data = g#hivex_value_value valueh in
+               let len = String.length data in
+               let t = g#hivex_value_type valueh in
 
-              (* Only add the appended path if it doesn't exist already. *)
-              if String.find data append = -1 then (
-                (* Remove the explicit [\0\0] at the end of the string.
-                 * This is the UTF-16LE NUL-terminator.
-                 *)
-                let data =
-                  if len >= 2 && String.sub data (len-2) 2 = "\000\000" then
-                    String.sub data 0 (len-2)
-                  else
-                    data in
+               (* Only add the appended path if it doesn't exist already. *)
+               if String.find data append = -1 then (
+                 (* Remove the explicit [\0\0] at the end of the string.
+                  * This is the UTF-16LE NUL-terminator.
+                  *)
+                 let data =
+                   if len >= 2 && String.sub data (len-2) 2 = "\000\000" then
+                     String.sub data 0 (len-2)
+                   else
+                     data in
 
-                (* Append the path and the explicit NUL. *)
-                let data = data ^ append ^ "\000\000" in
+                 (* Append the path and the explicit NUL. *)
+                 let data = data ^ append ^ "\000\000" in
 
-                g#hivex_node_set_value node key t data
-              )
-            )
-       in
-       loop values
-    | None ->
-       warning (f_"could not find registry key \
-                   HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion")
+                 g#hivex_node_set_value node key t data
+               )
+             )
+        in
+        loop values
+     | None ->
+        warning (f_"could not find registry key \
+                    HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion")
+    );
+
+    (* If you have trouble installing drivers, try increasing the
+     * verboseness by uncommenting this section.
+     * https://learn.microsoft.com/en-us/windows-hardware/drivers/install/setting-setupapi-logging-levels
+     * The additional logs are written to C:\Windows\INF\setupapi.*.log
+     *)
+(*
+    let node =
+      Registry.get_node reg ["Microsoft"; "Windows"; "CurrentVersion";
+                             "Setup"] in
+    (match node with
+     | Some node ->
+        g#hivex_node_set_value node "LogLevel" 4_L (le32_of_int 0xff_L)
+     | None ->
+        warning (f_"could not find registry key \
+                    HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup")
+    );
+*)
 
   and configure_network_interfaces net_driver =
     (* If we were asked to force network interfaces to have particular
