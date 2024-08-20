@@ -37,6 +37,7 @@ type options = {
   network_map : Networks.t;
   root_choice : root_choice;
   static_ips : static_ip list;
+  customize_ops : Customize_cmdline.ops;
 }
 
 (* Mountpoint stats, used for free space estimation. *)
@@ -91,8 +92,8 @@ let rec convert dir options source =
     do_convert g source inspect i_firmware
       options.block_driver options.keep_serial_console options.static_ips in
 
-  (* Relabel the guest (does nothing for non-Linux/non-SELinux guests). *)
-  SELinux_relabel.relabel g;
+  (* Run virt-customize options. *)
+  Customize_run.run g inspect.i_root options.customize_ops;
 
   g#umount_all ();
 

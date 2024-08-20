@@ -23,6 +23,7 @@ type options = {
   network_map : Networks.t;        (** [-b] and [-n] options *)
   root_choice : Types.root_choice; (** [--root] option *)
   static_ips : Types.static_ip list; (** [--mac :ip:] option *)
+  customize_ops : Customize_cmdline.ops; (** virt-customize options *)
 }
 
 val convert : string -> options -> Types.source -> Types.inspect * Types.target_meta

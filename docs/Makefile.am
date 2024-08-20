@@ -76,6 +76,7 @@ stamp-virt-v2v.pod: virt-v2v.pod
 	  --man virt-v2v.1 \
 	  --html $(top_builddir)/website/virt-v2v.1.html \
 	  --path $(top_srcdir)/common/options \
+	  --insert $(top_srcdir)/common/mlcustomize/customize-options.pod:__CUSTOMIZE_OPTIONS__ \
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<

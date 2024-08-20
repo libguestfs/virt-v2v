@@ -183,6 +183,13 @@ let rec main () =
     [ S 'O' ],       Getopt.String ("output.xml", set_output_file_option),
                                     s_"Set the output filename";
   ] in
+
+  (* Append virt-customize options. *)
+  let customize_argspec, get_customize_ops = Customize_cmdline.argspec () in
+  let customize_argspec =
+    List.map (fun (spec, _, _) -> spec) customize_argspec in
+  let argspec = argspec @ customize_argspec in
+
   let args = ref [] in
   let anon_fun s = List.push_front s args in
   let usage_msg =
@@ -195,6 +202,7 @@ A short summary of the options is given below.  For detailed help please
 read the man page virt-v2v-inspector(1).
 ")
       prog in
+
   let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true
                     ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
@@ -215,6 +223,7 @@ read the man page virt-v2v-inspector(1).
 
   (* Dereference the arguments. *)
   let args = List.rev !args in
+  let customize_ops = get_customize_ops () in
   let output_file = !output_file in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
@@ -239,6 +248,7 @@ read the man page virt-v2v-inspector(1).
       pr "io\n";
       pr "mac-option\n";
       pr "mac-ip-option\n";
+      pr "customize-ops\n";
       pr "input:disk\n";
       pr "input:libvirt\n";
       pr "input:libvirtxml\n";
@@ -332,6 +342,7 @@ read the man page virt-v2v-inspector(1).
     network_map;
     root_choice;
     static_ips;
+    customize_ops;
   } in
 
   (* Before starting the input module, check there is sufficient

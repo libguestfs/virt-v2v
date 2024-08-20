@@ -24,6 +24,53 @@ set -x
 
 skip_if_skipped
 
+# We don't explicitly document the virt-customize options in the
+# synopsis, so don't give an error in the test.
+virt_customize_options=\
+--append-line,\
+--chmod,\
+--chown,\
+--commands-from-file,\
+--copy,\
+--copy-in,\
+--delete,\
+--edit,\
+--firstboot,\
+--firstboot-command,\
+--firstboot-install,\
+--hostname,\
+--inject-blnsvr,\
+--inject-qemu-ga,\
+--inject-virtio-win,\
+--install,\
+--link,\
+--mkdir,\
+--move,\
+--no-logfile,\
+--no-selinux-relabel,\
+--password,\
+--password-crypto,\
+--root-password,\
+--run,\
+--run-command,\
+--scrub,\
+--selinux-relabel,\
+--sm-attach,\
+--sm-credentials,\
+--sm-register,\
+--sm-remove,\
+--sm-unregister,\
+--ssh-inject,\
+--tar-in,\
+--timezone,\
+--touch,\
+--truncate,\
+--truncate-recursive,\
+--uninstall,\
+--update,\
+--upload,\
+--write
+
 $srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
   --path $srcdir/../common/options \
   --ignore=\
@@ -57,7 +104,8 @@ $srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
 --vdsm-ovf-output,\
 --vdsm-vm-uuid,\
 --vdsm-vol-uuid,\
---vmtype
+--vmtype,\
+$virt_customize_options
 
 $srcdir/../podcheck.pl virt-v2v-in-place.pod virt-v2v-in-place \
   --path $srcdir/../common/options \
@@ -74,7 +122,8 @@ $srcdir/../podcheck.pl virt-v2v-in-place.pod virt-v2v-in-place \
 --on,\
 --oo,\
 --op,\
---os
+--os,\
+$virt_customize_options
 
 $srcdir/../podcheck.pl virt-v2v-inspector.pod virt-v2v-inspector \
   --path $srcdir/../common/options \
@@ -83,4 +132,5 @@ $srcdir/../podcheck.pl virt-v2v-inspector.pod virt-v2v-inspector \
 --if,\
 --io,\
 --ip,\
---it
+--it,\
+$virt_customize_options

@@ -4,9 +4,13 @@ virt-v2v-in-place - Convert a guest to use KVM in-place
 
 =head1 SYNOPSIS
 
- virt-v2v-in-place -i disk [other -i* options] filename
+ virt-v2v-in-place -i disk [other -i* options]
+                   [virt-customize options]
+                   filename
 
- virt-v2v-in-place -i libvirt|libvirtxml [other -i* options] guest
+ virt-v2v-in-place -i libvirt|libvirtxml [other -i* options]
+                   [virt-customize options]
+                   guest
 
 =head1 DESCRIPTION
 

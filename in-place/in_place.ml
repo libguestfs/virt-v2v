@@ -180,6 +180,13 @@ let rec main () =
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
                                     s_"How to choose root filesystem";
   ] in
+
+  (* Append virt-customize options. *)
+  let customize_argspec, get_customize_ops = Customize_cmdline.argspec () in
+  let customize_argspec =
+    List.map (fun (spec, _, _) -> spec) customize_argspec in
+  let argspec = argspec @ customize_argspec in
+
   let args = ref [] in
   let anon_fun s = List.push_front s args in
   let usage_msg =
@@ -197,6 +204,7 @@ A short summary of the options is given below.  For detailed help please
 read the man page virt-v2v-in-place(1).
 ")
       prog in
+
   let opthandle = create_standard_options argspec ~anon_fun ~key_opts:true ~machine_readable:true usage_msg in
   Getopt.parse opthandle.getopt;
 
@@ -222,6 +230,7 @@ read the man page virt-v2v-in-place(1).
     | Some "virtio-scsi" -> Virtio_SCSI
     | Some driver ->
        error (f_"unknown block driver ‘--block-driver %s’") driver in
+  let customize_ops = get_customize_ops () in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
   let print_source = !print_source in
@@ -241,6 +250,7 @@ read the man page virt-v2v-in-place(1).
       pr "io\n";
       pr "mac-option\n";
       pr "mac-ip-option\n";
+      pr "customize-ops\n";
       pr "input:disk\n";
       pr "input:libvirt\n";
       pr "input:libvirtxml\n";
@@ -311,6 +321,7 @@ read the man page virt-v2v-in-place(1).
     network_map;
     root_choice;
     static_ips;
+    customize_ops;
   } in
 
   (* Before starting the input module, check there is sufficient

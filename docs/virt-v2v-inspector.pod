@@ -4,7 +4,10 @@ virt-v2v-inspector - Estimate disk space needed before virt-v2v conversion
 
 =head1 SYNOPSIS
 
- virt-v2v-inspector [-i* options] guest [-O output.xml]
+ virt-v2v-inspector [-i* options]
+                    [virt-customize options]
+                    guest
+                    [-O output.xml]
 
 =head1 DESCRIPTION
 

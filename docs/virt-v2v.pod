@@ -6,6 +6,7 @@ virt-v2v - Convert a guest to use KVM
 
  virt-v2v [-i mode] [other -i* options]
           [-o mode] [other -o* options]
+          [virt-customize options]
           [guest|filename]
 
 =head1 DESCRIPTION
@@ -42,6 +43,14 @@ these sides of virt-v2v are documented separately in this manual.
 Virt-v2v normally copies from the input to the output, called "copying
 mode".  In this case the source guest is always left unchanged.
 In-place conversions may be done using L<virt-v2v-in-place(1)>.
+
+=head2 Customization
+
+Virt-v2v can also customize the guest during conversion, using the
+same options as L<virt-customize(1)>.  For example, injecting files
+using I<--upload>, or using I<--firstboot-script> to add additional
+script(s) to run at the first boot after conversion.  Read the
+virt-customize manual for more information on this topic.
 
 =head2 Other virt-v2v topics
 
@@ -858,6 +867,10 @@ to a file, wrapping is disabled unless you use this option.
 Enable tracing of libguestfs API calls.
 
 =back
+
+=head2 Customization options
+
+__CUSTOMIZE_OPTIONS__
 
 =head1 NOTES
 
@@ -1748,4 +1761,4 @@ Tingting Zheng
 
 =head1 COPYRIGHT
 
-Copyright (C) 2009-2022 Red Hat Inc.
+Copyright (C) 2009-2024 Red Hat Inc.
