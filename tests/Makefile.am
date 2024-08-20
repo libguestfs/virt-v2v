@@ -107,6 +107,7 @@ TESTS = \
 	test-v2v-fedora-lvm-on-luks-conversion.sh \
 	test-v2v-fedora-md-conversion.sh \
 	test-v2v-windows-conversion.sh \
+	test-v2v-customize.sh \
 	rhbz1232192.sh \
 	$(SLOW_TESTS) \
 	$(ROOT_TESTS)
@@ -183,6 +184,7 @@ EXTRA_DIST += \
 	test-v2v-bad-networks-and-bridges.sh \
 	test-v2v-cdrom.expected \
 	test-v2v-cdrom.sh \
+	test-v2v-customize.sh \
 	test-v2v-fedora-conversion.sh \
 	test-v2v-fedora-btrfs-conversion.sh \
 	test-v2v-fedora-luks-on-lvm-conversion.sh \
