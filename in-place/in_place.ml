@@ -182,7 +182,8 @@ let rec main () =
   ] in
 
   (* Append virt-customize options. *)
-  let customize_argspec, get_customize_ops = Customize_cmdline.argspec () in
+  let customize_argspec, get_customize_ops =
+    Customize_cmdline.argspec ~v2v:true () in
   let customize_argspec =
     List.map (fun (spec, _, _) -> spec) customize_argspec in
   let argspec = argspec @ customize_argspec in

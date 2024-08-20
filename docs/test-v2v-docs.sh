@@ -39,9 +39,6 @@ virt_customize_options=\
 --firstboot-command,\
 --firstboot-install,\
 --hostname,\
---inject-blnsvr,\
---inject-qemu-ga,\
---inject-virtio-win,\
 --install,\
 --link,\
 --mkdir,\
