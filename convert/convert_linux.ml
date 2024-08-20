@@ -163,8 +163,6 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
     configure_kernel_modules block_type net_type;
     rebuild_initrd kernel;
 
-    SELinux_relabel.relabel g;
-
     let machine, virtio_1_0 =
       match inspect.i_arch with
       | ("i386"|"x86_64") ->

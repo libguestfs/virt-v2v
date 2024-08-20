@@ -91,6 +91,9 @@ let rec convert dir options source =
     do_convert g source inspect i_firmware
       options.block_driver options.keep_serial_console options.static_ips in
 
+  (* Relabel the guest (does nothing for non-Linux/non-SELinux guests). *)
+  SELinux_relabel.relabel g;
+
   g#umount_all ();
 
   (* Doing fstrim on all the filesystems reduces the transfer size
