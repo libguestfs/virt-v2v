@@ -1,3 +1,5 @@
+common/mlcustomize/crypt-c.c
+common/mlcustomize/perl_edit-c.c
 common/mlpcre/pcre-c.c
 common/mltools/JSON_parser-c.c
 common/mltools/getopt-c.c

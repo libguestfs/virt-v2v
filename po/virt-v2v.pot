@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.5.7\n"
+"Project-Id-Version: virt-v2v 2.5.8\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2024-08-13 11:48+0100\n"
+"POT-Creation-Date: 2024-08-20 11:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
-#: v2v/v2v.ml:318
+#: v2v/v2v.ml:325
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -100,7 +100,7 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: in-place/in_place.ml:186
+#: in-place/in_place.ml:193
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -119,7 +119,7 @@ msgstr ""
 msgid "%s: error: %s"
 msgstr ""
 
-#: inspector/inspector.ml:189
+#: inspector/inspector.ml:196
 msgid ""
 "%s: estimate disk space needed before virt-v2v conversion\n"
 "\n"
@@ -439,7 +439,7 @@ msgstr ""
 msgid "Copy local files or directories into image"
 msgstr ""
 
-#: v2v/v2v.ml:604
+#: v2v/v2v.ml:615
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:630
+#: v2v/v2v.ml:641
 msgid "Creating output metadata"
 msgstr ""
 
@@ -529,7 +529,7 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#: v2v/v2v.ml:634 inspector/inspector.ml:367 in-place/in_place.ml:356
+#: v2v/v2v.ml:645 inspector/inspector.ml:378 in-place/in_place.ml:367
 msgid "Finishing off"
 msgstr ""
 
@@ -946,15 +946,15 @@ msgstr ""
 msgid "Set user password"
 msgstr ""
 
-#: v2v/v2v.ml:576
+#: v2v/v2v.ml:587
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:552 inspector/inspector.ml:343 in-place/in_place.ml:322
+#: v2v/v2v.ml:563 inspector/inspector.ml:354 in-place/in_place.ml:333
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:558 in-place/in_place.ml:328
+#: v2v/v2v.ml:569 in-place/in_place.ml:339
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -1213,8 +1213,8 @@ msgstr ""
 
 #. input/input_vddk.ml:127
 #. input/input_vcenter_https.ml:94
-#. in-place/in_place.ml:270
-#: v2v/v2v.ml:437 inspector/inspector.ml:268 input/input_xen_ssh.ml:71
+#. in-place/in_place.ml:280
+#: v2v/v2v.ml:447 inspector/inspector.ml:278 input/input_xen_ssh.ml:71
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1461,7 +1461,7 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#: v2v/v2v.ml:653 inspector/inspector.ml:386 in-place/in_place.ml:375
+#: v2v/v2v.ml:664 inspector/inspector.ml:397 in-place/in_place.ml:386
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1608,7 +1608,7 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: v2v/v2v.ml:692
+#: v2v/v2v.ml:703
 msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
@@ -1787,7 +1787,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: v2v/v2v.ml:468 inspector/inspector.ml:299
+#: v2v/v2v.ml:478 inspector/inspector.ml:309
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -2118,7 +2118,7 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:364 in-place/in_place.ml:224
+#: v2v/v2v.ml:372 in-place/in_place.ml:232
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
@@ -2130,7 +2130,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:373 inspector/inspector.ml:227
+#: v2v/v2v.ml:382 inspector/inspector.ml:236
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
@@ -2216,7 +2216,7 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
-#: in-place/in_place.ml:283
+#: in-place/in_place.ml:293
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
 msgstr ""
 
