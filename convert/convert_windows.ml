@@ -38,7 +38,8 @@ module G = Guestfs
  * time the Windows VM is booted on KVM.
  *)
 
-let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
+let convert (g : G.guestfs) source inspect i_firmware
+      block_driver _ static_ips =
   (*----------------------------------------------------------------------*)
   (* Inspect the Windows guest. *)
 
@@ -271,6 +272,8 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
     (* Open the software hive for writes and update it. *)
     Registry.with_hive_write g inspect.i_windows_software_hive
                              update_software_hive;
+
+    configure_online_disks block_driver;
 
     configure_network_interfaces net_driver;
 
@@ -667,6 +670,40 @@ let convert (g : G.guestfs) _ inspect i_firmware block_driver _ static_ips =
     | None ->
        warning (f_"could not find registry key \
                    HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion")
+
+  and configure_online_disks block_driver =
+    (* If there are > 1 disks, run a script which will force Windows
+     * to bring them all online.  Windows 2022 will offline non-boot disks
+     * where the bus changes as some sort of "security" mitigation.
+     * https://issues.redhat.com/browse/RHEL-55837
+     * https://issues.redhat.com/browse/MTV-1299
+     * https://bugzilla.redhat.com/show_bug.cgi?id=1662286
+     *)
+    let virtio_installed =
+      match block_driver with
+      | Inject_virtio_win.Virtio_blk | Virtio_SCSI -> true
+      | IDE -> false in
+    let more_than_one_disk = List.length source.s_disks > 1 in
+
+    if virtio_installed && more_than_one_disk then (
+      let psh_filename = "online-disks" in
+      let psh = ref [] in
+      let add = List.push_back psh in
+
+      add "# Uncomment this line for lots of debug output.";
+      add "# Set-PSDebug -Trace 1";
+      add "";
+      add "Write-Host \"Online all virtio disks\"";
+      add "";
+      add "Get-Disk | Where { $_.FriendlyName -like '*VirtIO*' } | % {";
+      add "    Write-Host ('  - ' + $_.Number + ': ' + $_.FriendlyName + '(' + [math]::Round($_.Size/1GB,2) + 'GB)')";
+      add "    $_ | Set-Disk -IsOffline $false";
+      add "    $_ | Set-Disk -IsReadOnly $false";
+      add "}";
+
+      (* Install the Powershell script to run late at firstboot. *)
+      Firstboot.add_firstboot_powershell g inspect.i_root psh_filename !psh
+    )
 
   and configure_network_interfaces net_driver =
     (* If we were asked to force network interfaces to have particular
