@@ -30,6 +30,9 @@ open DOM
 let string_set_of_list =
   List.fold_left (fun set x -> StringSet.add x set) StringSet.empty
 
+(* XXX libguestfs provides g#inspect_get_osinfo which provides this
+ * information.  Why are we hard-coding it here?
+ *)
 let get_osinfo_id = function
   | { i_type = "linux"; i_distro = "rhel";
       i_major_version = major; i_minor_version = minor } ->
@@ -137,6 +140,11 @@ let get_osinfo_id = function
       i_product_variant = "Server"; i_product_name = product }
       when String.find product "2019" >= 0 ->
     Some "http://microsoft.com/win/2k19"
+
+  | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
+      i_product_variant = "Server"; i_product_name = product }
+      when String.find product "2022" >= 0 ->
+    Some "http://microsoft.com/win/2k22"
 
   | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
       i_product_variant = "Server" } ->
