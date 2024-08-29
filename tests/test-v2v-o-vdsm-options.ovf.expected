@@ -23,12 +23,12 @@
     <IsAutoSuspend>False</IsAutoSuspend>
     <TimeZone/>
     <IsStateless>False</IsStateless>
-    <VmType>0</VmType>
+    <VmType>1</VmType>
     <DefaultDisplayType>2</DefaultDisplayType>
     <BiosType>1</BiosType>
-    <OperatingSystemSection ovf:id='VM' ovf:required='false' ovirt:id='11'>
-      <Info>Microsoft Windows 7 Phony Edition</Info>
-      <Description>Windows7</Description>
+    <OperatingSystemSection ovf:id='VM' ovf:required='false' ovirt:id='37'>
+      <Info>Windows Server 2022 Phony Edition</Info>
+      <Description>windows_2022</Description>
     </OperatingSystemSection>
     <VirtualHardwareSection>
       <Info>1 CPU, 1024 Memory</Info>

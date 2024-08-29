@@ -6,7 +6,7 @@ metadata:
   name: test
   labels:
     libguestfs.org/virt-v2v-version: 
-    libguestfs.org/osinfo: win7
+    libguestfs.org/osinfo: win2k22
     libguestfs.org/source: test
 spec:
   template:

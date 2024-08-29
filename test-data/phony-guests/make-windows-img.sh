@@ -62,7 +62,7 @@ mkdir-p /Windows/System32/Drivers
 upload $SRCDIR/windows-software /Windows/System32/Config/SOFTWARE
 upload $SRCDIR/windows-system /Windows/System32/Config/SYSTEM
 
-upload $SRCDIR/../binaries/bin-win32.exe /Windows/System32/cmd.exe
+upload $SRCDIR/../binaries/bin-win64.exe /Windows/System32/cmd.exe
 
 mkdir "/Program Files"
 touch /autoexec.bat

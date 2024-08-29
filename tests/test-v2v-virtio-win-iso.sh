@@ -54,7 +54,7 @@ rm -rf $d
 cleanup_fn rm -r $d
 mkdir $d
 
-$VG virt-v2v --debug-gc \
+$VG virt-v2v -vx --debug-gc \
     -i libvirt -ic "$libvirt_uri" windows \
     -o local -os $d \
     --root $root

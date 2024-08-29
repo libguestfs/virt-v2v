@@ -4,7 +4,7 @@
   <name>TestOva</name>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo='http://libosinfo.org/xmlns/libvirt/domain/1.0'>
-      <libosinfo:os id='http://microsoft.com/win/7'/>
+      <libosinfo:os id='http://microsoft.com/win/2k22'/>
     </libosinfo:libosinfo>
   </metadata>
   <memory unit='KiB'>2097152</memory>
