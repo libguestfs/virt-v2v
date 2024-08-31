@@ -220,11 +220,15 @@ and do_fstrim g inspect =
 (* Conversion. *)
 and do_convert g source inspect i_firmware
                block_driver keep_serial_console interfaces =
-  (match inspect.i_product_name with
-  | "unknown" ->
+  (match inspect.i_product_name, inspect.i_osinfo with
+  | "unknown", "unknown" ->
     message (f_"Converting the guest to run on KVM")
-  | prod ->
+  | "unknown", osinfo ->
+    message (f_"Converting %s guest to run on KVM") osinfo
+  | prod, "unknown" ->
     message (f_"Converting %s to run on KVM") prod
+  | prod, osinfo ->
+    message (f_"Converting %s (%s) to run on KVM") prod osinfo
   );
 
   let convert, conversion_name =
