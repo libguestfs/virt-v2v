@@ -16,7 +16,8 @@ msgstr ""
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-08-29 15:25+0100\n"
 "PO-Revision-Date: 2024-09-03 14:41+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
 "Language: uk\n"
@@ -49,7 +50,7 @@ msgstr "%s не повернуто жодних даних"
 
 #: common/mlcustomize/customize_run.ml:191
 msgid "%s does not exist in the guest"
-msgstr ""
+msgstr "%s не існує у гостьовій системі"
 
 #: output/output_rhv.ml:273
 msgid ""
@@ -80,10 +81,8 @@ msgid "%s ignored for non-Windows guest"
 msgstr "%s проігноровано для відмінної від Windows гостьової системи"
 
 #: common/mlcustomize/customize_run.ml:194
-#, fuzzy
-#| msgid "Inject a public key into the guest"
 msgid "%s is not a regular file in the guest"
-msgstr "Вставити відкритий ключ до гостьової системи"
+msgstr "%s не є звичайним файлом у гостьовій системі"
 
 #. inspector/inspector.ml:151
 #. inspector/inspector.ml:40
@@ -114,10 +113,8 @@ msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: не вдалося відкрити файл ISO virtio-win: %s"
 
 #: common/mlcustomize/customize_run.ml:72
-#, fuzzy
-#| msgid "external command ‘%s’ exited with error %d"
 msgid "%s: command exited with an error"
-msgstr "виконання зовнішньої програми «%s» завершилося помилкою %d"
+msgstr "%s: виконання команди завершилося повідомленням про помилку"
 
 #: v2v/v2v.ml:326
 msgid ""
@@ -240,6 +237,9 @@ msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
 msgstr ""
+"--append-line: рядок не повинен містити символів розриву рядка. "
+"Скористайтеся параметром --append-line потрібну кількість разів, щоб додати "
+"декілька рядків."
 
 #: common/mlcustomize/customize_run.ml:160
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
@@ -564,26 +564,20 @@ msgid "Append line(s) to the file"
 msgstr "Дописати рядки до файла"
 
 #: common/mlcustomize/customize_run.ml:145
-#, fuzzy
-#| msgid "Append line(s) to the file"
 msgid "Appending line to %s"
-msgstr "Дописати рядки до файла"
+msgstr "Дописуємо рядок до %s"
 
 #: common/mlcustomize/customize_cmdline.ml:397
 msgid "Attach to a subscription-manager pool"
 msgstr "Долучити до буфера subscription-manager"
 
 #: common/mlcustomize/customize_run.ml:293
-#, fuzzy
-#| msgid "Attach to a subscription-manager pool"
 msgid "Attaching to compatible subscriptions"
-msgstr "Долучити до буфера subscription-manager"
+msgstr "Долучаємо до сумісних підписок"
 
 #: common/mlcustomize/customize_run.ml:297
-#, fuzzy
-#| msgid "Setting up the source: %s"
 msgid "Attaching to the pool %s"
-msgstr "Налаштовуємо джерело: %s"
+msgstr "Долучаємо до буфера %s"
 
 #: v2v/v2v.ml:281
 msgid "Boot in qemu (-o qemu only)"
@@ -602,10 +596,8 @@ msgid "Changing owner of %s to %d:%d"
 msgstr "Змінюємо власника %s на %d:%d"
 
 #: common/mlcustomize/customize_run.ml:149
-#, fuzzy
-#| msgid "Change the permissions of a file"
 msgid "Changing permissions of %s to %s"
-msgstr "Змінити права доступу до файла"
+msgstr "Зміна прав доступу до %s на %s"
 
 #: common/mlcustomize/customize_cmdline.ml:529
 msgid "Compatibility option doing nothing"
@@ -628,20 +620,16 @@ msgid "Copy local files or directories into image"
 msgstr "Копіювати локальні файли або каталоги до образу"
 
 #: common/mlcustomize/customize_run.ml:176
-#, fuzzy
-#| msgid "Copying remote disk %d/%d to %s"
 msgid "Copying (in image): %s to %s"
-msgstr "Копіюємо віддалений диск %d з %d до %s"
+msgstr "Копіюємо (на образ): %s у %s"
 
 #: v2v/v2v.ml:616
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
 #: common/mlcustomize/customize_run.ml:180
-#, fuzzy
-#| msgid "Copying disk %d/%d to %s (%s)"
 msgid "Copying: %s to %s"
-msgstr "Копіювання диска %d з %d на %s (%s)"
+msgstr "Копіюємо %s до %s"
 
 #: common/mlcustomize/customize_cmdline.ml:334
 msgid "Create a directory"
@@ -668,10 +656,8 @@ msgid "Delete a file or directory"
 msgstr "Вилучити файл або каталог"
 
 #: common/mlcustomize/customize_run.ml:184
-#, fuzzy
-#| msgid "exception: %s"
 msgid "Deleting: %s"
-msgstr "виключення: %s"
+msgstr "Вилучаємо: %s"
 
 #: common/mltools/getopt.ml:229
 msgid "Display brief help"
@@ -699,7 +685,7 @@ msgstr "Редагувати файл за допомогою виразу Perl"
 
 #: common/mlcustomize/customize_run.ml:188
 msgid "Editing: %s"
-msgstr ""
+msgstr "Редагування: %s"
 
 #: common/mltools/tools_utils.ml:386
 msgid "Enable libguestfs debugging messages"
@@ -837,21 +823,19 @@ msgstr "Вхідне передавання"
 
 #: common/mlcustomize/customize_run.ml:199
 msgid "Installing firstboot command: %s"
-msgstr ""
+msgstr "Встановлюємо програму firstboot: %s"
 
 #: common/mlcustomize/customize_run.ml:203
 msgid "Installing firstboot packages: %s"
-msgstr ""
+msgstr "Встановлюємо пакунки firstboot: %s"
 
 #: common/mlcustomize/customize_run.ml:210
 msgid "Installing firstboot script: %s"
-msgstr ""
+msgstr "Встановлюємо скрипт firstboot: %s"
 
 #: common/mlcustomize/customize_run.ml:256
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Installing packages: %s"
-msgstr "Вилучити пакунки"
+msgstr "Встановлюємо пакунки: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:237
 msgid "LOCALPATH:REMOTEDIR"
@@ -863,7 +847,7 @@ msgstr "Адреса libvirt"
 
 #: common/mlcustomize/customize_run.ml:263
 msgid "Linking: %s -> %s"
-msgstr ""
+msgstr "Компонування: %s -> %s"
 
 #. common/mlcustomize/customize_cmdline.ml:299
 #. common/mlcustomize/customize_cmdline.ml:293
@@ -877,7 +861,7 @@ msgstr "Зробити машину виведення придатною до �
 
 #: common/mlcustomize/customize_run.ml:268
 msgid "Making directory: %s"
-msgstr ""
+msgstr "Створюємо каталог: %s"
 
 #: v2v/v2v.ml:255 inspector/inspector.ml:178 in-place/in_place.ml:175
 msgid "Map NIC to network or bridge or assign static IP"
@@ -898,7 +882,7 @@ msgstr "Пересунути файли на образ диска"
 
 #: common/mlcustomize/customize_run.ml:272
 msgid "Moving: %s -> %s"
-msgstr ""
+msgstr "Пересуваємо: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:36
@@ -1085,30 +1069,24 @@ msgid "Recursively truncate all files in directory"
 msgstr "Рекурсивно обрізати усі файли у каталозі"
 
 #: common/mlcustomize/customize_run.ml:343
-#, fuzzy
-#| msgid "Recursively truncate all files in directory"
 msgid "Recursively truncating: %s"
-msgstr "Рекурсивно обрізати усі файли у каталозі"
+msgstr "Рекурсивно обрізаємо: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:403
 msgid "Register using subscription-manager"
 msgstr "Зареєструвати за допомогою subscription-manager"
 
 #: common/mlcustomize/customize_run.ml:303
-#, fuzzy
-#| msgid "Register using subscription-manager"
 msgid "Registering with subscription-manager"
-msgstr "Зареєструвати за допомогою subscription-manager"
+msgstr "Реєструємо за допомогою subscription-manager"
 
 #: common/mlcustomize/customize_cmdline.ml:409
 msgid "Remove all the subscriptions"
 msgstr "Вилучити усі підписки"
 
 #: common/mlcustomize/customize_run.ml:318
-#, fuzzy
-#| msgid "Remove all the subscriptions"
 msgid "Removing all the subscriptions"
-msgstr "Вилучити усі підписки"
+msgstr "Вилучаємо усі підписки"
 
 #: v2v/v2v.ml:269
 msgid "Rename guest when converting"
@@ -1136,14 +1114,12 @@ msgstr "Обробити файл за допомогою touch"
 
 #: common/mlcustomize/customize_run.ml:352
 msgid "Running touch: %s"
-msgstr ""
+msgstr "Виконуємо touch: %s"
 
 #. common/mlcustomize/customize_run.ml:167
 #: common/mlcustomize/customize_run.ml:282
-#, fuzzy
-#| msgid "%s: warning: %s"
 msgid "Running: %s"
-msgstr "%s: попередження: %s"
+msgstr "Виконуємо: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:264
 #: common/mlcustomize/customize_cmdline.ml:373
@@ -1159,7 +1135,7 @@ msgstr "СЕЛЕКТОР"
 
 #: common/mlcustomize/customize_run.ml:408
 msgid "SELinux relabelling"
-msgstr ""
+msgstr "Зміна міток SELinux"
 
 #. common/mlcustomize/customize_cmdline.ml:226
 #: common/mlcustomize/customize_cmdline.ml:340
@@ -1172,7 +1148,7 @@ msgstr "Ключ SSH не можна вставляти до цього типу
 
 #: common/mlcustomize/customize_run.ml:329
 msgid "SSH key inject: %s"
-msgstr ""
+msgstr "Вставлення ключа SSH: %s"
 
 #: v2v/v2v.ml:285
 msgid "Same as ‘-io vddk-config=filename’"
@@ -1243,14 +1219,12 @@ msgid "Scrub build log file"
 msgstr "Витерти файл журналу збирання"
 
 #: common/mlcustomize/customize_run.ml:419
-#, fuzzy
-#| msgid "Scrub build log file"
 msgid "Scrubbing the log file"
-msgstr "Витерти файл журналу збирання"
+msgstr "Витираємо файл журналу"
 
 #: common/mlcustomize/customize_run.ml:287
 msgid "Scrubbing: %s"
-msgstr ""
+msgstr "Витираємо: %s"
 
 #: v2v/v2v.ml:233
 msgid "Set bandwidth dynamically from file"
@@ -1318,35 +1292,27 @@ msgstr "Встановити пароль користувача"
 
 #: common/mlcustomize/customize_run.ml:83
 msgid "Setting a random seed"
-msgstr ""
+msgstr "Встановлюємо базу випадковості"
 
 #: common/mlcustomize/customize_run.ml:399
-#, fuzzy
-#| msgid "Set root password"
 msgid "Setting passwords"
-msgstr "Встановлення пароля root"
+msgstr "Встановлення паролів"
 
 #: common/mlcustomize/password.ml:113
 msgid "Setting random password of %s to %s"
-msgstr ""
+msgstr "Встановлюємо випадковий пароль %s у значення %s"
 
 #: common/mlcustomize/customize_run.ml:215
-#, fuzzy
-#| msgid "Set the hostname"
 msgid "Setting the hostname: %s"
-msgstr "Встановити назву вузла"
+msgstr "Встановлюємо назву вузла: %s"
 
 #: common/mlcustomize/customize_run.ml:98
-#, fuzzy
-#| msgid "Setting up the destination: %s"
 msgid "Setting the machine ID in %s"
-msgstr "Налаштовуємо призначення: %s"
+msgstr "Встановлюємо ідентифікатор комп'ютера у %s"
 
 #: common/mlcustomize/customize_run.ml:347
-#, fuzzy
-#| msgid "Setting up the destination: %s"
 msgid "Setting the timezone: %s"
-msgstr "Налаштовуємо призначення: %s"
+msgstr "Встановлюємо часовий пояс: %s"
 
 #: v2v/v2v.ml:588
 msgid "Setting up the destination: %s"
@@ -1427,10 +1393,8 @@ msgid "Truncate a file to zero size"
 msgstr "Обрізати файл до нульового розміру"
 
 #: common/mlcustomize/customize_run.ml:339
-#, fuzzy
-#| msgid "%s: warning: %s"
 msgid "Truncating: %s"
-msgstr "%s: попередження: %s"
+msgstr "Обрізаємо: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:204
 msgid "UID:GID:PATH"
@@ -1449,10 +1413,8 @@ msgid "Uninstall package(s)"
 msgstr "Вилучити пакунки"
 
 #: common/mlcustomize/customize_run.ml:356
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Uninstalling packages: %s"
-msgstr "Вилучити пакунки"
+msgstr "Вилучаємо пакунки: %s"
 
 #: common/mlcustomize/customize_run.ml:335
 msgid "Unpack tar file: %s to %s"
@@ -1463,20 +1425,16 @@ msgid "Unregister using subscription-manager"
 msgstr "Скасувати реєстрацію за допомогою subscription-manager"
 
 #: common/mlcustomize/customize_run.ml:323
-#, fuzzy
-#| msgid "Unregister using subscription-manager"
 msgid "Unregistering with subscription-manager"
-msgstr "Скасувати реєстрацію за допомогою subscription-manager"
+msgstr "Скасовуємо реєстрацію за допомогою subscription-manager"
 
 #: common/mlcustomize/customize_cmdline.ml:479
 msgid "Update packages"
 msgstr "Оновити пакунки"
 
 #: common/mlcustomize/customize_run.ml:361
-#, fuzzy
-#| msgid "Update packages"
 msgid "Updating packages"
-msgstr "Оновити пакунки"
+msgstr "Оновлюємо пакунки"
 
 #: common/mlcustomize/customize_cmdline.ml:490
 msgid "Upload local file to destination"
@@ -1484,7 +1442,7 @@ msgstr "Вивантажити локальний файл у систему п�
 
 #: common/mlcustomize/customize_run.ml:366
 msgid "Uploading: %s to %s"
-msgstr ""
+msgstr "Вивантажуємо: %s до %s"
 
 #: common/mltools/tools_utils.ml:391
 msgid "Use ANSI colour sequences even if not tty"
@@ -1511,10 +1469,8 @@ msgid "Write file"
 msgstr "Записати файл"
 
 #: common/mlcustomize/customize_run.ml:391
-#, fuzzy
-#| msgid "%s: warning: %s"
 msgid "Writing: %s"
-msgstr "%s: попередження: %s"
+msgstr "Записуємо: %s"
 
 #: lib/YAML.ml:162
 msgid ""
@@ -1556,10 +1512,8 @@ msgstr ""
 "допомогою команди «virsh undefine»."
 
 #: common/mlcustomize/append_line.ml:44
-#, fuzzy
-#| msgid "Append line(s) to the file"
 msgid "append_line: %s is not a file"
-msgstr "Дописати рядки до файла"
+msgstr "append_line: %s не є файлом"
 
 #: lib/utils.ml:83
 msgid ""
@@ -1827,7 +1781,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr ""
+msgstr "Отримуємо: %s"
 
 #: lib/networks.ml:84
 msgid ""
