@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
+"cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-08-29 15:25+0100\n"
-"PO-Revision-Date: 2023-06-05 07:20+0000\n"
+"PO-Revision-Date: 2024-09-03 14:41+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.7.1\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -77,7 +77,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:121
 msgid "%s ignored for non-Windows guest"
-msgstr ""
+msgstr "%s проігноровано для відмінної від Windows гостьової системи"
 
 #: common/mlcustomize/customize_run.ml:194
 #, fuzzy
@@ -243,24 +243,29 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:160
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
-msgstr ""
+msgstr "--chown: не вдалося визначити числові значення UID:GID на основі %s:%s"
 
 #: common/mlcustomize/customize_run.ml:224
 msgid ""
 "--inject-blnsvr: blnsvr.exe not found in virtio-win source that you specified"
 msgstr ""
+"--inject-blnsvr: blnsvr.exe не знайдено у вказаному вами джерелі virtio-win"
 
 #: common/mlcustomize/customize_run.ml:233
 msgid ""
 "--inject-qemu-ga: QEMU Guest Agent MSI not found in virtio-win source that "
 "you specified"
 msgstr ""
+"--inject-qemu-ga: не знайдено MSI гостьового агента QEMU у вказаному вами "
+"джерелі virtio-win"
 
 #: common/mlcustomize/customize_run.ml:249
 msgid ""
 "--inject-virtio-win: virtio drivers were not found for this Windows version "
 "in the virtio-win source that you specified"
 msgstr ""
+"--inject-virtio-win: не знайдено драйверів virtio для цієї версії Windows у "
+"вказаному вами джерелі virtio-win"
 
 #: v2v/v2v.ml:144 inspector/inspector.ml:131 in-place/in_place.ml:125
 msgid "--mac ip prefix length field is out of range"
@@ -586,7 +591,7 @@ msgstr "Завантажитися у qemu (лише для -o qemu)"
 
 #: common/mlcustomize/customize_cmdline.ml:209
 msgid "Change the owner user and group ID of a file or directory"
-msgstr ""
+msgstr "Змінити ідентифікатор користувача і групи власника файла або каталогу"
 
 #: common/mlcustomize/customize_cmdline.ml:198
 msgid "Change the permissions of a file"
@@ -594,7 +599,7 @@ msgstr "Змінити права доступу до файла"
 
 #: common/mlcustomize/customize_run.ml:163
 msgid "Changing owner of %s to %d:%d"
-msgstr ""
+msgstr "Змінюємо власника %s на %d:%d"
 
 #: common/mlcustomize/customize_run.ml:149
 #, fuzzy
@@ -615,10 +620,8 @@ msgid "Copy files in disk image"
 msgstr "Копіювати файли на образ диска"
 
 #: common/mlcustomize/customize_cmdline.ml:438
-#, fuzzy
-#| msgid "Copy local files or directories into image"
 msgid "Copy local files or directories from a tarball into image"
-msgstr "Копіювати локальні файли або каталоги до образу"
+msgstr "Копіювати локальні файли або каталоги з архіву tar до образу"
 
 #: common/mlcustomize/customize_cmdline.ml:242
 msgid "Copy local files or directories into image"
@@ -769,10 +772,8 @@ msgid "Inject a public key into the guest"
 msgstr "Вставити відкритий ключ до гостьової системи"
 
 #: common/mlcustomize/customize_cmdline.ml:294
-#, fuzzy
-#| msgid "Inject virtio-win drivers into a Windows guest"
 msgid "Inject the Balloon Server into a Windows guest"
-msgstr "Вставити драйвери virtio-win до гостьової системи Windows"
+msgstr "Вставити Balloon Server до гостьової системи Windows"
 
 #: common/mlcustomize/customize_cmdline.ml:300
 msgid "Inject the QEMU Guest Agent into a Windows guest"
@@ -1167,7 +1168,7 @@ msgstr "ДЖЕРЕЛО:ПРИЗНАЧЕННЯ"
 
 #: common/mlcustomize/customize_run.ml:332
 msgid "SSH key could not be injected for this type of guest"
-msgstr ""
+msgstr "Ключ SSH не можна вставляти до цього типу гостьових систем"
 
 #: common/mlcustomize/customize_run.ml:329
 msgid "SSH key inject: %s"
@@ -1364,10 +1365,8 @@ msgid "Specify a LUKS key"
 msgstr "Вказати ключ LUKS"
 
 #: common/mlcustomize/customize_cmdline.ml:433
-#, fuzzy
-#| msgid "LOCALPATH:REMOTEDIR"
 msgid "TARFILE:REMOTEDIR"
-msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
+msgstr "ФАЙЛTAR:ВІДДАЛЕНИЙКАТАЛОГ"
 
 #: common/mlcustomize/customize_cmdline.ml:323
 msgid "TARGET:LINK[:LINK..]"
@@ -1435,7 +1434,7 @@ msgstr "%s: попередження: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:204
 msgid "UID:GID:PATH"
-msgstr ""
+msgstr "UID:GID:ШЛЯХ"
 
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "USER:SELECTOR"
@@ -1457,7 +1456,7 @@ msgstr "Вилучити пакунки"
 
 #: common/mlcustomize/customize_run.ml:335
 msgid "Unpack tar file: %s to %s"
-msgstr ""
+msgstr "Розпаковування файла tar: %s до %s"
 
 #: common/mlcustomize/customize_cmdline.ml:415
 msgid "Unregister using subscription-manager"
