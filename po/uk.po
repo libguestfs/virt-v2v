@@ -15,9 +15,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug."
 "cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-08-29 15:25+0100\n"
-"PO-Revision-Date: 2024-09-03 14:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2024-09-04 15:38+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
 "Language: uk\n"
@@ -1272,7 +1271,7 @@ msgstr "Встановити назву програми"
 
 #: common/mlcustomize/customize_cmdline.ml:368
 msgid "Set root password"
-msgstr "Встановлення пароля root"
+msgstr "Встановити пароль root"
 
 #: common/mlcustomize/customize_cmdline.ml:444
 msgid "Set the default timezone"
@@ -1781,7 +1780,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr "Отримуємо: %s"
+msgstr "отримуємо %s"
 
 #: lib/networks.ml:84
 msgid ""
@@ -1829,10 +1828,8 @@ msgid "exception: %s"
 msgstr "виключення: %s"
 
 #: common/mltools/tools_utils.ml:455
-#, fuzzy
-#| msgid "%s exited with error status %d"
 msgid "exited with error %d"
-msgstr "Роботу %s завершено зі станом виходу %d"
+msgstr "завершено роботу з помилкою %d"
 
 #: input/input_disk.ml:143
 msgid "expected >= 1 disk name on the command line"
@@ -1847,7 +1844,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:440
 msgid "external command"
-msgstr ""
+msgstr "зовнішня команда"
 
 #: output/output_rhv_upload.ml:275
 msgid "failed server prechecks, see earlier errors"
@@ -2124,10 +2121,8 @@ msgid "kernel %s is not under grub tree %s"
 msgstr "ядро %s перебуває поза ієрархією grub %s"
 
 #: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
-#, fuzzy
-#| msgid "%s killed by signal %d (%s)"
 msgid "killed by signal %d"
-msgstr "Роботу %s припинено за допомогою сигналу %d (%s)"
+msgstr "припинено за допомогою сигналу %d"
 
 #: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
@@ -2516,6 +2511,8 @@ msgid ""
 "password-crypto: unknown algorithm %s, use \"md5\", \"sha256\", \"sha512\" "
 "or \"yescrypt\""
 msgstr ""
+"password-crypto: невідомий алгоритм %s, скористайтеся \"md5\", \"sha256\", "
+"\"sha512\" або \"yescrypt\""
 
 #: common/mlcustomize/password.ml:196
 msgid ""
@@ -2663,10 +2660,8 @@ msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr ""
 
 #: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
-#, fuzzy
-#| msgid "%s stopped by signal %d (%s)"
 msgid "stopped by signal %d"
-msgstr "Роботу %s завершено за допомогою сигналу %d (%s)"
+msgstr "завершено за допомогою сигналу %d"
 
 #: output/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
@@ -2873,6 +2868,8 @@ msgstr ""
 #: common/mlcustomize/timezone.ml:35
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
 msgstr ""
+"часового поясу «%s» не існує, скористайтеся зазначенням міста, наприклад '"
+"Europe/London'"
 
 #: common/mlcustomize/customize_run.ml:349
 msgid "timezone could not be set for this type of guest"
