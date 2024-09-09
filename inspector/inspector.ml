@@ -358,7 +358,7 @@ read the man page virt-v2v-inspector(1).
 
   (* Do the conversion. *)
   with_open_out (v2vdir // "convert") (fun _ -> ());
-  let inspect, _ = Convert.convert v2vdir conv_options source in
+  let inspect, target_meta = Convert.convert v2vdir conv_options source in
   unlink (v2vdir // "convert");
 
   (* Debug the v2vdir. *)
@@ -368,7 +368,7 @@ read the man page virt-v2v-inspector(1).
   );
 
   (* Dump out the information. *)
-  let doc = inspector_xml v2vdir inspect in
+  let doc = inspector_xml v2vdir inspect target_meta in
   let chan =
     match output_file with
     | None -> Stdlib.stdout
@@ -455,7 +455,7 @@ and get_input_disk_allocated dir i =
  *   - The NBD input sockets: v2vdir // "in0", "in1", etc
  *   - The inspection data (Types.inspect)
  *)
-and inspector_xml v2vdir inspect =
+and inspector_xml v2vdir inspect target_meta =
   let body = ref [] in
 
   (* Record the version of virt-v2v etc, mainly for debugging. *)
@@ -484,6 +484,16 @@ and inspector_xml v2vdir inspect =
       List.push_back disks (e "disk" [ "index", string_of_int i ] !elems)
   ) (get_disks v2vdir);
   List.push_back body (e "disks" [] !disks);
+
+  (* The <firmware> field is outside the <operatingsystem> element,
+   * since firmware is not part of the OS, and also because this is
+   * consistent with virt-drivers output.
+   *)
+  List.push_back body
+    (e "firmware"
+       ["type",
+        string_of_target_firmware target_meta.target_firmware]
+       []);
 
   (* The inspection data. *)
   (* NB: Keep these field names compatible with virt-inspector! *)
