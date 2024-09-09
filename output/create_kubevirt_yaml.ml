@@ -74,7 +74,7 @@ let create_kubevirt_yaml source inspect
       "clock", Assoc [
         "timer", Assoc [
           "hpet", Assoc [ "present", Bool false ];
-          "hyperv", List [];
+          "hyperv", Assoc [];
           "pit", Assoc [ "tickPolicy", String "delay" ];
           "rtc", Assoc [ "tickPolicy", String "catchup" ];
         ];
@@ -83,7 +83,7 @@ let create_kubevirt_yaml source inspect
          * requires the following PR to be merged in Kubevirt:
          * https://github.com/kubevirt/kubevirt/pull/9587
          *)
-        "utc", List []
+        "utc", Assoc []
       ]
     )
   );
@@ -95,7 +95,7 @@ let create_kubevirt_yaml source inspect
   List.push_back resources ("requests", Assoc ["memory", String memory_str]);
 
   (* Machine features. *)
-  let features = List.map (fun name -> name, List []) source.s_features in
+  let features = List.map (fun name -> name, Assoc []) source.s_features in
   List.push_back resources ("features", Assoc features);
 
   (* # vCPUs. XXX vendor, model, topology *)
@@ -140,7 +140,7 @@ let create_kubevirt_yaml source inspect
 
   (* Add an RNG if the guest has virtio_rng. *)
   if guestcaps.gcaps_virtio_rng then
-    List.push_back devices ("rng", List []);
+    List.push_back devices ("rng", Assoc []);
 
   (* Use virtio transitional for ancient guests. *)
   if not guestcaps.gcaps_virtio_1_0 then
@@ -187,8 +187,8 @@ let create_kubevirt_yaml source inspect
         let nic = ref [] in
         List.push_back nic ("name", String ("net_" ^ vnet));
         (match vnet_type with
-         | Bridge -> List.push_back nic ("bridge", List [])
-         | Network -> List.push_back nic ("masquerade", List [])
+         | Bridge -> List.push_back nic ("bridge", Assoc [])
+         | Network -> List.push_back nic ("masquerade", Assoc [])
         );
         (match mac with
          | Some mac -> List.push_back nic ("macAddress", String mac)
