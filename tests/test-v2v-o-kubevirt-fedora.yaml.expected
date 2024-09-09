@@ -17,7 +17,7 @@ spec:
         resources:
           requests:
             memory: 1024Mi
-          features:
+          features: {}
         cpu:
           cores: 1
         devices:
