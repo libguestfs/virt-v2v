@@ -12,8 +12,9 @@ spec:
   template:
     spec:
       domain:
-        os:
-          firmware: bios
+        firmware:
+          bootloader:
+            bios: {}
         resources:
           requests:
             memory: 1024Mi

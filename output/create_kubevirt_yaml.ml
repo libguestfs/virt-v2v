@@ -33,9 +33,9 @@ let create_kubevirt_yaml source inspect
    * a tree.  We fill in these sections first.
    *)
   let metadata = ref [] in
-  let os = ref [] in
   let devices = ref [] in
   let disks = ref [] in
+  let firmware = ref [] in
   let resources = ref [] in
   let cpu = ref [] in
   let volumes = ref [] in
@@ -65,6 +65,15 @@ let create_kubevirt_yaml source inspect
         List.push_back labels (key "source", String hv)
     );
     List.push_back metadata ("labels", Assoc !labels) in
+
+  (* The target firmware. *)
+  let bootloader =
+    match target_firmware with
+    | TargetBIOS ->
+       "bios", Assoc []
+    | TargetUEFI ->
+       "efi", Assoc ["persistent", Bool true] in
+  List.push_back firmware ("bootloader", Assoc [bootloader]);
 
   (* Clock, and eventually utc vs localtime.  We could include
    * this for Linux, but for now only Windows really needs it.
@@ -113,11 +122,6 @@ let create_kubevirt_yaml source inspect
          "thread", Int s_cpu_threads
       ]
   );
-
-  (* Firmware. *)
-  let firmware_str =
-    match target_firmware with TargetBIOS -> "bios" | TargetUEFI -> "uefi" in
-  List.push_back os ("firmware", String firmware_str);
 
   (* Display.
    *
@@ -219,8 +223,7 @@ let create_kubevirt_yaml source inspect
   if interfaces <> [] then
     List.push_back devices ("interfaces", List interfaces);
   let domain = ref [] in
-  if !os <> [] then
-    List.push_back domain ("os", Assoc !os);
+  List.push_back domain ("firmware", Assoc !firmware);
   List.push_back domain ("resources", Assoc !resources);
   List.push_back domain ("cpu", Assoc !cpu);
   if !devices <> [] then
