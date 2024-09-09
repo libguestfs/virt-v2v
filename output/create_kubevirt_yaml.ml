@@ -66,9 +66,8 @@ let create_kubevirt_yaml source inspect
     );
     List.push_back metadata ("labels", Assoc !labels) in
 
-  (* The one Windows example I have includes this clock section, and
-   * the other non-Windows examples do not.  I'm not certain this
-   * is correct. XXX
+  (* Clock, and eventually utc vs localtime.  We could include
+   * this for Linux, but for now only Windows really needs it.
    *)
   if inspect.i_type = "windows" then (
     List.push_back resources (
@@ -147,7 +146,12 @@ let create_kubevirt_yaml source inspect
   if not guestcaps.gcaps_virtio_1_0 then
     List.push_back devices ("useVirtioTransitional", Bool true);
 
-  (* XXX guestcaps: balloon, vsock *)
+  (* XXX guestcaps: balloon, vsock
+   * Kubevirt has "autoattachMemBalloon", but it's the default.
+   * Kubevirt has "autoattachVSOCK".  It defaults to false, but
+   * it might be better to opt in rather than adding this just
+   * because the guest has a driver.
+   *)
 
   (* We're using local ("host") disks here which is not realistic. *)
   Array.iter (
