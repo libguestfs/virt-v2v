@@ -75,36 +75,41 @@ let rec node_to_buf buf indent = function
   | Float f -> float_to_buf buf f
   | Block lines -> block_to_buf buf indent lines
 
-and assoc_to_buf buf ?(nl = true) indent xs =
-  let nl = ref nl in
-  List.iter (
-    fun (key, value) ->
-      (* Print newline and indent, if nl is true. *)
-      if !nl then bprintf buf "\n%s" (spaces indent);
-      nl := true;
+and assoc_to_buf buf ?(nl = true) indent =
+  function
+  (* Special case empty dictionary: https://stackoverflow.com/a/33510095 *)
+  | [] -> bprintf buf "{}"
+  | xs ->
+    let nl = ref nl in
+    List.iter (
+      fun (key, value) ->
+        (* Print newline and indent, if nl is true. *)
+        if !nl then bprintf buf "\n%s" (spaces indent);
+        nl := true;
 
-      (* If the key is "#" then it is printed as a comment. *)
-      if key = "#" then (
-        match value with
-        | String comment -> bprintf buf "# %s" comment
-        | _ -> assert false
-      )
-      else (
-        bprintf buf "%s:" key;
-        (* Do we need a space after the key?  This is basically
-         * about whether node_to_buf will print \n, which breaks
-         * encapsulation of this function.  Make a best guess.
-         *)
-        (match value with
-         | String _ | Int _ | Bool _ | Float _ | Block _ | List [] ->
-            bprintf buf " "
-         | _ -> ()
-        );
-        (* Within Assoc, Lists are not indented, everything else is. *)
-        let indent_by = function List _ -> 0 | _ -> 2 in
-        node_to_buf buf (indent + indent_by value) value
-      )
-  ) xs
+        (* If the key is "#" then it is printed as a comment. *)
+        if key = "#" then (
+          match value with
+          | String comment -> bprintf buf "# %s" comment
+          | _ -> assert false
+        )
+        else (
+          bprintf buf "%s:" key;
+          (* Do we need a space after the key?  This is basically
+           * about whether node_to_buf will print \n, which breaks
+           * encapsulation of this function.  Make a best guess.
+           *)
+          (match value with
+           | String _ | Int _ | Bool _ | Float _ | Block _
+           | Assoc [] | List [] ->
+              bprintf buf " "
+           | _ -> ()
+          );
+          (* Within Assoc, Lists are not indented, everything else is. *)
+          let indent_by = function List _ -> 0 | _ -> 2 in
+          node_to_buf buf (indent + indent_by value) value
+        )
+    ) xs
 
 and list_to_buf buf indent =
   function
@@ -112,7 +117,7 @@ and list_to_buf buf indent =
    * case other things, eg. lists of short, unquoted strings, but
    * let's not overcomplicate things.
    *)
-  | [] -> bprintf buf "{}"
+  | [] -> bprintf buf "[]"
   | xs ->
     List.iter (
       fun node ->
