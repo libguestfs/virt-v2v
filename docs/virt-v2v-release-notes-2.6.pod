@@ -1,0 +1,220 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v release notes for 2.6
+
+=head1 DESCRIPTION
+
+These are the release notes for S<B<virt-v2v 2.6>>.
+This describes the major changes since 2.4.
+
+Virt-v2v 2.6.0 was released on S<B<XXX October 2024>>.
+
+=begin comment
+
+=head2 Security
+
+=end comment
+
+=head2 New features
+
+You can now use most L<virt-customize(1)> options, such as installing
+arbitrary firstboot scripts, uploading or editing files, etc. during
+conversions.
+
+Installation of QEMU Guest Agent in Windows guests has been revised
+and made much more reliable.  Note that a visible effect of this
+change is that Windows guests may reboot four or more times during the
+first boot after conversion (which is necessary).  (Thanks Vadim
+Rozenfeld, Konstantin Kostiuk, Yuri Benditovich, Yan Vugenfirer).
+
+We now forcibly online all virtio disks during firstboot, working
+around a security mitigation in recent versions of Windows that
+offlines them if they change bus (Martin Necas).
+
+QEMU Balloon Server (blnsvr) is now installed in Windows guests, if
+found on the virtio-win ISO.  This improves statistics gathering for
+these guests.
+
+Add support for Circle Linux (Bella Zhang).
+
+Add some support for LoongArch guests (liuxiang).
+
+=begin comment
+
+=head2 Feature removed
+
+=end comment
+
+=head2 Other fixes
+
+I<-i ova> mode now uses the detected guest firmware, if it's not
+specified in the OVA metadata (Bella Khizgiyaev).
+
+I<-o kubevirt> output mode has been substantially changed to fix
+multiple problems.  It should be more compatible with real KubeVirt
+instances now.  (Thanks Arik Hadas, Bella Khizgiyaev, Lee Yarwood,
+Martin Necas).
+
+I<-o libvirt> mode now includes an E<lt>os firmwareE<gt> attribute
+specifying whether the guest needs BIOS or UEFI to boot.
+
+The output of L<virt-v2v-inspector(1)> has been revised, with much
+more metadata available.
+
+The I<--mac> option now allows the gateway and network mask length to
+be empty (Arik Hadas).
+
+The debug output of virt-v2v has been improved.  Now when searching
+the log for important events, you can just use the regular expression
+C</^info:/>
+
+=head2 Build changes
+
+We no longer require external ssh/scp commands for input mode I<-i
+vmx>.  Instead we use L<nbdkit-ssh-plugin(1)> (this is not a new
+requirement as it is already being used for file transfer).  This
+makes remote file detection more predictable, and also allows the
+I<-ip> option to be used to specify a password.  (Thanks Ming Xie,
+Laszlo Ersek).
+
+OCaml bytecode compilation now outputs the whole exe to make it more
+resistant to being stripped (Jerry James).
+
+Multiple test files which were copied over from libguestfs but not
+actually used by virt-v2v tests have been deleted.
+
+=head2 Internals
+
+Added a test for I<-o kubevirt> mode.
+
+=head2 Bugs fixed
+
+=begin comment
+
+./bugs-in-changelog.sh v2.4.0..
+
+=end comment
+
+=over 4
+
+=item L<https://bugzilla.redhat.com/1854275>
+
+document that vmx+ssh "-ip" auth doesn't cover ssh / scp shell commands
+
+=item L<https://issues.redhat.com/browse/RHEL-21365>
+
+Exact string (including the literal *) should be used when converting
+guest via vmx by v2v
+
+=item L<https://issues.redhat.com/browse/RHEL-28197>
+
+Missing firmware type for kubvirt and local output
+
+=item L<https://issues.redhat.com/browse/RHEL-33699>
+
+Virt-v2v can't convert guest from maintained ESXi hosts with vddk > 6
+
+=item L<https://issues.redhat.com/browse/RHEL-36591>
+
+Migrated Windows VMs require the BLNSVR.exe service to be installed
+for accurate memory reporting
+
+=item L<https://issues.redhat.com/browse/RHEL-45527>
+
+Re-add the info about non-interactive authentication back into
+virt-v2v-input-xen
+
+=item L<https://issues.redhat.com/browse/RHEL-45992>
+
+Missing OS info for kubevirt output
+
+=item L<https://issues.redhat.com/browse/RHEL-49761>
+
+qemu-guest-agent not being installed at first boot in Windows Server 2022
+
+=item L<https://issues.redhat.com/browse/RHEL-50731>
+
+Allow --mac gw and len fields to be optional
+
+=item L<https://issues.redhat.com/browse/RHEL-51169>
+
+Uninstalling vmware-tools from windows guest sometimes fails with exit
+code 1618 or exit code 1603
+
+=item L<https://issues.redhat.com/browse/RHEL-53990>
+
+network configuration script does not work for Windows 10 i386 guest
+
+=item L<https://issues.redhat.com/browse/RHEL-55763>
+
+Re-enable Windows disks post-live migration [rhel-9.5]
+
+=item L<https://issues.redhat.com/browse/RHEL-55837>
+
+Re-enable Windows disks post-live migration [rhel-9.4.z]
+
+=item L<https://issues.redhat.com/browse/RHEL-56784>
+
+window version shows incorrect during converting win11 guest with
+build number 22631 by virt-v2v
+
+=item L<https://issues.redhat.com/browse/RHEL-58065>
+
+v2v: The -o kubevirt firmware is not compatible with kubevirt api
+
+=item L<https://github.com/libguestfs/virt-v2v/issues/42>
+
+rhv-upload broken since Ovirt 4.5, cause Basic Auth has been removed
+
+=item L<https://github.com/libguestfs/virt-v2v/issues/45>
+
+virt-v2v missing firmware type for kubvirt and local output
+
+=item L<https://github.com/libguestfs/virt-v2v/issues/46>
+
+Clustername not working when on same Data Center, sharing same storage
+domains
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>.
+
+=head1 AUTHORS
+
+Authors of virt-v2v 2.6:
+
+=begin comment
+
+git shortlog -s v2.4.0..
+
+=end comment
+
+=over 4
+
+=item Andi Chandler
+
+=item Bella Khizgiyaev
+
+=item Bella Zhang
+
+=item Jerry James
+
+=item liuxiang
+
+=item Nir Soffer
+
+=item Richard W.M. Jones
+
+=item Schamane187
+
+=item Thorsten Bolten
+
+=item Yuri Chornoivan
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2024 Red Hat Inc.
