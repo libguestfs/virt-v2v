@@ -75,7 +75,7 @@ done
 
 issues=$(
     git log "$1" |
-    grep -Eio 'https?://github\.com/libguestfs/libguestfs/issues/[0-9]+' |
+    grep -Eio 'https?://github\.com/libguestfs/virt-v2v/issues/[0-9]+' |
     sort -u
 )
 
