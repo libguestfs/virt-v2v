@@ -141,7 +141,7 @@ libmloutput_a_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
 	$(LIBXML2_CFLAGS) \
-	$(JANSSON_CFLAGS)
+	$(JSON_C_CFLAGS)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -168,7 +168,7 @@ OCAMLCLIBS = \
 	-lqemuopts \
 	$(LIBGUESTFS_LIBS) \
 	$(LIBXML2_LIBS) \
-	$(JANSSON_LIBS) \
+	$(JSON_C_LIBS) \
 	$(LIBNBD_LIBS) \
 	-lgnu
 
