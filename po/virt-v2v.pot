@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.6.0\n"
+"Project-Id-Version: virt-v2v 2.7.1\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2024-10-08 14:24+0100\n"
+"POT-Creation-Date: 2024-10-22 17:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1823,7 +1823,7 @@ msgstr ""
 msgid "md5|sha256|sha512"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:36
+#: common/mltools/JSON_parser.ml:39
 msgid "missing value for the key ‘%s’"
 msgstr ""
 
@@ -1831,7 +1831,7 @@ msgstr ""
 msgid "more than one .ovf file was found in %s"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:31
+#: common/mltools/JSON_parser.ml:34
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
@@ -2256,7 +2256,7 @@ msgid ""
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:81
+#: common/mltools/JSON_parser.ml:84
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
@@ -2277,31 +2277,31 @@ msgstr ""
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:75
+#: common/mltools/JSON_parser.ml:78
 msgid "the value for key ‘%s’ is not a string as expected"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:47
+#: common/mltools/JSON_parser.ml:50
 msgid "the value for the key ‘%s’ is not a bool"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:42
+#: common/mltools/JSON_parser.ml:45
 msgid "the value for the key ‘%s’ is not a string"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:67
+#: common/mltools/JSON_parser.ml:70
 msgid "the value for the key ‘%s’ is not an integer"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:52
+#: common/mltools/JSON_parser.ml:55
 msgid "the value for the key ‘%s’ is not an object"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:56
+#: common/mltools/JSON_parser.ml:59
 msgid "the value is not an object"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:32
+#: common/mltools/JSON_parser.ml:35
 msgid "the value of the key ‘%s’ is not an object"
 msgstr ""
 
@@ -2564,32 +2564,32 @@ msgid ""
 "format file, i.e. ‘-of qcow2’"
 msgstr ""
 
-#: common/mltools/getopt-c.c:73
+#: common/mltools/getopt-c.c:68
 #, c-format
 msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:192
+#: common/mltools/getopt-c.c:187
 #, c-format
 msgid "%s: ‘%s’ is not a numeric value.\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:198
+#: common/mltools/getopt-c.c:193
 #, c-format
 msgid "%s: %s: integer out of range\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:388
+#: common/mltools/getopt-c.c:383
 #, c-format
 msgid "%s: ‘%s’ is not allowed for -%c; allowed values are:\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:391
+#: common/mltools/getopt-c.c:386
 #, c-format
 msgid "%s: ‘%s’ is not allowed for %s%s; allowed values are:\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:426
+#: common/mltools/getopt-c.c:421
 #, c-format
 msgid "Extra parameter on the command line: ‘%s’.\n"
 msgstr ""
