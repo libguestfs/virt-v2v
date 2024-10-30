@@ -242,10 +242,11 @@ and get_ostype = function
       | "win2k16" -> "windows_2016x64"
       | "win2k19" -> "windows_2019x64"
       | "win2k22" -> "windows_2022"
+      | "win2k25" -> "windows_2025"
       | _ ->
          warning (f_"unknown Windows 10 variant: %s (%s)")
            osinfo product;
-         "windows_2022"
+         "windows_2025"
      )
 
   | { i_type = typ; i_distro = distro;
@@ -448,6 +449,7 @@ and get_ovirt_osid = function
       | "win2k16" -> (* windows_2016x64 *) 29
       | "win2k19" -> (* windows_2019x64 *) 31
       | "win2k22" -> (* windows_2022 *) 37
+      (*| "win2k25" -> (* windows_2025 *) not yet known - 2024/10 *)
       | _ ->
          warning (f_"unknown Windows 10 variant: %s (%s)")
            osinfo product;
