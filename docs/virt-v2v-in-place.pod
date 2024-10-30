@@ -35,6 +35,17 @@ If the guest has been copied to local libvirt then:
 
  virt-v2v-in-place -i libvirt guest
 
+=head2 Exit code
+
+If virt-v2v-in-place fails it will return a non-zero (error) exit
+code.  In this case, the disk image will be in an B<unknown, possibly
+corrupted state>.
+
+If the image contains important information you should ensure you have
+a backup before trying a virt-v2v-in-place conversion.  And you should
+check the exit code is zero before using the disk image after a
+conversion.
+
 =head1 EXAMPLES
 
 =head1 OPTIONS
