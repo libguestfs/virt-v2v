@@ -81,6 +81,7 @@ TESTS = \
 	test-v2v-checksum-good.sh \
 	test-v2v-checksum-good-qcow2.sh \
 	test-v2v-checksum-bad.sh \
+	test-v2v-checksum-print.sh \
 	test-v2v-block-driver.sh \
 	test-v2v-inspector.sh \
 	test-v2v-mac.sh \
@@ -190,6 +191,7 @@ EXTRA_DIST += \
 	test-v2v-checksum-bad.sh \
 	test-v2v-checksum-good.sh \
 	test-v2v-checksum-good-qcow2.sh \
+	test-v2v-checksum-print.sh \
 	test-v2v-customize.sh \
 	test-v2v-fedora-conversion.sh \
 	test-v2v-fedora-btrfs-conversion.sh \

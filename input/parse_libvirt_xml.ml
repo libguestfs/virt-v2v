@@ -42,7 +42,7 @@ and disk_checksum = {
   checksum_expected : string;   (* Expected checksum. *)
   checksum_on_fail : checksum_on_fail
 }
-and checksum_on_fail = ChecksumOnFailWarn | ChecksumOnFailError
+and checksum_on_fail = ChecksumOnFailWarn | ChecksumOnFailError | ChecksumPrint
 
 (* Turn string like "hda" into controller slot number.  See also
  * common/utils/utils.c:guestfs_int_drive_index which this function calls.
@@ -271,6 +271,9 @@ let parse_libvirt_xml ?conn xml =
         match xpath_string "checksum/text()",
               xpath_string "checksum/@method",
               xpath_string "checksum/@fail" with
+        | _, Some meth, Some ("print") ->
+           Some { checksum_expected = ""; checksum_method = meth;
+                  checksum_on_fail = ChecksumPrint }
         | None, _, _ -> None
         | Some csum, None, _ ->
            warning (f_"<checksum> missing 'method' attribute, ignoring");

@@ -345,9 +345,10 @@ the content, I<not> of the container.
 The checksum method attribute can be C<md5>, C<sha256> or C<sha512>.
 
 The fail attribute can be C<error> to fail the conversion if the
-checksum does not match; C<warn> to print a warning but continue; or
-C<ignore> to ignore the checksum and not even compute it.  The default
-is C<fail=warn>.
+checksum does not match; C<warn> to print a warning but continue;
+C<ignore> to ignore the checksum and not even compute it; or C<print>
+to print the actual checksum and continue.  The default is
+C<fail=warn>.
 
 Computing the checksum of a remote (eg HTTP) source can be slow and
 expensive.

@@ -157,8 +157,11 @@ and do_checksum_nbd socket i n { checksum_method;
   let cmd = sprintf "nbdcopy %s - | %s" (quote uri) prog in
   let lines = external_command cmd in
   let actual = get_checksum_from_output prog lines in
-  if actual <> checksum_expected then
-    checksum_failed checksum_on_fail i n actual checksum_expected
+  match checksum_on_fail with
+  | ChecksumPrint -> print_checksum i n actual
+  | ChecksumOnFailError | ChecksumOnFailWarn ->
+     if actual <> checksum_expected then
+       checksum_failed checksum_on_fail i n actual checksum_expected
 
 (* Handle the <disk><checksum> field over a local raw-format file or
  * block device.
@@ -170,8 +173,11 @@ and do_checksum_raw_file filename i n { checksum_method;
   let cmd = sprintf "%s %s" prog (quote filename) in
   let lines = external_command cmd in
   let actual = get_checksum_from_output prog lines in
-  if actual <> checksum_expected then
-    checksum_failed checksum_on_fail i n actual checksum_expected
+  match checksum_on_fail with
+  | ChecksumPrint -> print_checksum i n actual
+  | ChecksumOnFailError | ChecksumOnFailWarn ->
+     if actual <> checksum_expected then
+       checksum_failed checksum_on_fail i n actual checksum_expected
 
 and checksum_prog = function
   | "md5" -> "md5sum"
@@ -186,13 +192,17 @@ and get_checksum_from_output prog = function
   | _ ->
      error (f_"unexpected output from the %s command") prog
 
+and print_checksum i n actual =
+  printf "Checksum of disk %d/%d: %s\n%!" (i+1) n actual
+
 and checksum_failed on_fail i n actual expected =
   (match on_fail with
+   | ChecksumPrint -> assert false
    | ChecksumOnFailWarn -> warning
    | ChecksumOnFailError -> error ~exit_code:1)
     (f_"bad checksum for disk %d/%d\n\
-         Expected checksum: %s\n\
-         Actual checksum: %s")
+        Expected checksum: %s\n\
+        Actual checksum: %s")
     (i+1) n actual expected
 
 module Libvirt_ = struct

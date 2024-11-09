@@ -33,7 +33,7 @@ and disk_checksum = {
   checksum_expected : string;   (** Expected checksum. *)
   checksum_on_fail : checksum_on_fail
 }
-and checksum_on_fail = ChecksumOnFailWarn | ChecksumOnFailError
+and checksum_on_fail = ChecksumOnFailWarn | ChecksumOnFailError | ChecksumPrint
 (** Libvirt disk description corresponding to each field in s_disks.
     The caller usually has to create NBD server instances for each
     of these. *)
