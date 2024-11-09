@@ -78,6 +78,9 @@ TESTS = \
 	test-v2v-i-disk.sh \
 	test-v2v-i-ova.sh \
 	test-v2v-in-place.sh \
+	test-v2v-checksum-good.sh \
+	test-v2v-checksum-good-qcow2.sh \
+	test-v2v-checksum-bad.sh \
 	test-v2v-block-driver.sh \
 	test-v2v-inspector.sh \
 	test-v2v-mac.sh \
@@ -184,6 +187,9 @@ EXTRA_DIST += \
 	test-v2v-bad-networks-and-bridges.sh \
 	test-v2v-cdrom.expected \
 	test-v2v-cdrom.sh \
+	test-v2v-checksum-bad.sh \
+	test-v2v-checksum-good.sh \
+	test-v2v-checksum-good-qcow2.sh \
 	test-v2v-customize.sh \
 	test-v2v-fedora-conversion.sh \
 	test-v2v-fedora-btrfs-conversion.sh \

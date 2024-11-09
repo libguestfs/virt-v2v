@@ -21,12 +21,19 @@
 type disk = {
   d_format : string option;     (** Disk format from XML if known. *)
   d_type : disk_type;           (** Disk type and extra information. *)
+  d_checksum : disk_checksum option; (** Disk checksum, if present. *)
 }
 and disk_type =
   | BlockDev of string          (** type=block with <source dev=...> *)
   | LocalFile of string         (** type=file with <source file=...> *)
   | NBD of string * int         (** NBD forward to hostname:port *)
   | HTTP of string              (** HTTP/HTTPS URL *)
+and disk_checksum = {
+  checksum_method : string;     (** Checksum method, eg. "sha256". *)
+  checksum_expected : string;   (** Expected checksum. *)
+  checksum_on_fail : checksum_on_fail
+}
+and checksum_on_fail = ChecksumOnFailWarn | ChecksumOnFailError
 (** Libvirt disk description corresponding to each field in s_disks.
     The caller usually has to create NBD server instances for each
     of these. *)

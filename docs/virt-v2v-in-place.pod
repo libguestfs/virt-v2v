@@ -322,6 +322,7 @@ that instead.
        <driver name='qemu' type='raw'/>
        <source file='/path/to/disk/image'/>
        <target dev='hda' bus='ide'/>
+       <checksum method='sha256' fail='error'>123123...</checksum>
      </disk>
      <interface type='network'>
        <mac address='52:54:00:01:02:03'/>
@@ -330,6 +331,26 @@ that instead.
      </interface>
    </devices>
  </domain>
+
+=head2 Disk checksum
+
+The optional E<lt>checksumE<gt> field specifies the expected hash of
+the corresponding disk.  It can be specified by management tools in
+order to do end-to-end data integrity checks.
+
+Note this is the checksum of the raw format content of the disk.  If
+the disk is in a container format (eg. qcow2) it is the checksum of
+the content, I<not> of the container.
+
+The checksum method attribute can be C<md5>, C<sha256> or C<sha512>.
+
+The fail attribute can be C<error> to fail the conversion if the
+checksum does not match; C<warn> to print a warning but continue; or
+C<ignore> to ignore the checksum and not even compute it.  The default
+is C<fail=warn>.
+
+Computing the checksum of a remote (eg HTTP) source can be slow and
+expensive.
 
 =head1 FILES
 

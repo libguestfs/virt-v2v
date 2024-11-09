@@ -30,12 +30,19 @@ open Utils
 type disk = {
   d_format : string option;     (* Disk format from XML if known. *)
   d_type : disk_type;           (* Disk type and extra information. *)
+  d_checksum : disk_checksum option; (* Disk checksum, if present. *)
 }
 and disk_type =
   | BlockDev of string          (* type=block with <source dev=...> *)
   | LocalFile of string         (* type=file with <source file=...> *)
   | NBD of string * int         (* NBD forward to hostname:port *)
   | HTTP of string              (* HTTP/HTTPS URL *)
+and disk_checksum = {
+  checksum_method : string;     (* Checksum method, eg. "sha256". *)
+  checksum_expected : string;   (* Expected checksum. *)
+  checksum_on_fail : checksum_on_fail
+}
+and checksum_on_fail = ChecksumOnFailWarn | ChecksumOnFailError
 
 (* Turn string like "hda" into controller slot number.  See also
  * common/utils/utils.c:guestfs_int_drive_index which this function calls.
@@ -220,12 +227,13 @@ let parse_libvirt_xml ?conn xml =
     let get_disks, add_disk =
       let s_disks = ref [] and disks = ref [] and i = ref (-1) in
       let get_disks () = List.rev !s_disks, List.rev !disks in
-      let add_disk format controller typ =
+      let add_disk format controller typ checksum =
         incr i;
         let s_disk = { s_disk_id = !i; s_controller = controller }
         and disk = {
           d_format = format;
           d_type = typ;
+          d_checksum = checksum;
         } in
         List.push_front s_disk s_disks;
         List.push_front disk disks
@@ -259,6 +267,27 @@ let parse_libvirt_xml ?conn xml =
         | None -> None
         | Some format -> Some format in
 
+      let checksum =
+        match xpath_string "checksum/text()",
+              xpath_string "checksum/@method",
+              xpath_string "checksum/@fail" with
+        | None, _, _ -> None
+        | Some csum, None, _ ->
+           warning (f_"<checksum> missing 'method' attribute, ignoring");
+           None
+        | _, _, (None | Some "ignore") -> None
+        | Some csum, Some meth, Some ("warn" | "warning") ->
+           Some { checksum_expected = String.trim csum;
+                  checksum_method = meth;
+                  checksum_on_fail = ChecksumOnFailWarn }
+        | Some csum, Some meth, Some ("err" | "error") ->
+           Some { checksum_expected = String.trim csum;
+                  checksum_method = meth;
+                  checksum_on_fail = ChecksumOnFailError }
+        | _, _, Some v ->
+           warning (f_"<checksum> unknown fail='%s' attribute, ignoring") v;
+           None in
+
       (* The <disk type='...'> attribute may be 'block', 'file',
        * 'network' or 'volume'.  We ignore any other types.
        *)
@@ -268,13 +297,13 @@ let parse_libvirt_xml ?conn xml =
       | Some "block" ->
         (match xpath_string "source/@dev" with
          | Some path ->
-            add_disk format controller (BlockDev path)
+            add_disk format controller (BlockDev path) checksum
          | None -> ()
         );
       | Some "file" ->
         (match xpath_string "source/@file" with
          | Some path ->
-            add_disk format controller (LocalFile path)
+            add_disk format controller (LocalFile path) checksum
          | None -> ()
         );
       | Some "network" ->
@@ -285,7 +314,7 @@ let parse_libvirt_xml ?conn xml =
            warning (f_"<disk type='%s'> was ignored") "network"
         | Some "nbd", Some ("localhost" as host), Some port when port > 0 ->
            (* <source protocol="nbd"> with host localhost is used by virt-p2v *)
-           add_disk format controller (NBD (host, port))
+           add_disk format controller (NBD (host, port)) checksum
         | Some ("http"|"https" as driver), Some (_ as host), port ->
            (* This is for testing curl, eg for testing VMware conversions
             * without needing VMware around.
@@ -301,7 +330,7 @@ let parse_libvirt_xml ?conn xml =
                | _, Some port ->
                   invalid_arg "invalid port number in libvirt XML" in
              sprintf "%s://%s%s%s" driver host port (uri_quote path) in
-           add_disk format controller (HTTP url)
+           add_disk format controller (HTTP url) checksum
         | Some protocol, _, _ ->
            warning (f_"<disk type='network'> with <source protocol='%s'> \
                        was ignored")
@@ -326,7 +355,7 @@ let parse_libvirt_xml ?conn xml =
           | None | Some "file" ->
             (match xpath_string "/volume/target/path/text()" with
              | Some path ->
-                add_disk format controller (LocalFile path)
+                add_disk format controller (LocalFile path) checksum
              | None -> ()
             );
           | Some vol_type ->

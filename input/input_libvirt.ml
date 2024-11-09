@@ -75,8 +75,10 @@ and setup_servers options dir disks =
   if options.read_only && not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
 
+  let nr_disks = List.length disks in
+
   List.iteri (
-    fun i { d_format = format; d_type } ->
+    fun i { d_format = format; d_type; d_checksum } ->
       let socket = sprintf "%s/in%d" dir i in
       On_exit.unlink socket;
 
@@ -94,7 +96,9 @@ and setup_servers options dir disks =
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
           *)
-         On_exit.kill pid
+         On_exit.kill pid;
+
+         Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
 
       (* Forward to an HTTP/HTTPS server using nbdkit-curl-plugin. *)
       | HTTP url ->
@@ -108,11 +112,18 @@ and setup_servers options dir disks =
          (* --exit-with-parent should ensure nbdkit is cleaned
           * up when we exit, but it's not supported everywhere.
           *)
-         On_exit.kill pid
+         On_exit.kill pid;
+
+         Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
 
       | BlockDev filename | LocalFile filename ->
          match format with
          | Some "raw" ->
+            (* It's much faster to compute the checksum over
+             * the raw file or block device than over NBD:
+             *)
+            Option.iter (do_checksum_raw_file filename i nr_disks) d_checksum;
+
             let cmd = Nbdkit.create "file" in
             if options.read_only then
               Nbdkit.add_filter cmd "cow";
@@ -132,8 +143,57 @@ and setup_servers options dir disks =
             QemuNBD.set_snapshot cmd options.read_only;
             QemuNBD.set_format cmd format;
             let _, pid = QemuNBD.run_unix socket cmd in
-            On_exit.kill pid
+            On_exit.kill pid;
+
+            Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
   ) disks
+
+(* Handle the <disk><checksum> field over an NBD endpoint. *)
+and do_checksum_nbd socket i n { checksum_method;
+                                 checksum_expected; checksum_on_fail } =
+  message (f_"Checking %s checksum of disk %d/%d") checksum_method (i+1) n;
+  let prog = checksum_prog checksum_method in
+  let uri = sprintf "nbd+unix:///?socket=%s" socket in
+  let cmd = sprintf "nbdcopy %s - | %s" (quote uri) prog in
+  let lines = external_command cmd in
+  let actual = get_checksum_from_output prog lines in
+  if actual <> checksum_expected then
+    checksum_failed checksum_on_fail i n actual checksum_expected
+
+(* Handle the <disk><checksum> field over a local raw-format file or
+ * block device.
+ *)
+and do_checksum_raw_file filename i n { checksum_method;
+                                        checksum_expected; checksum_on_fail } =
+  message (f_"Checking %s checksum of disk %d/%d") checksum_method (i+1) n;
+  let prog = checksum_prog checksum_method in
+  let cmd = sprintf "%s %s" prog (quote filename) in
+  let lines = external_command cmd in
+  let actual = get_checksum_from_output prog lines in
+  if actual <> checksum_expected then
+    checksum_failed checksum_on_fail i n actual checksum_expected
+
+and checksum_prog = function
+  | "md5" -> "md5sum"
+  | "sha256" -> "sha256sum"
+  | "sha512" -> "sha512sum"
+  | v -> error (f_"unknown <checksum> method='%s'") v
+
+and get_checksum_from_output prog = function
+  | [ actual ] ->
+     let n = String.cspan actual " \t\n" in
+     String.sub actual 0 n
+  | _ ->
+     error (f_"unexpected output from the %s command") prog
+
+and checksum_failed on_fail i n actual expected =
+  (match on_fail with
+   | ChecksumOnFailWarn -> warning
+   | ChecksumOnFailError -> error ~exit_code:1)
+    (f_"bad checksum for disk %d/%d\n\
+         Expected checksum: %s\n\
+         Actual checksum: %s")
+    (i+1) n actual expected
 
 module Libvirt_ = struct
   let to_string options args =

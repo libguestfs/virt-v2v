@@ -1500,6 +1500,7 @@ that instead.
        <driver name='qemu' type='raw'/>
        <source file='/path/to/disk/image'/>
        <target dev='hda' bus='ide'/>
+       <checksum method='sha256' fail='error'>123123...</checksum>
      </disk>
      <interface type='network'>
        <mac address='52:54:00:01:02:03'/>
