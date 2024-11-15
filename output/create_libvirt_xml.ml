@@ -294,10 +294,6 @@ let create_libvirt_xml ?pool source inspect
                               "machine", machine]
                       [PCData "hvm"]);
 
-    (* We used to sometimes put <loader secure='yes'/> here.  However
-     * that is likely wrong since by its nature virt-v2v can't really
-     * support secure boot ever.  So for now we omit it.
-     *)
     e "os" firmware_attribute !os in
 
   (* The <clock> section. *)
