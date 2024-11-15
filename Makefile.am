@@ -37,7 +37,6 @@ SUBDIRS += common/mlxml
 SUBDIRS += common/mltools
 SUBDIRS += common/mlcustomize
 SUBDIRS += common/mldrivers
-SUBDIRS += common/mlv2v
 SUBDIRS += lib
 SUBDIRS += input
 SUBDIRS += output
