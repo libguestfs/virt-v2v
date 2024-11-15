@@ -415,6 +415,10 @@ let parse_domain_from_vmx vmx_source =
        warning (f_"unknown firmware value '%s', assuming BIOS") fw;
        BIOS in
 
+  let uefi_secureboot =
+    Parse_vmx.get_bool vmx ["uefi"; "secureBoot"; "enabled"] |>
+      Option.value ~default:false in
+
   let sound =
     match Parse_vmx.get_string vmx ["sound"; "virtualDev"] with
     | Some "sb16" -> Some { s_sound_model = SB16 }
@@ -440,7 +444,7 @@ let parse_domain_from_vmx vmx_source =
     s_cpu_topology = cpu_topology;
     s_features = [];
     s_firmware = firmware;
-    s_uefi_secureboot = false;
+    s_uefi_secureboot = uefi_secureboot;
     s_display = None;
     s_sound = sound;
     s_disks = List.map fst disks;

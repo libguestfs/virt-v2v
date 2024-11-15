@@ -11,7 +11,7 @@ hypervisor type: vmware
    CPU topology: 
    CPU features: 
        firmware: uefi
-UEFI secureboot: false
+UEFI secureboot: true
         display: 
           sound: 
 disks:
