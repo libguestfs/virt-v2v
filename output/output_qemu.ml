@@ -152,7 +152,6 @@ module QEMU = struct
         fpf "uefi_vars=\"$(mktemp)\"\n";
         fpf "cp \"$uefi_vars_template\" \"$uefi_vars\"\n";
         fpf "\n";
-        fpf "# You may need to set this 'on' to use secure boot\n";
         fpf "smm=off\n";
     );
 
