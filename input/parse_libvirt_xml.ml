@@ -85,7 +85,7 @@ let parse_libvirt_xml ?conn xml =
     match xpath_string "/domain/name/text()" with
     | None | Some "" ->
        error (f_"in the libvirt XML metadata, <name> is missing or empty")
-    | Some s -> s in
+    | Some s -> String.trim s in
   let genid =
     match xpath_string "/domain/genid/text()" with
     | None | Some "" -> None
