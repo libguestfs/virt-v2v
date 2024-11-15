@@ -113,6 +113,9 @@ module QEMU = struct
     let fpf fs = fprintf chan fs in
     fpf "#!/bin/sh -\n";
     fpf "\n";
+    fpf "set -e\n";
+    fpf "#set -x\n";
+    fpf "\n";
 
     (* Allow the user to override our choice of machine type. *)
     let () =
