@@ -42,7 +42,6 @@ common/mltools/urandom.ml
 common/mltools/xpath_helpers.ml
 common/mlutils/c_utils.ml
 common/mlutils/unix_utils.ml
-common/mlv2v/uefi.ml
 common/mlxml/xml.ml
 in-place/in_place.ml
 input/OVA.ml

@@ -137,7 +137,6 @@ AC_CONFIG_FILES([Makefile
                  common/mlstdutils/guestfs_config.ml
                  common/mltools/Makefile
                  common/mlutils/Makefile
-                 common/mlv2v/Makefile
                  common/mlxml/Makefile
                  common/qemuopts/Makefile
                  common/utils/Makefile

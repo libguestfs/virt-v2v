@@ -157,7 +157,6 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlgettext \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mltools \
-	-I $(top_builddir)/common/mlv2v \
 	-I $(top_builddir)/common/mlxml
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
@@ -188,7 +187,6 @@ OCAMLLINKFLAGS = \
 	mlxml.$(MLARCHIVE) \
 	mltools.$(MLARCHIVE) \
 	mllibvirt.$(MLARCHIVE) \
-	mlv2v.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
