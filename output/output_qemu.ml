@@ -102,30 +102,56 @@ module QEMU = struct
 
     let { guestcaps; target_buses; target_firmware } = target_meta in
 
+    (* Start the shell script.  Write it to a temporary file
+     * which we rename at the end.
+     *)
     let file = output_storage // output_name ^ ".sh" in
+    let tmpfile = file ^ ".tmp" in
+    On_exit.unlink tmpfile;
 
-    let uefi_firmware =
-      match target_firmware with
-      | TargetBIOS -> None
-      | TargetUEFI -> Some (find_uefi_firmware guestcaps.gcaps_arch) in
-    let machine, secure_boot_required =
-      match guestcaps.gcaps_machine, uefi_firmware with
-      | _, Some { Uefi.flags }
-           when List.mem Uefi.UEFI_FLAG_SECURE_BOOT_REQUIRED flags ->
-         (* Force machine type to Q35 because PC does not support
-          * secure boot.  We must remove this when we get the
-          * correct machine type from libosinfo in future. XXX
-          *)
-         Q35, true
-      | machine, _ ->
-         machine, false in
-    let smm = secure_boot_required in
+    let chan = open_out tmpfile in
+    let fpf fs = fprintf chan fs in
+    fpf "#!/bin/sh -\n";
+    fpf "\n";
 
-    let machine_str =
-      match machine with
-      | I440FX -> "pc"
-      | Q35 -> "q35"
-      | Virt -> "virt" in
+    (* Allow the user to override our choice of machine type. *)
+    let () =
+      let machine_str =
+        match guestcaps.gcaps_machine with
+        | I440FX -> "pc"
+        | Q35 -> "q35"
+        | Virt -> "virt" in
+      fpf "machine=%s\n" machine_str;
+      fpf "\n" in
+
+    (* If the firmware is UEFI, locate the OVMF files. *)
+    (match target_firmware with
+     | TargetBIOS -> ()
+     | TargetUEFI ->
+        let prefix =
+          match guestcaps.gcaps_arch with
+          | "x86_64" ->
+             fpf "uefi_dir=/usr/share/OVMF\n"; "OVMF"
+          | "aarch64" ->
+             fpf "uefi_dir=/usr/share/AAVMF\n"; "AAVMF"
+          | arch ->
+             error (f_"don’t know how to convert UEFI guests \
+                       for architecture %s")
+               arch in
+        fpf "uefi_code=\"$( \
+             find $uefi_dir -name '%s_CODE*.fd' -print -quit )\"\n"
+          prefix;
+        fpf "uefi_vars_template=\"$( \
+             find $uefi_dir -name '%s_VARS.fd' -print -quit )\"\n"
+          prefix;
+        fpf "\n";
+        fpf "# Make a copy of the UEFI variables template\n";
+        fpf "uefi_vars=\"$(mktemp)\"\n";
+        fpf "cp \"$uefi_vars_template\" \"$uefi_vars\"\n";
+        fpf "\n";
+        fpf "# You may need to set this 'on' to use secure boot\n";
+        fpf "smm=off\n";
+    );
 
     (* Construct the command line.  Note that the [Qemuopts]
      * module deals with shell and qemu comma quoting.
@@ -149,20 +175,17 @@ module QEMU = struct
 
     if not guestcaps.gcaps_rtc_utc then arg "-rtc" "base=localtime";
 
-    arg_list "-machine" (machine_str ::
-                           (if smm then ["smm=on"] else []) @
-                           ["accel=kvm:tcg"]);
+    arg_noquote "-machine" "$machine${smm:+,smm=$smm},accel=kvm:tcg";
 
-    (match uefi_firmware with
-     | None -> ()
-     | Some { Uefi.code } ->
-        if secure_boot_required then
-          arg_list "-global"
-            ["driver=cfi.pflash01"; "property=secure"; "value=on"];
-        arg_list "-drive"
-          ["if=pflash"; "format=raw"; "file=" ^ code; "readonly=on"];
-        arg_noquote "-drive" "if=pflash,format=raw,file=\"$uefi_vars\"";
-    );
+    fpf "if [ \"$uefi_code\" != \"\" ]; then\n";
+    fpf "    uefi_args=\"\\\n";
+    fpf "    -global driver=cfi.pflash01,property=secure,value=$smm \\\n";
+    fpf "    -drive if=pflash,format=raw,file=$uefi_code,readonly=on \\\n";
+    fpf "    -drive if=pflash,format=raw,file=$uefi_vars \\\n";
+    fpf "    \"\n";
+    fpf "fi\n";
+    fpf "\n";
+    Qemuopts.raw cmd "$uefi_args";
 
     arg "-m" (Int64.to_string (source.s_memory /^ 1024L /^ 1024L));
 
@@ -206,7 +229,7 @@ module QEMU = struct
       Array.exists floppy_filter target_buses.target_floppy_bus in
 
     if ide_ctrl_needed then (
-      match machine with
+      match guestcaps.gcaps_machine with
       | I440FX -> ()
         (* The PC machine has a built-in controller of type "piix3-ide"
          * providing buses "ide.0" and "ide.1", with each bus fitting two
@@ -229,7 +252,7 @@ module QEMU = struct
       arg_list "-device" [ "virtio-scsi-pci"; "id=scsi0" ];
 
     if floppy_ctrl_needed then (
-      match machine with
+      match guestcaps.gcaps_machine with
       | I440FX -> ()
         (* The PC machine has a built-in controller of type "isa-fdc"
          * providing bus "floppy-bus.0", fitting two devices.
@@ -280,7 +303,7 @@ module QEMU = struct
        *)
       let backend_name = sprintf "drive-ide-%d" frontend_ctr
       and ide_bus, ide_unit =
-        match machine with
+        match guestcaps.gcaps_machine with
         | I440FX -> frontend_ctr / 2, frontend_ctr mod 2
         | Q35 -> frontend_ctr, 0
         | Virt -> 0, 0 (* should never happen, see warning above *) in
@@ -447,25 +470,13 @@ module QEMU = struct
     if inspect.i_type = "linux" then
       arg "-serial" "stdio";
 
-    (* Write the qemu script. *)
-    with_open_out file (
-      fun chan ->
-        let fpf fs = fprintf chan fs in
-        fpf "#!/bin/sh -\n";
-        fpf "\n";
+    (* Write the qemu command. *)
+    Qemuopts.to_chan cmd chan;
 
-        (match uefi_firmware with
-         | None -> ()
-         | Some { Uefi.vars = vars_template } ->
-            fpf "# Make a copy of the UEFI variables template\n";
-            fpf "uefi_vars=\"$(mktemp)\"\n";
-            fpf "cp %s \"$uefi_vars\"\n" (quote vars_template);
-            fpf "\n"
-        );
-
-        Qemuopts.to_chan cmd chan
-    );
-
+    (* Finish off by renaming the temporary file to the final file
+     * and making it executable.
+     *)
+    Unix.rename tmpfile file;
     Unix.chmod file 0o755;
 
     (* If -oo qemu-boot option was specified then we should boot the guest. *)

@@ -68,26 +68,6 @@ let qemu_supports_sound_card = function
   | Types.USBAudio
     -> true
 
-(* Find the UEFI firmware. *)
-let find_uefi_firmware guest_arch =
-  let files =
-    (* The lists of firmware are actually defined in common/utils/uefi.c. *)
-    match guest_arch with
-    | "x86_64" -> Uefi.uefi_x86_64_firmware
-    | "aarch64" -> Uefi.uefi_aarch64_firmware
-    | arch ->
-       error (f_"don’t know how to convert UEFI guests for architecture %s")
-             guest_arch in
-  let rec loop = function
-    | [] ->
-       error (f_"cannot find firmware for UEFI guests.\n\nYou probably \
-                 need to install OVMF (x86-64), or AAVMF (aarch64)")
-    | ({ Uefi.code; vars = vars_template } as ret) :: rest ->
-       if Sys.file_exists code && Sys.file_exists vars_template then ret
-       else loop rest
-  in
-  loop files
-
 let compare_app2_versions app1 app2 =
   let i = compare app1.Guestfs.app2_epoch app2.Guestfs.app2_epoch in
   if i <> 0 then i

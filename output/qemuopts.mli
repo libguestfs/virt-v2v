@@ -53,6 +53,10 @@ val arg_list : t -> string -> string list -> unit
 
     This does both qemu comma-quoting and shell-quoting as required. *)
 
+val raw : t -> string -> unit
+(** [raw "stuff"] adds [stuff] to the command line completely
+    unquoted.  Use with care. *)
+
 val to_script : t -> string -> unit
 (** [to_script t "./file.sh"] writes the resulting command line to
     a file.  The file begins with [#!/bin/sh] and is chmod 0755. *)

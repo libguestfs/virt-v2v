@@ -25,6 +25,7 @@ external flag : t -> string -> unit = "guestfs_int_qemuopts_flag"
 external arg : t -> string -> string -> unit = "guestfs_int_qemuopts_arg"
 external arg_noquote : t -> string -> string -> unit = "guestfs_int_qemuopts_arg_noquote"
 external arg_list : t -> string -> string list -> unit = "guestfs_int_qemuopts_arg_list"
+external raw : t -> string -> unit = "guestfs_int_qemuopts_raw"
 external to_script : t -> string -> unit = "guestfs_int_qemuopts_to_script"
 
 external _to_chan : t -> Unix.file_descr -> unit = "guestfs_int_qemuopts_to_chan"

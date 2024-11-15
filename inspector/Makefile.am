@@ -64,8 +64,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mlcustomize \
-	-I $(top_builddir)/common/mldrivers \
-	-I $(top_builddir)/common/mlv2v
+	-I $(top_builddir)/common/mldrivers
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
 endif
@@ -101,7 +100,6 @@ OCAMLLINKFLAGS = \
 	mllibvirt.$(MLARCHIVE) \
 	mlcustomize.$(MLARCHIVE) \
 	mldrivers.$(MLARCHIVE) \
-	mlv2v.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
 	mlconvert.$(MLARCHIVE) \
 	mlinput.$(MLARCHIVE) \

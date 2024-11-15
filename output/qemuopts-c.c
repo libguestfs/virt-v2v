@@ -177,6 +177,18 @@ guestfs_int_qemuopts_arg_list (value qoptsv, value flagv, value valuesv)
 }
 
 value
+guestfs_int_qemuopts_raw (value qoptsv, value strv)
+{
+  CAMLparam2 (qoptsv, strv);
+  struct qemuopts *qopts = Qopts_val (qoptsv);
+
+  if (qemuopts_add_raw (qopts, String_val (strv)) == -1)
+    unix_error (errno, (char *) "qemuopts_add_raw", strv);
+
+  CAMLreturn (Val_unit);
+}
+
+value
 guestfs_int_qemuopts_to_script (value qoptsv, value strv)
 {
   CAMLparam2 (qoptsv, strv);
