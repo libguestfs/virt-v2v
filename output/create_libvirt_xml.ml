@@ -258,10 +258,30 @@ let create_libvirt_xml ?pool source inspect
   let os_section =
     let os = ref [] in
 
-    let firmware =
+    let firmware_attribute =
       match target_firmware with
       | TargetBIOS -> []
       | TargetUEFI -> [ "firmware", "efi" ] in
+
+    let () =
+      match target_firmware with
+      | TargetBIOS -> ()
+      | TargetUEFI ->
+         (* The UEFI secureboot setting is sort of adjacent to if
+          * the full secure boot feature is enabled, but it's what
+          * we have.
+          * https://libvirt.org/kbase/secureboot.html
+          *)
+         let sb = source.s_uefi_secureboot in
+         let enrolled_keys =
+           if sb then
+             [e "feature" ["name", "enrolled-keys"; "enabled", "yes"] []]
+           else [] in
+         let firmware_features =
+           (e "feature" ["name", "secure-boot";
+                         "enabled", if sb then "yes" else "no"] []) ::
+             enrolled_keys in
+         List.push_back os (e "firmware" [] firmware_features) in
 
     let machine =
       match guestcaps.gcaps_machine with
@@ -278,7 +298,7 @@ let create_libvirt_xml ?pool source inspect
      * that is likely wrong since by its nature virt-v2v can't really
      * support secure boot ever.  So for now we omit it.
      *)
-    e "os" firmware !os in
+    e "os" firmware_attribute !os in
 
   (* The <clock> section. *)
   let clock_section =
