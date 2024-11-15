@@ -8,6 +8,7 @@ hypervisor type: kvm
    CPU topology: sockets: 4 cores/socket: 8 threads/core: 2
    CPU features: acpi,apic,pae
        firmware: unknown
+UEFI secureboot: false
         display: 
           sound: 
 disks:

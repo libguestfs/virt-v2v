@@ -69,13 +69,35 @@ type source = {
   s_cpu_topology : source_cpu_topology option; (** Source CPU topology. *)
   s_features : string list;             (** Machine features. *)
   s_firmware : source_firmware;         (** Firmware (BIOS or EFI). *)
+  s_uefi_secureboot : bool;             (** UEFI secure boot toggle. *)
   s_display : source_display option;    (** Guest display. *)
   s_sound : source_sound option;        (** Sound card. *)
   s_disks : source_disk list;           (** Source disks. *)
   s_removables : source_removable list; (** CDROMs etc. *)
   s_nics : source_nic list;             (** NICs. *)
 }
-(** The source: metadata, disk images. *)
+(** The source: metadata, disk images.
+
+  [s_uefi_secureboot] is a toggle stored in the UEFI NVRAM of a guest.
+
+  When enabled it causes UEFI to verify EFI binary signatures
+  eg on [shim.efi].  When disabled, EFI binary signatures are ignored.
+
+  When enabled it is equivalent to this libvirt fragment:
+{v
+      <os>
+         <firmware>
+           <feature name="secure-boot" enabled="yes"/>
+           <feature name="enrolled-keys" enabled="yes"/>
+v}
+  When disabled:
+{v
+      <os>
+         <firmware>
+           <feature name="secure-boot" enabled="no"/>
+v}
+  More: https://libvirt.org/kbase/secureboot.html
+*)
 
 and source_hypervisor =
   | QEmu | KQemu | KVM | Xen | LXC | UML | OpenVZ

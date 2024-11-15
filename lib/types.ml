@@ -35,6 +35,7 @@ type source = {
   s_cpu_topology : source_cpu_topology option;
   s_features : string list;
   s_firmware : source_firmware;
+  s_uefi_secureboot : bool;
   s_display : source_display option;
   s_sound : source_sound option;
   s_disks : source_disk list;
@@ -110,6 +111,7 @@ hypervisor type: %s
    CPU topology: %s
    CPU features: %s
        firmware: %s
+UEFI secureboot: %b
         display: %s
           sound: %s
 disks:
@@ -131,6 +133,7 @@ NICs:
     | Some topology -> string_of_source_cpu_topology topology)
     (String.concat "," (List.sort compare s.s_features))
     (string_of_source_firmware s.s_firmware)
+    s.s_uefi_secureboot
     (match s.s_display with
     | None -> ""
     | Some display -> string_of_source_display display)

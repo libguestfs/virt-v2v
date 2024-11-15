@@ -76,6 +76,7 @@ module Disk = struct
       s_cpu_topology = None;
       s_features = [ "acpi"; "apic"; "pae" ];
       s_firmware = UnknownFirmware; (* causes virt-v2v to autodetect *)
+      s_uefi_secureboot = false;
       s_display =
         Some { s_display_type = Window; s_keymap = None; s_password = None;
                s_listen = LNoListen; s_port = None };

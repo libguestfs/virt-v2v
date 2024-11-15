@@ -178,6 +178,7 @@ module OVA = struct
       s_cpu_topology = cpu_topology;
       s_features = []; (* XXX *)
       s_firmware = firmware;
+      s_uefi_secureboot = false;
       s_display = None; (* XXX *)
       s_sound = None;
       s_disks = s_disks;

@@ -551,6 +551,7 @@ let parse_libvirt_xml ?conn xml =
     s_cpu_topology = cpu_topology;
     s_features = features;
     s_firmware = firmware;
+    s_uefi_secureboot = false;
     s_display = display;
     s_sound = sound;
     s_disks = s_disks;
