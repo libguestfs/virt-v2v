@@ -506,6 +506,15 @@ let parse_libvirt_xml ?conn xml =
         | _ -> UnknownFirmware
       ) in
 
+  (* Secure boot flag.  See:
+   * https://libvirt.org/kbase/secureboot.html
+   *)
+  let uefi_secureboot =
+    match xpath_string "/domain/os/firmware/\
+                        feature[@name='secure-boot']/@enabled" with
+    | Some "yes" (* XXX other boolean values? *) -> true
+    | Some _ | None -> false in
+
   (* Check for hostdev devices. (RHBZ#1472719) *)
   let () =
     let obj = Xml.xpath_eval_expression xpathctx "/domain/devices/hostdev" in
@@ -551,7 +560,7 @@ let parse_libvirt_xml ?conn xml =
     s_cpu_topology = cpu_topology;
     s_features = features;
     s_firmware = firmware;
-    s_uefi_secureboot = false;
+    s_uefi_secureboot = uefi_secureboot;
     s_display = display;
     s_sound = sound;
     s_disks = s_disks;
