@@ -23,6 +23,10 @@ val large_tmpdir : string
     such as overlays in this directory.  Small temporary files can
     use the default behaviour eg. of {!Filename.temp_file} *)
 
+val string_of_process_status : Unix.process_status -> string
+(** Convert a process status (such as returned by {!Unix.wait}) into
+    a printable string. *)
+
 val have_selinux : bool
 (** True if SELinux is enabled and enforcing on the host. *)
 

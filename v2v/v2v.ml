@@ -79,6 +79,7 @@ let rec main () =
     )
   in
 
+  let parallel = ref 1 in
   let network_map = Networks.create () in
   let static_ips = ref [] in
   let rec add_network str =
@@ -263,6 +264,8 @@ let rec main () =
                                     s_"Set output storage location";
     [ L"password-file" ], Getopt.String ("filename", set_string_option_once "-ip" input_password),
       s_"Same as ‘-ip filename’";
+    [ L"parallel" ], Getopt.Set_int ("N", parallel),
+      s_"Run up to N instances of nbdcopy in parallel";
     [ L"print-source" ], Getopt.Set print_source,
       s_"Print source and stop";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
@@ -365,6 +368,7 @@ read the man page virt-v2v(1).
     | `Preallocated -> Types.Preallocated in
   let output_mode = !output_mode in
   let output_name = !output_name in
+  let parallel = !parallel in
   let print_source = !print_source in
   let root_choice = !root_choice in
   let static_ips = !static_ips in
@@ -386,6 +390,7 @@ read the man page virt-v2v(1).
       pr "mac-option\n";
       pr "bandwidth-option\n";
       pr "mac-ip-option\n";
+      pr "parallel-option\n";
       pr "customize-ops\n";
       pr "input:disk\n";
       pr "input:libvirt\n";
@@ -583,12 +588,15 @@ read the man page virt-v2v(1).
     else
       List.rev acc
   in
-  let disks = loop [] 0 in
-  let nr_disks = List.length disks in
+  let disks = ref (loop [] 0) in
+  let nr_disks = List.length !disks in
 
   (* Copy the disks. *)
-  List.iter (
-    fun (i, input_socket, output_socket) ->
+  let nbdcopy_pids = ref [] in
+  let rec copy_loop () =
+    if List.length !nbdcopy_pids < parallel && !disks <> [] then (
+      (* Schedule another nbdcopy process. *)
+      let i, input_socket, output_socket = List.pop_front disks in
       message (f_"Copying disk %d/%d") (i+1) nr_disks;
 
       let request_size = Output_module.request_size
@@ -608,8 +616,33 @@ read the man page virt-v2v(1).
         flush Stdlib.stderr
       );
 
-      nbdcopy ?request_size output_alloc input_uri output_uri
-  ) disks;
+      let pid = nbdcopy ?request_size output_alloc input_uri output_uri in
+      List.push_front pid nbdcopy_pids;
+
+      copy_loop ();
+    )
+    else if !nbdcopy_pids <> [] then (
+      (* Wait for one nbdcopy instance to exit. *)
+      let pid, status = wait () in
+      (* If this internal error turns up in real world scenarios then
+       * we may need to change the [wait] above so it only waits on
+       * the nbdcopy PIDs.
+       *)
+      if not (List.mem pid !nbdcopy_pids) then
+        error (f_"internal error: wait returned unexpected \
+                  process ID %d status \"%s\"")
+          pid (string_of_process_status status);
+      nbdcopy_pids := List.filter ((<>) pid) !nbdcopy_pids;
+      (match status with
+       | WEXITED 0 -> copy_loop ()
+       | WEXITED _ | WSIGNALED _ | WSTOPPED _ ->
+          error "nbdcopy %s" (string_of_process_status status)
+      );
+    )
+  in
+  copy_loop ();
+  assert (!disks == []);
+  assert (!nbdcopy_pids == []);
 
   (* End of copying phase. *)
   unlink (v2vdir // "copy");
@@ -647,6 +680,7 @@ and check_host_free_space () =
               \"Minimum free space check in the host\".")
       large_tmpdir (human_size free_space)
 
+(* Start nbdcopy as a background process, returning the PID. *)
 and nbdcopy ?request_size output_alloc input_uri output_uri =
   (* XXX It's possible that some output modes know whether
    * --target-is-zero which would be a useful optimization.
@@ -674,10 +708,12 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
   if not (quiet ()) then List.push_back cmd "--progress";
   if output_alloc = Types.Preallocated then List.push_back cmd "--allocated";
 
-  let cmd = !cmd in
-
-  if run_command cmd <> 0 then
-    error (f_"nbdcopy command failed, see earlier error messages")
+  let args = Array.of_list !cmd in
+  match fork () with
+  | 0 ->
+     (* Child process (nbdcopy). *)
+     execvp "nbdcopy" args
+  | pid -> pid
 
 (* Run nbdinfo on a URI and collect the information.  However don't
  * fail if nbdinfo is not installed since this is just used for debugging.

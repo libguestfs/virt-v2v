@@ -76,6 +76,7 @@ TESTS = \
 	test-v2v-cdrom.sh \
 	test-v2v-floppy.sh \
 	test-v2v-i-disk.sh \
+	test-v2v-i-disk-parallel.sh \
 	test-v2v-i-ova.sh \
 	test-v2v-inspector.sh \
 	test-v2v-mac.sh \
@@ -189,6 +190,7 @@ EXTRA_DIST += \
 	test-v2v-floppy.expected \
 	test-v2v-floppy.sh \
 	test-v2v-i-disk.sh \
+	test-v2v-i-disk-parallel.sh \
 	test-v2v-i-ova-as-root.ovf \
 	test-v2v-i-ova-as-root.sh \
 	test-v2v-i-ova-bad-sha1.sh \
