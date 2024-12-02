@@ -47,7 +47,7 @@ let start_nbdkit ~server ?port ?user ?password path =
 let download_file ~server ?port ?user ?password path output =
   let uri = start_nbdkit ~server ?port ?user ?password path in
 
-  let cmd = [ "nbdcopy"; uri; output ] in
+  let cmd = [ Config.nbdcopy; uri; output ] in
   if run_command cmd <> 0 then
     error (f_"could not copy the VMX file from the remote server, \
               see earlier error messages")
@@ -59,5 +59,5 @@ let remote_file_exists ~server ?port ?user ?password path =
   (* Testing that we can connect to the nbdkit server is enough to
    * prove the remote file exists.
    *)
-  let cmd = [ "nbdinfo"; "--can"; "connect"; uri ] in
+  let cmd = [ Config.nbdinfo; "--can"; "connect"; uri ] in
   run_command cmd = 0
