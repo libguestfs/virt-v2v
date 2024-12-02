@@ -97,10 +97,6 @@ dnl Perl, used for running mllibvirt generator, and man pages.
 HEADING([Checking for Perl])
 m4_include([m4/guestfs-perl.m4])
 
-dnl virt-v2v.
-HEADING([Checking the virt-v2v dependencies])
-m4_include([m4/guestfs-v2v.m4])
-
 dnl Bash completion.
 HEADING([Checking for bash completion])
 m4_include([m4/guestfs-bash-completion.m4])

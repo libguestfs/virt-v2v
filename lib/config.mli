@@ -33,12 +33,3 @@ val datadir : string
 
 val host_cpu : string
 (** The configure value [@host_cpu@] *)
-
-val nbdkit_python_plugin : string
-(** Return the name of the nbdkit python plugin used by
-    [virt-v2v -o rhv-upload].
-
-    As above this must also be the Python 3 version of the plugin,
-    unless you change it.  The configure command to change this is:
-
-    [./configure --with-virt-v2v-nbdkit-python-plugin=...] *)
