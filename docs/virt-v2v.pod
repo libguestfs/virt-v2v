@@ -556,6 +556,19 @@ The directory must exist.
 
 For I<-o openstack>, this is the optional Cinder volume type.
 
+=item B<--parallel> N
+
+Enable parallel copying if the guest has multiple disks.  I<N> is the
+maximum number of parallel L<nbdcopy(1)> instances to run.
+
+The default is to run at most one instance of nbdcopy
+(ie. I<--parallel=1>).  All versions of virt-v2v E<le> 2.7.2 also did
+disk copies one at a time.
+
+Within each guest disk, nbdcopy tries to copy in parallel if the
+underlying endpoints support that.  This is not affected by this
+command line option.  See the L<nbdcopy(1)> manual page for details.
+
 =item B<--print-source>
 
 Print information about the source guest and stop.  This option is

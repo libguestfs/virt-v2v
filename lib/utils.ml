@@ -29,6 +29,12 @@ let large_tmpdir =
   try Sys.getenv "VIRT_V2V_TMPDIR"
   with Not_found -> (open_guestfs ())#get_cachedir ()
 
+let string_of_process_status = function
+  | Unix.WEXITED 0 -> s_"success"
+  | WEXITED i -> sprintf (f_"exited with non-zero error code %d") i
+  | WSIGNALED i -> sprintf (f_"signalled by signal %d") i
+  | WSTOPPED i -> sprintf (f_"stopped by signal %d") i
+
 (* Is SELinux enabled and enforcing on the host? *)
 let have_selinux =
   0 = Sys.command "getenforce 2>/dev/null | grep -isq Enforcing"
