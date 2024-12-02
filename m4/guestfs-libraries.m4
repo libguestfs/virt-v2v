@@ -21,7 +21,7 @@ dnl Of course we need libguestfs.
 PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.44])
 
 dnl And libnbd.
-PKG_CHECK_MODULES([LIBNBD], [libnbd >= 1.10])
+PKG_CHECK_MODULES([LIBNBD], [libnbd >= 1.14])
 
 dnl Test if it's GNU or XSI strerror_r.
 AC_FUNC_STRERROR_R

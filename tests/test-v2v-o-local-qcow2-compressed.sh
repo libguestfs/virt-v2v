@@ -27,14 +27,7 @@ set -x
 skip_if_skipped
 requires test -f ../test-data/phony-guests/windows.img
 
-# This requires fixed nbdcopy >= 1.13.5.
 requires nbdcopy --version
-nbdcopy --version | {
-    IFS=' .' read name major minor release
-    requires test \( "$major" -gt 1 \) -o \
-                  \( "$major" -eq 1 -a "$minor" -gt 13 \) -o \
-                  \( "$major" -eq 1 -a "$minor" -eq 13 -a "$release" -ge 5 \)
-}
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
