@@ -154,7 +154,7 @@ and do_checksum_nbd socket i n { checksum_method;
   message (f_"Checking %s checksum of disk %d/%d") checksum_method (i+1) n;
   let prog = checksum_prog checksum_method in
   let uri = sprintf "nbd+unix:///?socket=%s" socket in
-  let cmd = sprintf "nbdcopy %s - | %s" (quote uri) prog in
+  let cmd = sprintf "%s %s - | %s" (quote Config.nbdcopy) (quote uri) prog in
   let lines = external_command cmd in
   let actual = get_checksum_from_output prog lines in
   match checksum_on_fail with

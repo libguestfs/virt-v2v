@@ -676,7 +676,7 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
    * --target-is-zero which would be a useful optimization.
    *)
   let cmd = ref [] in
-  List.push_back_list cmd [ "nbdcopy"; input_uri; output_uri ];
+  List.push_back_list cmd [ Config.nbdcopy; input_uri; output_uri ];
 
   (match request_size with
     | None -> ()
@@ -708,8 +708,10 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
  *)
 and nbdinfo ?(content = false) uri =
   let cmd =
-    sprintf "nbdinfo%s %s ||:"
-      (if content then " --content" else " --no-content") (quote uri) in
+    sprintf "%s%s %s ||:"
+      (quote Config.nbdinfo)
+      (if content then " --content" else " --no-content")
+      (quote uri) in
   external_command cmd
 
 (* Convert a Unix domain socket path to an NBD URI. *)
