@@ -23,9 +23,11 @@ EXTRA_DIST = \
 	$(SOURCES_C)
 
 SOURCES_MLI = \
+	create_inspector_xml.mli \
 	inspector.mli
 
 SOURCES_ML = \
+	create_inspector_xml.ml \
 	inspector.ml
 
 SOURCES_C = \
