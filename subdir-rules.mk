@@ -47,10 +47,12 @@ $(top_builddir)/generator/generator:
 
 if !HAVE_OCAMLOPT
 MLARCHIVE = cma
+MLOBJECT = cmo
 LINK_CUSTOM_OCAMLC_ONLY = -output-complete-exe
 BEST = c
 else
 MLARCHIVE = cmxa
+MLOBJECT = cmx
 BEST = opt
 endif
 
