@@ -163,12 +163,12 @@ AC_CONFIG_FILES([Makefile
                  test-data/phony-guests/guests.xml
                  tests/functions.sh
                  tests/Makefile
-                 tests/rhbz1232192.xml
                  tests/test-cdrom.xml
                  tests/test-floppy.xml
                  tests/test-mac.xml
                  tests/test-networks-and-bridges.xml
                  tests/test-print-source.xml
+                 tests/test-rhbz1232192.xml
                  tests/test-sound.xml
                  v2v/Makefile])
 
