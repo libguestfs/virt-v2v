@@ -138,7 +138,7 @@ Display help.
 
 Write the output to a file called F<output.xml>.
 
-=item B<-O> -
+=item B<-O ->
 
 Write the output to stdout.  This is also the default if the I<-O>
 option is omitted.
