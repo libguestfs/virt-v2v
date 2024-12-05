@@ -178,10 +178,10 @@ let rec main () =
                                     s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
                                     s_"Map network ‘in’ to ‘out’";
-    [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
-                                    s_"How to choose root filesystem";
     [ S 'O' ],       Getopt.String ("output.xml", set_output_file_option),
                                     s_"Set the output filename";
+    [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
+                                    s_"How to choose root filesystem";
   ] in
 
   (* Append virt-customize options. *)
