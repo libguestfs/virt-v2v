@@ -164,12 +164,12 @@ AC_CONFIG_FILES([Makefile
                  tests/functions.sh
                  tests/Makefile
                  tests/rhbz1232192.xml
-                 tests/test-v2v-cdrom.xml
-                 tests/test-v2v-floppy.xml
-                 tests/test-v2v-mac.xml
-                 tests/test-v2v-networks-and-bridges.xml
-                 tests/test-v2v-print-source.xml
-                 tests/test-v2v-sound.xml
+                 tests/test-cdrom.xml
+                 tests/test-floppy.xml
+                 tests/test-mac.xml
+                 tests/test-networks-and-bridges.xml
+                 tests/test-print-source.xml
+                 tests/test-sound.xml
                  v2v/Makefile])
 
 AC_OUTPUT
