@@ -57,6 +57,7 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/lib \
 	-I $(top_builddir)/input \
 	-I $(top_builddir)/convert \
+	-I $(top_builddir)/inspector \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mlutils \
 	-I $(top_builddir)/common/mlgettext \
@@ -103,6 +104,7 @@ OCAMLLINKFLAGS = \
 	mlv2vlib.$(MLARCHIVE) \
 	mlconvert.$(MLARCHIVE) \
 	mlinput.$(MLARCHIVE) \
+	create_inspector_xml.$(MLOBJECT) \
 	$(LINK_CUSTOM_OCAMLC_ONLY)
 
 virt_v2v_in_place_DEPENDENCIES = \

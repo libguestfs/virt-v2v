@@ -7,10 +7,12 @@ virt-v2v-in-place - Convert a guest to use KVM in-place
  virt-v2v-in-place -i disk [other -i* options]
                    [virt-customize options]
                    filename
+                   [-O output.xml]
 
  virt-v2v-in-place -i libvirt|libvirtxml [other -i* options]
                    [virt-customize options]
                    guest
+                   [-O output.xml]
 
 =head1 DESCRIPTION
 
@@ -34,6 +36,14 @@ This command will do an in-place conversion of F<filename.img>:
 If the guest has been copied to local libvirt then:
 
  virt-v2v-in-place -i libvirt guest
+
+=head2 Output XML
+
+Optionally use the I<-O> option to write post-conversion metadata
+about the guest to an XML file.  This is in the same format as
+L<virt-v2v-inspector(1)>.  This can be used, for example, to find out
+what operating system and firmware was found inside the guest during
+conversion.
 
 =head2 Exit code
 
@@ -214,6 +224,14 @@ C<out>.  If no C<in:> prefix is given, all other networks (or bridges)
 are mapped to C<out>.
 
 See L<virt-v2v(1)/Networks and bridges>.
+
+=item B<-O> output.xml
+
+=item B<-O ->
+
+If this option is present, write post-conversion metadata about the
+guest to the named XML file, or to stdout if I<-O -> is used.  This is
+in the same format as L<virt-v2v-inspector(1)>.
 
 =item B<--print-source>
 

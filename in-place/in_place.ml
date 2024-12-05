@@ -28,6 +28,12 @@ open Getopt.OptionName
 open Types
 open Utils
 
+open Create_inspector_xml
+
+type output_xml_option =
+  | No_output_xml | Output_xml_to_stdout
+  | Output_xml_to_file of string
+
 (* Matches --mac command line parameters. *)
 let mac_re = PCRE.compile "^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}):(network|bridge|ip):(.*)$"
 let mac_ip_re = PCRE.compile "^([[:xdigit:]]|:|\\.)+$"
@@ -62,6 +68,13 @@ let rec main () =
   in
 
   let network_map = Networks.create () in
+
+  let output_xml = ref No_output_xml in
+  let set_output_xml_option filename =
+    if filename = "-" then output_xml := Output_xml_to_stdout
+    else output_xml := Output_xml_to_file filename
+  in
+
   let static_ips = ref [] in
   let rec add_network str =
     match String.split ":" str with
@@ -175,6 +188,8 @@ let rec main () =
                                     s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
                                     s_"Map network ‘in’ to ‘out’";
+    [ S 'O' ],       Getopt.String ("output.xml", set_output_xml_option),
+                                    s_"Set the output filename";
     [ L"print-source" ], Getopt.Set print_source,
                                     s_"Print source and stop";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
@@ -234,6 +249,7 @@ read the man page virt-v2v-in-place(1).
   let customize_ops = get_customize_ops () in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
+  let output_xml = !output_xml in
   let print_source = !print_source in
   let root_choice = !root_choice in
   let static_ips = !static_ips in
@@ -252,6 +268,7 @@ read the man page virt-v2v-in-place(1).
       pr "mac-option\n";
       pr "mac-ip-option\n";
       pr "customize-ops\n";
+      pr "output-xml-option\n";
       pr "input:disk\n";
       pr "input:libvirt\n";
       pr "input:libvirtxml\n";
@@ -354,16 +371,18 @@ read the man page virt-v2v-in-place(1).
     ignore (Sys.command cmd)
   );
 
-  (* XXX Should we create target metadata and if so where?
-   *
-   * If the input mode is libvirt, there is an argument for
-   * updating the libvirt XML of the guest.  If the input
-   * mode is disk, maybe we should write <guestname>.xml.
-   *
-   * For the moment we just ignore the output from the
-   * conversion step.
-   *)
-  ignore (inspect, target_meta);
+  (* Write the post-conversion metadata, if asked. *)
+  let chan =
+    match output_xml with
+    | No_output_xml -> None
+    | Output_xml_to_stdout -> Some Stdlib.stdout
+    | Output_xml_to_file filename -> Some (open_out filename) in
+  Option.iter (
+    fun chan ->
+      let doc = create_inspector_xml v2vdir inspect target_meta in
+      DOM.doc_to_chan chan doc;
+      Stdlib.flush chan
+  ) chan;
 
   message (f_"Finishing off");
   (* As the last thing, write a file indicating success before
