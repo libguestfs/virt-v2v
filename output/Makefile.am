@@ -39,7 +39,7 @@ EXTRA_DIST = \
 	rhv-upload-precheck.py \
 	rhv-upload-transfer.py \
 	rhv-upload-vmcheck.py \
-	test-v2v-python-syntax.sh
+	test-python-syntax.sh
 
 SOURCES_MLI = \
 	changeuid.mli \
@@ -199,7 +199,7 @@ $(MLOUTPUT_CMA): $(OBJECTS) libmloutput.a
 
 # Unit tests.
 TESTS_ENVIRONMENT = $(top_builddir)/run --test
-TESTS = test-v2v-python-syntax.sh
+TESTS = test-python-syntax.sh
 
 # Dependencies.
 .depend: \
