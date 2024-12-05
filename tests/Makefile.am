@@ -82,6 +82,7 @@ TESTS = \
 	test-i-ova.sh \
 	test-i-vmx.sh \
 	test-in-place.sh \
+	test-in-place-xml.sh \
 	test-inspector.sh \
 	test-it-vddk-io-query.sh \
 	test-mac.sh \
@@ -245,6 +246,7 @@ EXTRA_DIST += \
 	test-i-vmx-7.vmx \
 	test-i-vmx.sh \
 	test-in-place.sh \
+	test-in-place-xml.sh \
 	test-inspector.sh \
 	test-it-vddk-io-query.sh \
 	test-mac-expected.xml \
