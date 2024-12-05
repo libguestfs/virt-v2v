@@ -56,6 +56,17 @@ libvirt_is_version_CFLAGS = \
 TESTS_ENVIRONMENT = $(top_builddir)/run --test
 
 TESTS = \
+	test-bad-networks-and-bridges.sh \
+	test-cdrom.sh \
+	test-customize.sh \
+	test-fedora-btrfs-conversion.sh \
+	test-fedora-conversion.sh \
+	test-fedora-luks-on-lvm-conversion.sh \
+	test-fedora-lvm-on-luks-conversion.sh \
+	test-fedora-md-conversion.sh \
+	test-floppy.sh \
+	test-i-disk-parallel.sh \
+	test-i-disk.sh \
 	test-i-ova-bad-sha1.sh \
 	test-i-ova-bad-sha256.sh \
 	test-i-ova-directory.sh \
@@ -68,18 +79,11 @@ TESTS = \
 	test-i-ova-subfolders.sh \
 	test-i-ova-tar.sh \
 	test-i-ova-two-disks.sh \
-	test-i-vmx.sh \
-	test-it-vddk-io-query.sh \
-	test-o-rhv-upload-oo-query.sh \
-	test-o-vdsm-oo-query.sh \
-	test-bad-networks-and-bridges.sh \
-	test-cdrom.sh \
-	test-floppy.sh \
-	test-i-disk.sh \
-	test-i-disk-parallel.sh \
 	test-i-ova.sh \
+	test-i-vmx.sh \
 	test-in-place.sh \
 	test-inspector.sh \
+	test-it-vddk-io-query.sh \
 	test-mac.sh \
 	test-machine-readable.sh \
 	test-networks-and-bridges.sh \
@@ -91,24 +95,20 @@ TESTS = \
 	test-o-null.sh \
 	test-o-openstack.sh \
 	test-o-qemu.sh \
-	test-o-rhv.sh \
+	test-o-rhv-upload-oo-query.sh \
 	test-o-rhv-upload.sh \
+	test-o-rhv.sh \
+	test-o-vdsm-oo-query.sh \
 	test-o-vdsm-options.sh \
 	test-oa-option-qcow2.sh \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
 	test-on-option.sh \
 	test-print-source.sh \
+	test-rhbz1232192.sh \
 	test-sound.sh \
 	test-virtio-win-iso.sh \
-	test-fedora-conversion.sh \
-	test-fedora-btrfs-conversion.sh \
-	test-fedora-luks-on-lvm-conversion.sh \
-	test-fedora-lvm-on-luks-conversion.sh \
-	test-fedora-md-conversion.sh \
 	test-windows-conversion.sh \
-	test-customize.sh \
-	rhbz1232192.sh \
 	$(SLOW_TESTS) \
 	$(ROOT_TESTS)
 
@@ -184,16 +184,17 @@ EXTRA_DIST += \
 	test-bad-networks-and-bridges.sh \
 	test-cdrom.expected \
 	test-cdrom.sh \
+	test-conversion-of.sh \
 	test-customize.sh \
-	test-fedora-conversion.sh \
 	test-fedora-btrfs-conversion.sh \
+	test-fedora-conversion.sh \
 	test-fedora-luks-on-lvm-conversion.sh \
 	test-fedora-lvm-on-luks-conversion.sh \
 	test-fedora-md-conversion.sh \
 	test-floppy.expected \
 	test-floppy.sh \
-	test-i-disk.sh \
 	test-i-disk-parallel.sh \
+	test-i-disk.sh \
 	test-i-ova-as-root.ovf \
 	test-i-ova-as-root.sh \
 	test-i-ova-bad-sha1.sh \
@@ -228,46 +229,46 @@ EXTRA_DIST += \
 	test-i-ova.ovf \
 	test-i-ova.sh \
 	test-i-ova.xml \
-	test-i-vmx.sh \
 	test-i-vmx-1.expected \
-	test-i-vmx-2.expected \
-	test-i-vmx-3.expected \
-	test-i-vmx-4.expected \
-	test-i-vmx-5.expected \
-	test-i-vmx-6.expected \
-	test-i-vmx-7.expected \
 	test-i-vmx-1.vmx \
+	test-i-vmx-2.expected \
 	test-i-vmx-2.vmx \
+	test-i-vmx-3.expected \
 	test-i-vmx-3.vmx \
+	test-i-vmx-4.expected \
 	test-i-vmx-4.vmx \
+	test-i-vmx-5.expected \
 	test-i-vmx-5.vmx \
+	test-i-vmx-6.expected \
 	test-i-vmx-6.vmx \
+	test-i-vmx-7.expected \
 	test-i-vmx-7.vmx \
+	test-i-vmx.sh \
 	test-in-place.sh \
 	test-inspector.sh \
 	test-it-vddk-io-query.sh \
-	test-machine-readable.sh \
 	test-mac-expected.xml \
 	test-mac.sh \
-	test-networks-and-bridges.sh \
+	test-machine-readable.sh \
 	test-networks-and-bridges-expected.xml \
+	test-networks-and-bridges.sh \
 	test-o-glance.sh \
 	test-o-kubevirt-fedora.sh \
-	test-o-kubevirt-windows.sh \
 	test-o-kubevirt-fedora.yaml.expected \
+	test-o-kubevirt-windows.sh \
 	test-o-kubevirt-windows.yaml.expected \
 	test-o-libvirt.sh \
 	test-o-local-qcow2-compressed.sh \
 	test-o-null.sh \
 	test-o-openstack.sh \
 	test-o-qemu.sh \
-	test-o-rhv.ovf.expected \
-	test-o-rhv.sh \
-	test-o-rhv-upload.sh \
 	test-o-rhv-upload-module/imageio.py \
 	test-o-rhv-upload-module/ovirtsdk4/__init__.py \
 	test-o-rhv-upload-module/ovirtsdk4/types.py \
 	test-o-rhv-upload-oo-query.sh \
+	test-o-rhv-upload.sh \
+	test-o-rhv.ovf.expected \
+	test-o-rhv.sh \
 	test-o-vdsm-oo-query.sh \
 	test-o-vdsm-options.ovf.expected \
 	test-o-vdsm-options.sh \
@@ -277,9 +278,8 @@ EXTRA_DIST += \
 	test-on-option.sh \
 	test-print-source.expected \
 	test-print-source.sh \
-	test-conversion-of.sh \
+	test-rhbz1232192.sh \
 	test-sound.sh \
 	test-trim.sh \
 	test-virtio-win-iso.sh \
-	test-windows-conversion.sh \
-	rhbz1232192.sh
+	test-windows-conversion.sh

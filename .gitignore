@@ -121,13 +121,13 @@ Makefile.in
 /test-data/phony-guests/windows-system
 /tests/functions.sh
 /tests/libvirt-is-version
-/tests/rhbz1232192.xml
 /tests/test-cdrom.xml
 /tests/test-conversion-of-*.sh
 /tests/test-floppy.xml
 /tests/test-mac.xml
 /tests/test-networks-and-bridges.xml
 /tests/test-print-source.xml
+/tests/test-rhbz1232192.xml
 /tests/test-sound.xml
 /tests/windows.vmdk
 /v2v/.depend
