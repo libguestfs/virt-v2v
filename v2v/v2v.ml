@@ -350,6 +350,8 @@ read the man page virt-v2v(1).
   let output_mode = !output_mode in
   let output_name = !output_name in
   let parallel = !parallel in
+  if parallel < 1 then
+    error (f_"--parallel parameter must be >= 1");
   let print_source = !print_source in
   let root_choice = !root_choice in
   let static_ips = !static_ips in
