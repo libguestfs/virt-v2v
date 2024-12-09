@@ -63,6 +63,7 @@ input/parse_libvirt_xml.ml
 input/parse_vmx.ml
 input/ssh.ml
 input/vCenter.ml
+inspector/create_inspector_xml.ml
 inspector/inspector.ml
 lib/YAML.ml
 lib/create_ovf.ml
