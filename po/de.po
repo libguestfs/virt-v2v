@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2024-08-29 15:25+0100\n"
+"POT-Creation-Date: 2024-12-09 17:33+0000\n"
 "PO-Revision-Date: 2015-02-21 10:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/libguestfs/"
@@ -35,7 +35,7 @@ msgstr ""
 "%s\n"
 "Optionen:\n"
 
-#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:435
+#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:427
 msgid "%s (ignored)"
 msgstr "%s (ignoriert)"
 
@@ -43,7 +43,7 @@ msgstr "%s (ignoriert)"
 msgid "%s did not return any output"
 msgstr "%s hat keine Ausgabe zurückgegeben"
 
-#: common/mlcustomize/customize_run.ml:191
+#: common/mlcustomize/customize_run.ml:183
 msgid "%s does not exist in the guest"
 msgstr ""
 
@@ -61,19 +61,19 @@ msgid ""
 "this out through the RHV-M user interface."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:121
+#: common/mlcustomize/customize_run.ml:113
 msgid "%s ignored for non-Windows guest"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:194
+#: common/mlcustomize/customize_run.ml:186
 msgid "%s is not a regular file in the guest"
 msgstr ""
 
 #. inspector/inspector.ml:151
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:148
-#. in-place/in_place.ml:39
-#: v2v/v2v.ml:198 v2v/v2v.ml:184 v2v/v2v.ml:164 v2v/v2v.ml:44
+#. in-place/in_place.ml:161
+#. in-place/in_place.ml:45
+#: v2v/v2v.ml:199 v2v/v2v.ml:185 v2v/v2v.ml:165 v2v/v2v.ml:44
 msgid "%s option used more than once on the command line"
 msgstr ""
 
@@ -95,13 +95,13 @@ msgstr ""
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:72
+#: common/mlcustomize/customize_run.ml:64
 #, fuzzy
 #| msgid "%s exited with error status %d"
 msgid "%s: command exited with an error"
 msgstr "%s beendet mit Fehlerstatus %d"
 
-#: v2v/v2v.ml:326
+#: v2v/v2v.ml:329
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -124,16 +124,16 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: in-place/in_place.ml:194
+#: in-place/in_place.ml:209
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
 "Note this program modifies the guest in-place with no backup.\n"
 "Normally you should use virt-v2v.\n"
 "\n"
-"virt-v2v -i libvirtxml guest-domain.xml\n"
+"virt-v2v-in-place -i libvirtxml guest-domain.xml\n"
 "\n"
-"virt-v2v -i disk disk.img\n"
+"virt-v2v-in-place -i disk disk.img\n"
 "\n"
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-in-place(1).\n"
@@ -174,35 +174,39 @@ msgstr "%s: Warnung: %s%c"
 msgid "'CMD+ARGS'"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:141
+#: common/mlcustomize/customize_run.ml:133
 msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:160
+#: common/mlcustomize/customize_run.ml:152
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:224
+#: common/mlcustomize/customize_run.ml:216
 msgid ""
 "--inject-blnsvr: blnsvr.exe not found in virtio-win source that you specified"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:233
+#: common/mlcustomize/customize_run.ml:225
 msgid ""
 "--inject-qemu-ga: QEMU Guest Agent MSI not found in virtio-win source that "
 "you specified"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:249
+#: common/mlcustomize/customize_run.ml:241
 msgid ""
 "--inject-virtio-win: virtio drivers were not found for this Windows version "
 "in the virtio-win source that you specified"
 msgstr ""
 
-#: v2v/v2v.ml:144 inspector/inspector.ml:131 in-place/in_place.ml:125
+#: v2v/v2v.ml:145 inspector/inspector.ml:131 in-place/in_place.ml:138
 msgid "--mac ip prefix length field is out of range"
+msgstr ""
+
+#: v2v/v2v.ml:395
+msgid "--parallel parameter must be >= 1"
 msgstr ""
 
 #: input/input_disk.ml:43
@@ -235,7 +239,7 @@ msgstr ""
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr ""
 
-#: input/input_ova.ml:239
+#: input/input_ova.ml:240
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
 
@@ -400,37 +404,41 @@ msgstr ""
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr ""
 
-#: output/output.ml:99
-msgid "-oo compressed option requires nbdcopy >= 1.13.5"
-msgstr ""
-
 #. output/output_kubevirt.ml:75
 #. output/output_disk.ml:68
 #: output/output_vdsm.ml:112 output/output_qemu.ml:74
 msgid "-os %s: output directory does not exist or is not a directory"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:338 input/parse_libvirt_xml.ml:285
+#: input/parse_libvirt_xml.ml:279
+msgid "<checksum> missing 'method' attribute, ignoring"
+msgstr ""
+
+#: input/parse_libvirt_xml.ml:291
+msgid "<checksum> unknown fail='%s' attribute, ignoring"
+msgstr ""
+
+#: input/parse_libvirt_xml.ml:370 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:306
+#: input/parse_libvirt_xml.ml:338
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:333
+#: input/parse_libvirt_xml.ml:365
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:267
+#: input/parse_libvirt_xml.ml:299
 msgid "<disk> element with no type attribute ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:160
+#: input/parse_libvirt_xml.ml:167
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:382
+#: input/parse_libvirt_xml.ml:414
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -454,7 +462,7 @@ msgstr ""
 msgid "Append line(s) to the file"
 msgstr "Zeile(n) an die Datei anhängen"
 
-#: common/mlcustomize/customize_run.ml:145
+#: common/mlcustomize/customize_run.ml:137
 #, fuzzy
 #| msgid "Append line(s) to the file"
 msgid "Appending line to %s"
@@ -464,15 +472,15 @@ msgstr "Zeile(n) an die Datei anhängen"
 msgid "Attach to a subscription-manager pool"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:293
+#: common/mlcustomize/customize_run.ml:285
 msgid "Attaching to compatible subscriptions"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:297
+#: common/mlcustomize/customize_run.ml:289
 msgid "Attaching to the pool %s"
 msgstr ""
 
-#: v2v/v2v.ml:281
+#: v2v/v2v.ml:284
 msgid "Boot in qemu (-o qemu only)"
 msgstr ""
 
@@ -484,21 +492,25 @@ msgstr ""
 msgid "Change the permissions of a file"
 msgstr "Berechtigungen einer Datei ändern"
 
-#: common/mlcustomize/customize_run.ml:163
+#: common/mlcustomize/customize_run.ml:155
 msgid "Changing owner of %s to %d:%d"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:149
+#: common/mlcustomize/customize_run.ml:141
 #, fuzzy
 #| msgid "Change the permissions of a file"
 msgid "Changing permissions of %s to %s"
 msgstr "Berechtigungen einer Datei ändern"
 
+#: input/input_libvirt.ml:171 input/input_libvirt.ml:154
+msgid "Checking %s checksum of disk %d/%d"
+msgstr ""
+
 #: common/mlcustomize/customize_cmdline.ml:529
 msgid "Compatibility option doing nothing"
 msgstr ""
 
-#: v2v/v2v.ml:239
+#: v2v/v2v.ml:240
 msgid "Compress output file (-of qcow2 only)"
 msgstr "Ausgabedatei komprimieren (nur -of qcow2)"
 
@@ -516,15 +528,15 @@ msgstr "Lokale Dateien oder Verzeichnisse in das Abbild kopieren"
 msgid "Copy local files or directories into image"
 msgstr "Lokale Dateien oder Verzeichnisse in das Abbild kopieren"
 
-#: common/mlcustomize/customize_run.ml:176
+#: common/mlcustomize/customize_run.ml:168
 msgid "Copying (in image): %s to %s"
 msgstr ""
 
-#: v2v/v2v.ml:616
+#: v2v/v2v.ml:626
 msgid "Copying disk %d/%d"
 msgstr "Festplatte %d/%d wird kopiert"
 
-#: common/mlcustomize/customize_run.ml:180
+#: common/mlcustomize/customize_run.ml:172
 #, fuzzy
 #| msgid "Copying disk %d/%d"
 msgid "Copying: %s to %s"
@@ -538,7 +550,7 @@ msgstr "Ein Verzeichnis erstellen"
 msgid "Create symbolic links"
 msgstr "Symbolische Verknüpfungen erstellen"
 
-#: v2v/v2v.ml:642
+#: v2v/v2v.ml:677
 msgid "Creating output metadata"
 msgstr "Ausgabe-Metadaten erstellen"
 
@@ -554,7 +566,7 @@ msgstr "VERZ"
 msgid "Delete a file or directory"
 msgstr "Eine Datei oder ein Verzeichnis löschen"
 
-#: common/mlcustomize/customize_run.ml:184
+#: common/mlcustomize/customize_run.ml:176
 #, fuzzy
 #| msgid "exception: %s"
 msgid "Deleting: %s"
@@ -584,7 +596,7 @@ msgstr ""
 msgid "Edit file using Perl expression"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:188
+#: common/mlcustomize/customize_run.ml:180
 msgid "Editing: %s"
 msgstr ""
 
@@ -626,7 +638,7 @@ msgstr "DATEI:ZEILE"
 msgid "FILENAME"
 msgstr "DATEINAME"
 
-#: v2v/v2v.ml:646 inspector/inspector.ml:379 in-place/in_place.ml:368
+#: v2v/v2v.ml:681 inspector/inspector.ml:379 in-place/in_place.ml:387
 msgid "Finishing off"
 msgstr ""
 
@@ -634,7 +646,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr "HOSTNAME"
 
-#: v2v/v2v.ml:283 inspector/inspector.ml:182 in-place/in_place.ml:181
+#: v2v/v2v.ml:286 inspector/inspector.ml:184 in-place/in_place.ml:196
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -646,7 +658,7 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: v2v/v2v.ml:313 v2v/v2v.ml:259
+#: v2v/v2v.ml:316 v2v/v2v.ml:260
 msgid "Ignored for backwards compatibility"
 msgstr ""
 
@@ -666,7 +678,7 @@ msgstr ""
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
-#: v2v/v2v.ml:245 inspector/inspector.ml:170 in-place/in_place.ml:169
+#: v2v/v2v.ml:246 inspector/inspector.ml:170 in-place/in_place.ml:182
 #, fuzzy
 #| msgid "Set output format"
 msgid "Input format"
@@ -695,23 +707,23 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:251 inspector/inspector.ml:176
+#: v2v/v2v.ml:252 inspector/inspector.ml:176
 msgid "Input transport"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:199
+#: common/mlcustomize/customize_run.ml:191
 msgid "Installing firstboot command: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:203
+#: common/mlcustomize/customize_run.ml:195
 msgid "Installing firstboot packages: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:210
+#: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:256
+#: common/mlcustomize/customize_run.ml:248
 msgid "Installing packages: %s"
 msgstr ""
 
@@ -719,11 +731,11 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#: v2v/v2v.ml:243 inspector/inspector.ml:168 in-place/in_place.ml:167
+#: v2v/v2v.ml:244 inspector/inspector.ml:168 in-place/in_place.ml:180
 msgid "Libvirt URI"
 msgstr "Libvirt-URI"
 
-#: common/mlcustomize/customize_run.ml:263
+#: common/mlcustomize/customize_run.ml:255
 msgid "Linking: %s -> %s"
 msgstr ""
 
@@ -737,19 +749,19 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:268
+#: common/mlcustomize/customize_run.ml:260
 msgid "Making directory: %s"
 msgstr ""
 
-#: v2v/v2v.ml:255 inspector/inspector.ml:178 in-place/in_place.ml:175
+#: v2v/v2v.ml:256 inspector/inspector.ml:178 in-place/in_place.ml:188
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:235 inspector/inspector.ml:164 in-place/in_place.ml:161
+#: v2v/v2v.ml:236 inspector/inspector.ml:164 in-place/in_place.ml:174
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:257 inspector/inspector.ml:180 in-place/in_place.ml:177
+#: v2v/v2v.ml:258 inspector/inspector.ml:180 in-place/in_place.ml:190
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -757,14 +769,14 @@ msgstr ""
 msgid "Move files in disk image"
 msgstr "Dateien in Festplattenabbild verschieben"
 
-#: common/mlcustomize/customize_run.ml:272
+#: common/mlcustomize/customize_run.ml:264
 msgid "Moving: %s -> %s"
 msgstr ""
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:36
-#. input/input_libvirt.ml:160
-#. input/input_libvirt.ml:148
+#. input/input_libvirt.ml:230
+#. input/input_libvirt.ml:218
 #. input/input_disk.ml:36
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -785,7 +797,7 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:265
+#: v2v/v2v.ml:266
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -868,15 +880,15 @@ msgstr "BERECHTIGUNGEN:DATEI"
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:237 in-place/in_place.ml:163
+#: v2v/v2v.ml:238 in-place/in_place.ml:176
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
 msgstr ""
 
-#: v2v/v2v.ml:279 in-place/in_place.ml:179
+#: v2v/v2v.ml:282 in-place/in_place.ml:194
 msgid "Print source and stop"
 msgstr ""
 
-#: lib/create_ovf.ml:881 lib/create_ovf.ml:518
+#: lib/create_ovf.ml:883 lib/create_ovf.ml:520
 msgid "RHV does not support the output format ‘%s’, only raw or qcow2"
 msgstr ""
 
@@ -892,7 +904,7 @@ msgstr ""
 msgid "Recursively truncate all files in directory"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:343
+#: common/mlcustomize/customize_run.ml:335
 msgid "Recursively truncating: %s"
 msgstr ""
 
@@ -900,7 +912,7 @@ msgstr ""
 msgid "Register using subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:303
+#: common/mlcustomize/customize_run.ml:295
 msgid "Registering with subscription-manager"
 msgstr ""
 
@@ -908,11 +920,11 @@ msgstr ""
 msgid "Remove all the subscriptions"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:318
+#: common/mlcustomize/customize_run.ml:310
 msgid "Removing all the subscriptions"
 msgstr ""
 
-#: v2v/v2v.ml:269
+#: v2v/v2v.ml:270
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -936,12 +948,16 @@ msgstr ""
 msgid "Run touch on a file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:352
+#: v2v/v2v.ml:280
+msgid "Run up to N instances of nbdcopy in parallel"
+msgstr ""
+
+#: common/mlcustomize/customize_run.ml:344
 msgid "Running touch: %s"
 msgstr ""
 
-#. common/mlcustomize/customize_run.ml:167
-#: common/mlcustomize/customize_run.ml:282
+#. common/mlcustomize/customize_run.ml:159
+#: common/mlcustomize/customize_run.ml:274
 #, fuzzy
 #| msgid "%s: warning: %s"
 msgid "Running: %s"
@@ -959,7 +975,7 @@ msgstr "SKRIPT"
 msgid "SELECTOR"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:408
+#: common/mlcustomize/customize_run.ml:400
 msgid "SELinux relabelling"
 msgstr ""
 
@@ -968,71 +984,71 @@ msgstr ""
 msgid "SOURCE:DEST"
 msgstr "QUELLE:ZIEL"
 
-#: common/mlcustomize/customize_run.ml:332
+#: common/mlcustomize/customize_run.ml:324
 msgid "SSH key could not be injected for this type of guest"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:329
+#: common/mlcustomize/customize_run.ml:321
 msgid "SSH key inject: %s"
 msgstr ""
 
-#: v2v/v2v.ml:285
+#: v2v/v2v.ml:288
 msgid "Same as ‘-io vddk-config=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:287
+#: v2v/v2v.ml:290
 msgid "Same as ‘-io vddk-cookie=filename’"
 msgstr ""
 
-#: v2v/v2v.ml:289
+#: v2v/v2v.ml:292
 msgid "Same as ‘-io vddk-libdir=libdir’"
 msgstr ""
 
-#: v2v/v2v.ml:291
+#: v2v/v2v.ml:294
 msgid "Same as ‘-io vddk-nfchostport=nfchostport’"
 msgstr ""
 
-#: v2v/v2v.ml:293
+#: v2v/v2v.ml:296
 msgid "Same as ‘-io vddk-port=port’"
 msgstr ""
 
-#: v2v/v2v.ml:295
+#: v2v/v2v.ml:298
 msgid "Same as ‘-io vddk-snapshot=snapshot-moref’"
 msgstr ""
 
-#: v2v/v2v.ml:297
+#: v2v/v2v.ml:300
 msgid "Same as ‘-io vddk-thumbprint=thumbprint’"
 msgstr ""
 
-#: v2v/v2v.ml:299
+#: v2v/v2v.ml:302
 msgid "Same as ‘-io vddk-transports=transports’"
 msgstr ""
 
-#: v2v/v2v.ml:277
+#: v2v/v2v.ml:278
 msgid "Same as ‘-ip filename’"
 msgstr ""
 
-#: v2v/v2v.ml:301
+#: v2v/v2v.ml:304
 msgid "Same as ‘-oo vdsm-compat=0.10|1.1’"
 msgstr ""
 
-#: v2v/v2v.ml:303
+#: v2v/v2v.ml:306
 msgid "Same as ‘-oo vdsm-image-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:311
+#: v2v/v2v.ml:314
 msgid "Same as ‘-oo vdsm-ovf-flavour=flavour’"
 msgstr ""
 
-#: v2v/v2v.ml:309
+#: v2v/v2v.ml:312
 msgid "Same as ‘-oo vdsm-ovf-output=dir’"
 msgstr ""
 
-#: v2v/v2v.ml:307
+#: v2v/v2v.ml:310
 msgid "Same as ‘-oo vdsm-vm-uuid=uuid’"
 msgstr ""
 
-#: v2v/v2v.ml:305
+#: v2v/v2v.ml:308
 msgid "Same as ‘-oo vdsm-vol-uuid=uuid’"
 msgstr ""
 
@@ -1044,47 +1060,47 @@ msgstr ""
 msgid "Scrub build log file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:419
+#: common/mlcustomize/customize_run.ml:411
 msgid "Scrubbing the log file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:287
+#: common/mlcustomize/customize_run.ml:279
 msgid "Scrubbing: %s"
 msgstr ""
 
-#: v2v/v2v.ml:233
+#: v2v/v2v.ml:234
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:231
+#: v2v/v2v.ml:232
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#: v2v/v2v.ml:241 inspector/inspector.ml:166 in-place/in_place.ml:165
+#: v2v/v2v.ml:242 inspector/inspector.ml:166 in-place/in_place.ml:178
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:247 inspector/inspector.ml:172 in-place/in_place.ml:171
+#: v2v/v2v.ml:248 inspector/inspector.ml:172 in-place/in_place.ml:184
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:271
+#: v2v/v2v.ml:272
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:263
+#: v2v/v2v.ml:264
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:267
+#: v2v/v2v.ml:268
 msgid "Set output format"
 msgstr "Ausgabeformat festlegen"
 
-#: v2v/v2v.ml:261
+#: v2v/v2v.ml:262
 msgid "Set output mode (default: libvirt)"
 msgstr "Ausgabemodus festlegen (Standard: libvirt)"
 
-#: v2v/v2v.ml:275
+#: v2v/v2v.ml:276
 msgid "Set output storage location"
 msgstr ""
 
@@ -1108,7 +1124,7 @@ msgstr "Standardzeitzone festlegen"
 msgid "Set the hostname"
 msgstr ""
 
-#: inspector/inspector.ml:184
+#: inspector/inspector.ml:182 in-place/in_place.ml:192
 #, fuzzy
 #| msgid "Set output format"
 msgid "Set the output filename"
@@ -1118,11 +1134,11 @@ msgstr "Ausgabeformat festlegen"
 msgid "Set user password"
 msgstr "Benutzerpasswort festlegen"
 
-#: common/mlcustomize/customize_run.ml:83
+#: common/mlcustomize/customize_run.ml:75
 msgid "Setting a random seed"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:399
+#: common/mlcustomize/customize_run.ml:391
 #, fuzzy
 #| msgid "Set user password"
 msgid "Setting passwords"
@@ -1132,29 +1148,29 @@ msgstr "Benutzerpasswort festlegen"
 msgid "Setting random password of %s to %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:215
+#: common/mlcustomize/customize_run.ml:207
 msgid "Setting the hostname: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:98
+#: common/mlcustomize/customize_run.ml:90
 msgid "Setting the machine ID in %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:347
+#: common/mlcustomize/customize_run.ml:339
 #, fuzzy
 #| msgid "Set the default timezone"
 msgid "Setting the timezone: %s"
 msgstr "Standardzeitzone festlegen"
 
-#: v2v/v2v.ml:588
+#: v2v/v2v.ml:595
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#: v2v/v2v.ml:564 inspector/inspector.ml:355 in-place/in_place.ml:334
+#: v2v/v2v.ml:571 inspector/inspector.ml:355 in-place/in_place.ml:351
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:570 in-place/in_place.ml:340
+#: v2v/v2v.ml:577 in-place/in_place.ml:357
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -1174,24 +1190,24 @@ msgstr ""
 msgid "TIMEZONE"
 msgstr "ZEITZONE"
 
-#: v2v/v2v.ml:225
+#: v2v/v2v.ml:226
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
 
-#: output/output_qemu.ml:220
+#: output/output_qemu.ml:245
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
 
-#: output/output_qemu.ml:241
+#: output/output_qemu.ml:266
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
 
-#: lib/create_ovf.ml:789
+#: lib/create_ovf.ml:791
 msgid ""
 "This guest required a password for connection to its display, but this is "
 "not supported by RHV.  Therefore the converted guest’s display will not "
@@ -1210,7 +1226,7 @@ msgstr ""
 msgid "Truncate a file to zero size"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:339
+#: common/mlcustomize/customize_run.ml:331
 #, fuzzy
 #| msgid "%s: warning: %s"
 msgid "Truncating: %s"
@@ -1232,11 +1248,11 @@ msgstr ""
 msgid "Uninstall package(s)"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:356
+#: common/mlcustomize/customize_run.ml:348
 msgid "Uninstalling packages: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:335
+#: common/mlcustomize/customize_run.ml:327
 msgid "Unpack tar file: %s to %s"
 msgstr ""
 
@@ -1244,7 +1260,7 @@ msgstr ""
 msgid "Unregister using subscription-manager"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:323
+#: common/mlcustomize/customize_run.ml:315
 msgid "Unregistering with subscription-manager"
 msgstr ""
 
@@ -1252,7 +1268,7 @@ msgstr ""
 msgid "Update packages"
 msgstr "Pakete aktualisieren"
 
-#: common/mlcustomize/customize_run.ml:361
+#: common/mlcustomize/customize_run.ml:353
 #, fuzzy
 #| msgid "Update packages"
 msgid "Updating packages"
@@ -1262,7 +1278,7 @@ msgstr "Pakete aktualisieren"
 msgid "Upload local file to destination"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:366
+#: common/mlcustomize/customize_run.ml:358
 msgid "Uploading: %s to %s"
 msgstr ""
 
@@ -1270,15 +1286,15 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#: v2v/v2v.ml:249 inspector/inspector.ml:174 in-place/in_place.ml:173
+#: v2v/v2v.ml:250 inspector/inspector.ml:174 in-place/in_place.ml:186
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:273
+#: v2v/v2v.ml:274
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:253
+#: v2v/v2v.ml:254
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
@@ -1290,13 +1306,13 @@ msgstr ""
 msgid "Write file"
 msgstr "Datei schreiben"
 
-#: common/mlcustomize/customize_run.ml:391
+#: common/mlcustomize/customize_run.ml:383
 #, fuzzy
 #| msgid "%s: warning: %s"
 msgid "Writing: %s"
 msgstr "%s: Warnung: %s%c"
 
-#: lib/YAML.ml:162
+#: lib/YAML.ml:167
 msgid ""
 "YAML block contains newline character.  This should not happen, please "
 "report a bug against virt-v2v."
@@ -1327,11 +1343,11 @@ msgstr ""
 msgid "append_line: %s is not a file"
 msgstr "Zeile(n) an die Datei anhängen"
 
-#: lib/utils.ml:83
+#: input/input_libvirt.ml:203
 msgid ""
-"cannot find firmware for UEFI guests.\n"
-"\n"
-"You probably need to install OVMF (x86-64), or AAVMF (aarch64)"
+"bad checksum for disk %d/%d\n"
+"Expected checksum: %s\n"
+"Actual checksum: %s"
 msgstr ""
 
 #: lib/libvirt_utils.ml:59
@@ -1363,15 +1379,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: v2v/v2v.ml:103 inspector/inspector.ml:90 in-place/in_place.ml:84
+#: v2v/v2v.ml:104 inspector/inspector.ml:90 in-place/in_place.ml:97
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:127 inspector/inspector.ml:114 in-place/in_place.ml:108
+#: v2v/v2v.ml:128 inspector/inspector.ml:114 in-place/in_place.ml:121
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:141 inspector/inspector.ml:128 in-place/in_place.ml:122
+#: v2v/v2v.ml:142 inspector/inspector.ml:128 in-place/in_place.ml:135
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
@@ -1453,12 +1469,12 @@ msgstr ""
 
 #. input/input_vddk.ml:127
 #. input/input_vcenter_https.ml:94
-#. in-place/in_place.ml:281
-#: v2v/v2v.ml:448 inspector/inspector.ml:279 input/input_xen_ssh.ml:71
+#. in-place/in_place.ml:298
+#: v2v/v2v.ml:455 inspector/inspector.ml:279 input/input_xen_ssh.ml:71
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:375 input/parse_libvirt_xml.ml:47
+#: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
@@ -1507,15 +1523,15 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: input/input_disk.ml:146
+#: input/input_disk.ml:147
 msgid "disks on the command line have mixed formats"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:187
+#: input/parse_libvirt_xml.ml:194
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: lib/utils.ml:79
+#: output/output_qemu.ml:141
 msgid "don’t know how to convert UEFI guests for architecture %s"
 msgstr ""
 
@@ -1581,7 +1597,13 @@ msgstr "Ausnahme: %s"
 msgid "exited with error %d"
 msgstr "%s beendet mit Fehlerstatus %d"
 
-#: input/input_disk.ml:143
+#: lib/utils.ml:34
+#, fuzzy
+#| msgid "%s exited with error status %d"
+msgid "exited with non-zero error code %d"
+msgstr "%s beendet mit Fehlerstatus %d"
+
+#: input/input_disk.ml:144
 msgid "expected >= 1 disk name on the command line"
 msgstr ""
 
@@ -1664,14 +1686,14 @@ msgstr ""
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:53
+#: common/mltools/tools_utils.ml:749
 msgid ""
-"host cpu (%s) and guest arch (%s) are not compatible, so you cannot use "
-"command line options that involve running commands in the guest.  Use --"
-"firstboot scripts instead."
+"host (%s/%s) and guest (%s/%s) are not compatible, so you cannot use command "
+"line options that involve running commands in the guest.  Use --firstboot "
+"scripts instead."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:217
+#: common/mlcustomize/customize_run.ml:209
 msgid "hostname could not be set for this type of guest"
 msgstr ""
 
@@ -1683,15 +1705,15 @@ msgstr ""
 msgid "image directory (%s) does not exist or is not a directory"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:74
+#: input/parse_libvirt_xml.ml:81
 msgid "in the libvirt XML metadata, <domain type='...'> is missing or empty"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:80
+#: input/parse_libvirt_xml.ml:87
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr ""
 
-#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:102
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:106
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
@@ -1714,7 +1736,7 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#: v2v/v2v.ml:665 inspector/inspector.ml:398 in-place/in_place.ml:387
+#: v2v/v2v.ml:700 inspector/inspector.ml:398 in-place/in_place.ml:406
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1751,15 +1773,19 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:112 inspector/inspector.ml:99 in-place/in_place.ml:93
+#: v2v/v2v.ml:658
+msgid "internal error: wait returned unexpected process ID %d status \"%s\""
+msgstr ""
+
+#: v2v/v2v.ml:113 inspector/inspector.ml:99 in-place/in_place.ml:106
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:96 inspector/inspector.ml:83 in-place/in_place.ml:77
+#: v2v/v2v.ml:97 inspector/inspector.ml:83 in-place/in_place.ml:90
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:88 inspector/inspector.ml:75 in-place/in_place.ml:69
+#: v2v/v2v.ml:89 inspector/inspector.ml:75 in-place/in_place.ml:82
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -1865,7 +1891,7 @@ msgstr ""
 msgid "md5|sha256|sha512"
 msgstr "md5|sha256|sha512"
 
-#: common/mltools/JSON_parser.ml:36
+#: common/mltools/JSON_parser.ml:39
 msgid "missing value for the key ‘%s’"
 msgstr ""
 
@@ -1873,7 +1899,7 @@ msgstr ""
 msgid "more than one .ovf file was found in %s"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:31
+#: common/mltools/JSON_parser.ml:34
 msgid "more than value for the key ‘%s’"
 msgstr ""
 
@@ -1885,14 +1911,10 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:111
+#: common/mlcustomize/customize_run.ml:103
 msgid ""
 "multiple --root-password/--password options set the password for user ‘%s’ "
 "twice"
-msgstr ""
-
-#: v2v/v2v.ml:704
-msgid "nbdcopy command failed, see earlier error messages"
 msgstr ""
 
 #: input/nbdkit_vddk.ml:95
@@ -1935,7 +1957,7 @@ msgstr ""
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
-#: input/input_disk.ml:92
+#: input/input_disk.ml:93
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
@@ -1986,7 +2008,7 @@ msgid ""
 msgstr ""
 
 #. input/input_libvirt.ml:76
-#. input/input_disk.ml:98
+#. input/input_disk.ml:99
 #: input/nbdkit_vddk.ml:63 input/nbdkit_ssh.ml:55 input/nbdkit_curl.ml:46
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
@@ -1995,7 +2017,7 @@ msgstr ""
 msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
-#: output/output.ml:82 input/input_libvirt.ml:72 input/input_disk.ml:96
+#: output/output.ml:82 input/input_libvirt.ml:72 input/input_disk.ml:97
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
@@ -2070,13 +2092,13 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: v2v/v2v.ml:479 inspector/inspector.ml:310
+#: v2v/v2v.ml:486 inspector/inspector.ml:310
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
 msgstr ""
 
-#: lib/create_ovf.ml:1033
+#: lib/create_ovf.ml:1035
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
@@ -2118,7 +2140,7 @@ msgid ""
 "\"available\""
 msgstr ""
 
-#: output/output.ml:146
+#: output/output.ml:135
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 
@@ -2147,7 +2169,7 @@ msgid ""
 "If this is incorrect, use --password-crypto option and file a bug."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:404
+#: common/mlcustomize/customize_run.ml:396
 msgid "passwords could not be set for this type of guest"
 msgstr ""
 
@@ -2168,7 +2190,7 @@ msgstr ""
 msgid "qemu-nbd: unexpected version in --version: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:85
+#: common/mlcustomize/customize_run.ml:77
 msgid "random seed could not be set for this type of guest"
 msgstr ""
 
@@ -2223,6 +2245,12 @@ msgstr ""
 msgid "selector '%s': too many fields"
 msgstr ""
 
+#: lib/utils.ml:35
+#, fuzzy
+#| msgid "%s killed by signal %d (%s)"
+msgid "signalled by signal %d"
+msgstr "%s abgewürgt durch Signal %d (%s)"
+
 #: common/mlcustomize/guest_packages.ml:40
 msgid ""
 "sorry, ‘%s’ with the ‘%s’ package manager has not been implemented yet.\n"
@@ -2231,7 +2259,7 @@ msgid ""
 "options instead (described in the virt-customize(1) manual)."
 msgstr ""
 
-#: lib/utils.ml:193
+#: lib/utils.ml:179
 msgid ""
 "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
@@ -2258,7 +2286,8 @@ msgstr ""
 msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
+#. common/mltools/tools_utils.ml:461
+#: lib/utils.ml:36 common/mltools/tools_utils.ml:542
 #, fuzzy
 #| msgid "%s stopped by signal %d (%s)"
 msgid "stopped by signal %d"
@@ -2276,15 +2305,19 @@ msgstr "%s beendet mit Fehlerstatus %d"
 msgid "subprocess signalled or stopped by signal %d"
 msgstr "%s gestoppt durch Signal %d (%s)"
 
-#: common/mlcustomize/customize_run.ml:307
+#: common/mlcustomize/customize_run.ml:299
 msgid "subscription-manager credentials required for --sm-register"
 msgstr ""
 
-#: v2v/v2v.ml:217
+#: lib/utils.ml:33
+msgid "success"
+msgstr ""
+
+#: v2v/v2v.ml:218
 msgid "the --no-trim option has been removed and now does nothing"
 msgstr ""
 
-#: v2v/v2v.ml:220
+#: v2v/v2v.ml:221
 msgid "the --vmtype option has been removed and now does nothing"
 msgstr ""
 
@@ -2298,13 +2331,13 @@ msgstr ""
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:67
+#: common/mlcustomize/customize_run.ml:59
 msgid ""
 "the command may have failed because the network is disabled.  Try either "
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:81
+#: common/mltools/JSON_parser.ml:84
 msgid "the key ‘%s’ was not found in a list of objects"
 msgstr ""
 
@@ -2325,35 +2358,35 @@ msgstr ""
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:75
+#: common/mltools/JSON_parser.ml:78
 msgid "the value for key ‘%s’ is not a string as expected"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:47
+#: common/mltools/JSON_parser.ml:50
 msgid "the value for the key ‘%s’ is not a bool"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:42
+#: common/mltools/JSON_parser.ml:45
 msgid "the value for the key ‘%s’ is not a string"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:67
+#: common/mltools/JSON_parser.ml:70
 msgid "the value for the key ‘%s’ is not an integer"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:52
+#: common/mltools/JSON_parser.ml:55
 msgid "the value for the key ‘%s’ is not an object"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:56
+#: common/mltools/JSON_parser.ml:59
 msgid "the value is not an object"
 msgstr ""
 
-#: common/mltools/JSON_parser.ml:32
+#: common/mltools/JSON_parser.ml:35
 msgid "the value of the key ‘%s’ is not an object"
 msgstr ""
 
-#: lib/create_ovf.ml:525
+#: lib/create_ovf.ml:527
 msgid ""
 "the virtual size of the input disk %d is not an exact multiple of 512 "
 "bytes.  The virtual size is: %Ld.\n"
@@ -2402,19 +2435,19 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:504
+#: input/parse_libvirt_xml.ml:545
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
 msgstr[1] ""
 
-#: input/parse_libvirt_xml.ml:486
+#: input/parse_libvirt_xml.ml:527
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
 msgstr[1] ""
 
-#: input/parse_libvirt_xml.ml:240
+#: input/parse_libvirt_xml.ml:248
 msgid "this guest has no non-removable disks"
 msgstr ""
 
@@ -2426,7 +2459,7 @@ msgstr ""
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:349
+#: common/mlcustomize/customize_run.ml:341
 msgid "timezone could not be set for this type of guest"
 msgstr ""
 
@@ -2438,35 +2471,43 @@ msgstr ""
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr ""
 
+#: input/input_libvirt.ml:193
+msgid "unexpected output from the %s command"
+msgstr ""
+
 #: common/mltools/checksums.ml:58
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:158 inspector/inspector.ml:145 in-place/in_place.ml:139
+#: v2v/v2v.ml:159 inspector/inspector.ml:145 in-place/in_place.ml:152
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:192 inspector/inspector.ml:159 in-place/in_place.ml:156
+#: v2v/v2v.ml:193 inspector/inspector.ml:159 in-place/in_place.ml:169
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:212
+#: v2v/v2v.ml:213
 msgid "unknown -o option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:169
+#: v2v/v2v.ml:170
 msgid "unknown -oa option: %s"
+msgstr ""
+
+#: input/input_libvirt.ml:186
+msgid "unknown <checksum> method='%s'"
 msgstr ""
 
 #: input/OVF.ml:103
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 
-#: lib/create_ovf.ml:452 lib/create_ovf.ml:246
+#: lib/create_ovf.ml:454 lib/create_ovf.ml:247
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:373 in-place/in_place.ml:233
+#: v2v/v2v.ml:376 in-place/in_place.ml:248
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
@@ -2474,19 +2515,19 @@ msgstr ""
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
-#: lib/create_ovf.ml:460 lib/create_ovf.ml:254
+#: lib/create_ovf.ml:462 lib/create_ovf.ml:255
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:383 inspector/inspector.ml:237
+#: v2v/v2v.ml:386 inspector/inspector.ml:237
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:424
+#: input/parse_domain_from_vmx.ml:428
 msgid "unknown sound device '%s' ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:208
+#: input/parse_libvirt_xml.ml:215
 msgid "unknown sound model %s ignored"
 msgstr ""
 
@@ -2558,13 +2599,13 @@ msgid ""
 "The os-* parameters and environment variables are optional.\n"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:182
+#: input/parse_libvirt_xml.ml:189
 msgid ""
 "virt-v2v does not support local displays, so <graphics type='%s'> in the "
 "input libvirt XML was ignored"
 msgstr ""
 
-#: in-place/in_place.ml:294
+#: in-place/in_place.ml:311
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
 msgstr ""
 
@@ -2612,32 +2653,32 @@ msgid ""
 "format file, i.e. ‘-of qcow2’"
 msgstr ""
 
-#: common/mltools/getopt-c.c:73
+#: common/mltools/getopt-c.c:68
 #, c-format
 msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:192
+#: common/mltools/getopt-c.c:187
 #, c-format
 msgid "%s: ‘%s’ is not a numeric value.\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:198
+#: common/mltools/getopt-c.c:193
 #, c-format
 msgid "%s: %s: integer out of range\n"
 msgstr "%s: %s: Ganzzahl außerhalb des Bereichs\n"
 
-#: common/mltools/getopt-c.c:388
+#: common/mltools/getopt-c.c:383
 #, c-format
 msgid "%s: ‘%s’ is not allowed for -%c; allowed values are:\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:391
+#: common/mltools/getopt-c.c:386
 #, c-format
 msgid "%s: ‘%s’ is not allowed for %s%s; allowed values are:\n"
 msgstr ""
 
-#: common/mltools/getopt-c.c:426
+#: common/mltools/getopt-c.c:421
 #, c-format
 msgid "Extra parameter on the command line: ‘%s’.\n"
 msgstr ""
