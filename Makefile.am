@@ -95,8 +95,12 @@ EXTRA_DIST = \
 #
 #  po/POTFILES    - files with ordinary extensions, but not OCaml files
 #  po/POTFILES-ml - OCaml files, which need a special tool to translate
+#  po-docs/virt-v2v-docs.pot
+#                 - combined list of strings from documentation
 
 dist-hook: po/POTFILES po/POTFILES-ml
+	rm -f po-docs/virt-v2v-docs.pot
+	$(MAKE) -C po-docs virt-v2v-docs.pot
 
 # For more information about translations, see po/Makefile.am.
 po/POTFILES: configure.ac
