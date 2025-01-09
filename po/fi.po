@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-12-09 17:33+0000\n"
-"PO-Revision-Date: 2024-12-20 08:48+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"PO-Revision-Date: 2025-01-09 09:27+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
 "Language: fi\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.1\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -42,7 +43,7 @@ msgstr "%s ei palauttanut mitään ulostuloa"
 
 #: common/mlcustomize/customize_run.ml:183
 msgid "%s does not exist in the guest"
-msgstr ""
+msgstr "%s:ta ei ole olemassa vieraassa"
 
 #: output/output_rhv.ml:273
 msgid ""
@@ -93,10 +94,8 @@ msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:64
-#, fuzzy
-#| msgid "external command ‘%s’ exited with error %d"
 msgid "%s: command exited with an error"
-msgstr "ulkoinen komento '%s' poistui virheellä %d"
+msgstr "%s: komento poistui virheellä"
 
 #: v2v/v2v.ml:329
 msgid ""
