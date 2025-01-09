@@ -9,9 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-12-09 17:33+0000\n"
-"PO-Revision-Date: 2025-01-09 09:27+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2025-01-09 09:39+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
 "Language: fi\n"
@@ -58,14 +57,24 @@ msgid ""
 "If you don’t know what the %s mount point should be then you can also find "
 "this out through the RHV-M user interface."
 msgstr ""
+"%s ei ole olemassa tai se ei ole hakemisto.\n"
+"\n"
+"Todennäköisin syy: %s (%s) ei ole liitetty mihinkään palvelinkeskukseen tai "
+"polku %s ei ole ollenkaan %s.\n"
+"\n"
+"Sinun on ensin liitettävä %s tietokeskukseen käyttämällä RHV-M / OVirt "
+"käyttöliittymää.\n"
+"\n"
+"Jos et tiedä mikä %s-liitoskohdan pitäisi olla, voit selvittää tämän myös "
+"RHV-M-käyttöliittymän kautta."
 
 #: common/mlcustomize/customize_run.ml:113
 msgid "%s ignored for non-Windows guest"
-msgstr ""
+msgstr "%s jätettiin huomioimatta ei-Windows-vieraille"
 
 #: common/mlcustomize/customize_run.ml:186
 msgid "%s is not a regular file in the guest"
-msgstr ""
+msgstr "%s ei ole tavallinen tiedosto vieraassa"
 
 #. inspector/inspector.ml:151
 #. inspector/inspector.ml:40
@@ -73,7 +82,7 @@ msgstr ""
 #. in-place/in_place.ml:45
 #: v2v/v2v.ml:199 v2v/v2v.ml:185 v2v/v2v.ml:165 v2v/v2v.ml:44
 msgid "%s option used more than once on the command line"
-msgstr ""
+msgstr "%s-vaihtoehtoa käytetään useammin kuin kerran komentorivillä"
 
 #: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
@@ -88,10 +97,12 @@ msgid ""
 "%s: Exiting on signal %s\n"
 "%!"
 msgstr ""
+"%s: Poistutaan signaalilla %s\n"
+"%!"
 
 #: common/mlcustomize/inject_virtio_win.ml:434
 msgid "%s: cannot open virtio-win ISO file: %s"
-msgstr ""
+msgstr "%s: ei voi avata virtio-win ISO -tiedostoa: %s"
 
 #: common/mlcustomize/customize_run.ml:64
 msgid "%s: command exited with an error"
@@ -119,6 +130,26 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v(1).\n"
 msgstr ""
+"%s: muunna vieras käyttämään KVM:aa\n"
+"\n"
+"virt-v2v -ic vpx://v-keskus.esimerkki.com/datakeskus/esxi -os tuotu_esx-"
+"vieras\n"
+"\n"
+"virt-v2v -ic vpx://v-keskus.esimerkki.com/datakeskus/esxi esx-vieras -o rhv -"
+"os rhv.nfs:/export_domain --network ovirt_hallinta\n"
+"\n"
+"virt-v2v -i libvirtxml vieraan_verkkotunnus.xml -o local -os /var/tmp\n"
+"\n"
+"virt-v2v -i disk levy.img -o local -os /var/tmp\n"
+"\n"
+"virt-v2v -i disk levy.img -o glance\n"
+"\n"
+"On olemassa kumppanikäyttöliittymä nimeltä \"virt-p2v\", joka tulee nimellä\n"
+"ISO- tai CD-kuva, joka voidaan käynnistää fyysisillä koneilla.\n"
+"\n"
+"Alla on lyhyt yhteenveto vaihtoehdoista. Yksityiskohtaista apua saat "
+"lukemalla\n"
+"man-sivu virt-v2v(1).\n"
 
 #: in-place/in_place.ml:209
 msgid ""
