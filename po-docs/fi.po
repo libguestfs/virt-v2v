@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.1\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-01-08 12:25+0000\n"
-"PO-Revision-Date: 2023-01-13 20:20+0000\n"
-"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
+"PO-Revision-Date: 2025-01-10 11:38+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/fi/>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -8525,6 +8525,9 @@ msgid ""
 "ordinary PC BIOS).  Virt-v2v can convert these guests, but requires that "
 "UEFI is supported by the target hypervisor."
 msgstr ""
+"VMwaren avulla voit esittää UEFI-laiteohjelmiston vieraille (tavanomaisen PC-"
+"BIOSin sijaan). Virt-v2v voi muuntaa nämä vieraat, mutta vaatii, että "
+"kohdehypervisor tukee UEFI:aa."
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:112
@@ -8532,6 +8535,8 @@ msgid ""
 "Currently KVM supports OVMF, an open source UEFI firmware, and can run these "
 "guests."
 msgstr ""
+"Tällä hetkellä KVM tukee OVMF:aa, avoimen lähdekoodin UEFI-laiteohjelmistoa, "
+"ja voi käyttää näitä vieraita."
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:115
@@ -8539,11 +8544,13 @@ msgid ""
 "Since OVMF support was only recently added to KVM (in 2014/2015), not all "
 "target environments support UEFI guests yet:"
 msgstr ""
+"Koska OVMF-tuki lisättiin KVM:ään vasta äskettäin (vuosina 2014/2015), "
+"kaikki kohdeympäristöt eivät vielä tue UEFI-vieraita:"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:120
 msgid "UEFI on libvirt, qemu"
-msgstr ""
+msgstr "UEFI libvirtissä, qemussa"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:122
@@ -8557,7 +8564,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-support.pod:127
 msgid "UEFI on OpenStack"
-msgstr ""
+msgstr "UEFI OpenStackissa"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:129
@@ -8567,7 +8574,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-support.pod:131
 msgid "UEFI on oVirt or RHV"
-msgstr ""
+msgstr "UEFI oVirtissä tai RHV:ssa"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:133
@@ -10816,6 +10823,12 @@ msgid ""
 "default on Windows before Vista.  As another example, VFAT filesystems (used "
 "by UEFI guests) cannot be trimmed at all."
 msgstr ""
+"Valitettavasti tuki fstrimille ei ole yleismaailmallista, ja se riippuu myös "
+"tiedostojärjestelmän, osion tasauksen ja taustatallennustilasta. Esimerkiksi "
+"NTFS-tiedostojärjestelmiä ei voida poistaa, jos ne vievät osion, jota ei ole "
+"kohdistettu taustalla olevaan tallennustilaan. Se oli oletusarvo Windowsissa "
+"ennen Vistaa. Toisena esimerkkinä VFAT-tiedostojärjestelmiä (UEFI-vieraat "
+"käyttävät) ei voi leikata ollenkaan."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1292

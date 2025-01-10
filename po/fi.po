@@ -10,8 +10,7 @@ msgstr ""
 "component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-12-09 17:33+0000\n"
 "PO-Revision-Date: 2025-01-09 11:33+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
 "Language: fi\n"
@@ -531,7 +530,7 @@ msgstr "Liitä tiedostoon rivit"
 
 #: common/mlcustomize/customize_run.ml:137
 msgid "Appending line to %s"
-msgstr "Liitetään %s:een rivi"
+msgstr "Liitetään rivi %s:een"
 
 #: common/mlcustomize/customize_cmdline.ml:397
 msgid "Attach to a subscription-manager pool"
@@ -1616,7 +1615,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr "Ladataan: %s"
+msgstr "ladataan %s"
 
 #: lib/networks.ml:84
 msgid ""
