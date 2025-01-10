@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2024-12-09 17:33+0000\n"
-"PO-Revision-Date: 2025-01-09 09:39+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"PO-Revision-Date: 2025-01-09 11:33+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
 "Language: fi\n"
@@ -165,6 +166,18 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
+"%s: muunna vieras käyttämään olemassa olevaa KVM:aa\n"
+"\n"
+"Huomaa, että tämä ohjelma muokkaa paikallaan olevaa vierasta, ilman\n"
+"varmuuskopiota. Normaalisti sinun tulee käyttää virt-v2v.\n"
+"\n"
+"virt-v2v-in-place -i libvirtxml vieraan_verkkotunnus.xml\n"
+"\n"
+"virt-v2v-in-place -i disk levy.img\n"
+"\n"
+"Alla on lyhyt yhteenveto vaihtoehdoista. Yksityiskohtaista apua saat "
+"lukemalla\n"
+"man-sivu virt-v2v-in-place(1).\n"
 
 #: common/mltools/tools_utils.ml:172
 msgid "%s: error: %s"
@@ -179,6 +192,13 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-inspector(1).\n"
 msgstr ""
+"%s: arvio levytilan tarpeesta ennen virt-v2v:n muuntamista\n"
+"\n"
+"virt-v2v-inspector -i disk levy.img [-O ulostulo.xml]\n"
+"\n"
+"Alla on lyhyt yhteenveto vaihtoehdoista. Yksityiskohtaista apua saat "
+"lukemalla\n"
+"man-sivu virt-v2v-inspector(1).\n"
 
 #: common/mltools/tools_utils.ml:726
 msgid "%s: operation timed out"
@@ -191,6 +211,10 @@ msgid ""
 "Formats which we currently understand for '-i ova' are: tar (uncompressed, "
 "compress with gzip or xz), zip"
 msgstr ""
+"%s: ei-tuettu tiedostomuoto\n"
+"\n"
+"Muodot, joita ymmärrämme tällä hetkellä '-i ova':lle ovat: tar (pakkaamaton, "
+"pakkaaminen gzip:llä tai xz:lla), zip"
 
 #: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
@@ -206,43 +230,51 @@ msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
 msgstr ""
+"--append-line: rivi ei saa sisältää uuden rivin merkkejä. Käytä '--append-"
+"line' -vaihtoehtoa useita kertoja lisätäksesi useita rivejä."
 
 #: common/mlcustomize/customize_run.ml:152
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
-msgstr ""
+msgstr "--chown: numeerista UID:GID:tä ei voitu jäsentää %s:%s:sta"
 
 #: common/mlcustomize/customize_run.ml:216
 msgid ""
 "--inject-blnsvr: blnsvr.exe not found in virtio-win source that you specified"
 msgstr ""
+"--inject-blnsvr: blnsvr.exe:ta ei löytynyt määrittämästäsi virtio-win-"
+"lähteestä"
 
 #: common/mlcustomize/customize_run.ml:225
 msgid ""
 "--inject-qemu-ga: QEMU Guest Agent MSI not found in virtio-win source that "
 "you specified"
 msgstr ""
+"--inject-qemu-ga: QEMU Vierasagentin MSI:ta ei löytynyt määrittämästäsi "
+"virtio-win-lähteestä"
 
 #: common/mlcustomize/customize_run.ml:241
 msgid ""
 "--inject-virtio-win: virtio drivers were not found for this Windows version "
 "in the virtio-win source that you specified"
 msgstr ""
+"--inject-virtio-win: virtio-ohjaimia ei löytynyt tälle Windows-versiolle "
+"määrittämästäsi virtio-win-lähteestä"
 
 #: v2v/v2v.ml:145 inspector/inspector.ml:131 in-place/in_place.ml:138
 msgid "--mac ip prefix length field is out of range"
-msgstr ""
+msgstr "--mac IP-etuliitepituuskenttä on alueen ulkopuolella"
 
 #: v2v/v2v.ml:395
 msgid "--parallel parameter must be >= 1"
-msgstr ""
+msgstr "--parallel-parametrin on oltava >= 1"
 
 #: input/input_disk.ml:43
 msgid "-i disk: expecting a disk image (filename) on the command line"
-msgstr ""
+msgstr "-i disk: odotetaan levykuvan (tiedostonimen) komentorivillä"
 
 #: input/input_xen_ssh.ml:65
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
-msgstr ""
+msgstr "-i libvirt: odotetaan -ic-parametria Xenille SSH-yhteyden välityksellä"
 
 #: input/input_vddk.ml:118 input/input_vcenter_https.ml:88
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
@@ -308,15 +340,15 @@ msgstr ""
 
 #: output/output.ml:53
 msgid "-o %s: %s option cannot be used in this output mode"
-msgstr ""
+msgstr "-o %s: %s-vaihtoehtoa ei voi käyttää tässä lähtötilassa"
 
 #: output/output_disk.ml:66
 msgid "-o disk: output directory was not specified, use '-os /dir'"
-msgstr ""
+msgstr "-o disk: lähtöhakemistoa ei määritetty, käytä '-os /dir'"
 
 #: output/output_libvirt.ml:59 output/output_disk.ml:56
 msgid "-o disk: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o disk: tuntematon lähtövaihtoehto '-oo %s'"
 
 #: output/output_kubevirt.ml:72
 msgid "-o kubevirt: output directory was not specified, use '-os /dir'"
@@ -328,6 +360,9 @@ msgid ""
 "characters, '-' or '.', and must start and end with an alphanumeric "
 "character.  Rerun virt-v2v with the '-on name' option to rename it."
 msgstr ""
+"-o kubevirt: vieraan nimessä saa olla vain pieniä aakkosnumeerisia merkkejä, "
+"'-' or '.', ja sen tulee alkaa ja päättyä aakkosnumeeriseen merkkiin. Nimeä "
+"se uudelleen suorittamalla virt-v2v \"-on name\" -vaihtoehdolla."
 
 #: output/output_kubevirt.ml:62
 msgid "-o kubevirt: unknown output option ‘-oo %s’"
@@ -384,10 +419,13 @@ msgid ""
 "-o rhv-upload: output password file was not specified, use ‘-op’ to point to "
 "a file which contains the password used to connect to the oVirt or RHV server"
 msgstr ""
+"-o rhv-upload: lähtösalasanatiedostoa ei määritetty, käytä '-op' "
+"osoittaaksesi tiedostoon, joka sisältää salasanan, jota käytetään yhteyden "
+"muodostamiseen oVirt- tai RHV-palvelimeen"
 
 #: output/output_rhv_upload.ml:83
 msgid "-o rhv-upload: output storage was not specified, use ‘-os’"
-msgstr ""
+msgstr "-o rhv-upload: lähdön tallennustilaa ei ole määritetty, käytä '-os'"
 
 #: output/output_rhv_upload.ml:113
 msgid "-o rhv-upload: unknown output option ‘-oo %s’"
@@ -398,22 +436,24 @@ msgid ""
 "-o rhv-upload: use ‘-oc’ to point to the oVirt or RHV server REST API URL, "
 "which is usually https://servername/ovirt-engine/api"
 msgstr ""
+"-o rhv-upload: käytä '-oc' osoittaaksesi oVirt- tai RHV-palvelimen REST API "
+"URL-osoitteeseen, joka on yleensä https://palvelimen_nimi/ovirt-kone/api"
 
 #: output/output_rhv.ml:51
 msgid "-o rhv: -os option was not specified"
-msgstr ""
+msgstr "-o rhv: '-os':n vaihtoehtoa ei ole määritetty"
 
 #: output/output_vdsm.ml:102
 msgid "-o vdsm: -oo vdsm-image-uuid was not specified"
-msgstr ""
+msgstr "-o vdsm: -oo vdsm-image-uuid:ta ei ole määritelty"
 
 #: output/output_vdsm.ml:81
 msgid "-o vdsm: -oo vdsm-ovf-output set more than once"
-msgstr ""
+msgstr "-o vdsm: -oo vdsm-ovf-output asetettu useammin kuin kerran"
 
 #: output/output_vdsm.ml:77
 msgid "-o vdsm: -oo vdsm-vm-uuid set more than once"
-msgstr ""
+msgstr "-o vdsm: -oo vdsm-vm-uuid asetettu useammin kuin kerran"
 
 #: output/output_vdsm.ml:110
 msgid "-o vdsm: -os option was not specified"
@@ -490,24 +530,20 @@ msgid "Append line(s) to the file"
 msgstr "Liitä tiedostoon rivit"
 
 #: common/mlcustomize/customize_run.ml:137
-#, fuzzy
-#| msgid "Append line(s) to the file"
 msgid "Appending line to %s"
-msgstr "Liitä tiedostoon rivit"
+msgstr "Liitetään %s:een rivi"
 
 #: common/mlcustomize/customize_cmdline.ml:397
 msgid "Attach to a subscription-manager pool"
 msgstr "Liitä tilaus-manager-varantoon"
 
 #: common/mlcustomize/customize_run.ml:285
-#, fuzzy
-#| msgid "Attach to a subscription-manager pool"
 msgid "Attaching to compatible subscriptions"
-msgstr "Liitä tilaus-manager-varantoon"
+msgstr "Liittäminen yhteensopiviin tilauksiin"
 
 #: common/mlcustomize/customize_run.ml:289
 msgid "Attaching to the pool %s"
-msgstr ""
+msgstr "Liittäminen varantoon %s"
 
 #: v2v/v2v.ml:284
 msgid "Boot in qemu (-o qemu only)"
@@ -526,10 +562,8 @@ msgid "Changing owner of %s to %d:%d"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:141
-#, fuzzy
-#| msgid "Change the permissions of a file"
 msgid "Changing permissions of %s to %s"
-msgstr "Muuta tiedoston käyttöoikeuksia"
+msgstr "Muuta %s:n käyttöoikeuksia %s:ksi"
 
 #: input/input_libvirt.ml:171 input/input_libvirt.ml:154
 msgid "Checking %s checksum of disk %d/%d"
@@ -549,7 +583,6 @@ msgstr "Kopioi levykuvan tiedostot"
 
 #: common/mlcustomize/customize_cmdline.ml:438
 #, fuzzy
-#| msgid "Copy local files or directories into image"
 msgid "Copy local files or directories from a tarball into image"
 msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 
@@ -559,7 +592,7 @@ msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 
 #: common/mlcustomize/customize_run.ml:168
 msgid "Copying (in image): %s to %s"
-msgstr ""
+msgstr "Kopioidaan (kuvassa): %s %s:een"
 
 #: v2v/v2v.ml:626
 msgid "Copying disk %d/%d"
@@ -567,7 +600,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:172
 msgid "Copying: %s to %s"
-msgstr ""
+msgstr "Kopioidaan: %s %s:een"
 
 #: common/mlcustomize/customize_cmdline.ml:334
 msgid "Create a directory"
@@ -579,11 +612,11 @@ msgstr "Luo symbolisia linkkejä"
 
 #: v2v/v2v.ml:677
 msgid "Creating output metadata"
-msgstr ""
+msgstr "Tulosteen metatietojen luominen"
 
 #: common/mlcustomize/customize_cmdline.ml:539
 msgid "Credentials for subscription-manager"
-msgstr ""
+msgstr "Tilausvastaavan tunnistetiedot"
 
 #: common/mlcustomize/customize_cmdline.ml:333
 msgid "DIR"
@@ -591,15 +624,15 @@ msgstr "HAKEMISTO"
 
 #: common/mlcustomize/customize_cmdline.ml:248
 msgid "Delete a file or directory"
-msgstr ""
+msgstr "Poista tiedosto tai hakemisto"
 
 #: common/mlcustomize/customize_run.ml:176
 msgid "Deleting: %s"
-msgstr ""
+msgstr "Poistetaan: %s"
 
 #: common/mltools/getopt.ml:229
 msgid "Display brief help"
-msgstr ""
+msgstr "Näytä lyhyt ohje"
 
 #: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
@@ -607,35 +640,35 @@ msgstr "Näytä versio ja poistu"
 
 #: common/mlcustomize/customize_cmdline.ml:523
 msgid "Do not relabel files with correct SELinux labels"
-msgstr ""
+msgstr "Älä nimeä tiedostoja uudelleen oikeilla SELinux-nimiöillä"
 
 #: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
-msgstr ""
+msgstr "Älä tulosta etenemisviestejä"
 
 #: common/mltools/tools_utils.ml:420
 msgid "Don’t turn off echo for passphrases"
-msgstr ""
+msgstr "Älä poista tunnuslauseiden kaikua käytöstä"
 
 #: common/mlcustomize/customize_cmdline.ml:259
 msgid "Edit file using Perl expression"
-msgstr ""
+msgstr "Muokkaa tiedostoa käyttämällä Perl-lauseketta"
 
 #: common/mlcustomize/customize_run.ml:180
 msgid "Editing: %s"
-msgstr ""
+msgstr "Muokkaus: %s"
 
 #: common/mltools/tools_utils.ml:386
 msgid "Enable libguestfs debugging messages"
-msgstr ""
+msgstr "Ota libguestfs-viankorjausviestit käyttöön"
 
 #: common/mltools/tools_utils.ml:387
 msgid "Enable tracing of libguestfs calls"
-msgstr ""
+msgstr "Ota libguestfs-kutsujen jäljitys käyttöön"
 
 #: output/output_rhv.ml:77
 msgid "Export Storage Domain"
-msgstr ""
+msgstr "Vie tallennustilaverkkotunnus"
 
 #. common/mlcustomize/customize_cmdline.ml:449
 #. common/mlcustomize/customize_cmdline.ml:385
@@ -665,7 +698,7 @@ msgstr ""
 
 #: v2v/v2v.ml:681 inspector/inspector.ml:379 in-place/in_place.ml:387
 msgid "Finishing off"
-msgstr ""
+msgstr "Viimeistellään"
 
 #: common/mlcustomize/customize_cmdline.ml:287
 msgid "HOSTNAME"
@@ -673,7 +706,7 @@ msgstr ""
 
 #: v2v/v2v.ml:286 inspector/inspector.ml:184 in-place/in_place.ml:196
 msgid "How to choose root filesystem"
-msgstr ""
+msgstr "Kuinka valita juuritiedostojärjestelmä"
 
 #: common/mltools/tools_utils.ml:177
 msgid ""
@@ -682,30 +715,34 @@ msgid ""
 "\n"
 "  %s -v -x [...]"
 msgstr ""
+"Jos ilmoitat vioista, suorita %s viankorjauksen ollessa käytössä ja "
+"sisällytä koko tulos:\n"
+"\n"
+" %s -v -x [...]"
 
 #: v2v/v2v.ml:316 v2v/v2v.ml:260
 msgid "Ignored for backwards compatibility"
-msgstr ""
+msgstr "Jätetty huomioimatta taaksepäin yhteensopivuuden vuoksi"
 
 #: common/mlcustomize/customize_cmdline.ml:427
 msgid "Inject a public key into the guest"
-msgstr ""
+msgstr "Sisällytä julkinen avain vieraaseen"
 
 #: common/mlcustomize/customize_cmdline.ml:294
 msgid "Inject the Balloon Server into a Windows guest"
-msgstr ""
+msgstr "Sisällytä Balloon-palvelin Windows-vieraaseen"
 
 #: common/mlcustomize/customize_cmdline.ml:300
 msgid "Inject the QEMU Guest Agent into a Windows guest"
-msgstr ""
+msgstr "Sisällytä QEMU-vierasagentti Windows-vieraaseen"
 
 #: common/mlcustomize/customize_cmdline.ml:306
 msgid "Inject virtio-win drivers into a Windows guest"
-msgstr ""
+msgstr "Sisällytä virtio-win-ajurit Windows-vieraaseen"
 
 #: v2v/v2v.ml:246 inspector/inspector.ml:170 in-place/in_place.ml:182
 msgid "Input format"
-msgstr ""
+msgstr "Syöttömuoto"
 
 #: input/input_vddk.ml:44
 msgid ""
@@ -732,25 +769,23 @@ msgstr ""
 
 #: v2v/v2v.ml:252 inspector/inspector.ml:176
 msgid "Input transport"
-msgstr ""
+msgstr "Syöttökuljetus"
 
 #: common/mlcustomize/customize_run.ml:191
 msgid "Installing firstboot command: %s"
-msgstr ""
+msgstr "firstboot-komennon asentaminen: %s"
 
 #: common/mlcustomize/customize_run.ml:195
 msgid "Installing firstboot packages: %s"
-msgstr ""
+msgstr "Firstboot-pakettien asentaminen: %s"
 
 #: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
-msgstr ""
+msgstr "Firstboot-skriptin asentaminen: %s"
 
 #: common/mlcustomize/customize_run.ml:248
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Installing packages: %s"
-msgstr "Poista paketteja"
+msgstr "Asennetaan paketteja: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:237
 msgid "LOCALPATH:REMOTEDIR"
@@ -762,7 +797,7 @@ msgstr "Libvirt:n URI"
 
 #: common/mlcustomize/customize_run.ml:255
 msgid "Linking: %s -> %s"
-msgstr ""
+msgstr "Linkittäminen: %s -> %s"
 
 #. common/mlcustomize/customize_cmdline.ml:299
 #. common/mlcustomize/customize_cmdline.ml:293
@@ -772,15 +807,15 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:426
 msgid "Make output machine readable"
-msgstr ""
+msgstr "Tee tulosteesta koneella luettava"
 
 #: common/mlcustomize/customize_run.ml:260
 msgid "Making directory: %s"
-msgstr ""
+msgstr "Luodaan hakemistoa: %s"
 
 #: v2v/v2v.ml:256 inspector/inspector.ml:178 in-place/in_place.ml:188
 msgid "Map NIC to network or bridge or assign static IP"
-msgstr ""
+msgstr "Yhdistä NIC verkkoon tai siltaan tai määritä staattinen IP"
 
 #: v2v/v2v.ml:236 inspector/inspector.ml:164 in-place/in_place.ml:174
 msgid "Map bridge ‘in’ to ‘out’"
@@ -796,7 +831,7 @@ msgstr "Siirrä levykuvassa olevia tiedostoja"
 
 #: common/mlcustomize/customize_run.ml:264
 msgid "Moving: %s -> %s"
-msgstr ""
+msgstr "Siirretään: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:36
@@ -805,15 +840,16 @@ msgstr ""
 #. input/input_disk.ml:36
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
-msgstr ""
+msgstr "Tässä tilassa ei voi käyttää syöttövaihtoehtoja.\n"
 
 #: output/output_rhv.ml:40 output/output_null.ml:38 output/output_glance.ml:40
 msgid "No output options can be used in this mode.\n"
-msgstr ""
+msgstr "Tässä tilassa ei voi käyttää lähtövaihtoehtoja.\n"
 
 #: output/output_vdsm.ml:166
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
 msgstr ""
+"OVF (metatieto) -hakemistoa (%s) ei ole olemassa tai se ei ole hakemisto"
 
 #: common/mlcustomize/firstboot.ml:269
 msgid ""
@@ -821,6 +857,9 @@ msgid ""
 "required in order to install Windows firstboot scripts.  You can get one by "
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
+"Yksi tiedostoista rhsrvany.exe tai pvvxsvc.exe puuttuu %s:sta. Yksi niistä "
+"tarvitaan Windowsin firstboot-komentosarjojen asentamiseen. Voit hankkia "
+"sellaisen rakentamalla rhsrvany (https://github.com/rwmjones/rhsrvany)"
 
 #: v2v/v2v.ml:266
 msgid "Output hypervisor connection"
@@ -938,22 +977,20 @@ msgid "Register using subscription-manager"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:295
-#, fuzzy
-#| msgid "Attach to a subscription-manager pool"
 msgid "Registering with subscription-manager"
-msgstr "Liitä tilaus-manager-varantoon"
+msgstr "Rekisteröityminen tilausten hallinnan kanssa"
 
 #: common/mlcustomize/customize_cmdline.ml:409
 msgid "Remove all the subscriptions"
-msgstr ""
+msgstr "Poista kaikki tilaukset"
 
 #: common/mlcustomize/customize_run.ml:310
 msgid "Removing all the subscriptions"
-msgstr ""
+msgstr "Poistetaan kaikki tilaukset"
 
 #: v2v/v2v.ml:270
 msgid "Rename guest when converting"
-msgstr ""
+msgstr "Nimeä vieras uudelleen muunnettaessa"
 
 #: common/mlcustomize/customize_cmdline.ml:271
 msgid "Run command at first guest boot"
@@ -965,11 +1002,11 @@ msgstr "Suorita komento levykuvassa"
 
 #: common/mlcustomize/customize_cmdline.ml:265
 msgid "Run script at first guest boot"
-msgstr ""
+msgstr "Suorita skripti ensimmäisen vieraskäynnistyksen yhteydessä"
 
 #: common/mlcustomize/customize_cmdline.ml:374
 msgid "Run script in disk image"
-msgstr ""
+msgstr "Suorita skripti levykuvassa"
 
 #: common/mlcustomize/customize_cmdline.ml:450
 msgid "Run touch on a file"
@@ -985,10 +1022,8 @@ msgstr ""
 
 #. common/mlcustomize/customize_run.ml:159
 #: common/mlcustomize/customize_run.ml:274
-#, fuzzy
-#| msgid "%s: warning: %s"
 msgid "Running: %s"
-msgstr "%s: varoitus: %s"
+msgstr "Suoritetaan: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:264
 #: common/mlcustomize/customize_cmdline.ml:373
@@ -1004,7 +1039,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:400
 msgid "SELinux relabelling"
-msgstr ""
+msgstr "SELinuxin nimiön uudelleenmäärittäminen"
 
 #. common/mlcustomize/customize_cmdline.ml:226
 #: common/mlcustomize/customize_cmdline.ml:340
@@ -1013,11 +1048,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:324
 msgid "SSH key could not be injected for this type of guest"
-msgstr ""
+msgstr "SSH-avainta ei voitu sisällyttää tämän tyyppiselle vieraalle"
 
 #: common/mlcustomize/customize_run.ml:321
 msgid "SSH key inject: %s"
-msgstr ""
+msgstr "SSH-avaimen sisällyttäminen: %s"
 
 #: v2v/v2v.ml:288
 msgid "Same as ‘-io vddk-config=filename’"
@@ -1125,79 +1160,79 @@ msgstr ""
 
 #: v2v/v2v.ml:262
 msgid "Set output mode (default: libvirt)"
-msgstr ""
+msgstr "Aseta lähtötila (oletus: libvirt)"
 
 #: v2v/v2v.ml:276
 msgid "Set output storage location"
-msgstr ""
+msgstr "Aseta tulosteiden tallennustilan paikka"
 
 #: common/mlcustomize/customize_cmdline.ml:517
 msgid "Set password crypto"
-msgstr ""
+msgstr "Aseta krypton salasana"
 
 #: common/mltools/tools_utils.ml:430
 msgid "Set program name"
-msgstr ""
+msgstr "Aseta ohjelman nimi"
 
 #: common/mlcustomize/customize_cmdline.ml:368
 msgid "Set root password"
-msgstr ""
+msgstr "Aseta rootin salasana"
 
 #: common/mlcustomize/customize_cmdline.ml:444
 msgid "Set the default timezone"
-msgstr ""
+msgstr "Aseta oletusaikavyöhyke"
 
 #: common/mlcustomize/customize_cmdline.ml:288
 msgid "Set the hostname"
-msgstr ""
+msgstr "Aseta isäntänimi"
 
 #: inspector/inspector.ml:182 in-place/in_place.ml:192
 msgid "Set the output filename"
-msgstr ""
+msgstr "Aseta tulostetiedoston nimi"
 
 #: common/mlcustomize/customize_cmdline.ml:357
 msgid "Set user password"
-msgstr ""
+msgstr "Aseta käyttäjän salasana"
 
 #: common/mlcustomize/customize_run.ml:75
 msgid "Setting a random seed"
-msgstr ""
+msgstr "Satunnaisen siemenen asettaminen"
 
 #: common/mlcustomize/customize_run.ml:391
 msgid "Setting passwords"
-msgstr ""
+msgstr "Salasanojen asettaminen"
 
 #: common/mlcustomize/password.ml:113
 msgid "Setting random password of %s to %s"
-msgstr ""
+msgstr "Asetetaan %s:n satunnainen salasana %s:ksi"
 
 #: common/mlcustomize/customize_run.ml:207
 msgid "Setting the hostname: %s"
-msgstr ""
+msgstr "Isäntänimen asettaminen: %s"
 
 #: common/mlcustomize/customize_run.ml:90
 msgid "Setting the machine ID in %s"
-msgstr ""
+msgstr "Konetunnuksen asettaminen %s:ssa"
 
 #: common/mlcustomize/customize_run.ml:339
 msgid "Setting the timezone: %s"
-msgstr ""
+msgstr "Aikavyöhykkeen asettaminen: %s"
 
 #: v2v/v2v.ml:595
 msgid "Setting up the destination: %s"
-msgstr ""
+msgstr "Asetetaan määränpäätä: %s"
 
 #: v2v/v2v.ml:571 inspector/inspector.ml:355 in-place/in_place.ml:351
 msgid "Setting up the source: %s"
-msgstr ""
+msgstr "Asetetaan lähdettä: %s"
 
 #: v2v/v2v.ml:577 in-place/in_place.ml:357
 msgid "Source guest information (--print-source option):\n"
-msgstr ""
+msgstr "Vieraan lähdetiedot (--print-source option):\n"
 
 #: common/mltools/tools_utils.ml:422
 msgid "Specify a LUKS key"
-msgstr ""
+msgstr "Määritä LUKS-avain"
 
 #: common/mlcustomize/customize_cmdline.ml:433
 msgid "TARFILE:REMOTEDIR"
@@ -1214,19 +1249,23 @@ msgstr ""
 #: v2v/v2v.ml:226
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
-msgstr ""
+msgstr "Vaihtoehto --in-place on korvattu \"virt-v2v-in-place\" -ohjelmalla"
 
 #: output/output_qemu.ml:245
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
+"Virtuaalikoneella ei ole tukea IDE:lle. Ilmoita virt-v2v:n viasta -- katso "
+"virt-v2v(1) osio \"BUGS\"."
 
 #: output/output_qemu.ml:266
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
+"Virtuaalikoneella ei ole tukea levykkeille. Ilmoita virt-v2v:n viasta -- "
+"katso virt-v2v(1) osio \"BUGS\"."
 
 #: lib/create_ovf.ml:791
 msgid ""
@@ -1234,6 +1273,9 @@ msgid ""
 "not supported by RHV.  Therefore the converted guest’s display will not "
 "require a separate password to connect."
 msgstr ""
+"Tämä vieras vaati salasanan muodostaakseen yhteyden näyttöönsä, mutta RHV ei "
+"tue tätä. Siksi muunnetun vieraan näyttö ei vaadi erillistä salasanaa "
+"yhteyden muodostamiseen."
 
 #: input/input_vmx.ml:107
 msgid ""
@@ -1242,14 +1284,17 @@ msgid ""
 "alternate conversion methods described in virt-v2v-input-vmware(1) section "
 "\"NOTES\"."
 msgstr ""
+"Tämä kuljetus ei tue vieraita tilannekuvien kanssa. Joko tiivistä tämän "
+"vieraan tilannevedokset ja yritä muuntamista uudelleen tai käytä jotakin "
+"vaihtoehtoisista muunnosmenetelmistä, jotka on kuvattu virt-v2v-input-"
+"vmware(1) -osiossa \"HUOMAUTUKSET\"."
 
 #: common/mlcustomize/customize_cmdline.ml:456
 msgid "Truncate a file to zero size"
-msgstr ""
+msgstr "Katkaise tiedosto nollakokoon"
 
 #: common/mlcustomize/customize_run.ml:331
 #, fuzzy
-#| msgid "%s: warning: %s"
 msgid "Truncating: %s"
 msgstr "%s: varoitus: %s"
 
@@ -1271,7 +1316,6 @@ msgstr "Poista paketteja"
 
 #: common/mlcustomize/customize_run.ml:348
 #, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Uninstalling packages: %s"
 msgstr "Poista paketteja"
 
@@ -1285,7 +1329,6 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:315
 #, fuzzy
-#| msgid "Attach to a subscription-manager pool"
 msgid "Unregistering with subscription-manager"
 msgstr "Liitä tilaus-manager-varantoon"
 
@@ -1295,7 +1338,6 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:353
 #, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Updating packages"
 msgstr "Poista paketteja"
 
@@ -1333,7 +1375,6 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:383
 #, fuzzy
-#| msgid "%s: warning: %s"
 msgid "Writing: %s"
 msgstr "%s: varoitus: %s"
 
@@ -1364,7 +1405,6 @@ msgstr ""
 
 #: common/mlcustomize/append_line.ml:44
 #, fuzzy
-#| msgid "Append line(s) to the file"
 msgid "append_line: %s is not a file"
 msgstr "Liitä tiedostoon rivit"
 
@@ -1576,7 +1616,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr ""
+msgstr "Ladataan: %s"
 
 #: lib/networks.ml:84
 msgid ""
@@ -1620,13 +1660,11 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:455
 #, fuzzy
-#| msgid "external command ‘%s’ exited with error %d"
 msgid "exited with error %d"
 msgstr "ulkoinen komento '%s' poistui virheellä %d"
 
 #: lib/utils.ml:34
 #, fuzzy
-#| msgid "external command ‘%s’ exited with error %d"
 msgid "exited with non-zero error code %d"
 msgstr "ulkoinen komento '%s' poistui virheellä %d"
 
@@ -1898,7 +1936,6 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:47
 #, fuzzy
-#| msgid "%s (ignored)"
 msgid "log file %s: %s (ignored)"
 msgstr "%s (ohitettu)"
 
@@ -2274,7 +2311,6 @@ msgstr ""
 
 #: lib/utils.ml:35
 #, fuzzy
-#| msgid "subprocess signalled or stopped by signal %d"
 msgid "signalled by signal %d"
 msgstr "aliprosessi, joka on signaloitu tai pysäytetty signaalilla %d"
 
@@ -2316,7 +2352,6 @@ msgstr ""
 #. common/mltools/tools_utils.ml:461
 #: lib/utils.ml:36 common/mltools/tools_utils.ml:542
 #, fuzzy
-#| msgid "subprocess signalled or stopped by signal %d"
 msgid "stopped by signal %d"
 msgstr "aliprosessi, joka on signaloitu tai pysäytetty signaalilla %d"
 
@@ -2334,7 +2369,7 @@ msgstr ""
 
 #: lib/utils.ml:33
 msgid "success"
-msgstr ""
+msgstr "onnistui"
 
 #: v2v/v2v.ml:218
 msgid "the --no-trim option has been removed and now does nothing"
@@ -2359,6 +2394,8 @@ msgid ""
 "the command may have failed because the network is disabled.  Try either "
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
 msgstr ""
+"komento on saattanut epäonnistua, koska verkko on poistettu käytöstä. Yritä "
+"joko poistaa ”--no-network” tai lisätä ”--network” komentoriville."
 
 #: common/mltools/JSON_parser.ml:84
 msgid "the key ‘%s’ was not found in a list of objects"
