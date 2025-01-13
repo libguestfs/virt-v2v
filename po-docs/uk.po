@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-01-08 12:25+0000\n"
-"PO-Revision-Date: 2025-01-11 07:16+0000\n"
+"PO-Revision-Date: 2025-01-14 18:38+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -317,7 +317,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:80
 #: common/mlcustomize/v2v-customize-options.pod:80
 msgid "This will not work with Windows guests."
-msgstr ""
+msgstr "Це не працюватиме у гостьових системах Windows."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:84
@@ -329,15 +329,12 @@ msgstr "Приклад:"
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:86
 #: common/mlcustomize/v2v-customize-options.pod:86
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-customize --delete '/var/log/*.log'.\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-customize --chown '0:0:/var/log/audit.log'\n"
 "\n"
 msgstr ""
-" virt-customize --delete '/var/log/*.log'.\n"
+" virt-customize --chown '0:0:/var/log/audit.log'\n"
 "\n"
 
 #. type: textblock
