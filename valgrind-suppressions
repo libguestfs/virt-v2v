@@ -426,6 +426,26 @@
    fun:g_type_class_ref
 }
 
+{
+   glib_leak_3
+   Memcheck:Leak
+   ...
+   fun:malloc
+   ...
+   fun:__dcigettext
+   fun:g_cancellable_set_error_if_cancelled
+}
+
+{
+   glib_leak_4
+   Memcheck:Leak
+   ...
+   fun:malloc
+   ...
+   fun:__dcigettext
+   fun:iostream_close_cb
+}
+
 # Perl
 # note: Perl leaks memory by design, this just suppresses them.
 {
