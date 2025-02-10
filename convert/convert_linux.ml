@@ -131,6 +131,23 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
   (*----------------------------------------------------------------------*)
   (* Conversion step. *)
 
+  let uninstall_packages pkgs =
+    if pkgs <> [] then (
+      let cmd =
+        try Guest_packages.uninstall_command pkgs inspect.i_package_management
+        with
+        | Guest_packages.Unknown_package_manager msg
+        | Guest_packages.Unimplemented_package_manager msg ->
+          error "%s" msg
+      in
+      (try ignore (g#sh cmd)
+       with G.Error msg ->
+         warning (f_"could not uninstall packages ‘%s’: %s (ignored)")
+           (String.concat " " pkgs) msg
+      )
+    )
+  in
+
   let rec do_convert () =
     augeas_grub_configuration ();
 
@@ -237,7 +254,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
           else
             None
       ) inspect.i_apps in
-    Linux.remove g inspect.i_root xenmods;
+    uninstall_packages xenmods;
 
     (* Undo related nastiness if kmod-xenpv was installed. *)
     if xenmods <> [] then (
@@ -310,7 +327,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
         fun { G.app2_name = name } -> name = package_name
       ) inspect.i_apps in
     if has_guest_additions then
-      Linux.remove g inspect.i_root [package_name];
+      uninstall_packages [package_name];
 
     (* Guest Additions might have been installed from a tarball.  The
      * above code won't detect this case.  Look for the uninstall tool
@@ -455,8 +472,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       )
     );
 
-    let remove = !remove in
-    Linux.remove g inspect.i_root remove;
+    uninstall_packages !remove;
 
     (* VMware Tools may have been installed from a tarball, so the
      * above code won't remove it.  Look for the uninstall tool and run
@@ -503,7 +519,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
     let pkgs = List.map (fun { G.app2_name = name } -> name) pkgs in
 
     if pkgs <> [] then (
-      Linux.remove g inspect.i_root pkgs;
+      uninstall_packages pkgs;
 
       (* Installing these guest utilities automatically unconfigures
        * ttys in /etc/inittab if the system uses it. We need to put
