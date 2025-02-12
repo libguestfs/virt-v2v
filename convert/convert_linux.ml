@@ -144,7 +144,9 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
        with G.Error msg ->
          warning (f_"could not uninstall packages ‘%s’: %s (ignored)")
            (String.concat " " pkgs) msg
-      )
+      );
+      (* Reload Augeas in case anything changed. *)
+      Linux.augeas_reload g
     )
   in
 
