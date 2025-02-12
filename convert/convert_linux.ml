@@ -247,57 +247,6 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       Linux.augeas_reload g
 
   and unconfigure_xen () =
-    (* Remove kmod-xenpv-* (RHEL 3). *)
-    let xenmods =
-      List.filter_map (
-        fun { G.app2_name = name } ->
-          if name = "kmod-xenpv" || String.is_prefix name "kmod-xenpv-" then
-            Some name
-          else
-            None
-      ) inspect.i_apps in
-    uninstall_packages xenmods;
-
-    (* Undo related nastiness if kmod-xenpv was installed. *)
-    if xenmods <> [] then (
-      (* kmod-xenpv modules may have been manually copied to other kernels.
-       * Hunt them down and destroy them.
-       *)
-      let dirs = g#find "/lib/modules" in
-      let dirs = Array.to_list dirs in
-      let dirs = List.filter (fun s -> String.find s "/xenpv" >= 0) dirs in
-      let dirs = List.map ((^) "/lib/modules/") dirs in
-      let dirs = List.filter g#is_dir dirs in
-
-      (* Check it's not owned by an installed application. *)
-      let dirs = List.filter (
-        fun d -> not (Linux.is_file_owned g inspect.i_root d)
-      ) dirs in
-
-      (* Remove any unowned xenpv directories. *)
-      List.iter g#rm_rf dirs;
-
-      (* rc.local may contain an insmod or modprobe of the xen-vbd driver,
-       * added by an installation script.
-       *)
-      (try
-         let lines = g#read_lines "/etc/rc.local" in
-         let lines = Array.to_list lines in
-         let rex = PCRE.compile "\\b(insmod|modprobe)\\b.*\\bxen-vbd" in
-         let lines = List.map (
-           fun s ->
-             if PCRE.matches rex s then
-               "#" ^ s
-             else
-               s
-         ) lines in
-         let file = String.concat "\n" lines ^ "\n" in
-         g#write "/etc/rc.local" file
-       with
-         G.Error msg -> eprintf "%s: /etc/rc.local: %s (ignored)\n" prog msg
-      );
-    );
-
     if family = `SUSE_family then (
       (* Remove xen modules from INITRD_MODULES and DOMU_INITRD_MODULES. *)
       let variables = ["INITRD_MODULES"; "DOMU_INITRD_MODULES"] in
