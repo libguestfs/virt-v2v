@@ -45,10 +45,7 @@ mkdir "$os"
 
 # If the guest doesn't exist in virt-builder, skip.  This is because
 # we test some RHEL guests which most users won't have access to.
-if ! virt-builder -l "$guestname" >/dev/null 2>&1; then
-    echo "$script: test skipped because \"$guestname\" not known to virt-builder."
-    exit 77
-fi
+skip_unless_virt_builder_guest "$guestname"
 
 # Some guests need special virt-builder parameters.
 # See virt-builder --notes "$guestname"

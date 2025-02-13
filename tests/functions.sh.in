@@ -150,6 +150,53 @@ skip_if_root ()
 fi
 }
 
+# Skip if the current arch != $1.
+skip_unless_arch ()
+{
+    local m="$(uname -m)"
+    case "$1" in
+        # Some magic happens for some architectures.
+        arm)
+            if [[ ! "$m" =~ ^arm ]]; then
+                echo "$(basename $0): test skipped because the current architecture ($m) is not arm (32 bit)"
+                exit 77
+            fi
+            ;;
+        i?86)
+            if [[ ! "$m" =~ ^i?86 ]]; then
+                echo "$(basename $0): test skipped because the current architecture ($m) is not $1"
+                exit 77
+            fi
+            ;;
+        *)
+            if [ "$m" != "$1" ]; then
+                echo "$(basename $0): test skipped because the current architecture ($m) is not $1"
+                exit 77
+            fi
+            ;;
+    esac
+}
+
+# Skip if $1 is not known to virt-builder.
+skip_unless_virt_builder_guest ()
+{
+    if ! virt-builder -l "$1" >/dev/null 2>&1; then
+        echo "$(basename $0): test skipped because $1 is not known to virt-builder"
+        exit 77
+    fi
+}
+
+# Run an external command and skip if the command fails.  This can be
+# used to test if a command exists.  Normally you should use
+# `cmd --help' or `cmd --version' or similar.
+skip_unless ()
+{
+    if ! "$@"; then
+        echo "$(basename $0): test skipped because $1 is not available"
+        exit 77
+    fi
+}
+
 # Slow tests should always call this function.  (See guestfs-hacking(1)).
 slow_test ()
 {

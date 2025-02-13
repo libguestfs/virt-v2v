@@ -90,9 +90,3 @@ if HAVE_OCAMLOPT
 %.cmx: %.ml
 	$(guestfs_am_v_ocamlopt)$(OCAMLFIND) ocamlopt -package guestfs $(OCAMLFLAGS) $(OCAMLPACKAGES) -c $< -o $@
 endif
-
-# A few parts of the common/ submodule use $TEST_FUNCTIONS expecting
-# it to be replaced with the old hacky test-functions.sh script and
-# some local variables (as happens in libguestfs).  Until we can
-# replace that. use this for now.
-export TEST_FUNCTIONS := exit 77
