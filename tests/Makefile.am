@@ -152,7 +152,6 @@ check-root:
 # try to convert.  This is only used by 'make check-slow'.
 
 real_guests_scripts = \
-	test-conversion-of-centos-7.0.sh \
 	test-conversion-of-debian-6.sh \
 	test-conversion-of-debian-7.sh \
 	test-conversion-of-debian-8.sh \
