@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.7.5\n"
+"Project-Id-Version: virt-v2v 2.7.6\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-02-05 15:15+0000\n"
+"POT-Creation-Date: 2025-02-13 09:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1499,16 +1499,12 @@ msgstr ""
 msgid "don’t know how to convert UEFI guests for architecture %s"
 msgstr ""
 
-#: common/mldrivers/linux.ml:176
+#: common/mldrivers/linux.ml:150
 msgid "don’t know how to find file owner using %s"
 msgstr ""
 
-#: common/mldrivers/linux.ml:129
+#: common/mldrivers/linux.ml:103
 msgid "don’t know how to get list of files from package using %s"
-msgstr ""
-
-#: common/mldrivers/linux.ml:56
-msgid "don’t know how to remove packages using %s: packages: %s"
 msgstr ""
 
 #: common/mltools/curl.ml:82
@@ -1721,11 +1717,11 @@ msgstr ""
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
-#: common/mldrivers/linux.ml:146
+#: common/mldrivers/linux.ml:120
 msgid "internal error: is_file_owned: dpkg command returned no output"
 msgstr ""
 
-#: common/mldrivers/linux.ml:151
+#: common/mldrivers/linux.ml:125
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr ""
 
@@ -2013,7 +2009,7 @@ msgstr ""
 msgid "no .ovf file was found in %s"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:403
+#: common/mldrivers/linux_bootloaders.ml:402
 msgid "no bootloader detected"
 msgstr ""
 
