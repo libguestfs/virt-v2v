@@ -67,7 +67,7 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:9
 #, no-wrap
 msgid ""
-" Copyright (C) 2009-2023 Red Hat Inc.\n"
+" Copyright (C) 2009-2025 Red Hat Inc.\n"
 "\n"
 msgstr ""
 
@@ -1523,7 +1523,7 @@ msgstr ""
 #: docs/virt-v2v-input-xen.pod:154 docs/virt-v2v-output-local.pod:153
 #: docs/virt-v2v-output-openstack.pod:228 docs/virt-v2v-output-rhv.pod:232
 #: docs/virt-v2v-release-notes-1.42.pod:238 docs/virt-v2v-support.pod:148
-msgid "Copyright (C) 2009-2020 Red Hat Inc."
+msgid "Copyright (C) 2009-2025 Red Hat Inc."
 msgstr ""
 
 #. type: textblock
@@ -2426,7 +2426,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:423 docs/virt-v2v-inspector.pod:263
 #: docs/virt-v2v-release-notes-2.0.pod:400
-msgid "Copyright (C) 2009-2022 Red Hat Inc."
+msgid "Copyright (C) 2009-2025 Red Hat Inc."
 msgstr ""
 
 #. type: textblock
@@ -7596,7 +7596,7 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:328
-msgid "Copyright (C) 2009-2023 Red Hat Inc."
+msgid "Copyright (C) 2009-2025 Red Hat Inc."
 msgstr ""
 
 #. type: textblock
@@ -7902,7 +7902,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:199
 #: docs/virt-v2v-release-notes-2.6.pod:220 docs/virt-v2v.pod:1780
-msgid "Copyright (C) 2009-2024 Red Hat Inc."
+msgid "Copyright (C) 2009-2025 Red Hat Inc."
 msgstr ""
 
 #. type: textblock

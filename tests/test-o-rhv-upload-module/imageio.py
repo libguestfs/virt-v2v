@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- python -*-
-# Copyright (C) 2018-2021 Red Hat Inc.
+# Copyright (C) 2018-2025 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

@@ -1,6 +1,6 @@
 #!/bin/bash -
 # libguestfs virt-v2v test script
-# Copyright (C) 2014-2024 Red Hat Inc.
+# Copyright (C) 2014-2025 Red Hat Inc.
 # Copyright (C) 2015 Parallels IP Holdings GmbH.
 #
 # This program is free software; you can redistribute it and/or modify
