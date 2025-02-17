@@ -65,7 +65,6 @@ EXTRA_DIST = \
 	.gitignore \
 	bugs-in-changelog.sh \
 	build-aux/config.rpath \
-	cfg.mk \
 	check-mli.sh \
 	common/.gitignore \
 	common/README \
