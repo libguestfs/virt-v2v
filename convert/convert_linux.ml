@@ -825,27 +825,6 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
          *)
         (try g#modprobe "loop" with G.Error _ -> ());
 
-        (* On RHEL 3 we have to take extra gritty to get a working
-         * loopdev.  mkinitrd runs the nash command `findlodev'
-         * which does this:
-         *
-         * for (devNum = 0; devNum < 256; devNum++) {
-         *   sprintf(devName, "/dev/loop%s%d", separator, devNum);
-         *   if ((fd = open(devName, O_RDONLY)) < 0) return 0;
-         *   if (ioctl(fd, LOOP_GET_STATUS, &loopInfo)) {
-         *     close(fd);
-         *     printf("%s\n", devName);
-         *     return 0;
-         * // etc
-         *
-         * In a modern kernel, /dev/loop<N> isn't created until it is
-         * used.  But we can create /dev/loop0 manually.  Note we have
-         * to do this in the appliance /dev.  (RHBZ#1171130)
-         *)
-        if family = `RHEL_family && inspect.i_major_version = 3 then
-          ignore (g#debug "sh" [| "mknod"; "-m"; "0666";
-                                  "/dev/loop0"; "b"; "7"; "0" |]);
-
         (* RHEL 4 mkinitrd determines if the root filesystem is on LVM
          * by checking if the device name (after following symlinks)
          * starts with /dev/mapper. However, on recent kernels/udevs,
