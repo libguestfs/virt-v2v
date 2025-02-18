@@ -56,18 +56,18 @@ let iso_time =
 
 (* Guess vmtype based on the guest inspection data. *)
 let get_vmtype = function
-  (* Special cases for RHEL 3 & RHEL 4. *)
-  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = (3|4);
+  (* Special cases for RHEL 4. *)
+  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = 4;
       i_product_name = product }
        when String.find product "ES" >= 0 ->
      `Server
 
-  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = (3|4);
+  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = 4;
       i_product_name = product }
        when String.find product "AS" >= 0 ->
      `Server
 
-  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = (3|4) } ->
+  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = 4 } ->
      `Desktop
 
   (* For Windows (and maybe Linux in future, but it is not set now),
@@ -263,14 +263,6 @@ and get_ostype = function
  *   https://bugzilla.redhat.com/show_bug.cgi?id=1219857#c9
  *)
 and get_ovirt_osid = function
-  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = 3;
-      i_arch = "i386" } ->
-    9
-
-  | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = 3;
-      i_arch = "x86_64" } ->
-    15
-
   | { i_type = "linux"; i_distro = ("rhel"|"centos"); i_major_version = 4;
       i_arch = "i386" } ->
     8
