@@ -369,8 +369,10 @@ $g->ln_s ('/bin/test1', '/bin/test5');
 $g->mkfifo (0777, '/bin/test6');
 $g->mknod (0777, 10, 10, '/bin/test7');
 
-# Virt-v2v needs an RPM command, or at least something which acts
-# similarly, and also a dracut command.
+# Virt-v2v needs a /bin/sh, an RPM command and a dracut command, or at
+# least something which acts similarly to those.
+$g->upload ('fedora-static-bin', '/bin/sh');
+$g->chmod (0777, '/bin/sh');
 $g->upload ('fedora-static-bin', '/bin/rpm');
 $g->chmod (0777, '/bin/rpm');
 $g->upload ('fedora-static-bin', '/sbin/dracut');
