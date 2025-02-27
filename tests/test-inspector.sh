@@ -27,7 +27,7 @@ set -e
 set -x
 
 skip_if_skipped
-requires test -f ../test-data/phony-guests/windows.img
+requires test -s ../test-data/phony-guests/windows.img
 
 img="$abs_top_builddir/test-data/phony-guests/windows.img"
 

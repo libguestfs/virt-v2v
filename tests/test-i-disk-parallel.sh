@@ -26,7 +26,7 @@ set -x
 
 skip_if_skipped
 windows=../test-data/phony-guests/windows.img
-requires test -f $windows
+requires test -s $windows
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 

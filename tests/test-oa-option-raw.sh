@@ -26,7 +26,7 @@ set -x
 
 skip_if_skipped
 # No support for either network or qcow2.
-requires test -f ../test-data/phony-guests/windows.img
+requires test -s ../test-data/phony-guests/windows.img
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
 f=../test-data/phony-guests/windows.img

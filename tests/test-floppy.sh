@@ -26,7 +26,7 @@ set -e
 set -x
 
 skip_if_skipped
-requires test -f ../test-data/phony-guests/windows.img
+requires test -s ../test-data/phony-guests/windows.img
 requires test -f ../test-data/phony-guests/blank-disk.img
 
 libvirt_uri="test://$abs_builddir/test-floppy.xml"

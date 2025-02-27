@@ -26,7 +26,7 @@ set -x
 
 skip_if_skipped
 img_base="$abs_top_builddir/test-data/phony-guests/windows.img"
-requires test -f $img_base
+requires test -s $img_base
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"

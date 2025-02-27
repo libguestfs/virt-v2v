@@ -27,7 +27,7 @@ set -x
 
 skip_if_skipped
 requires virt-v2v --help
-requires test -f ../test-data/phony-guests/windows.img
+requires test -s ../test-data/phony-guests/windows.img
 requires test -f ../test-data/phony-guests/blank-disk.img
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"

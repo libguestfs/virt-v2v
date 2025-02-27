@@ -25,7 +25,7 @@ set -e
 set -x
 
 skip_if_skipped
-requires test -f ../test-data/phony-guests/windows.img
+requires test -s ../test-data/phony-guests/windows.img
 
 # You shouldn't be running the tests as root anyway, but in this case
 # it's especially bad because we don't want to start creating guests
