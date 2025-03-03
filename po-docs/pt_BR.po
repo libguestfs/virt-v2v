@@ -5,16 +5,16 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-01-08 12:25+0000\n"
-"PO-Revision-Date: 2017-01-29 09:50+0000\n"
-"Last-Translator: Rodrigo de Araujo Sousa Fonseca "
-"<rodrigodearaujo@fedoraproject.org>\n"
-"Language-Team: Portuguese (Brazil)\n"
+"PO-Revision-Date: 2025-03-03 21:08+0000\n"
+"Last-Translator: Krascovict Petrov <krascovict@yandex.ru>\n"
+"Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
+"projects/libguestfs/virt-v2v-docs-master/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -46,7 +46,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:188
 #: docs/virt-v2v-release-notes-2.6.pod:192
 msgid "comment"
-msgstr ""
+msgstr "comentário"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:3
@@ -264,7 +264,7 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:84
 #: docs/virt-v2v-output-openstack.pod:92
 msgid "For example:"
-msgstr ""
+msgstr "Por exemplo:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:86
@@ -1476,7 +1476,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:180 docs/virt-v2v-support.pod:137
 #: docs/virt-v2v.pod:1731
 msgid "SEE ALSO"
-msgstr ""
+msgstr "VEJA TAMBÉM"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:50
@@ -1659,7 +1659,7 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:61 docs/virt-v2v-inspector.pod:129
 #: docs/virt-v2v.pod:165
 msgid "OPTIONS"
-msgstr ""
+msgstr "OPÇÕES"
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:65 docs/virt-v2v-inspector.pod:133
@@ -2190,7 +2190,7 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:301 docs/virt-v2v-inspector.pod:156
 #: docs/virt-v2v.pod:872
 msgid "Display version number and exit."
-msgstr ""
+msgstr "Exibir o número da versão e sai."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:303 docs/virt-v2v-inspector.pod:207
@@ -2216,7 +2216,7 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:311 docs/virt-v2v-inspector.pod:160
 #: docs/virt-v2v.pod:882
 msgid "Enable tracing of libguestfs API calls."
-msgstr ""
+msgstr "Activar o rastreio de libguestfs chamadas de API."
 
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:315 docs/virt-v2v.pod:1488
