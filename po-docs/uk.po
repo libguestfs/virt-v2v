@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-05 06:38+0000\n"
+"PO-Revision-Date: 2025-03-05 13:50+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -723,11 +723,14 @@ msgid ""
 "features (see L<qemu-ga(8)>).  This operation also injects a firstboot "
 "script so that the Guest Agent is installed when the guest boots."
 msgstr ""
+"Зауважте, що для повного перетворення гостьової системи Windows зі "
+"стороннього гіпервізора, подібного до VMware (що потребує багатьох інших дій)"
+" вам слід скористатися замість цього інструментом L<virt-v2v(1)>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:222
 msgid "B<--inject-virtio-win> METHOD"
-msgstr ""
+msgstr "B<--inject-virtio-win> МЕТОД"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:224
