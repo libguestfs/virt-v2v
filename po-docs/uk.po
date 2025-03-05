@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-01-14 18:38+0000\n"
+"PO-Revision-Date: 2025-03-05 06:38+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -281,6 +281,8 @@ msgid ""
 "Change the owner user and group ID of a file or directory in the guest.  "
 "Note:"
 msgstr ""
+"Змінити користувача і ідентифікатор групи власника для файла або каталогу у "
+"гостьовій системі. Зауваження:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:73
@@ -315,6 +317,9 @@ msgid ""
 "Only numeric UIDs and GIDs will work, and these may not be the same inside "
 "the guest as on the host."
 msgstr ""
+"Можна використовувати лише числові ідентифікатори користувача і групи, ці "
+"ідентифікатори у гостьовій системі можуть не збігатися з ідентифікаторами в "
+"основній."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:80
@@ -343,10 +348,8 @@ msgstr ""
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:88
 #: common/mlcustomize/v2v-customize-options.pod:88
-#, fuzzy
-#| msgid "See also I<--run>."
 msgid "See also: I<--upload>."
-msgstr "Див. також I<--run>."
+msgstr "Див. також I<--upload>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:90
@@ -677,7 +680,7 @@ msgstr ""
 #. type: =item
 #: common/mlcustomize/customize-options.pod:196
 msgid "B<--inject-blnsvr> METHOD"
-msgstr ""
+msgstr "B<--inject-blnsvr> МЕТОД"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:198
@@ -686,13 +689,16 @@ msgid ""
 "operation also injects a firstboot script so that the Balloon Server is "
 "installed when the guest boots."
 msgstr ""
+"Вставити Balloon Server (F<blnsvr.exe>) до гостьової системи Windows. У "
+"результаті цієї дії також буде вставлено скрипт першого завантаження, щоб "
+"Balloon Server було встановлено при завантаженні гостьової системи."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:202
 #: common/mlcustomize/customize-options.pod:216
 msgid ""
 "The parameter is the same as used by the I<--inject-virtio-win> operation."
-msgstr ""
+msgstr "Параметр збігається із використаним у дії I<--inject-virtio-win>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:204
