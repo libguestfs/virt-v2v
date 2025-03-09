@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-09 14:57+0000\n"
+"PO-Revision-Date: 2025-03-09 16:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -793,6 +793,8 @@ msgid ""
 "The literal string C<\"osinfo\"> means to use the libosinfo database to "
 "locate the drivers.  (See L<osinfo-query(1)>."
 msgstr ""
+"Рядок C<\"osinfo\"> буквально означає, що слід використовувати базу даних "
+"libosinfo для пошуку драйверів. (Див. L<osinfo-query(1)>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:256
@@ -896,25 +898,18 @@ msgstr "Див. також L</LOG FILE>."
 #. type: =item
 #: common/mlcustomize/customize-options.pod:293
 #: common/mlcustomize/v2v-customize-options.pod:233
-#, fuzzy
-#| msgid "B<--selinux-relabel>"
 msgid "B<--no-selinux-relabel>"
-msgstr "B<--selinux-relabel>"
+msgstr "B<--no-selinux-relabel>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:295
 #: common/mlcustomize/v2v-customize-options.pod:235
 msgid "Do not attempt to correct the SELinux labels of files in the guest."
-msgstr ""
+msgstr "Не намагатися виправити мітки SELinux файлів у гостьовій системі."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:297
 #: common/mlcustomize/v2v-customize-options.pod:237
-#, fuzzy
-#| msgid ""
-#| "This will attempt to relabel files immediately, but if the operation "
-#| "fails this will instead touch F</.autorelabel> on the image to schedule a "
-#| "relabel operation for the next time the image boots."
 msgid ""
 "In such guests that support SELinux, customization automatically relabels "
 "files so that they have the correct SELinux label.  (The relabeling is "
@@ -923,20 +918,20 @@ msgid ""
 "for the next time the image boots.)  This option disables the automatic "
 "relabeling."
 msgstr ""
-"Якщо буде використано цей параметр, програма спробує змінити мітки файлів "
-"негайно, але якщо цього зробити не вдасться, вона змінить часову мітку файла "
-"F</.autorelabel> на образі, щоб дію зі зміни міток було заплановано на "
-"наступне завантаження образу."
+"У гостьових системах, де передбачено підтримку SELinux, під час "
+"налаштовування буде автоматично змінено мітки файлів так, щоб вони мали "
+"належні мітки SELinux. Зміну міток буде виконано негайно, але якщо цього "
+"зробити не вдасться, вона змінить часову мітку файла F</.autorelabel> на "
+"образі, щоб дію зі зміни міток було заплановано на наступне завантаження "
+"образу. Цей параметр вимикає автоматичну зміну міток."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:304
 #: common/mlcustomize/v2v-customize-options.pod:244
-#, fuzzy
-#| msgid "You should only use this option for guests which support SELinux."
 msgid "The option is a no-op for guests that do not support SELinux."
 msgstr ""
-"Вам слід використовувати цей параметр лише для гостьових систем із "
-"підтримкою SELinux."
+"Параметр ні на що не вплине у гостьових системах, де не передбачено "
+"підтримки SELinux."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:306
@@ -1177,7 +1172,7 @@ msgstr "B<--selinux-relabel>"
 #: common/mlcustomize/customize-options.pod:399
 #: common/mlcustomize/v2v-customize-options.pod:339
 msgid "This is a compatibility option that does nothing."
-msgstr ""
+msgstr "Це параметр, який залишено для сумісності. Він ні на що не впливає."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:401
@@ -1301,26 +1296,22 @@ msgstr ""
 #. type: =item
 #: common/mlcustomize/customize-options.pod:442
 #: common/mlcustomize/v2v-customize-options.pod:382
-#, fuzzy
-#| msgid "B<--copy-in> LOCALPATH:REMOTEDIR"
 msgid "B<--tar-in> TARFILE:REMOTEDIR"
-msgstr "B<--copy-in> ЛОКАЛЬНИЙ_ШЛЯХ:ВІДДАЛЕНИЙ_КАТАЛОГ"
+msgstr "B<--tar-in> ФАЙЛ-TAR:ВІДДАЛЕНИЙ-КАТАЛОГ"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:444
 #: common/mlcustomize/v2v-customize-options.pod:384
-#, fuzzy
-#| msgid ""
-#| "Copy local files or directories recursively into the disk image, placing "
-#| "them in the directory C<REMOTEDIR> (which must exist)."
 msgid ""
 "Copy local files or directories from a local tar file called C<TARFILE> into "
 "the disk image, placing them in the directory C<REMOTEDIR> (which must "
 "exist).  Note that the tar file must be uncompressed (F<.tar.gz> files will "
 "not work here)"
 msgstr ""
-"Скопіювати локальні файли або каталоги рекурсивно до образу диска, "
-"розташувавши його у каталозі C<ВІДДАЛЕНИЙ_КАТАЛОГ> (який має існувати)."
+"Скопіювати локальні файли або каталоги з локального файла tar із назвою "
+"C<ФАЙЛ-TAR> рекурсивно до образу диска, розташувавши його у каталозі "
+"C<ВІДДАЛЕНИЙ_КАТАЛОГ> (який має існувати). Зауважте, що файл tar має бути не "
+"стиснуто (файли F<.tar.gz> не працюватимуть)"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:450
@@ -1527,39 +1518,27 @@ msgstr "B<--key> ВАРІАНТ"
 
 #. type: textblock
 #: common/options/key-option.pod:3
-#, fuzzy
-#| msgid ""
-#| "Specify a key for LUKS, to automatically open a LUKS device when using "
-#| "the inspection.  C<ID> can be either the libguestfs device name, or the "
-#| "UUID of the LUKS device."
 msgid ""
 "Specify a key for LUKS, to automatically open a LUKS device when using the "
 "inspection."
 msgstr ""
 "Вказати ключ для LUKS для автоматичного відкриття пристрою LUKS при "
-"використанні інспектування. Значенням C<ІДЕНТИФІКАТОР> може бути або назва "
-"пристрою libguestfs, або UUID пристрою LUKS."
+"використанні інспектування."
 
 #. type: =item
 #: common/options/key-option.pod:8
-#, fuzzy
-#| msgid "B<--key> C<ID>:key:KEY_STRING"
 msgid "B<--key> NAMEB<:key:>KEY_STRING"
-msgstr "B<--key> C<ІДЕНТИФІКАТОР>:key:РЯДОК_КЛЮЧА"
+msgstr "B<--key> НАЗВАB<:key:>РЯДОК_КЛЮЧА"
 
 #. type: =item
 #: common/options/key-option.pod:10
-#, fuzzy
-#| msgid "B<--key> C<ID>:key:KEY_STRING"
 msgid "B<--key> UUIDB<:key:>KEY_STRING"
-msgstr "B<--key> C<ІДЕНТИФІКАТОР>:key:РЯДОК_КЛЮЧА"
+msgstr "B<--key> UUIDB<:key:>РЯДОК_КЛЮЧА"
 
 #. type: =item
 #: common/options/key-option.pod:12
-#, fuzzy
-#| msgid "B<--key> C<ID>:key:KEY_STRING"
 msgid "B<--key> B<all:key:>KEY_STRING"
-msgstr "B<--key> C<ІДЕНТИФІКАТОР>:key:РЯДОК_КЛЮЧА"
+msgstr "B<--key> B<all:key:>РЯДОК_КЛЮЧА"
 
 #. type: textblock
 #: common/options/key-option.pod:14
@@ -1567,6 +1546,8 @@ msgid ""
 "C<NAME> is the libguestfs device name (eg. C</dev/sda1>).  C<UUID> is the "
 "device UUID.  C<all> means try the key against any encrypted device."
 msgstr ""
+"C<НАЗВА> є назвою пристрою у libguestfs (наприклад C</dev/sda1>). C<UUID> — "
+"UUID пристрою. C<all> означає «спробувати ключ для шифрованого пристрою»."
 
 #. type: textblock
 #: common/options/key-option.pod:18
@@ -1575,24 +1556,18 @@ msgstr "Використовувати вказаний C<РЯДОК_КЛЮЧА>
 
 #. type: =item
 #: common/options/key-option.pod:20
-#, fuzzy
-#| msgid "B<--key> C<ID>:file:FILENAME"
 msgid "B<--key> NAMEB<:file:>FILENAME"
-msgstr "B<--key> C<ІДЕНТИФІКАТОР>:file:НАЗВА_ФАЙЛА"
+msgstr "B<--key> НАЗВАB<:file:>НАЗВА-ФАЙЛА"
 
 #. type: =item
 #: common/options/key-option.pod:22
-#, fuzzy
-#| msgid "B<--key> C<ID>:file:FILENAME"
 msgid "B<--key> UUIDB<:file:>FILENAME"
-msgstr "B<--key> C<ІДЕНТИФІКАТОР>:file:НАЗВА_ФАЙЛА"
+msgstr "B<--key> UUIDB<:file:>НАЗВА-ФАЙЛА"
 
 #. type: =item
 #: common/options/key-option.pod:24
-#, fuzzy
-#| msgid "B<--key> C<ID>:file:FILENAME"
 msgid "B<--key> B<all:file:>FILENAME"
-msgstr "B<--key> C<ІДЕНТИФІКАТОР>:file:НАЗВА_ФАЙЛА"
+msgstr "B<--key> B<all:file:>НАЗВА-ФАЙЛА"
 
 #. type: textblock
 #: common/options/key-option.pod:26
@@ -1602,19 +1577,17 @@ msgstr "Прочитати пароль з файла F<НАЗВА_ФАЙЛА>."
 #. type: =item
 #: common/options/key-option.pod:28
 msgid "B<--key> NAMEB<:clevis>"
-msgstr ""
+msgstr "B<--key> НАЗВАB<:clevis>"
 
 #. type: =item
 #: common/options/key-option.pod:30
 msgid "B<--key> UUIDB<:clevis>"
-msgstr ""
+msgstr "B<--key> UUIDB<:clevis>"
 
 #. type: =item
 #: common/options/key-option.pod:32
-#, fuzzy
-#| msgid "B<-i> B<local>"
 msgid "B<--key> B<all:clevis>"
-msgstr "B<-i> B<local>"
+msgstr "B<--key> B<all:clevis>"
 
 #. type: textblock
 #: common/options/key-option.pod:34
@@ -1623,6 +1596,9 @@ msgid ""
 "network.  Please refer to L<guestfs(3)/ENCRYPTED DISKS> for more information "
 "on network-bound disk encryption (NBDE)."
 msgstr ""
+"Спробувати розблокувати пристрій без пароля за допомогою Clevis, з мережі. "
+"Будь ласка, зверніться до розділу L<guestfs(3)/ШИФРОВАНІ ДИСКИ>. щоб "
+"дізнатися більше про пов'язане з мережею шифрування дисків (NBDE)."
 
 #. type: textblock
 #: common/options/key-option.pod:38
