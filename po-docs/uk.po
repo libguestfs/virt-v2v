@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-09 16:41+0000\n"
+"PO-Revision-Date: 2025-03-09 20:29+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -1916,19 +1916,16 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:36
 msgid "If the guest has been copied to local libvirt then:"
-msgstr ""
+msgstr "Якщо гостьову систему було скопійовано до локальної libvirt, тоді:"
 
 #. type: verbatim
 #: docs/virt-v2v-in-place.pod:38
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v -i libvirtxml guest.xml [-o options ...]\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v-in-place -i libvirt guest\n"
 "\n"
 msgstr ""
-" virt-v2v -i libvirtxml гостьова_система.xml [-o параметри ...]\n"
+" virt-v2v-in-place -i libvirt guest\n"
 "\n"
 
 #. type: =head2
@@ -2013,7 +2010,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-in-place.pod:77 docs/virt-v2v.pod:225
 msgid "B<--block-driver> B<virtio-scsi>"
-msgstr ""
+msgstr "B<--block-driver> B<virtio-scsi>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:79 docs/virt-v2v.pod:227
