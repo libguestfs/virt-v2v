@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-05 13:50+0000\n"
+"PO-Revision-Date: 2025-03-09 14:57+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -709,11 +709,14 @@ msgid ""
 "hypervisor like VMware (which involves many other operations)  you should "
 "use the L<virt-v2v(1)> tool instead of this."
 msgstr ""
+"Зауважте, що для виконання повного перетворення гостьової системи Windows зі "
+"стороннього гіпервізора, подібного до VMware (що потребує виконання багатьох "
+"інших дій), вам слід скористатися замість цього інструментом L<virt-v2v(1)>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:208
 msgid "B<--inject-qemu-ga> METHOD"
-msgstr ""
+msgstr "B<--inject-qemu-ga> МЕТОД"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:210
@@ -740,16 +743,21 @@ msgid ""
 "supports virtio (such as qemu/KVM).  The operation also adjusts the Windows "
 "Registry so that the drivers are installed when the guest boots."
 msgstr ""
+"Вставити драйвери virtio-win до гостьової системи Windows. Ці драйвери "
+"додають прискорені драйвери virtio придатні при запуску на основі "
+"гіпервізора, у якому передбачено підтримку virtio (зокрема qemu/KVM). У "
+"результаті дії буде також скориговано регістр Windows, щоб драйвери було "
+"встановлено при завантаженні гостьової системи."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:230
 msgid "The parameter can be one of:"
-msgstr ""
+msgstr "Можливі значення параметра:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:234
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:236
@@ -757,11 +765,13 @@ msgid ""
 "The path to the ISO image containing the virtio-win drivers (eg. F</usr/"
 "share/virtio-win/virtio-win.iso>)."
 msgstr ""
+"Шлях до образу ISO, що містить драйвери virtio-win (наприклад F</usr/share/"
+"virtio-win/virtio-win.iso>)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:239
 msgid "DIR"
-msgstr ""
+msgstr "КАТ"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:241
@@ -769,11 +779,13 @@ msgid ""
 "The directory containing the unpacked virtio-win drivers (eg. F</usr/share/"
 "virtio-win>)."
 msgstr ""
+"Каталог, де зберігаються розпаковані драйвери virtio-win (наприклад F</usr/"
+"share/virtio-win>)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:244
 msgid "B<\"osinfo\">"
-msgstr ""
+msgstr "B<\"osinfo\">"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:246
