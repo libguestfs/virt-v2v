@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-09 16:24+0000\n"
+"PO-Revision-Date: 2025-03-09 16:41+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -1606,6 +1606,9 @@ msgid ""
 "Note that if any such option is present on the command line, QEMU user "
 "networking will be automatically enabled for the libguestfs appliance."
 msgstr ""
+"Зауважте, що якщо у рядку команди буде будь-який з цих параметрів, буде "
+"автоматично увімкнено роботу у мережі QEMU для користувача для екземпляра "
+"libguestfs."
 
 #. type: =item
 #: common/options/keys-from-stdin-option.pod:1 docs/virt-v2v-inspector.pod:189
@@ -1816,10 +1819,10 @@ msgstr "© Red Hat Inc., 2009–2020"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:3
-#, fuzzy
-#| msgid "virt-v2v - Convert a guest to use KVM"
 msgid "virt-v2v-in-place - Convert a guest to use KVM in-place"
-msgstr "virt-v2v - перетворення гостьової системи для використання KVM"
+msgstr ""
+"virt-v2v-in-place - перетворення гостьової системи для використання KVM на "
+"місці"
 
 #. type: =head1
 #: docs/virt-v2v-in-place.pod:5 docs/virt-v2v-input-vmware.pod:5
@@ -1831,12 +1834,7 @@ msgstr "КОРОТКИЙ ОПИС"
 
 #. type: verbatim
 #: docs/virt-v2v-in-place.pod:7
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v [-i mode] [other -i* options]\n"
-#| "          [-o mode] [other -o* options]\n"
-#| "          [guest|filename]\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v-in-place -i disk [other -i* options]\n"
 "                   [virt-customize options]\n"
@@ -1844,9 +1842,10 @@ msgid ""
 "                   [-O output.xml]\n"
 "\n"
 msgstr ""
-" virt-v2v [-i режим] [інші параметри -i*]\n"
-"          [-o режим] [інші параметри -o*]\n"
-"          [гостьова_система|назва_файла]\n"
+" virt-v2v-in-place -i диск [інші параметриr -i*]\n"
+"                   [параметри virt-customize]\n"
+"                   назва_файла\n"
+"                   [-O результат.xml]\n"
 "\n"
 
 #. type: verbatim
@@ -1859,6 +1858,11 @@ msgid ""
 "                   [-O output.xml]\n"
 "\n"
 msgstr ""
+" virt-v2v-in-place -i libvirt|libvirtxml [інші параметри -i*]\n"
+"                   [параметри virt-customize]\n"
+"                   гостьова_система\n"
+"                   [-O результат.xml]\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:19
@@ -1866,6 +1870,9 @@ msgid ""
 "Virt-v2v-in-place converts a single guest from a foreign hypervisor to run "
 "on KVM.  It does this conversion in place, modifying the original disk."
 msgstr ""
+"Virt-v2v-in-place перетворює одну гостьову систему зі стороннього "
+"гіпервізора для запуску у KVM. Перетворення виконується на місці, зі "
+"внесенням змін до початкового диска."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:23
@@ -1873,13 +1880,13 @@ msgid ""
 "This manual page only documents the differences between this tool and virt-"
 "v2v.  You should read L<virt-v2v(1)> first."
 msgstr ""
+"На цій сторінці документації наведено дані щодо відмінностей між цим "
+"інструментом і virt-v2v. Вам слід спочатку прочитати сторінку L<virt-v2v(1)>."
 
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:26
-#, fuzzy
-#| msgid "Set the input method to I<disk>."
 msgid "Selecting the input disk"
-msgstr "Встановити метод введення I<disk>."
+msgstr "Вибір диска вхідних даних"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:28
@@ -1887,11 +1894,14 @@ msgid ""
 "You normally run virt-v2v with one or more I<-i*> options controlling the "
 "input mode.  Virt-v2v-in-place can only convert guests stored in local files."
 msgstr ""
+"Зазвичай, virt-v2v запускають з одним або декількома параметрами I<-i*>, що "
+"керують режимом вхідних даних. Virt-v2v-in-place може перетворювати лише "
+"гостьові системи, що зберігаються у локальних файлах."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:32
 msgid "This command will do an in-place conversion of F<filename.img>:"
-msgstr ""
+msgstr "Ця команда виконує перетворення на місці файла F<назва_файла.img>:"
 
 #. type: verbatim
 #: docs/virt-v2v-in-place.pod:34
@@ -1900,6 +1910,8 @@ msgid ""
 " virt-v2v-in-place -i disk filename.img\n"
 "\n"
 msgstr ""
+" virt-v2v-in-place -i disk назва_файла.img\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:36
@@ -2016,6 +2028,8 @@ msgid ""
 "Note this has no effect for Linux guests at the moment.  That may be added "
 "in future."
 msgstr ""
+"Зауважте, що це не працює у поточній версії для гостьових систем Linux. "
+"Підтримку може бути додано у майбутніх версіях."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:85 docs/virt-v2v-inspector.pod:181
