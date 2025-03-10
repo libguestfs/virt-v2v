@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-10 15:05+0000\n"
+"PO-Revision-Date: 2025-03-10 15:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -1969,6 +1969,10 @@ msgid ""
 "backup before trying a virt-v2v-in-place conversion.  And you should check "
 "the exit code is zero before using the disk image after a conversion."
 msgstr ""
+"Якщо образ містить важливу інформацію, вам слід переконатися, що у вас є "
+"резервна копія, перш ніж пробувати перетворення virt-v2v-in-place. І вам "
+"варто перевірити, чи є нульовим код виходу, перш ніж використовувати образ "
+"диска після перетворення."
 
 #. type: =head1
 #: docs/virt-v2v-in-place.pod:59 docs/virt-v2v.pod:80
@@ -2013,7 +2017,7 @@ msgstr "Див. I<--network> нижче."
 #. type: =item
 #: docs/virt-v2v-in-place.pod:75 docs/virt-v2v.pod:223
 msgid "B<--block-driver> B<virtio-blk>"
-msgstr ""
+msgstr "B<--block-driver> B<virtio-blk>"
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:77 docs/virt-v2v.pod:225
@@ -2026,6 +2030,8 @@ msgid ""
 "When choosing a block driver for Windows guests, prefer C<virtio-blk> or "
 "C<virtio-scsi>.  The default is C<virtio-blk>."
 msgstr ""
+"Вибираючи блоковий драйвер для гостьових систем Windows, віддавайте перевагу "
+"C<virtio-blk> або C<virtio-scsi>. Типовим є C<virtio-blk>."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:82 docs/virt-v2v.pod:230
@@ -2188,6 +2194,8 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:141
 msgid "Only local libvirt connections to locally stored disks can be used."
 msgstr ""
+"Можна використовувати лише локальні з'єднання libvirt з локальними сховищами "
+"даних на дисках."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:143 docs/virt-v2v.pod:320
@@ -2221,15 +2229,12 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-in-place.pod:154
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v -it vddk -io \"?\"\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v-in-place -it disk -io \"?\"\n"
 "\n"
 msgstr ""
-" virt-v2v -it vddk -io \"?\"\n"
+" virt-v2v-in-place -it disk -io \"?\"\n"
 "\n"
 
 #. type: =item
@@ -2239,13 +2244,6 @@ msgstr "B<-ip> назва_файла"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:158
-#, fuzzy
-#| msgid ""
-#| "Supply a file containing a password to be used when connecting to the "
-#| "target hypervisor.  If this is omitted then the input hypervisor may ask "
-#| "for the password interactively.  Note the file should contain the whole "
-#| "password, B<without any trailing newline>, and for security the file "
-#| "should have mode C<0600> so that others cannot read it."
 msgid ""
 "Supply a file containing a password to be used when connecting to the "
 "source.  If this is omitted then the input hypervisor may ask for the "
@@ -2254,11 +2252,11 @@ msgid ""
 "C<0600> so that others cannot read it."
 msgstr ""
 "Надає файл, який містить пароль і яким слід скористатися для з'єднання із "
-"рушієм гіпервізора призначення. Якщо не вказано, гіпервізор вхідних даних "
-"може надіслати запит щодо пароля у інтерактивному режимі. Зауважте, що файл "
-"має містити увесь пароль, B<без завершального символу нового рядка>, і, з "
-"міркувань безпеки, для файла має бути встановлено режим доступу C<0600>, щоб "
-"інші користувачі не змогли його читати."
+"джерелом. Якщо не вказано, гіпервізор вхідних даних може надіслати запит "
+"щодо пароля у інтерактивному режимі. Зауважте, що файл має містити увесь "
+"пароль, B<без завершального символу нового рядка>, і, з міркувань безпеки, "
+"для файла має бути встановлено режим доступу C<0600>, щоб інші користувачі "
+"не змогли його читати."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:164 docs/virt-v2v.pod:386
@@ -2297,10 +2295,8 @@ msgstr "Прив'язка MAC-адреси NIC до мережі або міст
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:178 docs/virt-v2v-in-place.pod:226
-#, fuzzy
-#| msgid "See L</Networks and bridges> below."
 msgid "See L<virt-v2v(1)/Networks and bridges>."
-msgstr "Див. L</Мережі і містки> нижче."
+msgstr "Див. L<virt-v2v(1)/Мережі і містки>."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:180 docs/virt-v2v.pod:402
@@ -2361,17 +2357,13 @@ msgstr "B<--machine-readable>=формат"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:202
-#, fuzzy
-#| msgid ""
-#| "This option is used to make the output more machine friendly when being "
-#| "parsed by other programs.  See L</Machine readable output> below."
 msgid ""
 "This option is used to make the output more machine friendly when being "
 "parsed by other programs.  See L<virt-v2v(1)/Machine readable output>."
 msgstr ""
 "За допомогою цього параметра можна зробити виведені дані придатнішими для "
 "обробки комп'ютером, якщо для цієї обробки використовуються інші програми. "
-"Див. L</Придатне до читання компʼютером виведення> нижче."
+"Див. L<virt-v2v(1)/Придатне до читання компʼютером виведення>."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:206 docs/virt-v2v.pod:428
@@ -2426,15 +2418,13 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:228
-#, fuzzy
-#| msgid "B<-n> out"
 msgid "B<-O> output.xml"
-msgstr "B<-n> вихід"
+msgstr "B<-O> результат.xml"
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:230 docs/virt-v2v-inspector.pod:141
 msgid "B<-O ->"
-msgstr ""
+msgstr "B<-O ->"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:232
