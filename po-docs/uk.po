@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-10 15:21+0000\n"
+"PO-Revision-Date: 2025-03-10 15:49+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -2433,6 +2433,9 @@ msgid ""
 "the named XML file, or to stdout if I<-O -> is used.  This is in the same "
 "format as L<virt-v2v-inspector(1)>."
 msgstr ""
+"Якщо вказано цей параметр, записати метадані про гостьову систему після "
+"перетворення до вказаного файла XML або до stdout, якщо використано I<-O ->. "
+"Це такий самий формат, як L<virt-v2v-inspector(1)>."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:236 docs/virt-v2v.pod:803
@@ -2441,19 +2444,14 @@ msgstr "B<--print-source>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:238
-#, fuzzy
-#| msgid ""
-#| "Print information about the source guest and stop.  This option is useful "
-#| "when you are setting up network and bridge maps.  See L</Networks and "
-#| "bridges>."
 msgid ""
 "Print information about the source guest and stop.  This option is useful "
 "when you are setting up network and bridge maps.  See L<virt-v2v(1)/Networks "
 "and bridges>."
 msgstr ""
 "Вивести дані щодо початкової гостьової системи і припинити обробку. Цей "
-"параметр корисний, якщо ви налаштовуєте прив'язки мереж та містків. Див. L</"
-"Мереші і містки>."
+"параметр корисний, якщо ви налаштовуєте прив'язки мереж та містків. Див. L"
+"<virt-v2v(1)/Мережі і містки>."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:242 docs/virt-v2v-inspector.pod:201
@@ -2626,10 +2624,8 @@ msgstr "Показати дані щодо версії і завершити р
 #. type: =item
 #: docs/virt-v2v-in-place.pod:303 docs/virt-v2v-inspector.pod:207
 #: docs/virt-v2v.pod:874
-#, fuzzy
-#| msgid "B<--help>"
 msgid "B<--wrap>"
-msgstr "B<--help>"
+msgstr "B<--wrap>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:305 docs/virt-v2v.pod:876
@@ -2689,35 +2685,7 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-in-place.pod:325 docs/virt-v2v.pod:1494
-#, fuzzy, no-wrap
-#| msgid ""
-#| " <domain type='kvm'>\n"
-#| "   <name> NAME </name>\n"
-#| "   <memory>1048576</memory>\n"
-#| "   <vcpu>2</vcpu>\n"
-#| "   <os>\n"
-#| "     <type>hvm</type>\n"
-#| "     <boot dev='hd'/>\n"
-#| "   </os>\n"
-#| "   <features>\n"
-#| "     <acpi/>\n"
-#| "     <apic/>\n"
-#| "     <pae/>\n"
-#| "   </features>\n"
-#| "   <devices>\n"
-#| "     <disk type='file' device='disk'>\n"
-#| "       <driver name='qemu' type='raw'/>\n"
-#| "       <source file='/path/to/disk/image'/>\n"
-#| "       <target dev='hda' bus='ide'/>\n"
-#| "     </disk>\n"
-#| "     <interface type='network'>\n"
-#| "       <mac address='52:54:00:01:02:03'/>\n"
-#| "       <source network='default'/>\n"
-#| "       <model type='rtl8139'/>\n"
-#| "     </interface>\n"
-#| "   </devices>\n"
-#| " </domain>\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " <domain type='kvm'>\n"
 "   <name> NAME </name>\n"
@@ -2766,6 +2734,7 @@ msgstr ""
 "       <driver name='qemu' type='raw'/>\n"
 "       <source file='/path/to/disk/image'/>\n"
 "       <target dev='hda' bus='ide'/>\n"
+"       <checksum method='sha256' fail='error'>123123...</checksum>\n"
 "     </disk>\n"
 "     <interface type='network'>\n"
 "       <mac address='52:54:00:01:02:03'/>\n"
@@ -2778,10 +2747,8 @@ msgstr ""
 
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:353
-#, fuzzy
-#| msgid "Disk space"
 msgid "Disk checksum"
-msgstr "Місце на диску"
+msgstr "Контрольна сума диска"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:355
