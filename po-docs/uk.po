@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-09 20:29+0000\n"
+"PO-Revision-Date: 2025-03-10 14:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -1931,7 +1931,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:40
 msgid "Output XML"
-msgstr ""
+msgstr "Виведення до XML"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:42
