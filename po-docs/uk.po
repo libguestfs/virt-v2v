@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-10 14:34+0000\n"
+"PO-Revision-Date: 2025-03-10 15:05+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -1941,11 +1941,16 @@ msgid ""
 "inspector(1)>.  This can be used, for example, to find out what operating "
 "system and firmware was found inside the guest during conversion."
 msgstr ""
+"Якщо потрібно, скористайтеся параметром I<-O>, щоб записати створені після "
+"перетворення метадані щодо гостьової системи до файла XML. Це той самий "
+"формат, що і у L<virt-v2v-inspector(1)>. Цим можна скористатися, наприклад, "
+"для визначення того, яку операційну систему та мікропрограму було виявлено "
+"всередині гостьової системи під час перетворення."
 
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:48
 msgid "Exit code"
-msgstr ""
+msgstr "Код виходу"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:50
@@ -1953,6 +1958,9 @@ msgid ""
 "If virt-v2v-in-place fails it will return a non-zero (error) exit code.  In "
 "this case, the disk image will be in an B<unknown, possibly corrupted state>."
 msgstr ""
+"Якщо робота virt-v2v-in-place завершується помилкою, програма повертає "
+"ненульовий стан виходу (помилку). У цьому випадку образ диска перебуватиме у "
+"стані B<unknown, possibly corrupted state>."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:54
