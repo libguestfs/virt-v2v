@@ -1,0 +1,37 @@
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion]
+"BaseBuildRevisionNumber"=dword:0000035b
+"BuildBranch"=str(1):"fe_release"
+"BuildGUID"=str(1):"ffffffff-ffff-ffff-ffff-ffffffffffff"
+"BuildLab"=str(1):"20348.fe_release.210507-1500"
+"BuildLabEx"=str(1):"20348.1.amd64fre.fe_release.210507-1500"
+"CompositionEditionID"=str(1):"ServerStandard"
+"CurrentBuild"=str(1):"20348"
+"CurrentBuildNumber"=str(1):"20348"
+"CurrentMajorVersionNumber"=dword:0000000a
+"CurrentMinorVersionNumber"=dword:00000000
+"CurrentType"=str(1):"Multiprocessor Free"
+"CurrentVersion"=str(1):"6.3"
+"DisplayVersion"=str(1):"21H2"
+"EditionID"=str(1):"ServerStandard"
+"EditionSubManufacturer"=str(1):""
+"EditionSubVersion"=str(1):""
+"EditionSubstring"=str(1):""
+"InstallDate"=dword:660d8137
+"InstallTime"=hex(b):b1,16,64,7e,e2,85,da,01
+"InstallationType"=str(1):"Server"
+"LCUVer"=str(1):"10.0.20348.1607"
+"PathName"=str(1):"C:\Windows"
+"PendingInstall"=dword:00000000
+"ProductId"=str(1):"00453-60000-00000-AA671"
+"ProductName"=str(1):"Windows Server 2022 Phony Edition"
+"RegisteredOrganization"=str(1):""
+"RegisteredOwner"=str(1):"Windows User"
+"ReleaseId"=str(1):"2009"
+"SoftwareType"=str(1):"System"
+"SystemRoot"=str(1):"C:\Windows"
+"UBR"=dword:00000647

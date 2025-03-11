@@ -21,23 +21,30 @@
 export LANG=C
 set -e
 
+IMAGENAME="$1"
+test -z "$IMAGENAME" && (echo "Must pass image name" ; exit 1)
+OSNAME=${IMAGENAME%".img"}
+SOFTWARE_REG="$SRCDIR/$OSNAME-software.reg.bin"
+SYSTEM_REG="$SRCDIR/windows-system.reg.bin"
+CMD_EXE="$SRCDIR/../binaries/bin-win64.exe"
+
 # If the currently compiled libguestfs doesn't support
 # ntfs-3g/ntfsprogs then we cannot create a Windows phony image.
-# Nothing actually uses windows.img in the standard build so we can
+# Nothing actually uses these images in the standard build so we can
 # just 'touch' it and emit a warning.
 if ! guestfish -a /dev/null run : available "ntfs3g ntfsprogs"; then
   echo "***"
-  echo "Warning: cannot create windows.img because there is no NTFS"
+  echo "Warning: cannot create $IMAGENAME because there is no NTFS"
   echo "support in this build of libguestfs.  Just touching the output"
   echo "file instead."
   echo "***"
-  touch windows.img
+  touch $IMAGENAME
   exit 0
 fi
 
 # Create a disk image.
 guestfish <<EOF
-sparse windows.img-t 512M
+sparse $IMAGENAME-t 512M
 run
 
 # Format the disk.
@@ -59,14 +66,14 @@ mount /dev/sda2 /
 mkdir-p /Windows/System32/Config
 mkdir-p /Windows/System32/Drivers
 
-upload $SRCDIR/windows-software /Windows/System32/Config/SOFTWARE
-upload $SRCDIR/windows-system /Windows/System32/Config/SYSTEM
+upload $SOFTWARE_REG /Windows/System32/Config/SOFTWARE
+upload $SYSTEM_REG /Windows/System32/Config/SYSTEM
 
-upload $SRCDIR/../binaries/bin-win64.exe /Windows/System32/cmd.exe
+upload $CMD_EXE /Windows/System32/cmd.exe
 
 mkdir "/Program Files"
 touch /autoexec.bat
 
 EOF
 
-mv windows.img-t windows.img
+mv $IMAGENAME-t $IMAGENAME
