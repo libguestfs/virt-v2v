@@ -20,6 +20,14 @@
 # Tests in the v2v subdirectory can set VIRTIO_WIN to point to this
 # directory, or to the .iso file in this directory, in order to test
 # conversions.
+#
+# Generate virtio-win-drivers-list.txt with:
+#   cd /usr/share/virtio-win && find drivers -type f | sort
+#
+# Generate virtio-win-iso-list.txt with:
+#   mkdir cd
+#   sudo mount /usr/share/virtio-win/virtio-win.iso cd
+#   find cd -type f | sort
 
 include $(top_srcdir)/subdir-rules.mk
 
@@ -35,16 +43,14 @@ clean-local:
 
 drivers: virtio-win-drivers-list.txt
 	while read line; do			\
-		path="$@/$$line";		\
-		mkdir -p `dirname $$path`;	\
-		touch "$$path";			\
+		mkdir -p `dirname $$line`;	\
+		touch "$$line";			\
 	done < $<
 
 cd: virtio-win-iso-list.txt
 	while read line; do			\
-		path="$@/$$line";		\
-		mkdir -p `dirname $$path`;	\
-		touch "$$path";			\
+		mkdir -p `dirname $$line`;	\
+		touch "$$line";			\
 	done < $<
 
 fake-virtio-win.iso: cd
