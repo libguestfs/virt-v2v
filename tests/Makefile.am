@@ -293,4 +293,5 @@ EXTRA_DIST += \
 	test-sound.sh \
 	test-trim.sh \
 	test-virtio-win-iso.sh \
-	test-windows-conversion.sh
+	test-windows-conversion.sh \
+	test-windows-conversion-ls.txt

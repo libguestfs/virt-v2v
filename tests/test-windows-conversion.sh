@@ -81,12 +81,7 @@ mktest "is-dir \"$firstboot_dir\"" true
 mktest "is-file \"$firstboot_dir/firstboot.bat\"" true
 mktest "is-dir \"$firstboot_dir/scripts\"" true
 virtio_dir="/Windows/Drivers/VirtIO"
-mktest "is-dir \"$virtio_dir\"" true
-for drv in netkvm vioscsi viostor; do
-    for sfx in cat inf sys; do
-        mktest "is-file \"$virtio_dir/$drv.$sfx\"" true
-    done
-done
+mktest "ls \"$virtio_dir\"" "$(cat test-windows-conversion-ls.txt)"
 
 guestfish --ro -a "$d/windows-sda" -i < "$script" > "$response"
 diff -u "$expected" "$response"
