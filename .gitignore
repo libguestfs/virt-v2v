@@ -118,9 +118,8 @@ Makefile.in
 /test-data/phony-guests/guests-all-good.xml
 /test-data/phony-guests/stamp-fedora-md.img
 /test-data/phony-guests/ubuntu.img
-/test-data/phony-guests/windows.img
-/test-data/phony-guests/windows-software
-/test-data/phony-guests/windows-system
+/test-data/phony-guests/win*.img
+/test-data/phony-guests/*.reg.bin
 /tests/functions.sh
 /tests/libvirt-is-version
 /tests/test-cdrom.xml
