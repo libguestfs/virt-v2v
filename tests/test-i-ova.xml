@@ -48,6 +48,9 @@
       <backend model='random'>/dev/urandom</backend>
     </rng>
     <memballoon model='virtio'/>
+    <panic model='isa'>
+      <address type='isa' iobase='0x505'/>
+    </panic>
     <input type='tablet' bus='usb'/>
     <input type='mouse' bus='ps2'/>
     <console type='pty'/>
