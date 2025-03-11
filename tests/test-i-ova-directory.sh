@@ -30,7 +30,7 @@ requires test -f $f
 requires test -s $f
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
-export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
 
 d=test-i-ova-directory.d
 rm -rf $d

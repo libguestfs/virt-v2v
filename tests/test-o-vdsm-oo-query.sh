@@ -27,7 +27,7 @@ set -x
 skip_if_skipped
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
-export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
 
 f=test-o-vdsm-oo-query.actual
 rm -f $f

@@ -29,7 +29,7 @@ img_base="$abs_top_builddir/test-data/phony-guests/windows.img"
 requires test -s $img_base
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
-export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
 
 d=$PWD/test-block-driver.d
 rm -rf $d

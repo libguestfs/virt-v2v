@@ -32,7 +32,7 @@ libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
 f=../test-data/phony-guests/windows.img
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
-export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win"
+export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
 
 d=test-o-vdsm-options.d
 rm -rf $d
