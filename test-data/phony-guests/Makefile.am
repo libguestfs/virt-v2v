@@ -30,9 +30,8 @@ EXTRA_DIST = \
 	archlinux-package \
 	make-coreos-img.sh \
 	make-windows-img.sh \
-	windows-software \
-	windows-software.reg \
-	windows-system \
+	win2k22-software.reg \
+	windows-software-all.reg \
 	windows-system.reg \
 	minimal-hive \
 	make-guests-all-good.pl \
@@ -54,6 +53,7 @@ disk_images = \
 	ubuntu.img \
 	archlinux.img \
 	coreos.img \
+	win2k22.img \
 	windows.img
 
 # This is 'check_DATA' because we don't need it until 'make check'
@@ -131,10 +131,14 @@ coreos.img: make-coreos-img.sh
 	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$<
 
 # Make a (dummy) Windows image.
-windows.img: make-windows-img.sh \
-		windows-software \
-		windows-system
-	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$<
+win%.img: make-windows-img.sh \
+		win%-software.reg.bin \
+		windows-system.reg.bin
+	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$< $@
+
+# This is the 'latest` windows image used by most test cases
+windows.img: win2k22.img
+	ln -f $< $@
 
 guests-all-good.xml: make-guests-all-good.pl $(disk_images)
 	rm -f $@ $@-t
@@ -156,13 +160,15 @@ check_PROGRAMS = fedora-static-bin
 fedora_static_bin_SOURCES = fedora.c
 fedora_static_bin_LDFLAGS = -all-static
 
-windows-software: windows-software.reg
-	rm -f $@ $@-t
+%-software.reg.bin: %-software.reg windows-software-all.reg
+	rm -f $@ $@-t $<-t
 	cp $(srcdir)/minimal-hive $@-t
-	hivexregedit --merge $@-t --prefix 'HKEY_LOCAL_MACHINE\SOFTWARE' $<
+	cat $^ > $<-t
+	hivexregedit --merge $@-t --prefix 'HKEY_LOCAL_MACHINE\SOFTWARE' $<-t
 	mv $@-t $@
+	rm -f $<-t
 
-windows-system: windows-system.reg
+windows-system.reg.bin: windows-system.reg
 	rm -f $@ $@-t
 	cp $(srcdir)/minimal-hive $@-t
 	hivexregedit --merge $@-t --prefix 'HKEY_LOCAL_MACHINE\SYSTEM' $<
@@ -170,8 +176,8 @@ windows-system: windows-system.reg
 
 DISTCLEANFILES += \
 	fedora.db \
-	windows-software \
-	windows-system
+	windows-software.reg.bin \
+	windows-system.reg.bin
 
 # Don't construct the guests in parallel.  In automake 1.13, check_DATA
 # was changed so it can now run in parallel, but this causes everything
