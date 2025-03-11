@@ -25,9 +25,16 @@ m4_define([v2v_release], [8])
 AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 
 # Headings within the configure script output.
+term_bold=""
+term_restore=""
+AS_CASE(["$TERM"],
+        [xterm*|vt220*], [
+          term_bold="$(printf "\e@<:@1m")"
+          term_restore="$(printf "\e@<:@0m")"
+])
 m4_define([HEADING],
           [AS_ECHO
-           AS_ECHO(["--- $1 ---"])])
+           AS_ECHO(["${term_bold}$1${term_restore}"])])
 
 AC_CONFIG_AUX_DIR([build-aux])
 
@@ -174,7 +181,7 @@ dnl Produce summary.
 echo
 echo
 echo "------------------------------------------------------------"
-echo "Thank you for downloading $PACKAGE_STRING"
+HEADING([Thank you for downloading $PACKAGE_STRING])
 echo
 echo "Please report bugs back to the mailing list:"
 echo "https://lists.libguestfs.org"
