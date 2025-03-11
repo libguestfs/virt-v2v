@@ -27,10 +27,12 @@ AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 # Headings within the configure script output.
 term_bold=""
 term_restore=""
-AS_CASE(["$TERM"],
-        [xterm*|vt220*], [
-          term_bold="$(printf "\e@<:@1m")"
-          term_restore="$(printf "\e@<:@0m")"
+AS_IF([test -t 1], [
+    AS_CASE(["$TERM"],
+            [xterm*|vt220*], [
+              term_bold="$(printf "\e@<:@1m")"
+              term_restore="$(printf "\e@<:@0m")"
+    ])
 ])
 m4_define([HEADING],
           [AS_ECHO
