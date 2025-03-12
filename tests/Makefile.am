@@ -188,6 +188,7 @@ CLEANFILES += \
 
 phony_windows_scripts = \
 	test-phony-win2k22.sh
+	test-phony-win7-32.sh
 
 test-phony-win%.sh: test-windows-phony.sh
 	rm -f $@ $@-t
@@ -304,6 +305,7 @@ EXTRA_DIST += \
 	test-print-source.expected \
 	test-print-source.sh \
 	test-phony-win2k22-ls.txt \
+	test-phony-win7-32-ls.txt \
 	test-rhbz1232192.sh \
 	test-sound.sh \
 	test-trim.sh \

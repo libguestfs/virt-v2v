@@ -26,7 +26,12 @@ test -z "$IMAGENAME" && (echo "Must pass image name" ; exit 1)
 OSNAME=${IMAGENAME%".img"}
 SOFTWARE_REG="$SRCDIR/$OSNAME-software.reg.bin"
 SYSTEM_REG="$SRCDIR/windows-system.reg.bin"
-CMD_EXE="$SRCDIR/../binaries/bin-win64.exe"
+
+if echo "$IMAGENAME" | grep -q "\-32"; then
+  CMD_EXE="$SRCDIR/../binaries/bin-win32.exe"
+else
+  CMD_EXE="$SRCDIR/../binaries/bin-win64.exe"
+fi
 
 # If the currently compiled libguestfs doesn't support
 # ntfs-3g/ntfsprogs then we cannot create a Windows phony image.

@@ -75,7 +75,8 @@ mktest "is-file \"$firstboot_dir/firstboot.bat\"" true
 mktest "is-dir \"$firstboot_dir/scripts\"" true
 virtio_dir="/Windows/Drivers/VirtIO"
 mktest "ls \"$virtio_dir\"" "$(cat test-phony-$guestname-ls.txt)"
-mktest "inspect-get-osinfo /dev/sda2" "$guestname"
+osinfo_name="${guestname%-32}"
+mktest "inspect-get-osinfo /dev/sda2" "$osinfo_name"
 
 guestfish --ro -a "$d/$guestname-sda" -i < "$script" > "$response"
 diff -u "$expected" "$response"
