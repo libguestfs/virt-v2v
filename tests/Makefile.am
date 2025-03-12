@@ -115,6 +115,7 @@ TESTS = \
 	test-sound.sh \
 	test-virtio-win-iso.sh \
 	test-windows-conversion.sh \
+	$(phony_windows_scripts) \
 	$(SLOW_TESTS) \
 	$(ROOT_TESTS)
 
@@ -184,6 +185,19 @@ DISTCLEANFILES += \
 CLEANFILES += \
 	real-*.img \
 	real-*.xml
+
+phony_windows_scripts = \
+	test-phony-win2k22.sh
+
+test-phony-win%.sh: test-windows-phony.sh
+	rm -f $@ $@-t
+	f=`echo "$@" | $(SED) 's/test-phony-\(.*\).sh/\1/'`; \
+	echo 'script=$@ exec $$srcdir/test-windows-phony.sh' "$$f" > $@-t
+	chmod 0755 $@-t
+	mv $@-t $@
+
+DISTCLEANFILES += \
+	$(phony_windows_scripts)
 
 EXTRA_DIST += \
 	test-bad-networks-and-bridges.sh \
@@ -289,9 +303,11 @@ EXTRA_DIST += \
 	test-on-option.sh \
 	test-print-source.expected \
 	test-print-source.sh \
+	test-phony-win2k22-ls.txt \
 	test-rhbz1232192.sh \
 	test-sound.sh \
 	test-trim.sh \
 	test-virtio-win-iso.sh \
 	test-windows-conversion.sh \
-	test-windows-conversion-ls.txt
+	test-windows-conversion-ls.txt \
+	test-windows-phony.sh
