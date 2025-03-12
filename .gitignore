@@ -127,6 +127,7 @@ Makefile.in
 /tests/test-floppy.xml
 /tests/test-mac.xml
 /tests/test-networks-and-bridges.xml
+/tests/test-phony-win*.sh
 /tests/test-print-source.xml
 /tests/test-rhbz1232192.xml
 /tests/test-sound.xml
