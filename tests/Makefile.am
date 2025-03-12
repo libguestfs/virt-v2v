@@ -187,6 +187,7 @@ CLEANFILES += \
 	real-*.xml
 
 phony_windows_scripts = \
+	test-phony-win11.sh
 	test-phony-win2k22.sh
 	test-phony-win2k25.sh
 	test-phony-win7-32.sh
@@ -305,6 +306,7 @@ EXTRA_DIST += \
 	test-on-option.sh \
 	test-print-source.expected \
 	test-print-source.sh \
+	test-phony-win11-ls.txt \
 	test-phony-win2k22-ls.txt \
 	test-phony-win2k25-ls.txt \
 	test-phony-win7-32-ls.txt \

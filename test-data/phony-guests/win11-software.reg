@@ -1,0 +1,33 @@
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion]
+"BaseBuildRevisionNumber"=dword:00000001
+"BuildBranch"=str(1):"ni_release"
+"BuildGUID"=str(1):"ffffffff-ffff-ffff-ffff-ffffffffffff"
+"BuildLab"=str(1):"22621.ni_release.220506-1250"
+"BuildLabEx"=str(1):"22621.1.amd64fre.ni_release.220506-1250"
+"CompositionEditionID"=str(1):"Core"
+"CurrentBuild"=str(1):"22631"
+"CurrentBuildNumber"=str(1):"22631"
+"CurrentMajorVersionNumber"=dword:0000000a
+"CurrentMinorVersionNumber"=dword:00000000
+"CurrentType"=str(1):"Multiprocessor Free"
+"CurrentVersion"=str(1):"6.3"
+"DisplayVersion"=str(1):"23H2"
+"EditionID"=str(1):"Core"
+"EditionSubManufacturer"=str(1):""
+"EditionSubVersion"=str(1):""
+"EditionSubstring"=str(1):""
+"InstallDate"=dword:66ec5751
+"InstallationType"=str(1):"Client"
+"PathName"=str(1):"C:\Windows"
+"PendingInstall"=dword:00000000
+"ProductId"=str(1):"00326-10000-00000-AA831"
+"ProductName"=str(1):"Windows 10 Home"
+"ReleaseId"=str(1):"2009"
+"SoftwareType"=str(1):"System"
+"SystemRoot"=str(1):"C:\Windows"
+"UBR"=dword:00000f28
