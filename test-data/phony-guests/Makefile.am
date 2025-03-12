@@ -30,6 +30,7 @@ EXTRA_DIST = \
 	archlinux-package \
 	make-coreos-img.sh \
 	make-windows-img.sh \
+	win11-software.reg \
 	win2k22-software.reg \
 	win2k25-software.reg \
 	win7-32-software.reg \
@@ -55,6 +56,7 @@ disk_images = \
 	ubuntu.img \
 	archlinux.img \
 	coreos.img \
+	win11.img \
 	win2k22.img \
 	win2k25.img \
 	win7-32.img \
