@@ -31,6 +31,7 @@ EXTRA_DIST = \
 	make-coreos-img.sh \
 	make-windows-img.sh \
 	win2k22-software.reg \
+	win2k25-software.reg \
 	win7-32-software.reg \
 	windows-software-all.reg \
 	windows-system.reg \
@@ -55,6 +56,7 @@ disk_images = \
 	archlinux.img \
 	coreos.img \
 	win2k22.img \
+	win2k25.img \
 	win7-32.img \
 	windows.img
 
