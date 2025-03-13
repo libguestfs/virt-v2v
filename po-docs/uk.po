@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-13 17:38+0000\n"
+"PO-Revision-Date: 2025-03-13 19:29+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -3154,6 +3154,15 @@ msgid ""
 "I<-ic vpx://...> I<-it vddk> or I<-ic esx://...> I<-it vddk>.  Refer to "
 "L<https://bugzilla.redhat.com/1774386>."
 msgstr ""
+"Якщо доступ до файла F<I<гостьова_система>.vmx> на ESXi здійснюєються через "
+"з’єднання SSH (тобто при використанні параметрів I<-i vmx> I<-it ssh>), "
+"перетворення не працюватиме, якщо гостьова система має знімки (файли під "
+"назвою F<I<guest>-000001.vmdk> тощо). Або згорніть знімки для гостьової "
+"системи і повторіть перетворення з тими самими параметрами I<-i vmx> I<-it "
+"ssh>, або залиште знімки без змін і використовуйте канал передавання даних, "
+"відмінний від SSH: просто I<-i vmx>, або I<-ic vpx://...> I<-it vddk> або I<-"
+"ic esx://...> I<-it vddk>. Зверніться до звіту L<https://bugzilla.redhat.com/"
+"1774386>."
 
 #. type: =head1
 #: docs/virt-v2v-input-vmware.pod:102
@@ -3204,11 +3213,6 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:122
-#, fuzzy
-#| msgid ""
-#| "If you find a folder of files called F<I<guest>.vmx>, F<I<guest>.vmxf>, "
-#| "F<I<guest>.nvram> and one or more F<.vmdk> disk images, then you can use "
-#| "this method."
 msgid ""
 "If you find a folder of files called F<I<guest>.vmx>, F<I<guest>.vmxf>, "
 "F<I<guest>.nvram> and one or more F<.vmdk> disk images, then you can use "
@@ -3217,7 +3221,9 @@ msgid ""
 msgstr ""
 "Якщо вами виявлено теку або файли із назвами F<I<гостьова_система>.vmx>, "
 "F<I<гостьова_система>.vmxf>, F<I<гостьова_система>.nvram> і один або "
-"декілька образів дисків F<.vmdk>, ви можете скористатися цим методом."
+"декілька образів дисків F<.vmdk>, ви можете скористатися цим методом. "
+"Каналом передавання даних SSH не можна буде скористатися, якщо гостьова "
+"система має знімки; зверніться до розділу L</НОТАТКИ>."
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:127
@@ -3310,6 +3316,10 @@ msgid ""
 "the password manually.  Therefore ssh-agent is recommended over the I<-ip> "
 "option.  See L<https://bugzilla.redhat.com/1854275>."
 msgstr ""
+"Зауважте, що підтримка неінтерактивного розпізнавання за допомогою параметра "
+"I<-ip> є неповною. Деякі дії все ще вимагають від користувача введення "
+"пароля вручну. Тому рекомендуємо скористатися ssh-agent замість параметра I<-"
+"ip>. Див. L<https://bugzilla.redhat.com/1854275>."
 
 #. type: =head3
 #: docs/virt-v2v-input-vmware.pod:163
@@ -3359,18 +3369,18 @@ msgid ""
 "via SSH interactively, and identify the absolute pathname of the VMX file on "
 "the ESXi server, such as:"
 msgstr ""
+"Щоб визначити компонент шляху адреси, увійдіть на сервер ESXi за допомогою "
+"SSH інтерактивно і визначте абсолютний шлях до файла VMX на сервері ESXi, "
+"приклад:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:179
-#, fuzzy, no-wrap
-#| msgid ""
-#| " ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " /vmfs/volumes/datastore1/my guest/my guest.vmx\n"
 "\n"
 msgstr ""
-" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
+" /vmfs/volumes/datastore1/my guest/my guest.vmx\n"
 "\n"
 
 #. type: textblock
