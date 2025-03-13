@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-13 19:29+0000\n"
+"PO-Revision-Date: 2025-03-13 20:47+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -3391,26 +3391,25 @@ msgid ""
 "encoding#Reserved_characters> that you find in the individual pathname "
 "components.  For example, space characters must be specified as C<%20>:"
 msgstr ""
+"Згодом у командному рядку virt-v2v L<закодуйте з використанням відсоток-"
+"кодування будь-які зарезервовані символи|https://en.wikipedia.org/wiki/"
+"Percent-encoding#Reserved_characters>, які ви знайдете в окремих компонентах "
+"шляху. Наприклад, слід вказувати як C<%20>:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:187
-#, fuzzy, no-wrap
-#| msgid ""
-#| " ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " /vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 msgstr ""
-" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
+" /vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:189
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1690574>"
 msgid "Refer to L<https://bugzilla.redhat.com/1938954>."
-msgstr "L<https://bugzilla.redhat.com/1690574>"
+msgstr "Див. L<https://bugzilla.redhat.com/1938954>."
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:191
@@ -3538,12 +3537,12 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:239
 msgid "5."
-msgstr ""
+msgstr "5."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:241
 msgid "The VMware server must not be in maintenance mode."
-msgstr ""
+msgstr "Сервер VMware не повинен перебувати у режимі супроводу."
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:245
@@ -3638,11 +3637,12 @@ msgstr ""
 msgid ""
 "VDDK: \"error: VixDiskLibVim: Failed to open disk using NFC. VixError 1\""
 msgstr ""
+"VDDK: \"error: VixDiskLibVim: Failed to open disk using NFC. VixError 1\""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:276
 msgid "If you see an error similar to:"
-msgstr ""
+msgstr "Якщо ви бачите повідомлення про помилку, подібне до такого:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:278
@@ -3651,6 +3651,9 @@ msgid ""
 " nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.\n"
 "\n"
 msgstr ""
+" nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. "
+"VixError 1 at 1166.\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:280
