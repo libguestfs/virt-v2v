@@ -19,5 +19,6 @@ include $(top_srcdir)/subdir-rules.mk
 
 EXTRA_DIST = \
 	README \
+	bin-win32.exe \
 	bin-win64.exe \
 	bin-x86_64-dynamic
