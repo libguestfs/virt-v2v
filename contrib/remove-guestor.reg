@@ -1,0 +1,10 @@
+; Remove guestor registry entries
+; See virt-v2v(1) and https://issues.redhat.com/browse/MTV-2256
+
+[-HKEY_LOCAL_MACHINE\SYSTEM\DriverDatabase\DriverPackages\DeviceIds\PCI\VEN_1AF4&DEV_1001&REV_00]
+
+[-HKEY_LOCAL_MACHINE\SYSTEM\DriverDatabase\DriverPackages\DeviceIds\PCI\VEN_1AF4&DEV_1042&REV_01]
+
+[-HKEY_LOCAL_MACHINE\SYSTEM\DriverDatabase\DriverPackages\DriverInfFiles\guestor.inf]
+
+[-HKEY_LOCAL_MACHINE\SYSTEM\DriverDatabase\DriverPackages\guestor.inf_tmp]

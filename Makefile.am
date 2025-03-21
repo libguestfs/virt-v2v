@@ -68,6 +68,7 @@ EXTRA_DIST = \
 	check-mli.sh \
 	common/.gitignore \
 	common/README \
+	contrib/remove-guestor.reg \
 	COPYING \
 	ocaml-link.sh \
 	podcheck.pl \

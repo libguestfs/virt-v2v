@@ -1145,6 +1145,42 @@ before converting the guest.
 For further information see:
 L<https://bugzilla.redhat.com/show_bug.cgi?id=1624878>
 
+=head3 After conversion, Windows guest cannot be upgraded
+
+After successful conversion, the Windows guest cannot be upgraded to a
+later release of Windows (eg. from Windows Server 2016 to 2019).
+
+Another symptom is that the C<pnputil /enum-drivers> command cannot
+list all drivers.  A few drivers are shown and then the command
+crashes with the error:
+
+ Failed to enumerate driver packages: The parameter is incorrect.
+
+This is caused by the C<guestor_tmp> temporary driver that we
+preinstall during conversion so that Windows can see the boot device.
+Because only minimal changes are made to the Registry to make this
+work, Windows later gets confused when it sees these partial Registry
+entries.
+
+The fix is to delete the Registry entries, after conversion but before
+trying to upgrade Windows.  This can be achieved using
+L<virt-win-reg(1)>.
+
+The Windows guest should be shut down.
+
+The following C<.reg> file should be merged into the Windows Registry:
+L<https://github.com/libguestfs/virt-v2v/blob/master/contrib/remove-guestor.reg>
+
+ # virt-win-reg --merge WindowsGuest remove-guestor.reg
+
+Then the Windows guest can be booted and used / upgraded as normal.
+
+Alternatively, a WinPE environment can be used to remove the Registry
+entries.
+
+For further information see:
+L<https://issues.redhat.com/browse/MTV-2256>
+
 =head2 Networks and bridges
 
 Guests are usually connected to one or more networks, and when
@@ -1734,6 +1770,7 @@ L<virt-df(1)>,
 L<virt-filesystems(1)>,
 L<virt-sparsify(1)>,
 L<virt-sysprep(1)>,
+L<virt-win-reg(1)>,
 L<guestfs(3)>,
 L<guestfish(1)>,
 L<qemu-img(1)>,
