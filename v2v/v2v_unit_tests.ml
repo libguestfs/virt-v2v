@@ -20,13 +20,18 @@
 
 open Printf
 
-open OUnit2
-
 open Std_utils
 open Tools_utils
 
 open Types
 open Utils
+
+let assert_equal ?(cmp = fun a b -> a = b) ~printer a b =
+  if not (cmp a b) then
+    failwithf "FAIL: %s <> %s" (printer a) (printer b)
+
+let assert_bool name b =
+  if not b then failwithf "FAIL: %s" name
 
 let inspect_defaults = {
   i_type = ""; i_distro = ""; i_osinfo = ""; i_arch = "";
@@ -40,7 +45,8 @@ let inspect_defaults = {
   i_drive_mappings = [];
 }
 
-let test_get_ostype ctx =
+(* Test Create_ovf.get_ostype *)
+let () =
   let printer = identity in
   assert_equal ~printer "RHEL6"
                (Create_ovf.get_ostype {
@@ -112,14 +118,15 @@ let test_get_ostype ctx =
                     i_product_variant = "Server";
                     i_arch = "x86_64" })
 
-let test_qemu_img_supports ctx =
+(* Test Utils.qemu_img_supports_offset_and_size *)
+let () =
   (* No assertion here, we don't know if qemu-img supports the
    * feature, so just run the code and make sure it doesn't crash.
    *)
   ignore (Utils.qemu_img_supports_offset_and_size ())
 
 (* Test the VMX file parser in the Parse_vmx module. *)
-let test_vmx_parse_string ctx =
+let () =
   let cmp = Parse_vmx.equal in
   let printer = Parse_vmx.to_string 0 in
 
@@ -259,15 +266,3 @@ foo.a.b = \"abc\"
 foo.a.c = \"abc\"
 " in
   assert_equal ~cmp ~printer t2 t1
-
-(* Suites declaration. *)
-let suite =
-  "virt-v2v" >:::
-    [
-      "Create_ovf.get_ostype" >:: test_get_ostype;
-      "Utils.qemu_img_supports" >:: test_qemu_img_supports;
-      "Parse_vmx.parse_string" >::test_vmx_parse_string;
-    ]
-
-let () =
-  run_test_tt_main suite

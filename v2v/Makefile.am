@@ -125,12 +125,8 @@ virt_v2v_LINK = \
 
 virttoolsdatadir = $(datadir)/virt-tools
 
-if HAVE_OCAML_PKG_OUNIT
-TESTS = \
-	v2v_unit_tests
-check_PROGRAMS = \
-	v2v_unit_tests
-endif
+TESTS = v2v_unit_tests
+check_PROGRAMS = v2v_unit_tests
 
 v2v_unit_tests_BOBJECTS = \
 	../lib/create_ovf.cmo \
@@ -146,10 +142,8 @@ v2v_unit_tests_CFLAGS = $(virt_v2v_CFLAGS)
 if !HAVE_OCAMLOPT
 # Can't call this v2v_unit_tests_OBJECTS because automake gets confused.
 v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_BOBJECTS)
-v2v_unit_tests.cmo: OCAMLPACKAGES += -package ounit2
 else
 v2v_unit_tests_THEOBJECTS = $(v2v_unit_tests_XOBJECTS)
-v2v_unit_tests.cmx: OCAMLPACKAGES += -package ounit2
 endif
 
 v2v_unit_tests_DEPENDENCIES = \
@@ -166,7 +160,7 @@ v2v_unit_tests_DEPENDENCIES = \
 v2v_unit_tests_LINK = \
 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) \
-	  $(OCAMLPACKAGES) -package ounit2 \
+	  $(OCAMLPACKAGES) \
 	  $(OCAMLLINKFLAGS) \
 	  $(v2v_unit_tests_THEOBJECTS) -o $@
 
