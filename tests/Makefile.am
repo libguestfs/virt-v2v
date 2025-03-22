@@ -187,9 +187,9 @@ CLEANFILES += \
 	real-*.xml
 
 phony_windows_scripts = \
-	test-phony-win11.sh
-	test-phony-win2k22.sh
-	test-phony-win2k25.sh
+	test-phony-win11.sh \
+	test-phony-win2k22.sh \
+	test-phony-win2k25.sh \
 	test-phony-win7-32.sh
 
 test-phony-win%.sh: test-windows-phony.sh
