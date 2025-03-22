@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-13 20:47+0000\n"
+"PO-Revision-Date: 2025-03-23 14:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -3661,6 +3661,8 @@ msgid ""
 "then it is caused by a bug in VDDK E<le> 6.7.  The suggested solution it to "
 "upgrade to the latest VDDK.  See also L<https://bugzilla.redhat.com/1684075>"
 msgstr ""
+"тоді причиною є вада у VDDK E<le> 6.7. Пропонуємо позбутися її встановленням "
+"найсвіжішої версії VDDK. Див. також L<https://bugzilla.redhat.com/1684075>"
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:284
@@ -3885,7 +3887,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:356
 msgid "VDDK: Slow imports and repeated NBD_ClientOpen messages"
-msgstr ""
+msgstr "VDDK: повільне імпортування і повторювані повідомлення NBD_ClientOpen"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:358
@@ -3895,6 +3897,10 @@ msgid ""
 "6.7> (https://bugzilla.redhat.com/1901489).  Upgrade to at least S<VDDK 7> "
 "to resolve the issue."
 msgstr ""
+"Якщо імпортування за допомогою VDDK є повільними, а у відповідь на «virt-v2v "
+"-v -x» система показує багато повідомлень C<NBD_ClientOpen>, ви зіткнулися "
+"із видимою вадою у S<VDDK 6.7> (https://bugzilla.redhat.com/1901489). "
+"Оновлення до S<VDDK 7> має усунути причину вади."
 
 #. type: =head1
 #: docs/virt-v2v-input-vmware.pod:363
@@ -4041,7 +4047,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:410
 msgid "OVA: Permissions issues with oVirt/RHV import"
-msgstr ""
+msgstr "OVA: вади з правами доступу при імпортуванні oVirt/RHV"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:412
@@ -4051,6 +4057,10 @@ msgid ""
 "which can be a problem if the file is owned by root (RHV runs as a non-root "
 "user)."
 msgstr ""
+"У oVirt/RHV передбачено графічний інтерфейс користувача для імпортування з "
+"файлів OVA, який використовує цей метод. Він потребує, щоб RHV могла "
+"отримувати доступ до файла OVA, що може бути проблемою, якщо власником файла "
+"є root (RHV запускається не від імені користувача root)."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:417
@@ -4059,13 +4069,14 @@ msgid ""
 "var/tmp> before doing the import and perhaps change the user and group "
 "ownership of the file."
 msgstr ""
+"Пропонованим обхідним маневром є копіювання OVA до загальнодоступного "
+"каталогу, зокрема F</var/tmp>, до виконання імпортування і, можливо, змінити "
+"користувача і групу власника файла."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:421
-#, fuzzy
-#| msgid "For more information see L<virt-v2v-input-vmware(1)>."
 msgid "For more information see these links:"
-msgstr "Докладніші відомості: L<virt-v2v-input-vmware(1)>."
+msgstr "Докладніші відомості за цими посиланнями:"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:427
@@ -4074,13 +4085,14 @@ msgid ""
 "html-single/virtual_machine_management_guide/"
 "index#Importing_a_virtual_machine_from_a_host>"
 msgstr ""
+"L<https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/"
+"html-single/virtual_machine_management_guide/"
+"index#Importing_a_virtual_machine_from_a_host>"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:431
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/show_bug.cgi?id=2039597>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/show_bug.cgi?id=2039597>"
 
 #. type: =head1
 #: docs/virt-v2v-input-vmware.pod:435
@@ -4171,6 +4183,8 @@ msgid ""
 "The user's password must be supplied in a local file using the separate I<-"
 "ip> parameter."
 msgstr ""
+"Пароль користувача має бути надано у локальному файлів за допомогою "
+"параметра I<-ip>."
 
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:469
@@ -4313,7 +4327,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:552
 msgid "vCenter: Supplying the password"
-msgstr ""
+msgstr "vCenter: надання пароля"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:554
@@ -4323,6 +4337,10 @@ msgid ""
 "of that file specified on the virt-v2v command line using I<-ip "
 "passwordfile>."
 msgstr ""
+"Пароль vCenter (зазвичай для облікового запису root або облікового запису, "
+"який визначено C<user@> в адресі vpx) має бути записано до локального файла, "
+"і назву цього файла вказано у рядку команди virt-v2v за допомогою параметра "
+"I<-ip файл_пароля>."
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:559
@@ -4338,12 +4356,7 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:563
-#, fuzzy, no-wrap
-#| msgid ""
-#| " $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
-#| "   \"Windows 2003\" \\\n"
-#| "   -o local -os /var/tmp\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
 "   -ip passwordfile \\\n"
@@ -4351,8 +4364,10 @@ msgid ""
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
-"   \"Windows 2003\" \\\n"
+" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' "
+"\\\n"
+"      -ip файл_пароля \\\n"
+"      \"Windows 2003\" \\\n"
 "   -o local -os /var/tmp\n"
 "\n"
 
@@ -4381,12 +4396,6 @@ msgstr "vCenter: Неадміністративна роль"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:577
-#, fuzzy
-#| msgid ""
-#| "Instead of using the vCenter Administrator role, you can create a custom "
-#| "non-administrator role to perform the conversion.  You will however need "
-#| "to give it a minimum set of permissions as follows (using VMware vCenter "
-#| "6.5):"
 msgid ""
 "Instead of using the vCenter Administrator role, you can create a custom non-"
 "administrator role to perform the conversion.  You will however need enable "
@@ -4395,8 +4404,8 @@ msgid ""
 msgstr ""
 "Замість використання ролі адміністратора vCenter, ви можете створити "
 "нетипову неадміністративну роль для виконання перетворення. Втім, вам "
-"доведеться встановити для цієї ролі мінімальний набір прав доступу (з "
-"використанням VMware vCenter 6.5):"
+"доведеться увімкнути такі права доступу (або, доки це буде доступним, "
+"старіші версії VMware, де не було деяких з цих параметрів):"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:587
@@ -4436,15 +4445,7 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:600
-#, fuzzy, no-wrap
-#| msgid ""
-#| " Virtual Machine:\n"
-#| "   Interaction:\n"
-#| "     - Guest operating system management by VIX API\n"
-#| "   Provisioning:\n"
-#| "     - Allow disk access\n"
-#| "     - Allow read-only disk access\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " Virtual Machine:\n"
 "   Interaction:\n"
@@ -4457,11 +4458,13 @@ msgid ""
 msgstr ""
 " Віртуальна машина:\n"
 "   Взаємодія:\n"
-"     - Керування гостьовими віртуальними машинами за допомогою програмного інтерфейсу VIX\n"
+"     - Керування гостьовими віртуальними машинами за допомогою програмного "
+"інтерфейсу VIX\n"
 "   Приготування:\n"
 "     - Дозволити доступ до дисків\n"
 "     - Дозволити доступ до дисків лише для читання\n"
-"\n"
+"     - Дозволити отримання віртуальної машини\n"
+" \n"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:608
@@ -4472,6 +4475,10 @@ msgid ""
 "  - Direct Access\n"
 "\n"
 msgstr ""
+" Криптографічні дії:\n"
+"  - Розшифрування\n"
+"  - Безпосередній доступ\n"
+"\n"
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:614
@@ -4643,7 +4650,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:678
 msgid "vCenter: \"Out of HTTP sessions: Limited to ...\""
-msgstr ""
+msgstr "vCenter: \"Out of HTTP sessions: Limited to ...\""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:680
@@ -4654,6 +4661,11 @@ msgid ""
 "C<E<lt>maxSessionCountE<gt>> field, or set it to C<0> which makes it "
 "unlimited:"
 msgstr ""
+"Здається, vCenter VMware обмежує кількість сеансів HTTP і за певних обставин "
+"virt-v2v може перевищувати це значення. Ви можете скоригувати або вилучити "
+"обмеження редагуванням файла F</etc/vmware-vpx/vpxd.cfg> на сервері vCenter. "
+"Збільште значення поля C<E<lt>maxSessionCountE<gt>> або встановіть значення "
+"C<0>, щоб зняти обмеження:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:686
@@ -4664,6 +4676,10 @@ msgid ""
 " </soap>\n"
 "\n"
 msgstr ""
+" <soap>\n"
+"   <maxSessionCount>0</maxSessionCount>\n"
+" </soap>\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:692 docs/virt-v2v-input-xen.pod:146
@@ -4690,23 +4706,16 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:7
-#, fuzzy, no-wrap
-#| msgid ""
-#| " export LIBGUESTFS_BACKEND=direct\n"
-#| " virt-v2v -ic 'xen+ssh://root@xen.example.com'\n"
-#| "          -ip passwordfile\n"
-#| "          GUEST_NAME [-o* options]\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v -ic 'xen+ssh://root@xen.example.com'\n"
 "          -ip passwordfile\n"
 "          GUEST_NAME [-o* options]\n"
 "\n"
 msgstr ""
-" export LIBGUESTFS_BACKEND=direct\n"
 " virt-v2v -ic 'xen+ssh://root@xen.example.com'\n"
-"          -ip файл_пароля\n"
-"          НАЗВА_ГОСТЬОВОЇ_СИСТЕМИ [-o* параметри]\n"
+"          -ip passwordfile\n"
+"          GUEST_NAME [-o* options]\n"
 "\n"
 
 #. type: textblock
@@ -4731,12 +4740,6 @@ msgstr "Розпізнавання за допомогою SSH"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:20
-#, fuzzy
-#| msgid ""
-#| "You can use SSH password authentication, by supplying the name of a file "
-#| "containing the password to the I<-ip> option (note this option does "
-#| "I<not> take the password directly).  You may need to adjust F</etc/ssh/"
-#| "sshd_config> on the VMware server to set C<PasswordAuthentication yes>."
 msgid ""
 "You can use SSH password authentication, by supplying the name of a file "
 "containing the password to the I<-ip> option (note this option does I<not> "
@@ -4746,7 +4749,7 @@ msgstr ""
 "Ви можете скористатися розпізнаванням за допомогою SSH за паролем, вказавши "
 "назву файла, який містить пароль, як аргумент параметра I<-ip> (зауважте, що "
 "цей параметр I<не> приймає пароль безпосередньо). Вам слід скоригувати F</"
-"etc/ssh/sshd_config> на сервері VMware, встановивши C<PasswordAuthentication "
+"etc/ssh/sshd_config> на сервері Xen, встановивши C<PasswordAuthentication "
 "yes>."
 
 #. type: textblock
@@ -4777,22 +4780,14 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:40
-#, fuzzy
-#| msgid ""
-#| "With some modern ssh implementations, legacy crypto policies required to "
-#| "interoperate with RHEL 5 sshd are disabled.  To enable them you may need "
-#| "to run this command on the conversion server (ie. ssh client), but read "
-#| "L<update-crypto-policies(8)> first:"
 msgid ""
 "With some modern ssh implementations, legacy crypto algorithms required to "
 "interoperate with RHEL 5 sshd are disabled.  To enable them, you may need to "
 "add the following C<Host> stanza to your F<~/.ssh/config>:"
 msgstr ""
-"У деяких сучасних реалізаціях ssh застарілі правила шифрування, потрібні для "
-"взаємодії із sshd RHEL 5 вимкнено. Щоб увімкнути ці правила у вас може "
-"виникнути потреба у запуску вказаної нижче команди на сервері перетворення "
-"(тобто клієнті ssh), втім, спочатку ознайомтеся зі сторінкою підручника щодо "
-"L<update-crypto-policies(8)>:"
+"У деяких сучасних реалізаціях ssh застарілі алгоритми шифрування, потрібні "
+"для взаємодії із sshd RHEL 5 вимкнено. Щоб увімкнути ці алгоритми, вам, "
+"можливо, слід додати таку інструкцію C<Host> до вашого F<~/.ssh/config>:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:44
@@ -4806,6 +4801,13 @@ msgid ""
 "   PubkeyAcceptedAlgorithms +ssh-rsa\n"
 "\n"
 msgstr ""
+" Host xen.example.com\n"
+"   KexAlgorithms            +diffie-hellman-group14-sha1\n"
+"   MACs                     +hmac-sha1\n"
+"   HostKeyAlgorithms        +ssh-rsa\n"
+"   PubkeyAcceptedKeyTypes   +ssh-rsa\n"
+"   PubkeyAcceptedAlgorithms +ssh-rsa\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:51
@@ -4816,6 +4818,11 @@ msgid ""
 "some operating systems, C<libssh> and C<ssh> may not both accept the same "
 "option variant.)"
 msgstr ""
+"(C<PubkeyAcceptedKeyTypes> і C<PubkeyAcceptedAlgorithms> означають те саме; "
+"перша назва є назвою застарілого параметра, друга — нового. Virt-v2v "
+"використовує C<libssh> і C<ssh> при перетворенні з Xen, і у деяких "
+"операційних системах C<libssh> і C<ssh> можуть одразу приймати той самий "
+"варіант параметра.)"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:57
@@ -4825,6 +4832,10 @@ msgid ""
 "above SSH configuration.  Create a file called F<$HOME/openssl-sha1.cnf> "
 "with the following contents:"
 msgstr ""
+"При встановленні з'єднання з sshd RHEL 5 з RHEL 9, використання алгоритму "
+"SHA1 у підписах має бути повторно увімкнено на рівні OpenSSL на додачу до "
+"наведених вище налаштувань SSH. Створіть файл з назвою F<$HOME/openssl-"
+"sha1.cnf> і таким вмістом:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:62
@@ -4837,13 +4848,19 @@ msgid ""
 " rh-allow-sha1-signatures = yes\n"
 "\n"
 msgstr ""
+" .include /etc/ssl/openssl.cnf\n"
+" [openssl_init]\n"
+" alg_section = evp_properties\n"
+" [evp_properties]\n"
+" rh-allow-sha1-signatures = yes\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:68
 msgid ""
 "and export the following variable into the environment of the C<virt-v2v> "
 "process:"
-msgstr ""
+msgstr "і експортуйте таку змінну до середовища процесу C<virt-v2v>:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:71
@@ -4852,6 +4869,8 @@ msgid ""
 " OPENSSL_CONF=$HOME/openssl-sha1.cnf\n"
 "\n"
 msgstr ""
+" OPENSSL_CONF=$HOME/openssl-sha1.cnf\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:73
@@ -4859,6 +4878,9 @@ msgid ""
 "Note that the C<OPENSSL_CONF> environment variable will only take effect if "
 "the libvirt client library used by virt-v2v is at least version 8.6.0."
 msgstr ""
+"Зауважте, що змінна середовища C<OPENSSL_CONF> працюватиме лише тоді, коли а "
+"клієнтська бібліотека libvirt, використана virt-v2v, має версію принаймні "
+"8.6.0."
 
 #. type: =head2
 #: docs/virt-v2v-input-xen.pod:77
@@ -4944,21 +4966,14 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:108
-#, fuzzy, no-wrap
-#| msgid ""
-#| " $ LIBGUESTFS_BACKEND=direct \\\n"
-#| "       virt-v2v -ic 'xen+ssh://root@xen.example.com' \\\n"
-#| "           rhel49-x86_64-pv \\\n"
-#| "           -o local -os /var/tmp\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " $ virt-v2v -ic 'xen+ssh://root@xen.example.com' \\\n"
 "           rhel49-x86_64-pv \\\n"
 "           -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ LIBGUESTFS_BACKEND=direct \\\n"
-"       virt-v2v -ic 'xen+ssh://root@xen.example.com' \\\n"
+" $ virt-v2v -ic 'xen+ssh://root@xen.example.com' \\\n"
 "           rhel49-x86_64-pv \\\n"
 "           -o local -os /var/tmp\n"
 "\n"
@@ -5038,12 +5053,18 @@ msgid ""
 "regular local file, copy the libvirt guest XML, adjust the C<disk> element "
 "to point to the local file, and use C<-i libvirtxml> mode instead."
 msgstr ""
+"Обійти цю проблему можна копіюванням блокового пристрою з віддаленого "
+"сервера Xen до звичайного локального файла, копіюванням XML гостьової "
+"системи libvirt, коригуванням елемента C<disk> так, щоб він вказував на "
+"локальний файл і заміною режиму на C<-i libvirtxml>."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:3
 msgid ""
 "virt-v2v-inspector - Estimate disk space needed before virt-v2v conversion"
 msgstr ""
+"virt-v2v-inspector — оцінка місця на диску, яке потрібне до перетворення "
+"virt-v2v"
 
 #. type: verbatim
 #: docs/virt-v2v-inspector.pod:7
@@ -5055,6 +5076,11 @@ msgid ""
 "                    [-O output.xml]\n"
 "\n"
 msgstr ""
+" virt-v2v-inspector [-i* параметри]\n"
+"                    [параметри virt-customize]\n"
+"                    гостьова_система\n"
+"                    [-O результат.xml]\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:14
@@ -5065,6 +5091,11 @@ msgid ""
 "this is to preallocate target disks on management systems that need this "
 "(like Kubevirt)."
 msgstr ""
+"Virt-v2v-inspector є допоміжним інструментом L<virt-v2v(1)>, яким можна "
+"скористатися до перетворення для оцінки кількості дисків виведення даних та "
+"місця на диску, яке знадобиться для завершення перетворення virt-v2v. "
+"Типовим випадком використання є попереднє розміщення дисків призначення у "
+"системах керування, які цього потребують (зокрема Kubevirt)."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:20
@@ -5073,13 +5104,14 @@ msgid ""
 "i*> options which are the same as virt-v2v.  You should read L<virt-v2v(1)> "
 "first."
 msgstr ""
+"На цій сторінці підручника наведено документацію лише до можливостей з "
+"оцінки, а не усіх параметрів I<-i*>, які збігаються з параметрами virt-v2v. "
+"Вам спочатку слід ознайомитися зі сторінкою L<virt-v2v(1)>."
 
 #. type: =head2
 #: docs/virt-v2v-inspector.pod:24
-#, fuzzy
-#| msgid "Free space in the guest"
 msgid "Selecting the input guest"
-msgstr "Вільне місце у гостьовій системі"
+msgstr "Вибір вхідної гостьової системи"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:26
@@ -5088,6 +5120,9 @@ msgid ""
 "(Don't use any I<-o*> options).  This will select the guest that you want to "
 "estimate."
 msgstr ""
+"Ви можете запустити virt-v2v-inspector із тими самими параметрами I<-i*>, що "
+"і virt-v2v. (Не використовуйте параметри I<-o*>). У результаті буде вибрано "
+"гостьову систему, оцінку для якої ви хочете отримати."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:30
@@ -5095,6 +5130,9 @@ msgid ""
 "For example to estimate the space required for a guest in a stored local "
 "disk called F<filename.img> you could do:"
 msgstr ""
+"Наприклад, щоб оцінити місце, яке знадобиться для гостьової системи на "
+"збереженому локальному диску із назвою F<назва_файла.img>, можна "
+"скористатися такою командою:"
 
 #. type: verbatim
 #: docs/virt-v2v-inspector.pod:33
@@ -5103,16 +5141,18 @@ msgid ""
 " virt-v2v-inspector -i disk filename.img\n"
 "\n"
 msgstr ""
+" virt-v2v-inspector -i disk назва_файла.img\n"
+"\n"
 
 #. type: =head2
 #: docs/virt-v2v-inspector.pod:35
 msgid "Output"
-msgstr ""
+msgstr "Результат"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:37
 msgid "The output from this tool is an XML document."
-msgstr ""
+msgstr "Результатом роботи цього інструменту є документ XML."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:43
@@ -5123,11 +5163,19 @@ msgid ""
 "small perturbations between runs.  Estimates are usually very close to the "
 "final values."
 msgstr ""
+"Оцінку буде виконано лише для полів із анотацією C<estimated='true'>. Virt-"
+"v2v не завжди може точно визначити остаточний розмір деяких частин, зокрема "
+"точний розмір диска-результату, оскільки між різними запусками можуть бути "
+"незначні флуктуації. Зазвичай, оцінки дуже близькі до остаточних результатів."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:51
 msgid "Numbers representing sizes are always given in bytes."
 msgstr ""
+"Обійти цю проблему можна копіюванням блокового пристрою з віддаленого "
+"сервера Xen до звичайного локального файла, копіюванням XML гостьової "
+"системи libvirt, коригуванням елемента C<disk> так, щоб він вказував на "
+"локальний файл і заміною режиму на C<-i libvirtxml>."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:55
@@ -5137,6 +5185,10 @@ msgid ""
 "program it is better to send the output to a specific file using I<-O output."
 "xml>"
 msgstr ""
+"Типово, результати буде виведено до stdout. Це корисно, якщо ви користуєтеся "
+"програмою інтерактивно. Втім, якщо ви захочете скористатися цим інструментом "
+"з іншої програми, краще надсилати результати до вказаного файла за допомогою "
+"параметра I<-O результат.xml>"
 
 #. type: verbatim
 #: docs/virt-v2v-inspector.pod:62
@@ -5149,6 +5201,12 @@ msgid ""
 "   <version>2.1.9</version>\n"
 "\n"
 msgstr ""
+" <?xml version='1.0' encoding='utf-8'?>\n"
+" <v2v-inspection>\n"
+"   <program>virt-v2v-inspector</program>\n"
+"   <package>virt-v2v</package>\n"
+"   <version>2.1.9</version>\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:68
@@ -5158,6 +5216,9 @@ msgid ""
 "debugging.  Make sure you use the same version of virt-v2v-inspector and "
 "virt-v2v."
 msgstr ""
+"Елементи E<lt>programE<gt>, E<lt>packageE<gt> і E<lt>versionE<gt> стосуються "
+"поточної версії virt-v2v-inspector і корисні для діагностики. Слід "
+"використовувати однакові версії virt-v2v-inspector і virt-v2v."
 
 #. type: verbatim
 #: docs/virt-v2v-inspector.pod:73
@@ -5175,6 +5236,17 @@ msgid ""
 "   </disks>\n"
 "\n"
 msgstr ""
+"   <disks>\n"
+"     <disk index='0'>\n"
+"       <virtual-size>6442450944</virtual-size>\n"
+"       <allocated estimated='true'>1400897536</allocated>\n"
+"     </disk>\n"
+"     <disk index='1'>\n"
+"       <virtual-size>6442450944</virtual-size>\n"
+"       <allocated estimated='true'>45131520</allocated>\n"
+"     </disk>\n"
+"   </disks>\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:84
