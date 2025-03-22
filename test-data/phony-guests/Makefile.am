@@ -31,11 +31,16 @@ EXTRA_DIST = \
 	make-coreos-img.sh \
 	make-windows-img.sh \
 	win11-software.reg \
+	win11-software.reg.bin \
 	win2k22-software.reg \
+	win2k22-software.reg.bin \
 	win2k25-software.reg \
+	win2k25-software.reg.bin \
 	win7-32-software.reg \
+	win7-32-software.reg.bin \
 	windows-software-all.reg \
 	windows-system.reg \
+	windows-system.reg.bin \
 	minimal-hive \
 	make-guests-all-good.pl \
 	guests.xml.in
