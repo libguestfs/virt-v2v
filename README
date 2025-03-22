@@ -88,5 +88,3 @@ Optional, for enhancements to the basic program:
 Optional, used by the test suite:
 
 * guestfish
-
-* OCaml oUnit2

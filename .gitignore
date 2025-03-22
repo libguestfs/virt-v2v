@@ -85,7 +85,6 @@ Makefile.in
 /ocaml-dep.sh
 /ocaml-link.sh
 /output/.depend
-/output/oUnit-anon.cache
 /output/output_rhv_upload_*_source.ml
 /output/var_expander_tests
 /po-docs/*/*.1
@@ -133,7 +132,6 @@ Makefile.in
 /tests/test-sound.xml
 /tests/windows.vmdk
 /v2v/.depend
-/v2v/oUnit-virt-v2v.cache
 /v2v/real-*.d/
 /v2v/real-*.img
 /v2v/real-*.xml

@@ -99,8 +99,6 @@ if test "x$OCAML_PKG_nbd" = "xno"; then
 fi
 
 OCAML_PKG_gettext=no
-OCAML_PKG_ounit2=no
-ounit_is_v2=no
 AS_IF([test "x$OCAMLC" != "xno"],[
     # Create common/mlgettext/common_gettext.ml gettext functions or stubs.
 
@@ -109,18 +107,9 @@ AS_IF([test "x$OCAMLC" != "xno"],[
     mkdir -p common/mlgettext
 
     GUESTFS_CREATE_COMMON_GETTEXT_ML([common/mlgettext/common_gettext.ml])
-
-    AC_CHECK_OCAML_PKG(ounit2)
-
-    # oUnit >= 2 is required, so check that it has OUnit2.
-    if test "x$OCAML_PKG_ounit2" != "xno"; then
-        AC_CHECK_OCAML_MODULE(ounit_is_v2,[OUnit.OUnit2],OUnit2,[+ounit2])
-    fi
 ])
 AM_CONDITIONAL([HAVE_OCAML_PKG_GETTEXT],
                [test "x$OCAML_PKG_gettext" != "xno"])
-AM_CONDITIONAL([HAVE_OCAML_PKG_OUNIT],
-               [test "x$OCAML_PKG_ounit2" != "xno" && test "x$ounit_is_v2" != "xno"])
 
 AC_CHECK_PROG([OCAML_GETTEXT],[ocaml-gettext],[ocaml-gettext],[no])
 AM_CONDITIONAL([HAVE_OCAML_GETTEXT],
