@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-23 14:53+0000\n"
+"PO-Revision-Date: 2025-03-25 19:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -5258,6 +5258,12 @@ msgid ""
 "host after conversion.  This is assuming you use S<I<-oa sparse>> - see the "
 "notes below."
 msgstr ""
+"Елемент E<lt>disksE<gt> містить дані щодо усіх дисків гостьової системи. "
+"Наведений вище приклад віртуальної машини має два диски. E<lt>virtual-"
+"sizeE<gt> описує розмір диска, який видно зсередини гостьової системи, тоді "
+"як E<lt>allocatedE<gt> — це приблизний обсяг пам’яті, який знадобиться в "
+"основній системі після перетворення. Припускається, що ви використовуєте "
+"S<I<-oa sparse>> — див. примітки нижче."
 
 #. type: verbatim
 #: docs/virt-v2v-inspector.pod:91
@@ -5272,6 +5278,14 @@ msgid ""
 "   </operatingsystem>\n"
 "\n"
 msgstr ""
+"   <operatingsystem>\n"
+"     <name>linux</name>\n"
+"     <distro>fedora</distro>\n"
+"     <osinfo>fedora32</osinfo>\n"
+"     <arch>x86_64</arch>\n"
+"     [...]\n"
+"   </operatingsystem>\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:99
@@ -5280,11 +5294,14 @@ msgid ""
 "operating system gleaned during conversion, in a manner similar to the "
 "L<virt-inspector(1)> tool from guestfs-tools."
 msgstr ""
+"Елемент E<lt>operatingsystemE<gt> містить дані щодо гостьової операційної "
+"системи, отримані під час перетворення, у спосіб, подібний до інструменту L"
+"<virt-inspector(1)> з guestfs-tools."
 
 #. type: =head2
 #: docs/virt-v2v-inspector.pod:103
 msgid "Output allocation mode and output format"
-msgstr ""
+msgstr "Режим отримання пам'яті для виведених даних та формат результатів"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:105
@@ -5294,18 +5311,21 @@ msgid ""
 "to predict the effect of these options on the actual space occupied by the "
 "final image this tool does not account for them."
 msgstr ""
+"У virt-v2v передбачено підтримку вибору режиму розміщення результатів "
+"обробки (параметр I<-oa>) і формату результатів (параметр I<-of>, наприклад "
+"S<I<-of qcow2>>). Оскільки важко передбачити вплив цих параметрів на "
+"фактичний простір, який займатиме образ-результат, цей інструмент не "
+"враховує їх."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:110
 msgid "As a rule of thumb:"
-msgstr ""
+msgstr "Емпіричне правило:"
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:114
-#, fuzzy
-#| msgid "B<-oa> B<preallocated>"
 msgid "S<virt-v2v -oa preallocated>"
-msgstr "B<-oa> B<preallocated>"
+msgstr "S<virt-v2v -oa preallocated>"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:116
@@ -5314,11 +5334,15 @@ msgid ""
 "(excluding the effect of zero allocations will depends so much on the "
 "underlying storage that it is often hard even for experts to predict)."
 msgstr ""
+"призводить до того, що образи дисків на цільовому диску займають свій повний "
+"віртуальний розмір (виключення ефекту отримання місця для нульових об'єктів "
+"буде залежати від базового сховища даних, його часто важко передбачити "
+"навіть експертам)."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:121
 msgid "S<virt-v2v -of qcow2>"
-msgstr ""
+msgstr "S<virt-v2v -of qcow2>"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:123
@@ -5327,16 +5351,19 @@ msgid ""
 "the file will be equal to its sparse size, but otherwise should not affect "
 "estimates very much."
 msgstr ""
+"використовує формат QCOW2 там, де передбачено його підтримку, що означає, що "
+"видимий розмір файла дорівнюватиме його розрідженому розміру, але в іншому "
+"випадку це не повинно дуже впливати на оцінки."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:137
 msgid "B<-O> F<output.xml>"
-msgstr ""
+msgstr "B<-O> F<результат.xml>"
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:139
 msgid "Write the output to a file called F<output.xml>."
-msgstr ""
+msgstr "Записати виведені дані до файла із назвою F<результат.xml>."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:143
@@ -5344,48 +5371,38 @@ msgid ""
 "Write the output to stdout.  This is also the default if the I<-O> option is "
 "omitted."
 msgstr ""
+"Записати результати до stdout. Цей варіант також буде вибрано, якщо параметр "
+"I<-O> не вказано."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:162
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-i> ..."
-msgstr "B<-b> ..."
+msgstr "B<-i> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:164
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-ic> ..."
-msgstr "B<-b> ..."
+msgstr "B<-ic> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:166
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-if> ..."
-msgstr "B<-b> ..."
+msgstr "B<-if> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:168
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-io> ..."
-msgstr "B<-b> ..."
+msgstr "B<-io> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:170
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-ip> ..."
-msgstr "B<-b> ..."
+msgstr "B<-ip> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:172
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-it> ..."
-msgstr "B<-b> ..."
+msgstr "B<-it> ..."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:174
@@ -5393,46 +5410,38 @@ msgid ""
 "All of the I<-i*> options supported by virt-v2v and also supported by virt-"
 "v2v-inspector."
 msgstr ""
+"Усі параметри I<-i*>, підтримку яких передбачено у virt-v2v, також можна "
+"використовувати у virt-v2v-inspector."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:187
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<--key> ..."
-msgstr "B<-b> ..."
+msgstr "B<--key> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:191
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<--mac> ..."
-msgstr "B<-b> ..."
+msgstr "B<--mac> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:197
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<-n> ..."
-msgstr "B<-b> ..."
+msgstr "B<-n> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:199
-#, fuzzy
-#| msgid "B<--network> out"
 msgid "B<--network> ..."
-msgstr "B<--network> вихід"
+msgstr "B<--network> ..."
 
 #. type: =item
 #: docs/virt-v2v-inspector.pod:205
-#, fuzzy
-#| msgid "B<-b> ..."
 msgid "B<--root> ..."
-msgstr "B<-b> ..."
+msgstr "B<--root> ..."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:209
 msgid "These options work in the same way as the equivalent virt-v2v options."
-msgstr ""
+msgstr "Ці параметри працюють так само, як їхні еквіваленти з virt-v2v."
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:224
