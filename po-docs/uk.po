@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-25 19:53+0000\n"
+"PO-Revision-Date: 2025-03-26 02:22+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -5445,16 +5445,12 @@ msgstr "Ці параметри працюють так само, як їхні 
 
 #. type: textblock
 #: docs/virt-v2v-inspector.pod:224
-#, fuzzy
-#| msgid ""
-#| "L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<virsh(1)>, "
-#| "L<compare(1)>, L<git-annex(1)>, L<http://libguestfs.org/>."
 msgid ""
 "L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, L<guestfs(3)>, "
 "L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<virsh(1)>, L<compare(1)>, "
-"L<git-annex(1)>, L<http://libguestfs.org/>."
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, L<guestfs(3)>, "
+"L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
 
 #. type: textblock
 #: docs/virt-v2v-output-local.pod:3
@@ -6068,16 +6064,12 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:103
-#, fuzzy
-#| msgid ""
-#| "Normally there is a file called something like C<stackrc>, C<overcloudrc> "
-#| "etc which you can simply C<source> to set everything up."
 msgid ""
 "Normally there is a file called F<overcloudrc> or F<keystonerc_admin> which "
 "you can simply C<source> to set everything up."
 msgstr ""
-"Зазвичай, має бути файл, який називається C<stackrc>, C<overcloudrc> або "
-"якось так, яким ви C<можете скористатися> для налаштовування."
+"Зазвичай, має бути файл, який називається F<overcloudrc> або "
+"F<keystonerc_admin>, яким ви C<можете скористатися> для налаштовування."
 
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:106
@@ -6711,10 +6703,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-output-rhv.pod:132
-#, fuzzy
-#| msgid "I<-oo rhv-direct>"
 msgid "I<-oo rhv-proxy>"
-msgstr "I<-oo rhv-direct>"
+msgstr "I<-oo rhv-proxy>"
 
 #. type: textblock
 #: docs/virt-v2v-output-rhv.pod:134
