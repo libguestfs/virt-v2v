@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-28 08:50+0000\n"
+"PO-Revision-Date: 2025-03-29 17:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -7544,7 +7544,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:13
 msgid "Virt-v2v 2.0.0 was released on S<B<14 March 2022>>."
-msgstr ""
+msgstr "Virt-v2v 2.0.0 було випущено S<B<14 березня 2022 року>>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:21
@@ -7780,17 +7780,13 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:140
-#, fuzzy
-#| msgid "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
 msgid "https_proxy= ./bugs-in-changelog.sh v1.42.0.."
-msgstr "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
+msgstr "https_proxy= ./bugs-in-changelog.sh v1.42.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:146
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1518539>"
 msgid "L<https://bugzilla.redhat.com/2051394>"
-msgstr "L<https://bugzilla.redhat.com/1518539>"
+msgstr "L<https://bugzilla.redhat.com/2051394>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:148
@@ -7801,10 +7797,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:150
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1605242>"
 msgid "L<https://bugzilla.redhat.com/2044922>"
-msgstr "L<https://bugzilla.redhat.com/1605242>"
+msgstr "L<https://bugzilla.redhat.com/2044922>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:152
@@ -7813,10 +7807,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:154
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2044911>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2044911>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:156
@@ -7825,10 +7817,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:158
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2043333>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2043333>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:160
@@ -7839,10 +7829,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:162
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/2041886>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/2041886>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:164
@@ -7853,10 +7841,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:166
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/2041852>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/2041852>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:168
@@ -7865,10 +7851,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:170
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2041850>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2041850>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:172
@@ -7877,10 +7861,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:174
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/2039597>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/2039597>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:176
@@ -7889,10 +7871,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:178
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/2039255>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/2039255>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:180
@@ -7902,10 +7882,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:182
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791240>"
 msgid "L<https://bugzilla.redhat.com/2034240>"
-msgstr "L<https://bugzilla.redhat.com/1791240>"
+msgstr "L<https://bugzilla.redhat.com/2034240>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:184
@@ -7916,10 +7894,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:186
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2033096>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2033096>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:188
@@ -7928,10 +7904,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:190
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2032324>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2032324>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:192
@@ -7942,10 +7916,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:194
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2032112>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2032112>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:196
@@ -7954,10 +7926,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:198
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2027673>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2027673>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:200
@@ -7968,10 +7938,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:202
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2027598>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2027598>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:204
@@ -7982,10 +7950,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:206
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1994984>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1994984>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:208
@@ -7996,10 +7962,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:210
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1733168>"
 msgid "L<https://bugzilla.redhat.com/1977681>"
-msgstr "L<https://bugzilla.redhat.com/1733168>"
+msgstr "L<https://bugzilla.redhat.com/1977681>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:212
@@ -8010,10 +7974,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:214
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://bugzilla.redhat.com/1976607>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://bugzilla.redhat.com/1976607>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:216
@@ -8022,10 +7984,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:218
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1605242>"
 msgid "L<https://bugzilla.redhat.com/1976024>"
-msgstr "L<https://bugzilla.redhat.com/1605242>"
+msgstr "L<https://bugzilla.redhat.com/1976024>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:220
@@ -8036,10 +7996,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:222
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/1972125>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/1972125>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:224
@@ -8050,29 +8008,21 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:226
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1967941>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1967941>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:228
-#, fuzzy
-#| msgid ""
-#| "virt-v2v should show a message when qemu-guest-agent is installed in "
-#| "guest successfully during conversion"
 msgid ""
 "virt-v2v can't install qemu-guest-agent for rhel9 guest during conversion"
 msgstr ""
-"virt-v2v має показувати повідомлення, якщо у гостьовій системі успішно "
-"встановлено qemu-guest-agent під час перетворення"
+"virt-v2v не могла встановлювати qemu-guest-agent для гостьових систем rhel9 "
+"під час перетворення"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:230
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791240>"
 msgid "L<https://bugzilla.redhat.com/1964324>"
-msgstr "L<https://bugzilla.redhat.com/1791240>"
+msgstr "L<https://bugzilla.redhat.com/1964324>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:232
@@ -8081,10 +8031,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:234
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1961107>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1961107>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:236
@@ -8093,10 +8041,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:238
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1690574>"
 msgid "L<https://bugzilla.redhat.com/1960087>"
-msgstr "L<https://bugzilla.redhat.com/1690574>"
+msgstr "L<https://bugzilla.redhat.com/1960087>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:240
@@ -8107,10 +8053,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:242
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/1949147>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/1949147>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:244
@@ -8121,10 +8065,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:246
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1691659>"
 msgid "L<https://bugzilla.redhat.com/1945549>"
-msgstr "L<https://bugzilla.redhat.com/1691659>"
+msgstr "L<https://bugzilla.redhat.com/1945549>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:248
@@ -8135,10 +8077,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:250
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/1942325>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/1942325>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:252
@@ -8149,10 +8089,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:254
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1926102>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1926102>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:256
@@ -8163,10 +8101,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:258
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1917760>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1917760>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:260
@@ -8175,10 +8111,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:262
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://bugzilla.redhat.com/1903960>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://bugzilla.redhat.com/1903960>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:264
@@ -8189,10 +8123,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:266
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1901489>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1901489>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:268
@@ -8203,10 +8135,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:270
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1895323>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1895323>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:272
@@ -8217,10 +8147,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:274
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1872100>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1872100>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:276
@@ -8230,10 +8158,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:278
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791240>"
 msgid "L<https://bugzilla.redhat.com/1872094>"
-msgstr "L<https://bugzilla.redhat.com/1791240>"
+msgstr "L<https://bugzilla.redhat.com/1872094>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:280
@@ -8244,10 +8170,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:282
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/1871754>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/1871754>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:284
@@ -8258,10 +8182,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:286
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://bugzilla.redhat.com/1868690>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://bugzilla.redhat.com/1868690>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:288
@@ -8272,10 +8194,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:290
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1858775>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1858775>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:292
@@ -8284,10 +8204,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:294
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1858765>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1858765>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:296
@@ -8300,10 +8218,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.0.pod:298
 #: docs/virt-v2v-release-notes-2.2.pod:259
 #: docs/virt-v2v-release-notes-2.6.pod:100
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1854275>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1854275>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:300
@@ -8315,10 +8231,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:302
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791240>"
 msgid "L<https://bugzilla.redhat.com/1842440>"
-msgstr "L<https://bugzilla.redhat.com/1791240>"
+msgstr "L<https://bugzilla.redhat.com/1842440>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:304
@@ -8328,10 +8242,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:306
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://bugzilla.redhat.com/1841096>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://bugzilla.redhat.com/1841096>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:308
@@ -8342,10 +8254,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:310
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/1839917>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/1839917>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:312
@@ -8356,10 +8266,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:314
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1838425>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1838425>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:316
@@ -8370,10 +8278,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:318
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1518539>"
 msgid "L<https://bugzilla.redhat.com/1837453>"
-msgstr "L<https://bugzilla.redhat.com/1518539>"
+msgstr "L<https://bugzilla.redhat.com/1837453>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:320
@@ -8382,10 +8288,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:322
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1837328>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1837328>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:324
@@ -8394,10 +8298,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:326
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1832805>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1832805>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:328
@@ -8409,10 +8311,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:330
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/1789279>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/1789279>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:332
@@ -8423,10 +8323,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:334
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1788823>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1788823>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:336
@@ -8437,10 +8335,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:338
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://bugzilla.redhat.com/1764569>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://bugzilla.redhat.com/1764569>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:340
@@ -8449,24 +8345,19 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:342
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1612653>"
 msgid "L<https://bugzilla.redhat.com/1658126>"
-msgstr "L<https://bugzilla.redhat.com/1612653>"
+msgstr "L<https://bugzilla.redhat.com/1658126>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:344
-#, fuzzy
-#| msgid "virt-v2v - Convert a guest to use KVM"
 msgid "Virt-v2v can't convert guest using LUKS-on-LV"
-msgstr "virt-v2v - перетворення гостьової системи для використання KVM"
+msgstr ""
+"Virt-v2v не могла перетворювати гостьові системи з використанням LUKS-on-LV"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:346
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1690574>"
 msgid "L<https://bugzilla.redhat.com/1637857>"
-msgstr "L<https://bugzilla.redhat.com/1690574>"
+msgstr "L<https://bugzilla.redhat.com/1637857>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:348
@@ -8477,10 +8368,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:350
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1584678>"
 msgid "L<https://bugzilla.redhat.com/1581428>"
-msgstr "L<https://bugzilla.redhat.com/1584678>"
+msgstr "L<https://bugzilla.redhat.com/1581428>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:352
@@ -8489,10 +8378,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:354
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1584678>"
 msgid "L<https://bugzilla.redhat.com/1534644>"
-msgstr "L<https://bugzilla.redhat.com/1584678>"
+msgstr "L<https://bugzilla.redhat.com/1534644>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:356
@@ -8501,12 +8388,12 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:362
-#, fuzzy
-#| msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for this release."
 msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
 "notes-1.40(1)>."
-msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо цього випуску."
+msgstr ""
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
+"notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:368
@@ -8540,10 +8427,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:3
-#, fuzzy
-#| msgid "virt-v2v-release-notes - virt-v2v Release Notes"
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.2"
-msgstr "virt-v2v-release-notes — нотатки щодо випуску virt-v2v"
+msgstr "virt-v2v-release-notes — нотатки щодо випуску virt-v2v версії 2.2"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:7
@@ -8811,17 +8696,13 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:137
-#, fuzzy
-#| msgid "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
 msgid "https_proxy= ./bugs-in-changelog.sh v2.0.0.."
-msgstr "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
+msgstr "https_proxy= ./bugs-in-changelog.sh v2.0.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:143
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2152465>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2152465>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:145
@@ -8832,10 +8713,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:147
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/2151752>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/2151752>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:149
@@ -8846,10 +8725,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:151
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2149863>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2149863>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:153
@@ -8860,10 +8737,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:155
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2149811>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2149811>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:157
@@ -8874,10 +8749,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:159
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://bugzilla.redhat.com/2149629>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://bugzilla.redhat.com/2149629>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:161
@@ -8888,10 +8761,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:163
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1612653>"
 msgid "L<https://bugzilla.redhat.com/2131123>"
-msgstr "L<https://bugzilla.redhat.com/1612653>"
+msgstr "L<https://bugzilla.redhat.com/2131123>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:165
@@ -8900,10 +8771,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:167
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1733168>"
 msgid "L<https://bugzilla.redhat.com/2116811>"
-msgstr "L<https://bugzilla.redhat.com/1733168>"
+msgstr "L<https://bugzilla.redhat.com/2116811>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:169
@@ -8914,10 +8783,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:171
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2112801>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2112801>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:173
@@ -8926,10 +8793,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:175
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2107503>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2107503>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:177
@@ -8941,10 +8806,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:179
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1691659>"
 msgid "L<https://bugzilla.redhat.com/2101665>"
-msgstr "L<https://bugzilla.redhat.com/1691659>"
+msgstr "L<https://bugzilla.redhat.com/2101665>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:181
@@ -8955,24 +8818,19 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:183
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2089623>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2089623>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:185
-#, fuzzy
-#| msgid "Virt-v2v is able to import guests from VMware vCenter Server."
 msgid "Virt-v2v can't convert rhel8.6 guest from VMware on rhel8.6"
-msgstr "Virt-v2v може імпортувати гостьові системи з сервера vCenter VMware."
+msgstr ""
+"Virt-v2v не могла перетворювати гостьові системи rhel8.6 з VMware у rhel8.6"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:187
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2082603>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2082603>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:189
@@ -8983,10 +8841,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:191
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2076013>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2076013>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:193
@@ -8995,10 +8851,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:195
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2074805>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2074805>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:197
@@ -9009,10 +8863,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:199
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2074801>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2074801>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:201
@@ -9023,10 +8875,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:203
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2070530>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2070530>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:205
@@ -9036,10 +8886,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:207
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2070186>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2070186>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:209
@@ -9048,10 +8896,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:211
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1733168>"
 msgid "L<https://bugzilla.redhat.com/2069768>"
-msgstr "L<https://bugzilla.redhat.com/1733168>"
+msgstr "L<https://bugzilla.redhat.com/2069768>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:213
@@ -9060,10 +8906,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:215
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2066773>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2066773>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:217
@@ -9072,10 +8916,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:219
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2062360>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2062360>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:221
@@ -9086,10 +8928,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:223
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/2059287>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/2059287>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:225
@@ -9098,10 +8938,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:227
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2051564>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2051564>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:229
@@ -9110,10 +8948,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:231
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791240>"
 msgid "L<https://bugzilla.redhat.com/2047660>"
-msgstr "L<https://bugzilla.redhat.com/1791240>"
+msgstr "L<https://bugzilla.redhat.com/2047660>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:233
@@ -9122,10 +8958,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:235
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1690574>"
 msgid "L<https://bugzilla.redhat.com/2028764>"
-msgstr "L<https://bugzilla.redhat.com/1690574>"
+msgstr "L<https://bugzilla.redhat.com/2028764>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:237
@@ -9134,10 +8968,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:239
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1626503>"
 msgid "L<https://bugzilla.redhat.com/2003503>"
-msgstr "L<https://bugzilla.redhat.com/1626503>"
+msgstr "L<https://bugzilla.redhat.com/2003503>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:241
@@ -9148,10 +8980,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:243
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1985827>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1985827>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:245
@@ -9160,28 +8990,21 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:247
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://bugzilla.redhat.com/1953286>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://bugzilla.redhat.com/1953286>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:249
-#, fuzzy
-#| msgid ""
-#| "virt-v2v-output-rhv - Using virt-v2v to convert guests to oVirt or RHV"
 msgid ""
 "No error shows when using virt-v2v -o rhv to convert guest to data domain"
 msgstr ""
-"virt-v2v-output-rhv — використання virt-v2v для перетворення гостьових "
-"систем із виведенням даних до oVirt або RHV"
+"Програма не показувала повідомлення про помилку при використанні virt-v2v -o "
+"rhv для перетворення гостьової системи до домену даних"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:251
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1690574>"
 msgid "L<https://bugzilla.redhat.com/1938954>"
-msgstr "L<https://bugzilla.redhat.com/1690574>"
+msgstr "L<https://bugzilla.redhat.com/1938954>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:253
@@ -9190,10 +9013,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:255
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/1883802>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/1883802>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:257
@@ -9202,10 +9023,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:263
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/1817050>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/1817050>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:265
@@ -9216,10 +9035,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:267
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://bugzilla.redhat.com/1774386>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://bugzilla.redhat.com/1774386>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:269
@@ -9232,91 +9049,91 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
 "notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 msgstr ""
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
+"notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
 msgid "Authors of virt-v2v 2.2:"
-msgstr ""
+msgstr "Автори virt-v2v 2.2:"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:286
 msgid "git shortlog -s v2.0.0.."
-msgstr ""
+msgstr "git shortlog -s v2.0.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:292
 #: docs/virt-v2v-release-notes-2.4.pod:169
 msgid "Andrey Drobyshev"
-msgstr ""
+msgstr "Andrey Drobyshev"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:294
 #: docs/virt-v2v-release-notes-2.4.pod:171
 msgid "Emilio Herrera"
-msgstr ""
+msgstr "Emilio Herrera"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:296
 msgid "Ettore Atalan"
-msgstr ""
+msgstr "Ettore Atalan"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:298
 msgid "Hela Basa"
-msgstr ""
+msgstr "Hela Basa"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:300
 #: docs/virt-v2v-release-notes-2.4.pod:177
 msgid "Jan Kuparinen"
-msgstr ""
+msgstr "Jan Kuparinen"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:304
 msgid "Marcin Stanclik"
-msgstr ""
+msgstr "Marcin Stanclik"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:308
 #: docs/virt-v2v-release-notes-2.4.pod:183
 msgid "Pavel Borecki"
-msgstr ""
+msgstr "Pavel Borecki"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:310
 #: docs/virt-v2v-release-notes-2.4.pod:185
 msgid "Piotr Drąg"
-msgstr ""
+msgstr "Piotr Drąg"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:314
 msgid "Ricky Tigg"
-msgstr ""
+msgstr "Ricky Tigg"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:316
 #: docs/virt-v2v-release-notes-2.4.pod:191
 msgid "Temuri Doghonadze"
-msgstr ""
+msgstr "Temuri Doghonadze"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:318
 msgid "Tim Kent"
-msgstr ""
+msgstr "Tim Kent"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:322
 #: docs/virt-v2v-release-notes-2.4.pod:193
 #: docs/virt-v2v-release-notes-2.6.pod:214
 msgid "Yuri Chornoivan"
-msgstr ""
+msgstr "Юрій Чорноіван"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:3
-#, fuzzy
-#| msgid "virt-v2v-release-notes - virt-v2v Release Notes"
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.4"
-msgstr "virt-v2v-release-notes — нотатки щодо випуску virt-v2v"
+msgstr "virt-v2v-release-notes - нотатки щодо випуску virt-v2v версії 2.4"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:7
@@ -9474,17 +9291,13 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:95
-#, fuzzy
-#| msgid "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
 msgid "https_proxy= ./bugs-in-changelog.sh v2.2.0.."
-msgstr "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
+msgstr "https_proxy= ./bugs-in-changelog.sh v2.2.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:101
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://bugzilla.redhat.com/2182024>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://bugzilla.redhat.com/2182024>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:103
@@ -9493,10 +9306,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:105
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://bugzilla.redhat.com/2175703>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://bugzilla.redhat.com/2175703>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:107
@@ -9507,10 +9318,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:110
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2172075>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2172075>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:112
@@ -9521,10 +9330,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:115
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://bugzilla.redhat.com/2168506>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://bugzilla.redhat.com/2168506>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:117
@@ -9535,10 +9342,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:120
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://bugzilla.redhat.com/2168082>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://bugzilla.redhat.com/2168082>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:122
@@ -9549,10 +9354,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:125
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://bugzilla.redhat.com/2166619>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://bugzilla.redhat.com/2166619>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:127
@@ -9563,10 +9366,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:130
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://bugzilla.redhat.com/2166618>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://bugzilla.redhat.com/2166618>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:132
@@ -9577,10 +9378,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:135
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1605242>"
 msgid "L<https://bugzilla.redhat.com/2162444>"
-msgstr "L<https://bugzilla.redhat.com/1605242>"
+msgstr "L<https://bugzilla.redhat.com/2162444>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:137
@@ -9589,10 +9388,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:139
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1723305>"
 msgid "L<https://bugzilla.redhat.com/2162332>"
-msgstr "L<https://bugzilla.redhat.com/1723305>"
+msgstr "L<https://bugzilla.redhat.com/2162332>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:141
@@ -9605,10 +9402,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:146
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://bugzilla.redhat.com/1986386>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://bugzilla.redhat.com/1986386>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:148
@@ -9644,10 +9439,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:3
-#, fuzzy
-#| msgid "virt-v2v-release-notes - virt-v2v Release Notes"
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.6"
-msgstr "virt-v2v-release-notes — нотатки щодо випуску virt-v2v"
+msgstr "virt-v2v-release-notes - нотатки щодо випуску virt-v2v версії 2.6"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:7
@@ -9784,17 +9577,13 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:94
-#, fuzzy
-#| msgid "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
 msgid "./bugs-in-changelog.sh v2.4.0.."
-msgstr "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
+msgstr "./bugs-in-changelog.sh v2.4.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:104
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1733168>"
 msgid "L<https://issues.redhat.com/browse/RHEL-21365>"
-msgstr "L<https://bugzilla.redhat.com/1733168>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-21365>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:106
@@ -9805,10 +9594,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:109
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791257>"
 msgid "L<https://issues.redhat.com/browse/RHEL-28197>"
-msgstr "L<https://bugzilla.redhat.com/1791257>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-28197>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:111
@@ -9817,10 +9604,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:113
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://issues.redhat.com/browse/RHEL-33699>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-33699>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:115
@@ -9829,10 +9614,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:117
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1691659>"
 msgid "L<https://issues.redhat.com/browse/RHEL-36591>"
-msgstr "L<https://bugzilla.redhat.com/1691659>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-36591>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:119
@@ -9843,10 +9626,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:122
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://issues.redhat.com/browse/RHEL-45527>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-45527>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:124
@@ -9857,10 +9638,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:127
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1746699>"
 msgid "L<https://issues.redhat.com/browse/RHEL-45992>"
-msgstr "L<https://bugzilla.redhat.com/1746699>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-45992>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:129
@@ -9869,10 +9648,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:131
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "L<https://issues.redhat.com/browse/RHEL-49761>"
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-49761>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:133
@@ -9882,10 +9659,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:135
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1733168>"
 msgid "L<https://issues.redhat.com/browse/RHEL-50731>"
-msgstr "L<https://bugzilla.redhat.com/1733168>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-50731>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:137
@@ -9894,10 +9669,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:139
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1691659>"
 msgid "L<https://issues.redhat.com/browse/RHEL-51169>"
-msgstr "L<https://bugzilla.redhat.com/1691659>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-51169>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:141
@@ -9908,10 +9681,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:144
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1518539>"
 msgid "L<https://issues.redhat.com/browse/RHEL-53990>"
-msgstr "L<https://bugzilla.redhat.com/1518539>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-53990>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:146
@@ -9920,10 +9691,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:148
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1518539>"
 msgid "L<https://issues.redhat.com/browse/RHEL-55763>"
-msgstr "L<https://bugzilla.redhat.com/1518539>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-55763>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:150
@@ -9932,10 +9701,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:152
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1785528>"
 msgid "L<https://issues.redhat.com/browse/RHEL-55837>"
-msgstr "L<https://bugzilla.redhat.com/1785528>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-55837>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:154
@@ -9944,10 +9711,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:156
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1584678>"
 msgid "L<https://issues.redhat.com/browse/RHEL-56784>"
-msgstr "L<https://bugzilla.redhat.com/1584678>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-56784>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:158
@@ -9958,10 +9723,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:161
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1680361>"
 msgid "L<https://issues.redhat.com/browse/RHEL-58065>"
-msgstr "L<https://bugzilla.redhat.com/1680361>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-58065>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:163
@@ -10215,24 +9978,18 @@ msgstr "Гості"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:80
-#, fuzzy
-#| msgid "Red Hat Enterprise Linux 3, 4, 5, 6, 7"
 msgid "Red Hat Enterprise Linux 4, 5, 6, 7, 8, 9, 10"
-msgstr "Red Hat Enterprise Linux 3, 4, 5, 6, 7"
+msgstr "Red Hat Enterprise Linux 4, 5, 6, 7, 8, 9, 10"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:82
-#, fuzzy
-#| msgid "CentOS 3, 4, 5, 6, 7"
 msgid "CentOS 4, 5, 6, 7, 8, 9, 10"
-msgstr "CentOS 3, 4, 5, 6, 7"
+msgstr "CentOS 4, 5, 6, 7, 8, 9, 10"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:84
-#, fuzzy
-#| msgid "Scientific Linux 3, 4, 5, 6, 7"
 msgid "Scientific Linux 4, 5, 6, 7"
-msgstr "Scientific Linux 3, 4, 5, 6, 7"
+msgstr "Scientific Linux 4, 5, 6, 7"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:86
@@ -10256,10 +10013,8 @@ msgstr "OpenSUSE 10 і новіші версії"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:94
-#, fuzzy
-#| msgid "Debian 6 and up"
 msgid "ALT Linux 9 and up"
-msgstr "Debian 6 і новіші версії"
+msgstr "ALT Linux 9 і новіші версії"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:96
@@ -10273,10 +10028,8 @@ msgstr "Ubuntu 10.04, 12.04, 14.04, 16.04 і новіші версії"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:100
-#, fuzzy
-#| msgid "Windows XP to Windows 10 / Windows Server 2016"
 msgid "Windows XP to Windows 11 / Windows Server 2025"
-msgstr "від Windows XP до Windows 10 / Windows Server 2016"
+msgstr "від Windows XP до Windows 11 / Windows Server 2025"
 
 #. type: =head2
 #: docs/virt-v2v-support.pod:104
@@ -10344,12 +10097,8 @@ msgstr "UEFI на OpenStack"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:129
-#, fuzzy
-#| msgid "Supported since oVirt/RHV E<ge> 4.2 and virt-v2v E<ge> 1.39.12."
 msgid "Supported since virt-v2v E<ge> 1.43.2."
-msgstr ""
-"Підтримку реалізовано, починаючи з версії oVirt/RHV E<ge> 4.2 і virt-v2v "
-"E<ge> 1.39.12."
+msgstr "Підтримку реалізовано, починаючи з версії virt-v2v E<ge> 1.43.2."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:131
@@ -10375,12 +10124,7 @@ msgstr "virt-v2v - перетворення гостьової системи д
 
 #. type: verbatim
 #: docs/virt-v2v.pod:7
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v [-i mode] [other -i* options]\n"
-#| "          [-o mode] [other -o* options]\n"
-#| "          [guest|filename]\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v [-i mode] [other -i* options]\n"
 "          [-o mode] [other -o* options]\n"
@@ -10390,6 +10134,7 @@ msgid ""
 msgstr ""
 " virt-v2v [-i режим] [інші параметри -i*]\n"
 "          [-o режим] [інші параметри -o*]\n"
+"          [параметри virt-customize]\n"
 "          [гостьова_система|назва_файла]\n"
 "\n"
 
@@ -10471,12 +10216,6 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:43
-#, fuzzy
-#| msgid ""
-#| "Virt-v2v normally copies from the input to the output, called \"copying "
-#| "mode\".  In this case the source guest is always left unchanged.  In-"
-#| "place conversion (I<--in-place>) only uses the I<-i*> options and "
-#| "modifies the source guest in-place.  (See L</In-place conversion> below.)"
 msgid ""
 "Virt-v2v normally copies from the input to the output, called \"copying "
 "mode\".  In this case the source guest is always left unchanged.  In-place "
@@ -10484,9 +10223,8 @@ msgid ""
 msgstr ""
 "Зазвичай, virt-v2v копіює дані з входу до виходу, тобто працює у режимі "
 "копіювання. У цьому випадку початкова гостьова система завжди лишається "
-"незмінною. Перетворення на місці (I<--in-place>) використовує лише параметри "
-"I<-i*> і вносить зміни до початкової гостьової системи на місці. (Див. L</In-"
-"place conversion> нижче.)"
+"незмінною. Перетворення на місці можна виконати за допомогою L<virt-v2v-in-"
+"place(1)>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:47
@@ -10546,38 +10284,28 @@ msgstr "L<virt-v2v-output-openstack(1)> — виведення до OpenStack."
 
 #. type: textblock
 #: docs/virt-v2v.pod:70
-#, fuzzy
-#| msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for this release."
 msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for 1.42 release."
-msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо цього випуску."
+msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо випуску 1.42."
 
 #. type: textblock
 #: docs/virt-v2v.pod:72
-#, fuzzy
-#| msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for this release."
 msgid "L<virt-v2v-release-notes-2.0(1)> — Release notes for 2.0 release."
-msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо цього випуску."
+msgstr "L<virt-v2v-release-notes-2.0(1)> — нотатки щодо випуску 2.0."
 
 #. type: textblock
 #: docs/virt-v2v.pod:74
-#, fuzzy
-#| msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for this release."
 msgid "L<virt-v2v-release-notes-2.2(1)> — Release notes for 2.2 release."
-msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо цього випуску."
+msgstr "L<virt-v2v-release-notes-2.2(1)> — нотатки щодо випуску 2.2."
 
 #. type: textblock
 #: docs/virt-v2v.pod:76
-#, fuzzy
-#| msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for this release."
 msgid "L<virt-v2v-release-notes-2.4(1)> — Release notes for 2.4 release."
-msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо цього випуску."
+msgstr "L<virt-v2v-release-notes-2.4(1)> — нотатки щодо випуску 2.4."
 
 #. type: textblock
 #: docs/virt-v2v.pod:78
-#, fuzzy
-#| msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for this release."
 msgid "L<virt-v2v-release-notes-2.6(1)> — Release notes for 2.6 release."
-msgstr "L<virt-v2v-release-notes-1.42(1)> — нотатки щодо цього випуску."
+msgstr "L<virt-v2v-release-notes-2.6(1)> — нотатки щодо випуску 2.6."
 
 #. type: =head2
 #: docs/virt-v2v.pod:82
@@ -10642,14 +10370,7 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v.pod:103
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest \\\n"
-#| "   -o rhv-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \\\n"
-#| "   -os ovirt-data -op /tmp/ovirt-admin-password -of raw \\\n"
-#| "   -oo rhv-cafile=/tmp/ca.pem -oo rhv-direct \\\n"
-#| "   --bridge ovirtmgmt\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest \\\n"
 "   -o rhv-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \\\n"
@@ -10660,8 +10381,7 @@ msgstr ""
 " virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest \\\n"
 "   -o rhv-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \\\n"
 "   -os ovirt-data -op /tmp/ovirt-admin-password -of raw \\\n"
-"   -oo rhv-cafile=/tmp/ca.pem -oo rhv-direct \\\n"
-"   --bridge ovirtmgmt\n"
+"   -oo rhv-cafile=/tmp/ca.pem --bridge ovirtmgmt\n"
 "\n"
 
 #. type: textblock
@@ -10834,15 +10554,12 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v.pod:163
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v -i disk disk.img -o qemu -os /var/tmp --qemu-boot\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v -i disk disk.img -o qemu -os /var/tmp -oo qemu-boot\n"
 "\n"
 msgstr ""
-" virt-v2v -i disk disk.img -o qemu -os /var/tmp --qemu-boot\n"
+" virt-v2v -i disk disk.img -o qemu -os /var/tmp -oo qemu-boot\n"
 "\n"
 
 #. type: =item
@@ -10935,10 +10652,8 @@ msgstr "B<--compressed>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:244
-#, fuzzy
-#| msgid "This is the same as I<-o rhv>."
 msgid "This is the same as I<-oo compressed>."
-msgstr "Те саме, що і I<-o rhv>."
+msgstr "Те саме, що і I<-oo compressed>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:275
@@ -11161,19 +10876,14 @@ msgstr "Див. L</Мережі і містки> нижче."
 
 #. type: textblock
 #: docs/virt-v2v.pod:407
-#, fuzzy
-#| msgid ""
-#| "The fields in the parameter are: C<ipaddr> is the IP address.  C<gw> is "
-#| "the optional gateway IP address.  C<len> is the subnet mask length (an "
-#| "integer).  The final parameters are zero or more nameserver IP addresses."
 msgid ""
 "The fields in the parameter are: C<ipaddr> is the IP address.  C<gw> is the "
 "optional gateway IP address.  C<len> is the optional subnet mask length (an "
 "integer).  The final parameters are zero or more nameserver IP addresses."
 msgstr ""
 "Поля у параметрі є такими: C<ipaddr> є IP-адресою; C<gw> — необов'язкова IP-"
-"адреса шлюзу; C<len> — довжина маски підмережі (ціле число). Останні "
-"параметри є нульовими або додатковими IP-адресами назв серверів."
+"адреса шлюзу; C<len> — необов'язкова довжина маски підмережі (ціле число). "
+"Останні параметри є нульовими або додатковими IP-адресами назв серверів."
 
 #. type: textblock
 #: docs/virt-v2v.pod:424
@@ -11220,10 +10930,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:462
-#, fuzzy
-#| msgid "B<-o> B<libvirt>"
 msgid "B<-o> B<kubevirt>"
-msgstr "B<-o> B<libvirt>"
+msgstr "B<-o> B<kubevirt>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:464
@@ -11234,11 +10942,6 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:467
-#, fuzzy
-#| msgid ""
-#| "In this mode, the converted guest is written to a local directory "
-#| "specified by I<-os /dir> (the directory must exist).  The converted "
-#| "guest’s disks are written as:"
 msgid ""
 "In this mode, the converted guest is written to a local directory specified "
 "by I<-os /dir> (the directory must exist).  The converted guest’s disks are "
@@ -11246,7 +10949,7 @@ msgid ""
 msgstr ""
 "У цьому режимі перетворену гостьову систему буде записано до локального "
 "каталогу, вказаного за допомогою параметра I<-os /каталог> (каталог має "
-"існувати). Перетворені диски гостьової системи буде записано так:"
+"існувати). Перетворені диски гостьової системи буде записано до:"
 
 #. type: verbatim
 #: docs/virt-v2v.pod:471 docs/virt-v2v.pod:499
@@ -11269,15 +10972,12 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v.pod:477
-#, fuzzy, no-wrap
-#| msgid ""
-#| " /dir/name.xml\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " /dir/name.yaml\n"
 "\n"
 msgstr ""
-" /каталог/назва.xml\n"
+" /каталог/назва.yaml\n"
 "\n"
 
 #. type: textblock
@@ -11360,16 +11060,12 @@ msgstr "Встановити метод виведення до I<null>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:513
-#, fuzzy
-#| msgid ""
-#| "The guest is converted and copied (unless you also specify I<--no-copy>), "
-#| "but the results are thrown away and no metadata is written."
 msgid ""
 "The guest is converted and copied but the results are thrown away and no "
 "metadata is written."
 msgstr ""
-"Гостьову систему буде перетворено і скопійовано (якщо ви не вкажете ще і I<--"
-"no-copy>), але результати буде викинуто, метадані не записуватимуться."
+"Гостьову систему буде перетворено і скопійовано, але результати буде "
+"викинуто, метадані не записуватимуться."
 
 #. type: =item
 #: docs/virt-v2v.pod:516
@@ -11428,16 +11124,12 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:536
-#, fuzzy
-#| msgid ""
-#| "When using this output mode, you can also specify the I<--qemu-boot> "
-#| "option which boots the guest under qemu immediately."
 msgid ""
 "When using this output mode, you can also specify the I<-oo qemu-boot> "
 "option which boots the guest under qemu immediately."
 msgstr ""
 "Якщо ви використовуєте цей режим виведення, ви також можете вказати параметр "
-"I<--qemu-boot>, який завантажує гостьову систему у qemu негайно."
+"I<-oo qemu-boot>, який завантажує гостьову систему у qemu негайно."
 
 #. type: =item
 #: docs/virt-v2v.pod:539
@@ -11621,10 +11313,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:609
-#, fuzzy
-#| msgid "B<--compressed>"
 msgid "B<-oo compressed>"
-msgstr "B<--compressed>"
+msgstr "B<-oo compressed>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:611
@@ -11660,10 +11350,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:621
-#, fuzzy
-#| msgid "B<--qemu-boot>"
 msgid "B<-oo qemu-boot>"
-msgstr "B<--qemu-boot>"
+msgstr "B<-oo qemu-boot>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:623
@@ -11744,10 +11432,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:651
-#, fuzzy
-#| msgid "B<-oo rhv-direct>"
 msgid "B<-oo rhv-proxy>"
-msgstr "B<-oo rhv-direct>"
+msgstr "B<-oo rhv-proxy>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:653
@@ -12013,16 +11699,11 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:765
-#, fuzzy
-#| msgid ""
-#| "For I<-o json>, I<-o local> and I<-o qemu>, this is a directory name.  "
-#| "The directory must exist."
 msgid ""
 "For I<-o local> and I<-o qemu>, this is a directory name.  The directory "
 "must exist."
 msgstr ""
-"Для I<-o json>, I<-o local> і I<-o qemu> це назва каталогу. Каталог має вже "
-"існувати."
+"Для I<-o local> і I<-o qemu> це назва каталогу. Каталог має вже існувати."
 
 #. type: textblock
 #: docs/virt-v2v.pod:768
@@ -12089,10 +11770,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:790
-#, fuzzy
-#| msgid "B<--update>"
 msgid "B<--parallel> N"
-msgstr "B<--update>"
+msgstr "B<--parallel> N"
 
 #. type: textblock
 #: docs/virt-v2v.pod:792
@@ -12135,10 +11814,8 @@ msgstr "B<--qemu-boot>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:811
-#, fuzzy
-#| msgid "This is the same as I<-o local>."
 msgid "This is the same as I<-oo qemu-boot>."
-msgstr "Те саме, що і I<-o local>."
+msgstr "Те саме, що і I<-oo qemu-boot>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:886
@@ -12573,10 +12250,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1030
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1690574>"
 msgid "See L<https://bugzilla.redhat.com/2140548>."
-msgstr "L<https://bugzilla.redhat.com/1690574>"
+msgstr "Див. L<https://bugzilla.redhat.com/2140548>."
 
 #. type: =head3
 #: docs/virt-v2v.pod:1032
@@ -13081,16 +12756,12 @@ msgstr "I<-i ova>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1232
-#, fuzzy
-#| msgid ""
-#| "This temporarily places a full copy of the uncompressed source disks in "
-#| "C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgid ""
 "This temporarily places a full copy of the uncompressed source disks in "
 "C<$VIRT_V2V_TMPDIR> (or F</var/tmp>)."
 msgstr ""
-"Ця команда тимчасово зберігає повну копію нестиснених початкових дисків у "
-"C<$LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
+"Ця команда тимчасово зберігає повну копію нестиснених початкових дисків у C<$"
+"VIRT_V2V_TMPDIR> (або F</var/tmp>)."
 
 #. type: =item
 #: docs/virt-v2v.pod:1235
@@ -13099,16 +12770,12 @@ msgstr "I<-o glance>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1237
-#, fuzzy
-#| msgid ""
-#| "This temporarily places a full copy of the output disks in "
-#| "C<$LIBGUESTFS_CACHEDIR> (or F</var/tmp>)."
 msgid ""
 "This temporarily places a full copy of the output disks in "
 "C<$VIRT_V2V_TMPDIR> (or F</var/tmp>)."
 msgstr ""
 "Ця команда тимчасово зберігає повну копію виведених у результаті обробки "
-"дисків у C<$LIBGUESTFS_CACHEDIR> (або F</var/tmp>)."
+"дисків у C<$VIRT_V2V_TMPDIR> (або F</var/tmp>)."
 
 #. type: =item
 #: docs/virt-v2v.pod:1240
@@ -13376,17 +13043,13 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:1352
-#, fuzzy
-#| msgid "Linux root filesystem or Windows C<C:> drive"
 msgid "Linux root filesystem"
-msgstr "Кореневу систему Linux або диск C<C:> Windows"
+msgstr "Коренева файлова система Linux"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1354 docs/virt-v2v.pod:1365
-#, fuzzy
-#| msgid "Minimum free space: 10 MB"
 msgid "Minimum free space: 100 MB"
-msgstr "Мінімальний вільний простір: 10 МБ"
+msgstr "Мінімальний вільний простір: 100 МБ"
 
 #. type: =item
 #: docs/virt-v2v.pod:1356
@@ -13409,10 +13072,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:1363
-#, fuzzy
-#| msgid "Linux root filesystem or Windows C<C:> drive"
 msgid "Windows C<C:> drive"
-msgstr "Кореневу систему Linux або диск C<C:> Windows"
+msgstr "Диск C<C:> Windows"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1367
@@ -13445,18 +13106,13 @@ msgstr "Мінімальний обсяг місця у основній сис�
 
 #. type: textblock
 #: docs/virt-v2v.pod:1380
-#, fuzzy
-#| msgid ""
-#| "You must have sufficient free space in the host directory used to store "
-#| "temporary overlays (except in I<--in-place> mode).  To find out which "
-#| "directory this is, use:"
 msgid ""
 "You must have sufficient free space in the host directory used to store "
 "large temporary overlays.  To find out which directory this is, use:"
 msgstr ""
 "У каталозі основної системи має бути достатньо вільного місця для зберігання "
-"тимчасових накладок (окрім режиму I<--in-place>). Щоб визначити каталог, у "
-"якому зберігатимуться накладки, скористайтеся такою командою:"
+"великих тимчасових накладок. Щоб визначити каталог, у якому зберігатимуться "
+"накладки, скористайтеся такою командою:"
 
 #. type: verbatim
 #: docs/virt-v2v.pod:1383
@@ -13474,25 +13130,21 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1387
-#, fuzzy
-#| msgid ""
-#| "and look under the C<Avail> column.  Virt-v2v will refuse to do the "
-#| "conversion at all unless at least 1GB is available there."
 msgid ""
 "and look under the C<Avail> column.  Virt-v2v will refuse to do the "
 "conversion at all unless at least 1GB is available there.  You can change "
 "the directory that virt-v2v uses by setting C<$VIRT_V2V_TMPDIR>."
 msgstr ""
 "і зверніть увагу га стовпчик C<Avail>. Virt-v2v взагалі відмовиться "
-"виконувати перетворення, якщо на диску не буде принаймні 1 ГБ вільного місця."
+"виконувати перетворення, якщо на диску не буде принаймні 1 ГБ вільного "
+"місця. Ви можете змінити використаний virt-v2v каталог за допомогою "
+"параметра C<$VIRT_V2V_TMPDIR>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1392
-#, fuzzy
-#| msgid "See also L</Resource requirements> above."
 msgid ""
 "See also L</Resource requirements> above and L</ENVIRONMENT VARIABLES> below."
-msgstr "Див. також L</Вимоги щодо ресурсів> вище."
+msgstr "Див. також L</Вимоги щодо ресурсів> вище і L</ЗМІННІ СЕРЕДОВИЩА> нижче."
 
 #. type: =head2
 #: docs/virt-v2v.pod:1395
@@ -13602,7 +13254,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1435
 msgid "See also L</Starting the libvirt system instance>."
-msgstr ""
+msgstr "Див. також L</Запуск екземпляра системи libvirt>."
 
 #. type: =item
 #: docs/virt-v2v.pod:1437
@@ -13639,10 +13291,8 @@ msgstr ""
 
 #. type: =head2
 #: docs/virt-v2v.pod:1449 docs/virt-v2v.pod:1455
-#, fuzzy
-#| msgid "Writing to Glance"
 msgid "Writing to block devices"
-msgstr "Запис до Glance"
+msgstr "Запис на блокові пристрої"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1451
@@ -13692,6 +13342,11 @@ msgid ""
 " # ln -sf /dev/VG/VolumeForDiskB /dir/name-sdb\n"
 "\n"
 msgstr ""
+" # lvcreate -L 10G -n VolumeForDiskA VG\n"
+" # lvcreate -L 6G -n VolumeForDiskB VG\n"
+" # ln -sf /dev/VG/VolumeForDiskA /dir/name-sda\n"
+" # ln -sf /dev/VG/VolumeForDiskB /dir/name-sdb\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1479
@@ -13864,7 +13519,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v.pod:1586
 msgid "Starting the libvirt system instance"
-msgstr ""
+msgstr "Запуск екземпляра системи libvirt"
 
 #. type: verbatim
 #: docs/virt-v2v.pod:1588
@@ -13899,10 +13554,8 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1600
-#, fuzzy
-#| msgid "L<https://bugzilla.redhat.com/1791802>"
 msgid "See also L<https://bugzilla.redhat.com/2182024>."
-msgstr "L<https://bugzilla.redhat.com/1791802>"
+msgstr "Див. також L<https://bugzilla.redhat.com/2182024>."
 
 #. type: =item
 #: docs/virt-v2v.pod:1606 docs/virt-v2v.pod:1692
@@ -13926,10 +13579,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:1620
-#, fuzzy
-#| msgid "C<VIRT_TOOLS_DATA_DIR>"
 msgid "C<VIRT_V2V_TMPDIR>"
-msgstr "C<VIRT_TOOLS_DATA_DIR>"
+msgstr "C<VIRT_V2V_TMPDIR>"
 
 #. type: =item
 #: docs/virt-v2v.pod:1622
@@ -14021,17 +13672,13 @@ msgstr "Див. також C<https://github.com/rwmjones/rhsrvany>"
 
 #. type: =item
 #: docs/virt-v2v.pod:1656
-#, fuzzy
-#| msgid "F<rhev-apt.exe>"
 msgid "F<pnp_wait.exe>"
-msgstr "F<rhev-apt.exe>"
+msgstr "F<pnp_wait.exe>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1658
-#, fuzzy
-#| msgid "(Required when doing conversions of Windows guests)"
 msgid "(Recommended when doing conversions of Windows guests)"
-msgstr "(Потрібен для перетворень гостьових систем Windows)"
+msgstr "(Рекомендовано для перетворень гостьових систем Windows)"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1660
@@ -14070,19 +13717,14 @@ msgstr "C<VIRTIO_WIN>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1674
-#, fuzzy
-#| msgid ""
-#| "This is where virtio drivers for Windows are searched for.  It can be a "
-#| "directory I<or> point to F<virtio-win.iso> (CD ROM image containing "
-#| "drivers)."
 msgid ""
 "This is an override for where virtio drivers for Windows are searched for.  "
 "It can be a directory I<or> point to F<virtio-win.iso> (CD ROM image "
 "containing drivers)."
 msgstr ""
-"Це місце, у якому виконуватиметься пошук драйверів virtio для Windows. Це "
-"може бути каталог I<або> вказівник на F<virtio-win.iso> (образ CD ROM, на "
-"якому містяться драйвери)."
+"Це перевизначене місце, у якому виконуватиметься пошук драйверів virtio для "
+"Windows. Це може бути каталог I<або> вказівник на F<virtio-win.iso> (образ "
+"CD ROM, на якому містяться драйвери)."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1678
@@ -14122,16 +13764,12 @@ msgstr "Образ ISO, де містяться драйвери virtio для W
 
 #. type: textblock
 #: docs/virt-v2v.pod:1694
-#, fuzzy
-#| msgid ""
-#| "The exploded tree of virtio drivers for Windows.  This is usually "
-#| "incomplete, hence the ISO is preferred."
 msgid ""
 "The exploded tree of virtio drivers for Windows.  This is usually "
 "incomplete, hence the least preferred method."
 msgstr ""
 "Розгорнута ієрархія драйверів virtio для Windows. Зазвичай, там є не усі "
-"драйвери, тому слід надавати перевагу образу ISO."
+"драйвери, тому цей спосіб є найменш пріоритетним."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1699
@@ -14196,14 +13834,6 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1729
-#, fuzzy
-#| msgid ""
-#| "L<virt-p2v(1)>, L<virt-customize(1)>, L<virt-df(1)>, L<virt-"
-#| "filesystems(1)>, L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<guestfs(3)>, "
-#| "L<guestfish(1)>, L<qemu-img(1)>, L<virt-v2v-copy-to-local(1)>, L<virt-v2v-"
-#| "test-harness(1)>, L<engine-image-uploader(8)>, L<import-to-ovirt.pl|"
-#| "http://git.annexia.org/?p=import-to-ovirt.git>, L<nbdkit(1)>, L<nbdkit-"
-#| "vddk-plugin(1)>, L<http://libguestfs.org/>."
 msgid ""
 "L<virt-p2v(1)>, L<virt-v2v-inspector(1)>, L<virt-v2v-in-place(1)>, L<virt-"
 "customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, L<virt-sparsify(1)>, "
@@ -14212,12 +13842,12 @@ msgid ""
 "ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
 ">."
 msgstr ""
-"L<virt-p2v(1)>, L<virt-customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, "
-"L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<guestfs(3)>, L<guestfish(1)>, "
-"L<qemu-img(1)>, L<virt-v2v-copy-to-local(1)>, L<virt-v2v-test-harness(1)>, "
-"L<engine-image-uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?"
-"p=import-to-ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://"
-"libguestfs.org/>."
+"L<virt-p2v(1)>, L<virt-v2v-inspector(1)>, L<virt-v2v-in-place(1)>, L<virt-"
+"customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, L<virt-sparsify(1)>, L"
+"<virt-sysprep(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-"
+"image-uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-"
+"ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
+">."
 
 #, fuzzy
 #~| msgid "Copyright (C) 2009-2020 Red Hat Inc."
