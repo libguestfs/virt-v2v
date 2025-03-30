@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-29 17:53+0000\n"
+"PO-Revision-Date: 2025-03-31 11:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -6080,6 +6080,11 @@ msgid ""
 "openstack/> to the other machine as well.  See the section \"CLOUD "
 "CONFIGURATION\" in the openstack CLI manual."
 msgstr ""
+"Якщо вам потрібно скопіювати F<overcloudrc> на інший комп'ютер, перевіте, чи "
+"посилається він на змінну середовища C<OS_CLOUD>. Якщо це так, можливо, вам "
+"доведеться також скопіювати файл F<clouds.yaml> з F</etc/openstack/> або F<$"
+"HOME/.config/openstack/> на інший комп'ютер. Див. розділ "
+"\"CLOUD CONFIGURATION\" у підручнику з командного інтерфейсу openstack."
 
 #. type: =head2
 #: docs/virt-v2v-output-openstack.pod:112
@@ -6697,6 +6702,9 @@ msgid ""
 "directly to the oVirt node but may be necessary if you do not have direct "
 "network access to the nodes."
 msgstr ""
+"Пропустити вивантажені дані крізь рушій oVirt. Процес буде повільнішим за "
+"вивантаження безпосередньо на вузол oVirt, але може бути потрібним, якщо у "
+"вас немає безпосереднього доступу з мережі до вузлів."
 
 #. type: =item
 #: docs/virt-v2v-output-rhv.pod:138
@@ -7540,6 +7548,8 @@ msgstr ""
 msgid ""
 "No release notes were published for 1.44, so that release is covered here."
 msgstr ""
+"Нотаток щодо випуску 1.44 не було оприлюднено, тому нотатки щодо цього "
+"випуску наведено тут."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:13
@@ -7553,6 +7563,10 @@ msgid ""
 "state of the conversion and inject their own copying step.  Further "
 "enhancements will be made to this new architecture in forthcoming releases."
 msgstr ""
+"Virt-v2v було модернізовано так, щоб уможливити для зовнішніх програм "
+"перевірку стану перетворення і вставляти власний крок копіювання. Подальші "
+"удосконалення з метою адаптації цієї архітектури буде реалізовано у "
+"майбутніх випусках."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:26
@@ -7563,6 +7577,11 @@ msgid ""
 "input format, whereas previous versions of virt-v2v would use the same "
 "output format as input format automatically."
 msgstr ""
+"Інтерфейс командного рядка майже не змінився, окрім декількох діагностичних "
+"можливостей, які було вилучено (див. нижче). Єдиною значною відмінністю є "
+"те, що формат виведення (I<-of>) у новій версії має бути вказано явно, якщо "
+"він відрізняється від формату вхідних даних, оскільки у попередніх версіях "
+"virt-v2v автоматично використовувався б формат вхідних даних."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:33
@@ -7570,11 +7589,13 @@ msgid ""
 "A lot of time was spent improving the performance of virt-v2v in common "
 "cases."
 msgstr ""
+"Багато часу було витрачено на удосконалення швидкодії virt-v2v у типових "
+"випадках."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:36
 msgid "Implement conversion of ALT Linux guests (Mikhail Gordeev)."
-msgstr ""
+msgstr "Реалізовано перетворення гостьових систем ALT Linux (Міхаїл Гордєєв)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:38
@@ -7582,6 +7603,8 @@ msgid ""
 "Many bug fixes and performance enhancements were made to oVirt imageio "
 "output (Nir Soffer)."
 msgstr ""
+"Багато виправлень вад і удосконалень швидкодії у виведенні imageio oVirt ("
+"Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:41
@@ -7589,6 +7612,8 @@ msgid ""
 "There is a new L<virt-v2v-in-place(1)> tool which replaces the existing virt-"
 "v2v I<--in-place> option."
 msgstr ""
+"Реалізовано новий інструмент L<virt-v2v-in-place(1)>, який замінив собою "
+"наявний параметр virt-v2v I<--in-place>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:44
@@ -7596,6 +7621,8 @@ msgid ""
 "Virt-v2v can now convert guests which use LUKS encrypted logical volumes "
 "(Laszlo Ersek)."
 msgstr ""
+"Нова версія virt-v2v може перетворювати гостьові системи, у яких використано "
+"шифровані LUKS логічні томи (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:47
