@@ -195,6 +195,14 @@ let error_if_no_ssh_agent () =
               is not set).  This is required by qemu to do passwordless \
               ssh access.  See the virt-v2v(1) man page for more information.")
 
+let nbdcopy_supports_blkhash =
+  let check =
+    lazy (
+      let cmd = sprintf "%s --help | grep -sq -- --blkhash" Config.nbdcopy in
+      0 = Sys.command cmd
+    ) in
+  fun () -> Lazy.force check
+
 (* Create the directory containing inX and outX sockets. *)
 let create_v2v_directory () =
   let d = Mkdtemp.temp_dir "v2v." in

@@ -656,6 +656,9 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
     min 64 (target_buffer_size / request_size) in
   List.push_back cmd (sprintf "--requests=%d" requests);
 
+  if verbose () && nbdcopy_supports_blkhash () then
+    List.push_back cmd "--blkhash";
+
   List.push_back cmd "--flush";
   (*List.push_back cmd "--verbose";*)
 
