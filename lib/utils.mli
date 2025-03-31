@@ -68,6 +68,9 @@ val chown_for_libvirt_rhbz_1045069 : string -> unit
 
 val error_if_no_ssh_agent : unit -> unit
 
+val nbdcopy_supports_blkhash : unit -> bool
+(** Return true if [nbdcopy] supports the [--blkhash] flag. *)
+
 val create_v2v_directory : unit -> string
 (** Create the directory containing inX and outX sockets. *)
 
