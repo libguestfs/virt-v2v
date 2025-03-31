@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-03-31 11:53+0000\n"
+"PO-Revision-Date: 2025-04-01 15:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -7632,6 +7632,9 @@ msgid ""
 "proxy mode available for restricted network configurations (thanks: Nir "
 "Soffer)."
 msgstr ""
+"Параметр I<-oo rhv-direct> замінено на I<-oo rhv-proxy>, і безпосередній "
+"режим (що є швидшим) у новій версії є типовим при запису до oVirt, а режим "
+"проксі доступний для обмежених конфігурацій мережі (дякуємо Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:52
@@ -7639,6 +7642,8 @@ msgid ""
 "The following command line options were removed: I<--print-estimate>, I<--"
 "debug-overlays>, I<--no-copy>."
 msgstr ""
+"Було вилучено такі параметри командного рядка: I<--print-estimate>, I"
+"<--debug-overlays>, I<--no-copy>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:55
@@ -7646,6 +7651,8 @@ msgid ""
 "Virt-v2v no longer installs the RHEV-APT tool in Windows guests.  This tool "
 "was deprecated and then removed in oVirt 4.3."
 msgstr ""
+"Нова версія virt-v2v більше не встановлює засоби RHEV-APT у гостьових "
+"системах Windows. Цей засіб застарів, і його було вилучено в oVirt 4.3."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:58
@@ -7653,6 +7660,8 @@ msgid ""
 "Deprecated tool virt-v2v-copy-to-local has been removed.  This was "
 "deprecated in November 2018."
 msgstr ""
+"Було вилучено застарілий засіб virt-v2v-copy-to-local. Застарівання засобу "
+"було визначено у листопаді 2018 року."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:63
@@ -7660,6 +7669,8 @@ msgid ""
 "Remove reference to prl_strg driver in Windows guests to avoid BSOD (Denis "
 "Plotnikov)."
 msgstr ""
+"Вилучено посилання на драйвер prl_strg у гостьових системах Windows, щоб "
+"запобігти синьому екрану смерті (Denis Plotnikov)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:66
@@ -7667,6 +7678,8 @@ msgid ""
 "Fix conversions of UEFI Linux guests that don't provide their own fallback "
 "bootloader (Denis Plotnikov)."
 msgstr ""
+"Виправлено перетворення гостьових систем UEFI Linux, які не надають власних "
+"резервних засобів завантаження (Denis Plotnikov)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:69
@@ -7674,6 +7687,9 @@ msgid ""
 "Remove use of L<nbdkit-readahead-filter(1)>.  This filter uses a naive "
 "strategy and it had several negative effects on conversions."
 msgstr ""
+"Вилучено використання L<nbdkit-readahead-filter(1)>. У цьому фільтрі "
+"використано наївну стратегію, і його використання призводило до декількох "
+"негативних наслідків при перетворенні."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:72
@@ -7681,6 +7697,8 @@ msgid ""
 "Remove prompts for interactive passwords.  Normally you should try to use "
 "the I<-ip> and/or I<-op> options to supply passwords."
 msgstr ""
+"Вилучено запити щодо інтерактивних паролів. Зазвичай, вам слід спробувати "
+"скористатися параметрами I<-ip> і/або I<-op> для надання паролів."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:75
@@ -7690,6 +7708,10 @@ msgid ""
 "timezones.  (Thanks: Dinesh Herath, Tomáš Golembiovský, Bryan Kinney, Mark "
 "Zealey, Xiaodai Wang)"
 msgstr ""
+"Для гостьових систем Windows нами вставлено команду schtasks. Втім, "
+"параметри цієї команди залежать від часового поясу і не працюють у часових "
+"поясах, відмінних від європейських. (Подяки: Dinesh Herath, Tomáš "
+"Golembiovský, Bryan Kinney, Mark Zealey, Xiaodai Wang)"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:80
@@ -7698,6 +7720,10 @@ msgid ""
 "guests over HTTPS which stops large guests and/or slow copies taking longer "
 "than about 30 minutes from failing."
 msgstr ""
+"Реалізовано періодичне повторне розпізнавання у virt-v2v для серверів "
+"vCenter при копіюванні гостьових систем за допомогою HTTPS, що усуває "
+"можливість помилки при понад 30 хвилинах для великих гостьових систем і/або "
+"при повільному копіюванні."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:84
@@ -7705,6 +7731,9 @@ msgid ""
 "Virt-v2v now sets libguestfs SMP to match number of physical host CPUs, "
 "which helps performance of certain conversion steps."
 msgstr ""
+"Нова версія virt-v2v встановлює режим багатопроцесорної обробки libguestfs "
+"за кількістю фізичних процесорів основної системи, що удосконалює швидкодію "
+"певних кроків перетворення."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:87
@@ -7713,6 +7742,9 @@ msgid ""
 "correctly.  Note an exact mapping is not always possible and oVirt may "
 "ignore our recommendations (incorrectly) sometimes."
 msgstr ""
+"При виведенні virt-v2v до oVirt реалізовано спробу встановити належним чином "
+"архітектуру і мікропрограму. Зауважте, що точна прив'язка не завжди можлива, "
+"і oVirt може іноді ігнорувати (некоректно) наші рекомендації."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:91
@@ -7720,6 +7752,8 @@ msgid ""
 "Virt-v2v now generates a virtio-vsock device for guests which support it "
 "(Valeriy Vdovin)."
 msgstr ""
+"Нова версія virt-v2v створює пристрій virtio-vsock для гостьових систем, де "
+"передбачено його підтримку (Valeriy Vdovin)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:94
@@ -7727,6 +7761,8 @@ msgid ""
 "All guests now need at least 100 MB of free space for conversion to succeed "
 "(Ming Xie)."
 msgstr ""
+"У новій версії для усіх гостьових систем потрібно принаймні 100 МБ вільного "
+"місця для успішного перетворення (Ming Xie)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:97
@@ -7734,6 +7770,8 @@ msgid ""
 "Standard VGA instead of QXL is now used as the video type for converted "
 "guests (Laszlo Ersek)."
 msgstr ""
+"Реалізовано використання стандартного VGA замість QXL як типу відео для "
+"перетворених гостьових систем (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:100
@@ -7804,6 +7842,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.0.pod:134
 msgid "Weblate instead of Zanata is now used for translations (Pino Toscano)."
 msgstr ""
+"Для перекладів тепер використовуємо Weblate замість Zanata (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:140
@@ -7821,6 +7860,8 @@ msgid ""
 "Missing error message of 'insufficient free space in the conversion server "
 "temporary directory'"
 msgstr ""
+"Додано пропущене повідомлення про помилку «недостатньо вільного місця у "
+"тимчасовому каталозі на сервері перетворення»"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:150
@@ -7831,6 +7872,7 @@ msgstr "L<https://bugzilla.redhat.com/2044922>"
 #: docs/virt-v2v-release-notes-2.0.pod:152
 msgid "nbdinfo output to stdout instead of stderr during virt-v2v conversion"
 msgstr ""
+"nbdinfo виводила дані до stdout замість stderr під час перетворення virt-v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:154
@@ -7840,7 +7882,7 @@ msgstr "L<https://bugzilla.redhat.com/2044911>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:156
 msgid "virt-p2v conversion hangs with RHEL9 virt-v2v"
-msgstr ""
+msgstr "Перетворення virt-p2v повисало з virt-v2v з RHEL9"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:158
@@ -7853,6 +7895,8 @@ msgid ""
 "'model='virtio-transitional' is wrongly added when converting windows guest "
 "to local by rhel9 v2v"
 msgstr ""
+"'model='virtio-transitional' було помилкового додано при перетворенні "
+"гостьової системи windows на локальну за допомогою v2v з rhel9"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:162
@@ -7865,6 +7909,8 @@ msgid ""
 "virt-v2v hangs for several minutes when using -ic vpx://... -it vddk with "
 "incorrect IP address"
 msgstr ""
+"virt-v2v повисала на декілька хвилин при використанні -ic vpx://... -it vddk "
+"з неправильною IP-адресою"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:166
@@ -7875,6 +7921,7 @@ msgstr "L<https://bugzilla.redhat.com/2041852>"
 #: docs/virt-v2v-release-notes-2.0.pod:168
 msgid "Improve the unclear assertion failure at input_xen_ssh.ml"
 msgstr ""
+"Удосконалено незрозуміле повідомлення про помилку оцінки для input_xen_ssh.ml"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:170
@@ -7884,7 +7931,7 @@ msgstr "L<https://bugzilla.redhat.com/2041850>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:172
 msgid "Can not specify '-oo json-disks-pattern' in '-o json' mode"
-msgstr ""
+msgstr "Не можна було вказувати '-oo json-disks-pattern' у режимі '-o json'"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:174
@@ -7895,6 +7942,8 @@ msgstr "L<https://bugzilla.redhat.com/2039597>"
 #: docs/virt-v2v-release-notes-2.0.pod:176
 msgid "Failed to import VM when selecting OVA as a source on RHV webadmin"
 msgstr ""
+"Критична помилка при імпортуванні ВМ, якщо вибрано OVA як джерело в "
+"адміністративному інтерфейсі RHV"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:178
@@ -7906,6 +7955,8 @@ msgstr "L<https://bugzilla.redhat.com/2039255>"
 msgid ""
 "Conversion performance is not good when convert guest by modular virt-v2v"
 msgstr ""
+"Удосконалено швидкодію перетворення при перетворенні гостьової системи за "
+"допомогою модульного virt-v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:182
@@ -8459,16 +8510,12 @@ msgstr "virt-v2v-release-notes — нотатки щодо випуску virt-v
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:7
-#, fuzzy
-#| msgid ""
-#| "These are the release notes for S<B<virt-v2v 1.42>>, released on S<B<16th "
-#| "April 2020>>."
 msgid ""
 "These are the release notes for S<B<virt-v2v 2.2>>.  This describes the "
 "major changes since 2.0."
 msgstr ""
-"Це нотатки щодо випуску для S<B<virt-v2v 1.42>>, випущеного S<B<16 квітня "
-"2020 року>>."
+"Це нотатки щодо випуску для S<B<virt-v2v 2.2>>. Тут описано значні зміни з "
+"часу випуску версії 2.0."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:10
@@ -9164,16 +9211,12 @@ msgstr "virt-v2v-release-notes - нотатки щодо випуску virt-v2v
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:7
-#, fuzzy
-#| msgid ""
-#| "These are the release notes for S<B<virt-v2v 1.42>>, released on S<B<16th "
-#| "April 2020>>."
 msgid ""
 "These are the release notes for S<B<virt-v2v 2.4>>.  This describes the "
 "major changes since 2.2."
 msgstr ""
-"Це нотатки щодо випуску для S<B<virt-v2v 1.42>>, випущеного S<B<16 квітня "
-"2020 року>>."
+"Це нотатки щодо випуску для S<B<virt-v2v 2.4>>. Тут описано значні зміни з "
+"часу випуску версії 2.2."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:10
@@ -9471,16 +9514,12 @@ msgstr "virt-v2v-release-notes - нотатки щодо випуску virt-v2v
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:7
-#, fuzzy
-#| msgid ""
-#| "These are the release notes for S<B<virt-v2v 1.42>>, released on S<B<16th "
-#| "April 2020>>."
 msgid ""
 "These are the release notes for S<B<virt-v2v 2.6>>.  This describes the "
 "major changes since 2.4."
 msgstr ""
-"Це нотатки щодо випуску для S<B<virt-v2v 1.42>>, випущеного S<B<16 квітня "
-"2020 року>>."
+"Це нотатки щодо випуску для S<B<virt-v2v 2.6>>. Тут описано значні зміни з "
+"часу випуску версії 2.4."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:10
@@ -11345,19 +11384,14 @@ msgstr "B<-oo compressed>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:611
-#, fuzzy
-#| msgid ""
-#| "Write a compressed output file.  This is only allowed if the output "
-#| "format is qcow2 (see I<-of> below), and is equivalent to the I<-c> option "
-#| "of L<qemu-img(1)>."
 msgid ""
 "For outputs which support qcow2 format (I<-of qcow2>), this writes a "
 "compressed qcow2 file.  It is the equivalent to the I<-c> option of L<qemu-"
 "img(1)>."
 msgstr ""
-"Записати результати до стиснутого файла. Це можна зробити, лише якщо "
-"форматом виведення даних є qcow2 (див. I<-of> нижче). Є еквівалентом "
-"параметра I<-c> у L<qemu-img(1)>."
+"Для режимів виведення, де передбачено підтримку формату qcow2 (I<-of qcow2>)"
+", записує стиснений файл qcow2. Є еквівалентом параметра I<-c> у L<qemu-"
+"img(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:615
@@ -12746,19 +12780,14 @@ msgstr "Місце на диску"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1218
-#, fuzzy
-#| msgid ""
-#| "Virt-v2v places potentially large temporary files in "
-#| "C<$LIBGUESTFS_CACHEDIR> (which is F</var/tmp> if you don't set it).  "
-#| "Using tmpfs is a bad idea."
 msgid ""
 "Virt-v2v places potentially large temporary files in C<$VIRT_V2V_TMPDIR> "
 "(usually F</var/tmp>, see also L</ENVIRONMENT VARIBLES> below).  Using tmpfs "
 "is a bad idea."
 msgstr ""
-"Virt-v2v розташовує потенційно великі тимчасові файли у "
-"C<$LIBGUESTFS_CACHEDIR> (тобто у F</var/tmp>, якщо значення цієї змінної "
-"середовища не встановлено). Використання tmpfs у цьому випадку недоцільне."
+"Virt-v2v розташовує потенційно великі тимчасові файли у C<$VIRT_V2V_TMPDIR> ("
+"зазвичай, F</var/tmp>, див. також L</ЗМІННІ СЕРЕДОВИЩА> нижче). Використання "
+"tmpfs у цьому випадку недоцільне."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1222
@@ -13002,11 +13031,6 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1322
-#, fuzzy
-#| msgid ""
-#| "B<N.B.> Take care not to interrupt the automatic driver installation "
-#| "process when logging in to the guest for the first time, as this may "
-#| "prevent the guest from subsequently booting correctly."
 msgid ""
 "B<N.B.> Windows may reboot 4 or more times the first time after conversion.  "
 "This is required to install the required drivers, guest agents, remove "
@@ -13015,16 +13039,17 @@ msgid ""
 "first time, as this may prevent the guest from subsequently booting "
 "correctly."
 msgstr ""
-"B<Зауваження>: не переривайте процесу автоматичного встановлення драйверів "
-"під час першого входу до гостьової системи, оскільки це може завадити усім "
-"наступним спробам завантажити гостьову систему належним чином."
+"B<Зауваження>: Windows може спочатку перезавантажуватися 4 або більшу "
+"кількість разів після перетворення. Це потрібно для встановлення необхідних "
+"драйверів, агентів гостьових систем, вилучення VMware Tools і налаштовування "
+"мережі. Не переривайте процесу автоматичного встановлення драйверів під час "
+"першого входу до гостьової системи, оскільки це може завадити усім наступним "
+"спробам завантажити гостьову систему належним чином."
 
 #. type: =head3
 #: docs/virt-v2v.pod:1329
-#, fuzzy
-#| msgid "Converting a Windows guest"
 msgid "Removing VMware Tools from Windows guests"
-msgstr "Перетворення гостьової системи Windows"
+msgstr "Вилучення VMware Tools з гостьових систем Windows"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1331
@@ -13616,18 +13641,14 @@ msgstr "C<LIBGUESTFS_CACHEDIR>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1624
-#, fuzzy
-#| msgid ""
-#| "Location of the temporary directory used for the potentially large "
-#| "temporary overlay file.  If not set, F</var/tmp> is used."
 msgid ""
 "Location of the temporary directory used for the potentially large temporary "
 "overlay file.  If neither environment variable is set then F</var/tmp> is "
 "used."
 msgstr ""
 "Розташування каталогу тимчасових даних, який використовуватиметься для "
-"потенційно великих тимчасових файлів-накладок. Якщо не встановлено, буде "
-"використано F</var/tmp>."
+"потенційно великих тимчасових файлів-накладок. Якщо не встановлено жодного "
+"значення змінної середовища, буде використано F</var/tmp>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1628
@@ -13722,20 +13743,13 @@ msgstr "F<pvvxsvc.exe>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1666
-#, fuzzy
-#| msgid ""
-#| "This is a Windows binary shipped with SUSE VMDP, used to install a "
-#| "\"firstboot\" script in Windows guests.  It is required if you intend to "
-#| "use the I<--firstboot> or I<--firstboot-command> options with Windows "
-#| "guests."
 msgid ""
 "This is a Windows binary shipped with SUSE VMDP, used to install a "
 "\"firstboot\" script in Windows guests.  It is an alternative to RHSrvAny."
 msgstr ""
 "Це виконуваний файл Windows, що постачається разом із VMDP SUSE, "
 "використовується для встановлення скрипту «firstboot» у гостьові системи "
-"Windows. Він знадобиться, якщо ви маєте намір використовувати параметри I<--"
-"firstboot> і I<--firstboot-command> для гостьових операційних систем Windows."
+"Windows. Альтернатива RHSrvAny."
 
 #. type: =item
 #: docs/virt-v2v.pod:1672
@@ -13755,17 +13769,12 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v.pod:1678
-#, fuzzy
-#| msgid ""
-#| "If unset, then we look for drivers in whichever of these paths is found "
-#| "first:"
 msgid ""
 "If unset, then we look for drivers via whichever of these methods succeeds "
 "first:"
 msgstr ""
 "Якщо не встановлено, відбуватиметься пошук драйверів; знайденим "
-"вважатиметься драйвер, який буде першим знайдено у одному з цих місць (за "
-"пріоритетністю):"
+"вважатиметься драйвер, який з цих методів першим дасть успішний результат:"
 
 #. type: =item
 #: docs/virt-v2v.pod:1683
