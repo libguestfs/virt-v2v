@@ -17,7 +17,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
 "PO-Revision-Date: 2025-04-01 15:53+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
 "Language: uk\n"
@@ -10295,7 +10296,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v.pod:47
 msgid "Customization"
-msgstr ""
+msgstr "Налаштування"
 
 #. type: textblock
 #: docs/virt-v2v.pod:49
@@ -11881,12 +11882,12 @@ msgstr "Те саме, що і I<-oo qemu-boot>."
 #. type: =head2
 #: docs/virt-v2v.pod:886
 msgid "Customization options"
-msgstr ""
+msgstr "Параметри налаштовування"
 
 #. type: textblock
 #: docs/virt-v2v.pod:888
 msgid "__CUSTOMIZE_OPTIONS__"
-msgstr ""
+msgstr "__CUSTOMIZE_OPTIONS__"
 
 #. type: =head2
 #: docs/virt-v2v.pod:892
