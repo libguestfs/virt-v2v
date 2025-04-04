@@ -713,7 +713,10 @@ and nbdcopy ?request_size output_alloc input_uri output_uri =
   if not (quiet ()) then List.push_back cmd "--progress";
   if output_alloc = Types.Preallocated then List.push_back cmd "--allocated";
 
-  let args = Array.of_list !cmd in
+  let args = !cmd in
+  debug "%s" (stringify_args args);
+
+  let args = Array.of_list args in
   match fork () with
   | 0 ->
      (* Child process (nbdcopy). *)
