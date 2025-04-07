@@ -63,7 +63,9 @@ mktest ()
     echo "$cmd" >> "$expected"
 
     echo "$cmd" >> "$script"
-    echo "$exp" >> "$expected"
+    if [ -n "$exp" ] ; then
+        echo "$exp" >> "$expected"
+    fi
 }
 
 :> "$script"

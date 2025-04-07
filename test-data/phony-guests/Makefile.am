@@ -38,6 +38,8 @@ EXTRA_DIST = \
 	win2k25-software.reg.bin \
 	win7-32-software.reg \
 	win7-32-software.reg.bin \
+	winxp-32-software.reg \
+	winxp-32-software.reg.bin \
 	windows-software-all.reg \
 	windows-system.reg \
 	windows-system.reg.bin \
@@ -65,6 +67,7 @@ disk_images = \
 	win2k22.img \
 	win2k25.img \
 	win7-32.img \
+	winxp-32.img \
 	windows.img
 
 # This is 'check_DATA' because we don't need it until 'make check'
