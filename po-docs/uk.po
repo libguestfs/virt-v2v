@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-04-06 16:15+0000\n"
+"PO-Revision-Date: 2025-04-08 13:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -7781,6 +7781,11 @@ msgid ""
 "from the libosinfo database, falling back to hard-coded values if libosinfo "
 "is not available (Laszlo Ersek)."
 msgstr ""
+"Для старих гостьових систем (наприклад RHEL 6) використовуватиметься модель "
+"з перехідною virtio після перетворення. Значення для цієї можливості і "
+"архітектуру машини у новій версії, зазвичай, визначатимуться на основі бази "
+"даних libosinfo з резервним переходом на запрограмовані значення, якщо "
+"libosinfo є недоступною (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:105
@@ -7789,6 +7794,10 @@ msgid ""
 "making parsing simpler.  You can enable wrapping in this mode using I<--"
 "wrap> (Laszlo Ersek)."
 msgstr ""
+"При виведенні virt-v2v повідомлень до каналу передавання даних або файла "
+"програма більше не переносить рядки, що робить обробку тексту простішою. "
+"Увімкнути перенесення рядків у цьому режимі можна за допомогою параметра I<--"
+"wrap> (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:109
@@ -7796,6 +7805,9 @@ msgid ""
 "Windows guest firstboot scripts installed by virt-v2v now run in the right "
 "order, making network configuration happen earlier (Laszlo Ersek)."
 msgstr ""
+"У новій версії скрипти першого завантаження для гостьових систем Windows, "
+"які встановлено virt-v2v, запускаються у правильному порядку, що призводить "
+"до швидшого налаштовування мережі (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:115
@@ -7808,21 +7820,23 @@ msgid ""
 "L<nbdcopy(1)> and OCaml NBD bindings, both from libnbd E<ge> 1.10, are now "
 "required."
 msgstr ""
+"У новій версії потрібні L<nbdcopy(1)> і прив'язки NBD до OCaml NBD, обидва з "
+"libnbd E<ge> 1.10."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:120
 msgid "nbdkit E<ge> 1.22 is now required (Nir Soffer)."
-msgstr ""
+msgstr "У новій версії потрібен nbdkit E<ge> 1.22 (Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:122
 msgid "pcre2 (instead of pcre) is now required."
-msgstr ""
+msgstr "У новій версії потрібен pcre2 (замість pcre)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:124
 msgid "gnulib is no longer bundled or used by virt-v2v."
-msgstr ""
+msgstr "gnulib більше не є частиною пакунка і не використовується virt-v2v."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:126
@@ -7830,6 +7844,8 @@ msgid ""
 "OCaml E<ge> 4.04 is now required.  OCaml 4.13 support has been added in this "
 "release."
 msgstr ""
+"У новій версії потрібен OCaml E<ge> 4.04. У цьому випуску додано підтримку "
+"OCaml 4.13."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:129
@@ -7837,6 +7853,9 @@ msgid ""
 "OpenSSH scp E<ge> 8.8 is now required.  Earlier versions will fail because "
 "the command line syntax was changed incompatibly."
 msgstr ""
+"У новій версії потрібен OpenSSH scp E<ge> 8.8. Скористатися попередніми "
+"версіями не вдасться, оскільки втрачено сумісність синтаксису командного "
+"рядка."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:134
@@ -7969,6 +7988,8 @@ msgid ""
 "calling \"get_disk_allocated\" in \"create_ovf\" breaks the rhv-upload "
 "output plugin"
 msgstr ""
+"Виклик \"get_disk_allocated\" у \"create_ovf\" призводив до непрацездатності "
+"додатка для виведення rhv-upload"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:186
@@ -7978,7 +7999,7 @@ msgstr "L<https://bugzilla.redhat.com/2033096>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:188
 msgid "RFE: Remove -oo rhv-direct and add -oo rhv-proxy option"
-msgstr ""
+msgstr "RFE: вилучено параметр -oo rhv-direct і додано параметр -oo rhv-proxy"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:190
@@ -7991,6 +8012,8 @@ msgid ""
 "nbdcopy command failed when using v2v to convert guest from ESXi6.5 via vddk "
 "> 6.5 + rhv-upload to rhv4.4"
 msgstr ""
+"nbdcopy command failed when using v2v to convert guest from ESXi6.5 via vddk "
+"> 6.5 + rhv-upload to rhv4.4"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:194
@@ -8000,7 +8023,7 @@ msgstr "L<https://bugzilla.redhat.com/2032112>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:196
 msgid "Add virt-v2v and libvirt version to the beginning of v2v debug log"
-msgstr ""
+msgstr "Add virt-v2v and libvirt version to the beginning of v2v debug log"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:198
@@ -8013,6 +8036,8 @@ msgid ""
 "V2V can't convert guest from VMware via vmx+ssh when openssh version is "
 "8.7p1-5"
 msgstr ""
+"V2V can't convert guest from VMware via vmx+ssh when openssh version is "
+"8.7p1-5"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:202
@@ -8025,6 +8050,8 @@ msgid ""
 "There is no guest listed in export domain if use v2v to convert guest to rhv "
 "via -o rhv"
 msgstr ""
+"There is no guest listed in export domain if use v2v to convert guest to rhv "
+"via -o rhv"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:206
@@ -8037,6 +8064,8 @@ msgid ""
 "virt-v2v can't convert bitblocker windows guest with libguestfs error: /dev/"
 "mapper/cryptsda: No such file or directory"
 msgstr ""
+"virt-v2v can't convert bitblocker windows guest with libguestfs error: /dev/"
+"mapper/cryptsda: No such file or directory"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:210
@@ -8049,6 +8078,8 @@ msgid ""
 "The usage description of '-oo rhv-disk-uuid=UUID' in man virt-v2v should be "
 "updated"
 msgstr ""
+"The usage description of '-oo rhv-disk-uuid=UUID' in man virt-v2v should be "
+"updated"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:214
@@ -8058,7 +8089,7 @@ msgstr "L<https://bugzilla.redhat.com/1976607>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:216
 msgid "[RFE] Drop QXL for guests on CentOS 9 clusters"
-msgstr ""
+msgstr "[RFE] Drop QXL for guests on CentOS 9 clusters"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:218
@@ -8071,6 +8102,8 @@ msgid ""
 "[RFE][v2v] [upload/download disk/CBT] Failed to attach disk to the VM - disk "
 "is OK but image transfer still holds a lock on the disk"
 msgstr ""
+"[RFE][v2v] [upload/download disk/CBT] Failed to attach disk to the VM - disk "
+"is OK but image transfer still holds a lock on the disk"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:222
@@ -8083,6 +8116,8 @@ msgid ""
 "Update privileges for Non-admin vmware role when ESXi host has enabled host "
 "encryption mode in virt-v2v-input-vmware man page"
 msgstr ""
+"Update privileges for Non-admin vmware role when ESXi host has enabled host "
+"encryption mode in virt-v2v-input-vmware man page"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:226
@@ -8105,7 +8140,7 @@ msgstr "L<https://bugzilla.redhat.com/1964324>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:232
 msgid "assertion failed at parse_ova.ml when ova directory ends with '/'"
-msgstr ""
+msgstr "assertion failed at parse_ova.ml when ova directory ends with '/'"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:234
@@ -8115,7 +8150,7 @@ msgstr "L<https://bugzilla.redhat.com/1961107>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:236
 msgid "Change video type from qxl to vga after v2v conversion"
-msgstr ""
+msgstr "Change video type from qxl to vga after v2v conversion"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:238
@@ -8128,6 +8163,8 @@ msgid ""
 "v2v import from vCenter fails when using interactive password because cookie-"
 "script tries to be interactive"
 msgstr ""
+"v2v import from vCenter fails when using interactive password because cookie-"
+"script tries to be interactive"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:242
@@ -8140,6 +8177,8 @@ msgid ""
 "Should improve the minimum free space for windows guest in v2v man page and "
 "better to improve v2v error message about no space left for windows guest"
 msgstr ""
+"Should improve the minimum free space for windows guest in v2v man page and "
+"better to improve v2v error message about no space left for windows guest"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:246
