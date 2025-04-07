@@ -190,9 +190,9 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
            let devices = os#get_devices () in
            debug "libosinfo devices for OS \"%s\":\n%s" inspect.i_osinfo
              (Libosinfo_utils.string_of_osinfo_device_list devices);
-           let { Libosinfo_utils.q35; vio10 } =
-             Libosinfo_utils.os_support_of_osinfo_device_list devices in
-           (if q35 then Q35 else I440FX), vio10
+           ((if Libosinfo_utils.os_devices_supports_q35 devices
+             then Q35 else I440FX),
+            Libosinfo_utils.os_devices_supports_vio10 devices)
          with
          | Not_found ->
            (* Pivot on the year 2007.  Any Linux distro from earlier than 2007
