@@ -32,6 +32,7 @@ let rec inspect_source root_choice g =
   let root = choose_root root_choice g roots in
 
   reject_if_not_installed_image g root;
+  reject_if_unknown_fields g root;
 
   let typ = g#inspect_get_type root in
   let package_format = g#inspect_get_package_format root in
@@ -134,8 +135,6 @@ let rec inspect_source root_choice g =
   } in
   debug "%s" (string_of_inspect inspect);
 
-  sanity_check_inspection inspect;
-
   inspect
 
 and choose_root root_choice g = function
@@ -211,6 +210,27 @@ and reject_if_not_installed_image g root =
               or live CD).  If this is wrong, it is probably a bug \
               in libguestfs.  root=%s fmt=%s") root fmt
 
+(* If some inspection fields are "unknown", then that indicates a
+ * failure in inspection, and we shouldn't continue.  For an example
+ * of this, see RHBZ#1278371.  However don't "assert" here, since
+ * the user might have pointed virt-v2v at a blank disk.  Give an
+ * error message instead.
+ *)
+and reject_if_unknown_fields g root =
+  error_if_unknown "i_type" (g#inspect_get_type root);
+  error_if_unknown "i_distro" (g#inspect_get_distro root);
+  error_if_unknown "i_arch" (g#inspect_get_arch root)
+
+and error_if_unknown fieldname value =
+  if value = "unknown" then
+    error (f_"inspection could not detect the source guest (or \
+              physical machine) operating system.\n\n\
+              Assuming that you are running virt-v2v/virt-p2v \
+              on a source which is supported (and not, for example, \
+              a blank disk), then this should not happen.\n\n\
+              Inspection field ‘%s’ was ‘unknown’.")
+          fieldname
+
 (* Wrapper around g#inspect_list_applications2 which, for RPM
  * guests, on failure tries to rebuild the RPM database before
  * repeating the operation.
@@ -239,24 +259,3 @@ and list_applications g root = function
   | _ ->
      (* Non-RPM guest, just do it. *)
      g#inspect_list_applications2 root
-
-(* If some inspection fields are "unknown", then that indicates a
- * failure in inspection, and we shouldn't continue.  For an example
- * of this, see RHBZ#1278371.  However don't "assert" here, since
- * the user might have pointed virt-v2v at a blank disk.  Give an
- * error message instead.
- *)
-and sanity_check_inspection inspect =
-  error_if_unknown "i_type" inspect.i_type;
-  error_if_unknown "i_distro" inspect.i_distro;
-  error_if_unknown "i_arch" inspect.i_arch
-
-and error_if_unknown fieldname value =
-  if value = "unknown" then
-    error (f_"inspection could not detect the source guest (or \
-              physical machine) operating system.\n\n\
-              Assuming that you are running virt-v2v/virt-p2v \
-              on a source which is supported (and not, for example, \
-              a blank disk), then this should not happen.\n\n\
-              Inspection field ‘%s’ was ‘unknown’.")
-          fieldname
