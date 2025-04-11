@@ -373,7 +373,11 @@ type target_meta = {
 
 (** {2 Command line parameters} *)
 
-type root_choice = AskRoot | SingleRoot | FirstRoot | RootDev of string
+type root_choice =
+  | AskRoot                     (** Ask the user interactively (default) *)
+  | SingleRoot                  (** Fail if multi-boot *)
+  | FirstRoot                   (** First from list returned by libguestfs *)
+  | RootDev of string           (** Named device *)
 (** Type of [--root] (root choice) option. *)
 
 val default_root_choice : root_choice
