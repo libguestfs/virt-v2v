@@ -34,9 +34,6 @@ let rec inspect_source root_choice g =
   reject_if_not_installed_image g root;
   reject_if_unknown_fields g root;
 
-  let typ = g#inspect_get_type root in
-  let package_format = g#inspect_get_package_format root in
-
   (* Mount up the filesystems. *)
   let mps = g#inspect_get_mountpoints root in
   let cmp (a,_) (b,_) = compare (String.length a) (String.length b) in
@@ -83,6 +80,7 @@ let rec inspect_source root_choice g =
   ) mps;
 
   (* Get list of applications/packages installed. *)
+  let package_format = g#inspect_get_package_format root in
   let apps = list_applications g root package_format in
   let apps = Array.to_list apps in
 
@@ -102,6 +100,7 @@ let rec inspect_source root_choice g =
   (* If the guest is Windows, get some Windows-specific inspection
    * data, else (for simplicity when accessing) use empty strings.
    *)
+  let typ = g#inspect_get_type root in
   let systemroot, software_hive, system_hive, current_cs =
     match typ with
     | "windows" ->
