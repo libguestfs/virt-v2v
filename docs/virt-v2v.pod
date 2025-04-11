@@ -774,12 +774,6 @@ This disables progress bars and other unnecessary output.
 
 =item B<--root single>
 
-=item B<--root first>
-
-=item B<--root> /dev/sdX
-
-=item B<--root> /dev/VG/LV
-
 Choose the root filesystem to be converted.
 
 In the case where the virtual machine is dual-boot or multi-boot, or
@@ -798,11 +792,17 @@ VM is found to be multi-boot, then virt-v2v will stop and list the
 possible root filesystems and ask the user which to use.  This
 requires that virt-v2v is run interactively.
 
+=item B<--root first>
+
 S<I<--root first>> means to choose the first root device in the case
 of a multi-boot operating system.  Since this is a heuristic, it may
 sometimes choose the wrong one.
 
-You can also name a specific root device, eg. S<I<--root /dev/sda2>>
+=item B<--root> /dev/sdX
+
+=item B<--root> /dev/VG/LV
+
+Name a specific root device to convert, eg. S<I<--root /dev/sda2>>
 would mean to use the second partition on the first hard drive.  If
 the named root device does not exist or was not detected as a root
 device, then virt-v2v will fail.
