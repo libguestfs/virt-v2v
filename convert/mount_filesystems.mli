@@ -16,17 +16,13 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Inspect the source disk.
+(** Mount up the filesystems. *)
 
-   This handles the [--root] command line option. *)
+val mount_filesystems : Guestfs.guestfs -> string -> Types.inspect
+(** Mount up the filesystems and return inspection data for the root
+    disk, plus some other checks.
 
-val inspect_source : Types.root_choice -> Guestfs.guestfs -> Types.inspect
-(** Inspect the source disk, returning inspection data.
+    {!Choose_root.choose_root} should have been called already
+    (which actually does libguestfs inspection).
 
-    Before calling this, the disks must be added to the handle
-    and the handle must be launched.
-
-    After calling this, the filesystems are mounted up.
-
-    Depending on the contents of [root_choice] (the [--root] command
-    line option) this function may even be interactive. *)
+    After calling this, the filesystems are mounted up. *)
