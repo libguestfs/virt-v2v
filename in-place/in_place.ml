@@ -142,15 +142,8 @@ let rec main () =
         if_prefix_length; if_nameservers }
   in
 
-  let root_choice = ref AskRoot in
-  let set_root_choice = function
-    | "ask" -> root_choice := AskRoot
-    | "single" -> root_choice := SingleRoot
-    | "first" -> root_choice := FirstRoot
-    | dev when String.is_prefix dev "/dev/" -> root_choice := RootDev dev
-    | s ->
-      error (f_"unknown --root option: %s") s
-  in
+  let root_choice = ref default_root_choice in
+  let set_root_choice = Types.set_root_choice root_choice in
 
   (* Other options that we handle here. *)
   let print_source = ref false in
