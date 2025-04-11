@@ -840,9 +840,12 @@ requires that virt-v2v is run interactively.
 
 =item B<--root first>
 
-S<I<--root first>> means to choose the first root device in the case
-of a multi-boot operating system.  Since this is a heuristic, it may
-sometimes choose the wrong one.
+Choose the first root device in the case of a multi-boot operating
+system.  Since this is a heuristic, it may sometimes choose the wrong
+one, and it may not choose the default option from the guest
+bootloader.  For predictable results it is better to use
+L<virt-v2v-inspector(1)> to inspect the guest and then specify which
+root you want to convert.
 
 =item B<--root> /dev/sdX
 
