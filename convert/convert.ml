@@ -79,10 +79,13 @@ let rec convert dir options source =
   (* Decrypt the disks. *)
   inspect_decrypt g options.ks;
 
+  (* Detect firmware. *)
+  message (f_"Detecting if this guest uses BIOS or UEFI to boot");
+  let i_firmware = Firmware.detect_firmware g in
+
   (* Inspection - this also mounts up the filesystems. *)
   message (f_"Inspecting the source");
   let inspect = Inspect_source.inspect_source options.root_choice g in
-  let i_firmware = Firmware.detect_firmware g in
 
   let mpstats = get_mpstats g in
   check_guest_free_space inspect mpstats;
