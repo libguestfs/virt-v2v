@@ -83,9 +83,10 @@ let rec convert dir options source =
   message (f_"Detecting if this guest uses BIOS or UEFI to boot");
   let i_firmware = Firmware.detect_firmware g in
 
-  (* Inspection - this also mounts up the filesystems. *)
+  (* Inspect the source, choose root and mount up the filesystems. *)
   message (f_"Inspecting the source");
-  let inspect = Inspect_source.inspect_source options.root_choice g in
+  let root = Choose_root.choose_root options.root_choice g in
+  let inspect = Mount_filesystems.mount_filesystems g root in
 
   let mpstats = get_mpstats g in
   check_guest_free_space inspect mpstats;

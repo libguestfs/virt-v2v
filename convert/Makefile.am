@@ -23,10 +23,11 @@ EXTRA_DIST = \
 	$(SOURCES_C)
 
 SOURCES_MLI = \
+	choose_root.mli \
 	convert.mli \
 	convert_linux.mli \
 	convert_windows.mli \
-	inspect_source.mli \
+	mount_filesystems.mli \
 	target_bus_assignment.mli \
 	windows.mli
 
@@ -34,7 +35,8 @@ SOURCES_ML = \
 	windows.ml \
 	convert_linux.ml \
 	convert_windows.ml \
-	inspect_source.ml \
+	choose_root.ml \
+	mount_filesystems.ml \
 	target_bus_assignment.ml \
 	convert.ml
 
