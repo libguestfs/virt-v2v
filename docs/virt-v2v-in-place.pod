@@ -245,48 +245,10 @@ See L<virt-v2v(1)/Networks and bridges>.
 
 This disables progress bars and other unnecessary output.
 
-=item B<--root ask>
+=item B<--root> ...
 
-=item B<--root single>
-
-=item B<--root first>
-
-=item B<--root> /dev/sdX
-
-=item B<--root> /dev/VG/LV
-
-Choose the root filesystem to be converted.
-
-In the case where the virtual machine is dual-boot or multi-boot, or
-where the VM has other filesystems that look like operating systems,
-this option can be used to select the root filesystem (a.k.a. C<C:>
-drive or F</>) of the operating system that is to be converted.  The
-Windows Recovery Console, certain attached DVD drives, and bugs in
-libguestfs inspection heuristics, can make a guest look like a
-multi-boot operating system.
-
-The default in virt-v2v E<le> 0.7.1 was S<I<--root single>>, which
-causes virt-v2v to die if a multi-boot operating system is found.
-
-Since virt-v2v E<ge> 0.7.2 the default is now S<I<--root ask>>: If the
-VM is found to be multi-boot, then virt-v2v will stop and list the
-possible root filesystems and ask the user which to use.  This
-requires that virt-v2v is run interactively.
-
-S<I<--root first>> means to choose the first root device in the case
-of a multi-boot operating system.  Since this is a heuristic, it may
-sometimes choose the wrong one.
-
-You can also name a specific root device, eg. S<I<--root /dev/sda2>>
-would mean to use the second partition on the first hard drive.  If
-the named root device does not exist or was not detected as a root
-device, then virt-v2v will fail.
-
-Note that there is a bug in grub which prevents it from successfully
-booting a multiboot system if virtio is enabled.  Grub is only able to
-boot an operating system from the first virtio disk.  Specifically,
-F</boot> must be on the first virtio disk, and it cannot chainload an
-OS which is not in the first virtio disk.
+Choose the root filesystem to be converted.  See the documentation of
+this option in L<virt-v2v(1)>.
 
 =item B<-v>
 
