@@ -491,6 +491,15 @@ type target_meta = {
 
 type root_choice = AskRoot | SingleRoot | FirstRoot | RootDev of string
 
+let default_root_choice = AskRoot
+
+let set_root_choice root_choice = function
+  | "ask" -> root_choice := AskRoot
+  | "single" -> root_choice := SingleRoot
+  | "first" -> root_choice := FirstRoot
+  | dev when String.is_prefix dev "/dev/" -> root_choice := RootDev dev
+  | s -> error (f_"unknown --root option: %s") s
+
 type output_allocation = Sparse | Preallocated
 
 type bandwidth =

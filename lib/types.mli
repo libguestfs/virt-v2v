@@ -376,6 +376,13 @@ type target_meta = {
 type root_choice = AskRoot | SingleRoot | FirstRoot | RootDev of string
 (** Type of [--root] (root choice) option. *)
 
+val default_root_choice : root_choice
+(** The default {!root_choice} if no [--root] on the command line. *)
+
+val set_root_choice : root_choice ref -> string -> unit
+(** Parse a string (from the command line) into the {!root_choice} option.
+    The reference (first parameter) is updated. *)
+
 type output_allocation = Sparse | Preallocated
 (** Type of [-oa] (output allocation) option. *)
 
