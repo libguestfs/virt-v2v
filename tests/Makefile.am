@@ -111,6 +111,7 @@ TESTS = \
 	test-of-option.sh \
 	test-on-option.sh \
 	test-print-source.sh \
+	test-reject-blank-disk.sh \
 	test-rhbz1232192.sh \
 	test-sound.sh \
 	test-virtio-win-iso.sh \
@@ -314,6 +315,7 @@ EXTRA_DIST += \
 	test-phony-win2k25-ls.txt \
 	test-phony-win7-32-ls.txt \
 	test-phony-winxp-32-ls.txt \
+	test-reject-blank-disk.sh \
 	test-rhbz1232192.sh \
 	test-sound.sh \
 	test-trim.sh \
