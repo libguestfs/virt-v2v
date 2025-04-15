@@ -185,32 +185,31 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
     let machine, virtio_1_0 =
       match inspect.i_arch with
       | ("i386"|"x86_64") ->
-        (try
-           let os = Libosinfo_utils.get_os_by_short_id inspect.i_osinfo in
-           let devices = os#get_devices () in
-           debug "libosinfo devices for OS \"%s\":\n%s" inspect.i_osinfo
-             (Libosinfo_utils.string_of_osinfo_device_list devices);
-           ((if Libosinfo_utils.os_devices_supports_q35 devices
-             then Q35 else I440FX),
-            Libosinfo_utils.os_devices_supports_vio10 devices)
-         with
-         | Not_found ->
-           (* Pivot on the year 2007.  Any Linux distro from earlier than 2007
-            * should use i440fx, anything 2007 or newer should use q35.
-            *)
-           (match inspect.i_distro, inspect.i_major_version with
-            | "fedora", _ -> Q35
-            | ("rhel"|"centos"|"circle"|"scientificlinux"|"redhat-based"|
-               "oraclelinux"|"rocky"), major ->
-              if major <= 4 then I440FX else Q35
-            | ("sles"|"suse-based"|"opensuse"), major ->
-              if major < 10 then I440FX else Q35
-            | ("debian"|"ubuntu"|"linuxmint"|"kalilinux"), major ->
-              if major < 4 then I440FX else Q35
+        (match Libosinfo_utils.get_os_by_short_id inspect.i_osinfo with
+         | Some os ->
+            let devices = os#get_devices () in
+            debug "libosinfo devices for OS \"%s\":\n%s" inspect.i_osinfo
+              (Libosinfo_utils.string_of_osinfo_device_list devices);
+            ((if Libosinfo_utils.os_devices_supports_q35 devices
+              then Q35 else I440FX),
+             Libosinfo_utils.os_devices_supports_vio10 devices)
+         | None ->
+            (* Pivot on the year 2007.  Any Linux distro from earlier than 2007
+             * should use i440fx, anything 2007 or newer should use q35.
+             *)
+            (match inspect.i_distro, inspect.i_major_version with
+             | "fedora", _ -> Q35
+             | ("rhel"|"centos"|"circle"|"scientificlinux"|"redhat-based"|
+                "oraclelinux"|"rocky"), major ->
+                if major <= 4 then I440FX else Q35
+             | ("sles"|"suse-based"|"opensuse"), major ->
+                if major < 10 then I440FX else Q35
+             | ("debian"|"ubuntu"|"linuxmint"|"kalilinux"), major ->
+                if major < 4 then I440FX else Q35
 
-            (* reasonable default for all modern Linux kernels *)
-            | _, _ -> Q35
-           ), true
+             (* reasonable default for all modern Linux kernels *)
+             | _, _ -> Q35
+            ), true
         )
 
       | _ -> Virt, true
