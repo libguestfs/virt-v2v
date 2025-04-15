@@ -111,8 +111,9 @@ and find_nvme_disks vmx vmx_source =
  *   sata0.pciSlotNumber = "33"
  *   sata0:3.fileName = "win2019_1.vmdk"
  *
- * The "deviceType" field must be absent; that field is only used for various
- * CD-ROM types.
+ * The "deviceType" field must be absent or "disk".  Other types here
+ * include "cdrom-raw" and others indicating a CD-ROM, which we should
+ * ignore.
  *)
 and find_sata_disks vmx vmx_source =
   let get_sata_controller_target ns =
@@ -122,7 +123,7 @@ and find_sata_disks vmx vmx_source =
     try ignore (get_sata_controller_target ns); true
     with Scanf.Scan_failure _ | End_of_file | Failure _ -> false
   in
-  let sata_device_types = [ None ] in
+  let sata_device_types = [ Some "disk"; None ] in
   let sata_controller = Source_SATA in
 
   find_hdds vmx vmx_source
