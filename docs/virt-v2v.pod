@@ -998,7 +998,7 @@ package, or by removing the file
 F</etc/dracut.conf.d/50-network-legacy.conf>.  Either operation should
 be done inside the guest before conversion.  For more information, see:
 
- https://access.redhat.com/articles/7112814
+L<https://access.redhat.com/articles/7112814>
 
 =head2 Debian and Ubuntu
 
