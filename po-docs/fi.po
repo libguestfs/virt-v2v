@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 1.43.1\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2025-01-10 11:38+0000\n"
+"PO-Revision-Date: 2025-04-23 07:55+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -5517,7 +5517,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 1.42"
-msgstr ""
+msgstr "virt-v2v-release-notes - virt-v2v:n julkaisutiedoteet versiolle 1.42"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:7
@@ -5525,6 +5525,8 @@ msgid ""
 "These are the release notes for S<B<virt-v2v 1.42>>, released on S<B<16th "
 "April 2020>>."
 msgstr ""
+"Nämä ovat S<B<virt-v2v 1.42>>:n julkaisutiedoteet, joka julkaistiin "
+"S<B<16.4.2020>>."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:10
@@ -6013,6 +6015,8 @@ msgid ""
 "Previous release notes covering virt-v2v can be found in the libguestfs "
 "project: L<guestfs-release-notes-1.40(1)>."
 msgstr ""
+"Aiemmat virt-v2v:n julkaisutiedoteet löytyvät libguestfs-projektista: L"
+"<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:220
@@ -6028,7 +6032,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.0"
-msgstr ""
+msgstr "virt-v2v-release-notes - virt-v2v:n julkaisutiedoteet versiolle 2.0"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:7
@@ -6036,12 +6040,16 @@ msgid ""
 "These are the release notes for S<B<virt-v2v 2.0>>.  This describes the "
 "major changes since 1.42."
 msgstr ""
+"Nämä ovat S<B<virt-v2v 2.0>>:n julkaisutiedoteet. Tämä kuvaa tärkeimmät "
+"muutokset 1.42:n jälkeen."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:10
 msgid ""
 "No release notes were published for 1.44, so that release is covered here."
 msgstr ""
+"Julkaisutiedoteita ei julkaistu versiolle 1.44, joten tämä julkaisu "
+"käsitellään tässä."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:13
@@ -6925,7 +6933,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.2"
-msgstr ""
+msgstr "virt-v2v-release-notes - virt-v2v:n julkaisutiedoteet versiolle 2.2"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:7
@@ -6933,6 +6941,8 @@ msgid ""
 "These are the release notes for S<B<virt-v2v 2.2>>.  This describes the "
 "major changes since 2.0."
 msgstr ""
+"Nämä ovat S<B<virt-v2v 2.2>>:n julkaisutiedoteet. Tämä kuvaa suuria "
+"muutoksia 2.0:n jälkeen."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:10
@@ -7619,7 +7629,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.4"
-msgstr ""
+msgstr "virt-v2v-release-notes - virt-v2v:n julkaisutiedoteet versiolle 2.4"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:7
@@ -7627,6 +7637,8 @@ msgid ""
 "These are the release notes for S<B<virt-v2v 2.4>>.  This describes the "
 "major changes since 2.2."
 msgstr ""
+"Nämä ovat S<B<virt-v2v 2.4>>:n julkaisutiedoteet. Tämä kuvaa suuria "
+"muutoksia 2.2:n jälkeen."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:10
@@ -7920,7 +7932,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.6"
-msgstr ""
+msgstr "virt-v2v-release-notes - virt-v2v:n julkaisutiedoteet versiolle 2.6"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:7
@@ -7928,6 +7940,8 @@ msgid ""
 "These are the release notes for S<B<virt-v2v 2.6>>.  This describes the "
 "major changes since 2.4."
 msgstr ""
+"Nämä ovat S<B<virt-v2v 2.6>>:n julkaisutiedoteet. Tämä kuvaa suuria "
+"muutoksia 2.4:n jälkeen."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:10
@@ -8706,27 +8720,27 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:70
 msgid "L<virt-v2v-release-notes-1.42(1)> — Release notes for 1.42 release."
-msgstr ""
+msgstr "L<virt-v2v-release-notes-1.42(1)> — Version 1.42 julkaisutiedoteet."
 
 #. type: textblock
 #: docs/virt-v2v.pod:72
 msgid "L<virt-v2v-release-notes-2.0(1)> — Release notes for 2.0 release."
-msgstr ""
+msgstr "L<virt-v2v-release-notes-2.0(1)> — Version 2.0 julkaisutiedoteet."
 
 #. type: textblock
 #: docs/virt-v2v.pod:74
 msgid "L<virt-v2v-release-notes-2.2(1)> — Release notes for 2.2 release."
-msgstr ""
+msgstr "L<virt-v2v-release-notes-2.2(1)> — Version 2.2 julkaisutiedoteet."
 
 #. type: textblock
 #: docs/virt-v2v.pod:76
 msgid "L<virt-v2v-release-notes-2.4(1)> — Release notes for 2.4 release."
-msgstr ""
+msgstr "L<virt-v2v-release-notes-2.4(1)> — Version 2.4 julkaisutiedoteet."
 
 #. type: textblock
 #: docs/virt-v2v.pod:78
 msgid "L<virt-v2v-release-notes-2.6(1)> — Release notes for 2.6 release."
-msgstr ""
+msgstr "L<virt-v2v-release-notes-2.6(1)> — Version 2.6 julkaisutiedoteet."
 
 #. type: =head2
 #: docs/virt-v2v.pod:82
