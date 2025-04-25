@@ -59,20 +59,27 @@ let get_domain conn name =
           error (f_"cannot find libvirt domain ‘%s’: %s")
             name (Option.value ~default:"" message)
       ) in
-  let uri = Libvirt.Connect.get_uri conn in
-  (* As a side-effect we check that the domain is shut down.  Of course
-   * this is only appropriate for virt-v2v.  (RHBZ#1138586)
+
+  (* As a side-effect we check that the domain is shut down (RHBZ#1138586).
+   * In earlier versions of virt-v2v this was a hard error.  Now it's
+   * a warning, since we can't easily tell if the user is converting
+   * from a snapshot - which is safe (RHEL-88543).
    *)
+  let uri = Libvirt.Connect.get_uri conn in
   if not (String.is_prefix uri "test:") then (
     (match (Libvirt.Domain.get_info dom).Libvirt.Domain.state with
-    | InfoRunning | InfoBlocked | InfoPaused ->
-      error (f_"libvirt domain ‘%s’ is running or paused.  It must be \
-                shut down in order to perform virt-v2v conversion")
-        (Libvirt.Domain.get_name dom)
-    | InfoNoState | InfoShutdown | InfoShutoff | InfoCrashed | InfoPMSuspended ->
-      ()
+     | InfoRunning | InfoBlocked | InfoPaused ->
+        warning (f_"libvirt domain ‘%s’ is running or paused.  Converting \
+                    a live guest will result in corrupted output. \
+                    However this is safe if you're converting from a \
+                    snapshot")
+          (Libvirt.Domain.get_name dom)
+     | InfoNoState | InfoShutdown | InfoShutoff | InfoCrashed
+     | InfoPMSuspended ->
+        ()
     )
   );
+
   dom
 
 let get_pool conn name =
