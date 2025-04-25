@@ -1000,6 +1000,20 @@ be done inside the guest before conversion.  For more information, see:
 
 L<https://access.redhat.com/articles/7112814>
 
+=head2 Linux: "rename: /sysroot/etc/resolv.conf" failure
+
+In a Linux guest, you see an error such as this:
+
+ virt-v2v: error: libguestfs error: command lines: rename: /sysroot/etc/resolv.conf to /sysroot/etc/lwdhuh36: Operation not permitted
+
+This can be caused because the file F</etc/resolv.conf> in the guest
+has the L<immutable bit|https://en.wikipedia.org/wiki/Chattr> set.
+You can use the L<chattr(1)> command before converting the guest:
+
+ chattr -i /etc/resolv.conf
+
+and then restore it (I<+i>) after conversion.
+
 =head2 Debian and Ubuntu
 
 =head3 "warning: could not determine a way to update the configuration of Grub2"
