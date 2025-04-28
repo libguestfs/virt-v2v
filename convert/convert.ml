@@ -303,11 +303,27 @@ and debug_info source inspect
   List.iter (fun nic -> eprintf "%s\n" (string_of_source_nic nic))
     target_nics;
   eprintf "mountpoint stats:\n";
+  eprintf "%20s %-16s %-16s %-16s %s\n" "" "Size" "Used" "Available" "Use%";
   List.iter debug_mpstat mpstats;
   flush Stdlib.stderr
 
+(* The calculations here are similar to virt-df df/output.c *)
 and debug_mpstat { mp_dev = dev; mp_path = path;
-                   mp_statvfs = s; mp_vfs = vfs } =
-  eprintf "    mountpoint statvfs %s %s (%s):\n" dev path vfs;
-  eprintf "        bsize=%Ld blocks=%Ld bfree=%Ld bavail=%Ld\n"
-    s.Guestfs.bsize s.Guestfs.blocks s.Guestfs.bfree s.Guestfs.bavail
+                   mp_statvfs = { G.bsize; G.blocks; G.bfree; G.bavail };
+                   mp_vfs = vfs } =
+  let label = sprintf "%s %s (%s):" dev path vfs
+  and size = blocks *^ bsize
+  and used = (blocks -^ bfree) *^ bsize
+  and avail = bavail *^ bsize
+  and percent =
+    if blocks <> 0_L then
+      100. -. 100. *. (Int64.to_float bfree /. Int64.to_float blocks)
+    else
+      0. in
+  if String.length label > 20 then
+    eprintf "%s\n%20s " label ""
+  else
+    eprintf "%-20s " label;
+  eprintf "%-16Ld %-16Ld %-16Ld\n" size used avail;
+  eprintf "%20s %-16s %-16s %-16s %.1f%%\n"
+    "" (human_size size) (human_size used) (human_size avail) percent
