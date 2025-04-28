@@ -212,12 +212,19 @@ and do_fstrim g inspect =
 
       if mounted then (
         debug "info: trimming %s" dev;
-        try g#fstrim "/"
-        with G.Error msg ->
-          warning (f_"fstrim on guest filesystem %s failed.  Usually you \
-                      can ignore this message.  To find out more read \
-                      \"Trimming\" in virt-v2v(1).\n\n\
-                      Original message: %s") dev msg
+        try
+          let est = g#fstrim_estimate "/" in
+          if est > 0_L && verbose () then (
+            let vfs = g#vfs_type dev in
+            eprintf "info: %s (%s): %Ld bytes (%s) trimmed\n%!"
+              dev vfs est (human_size est)
+          )
+        with
+        | G.Error msg ->
+           warning (f_"fstrim on guest filesystem %s failed.  Usually you \
+                       can ignore this message.  To find out more read \
+                       \"Trimming\" in virt-v2v(1).\n\n\
+                       Original message: %s") dev msg
       )
   ) fses
 
