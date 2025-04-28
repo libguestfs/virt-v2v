@@ -304,6 +304,7 @@ and debug_info source inspect
     target_nics;
   eprintf "mountpoint stats:\n";
   List.iter debug_mpstat mpstats;
+  flush Stdlib.stderr
 
 and debug_mpstat { mp_dev = dev; mp_path = path;
                    mp_statvfs = s; mp_vfs = vfs } =
