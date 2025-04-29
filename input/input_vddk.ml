@@ -50,6 +50,7 @@ All other settings are optional:
 
   -io vddk-config=FILE         VDDK configuration file
   -io vddk-cookie=COOKIE       VDDK cookie
+  -io vddk-file=FILE           Override nbdkit-vddk-plugin file= parameter
   -io vddk-libdir=LIBDIR       VDDK library parent directory
   -io vddk-nfchostport=PORT    VDDK nfchostport
   -io vddk-port=PORT           VDDK port
@@ -69,6 +70,7 @@ information on these settings.
     let vddk_option_keys =
       [ "config";
         "cookie";
+        "file";
         "libdir";
         "nfchostport";
         "port";
@@ -87,11 +89,6 @@ information on these settings.
           if not (List.mem key vddk_option_keys) then error_invalid_key ();
           (key, value)
       ) options.input_options in
-
-    (* Check no option appears more than once. *)
-    let keys = List.map fst io_options in
-    if List.length keys <> List.length (List.sort_uniq compare keys) then
-      error (f_"-it vddk: duplicate -io options on the command line");
 
     (* thumbprint is mandatory. *)
     if not (List.mem_assoc "thumbprint" io_options) then
@@ -135,6 +132,7 @@ information on these settings.
 
     (* Parse the libvirt XML. *)
     let source, disks, xml = parse_libvirt_domain conn guest in
+    let nr_disks = List.length disks in
 
     (* Find the <vmware:moref> element from the XML.  This was added
      * in libvirt >= 3.7 and is required.
@@ -183,9 +181,27 @@ information on these settings.
     let transports =
       try Some (List.assoc "transports" io_options) with Not_found -> None in
 
+    (* If -io vddk-file was given, there must be exactly one per guest
+     * disk.  Get the list of file overrides.
+     *)
+    let file_overrides =
+      if List.mem_assoc "file" io_options then (
+        let fos =
+          List.filter_map (function ("file",b) -> Some (Some b) | _ -> None)
+            io_options in
+        if List.length fos <> nr_disks then
+          error (f_"‘-io vddk-file=’ must be used exactly %d times") nr_disks;
+        fos
+      )
+      else (
+        (* List of no overrides. *)
+        List.make nr_disks None
+      ) in
+
     (* Create an nbdkit instance for each disk. *)
+    List.combine disks file_overrides |>
     List.iteri (
-      fun i { d_format = format; d_type } ->
+      fun i ({ d_format = format; d_type }, file_override) ->
         let socket = sprintf "%s/in%d" dir i in
         On_exit.unlink socket;
 
@@ -193,7 +209,10 @@ information on these settings.
         | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
            assert false
 
-        | LocalFile file ->
+        | LocalFile orig_file ->
+           (* If -io vddk-file, override it here. *)
+           let file = Option.value file_override ~default:orig_file in
+
            (* The <source file=...> attribute returned by the libvirt
             * VMX driver looks like "[datastore] path".  We can use it
             * directly as the nbdkit file= parameter, and it is passed
@@ -209,7 +228,7 @@ information on these settings.
                file in
            let _, pid = Nbdkit.run_unix socket nbdkit in
            On_exit.kill pid
-    ) disks;
+    );
 
     source
 end
