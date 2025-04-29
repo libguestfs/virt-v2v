@@ -205,14 +205,6 @@ let rec main () =
        error (f_"unknown -o option: %s") s
   in
 
-  (* Options that are ignored for backwards compatibility. *)
-  let no_trim_warning _ =
-    warning (f_"the --no-trim option has been removed and now does nothing")
-  in
-  let vmtype_warning _ =
-    warning (f_"the --vmtype option has been removed and now does nothing")
-  in
-
   let argspec = [
     [ L"bandwidth" ], Getopt.String ("bps", set_string_option_once "--bandwidth" bandwidth),
                                     s_"Set bandwidth to bits per sec";
@@ -236,8 +228,6 @@ let rec main () =
       s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
       s_"Map network ‘in’ to ‘out’";
-    [ L"no-trim" ],  Getopt.String ("-", no_trim_warning),
-      s_"Ignored for backwards compatibility";
     [ S 'o' ],       Getopt.String ("kubevirt|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
@@ -262,8 +252,6 @@ let rec main () =
       s_"Print source and stop";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
       s_"How to choose root filesystem";
-    [ L"vmtype" ],   Getopt.String ("-", vmtype_warning),
-      s_"Ignored for backwards compatibility";
   ] in
 
   (* Append virt-customize options. *)
