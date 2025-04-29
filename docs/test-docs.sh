@@ -78,7 +78,6 @@ $srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
 --ip,\
 --it,\
 --in-place,\
---password-file,\
 --oa,\
 --oc,\
 --of,\
@@ -96,7 +95,6 @@ $srcdir/../podcheck.pl virt-v2v-in-place.pod virt-v2v-in-place \
 --io,\
 --ip,\
 --it,\
---password-file,\
 --oa,\
 --oc,\
 --of,\

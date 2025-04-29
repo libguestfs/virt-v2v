@@ -244,8 +244,6 @@ let rec main () =
                                     s_"Use password from file to connect to output hypervisor";
     [ M"os" ],       Getopt.String ("storage", set_string_option_once "-os" output_storage),
                                     s_"Set output storage location";
-    [ L"password-file" ], Getopt.String ("filename", set_string_option_once "-ip" input_password),
-      s_"Same as ‘-ip filename’";
     [ L"parallel" ], Getopt.Set_int ("N", parallel),
       s_"Run up to N instances of nbdcopy in parallel";
     [ L"print-source" ], Getopt.Set print_source,
