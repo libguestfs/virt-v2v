@@ -193,7 +193,7 @@ information on these settings.
         | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
            assert false
 
-        | LocalFile path ->
+        | LocalFile file ->
            (* The <source file=...> attribute returned by the libvirt
             * VMX driver looks like "[datastore] path".  We can use it
             * directly as the nbdkit file= parameter, and it is passed
@@ -206,7 +206,7 @@ information on these settings.
                ?libdir ~moref
                ?nfchostport ?password_file:options.input_password ?port
                ~server ?snapshot ~thumbprint ?transports ?user
-               path in
+               file in
            let _, pid = Nbdkit.run_unix socket nbdkit in
            On_exit.kill pid
     ) disks;
