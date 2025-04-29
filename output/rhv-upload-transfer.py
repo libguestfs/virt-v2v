@@ -63,7 +63,7 @@ def find_host(connection):
     if len(data_centers) == 0:
         # The storage domain is not attached to a datacenter
         # (shouldn't happen, would fail on disk creation).
-        debug("storange domain (%s) is not attached to a DC" % storage_name)
+        debug("storage domain (%s) is not attached to a DC" % storage_name)
         return None
 
     datacenter = data_centers[0]
@@ -218,8 +218,8 @@ def create_transfer(connection, disk, host):
 
 def transfer_supports_format():
     """
-    Return True if transfer supports the "format" argument, enabing the NBD
-    bakend on imageio side, which allows uploading to qcow2 images.
+    Return True if transfer supports the "format" argument, enabling the NBD
+    backend on imageio side, which allows uploading to qcow2 images.
 
     This feature was added in ovirt 4.3. We assume that the SDK version matches
     engine version.

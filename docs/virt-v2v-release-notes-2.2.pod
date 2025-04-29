@@ -142,7 +142,7 @@ https_proxy= ./bugs-in-changelog.sh v2.0.0..
 
 =item L<https://bugzilla.redhat.com/2152465>
 
-v2v should set ovirt:id correctly after coverting windows11/2019/2022 guests to rhv via -o rhv-upload
+v2v should set ovirt:id correctly after converting windows11/2019/2022 guests to rhv via -o rhv-upload
 
 =item L<https://bugzilla.redhat.com/2151752>
 
@@ -214,7 +214,7 @@ Import of OVA fails if the user/group name contains spaces
 
 =item L<https://bugzilla.redhat.com/2066773>
 
-The /tmp/v2v.XXXX directory has incorrect permisison if run v2v by root
+The /tmp/v2v.XXXX directory has incorrect permission if run v2v by root
 
 =item L<https://bugzilla.redhat.com/2062360>
 

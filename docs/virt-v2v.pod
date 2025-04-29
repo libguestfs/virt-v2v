@@ -1272,7 +1272,7 @@ possible.
 
 Virt-v2v places potentially large temporary files in
 C<$VIRT_V2V_TMPDIR> (usually F</var/tmp>, see also
-L</ENVIRONMENT VARIBLES> below).  Using tmpfs is a bad idea.
+L</ENVIRONMENT VARIABLES> below).  Using tmpfs is a bad idea.
 
 For each guest disk, an overlay is stored temporarily.  This stores
 the changes made during conversion, and is used as a cache.  The

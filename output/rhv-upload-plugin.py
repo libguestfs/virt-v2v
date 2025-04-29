@@ -311,7 +311,7 @@ def flush(h, flags):
             send_flush(item.http)
             item.last_used = time.monotonic()
     finally:
-        # Unlock the pool by puting the connection back.
+        # Unlock the pool by putting the connection back.
         for item in locked:
             pool.put(item)
 

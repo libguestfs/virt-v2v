@@ -575,7 +575,7 @@ let convert (g : G.guestfs) source inspect i_firmware
             )
         ) prl_svcs;
 
-    (* perfrom the equivalent of DelReg from prl_strg.inf:
+    (* perform the equivalent of DelReg from prl_strg.inf:
      * HKLM, System\CurrentControlSet\Control\Class\{4d36e967-e325-11ce-bfc1-08002be10318}, LowerFilters, 0x00018002, prl_strg
      *)
     let strg_cls = Registry.get_node reg

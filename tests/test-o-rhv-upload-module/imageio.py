@@ -29,7 +29,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.discard_request()
 
-        # Advertize only flush and zero support.
+        # Advertise only flush and zero support.
         content = b'''{ "features": [ "flush", "zero" ] }'''
         length = len(content)
 

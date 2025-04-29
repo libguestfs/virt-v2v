@@ -263,7 +263,7 @@ let parse_libvirt_xml ?conn xml =
 
       let format =
         match xpath_string "driver/@type" with
-        | Some "aio" -> Some "raw" (* Xen wierdness *)
+        | Some "aio" -> Some "raw" (* Xen weirdness *)
         | None -> None
         | Some format -> Some format in
 

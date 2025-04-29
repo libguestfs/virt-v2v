@@ -32,7 +32,7 @@ type vmx_source =
   | File of string              (* local file or NFS *)
   | SSH of Nbdkit_ssh.password option * Xml.uri (* SSH URI *)
 
-(* The single filename on the command line is intepreted either as
+(* The single filename on the command line is interpreted either as
  * a local file or a remote SSH URI (only if ‘-it ssh’).
  *)
 let vmx_source_of_arg input_password input_transport arg =

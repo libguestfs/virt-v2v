@@ -1253,7 +1253,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
     (* Some linux uefi setups can't boot after conversion because of
        lost uefi boot entries. The uefi boot entries are stored in uefi
        NVRAM. The NVRAM content isn't a part of vm disk content and
-       usualy can't be converted alongside the vm.
+       usually can't be converted alongside the vm.
        If a vm doesn't have uefi fallback path (/EFI/BOOT/BOOT<arch>.efi)
        the vm is unbootable after conversion.
        The following code tries to make an uefi fallback path for
