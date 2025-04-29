@@ -342,10 +342,11 @@ SSL thumbprint:
      -o local -os /var/tmp
 
 Other options that you might need to add in rare circumstances include
-I<-io vddk-config>, I<-io vddk-cookie>, I<-io vddk-nfchostport>,
-I<-io vddk-port>, I<-io vddk-snapshot>, and I<-io vddk-transports>,
-which are all explained in the L<nbdkit-vddk-plugin(1)> documentation.
-Do not use these options unless you know what you are doing.
+I<-io vddk-config>, I<-io vddk-cookie>, I<-io vddk-file>,
+I<-io vddk-nfchostport>, I<-io vddk-port>, I<-io vddk-snapshot>, and
+I<-io vddk-transports>, which are all explained in the
+L<nbdkit-vddk-plugin(1)> documentation.  Do not use these options
+unless you know what you are doing.
 
 =head2 VDDK: Debugging VDDK failures
 
