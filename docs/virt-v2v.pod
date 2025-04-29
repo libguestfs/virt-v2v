@@ -217,10 +217,6 @@ when the output is a tty.  If the output of the program is redirected
 to a file, ANSI colour sequences are disabled unless you use this
 option.
 
-=item B<--compressed>
-
-This is the same as I<-oo compressed>.
-
 =item B<--echo-keys>
 
 When prompting for keys and passphrases, virt-v2v normally turns
