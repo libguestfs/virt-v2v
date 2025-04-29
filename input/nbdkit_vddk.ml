@@ -51,7 +51,7 @@ let libNN = sprintf "lib%d" Sys.word_size
 
 (* Create an nbdkit module specialized for reading from VDDK sources. *)
 let create_vddk ?bandwidth ?config ?cookie ?cor ?libdir ~moref
-                ?nfchostport ?password_file ?port
+                ?nfchostport ~noextents ?password_file ?port
                 ~server ?snapshot ~thumbprint ?transports ?user path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
@@ -166,11 +166,9 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
    *
    * If used, this filter should be close to the plugin and MUST
    * be below the COW filter.
-   *
-   * XXX Add some kind of debugging flag so we can test how this
-   * works in production.
    *)
-  (*Nbdkit.add_filter_if_available cmd "noextents";*)
+  if noextents then
+    Nbdkit.add_filter_if_available cmd "noextents";
 
   (* Split very large requests to avoid out of memory errors on the
    * server.  Since we're using this filter, also add minblock=512
