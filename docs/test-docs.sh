@@ -87,20 +87,6 @@ $srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
 --oo,\
 --op,\
 --os,\
---vddk-config,\
---vddk-cookie,\
---vddk-libdir,\
---vddk-nfchostport,\
---vddk-port,\
---vddk-snapshot,\
---vddk-thumbprint,\
---vddk-transports,\
---vdsm-compat,\
---vdsm-image-uuid,\
---vdsm-ovf-flavour,\
---vdsm-ovf-output,\
---vdsm-vm-uuid,\
---vdsm-vol-uuid,\
 --vmtype,\
 $virt_customize_options
 

@@ -56,27 +56,21 @@ let rec main () =
 
   let input_options = ref [] in
   let io_query = ref false in
-  let set_input_option_compat k v =
-    List.push_back input_options (k, v)
-  in
   let set_input_option option =
     if option = "?" then io_query := true
     else (
       let k, v = String.split "=" option in
-      set_input_option_compat k v
+      List.push_back input_options (k, v)
     )
   in
 
   let output_options = ref [] in
   let oo_query = ref false in
-  let set_output_option_compat k v =
-    List.push_back output_options (k, v)
-  in
   let set_output_option option =
     if option = "?" then oo_query := true
     else (
       let k, v = String.split "=" option in
-      set_output_option_compat k v
+      List.push_back output_options (k, v)
     )
   in
 
@@ -229,8 +223,6 @@ let rec main () =
       s_"Map bridge ‘in’ to ‘out’";
     [ L"block-driver" ], Getopt.String ("driver", set_string_option_once "--block-driver" block_driver),
                                     s_"Prefer 'virtio-blk' or 'virtio-scsi'";
-    [ L"compressed" ], Getopt.Unit (fun () -> set_output_option_compat "compressed" ""),
-      s_"Compress output file (-of qcow2 only)";
     [ S 'i' ],       Getopt.String ("disk|libvirt|libvirtxml|ova|vmx", set_input_mode),
       s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
@@ -273,38 +265,8 @@ let rec main () =
       s_"Run up to N instances of nbdcopy in parallel";
     [ L"print-source" ], Getopt.Set print_source,
       s_"Print source and stop";
-    [ L"qemu-boot" ], Getopt.Unit (fun () -> set_output_option_compat "qemu-boot" ""),
-      s_"Boot in qemu (-o qemu only)";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
       s_"How to choose root filesystem";
-    [ L"vddk-config" ], Getopt.String ("filename", set_input_option_compat "vddk-config"),
-      s_"Same as ‘-io vddk-config=filename’";
-    [ L"vddk-cookie" ], Getopt.String ("cookie", set_input_option_compat "vddk-cookie"),
-      s_"Same as ‘-io vddk-cookie=filename’";
-    [ L"vddk-libdir" ], Getopt.String ("libdir", set_input_option_compat "vddk-libdir"),
-      s_"Same as ‘-io vddk-libdir=libdir’";
-    [ L"vddk-nfchostport" ], Getopt.String ("nfchostport", set_input_option_compat "vddk-nfchostport"),
-      s_"Same as ‘-io vddk-nfchostport=nfchostport’";
-    [ L"vddk-port" ], Getopt.String ("port", set_input_option_compat "vddk-port"),
-      s_"Same as ‘-io vddk-port=port’";
-    [ L"vddk-snapshot" ], Getopt.String ("snapshot-moref", set_input_option_compat "vddk-snapshot"),
-      s_"Same as ‘-io vddk-snapshot=snapshot-moref’";
-    [ L"vddk-thumbprint" ], Getopt.String ("thumbprint", set_input_option_compat "vddk-thumbprint"),
-      s_"Same as ‘-io vddk-thumbprint=thumbprint’";
-    [ L"vddk-transports" ], Getopt.String ("transports", set_input_option_compat "vddk-transports"),
-      s_"Same as ‘-io vddk-transports=transports’";
-    [ L"vdsm-compat" ], Getopt.String ("0.10|1.1", set_output_option_compat "vdsm-compat"),
-      s_"Same as ‘-oo vdsm-compat=0.10|1.1’";
-    [ L"vdsm-image-uuid" ], Getopt.String ("uuid", set_output_option_compat "vdsm-image-uuid"),
-      s_"Same as ‘-oo vdsm-image-uuid=uuid’";
-    [ L"vdsm-vol-uuid" ], Getopt.String ("uuid", set_output_option_compat "vdsm-vol-uuid"),
-      s_"Same as ‘-oo vdsm-vol-uuid=uuid’";
-    [ L"vdsm-vm-uuid" ], Getopt.String ("uuid", set_output_option_compat "vdsm-vm-uuid"),
-      s_"Same as ‘-oo vdsm-vm-uuid=uuid’";
-    [ L"vdsm-ovf-output" ], Getopt.String ("dir", set_output_option_compat "vdsm-ovf-output"),
-      s_"Same as ‘-oo vdsm-ovf-output=dir’";
-    [ L"vdsm-ovf-flavour" ], Getopt.String ("ovirt|rhvexp", set_output_option_compat "vdsm-ovf-flavour"),
-      s_"Same as ‘-oo vdsm-ovf-flavour=flavour’";
     [ L"vmtype" ],   Getopt.String ("-", vmtype_warning),
       s_"Ignored for backwards compatibility";
   ] in
