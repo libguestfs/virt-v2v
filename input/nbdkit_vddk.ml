@@ -51,8 +51,8 @@ let libNN = sprintf "lib%d" Sys.word_size
 
 (* Create an nbdkit module specialized for reading from VDDK sources. *)
 let create_vddk ?bandwidth ?config ?cookie ?cor ?libdir ~moref
-                ?nfchostport ~noextents ?password_file ?port
-                ~server ?snapshot ~thumbprint ?transports ?user path =
+      ?nfchostport ~noextents ?password_file ?port
+      ~server ?snapshot ~thumbprint ?transports ?user file =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
 
@@ -114,7 +114,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
 
   Nbdkit.add_arg cmd "server" server;
   Nbdkit.add_arg cmd "vm" (sprintf "moref=%s" moref);
-  Nbdkit.add_arg cmd "file" path;
+  Nbdkit.add_arg cmd "file" file;
 
   (* For VDDK we require some user.  If it's not supplied, assume root. *)
   let user = Option.value ~default:"root" user in
