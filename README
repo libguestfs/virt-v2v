@@ -69,7 +69,6 @@ REQUIREMENTS
   + nbdkit-ssh-plugin
   + nbdkit-vddk-plugin
 
-  + nbdkit-cacheextents-filter
   + nbdkit-cow-filter
   + nbdkit-multi-conn-filter
   + nbdkit-rate-filter

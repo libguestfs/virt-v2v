@@ -69,11 +69,6 @@ let create_ssh ?bandwidth ?cor ?(retry=true)
   if retry then
     Nbdkit.add_filter_if_available cmd "retry";
 
-  (* Caching extents speeds up qemu-img, especially its consecutive
-   * block_status requests with req_one=1.
-   *)
-  Nbdkit.add_filter_if_available cmd "cacheextents";
-
   (* IMPORTANT! Add the COW filter.  It must be furthest away
    * except for the rate filter.
    *)
