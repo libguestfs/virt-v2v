@@ -34,9 +34,6 @@ _virt_v2v ()
         -oa)
             COMPREPLY=( $( compgen -W "sparse preallocated" -- "$cur") )
             return ;;
-        --vmtype)
-            COMPREPLY=( $( compgen -W "server desktop" -- "$cur") )
-            return ;;
     esac
 
     case "$cur" in
