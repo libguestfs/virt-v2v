@@ -1,0 +1,183 @@
+=head1 NAME
+
+virt-v2v-open - Open the virt-v2v input and run a program on it
+
+=head1 SYNOPSIS
+
+ virt-v2v-open [-i* options] guest --run 'program [--options] @@'
+
+ virt-v2v-open -i disk guest.img --run 'virt-inspector --format=raw @@'
+
+ virt-v2v-open -i disk guest.img --run 'guestfish --ro --format=raw @@ -i'
+
+=head1 DESCRIPTION
+
+Virt-v2v-open is a companion tool for L<virt-v2v(1)> and
+L<virt-v2v-inspector(1)> which can be used before conversion to open
+the input side of virt-v2v and run a program.
+
+Some uses for this include running L<virt-inspector(1)> directly on
+the source guest to find source operating systems (to use with the
+virt-v2v I<--root> option).  Or running guestfish to take a look
+inside the source guest before conversion.  You can follow that by
+running L<virt-v2v-inspector(1)> to estimate how much space would be
+needed to convert that guest, and if conversion of the guest is
+possible.
+
+This manual page only documents the program options, not all of the
+I<-i*> options which are the same as virt-v2v.  You should read
+L<virt-v2v(1)> first.
+
+Notes:
+
+=over 4
+
+=item *
+
+The source guest is always opened read-only.  You will not be able to
+make persistent changes.
+
+=item *
+
+L<virt-inspector(1)> can be used directly on local disk images.
+
+=back
+
+=head2 Selecting the input guest
+
+You can run virt-v2v-open with the same I<-i*> options as virt-v2v.
+(Don't use any I<-o*> options).  This will select the guest that you
+want to open.
+
+=head2 Running the program
+
+On the command line, put the program that you want to run on the
+source guest and any other parameters that program needs into the
+I<--run> parameter.  C<@@> in the parameter is substituted with
+I<-a DISK ...> for each source disk, in a way which is compatible with
+L<virt-inspector(1)> and L<guestfish(1)>.
+
+ virt-v2v-open [-i ...] guest \
+               --run 'virt-inspector --format=raw @@ > output.xml'
+
+ virt-v2v-open [-i ...] guest \
+               --run 'guestfish --ro --format=raw @@ -i'
+
+ virt-v2v-open [-i ...] guest \
+               --run 'guestfish --ro --format=raw @@ run : list-filesystems'
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<--help>
+
+Display help.
+
+=item B<-v>
+
+=item B<--verbose>
+
+Enable verbose messages for debugging.
+
+=item B<-V>
+
+=item B<--version>
+
+Display version number and exit.
+
+=item B<-x>
+
+Enable tracing of libguestfs API calls.
+
+=item B<-i> ...
+
+=item B<-ic> ...
+
+=item B<-if> ...
+
+=item B<-io> ...
+
+=item B<-ip> ...
+
+=item B<-it> ...
+
+All of the I<-i*> options supported by virt-v2v are also supported by
+virt-v2v-open.
+
+=item B<--colors>
+
+=item B<--colours>
+
+=item B<--machine-readable>
+
+=item B<--machine-readable>=format
+
+=item B<-q>
+
+=item B<--quiet>
+
+=item B<--wrap>
+
+These options work in the same way as the equivalent virt-v2v options.
+
+=item B<--run> COMMAND
+
+The command that you want to run on the source guest.  C<@@> in the
+command is substituted with a list of I<-a DISK> options that is
+compatible with virt-inspector and guestfish.
+
+=back
+
+=head1 FILES
+
+Files used are the same as for virt-v2v.  See L<virt-v2v(1)/FILES>.
+
+=head1 ENVIRONMENT VARIABLES
+
+Environment variables used are the same as for virt-v2v.  See
+L<virt-v2v(1)/ENVIRONMENT VARIABLES>.
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>,
+L<virt-p2v(1)>,
+L<virt-inspector(1)>,
+L<virt-v2v-inspector(1)>,
+L<guestfs(3)>,
+L<guestfish(1)>,
+L<qemu-img(1)>,
+L<nbdkit(1)>,
+L<http://libguestfs.org/>.
+
+=head1 AUTHORS
+
+Matthew Booth
+
+Cédric Bosdonnat
+
+Laszlo Ersek
+
+Tomáš Golembiovský
+
+Shahar Havivi
+
+Richard W.M. Jones
+
+Roman Kagan
+
+Mike Latimer
+
+Nir Soffer
+
+Pino Toscano
+
+Xiaodai Wang
+
+Ming Xie
+
+Tingting Zheng
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2025 Red Hat Inc.

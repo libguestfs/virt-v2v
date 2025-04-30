@@ -105,6 +105,8 @@ TESTS = \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
 	test-on-option.sh \
+	test-open.sh \
+	test-open-encrypted.sh \
 	test-print-source.sh \
 	test-rhbz1232192.sh \
 	test-sound.sh \
@@ -278,6 +280,8 @@ EXTRA_DIST += \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
 	test-on-option.sh \
+	test-open.sh \
+	test-open-encrypted.sh \
 	test-print-source.expected \
 	test-print-source.sh \
 	test-rhbz1232192.sh \
