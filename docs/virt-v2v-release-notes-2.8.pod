@@ -17,6 +17,11 @@ Virt-v2v 2.8.0 was released on S<B<XXX XXX 2025>>.
 
 =head2 New features
 
+New L<virt-v2v-open(1)> tool.  This can be used to open the virt-v2v
+source and run a user program on it.  For example L<virt-inspector(1)>
+or L<guestfish(1)> can be used to examine the source to discover what
+operating systems or files are present before conversion.
+
 Windows Server 2025 is supported (thanks Ming Xie).
 
 Two features have been added to enhance data integrity.  Firstly you

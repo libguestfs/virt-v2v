@@ -71,6 +71,7 @@ chcon --reference=/tmp "$b/tmp" 2>/dev/null ||:
 prepend PATH "$b/v2v"
 prepend PATH "$b/in-place"
 prepend PATH "$b/inspector"
+prepend PATH "$b/open"
 export PATH
 
 # This is a cheap way to find some use-after-free and uninitialized

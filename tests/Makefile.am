@@ -110,6 +110,8 @@ TESTS = \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
 	test-on-option.sh \
+	test-open.sh \
+	test-open-encrypted.sh \
 	test-print-source.sh \
 	test-reject-blank-disk.sh \
 	test-rhbz1232192.sh \
@@ -307,6 +309,8 @@ EXTRA_DIST += \
 	test-oa-option-raw.sh \
 	test-of-option.sh \
 	test-on-option.sh \
+	test-open.sh \
+	test-open-encrypted.sh \
 	test-print-source.expected \
 	test-print-source.sh \
 	test-phony-win10-ls.txt \

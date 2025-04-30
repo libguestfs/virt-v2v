@@ -52,6 +52,7 @@ Makefile.in
 /docs/virt-v2v-input-vmware.1
 /docs/virt-v2v-input-xen.1
 /docs/virt-v2v-inspector.1
+/docs/virt-v2v-open.1
 /docs/virt-v2v-output-local.1
 /docs/virt-v2v-output-openstack.1
 /docs/virt-v2v-output-rhv.1
@@ -85,6 +86,8 @@ Makefile.in
 /missing
 /ocaml-dep.sh
 /ocaml-link.sh
+/open/.depend
+/open/virt-v2v-open
 /output/.depend
 /output/output_rhv_upload_*_source.ml
 /output/var_expander_tests
