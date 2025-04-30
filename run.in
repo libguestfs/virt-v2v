@@ -23,7 +23,7 @@
 # With this script you can run all the virt tools without needing to
 # install them first.  You just have to do for example:
 #
-#   ./run virt-inspector [args ...]
+#   ./run virt-v2v [args ...]
 #
 # This works for any C program, virt tools, and most non-C bindings
 # and programs in the libguestfs distribution.
