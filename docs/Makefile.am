@@ -25,6 +25,7 @@ EXTRA_DIST = \
 	virt-v2v-input-vmware.pod \
 	virt-v2v-input-xen.pod \
 	virt-v2v-inspector.pod \
+	virt-v2v-open.pod \
 	virt-v2v-output-local.pod \
 	virt-v2v-output-openstack.pod \
 	virt-v2v-output-rhv.pod \
@@ -46,6 +47,7 @@ man_MANS = \
 	virt-v2v-input-vmware.1 \
 	virt-v2v-input-xen.1 \
 	virt-v2v-inspector.1 \
+	virt-v2v-open.1 \
 	virt-v2v-output-local.1 \
 	virt-v2v-output-openstack.1 \
 	virt-v2v-output-rhv.1 \
@@ -64,6 +66,7 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-input-vmware.1.html \
 	$(top_builddir)/website/virt-v2v-input-xen.1.html \
 	$(top_builddir)/website/virt-v2v-inspector.1.html \
+	$(top_builddir)/website/virt-v2v-open.1.html \
 	$(top_builddir)/website/virt-v2v-output-local.1.html \
 	$(top_builddir)/website/virt-v2v-output-openstack.1.html \
 	$(top_builddir)/website/virt-v2v-output-rhv.1.html \
@@ -139,6 +142,18 @@ stamp-virt-v2v-inspector.pod: virt-v2v-inspector.pod
 	$(PODWRAPPER) \
 	  --man virt-v2v-inspector.1 \
 	  --html $(top_builddir)/website/virt-v2v-inspector.1.html \
+	  --path $(top_srcdir)/common/options \
+	  --license GPLv2+ \
+	  --warning safe \
+	  $<
+	touch $@
+
+virt-v2v-open.1 $(top_builddir)/website/virt-v2v-open.1.html: stamp-virt-v2v-open.pod
+
+stamp-virt-v2v-open.pod: virt-v2v-open.pod
+	$(PODWRAPPER) \
+	  --man virt-v2v-open.1 \
+	  --html $(top_builddir)/website/virt-v2v-open.1.html \
 	  --path $(top_srcdir)/common/options \
 	  --license GPLv2+ \
 	  --warning safe \

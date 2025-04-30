@@ -156,6 +156,7 @@ AC_CONFIG_FILES([Makefile
                  inspector/Makefile
                  lib/Makefile
                  lib/config.ml
+                 open/Makefile
                  output/Makefile
                  po-docs/Makefile
                  po-docs/ja/Makefile
