@@ -44,6 +44,7 @@ SUBDIRS += convert
 SUBDIRS += v2v
 SUBDIRS += inspector
 SUBDIRS += in-place
+SUBDIRS += show-roots
 
 SUBDIRS += tests
 
@@ -116,7 +117,8 @@ po/POTFILES: configure.ac
 po/POTFILES-ml: configure.ac
 	rm -f $@ $@-t
 	cd $(srcdir); \
-	find common/ml* lib in-place input inspector output v2v -name '*.ml' | \
+	find common/ml* lib in-place input inspector output show-roots v2v \
+	    -name '*.ml' | \
 	grep -v '^common/mlprogress/' | \
 	grep -v '^common/mlvisit/' | \
 	grep -v '^lib/config.ml$$' | \

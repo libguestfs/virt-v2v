@@ -61,6 +61,7 @@ Makefile.in
 /docs/virt-v2v-release-notes-2.4.1
 /docs/virt-v2v-release-notes-2.6.1
 /docs/virt-v2v-release-notes-2.8.1
+/docs/virt-v2v-show-roots.1
 /docs/virt-v2v-support.1
 /.gitattributes
 /.git-module-status
@@ -97,6 +98,8 @@ Makefile.in
 /podwrapper.pl
 /po/*.gmo
 /run
+/show-roots/.depend
+/show-roots/virt-v2v-show-roots
 /stamp-h1
 /test-data/blank-disks/blank-disk-*
 /test-data/fake-virtio-win/cd

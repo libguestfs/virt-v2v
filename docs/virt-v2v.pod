@@ -824,6 +824,9 @@ Windows Recovery Console, certain attached DVD drives, and bugs in
 libguestfs inspection heuristics, can make a guest look like a
 multi-boot operating system.
 
+Either L<virt-inspector(1)> or L<virt-v2v-show-roots(1)> can be used
+to list the roots for a dual-boot or multi-boot VM.
+
 The default in virt-v2v E<le> 0.7.1 was S<I<--root single>>, which
 causes virt-v2v to die if a multi-boot operating system is found.
 
@@ -1784,9 +1787,11 @@ L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-rhev/#c
 L<virt-p2v(1)>,
 L<virt-v2v-inspector(1)>,
 L<virt-v2v-in-place(1)>,
+L<virt-v2v-show-roots(1)>,
 L<virt-customize(1)>,
 L<virt-df(1)>,
 L<virt-filesystems(1)>,
+L<virt-inspector(1)>,
 L<virt-sparsify(1)>,
 L<virt-sysprep(1)>,
 L<virt-win-reg(1)>,

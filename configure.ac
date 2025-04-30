@@ -161,6 +161,7 @@ AC_CONFIG_FILES([Makefile
                  po-docs/ja/Makefile
                  po-docs/uk/Makefile
                  po/Makefile
+                 show-roots/Makefile
                  test-data/Makefile
                  test-data/binaries/Makefile
                  test-data/blank-disks/Makefile

@@ -1,0 +1,202 @@
+=head1 NAME
+
+virt-v2v-show-roots - Show roots for multi-boot guest
+
+=head1 SYNOPSIS
+
+ virt-v2v-show-roots [-i* options]
+                     guest
+                     [-O output.xml]
+
+=head1 DESCRIPTION
+
+Virt-v2v-show-roots is a companion tool for L<virt-v2v(1)> and
+L<virt-v2v-inspector(1)> which can be used before conversion to show
+the roots in a dual- or multi-boot guest.  (For a normal, single boot
+guest it will also work, showing one root.)  This allows you to make
+an informed choice for the virt-v2v I<--root> option.  You can follow
+that by running virt-v2v-inspector to estimate how much space would be
+needed to convert that root, and if conversion of that root is
+possible.
+
+This manual page only documents the program options, not all of the
+I<-i*> options which are the same as virt-v2v.  You should read
+L<virt-v2v(1)> first.
+
+Note that L<virt-inspector(1)> can also be used for simple, local disk
+images.
+
+=head2 Selecting the input guest
+
+You can run virt-v2v-show-roots with the same I<-i*> options as
+virt-v2v.  (Don't use any I<-o*> options).  This will select the guest
+that you want to show roots for.
+
+For example:
+
+ virt-v2v-show-roots -i disk filename.img
+
+=head2 Output
+
+The output from this tool is an XML document.
+
+By default the output is written to stdout.  This is useful when using
+the program interactively.  However if you want to use this tool from
+another program it is better to send the output to a specific file
+using I<-O output.xml>
+
+The output is the same as L<virt-inspector(1)>.  This is just a short
+summary.  Please read the virt-inspector documentation for full
+information.
+
+ <?xml version='1.0'?>
+ <operatingsystems>
+   <operatingsystem>
+     <root>/dev/sda1</root>
+     ...
+     <product_name>Fedora release 40</product_name>
+     ...
+   </operatingsystem>
+   <operatingsystem>
+     <root>/dev/sdb1</root>
+     ...
+     <product_name>CentOS Linux release 7.9</product_name>
+     ...
+   </operatingsystem>
+ </operatingsystems>
+
+This lists the operating system(s) (a.k.a roots) found inside the VM.
+For a single-boot guest, only one E<lt>operatingsystemE<gt> will be
+listed.  For dual- or multi-boot guests, multiple choices will be
+shown.
+
+The E<lt>rootE<gt> is the root filesystem.  This may be used directly
+with the virt-v2v I<--root> parameter.
+
+The E<lt>product_nameE<gt> is the product name found inside the root
+filesystem.  Other fields of interest may be shown here as well.
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<--help>
+
+Display help.
+
+=item B<-O> F<output.xml>
+
+Write the output to a file called F<output.xml>.
+
+=item B<-O ->
+
+Write the output to stdout.  This is also the default if the I<-O>
+option is omitted.
+
+=item B<-v>
+
+=item B<--verbose>
+
+Enable verbose messages for debugging.
+
+=item B<-V>
+
+=item B<--version>
+
+Display version number and exit.
+
+=item B<-x>
+
+Enable tracing of libguestfs API calls.
+
+=item B<-i> ...
+
+=item B<-ic> ...
+
+=item B<-if> ...
+
+=item B<-io> ...
+
+=item B<-ip> ...
+
+=item B<-it> ...
+
+All of the I<-i*> options supported by virt-v2v and also supported by
+virt-v2v-show-roots.
+
+=item B<--colors>
+
+=item B<--colours>
+
+=item B<--echo-keys>
+
+=item B<--key> ...
+
+=item B<--keys-from-stdin>
+
+=item B<--machine-readable>
+
+=item B<--machine-readable>=format
+
+=item B<-q>
+
+=item B<--quiet>
+
+=item B<--wrap>
+
+These options work in the same way as the equivalent virt-v2v options.
+
+=back
+
+=head1 FILES
+
+Files used are the same as for virt-v2v.  See L<virt-v2v(1)/FILES>.
+
+=head1 ENVIRONMENT VARIABLES
+
+Environment variables used are the same as for virt-v2v.  See
+L<virt-v2v(1)/ENVIRONMENT VARIABLES>.
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>,
+L<virt-p2v(1)>,
+L<virt-inspector(1)>,
+L<virt-v2v-inspector(1)>,
+L<guestfs(3)>,
+L<guestfish(1)>,
+L<qemu-img(1)>,
+L<nbdkit(1)>,
+L<http://libguestfs.org/>.
+
+=head1 AUTHORS
+
+Matthew Booth
+
+Cédric Bosdonnat
+
+Laszlo Ersek
+
+Tomáš Golembiovský
+
+Shahar Havivi
+
+Richard W.M. Jones
+
+Roman Kagan
+
+Mike Latimer
+
+Nir Soffer
+
+Pino Toscano
+
+Xiaodai Wang
+
+Ming Xie
+
+Tingting Zheng
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2025 Red Hat Inc.
