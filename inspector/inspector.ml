@@ -48,8 +48,6 @@ let rec main () =
     else output_file := Some filename
   in
 
-  let bandwidth = ref None in
-  let bandwidth_file = ref None in
   let input_conn = ref None in
   let input_format = ref None in
   let input_password = ref None in
@@ -313,11 +311,7 @@ read the man page virt-v2v-inspector(1).
              (module Input_libvirt.Libvirt_) in
 
   let input_options = {
-    Input.bandwidth =
-      (match !bandwidth, !bandwidth_file with
-       | None, None -> None
-       | Some rate, None -> Some (StaticBandwidth rate)
-       | rate, Some filename -> Some (DynamicBandwidth (rate, filename)));
+    Input.bandwidth = None;
     input_conn = input_conn;
     input_format = !input_format;
     input_options = !input_options;
