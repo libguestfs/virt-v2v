@@ -755,6 +755,35 @@ let convert (g : G.guestfs) source inspect i_firmware
         add "# In the timeout case $ifindex will not be set below.";
         add ""
       );
+      
+      (* Clean up old persistent routes to avoid duplicates *)
+      add "# Clean up duplicate persistent routes from registry";
+      add "$regPath = 'HKLM:\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\PersistentRoutes'";
+      add "if (Test-Path $regPath) {";
+      add "  $routes = Get-ItemProperty -Path $regPath";
+      add "  $existing = $routes.PSObject.Properties | Where-Object { $_.Value -match '^\\d' }";
+      add "  $grouped = @{}";
+      add "  foreach ($r in $existing) {";
+      add "    $tokens = $r.Value -split '\\s+'";
+      add "    if ($tokens.Length -ge 2) {";
+      add "      $key = \"$($tokens[0]) $($tokens[1])\"";
+      add "      if (-not $grouped.ContainsKey($key)) { $grouped[$key] = @() }";
+      add "      $grouped[$key] += $r";
+      add "    }";
+      add "  }";
+      add "  foreach ($entry in $grouped.GetEnumerator()) {";
+      add "    $list = $entry.Value";
+      add "    if ($list.Count -gt 1) {";
+      add "      $toDelete = $list[0..($list.Count - 2)]";
+      add "      foreach ($r in $toDelete) {";
+      add "        Write-Host \"Removing duplicate persistent route: $($r.Value)\"";
+      add "        Remove-ItemProperty -Path $regPath -Name $r.Name -ErrorAction SilentlyContinue";
+      add "      }";
+      add "    }";
+      add "  }";
+      add "}";
+      add "";
+
 
       List.iter (
         fun { if_mac_addr; if_ip_address; if_default_gateway;
