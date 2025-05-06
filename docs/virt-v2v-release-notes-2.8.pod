@@ -50,6 +50,41 @@ Handling of I<kmod-xenpv> has been removed.  This only applied to RHEL
 3 and RHEL 4 guests being converted from very ancient versions of Xen
 (Cole Robinson).
 
+Some options that have been deprecated since 2018 and earlier were
+removed:
+
+=over 4
+
+=item I<--compressed>
+
+Use I<-oo compressed> instead.
+
+=item I<--no-trim>
+
+This did nothing.
+
+=item I<--password-file>
+
+Use I<--ip> instead.
+
+=item I<--qemu-boot>
+
+Use I<-oo qemu-boot> instead.
+
+=item I<--vddk-*>
+
+Use I<--io vddk-*> instead.
+
+=item I<--vdsm-*>
+
+Use I<--oo vdsm-*> instead.
+
+=item I<--vmtype>
+
+This did nothing.
+
+=back
+
 =head2 Other fixes
 
 Update support page to cover RHEL 10 and Windows Server 2025.
@@ -72,6 +107,16 @@ been fixed (thanks Nijin Ashok).
 Virt-v2v is now compatible with guests that use dnf5.
 
 I<-i vmx> mode now supports importing guests with SATA-emulated disks.
+
+Converting from a VMware snapshot is now possible, when using VDDK,
+using the I<io vddk-file=...> options (thanks Martin Necas).
+
+Conversion failures when guest F</etc/resolv.conf> is immutable are
+common enough that we have now documented this problem in the manual
+(thanks Dan Clark).
+
+Debug information now contains much more readable information about
+guest mountpoints, similar to the output of L<virt-df(1)>.
 
 =head2 Build changes
 
@@ -109,13 +154,22 @@ virt-v2v installs the correct set of driver files.  (Cole Robinson).
 Phony Windows guests are now generated for several different versions
 of Windows, allowing more broad testing (Cole Robinson).
 
+Some deprecated autoconf macros are no longer used.
+
+L<nbdkit-cacheextents-filter(1)> is no longer used, as it did not help
+performance now that we have switched to using L<nbdcopy(1)> (thanks
+Martin Kletzander).
+
+Several typos and spelling mistakes in the documentation were fixed
+(thanks Eric Blake).
+
 =head2 Bugs fixed
 
 =begin comment
 
 ./bugs-in-changelog.sh v2.6.0..
 
-# List below updated to 846ecb2b3840212c6f2cad6a15a6b33cd2e912bf
+# List below updated to d6990738b05d91a9491e9dbfe6480033e1f4ea86
 
 =end comment
 
@@ -193,6 +247,10 @@ Print blkhash of converted image in virt-v2v debugging output [10.1]
 
 There is no nbdcopy info in v2v debug log since virt-v2v version
 2.7.1-2 [rhel-9.7]
+
+=item L<https://issues.redhat.com/browse/RHEL-88543>
+
+virt-v2v-inspector is failing on snapshots of running VMs [rhel-9.7]
 
 =item L<https://github.com/libguestfs/virt-v2v/issues/79>
 
