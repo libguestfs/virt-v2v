@@ -73,6 +73,7 @@ lib/networks.ml
 lib/qemuNBD.ml
 lib/types.ml
 lib/utils.ml
+open/open.ml
 output/changeuid.ml
 output/create_kubevirt_yaml.ml
 output/create_libvirt_xml.ml
