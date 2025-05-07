@@ -1,5 +1,5 @@
 # -*- python -*-
-# oVirt or RHV upload create VM used by ‘virt-v2v -o rhv-upload’
+# oVirt upload create VM used by ‘virt-v2v -o ovirt-upload’
 # Copyright (C) 2018 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
@@ -99,7 +99,7 @@ connection = sdk.Connection(
     url=urlunparse(parsed._replace(netloc=netloc)),
     username=username,
     password=output_password,
-    ca_file=params['rhv_cafile'],
+    ca_file=params['ovirt_cafile'],
     log=logging.getLogger(),
     insecure=params['insecure'],
 )
@@ -107,7 +107,7 @@ connection = sdk.Connection(
 system_service = connection.system_service()
 
 # Get the cluster.
-cluster = system_service.clusters_service().cluster_service(params['rhv_cluster_uuid'])
+cluster = system_service.clusters_service().cluster_service(params['ovirt_cluster_uuid'])
 cluster = cluster.get()
 
 correlation_id = str(uuid.uuid4())

@@ -1,4 +1,4 @@
-virt-v2v -o rhv-upload
+virt-v2v -o ovirt-upload
 ----------------------
 
 * Set or disable the ticket timeout.  The default is going to be

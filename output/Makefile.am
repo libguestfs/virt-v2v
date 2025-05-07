@@ -18,13 +18,13 @@
 include $(top_srcdir)/subdir-rules.mk
 
 BUILT_SOURCES = \
-	output_rhv_upload_cancel_source.ml \
-	output_rhv_upload_createvm_source.ml \
-	output_rhv_upload_finalize_source.ml \
-	output_rhv_upload_plugin_source.ml \
-	output_rhv_upload_precheck_source.ml \
-	output_rhv_upload_transfer_source.ml \
-	output_rhv_upload_vmcheck_source.ml
+	output_ovirt_upload_cancel_source.ml \
+	output_ovirt_upload_createvm_source.ml \
+	output_ovirt_upload_finalize_source.ml \
+	output_ovirt_upload_plugin_source.ml \
+	output_ovirt_upload_precheck_source.ml \
+	output_ovirt_upload_transfer_source.ml \
+	output_ovirt_upload_vmcheck_source.ml
 
 EXTRA_DIST = \
 	$(SOURCES_MLI) \
@@ -32,13 +32,13 @@ EXTRA_DIST = \
 	$(SOURCES_C) \
 	$(BUILT_SOURCES) \
 	embed.sh \
-	rhv-upload-cancel.py \
-	rhv-upload-createvm.py \
-	rhv-upload-finalize.py \
-	rhv-upload-plugin.py \
-	rhv-upload-precheck.py \
-	rhv-upload-transfer.py \
-	rhv-upload-vmcheck.py \
+	ovirt-upload-cancel.py \
+	ovirt-upload-createvm.py \
+	ovirt-upload-finalize.py \
+	ovirt-upload-plugin.py \
+	ovirt-upload-precheck.py \
+	ovirt-upload-transfer.py \
+	ovirt-upload-vmcheck.py \
 	test-python-syntax.sh
 
 SOURCES_MLI = \
@@ -53,17 +53,17 @@ SOURCES_MLI = \
 	output_libvirt.mli \
 	output_null.mli \
 	output_openstack.mli \
+	output_ovirt.mli \
+	output_ovirt_upload.mli \
+	output_ovirt_upload_cancel_source.mli \
+	output_ovirt_upload_createvm_source.mli \
+	output_ovirt_upload_finalize_source.mli \
+	output_ovirt_upload_plugin_source.mli \
+	output_ovirt_upload_precheck_source.mli \
+	output_ovirt_upload_transfer_source.mli \
+	output_ovirt_upload_vmcheck_source.mli \
 	output_qemu.mli \
-	output_rhv.mli \
-	output_rhv_upload.mli \
 	output_vdsm.mli \
-	output_rhv_upload_cancel_source.mli \
-	output_rhv_upload_createvm_source.mli \
-	output_rhv_upload_finalize_source.mli \
-	output_rhv_upload_plugin_source.mli \
-	output_rhv_upload_precheck_source.mli \
-	output_rhv_upload_transfer_source.mli \
-	output_rhv_upload_vmcheck_source.mli \
 	python_script.mli \
 	qemuopts.mli
 
@@ -74,13 +74,13 @@ SOURCES_ML = \
 	create_kubevirt_yaml.ml \
 	qemuopts.ml \
 	openstack_image_properties.ml \
-	output_rhv_upload_cancel_source.ml \
-	output_rhv_upload_createvm_source.ml \
-	output_rhv_upload_finalize_source.ml \
-	output_rhv_upload_plugin_source.ml \
-	output_rhv_upload_precheck_source.ml \
-	output_rhv_upload_transfer_source.ml \
-	output_rhv_upload_vmcheck_source.ml \
+	output_ovirt_upload_cancel_source.ml \
+	output_ovirt_upload_createvm_source.ml \
+	output_ovirt_upload_finalize_source.ml \
+	output_ovirt_upload_plugin_source.ml \
+	output_ovirt_upload_precheck_source.ml \
+	output_ovirt_upload_transfer_source.ml \
+	output_ovirt_upload_vmcheck_source.ml \
 	output.ml \
 	output_disk.ml \
 	output_glance.ml \
@@ -89,27 +89,27 @@ SOURCES_ML = \
 	output_null.ml \
 	output_openstack.ml \
 	output_qemu.ml \
-	output_rhv.ml \
-	output_rhv_upload.ml \
+	output_ovirt.ml \
+	output_ovirt_upload.ml \
 	output_vdsm.ml
 
 SOURCES_C = \
 	qemuopts-c.c
 
 # These files are generated and contain *.py embedded as an OCaml string.
-output_rhv_upload_cancel_source.ml: $(srcdir)/rhv-upload-cancel.py
+output_ovirt_upload_cancel_source.ml: $(srcdir)/ovirt-upload-cancel.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_createvm_source.ml: $(srcdir)/rhv-upload-createvm.py
+output_ovirt_upload_createvm_source.ml: $(srcdir)/ovirt-upload-createvm.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_finalize_source.ml: $(srcdir)/rhv-upload-finalize.py
+output_ovirt_upload_finalize_source.ml: $(srcdir)/ovirt-upload-finalize.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_plugin_source.ml: $(srcdir)/rhv-upload-plugin.py
+output_ovirt_upload_plugin_source.ml: $(srcdir)/ovirt-upload-plugin.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_precheck_source.ml: $(srcdir)/rhv-upload-precheck.py
+output_ovirt_upload_precheck_source.ml: $(srcdir)/ovirt-upload-precheck.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_transfer_source.ml: $(srcdir)/rhv-upload-transfer.py
+output_ovirt_upload_transfer_source.ml: $(srcdir)/ovirt-upload-transfer.py
 	$(srcdir)/embed.sh code $^ $@
-output_rhv_upload_vmcheck_source.ml: $(srcdir)/rhv-upload-vmcheck.py
+output_ovirt_upload_vmcheck_source.ml: $(srcdir)/ovirt-upload-vmcheck.py
 	$(srcdir)/embed.sh code $^ $@
 
 # We pretend that we're building a C library.  automake handles the

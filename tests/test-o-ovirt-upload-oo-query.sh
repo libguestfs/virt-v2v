@@ -29,13 +29,13 @@ skip_if_skipped
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
 
-f=test-o-rhv-upload-oo-query.actual
+f=test-o-ovirt-upload-oo-query.actual
 rm -f $f
 
 $VG virt-v2v --debug-gc \
-    -o rhv-upload -oo "?" > $f
+    -o ovirt-upload -oo "?" > $f
 
-grep -- "-oo rhv-cafile" $f
-grep -- "-oo rhv-verifypeer" $f
+grep -- "-oo ovirt-cafile" $f
+grep -- "-oo ovirt-verifypeer" $f
 
 rm $f

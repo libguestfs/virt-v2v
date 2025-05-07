@@ -1,18 +1,18 @@
 =head1 NAME
 
-virt-v2v-output-rhv - Using virt-v2v to convert guests to oVirt or RHV
+virt-v2v-output-ovirt - Using virt-v2v to convert guests to oVirt
 
 =head1 SYNOPSIS
 
- virt-v2v [-i* options] -o rhv-upload [-oc ENGINE_URL] -os STORAGE
+ virt-v2v [-i* options] -o ovirt-upload [-oc ENGINE_URL] -os STORAGE
                         [-op PASSWORD] [-of raw]
-                        [-oo rhv-cafile=FILE]
-                        [-oo rhv-cluster=CLUSTER]
-                        [-oo rhv-proxy]
-                        [-oo rhv-disk-uuid=UUID ...]
-                        [-oo rhv-verifypeer]
+                        [-oo ovirt-cafile=FILE]
+                        [-oo ovirt-cluster=CLUSTER]
+                        [-oo ovirt-proxy]
+                        [-oo ovirt-disk-uuid=UUID ...]
+                        [-oo ovirt-verifypeer]
 
- virt-v2v [-i* options] -o rhv -os [esd:/path|/path]
+ virt-v2v [-i* options] -o ovirt -os [esd:/path|/path]
 
  virt-v2v [-i* options] -o vdsm
                         [-oo vdsm-image-uuid=UUID]
@@ -23,47 +23,46 @@ virt-v2v-output-rhv - Using virt-v2v to convert guests to oVirt or RHV
 =head1 DESCRIPTION
 
 This page documents how to use L<virt-v2v(1)> to convert guests to an
-oVirt or RHV management instance.  There are three output modes that
-you can select, but only I<-o rhv-upload> should be used normally, the
-other two are deprecated:
+oVirt management instance.  There are three output modes that you can
+select, but only I<-o ovirt-upload> should be used normally, the other
+two are deprecated:
 
 =over 4
 
-=item B<-o rhv-upload> B<-os> STORAGE
+=item B<-o ovirt-upload> B<-os> STORAGE
 
-Full description: L</OUTPUT TO RHV>
+Full description: L</OUTPUT TO OVIRT>
 
-This is the modern method for uploading to oVirt/RHV via the REST API.
-It requires oVirt/RHV E<ge> 4.2.
+This is the modern method for uploading to oVirt via the REST API.  It
+requires oVirt E<ge> 4.2.
 
-=item B<-o rhv> B<-os> esd:/path
+=item B<-o ovirt> B<-os> esd:/path
 
-=item B<-o rhv> B<-os> /path
+=item B<-o ovirt> B<-os> /path
 
 Full description: L</OUTPUT TO EXPORT STORAGE DOMAIN>
 
-This is the old method for uploading to oVirt/RHV via the
-Export Storage Domain (ESD).  The ESD can either be accessed
-over NFS (using the I<-os esd:/path> form) or if you have
-already NFS-mounted it somewhere specify the path to the mountpoint
-as I<-os /path>.
+This is the old method for uploading to oVirt via the Export Storage
+Domain (ESD).  The ESD can either be accessed over NFS (using the
+I<-os esd:/path> form) or if you have already NFS-mounted it somewhere
+specify the path to the mountpoint as I<-os /path>.
 
 The Export Storage Domain was deprecated in oVirt 4, and so we expect
 that this method will stop working at some point in the future.
 
 =item B<-o vdsm>
 
-This is the old method used internally by the RHV-M user interface.
+This is the old method used internally by the oVirt user interface.
 It is never intended to be used directly by end users.
 
 =back
 
-=head1 OUTPUT TO RHV
+=head1 OUTPUT TO OVIRT
 
-This new method to upload guests to oVirt or RHV directly via the REST
-API requires oVirt/RHV E<ge> 4.2.
+This new method to upload guests to oVirt directly via the REST API
+requires oVirt E<ge> 4.2.
 
-You need to specify I<-o rhv-upload> as well as the following extra
+You need to specify I<-o ovirt-upload> as well as the following extra
 parameters:
 
 =over 4
@@ -96,21 +95,21 @@ C<0600> so that others cannot read it.
 
 The storage domain.
 
-=item I<-oo rhv-cafile=>F<ca.pem>
+=item I<-oo ovirt-cafile=>F<ca.pem>
 
 The F<ca.pem> file (Certificate Authority), copied from
 F</etc/pki/ovirt-engine/ca.pem> on the oVirt engine.
 
-If I<-oo rhv-verifypeer> is enabled then this option can
+If I<-oo ovirt-verifypeer> is enabled then this option can
 be used to control which CA is used to verify the client’s
 identity.  If this option is not used then the system’s
 global trust store is used.
 
-=item I<-oo rhv-cluster=>C<CLUSTERNAME>
+=item I<-oo ovirt-cluster=>C<CLUSTERNAME>
 
-Set the RHV Cluster Name.  If not given it uses C<Default>.
+Set the oVirt Cluster Name.  If not given it uses C<Default>.
 
-=item I<-oo rhv-disk-uuid=>C<UUID>
+=item I<-oo ovirt-disk-uuid=>C<UUID>
 
 This option can used to manually specify UUIDs for the disks when
 creating the virtual machine.  If not specified, the oVirt engine will
@@ -120,7 +119,7 @@ generate random UUIDs for the disks.  Please note that:
 
 =item *
 
-you B<must> pass as many I<-oo rhv-disk-uuid=UUID> options as the
+you B<must> pass as many I<-oo ovirt-disk-uuid=UUID> options as the
 amount of disks in the guest
 
 =item *
@@ -129,66 +128,66 @@ the specified UUIDs must not conflict with the UUIDs of existing disks
 
 =back
 
-=item I<-oo rhv-proxy>
+=item I<-oo ovirt-proxy>
 
 Proxy the upload through oVirt Engine.  This is slower than uploading
 directly to the oVirt node but may be necessary if you do not have
 direct network access to the nodes.
 
-=item I<-oo rhv-verifypeer>
+=item I<-oo ovirt-verifypeer>
 
-Verify the oVirt/RHV server’s identity by checking the server‘s
+Verify the oVirt server’s identity by checking the server‘s
 certificate against the Certificate Authority.
 
 =back
 
 =head1 OUTPUT TO EXPORT STORAGE DOMAIN
 
-This section only applies to the I<-o rhv> output mode.  If you use
-virt-v2v from the RHV-M user interface, then behind the scenes the
+This section only applies to the I<-o ovirt> output mode.  If you use
+virt-v2v from the oVirt user interface, then behind the scenes the
 import is managed by VDSM using the I<-o vdsm> output mode (which end
 users should not try to use directly).
 
-You have to specify I<-o rhv> and an I<-os> option that points to the
-RHV-M Export Storage Domain.  You can either specify the NFS server
-and mountpoint, eg. S<C<-os rhv-storage:/rhv/export>>, or you can
+You have to specify I<-o ovirt> and an I<-os> option that points to the
+oVirt Export Storage Domain.  You can either specify the NFS server
+and mountpoint, eg. S<C<-os ovirt-storage:/ovirt/export>>, or you can
 mount that first and point to the directory where it is mounted,
 eg. S<C<-os /tmp/mnt>>.  Be careful not to point to the Data Storage
 Domain by accident as that will not work.
 
 On successful completion virt-v2v will have written the new guest to
 the Export Storage Domain, but it will not yet be ready to run.  It
-must be imported into RHV using the UI before it can be used.
+must be imported into oVirt using the UI before it can be used.
 
-In RHV E<ge> 2.2 this is done from the Storage tab.  Select the
+In oVirt E<ge> 2.2 this is done from the Storage tab.  Select the
 export domain the guest was written to.  A pane will appear underneath
 the storage domain list displaying several tabs, one of which is "VM
 Import".  The converted guest will be listed here.  Select the
-appropriate guest an click "Import".  See the RHV documentation for
+appropriate guest an click "Import".  See the oVirt documentation for
 additional details.
 
 If you export several guests, then you can import them all at the same
 time through the UI.
 
-=head2 Testing RHV conversions
+=head2 Testing oVirt conversions
 
-If you do not have an oVirt or RHV instance to test against, then you
-can test conversions by creating a directory structure which looks
-enough like a RHV-M Export Storage Domain to trick virt-v2v:
+If you do not have an oVirt instance to test against, then you can
+test conversions by creating a directory structure which looks enough
+like a oVirt Export Storage Domain to trick virt-v2v:
 
  uuid=`uuidgen`
- mkdir /tmp/rhv
- mkdir /tmp/rhv/$uuid
- mkdir /tmp/rhv/$uuid/images
- mkdir /tmp/rhv/$uuid/master
- mkdir /tmp/rhv/$uuid/master/vms
- touch /tmp/rhv/$uuid/dom_md
- virt-v2v [...] -o rhv -os /tmp/rhv
+ mkdir /tmp/ovirt
+ mkdir /tmp/ovirt/$uuid
+ mkdir /tmp/ovirt/$uuid/images
+ mkdir /tmp/ovirt/$uuid/master
+ mkdir /tmp/ovirt/$uuid/master/vms
+ touch /tmp/ovirt/$uuid/dom_md
+ virt-v2v [...] -o ovirt -os /tmp/ovirt
 
-=head2 Debugging RHV-M import failures
+=head2 Debugging oVirt import failures
 
-When you export to the RHV-M Export Storage Domain, and then import
-that guest through the RHV-M UI, you may encounter an import failure.
+When you export to the oVirt Export Storage Domain, and then import
+that guest through the oVirt UI, you may encounter an import failure.
 Diagnosing these failures is infuriatingly difficult as the UI
 generally hides the true reason for the failure.
 
@@ -214,7 +213,7 @@ by virt-v2v, but by VDSM.
 
 =item F</var/log/ovirt-engine/engine.log>
 
-This log file is stored on the RHV-M server.  It contains more detail
+This log file is stored on the oVirt server.  It contains more detail
 for any errors caused by the oVirt GUI.
 
 =back

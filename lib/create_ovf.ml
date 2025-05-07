@@ -16,7 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(* Create OVF and related files for RHV. *)
+(* Create OVF and related files for oVirt. *)
 
 open Unix
 open Printf
@@ -31,18 +31,18 @@ open DOM
 
 type ovf_flavour =
   | OVirt
-  | RHVExportStorageDomain
+  | OVirtExportStorageDomain
 
-let ovf_flavours = ["ovirt"; "rhvexp"]
+let ovf_flavours = ["ovirt"; "ovirtexp"]
 
 let ovf_flavour_of_string = function
   | "ovirt" -> OVirt
-  | "rhvexp" -> RHVExportStorageDomain
+  | "ovirtexp" -> OVirtExportStorageDomain
   | flav -> invalid_arg flav
 
 let ovf_flavour_to_string = function
   | OVirt -> "ovirt"
-  | RHVExportStorageDomain -> "rhvexp"
+  | OVirtExportStorageDomain -> "ovirtexp"
 
 (* We set the creation time to be the same for all dates in
  * all metadata files.  All dates in OVF are UTC.
@@ -166,11 +166,11 @@ and get_ostype = function
   | { i_type = "linux" } -> "OtherLinux"
 
   | { i_type = "windows"; i_major_version = 5; i_minor_version = 1 } ->
-    "WindowsXP" (* no architecture differentiation of XP on RHV *)
+    "WindowsXP" (* no architecture differentiation of XP on oVirt *)
 
   | { i_type = "windows"; i_major_version = 5; i_minor_version = 2;
       i_product_name = product } when String.find product "XP" >= 0 ->
-    "WindowsXP" (* no architecture differentiation of XP on RHV *)
+    "WindowsXP" (* no architecture differentiation of XP on oVirt *)
 
   | { i_type = "windows"; i_major_version = 5; i_minor_version = 2;
       i_arch = "i386" } ->
@@ -365,11 +365,11 @@ and get_ovirt_osid = function
     5
 
   | { i_type = "windows"; i_major_version = 5; i_minor_version = 1 } ->
-    1 (* no architecture differentiation of XP on RHV *)
+    1 (* no architecture differentiation of XP on oVirt *)
 
   | { i_type = "windows"; i_major_version = 5; i_minor_version = 2;
       i_product_name = product } when String.find product "XP" >= 0 ->
-    1 (* no architecture differentiation of XP on RHV *)
+    1 (* no architecture differentiation of XP on oVirt *)
 
   | { i_type = "windows"; i_major_version = 5; i_minor_version = 2;
       i_arch = "i386" } ->
@@ -499,17 +499,17 @@ let get_ovirt_biostype arch machine firmware =
 (* Generate the .meta file associated with each volume. *)
 let create_meta_files output_alloc output_format sd_uuid image_uuids sizes =
   (* Note: Upper case in the .meta, mixed case in the OVF. *)
-  let output_alloc_for_rhv =
+  let output_alloc_for_ovirt =
     match output_alloc with
     | Sparse -> "SPARSE"
     | Preallocated -> "PREALLOCATED" in
 
-  let format_for_rhv =
+  let format_for_ovirt =
     match output_format with
     | "raw" -> "RAW"
     | "qcow2" -> "COW"
     | _ ->
-       error (f_"RHV does not support the output format ‘%s’, \
+       error (f_"oVirt does not support the output format ‘%s’, \
                  only raw or qcow2") output_format in
 
   List.mapi (
@@ -535,8 +535,8 @@ let create_meta_files output_alloc output_format sd_uuid image_uuids sizes =
       bpf "LEGALITY=LEGAL\n";
       bpf "POOL_UUID=\n";
       bpf "SIZE=%Ld\n" size_in_sectors;
-      bpf "FORMAT=%s\n" format_for_rhv;
-      bpf "TYPE=%s\n" output_alloc_for_rhv;
+      bpf "FORMAT=%s\n" format_for_ovirt;
+      bpf "TYPE=%s\n" output_alloc_for_ovirt;
       bpf "DESCRIPTION=%s\n" (String.replace generated_by "=" "_");
       bpf "EOF\n";
       Buffer.contents buf
@@ -577,7 +577,7 @@ let rec create_ovf source inspect
         e "NetworkSection" [] [
           e "Info" [] [PCData "List of networks"]
         ]
-      | RHVExportStorageDomain ->
+      | OVirtExportStorageDomain ->
         e "Section" ["xsi:type", "ovf:NetworkSection_Type"] [
           e "Info" [] [PCData "List of networks"]
         ]
@@ -587,7 +587,7 @@ let rec create_ovf source inspect
         e "DiskSection" [] [
           e "Info" [] [PCData "List of Virtual Disks"]
         ]
-      | RHVExportStorageDomain ->
+      | OVirtExportStorageDomain ->
         e "Section" ["xsi:type", "ovf:DiskSection_Type"] [
           e "Info" [] [PCData "List of Virtual Disks"]
         ]
@@ -644,7 +644,7 @@ let rec create_ovf source inspect
                                       "ovf:required", "false";
                                       "ovirt:id", string_of_int ovirt_osid]
             osinfo_subnodes
-        | RHVExportStorageDomain ->
+        | OVirtExportStorageDomain ->
           e "Section" ["ovf:id", vm_uuid; "ovf:required", "false";
                        "xsi:type", "ovf:OperatingSystemSection_Type"]
             osinfo_subnodes
@@ -694,7 +694,7 @@ let rec create_ovf source inspect
         ];
 
         (* We always add a standard VGA-compatible video controller when
-         * outputting to RHV. See RHBZ#1213701 and RHBZ#1211231 for the
+         * outputting to oVirt. See RHBZ#1213701 and RHBZ#1211231 for the
          * reasoning behind that. The device model used to be QXL previously,
          * but only the unaccelerated standard VGA framebuffer is needed; so
          * the (simpler) standard VGA device itself suffices. Refer to
@@ -703,7 +703,7 @@ let rec create_ovf source inspect
         let monitor_resourcetype =
           match ovf_flavour with
           | OVirt -> 32768 (* RHBZ#1598715, RHBZ#1534644 *)
-          | RHVExportStorageDomain -> 20 in
+          | OVirtExportStorageDomain -> 20 in
         e "Item" [] [
           e "rasd:Caption" [] [PCData "Graphical Controller"];
           e "rasd:InstanceId" [] [PCData (uuidgen ())];
@@ -747,7 +747,7 @@ let rec create_ovf source inspect
         match ovf_flavour with
         | OVirt ->
           e "VirtualHardwareSection" [] !virtual_hardware_section_items
-        | RHVExportStorageDomain ->
+        | OVirtExportStorageDomain ->
           e "Section" ["xsi:type", "ovf:VirtualHardwareSection_Type"]
             !virtual_hardware_section_items
       );
@@ -755,7 +755,7 @@ let rec create_ovf source inspect
       (match ovf_flavour with
       | OVirt ->
         e "VirtualSystem" ["ovf:id", vm_uuid] !content_subnodes
-      | RHVExportStorageDomain ->
+      | OVirtExportStorageDomain ->
         e "Content" ["ovf:id", "out"; "xsi:type", "ovf:VirtualSystem_Type"]
           !content_subnodes
       )
@@ -781,7 +781,7 @@ let rec create_ovf source inspect
   (match source with
   | { s_display = Some { s_password = Some _ } } ->
     warning (f_"This guest required a password for connection to its display, \
-                but this is not supported by RHV.  Therefore the converted \
+                but this is not supported by oVirt.  Therefore the converted \
                 guest’s display will not require a separate password \
                 to connect.");
     | _ -> ());
@@ -797,17 +797,17 @@ let rec create_ovf source inspect
 (* Find appropriate section depending on the OVF flavour being generated.
  *
  * For example normal disk section is in node <DiskSection> whereas in case of
- * RHV export storage domain it is <Section xsi:type="ovf:DiskSection_Type">.
+ * OVirt export storage domain it is <Section xsi:type="ovf:DiskSection_Type">.
  *)
-and get_flavoured_section ovf ovirt_path rhv_path rhv_path_attr = function
+and get_flavoured_section ovf ovirt_path esd_path esd_path_attr = function
   | OVirt ->
      let nodes = path_to_nodes ovf ovirt_path in
      (match nodes with
       | [node] -> node
       | [] | _::_::_ -> assert false)
-  | RHVExportStorageDomain ->
-     let nodes = path_to_nodes ovf rhv_path in
-     try find_node_by_attr nodes rhv_path_attr
+  | OVirtExportStorageDomain ->
+     let nodes = path_to_nodes ovf esd_path in
+     try find_node_by_attr nodes esd_path_attr
      with Not_found -> assert false
 
 (* This modifies the OVF DOM, adding a section for each disk. *)
@@ -848,11 +848,11 @@ and add_disks sizes guestcaps output_alloc output_format
         match ovf_flavour with
         | OVirt ->
           vol_uuid
-        | RHVExportStorageDomain ->
+        | OVirtExportStorageDomain ->
           sprintf "%s/%s" image_uuid vol_uuid in
 
       (* ovf:size and ovf:actual_size fields are integer GBs.  If you
-       * use floating point numbers then RHV will fail to parse them.
+       * use floating point numbers then oVirt will fail to parse them.
        * In case the size is just below a gigabyte boundary, round up.
        *)
       let bytes_to_gb b =
@@ -867,16 +867,16 @@ and add_disks sizes guestcaps output_alloc output_format
           None
       in
 
-      let format_for_rhv =
+      let format_for_ovirt =
         match output_format with
         | "raw" -> "RAW"
         | "qcow2" -> "COW"
         | _ ->
-          error (f_"RHV does not support the output format ‘%s’, \
+          error (f_"oVirt does not support the output format ‘%s’, \
                     only raw or qcow2") output_format in
 
       (* Note: Upper case in the .meta, mixed case in the OVF. *)
-      let output_alloc_for_rhv =
+      let output_alloc_for_ovirt =
         match output_alloc with
         | Sparse -> "Sparse"
         | Preallocated -> "Preallocated" in
@@ -902,14 +902,14 @@ and add_disks sizes guestcaps output_alloc output_format
           "ovf:diskId",
           (match ovf_flavour with
           | OVirt -> image_uuid
-          | RHVExportStorageDomain -> vol_uuid);
+          | OVirtExportStorageDomain -> vol_uuid);
           "ovf:size", Int64.to_string size_gb;
           "ovf:capacity", Int64.to_string size;
           "ovf:fileRef", fileref;
           "ovf:parentRef", "";
           "ovf:vm_snapshot_id", uuidgen ();
-          "ovf:volume-format", format_for_rhv;
-          "ovf:volume-type", output_alloc_for_rhv;
+          "ovf:volume-format", format_for_ovirt;
+          "ovf:volume-type", output_alloc_for_ovirt;
           "ovf:format", "http://en.wikipedia.org/wiki/Byte"; (* wtf? *)
           "ovf:disk-interface",
           (match guestcaps.gcaps_block_bus with

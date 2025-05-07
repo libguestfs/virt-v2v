@@ -1,5 +1,5 @@
 # -*- python -*-
-# oVirt or RHV VM existence check used by ‘virt-v2v -o rhv-upload’
+# oVirt VM existence check used by ‘virt-v2v -o ovirt-upload’
 # Copyright (C) 2018-2025 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
@@ -52,7 +52,7 @@ connection = sdk.Connection(
     url=urlunparse(parsed._replace(netloc=netloc)),
     username=username,
     password=output_password,
-    ca_file=params['rhv_cafile'],
+    ca_file=params['ovirt_cafile'],
     log=logging.getLogger(),
     insecure=params['insecure'],
 )

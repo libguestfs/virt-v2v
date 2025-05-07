@@ -1,5 +1,5 @@
 # -*- python -*-
-# oVirt or RHV pre-upload checks used by ‘virt-v2v -o rhv-upload’
+# oVirt pre-upload checks used by ‘virt-v2v -o ovirt-upload’
 # Copyright (C) 2018-2025 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
@@ -62,7 +62,7 @@ connection = sdk.Connection(
     url=urlunparse(parsed._replace(netloc=netloc)),
     username=username,
     password=output_password,
-    ca_file=params['rhv_cafile'],
+    ca_file=params['ovirt_cafile'],
     log=logging.getLogger(),
     insecure=params['insecure'],
 )
@@ -101,24 +101,24 @@ except IndexError:
 
 # Get the cluster.
 clusters = connection.follow_link(datacenter.clusters)
-clusters = [cluster for cluster in clusters if cluster.name == params['rhv_cluster']]
+clusters = [cluster for cluster in clusters if cluster.name == params['ovirt_cluster']]
 if len(clusters) == 0:
     raise RuntimeError("The cluster ‘%s’ is not part of the DC ‘%s’, "
                        "where the storage domain ‘%s’ is" %
-                       (params['rhv_cluster'], datacenter.name,
+                       (params['ovirt_cluster'], datacenter.name,
                         output_storage))
 cluster = clusters[0]
 cpu = cluster.cpu
 if cpu.architecture == types.Architecture.UNDEFINED:
     raise RuntimeError("The cluster ‘%s’ has an unknown architecture" %
-                       (params['rhv_cluster']))
+                       (params['ovirt_cluster']))
 
 # Find if any disk already exists with specified UUID.
-# Only used with -oo rhv-disk-uuid.  It is assumed that the
+# Only used with -oo ovirt-disk-uuid.  It is assumed that the
 # random UUIDs that we generate are unlikely to conflict.
 disks_service = system_service.disks_service()
 
-for uuid in params.get('rhv_disk_uuids', []):
+for uuid in params.get('ovirt_disk_uuids', []):
     try:
         disk_service = disks_service.disk_service(uuid).get()
         raise RuntimeError("Disk with the UUID '%s' already exists" % uuid)
@@ -127,9 +127,9 @@ for uuid in params.get('rhv_disk_uuids', []):
 
 # Otherwise everything is OK, print a JSON with the results.
 results = {
-    "rhv_storagedomain_uuid": storage_domain.id,
-    "rhv_cluster_uuid": cluster.id,
-    "rhv_cluster_cpu_architecture": cpu.architecture.value,
+    "ovirt_storagedomain_uuid": storage_domain.id,
+    "ovirt_cluster_uuid": cluster.id,
+    "ovirt_cluster_cpu_architecture": cpu.architecture.value,
 }
 
 json.dump(results, sys.stdout)

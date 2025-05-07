@@ -1,5 +1,5 @@
 # -*- python -*-
-# oVirt or RHV upload nbdkit plugin used by ‘virt-v2v -o rhv-upload’
+# oVirt upload nbdkit plugin used by ‘virt-v2v -o ovirt-upload’
 # Copyright (C) 2018-2025 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify

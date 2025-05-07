@@ -47,7 +47,7 @@ module VDSM = struct
   -oo vdsm-vm-uuid=UUID        VM UUID (required)
   -oo vdsm-ovf-output=DIR      OVF metadata directory (required)
   -oo vdsm-ovf-flavour=%s
-                               Set the type of generated OVF (default: rhvexp)
+                               Set the type of generated OVF (default: ovirtexp)
 
 For each disk you must supply one of each of these options:
 
@@ -62,7 +62,7 @@ For each disk you must supply one of each of these options:
     let vm_uuid = ref None in
     let ovf_output = ref None in (* default "." *)
     let compat = ref "0.10" in
-    let ovf_flavour = ref Create_ovf.RHVExportStorageDomain in
+    let ovf_flavour = ref Create_ovf.OVirtExportStorageDomain in
     let image_uuids = ref [] in
     let vol_uuids = ref [] in
 

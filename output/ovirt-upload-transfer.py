@@ -1,5 +1,5 @@
 # -*- python -*-
-# oVirt or RHV upload start transfer used by ‘virt-v2v -o rhv-upload’
+# oVirt upload start transfer used by ‘virt-v2v -o ovirt-upload’
 # Copyright (C) 2018-2025 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
@@ -232,11 +232,11 @@ def get_transfer_url(transfer):
     """
     Returns the transfer url, preferring direct transfer if possible.
     """
-    if params['rhv_direct']:
+    if params['ovirt_direct']:
         if transfer.transfer_url is None:
             raise RuntimeError("direct upload to host not supported, "
                                "requires ovirt-engine >= 4.2 and only works "
-                               "when virt-v2v is run within the oVirt/RHV "
+                               "when virt-v2v is run within the oVirt "
                                "environment, eg. on an oVirt node.")
         return transfer.transfer_url
     else:
@@ -276,14 +276,14 @@ connection = sdk.Connection(
     url=urlunparse(parsed._replace(netloc=netloc)),
     username=username,
     password=output_password,
-    ca_file=params['rhv_cafile'],
+    ca_file=params['ovirt_cafile'],
     log=logging.getLogger(),
     insecure=params['insecure'],
 )
 
 with closing(connection):
     # Use the local host if possible.
-    host = find_host(connection) if params['rhv_direct'] else None
+    host = find_host(connection) if params['ovirt_direct'] else None
     disk = create_disk(connection)
 
     transfer = create_transfer(connection, disk, host)

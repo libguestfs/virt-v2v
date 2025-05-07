@@ -18,7 +18,7 @@
 
 type ovf_flavour =
   | OVirt
-  | RHVExportStorageDomain
+  | OVirtExportStorageDomain
 
 (** The string representation of available OVF flavours. *)
 val ovf_flavours : string list
@@ -32,9 +32,9 @@ val ovf_flavour_of_string : string -> ovf_flavour
 (** Convert an OVF flavour to its string representation. *)
 val ovf_flavour_to_string : ovf_flavour -> string
 
-(** Create OVF and related files for RHV.
+(** Create OVF and related files for oVirt.
 
-    The format for RHV export storage domain is described in:
+    The format for oVirt export storage domain is described in:
     http://resources.ovirt.org/old-site-files/Ovirt_ovf_format.odt
 
     The format understood by oVirt has no known documentation.
@@ -57,7 +57,7 @@ val create_ovf : Types.source -> Types.inspect ->
 val create_meta_files : Types.output_allocation -> string -> string -> string list -> int64 list -> string list
 (** Create the .meta file associated with each target.
 
-    Note this does not write them, since output_rhv has to do a
+    Note this does not write them, since output_ovirt has to do a
     permissions dance when writing files.  Instead the contents of each
     file is returned (one per target), and they must be written to
     [target_file ^ ".meta"]. *)

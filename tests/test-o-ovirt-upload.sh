@@ -16,10 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# Test -o rhv-upload.
+# Test -o ovirt-upload.
 #
 # These uses a test harness (see
-# tests/test-o-rhv-upload-module/ovirtsdk4) to fake responses from
+# tests/test-o-ovirt-upload-module/ovirtsdk4) to fake responses from
 # oVirt.
 
 set -e
@@ -39,13 +39,13 @@ f=../test-data/phony-guests/windows.img
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
-export PYTHONPATH=$srcdir/test-o-rhv-upload-module:$PYTHONPATH
+export PYTHONPATH=$srcdir/test-o-ovirt-upload-module:$PYTHONPATH
 
 # Run the imageio process and get the port number.
-log=test-o-rhv-upload.webserver.log
+log=test-o-ovirt-upload.webserver.log
 rm -f $log
 cleanup_fn rm -f $log
-$srcdir/test-o-rhv-upload-module/imageio.py >$log 2>&1 &
+$srcdir/test-o-ovirt-upload-module/imageio.py >$log 2>&1 &
 pid=$!
 cleanup_fn kill $pid
 export IMAGEIO_PORT=
@@ -61,14 +61,14 @@ if [ ! -n "$IMAGEIO_PORT" ]; then
 fi
 echo IMAGEIO_PORT=$IMAGEIO_PORT
 
-# Run virt-v2v -o rhv-upload.
+# Run virt-v2v -o ovirt-upload.
 #
 # The fake ovirtsdk4 module doesn't care about most of the options
-# like -oc, -oo rhv-cafile, -op etc.  Any values may be used.
+# like -oc, -oo ovirt-cafile, -op etc.  Any values may be used.
 $VG virt-v2v --debug-gc -v -x \
     -i libvirt -ic "$libvirt_uri" windows \
-    -o rhv-upload \
+    -o ovirt-upload \
     -oc https://example.com/ovirt-engine/api \
-    -oo rhv-cafile=/dev/null \
+    -oo ovirt-cafile=/dev/null \
     -op /dev/null \
     -os Storage

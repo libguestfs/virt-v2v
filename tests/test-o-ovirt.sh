@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# Test -o rhv.
+# Test -o ovirt.
 
 set -e
 
@@ -33,7 +33,7 @@ f=../test-data/phony-guests/windows.img
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"
 
-d=test-o-rhv.d
+d=test-o-ovirt.d
 rm -rf $d
 cleanup_fn rm -r $d
 mkdir $d
@@ -44,11 +44,11 @@ mkdir $d/12345678-1234-1234-1234-123456789abc/images
 mkdir $d/12345678-1234-1234-1234-123456789abc/master
 mkdir $d/12345678-1234-1234-1234-123456789abc/master/vms
 
-# $VG - XXX Disabled because the forking used to write files in -o rhv
+# $VG - XXX Disabled because the forking used to write files in -o ovirt
 # mode confuses valgrind.
 virt-v2v --debug-gc -v -x \
     -i libvirt -ic "$libvirt_uri" windows \
-    -o rhv -os $d
+    -o ovirt -os $d
 
 # Test the OVF metadata was created.
 test -f $d/12345678-1234-1234-1234-123456789abc/master/vms/*/*.ovf
@@ -84,4 +84,4 @@ sed -i \
   -e 's/\<ovf:vm_snapshot_id='"'$RE_UUID'/ovf:vm_snapshot_id='#UUID#'/g" \
   "$OVF"
 
-diff -u "$srcdir/test-o-rhv.ovf.expected" "$OVF"
+diff -u "$srcdir/test-o-ovirt.ovf.expected" "$OVF"

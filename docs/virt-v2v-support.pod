@@ -63,7 +63,7 @@ QEMU and KVM only.
 
 =item OpenStack
 
-=item Red Hat Virtualization (RHV) 4.1 and up
+=item oVirt 4.1 and up
 
 =item Local libvirt
 
@@ -128,9 +128,9 @@ hypervisor, else you will have to adjust paths in the metadata.
 
 Supported since virt-v2v E<ge> 1.43.2.
 
-=item UEFI on oVirt or RHV
+=item UEFI on oVirt
 
-Supported since oVirt/RHV E<ge> 4.2 and virt-v2v E<ge> 1.39.12.
+Supported since oVirt E<ge> 4.2 and virt-v2v E<ge> 1.39.12.
 
 =back
 

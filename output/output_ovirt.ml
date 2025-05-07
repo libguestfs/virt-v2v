@@ -29,12 +29,12 @@ open Utils
 
 open Output
 
-module RHV = struct
+module OVirt = struct
   type poptions = Types.output_allocation * string * string * string
 
   type t = string * string * string * string list * string list * int64 list
 
-  let to_string options = "-o rhv"
+  let to_string options = "-o ovirt"
 
   let query_output_options () =
     printf (f_"No output options can be used in this mode.\n")
@@ -43,12 +43,12 @@ module RHV = struct
     if options.output_options <> [] then
       error (f_"no -oo (output options) are allowed here");
     if options.output_password <> None then
-      error_option_cannot_be_used_in_output_mode "rhv" "-op";
+      error_option_cannot_be_used_in_output_mode "ovirt" "-op";
 
     (* -os must be set, but at this point we cannot check it. *)
     let output_storage =
       match options.output_storage with
-      | None -> error (f_"-o rhv: -os option was not specified")
+      | None -> error (f_"-o ovirt: -os option was not specified")
       | Some d -> d in
 
     let output_name = Option.value ~default:source.s_name options.output_name in
@@ -76,7 +76,7 @@ module RHV = struct
     let esd_mp, esd_uuid =
       mount_and_check_storage_domain (s_"Export Storage Domain")
         output_storage in
-    debug "RHV: ESD mountpoint: %s\nRHV: ESD UUID: %s" esd_mp esd_uuid;
+    debug "ovirt: ESD mountpoint: %s\novirt: ESD UUID: %s" esd_mp esd_uuid;
 
     (* See if we can write files as UID:GID 36:36. *)
     let () =
@@ -85,7 +85,7 @@ module RHV = struct
       let stat = stat testfile in
       Changeuid.unlink changeuid_t testfile;
       let actual_uid = stat.st_uid and actual_gid = stat.st_gid in
-      debug "RHV: actual UID:GID of new files is %d:%d" actual_uid actual_gid;
+      debug "ovirt: actual UID:GID of new files is %d:%d" actual_uid actual_gid;
       if uid <> actual_uid || gid <> actual_gid then (
         if running_as_root then
           warning (f_"cannot write files to the NFS server as %d:%d, \
@@ -93,7 +93,7 @@ module RHV = struct
                       probably means the NFS client or idmapd is not \
                       configured properly.\n\nYou will have to chown \
                       the files that virt-v2v creates after the run, \
-                      otherwise RHV-M will not be able to import the VM.")
+                      otherwise oVirt will not be able to import the VM.")
             uid gid
         else
           warning (f_"cannot write files to the NFS server as %d:%d. \
@@ -148,7 +148,7 @@ module RHV = struct
       List.map (
         fun (image_uuid, vol_uuid) ->
           let filename = images_dir // image_uuid // vol_uuid in
-          debug "RHV: disk: %s" filename;
+          debug "ovirt: disk: %s" filename;
           filename
       ) (List.combine image_uuids vol_uuids) in
 
@@ -244,7 +244,7 @@ module RHV = struct
       with Sys_error msg ->
         error (f_"could not read the %s specified by the '-os %s' \
                   parameter on the command line.  Is it really an \
-                  OVirt or RHV-M %s?  The original error is: %s")
+                  OVirt %s?  The original error is: %s")
           domain_class os domain_class msg in
     let entries = Array.to_list entries in
     let uuids = List.filter (
@@ -258,7 +258,7 @@ module RHV = struct
       | [uuid] -> uuid
       | [] ->
          error (f_"there are no UUIDs in the %s (%s).  Is it really an \
-                   OVirt or RHV-M %s?") domain_class os domain_class
+                   OVirt %s?") domain_class os domain_class
       | _::_ ->
          error (f_"there are multiple UUIDs in the %s (%s).  This is \
                    unexpected, and may be a bug in virt-v2v or OVirt.")
@@ -274,9 +274,9 @@ module RHV = struct
                   cause: Either the %s (%s) has not been attached to any \
                   Data Center, or the path %s is not an %s at all.\n\n\
                   You have to attach the %s to a Data Center using the \
-                  RHV-M / OVirt user interface first.\n\nIf you don’t \
+                  oVirt user interface first.\n\nIf you don’t \
                   know what the %s mount point should be then you can \
-                  also find this out through the RHV-M user interface.")
+                  also find this out through the oVirt user interface.")
           master_vms_dir domain_class os os
           domain_class domain_class domain_class in
 
@@ -305,7 +305,7 @@ module RHV = struct
       Create_ovf.create_ovf source inspect target_meta sizes
         output_alloc output_format output_name esd_uuid image_uuids vol_uuids
         ~need_actual_sizes:true dir vm_uuid
-        Create_ovf.RHVExportStorageDomain in
+        Create_ovf.OVirtExportStorageDomain in
 
     (* Write it to the metadata file. *)
     let dir = esd_mp // esd_uuid // "master" // "vms" // vm_uuid in

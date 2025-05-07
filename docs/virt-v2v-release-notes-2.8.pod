@@ -90,6 +90,10 @@ This did nothing.
 
 =back
 
+The options I<-o rhv-upload> and I<-o rhv> have been renamed to I<-o
+ovirt-upload> and I<-o ovirt> respectively, although aliases for the
+other names remain.
+
 =head2 Other fixes
 
 Update support page to cover RHEL 10 and Windows Server 2025.

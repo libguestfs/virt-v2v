@@ -191,9 +191,9 @@ let rec main () =
     | "disk" | "local" -> output_mode := `Disk
     | "null" -> output_mode := `Null
     | "openstack" | "osp" | "rhosp" -> output_mode := `Openstack
-    | "ovirt" | "rhv" | "rhev" -> output_mode := `RHV
+    | "ovirt" | "rhv" | "rhev" -> output_mode := `OVirt
     | "ovirt-upload" | "ovirt_upload" | "rhv-upload" | "rhv_upload" ->
-       output_mode := `RHV_Upload
+       output_mode := `OVirt_Upload
     | "qemu" -> output_mode := `QEmu
     | "vdsm" -> output_mode := `VDSM
     | s ->
@@ -233,7 +233,7 @@ let rec main () =
       s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
       s_"Map network ‘in’ to ‘out’";
-    [ S 'o' ],       Getopt.String ("glance|kubevirt|libvirt|local|null|openstack|qemu|rhv|rhv-upload|vdsm", set_output_mode),
+    [ S 'o' ],       Getopt.String ("glance|kubevirt|libvirt|local|null|openstack|ovirt|ovirt-upload|qemu|vdsm", set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
                                     s_"Set output allocation mode";
@@ -273,7 +273,7 @@ let rec main () =
 virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi -os imported esx_guest
 
 virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi esx_guest \
-         -o rhv -os rhv.nfs:/export_domain --network ovirtmgmt
+         -o ovirt -os ovirt.nfs:/export_domain --network ovirtmgmt
 
 virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
@@ -368,6 +368,8 @@ read the man page virt-v2v(1).
       pr "output:local\n";
       pr "output:null\n";
       pr "output:openstack\n";
+      pr "output:ovirt\n";
+      pr "output:ovirt-upload\n";
       pr "output:qemu\n";
       pr "output:rhv\n";
       pr "output:rhv-upload\n";
@@ -462,8 +464,8 @@ read the man page virt-v2v(1).
     | `Glance -> (module Output_glance.Glance)
     | `Kubevirt -> (module Output_kubevirt.Kubevirt)
     | `Openstack -> (module Output_openstack.Openstack)
-    | `RHV_Upload -> (module Output_rhv_upload.RHVUpload)
-    | `RHV -> (module Output_rhv.RHV)
+    | `OVirt_Upload -> (module Output_ovirt_upload.OVirtUpload)
+    | `OVirt -> (module Output_ovirt.OVirt)
     | `VDSM -> (module Output_vdsm.VDSM) in
 
   let output_options = {
@@ -482,14 +484,14 @@ read the man page virt-v2v(1).
     exit 0
   );
 
-  (* XXX This is a hack for -o rhv and -o vdsm where we must remove
+  (* XXX This is a hack for -o ovirt and -o vdsm where we must remove
    * the serial console for Linux conversions.  We don't do this for
-   * -o rhv-upload, even though we probably should, which would
-   * indicate that actually RHV is fine if we don't do this.
+   * -o ovirt-upload, even though we probably should, which would
+   * indicate that actually oVirt is fine if we don't do this.
    *)
   let remove_serial_console =
     match output_mode with
-    | `RHV | `VDSM -> true
+    | `OVirt | `VDSM -> true
     | _ -> false in
 
   (* Get the conversion options. *)

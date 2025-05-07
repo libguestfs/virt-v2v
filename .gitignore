@@ -55,7 +55,7 @@ Makefile.in
 /docs/virt-v2v-open.1
 /docs/virt-v2v-output-local.1
 /docs/virt-v2v-output-openstack.1
-/docs/virt-v2v-output-rhv.1
+/docs/virt-v2v-output-ovirt.1
 /docs/virt-v2v-release-notes-1.42.1
 /docs/virt-v2v-release-notes-2.0.1
 /docs/virt-v2v-release-notes-2.2.1
@@ -89,7 +89,7 @@ Makefile.in
 /open/.depend
 /open/virt-v2v-open
 /output/.depend
-/output/output_rhv_upload_*_source.ml
+/output/output_ovirt_upload_*_source.ml
 /output/var_expander_tests
 /po-docs/*/*.1
 /po-docs/*/*.3

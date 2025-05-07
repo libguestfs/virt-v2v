@@ -16,7 +16,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 # Fake ovirtsdk4 module used as a test harness.
-# See v2v/test-o-rhv-upload.sh
+# See v2v/test-o-ovirt-upload.sh
 
 class Error(Exception):
     pass

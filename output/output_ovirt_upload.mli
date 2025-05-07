@@ -16,6 +16,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** [-o rhv-upload] output mode. *)
+(** [-o ovirt-upload] output mode. *)
 
-module RHVUpload : Output.OUTPUT
+module OVirtUpload : Output.OUTPUT

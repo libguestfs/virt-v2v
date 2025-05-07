@@ -16,6 +16,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** [-o rhv] output mode. *)
+(** [-o ovirt] output mode. *)
 
-module RHV : Output.OUTPUT
+module OVirt : Output.OUTPUT

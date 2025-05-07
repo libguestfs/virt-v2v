@@ -408,11 +408,11 @@ directory containing the files:
 
  $ virt-v2v -i ova /path/to/files -o local -os /var/tmp
 
-=head2 OVA: Permissions issues with oVirt/RHV import
+=head2 OVA: Permissions issues with oVirt import
 
-oVirt/RHV provides a graphical user interface for importing from OVA
-files which uses this method.  It requires that RHV is able to access
-the OVA file which can be a problem if the file is owned by root (RHV
+oVirt provides a graphical user interface for importing from OVA files
+which uses this method.  It requires that oVirt is able to access the
+OVA file which can be a problem if the file is owned by root (oVirt
 runs as a non-root user).
 
 The suggested workaround is to copy the OVA to a public directory such
