@@ -24,6 +24,7 @@ val input_mode_of_string : string -> input_mode
     used when parsing the command line.  If the input mode
     is unknown this calls {!Tools_utils.error} and exits. *)
 
-val select_input : input_mode option -> string option ->
+val select_input : ?allow_remote:bool ->
+                   input_mode option -> string option ->
                    Input.input_transport option -> (module Input.INPUT)
 (** Select an input module based on command line parameters. *)

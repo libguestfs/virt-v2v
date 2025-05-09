@@ -148,18 +148,11 @@ let rec main () =
   (* Other options that we handle here. *)
   let print_source = ref false in
 
-  let input_mode = ref `Not_set in
+  let input_mode = ref None in
   let set_input_mode mode =
-    if !input_mode <> `Not_set then
+    if !input_mode <> None then
       error (f_"%s option used more than once on the command line") "-i";
-    match mode with
-    | "disk" | "local" -> input_mode := `Disk
-    | "libvirt" -> input_mode := `Libvirt
-    | "libvirtxml" -> input_mode := `LibvirtXML
-    | "ova" -> input_mode := `OVA
-    | "vmx" -> input_mode := `VMX
-    | s ->
-       error (f_"unknown -i option: %s") s
+    input_mode := Some (Select_input.input_mode_of_string mode)
   in
 
   let argspec = [
@@ -274,35 +267,12 @@ read the man page virt-v2v-in-place(1).
    | _, _ -> ()
   );
 
-  (* Get the input module. *)
+  (* Select the input module. *)
   let (module Input_module) =
-    match input_mode with
-    | `Disk -> (module Input_disk.Disk : Input.INPUT)
-    | `LibvirtXML -> (module Input_libvirt.LibvirtXML)
-    | `OVA -> (module Input_ova.OVA)
-    | `VMX -> (module Input_vmx.VMX)
-    | `Not_set | `Libvirt ->
-       match input_conn with
-       | None -> (module Input_libvirt.Libvirt_)
-       | Some orig_uri ->
-          let { Xml.uri_server = server; uri_scheme = scheme } =
-            try Xml.parse_uri orig_uri
-            with Invalid_argument msg ->
-              error (f_"could not parse '-ic %s'.  Original error \
-                        message was: %s")
-                orig_uri msg in
-
-          match server, scheme with
-          | None, _
-          | Some "", _       (* Not a remote URI. *)
-          | Some _, None     (* No scheme? *)
-          | Some _, Some "" ->
-             (module Input_libvirt.Libvirt_)
-
-          (* vCenter over https. *)
-          | Some server, Some _ ->
-             error (f_"virt-v2v-in-place does not support remote \
-                       libvirt URIs") in
+    Select_input.select_input
+      ~allow_remote:false (* forbid remote inputs *)
+      input_mode input_conn
+      None (* no -it option *) in
 
   let input_options = {
     Input.bandwidth =
