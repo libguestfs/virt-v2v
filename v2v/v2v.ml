@@ -426,9 +426,9 @@ read the man page virt-v2v(1).
 
           (* Unknown remote scheme. *)
           | Some _, Some _, _ ->
-             warning (f_"no support for remote libvirt connections to \
-                         '-ic %s'.  The conversion may fail when it tries \
-                         to read the source disks.") orig_uri;
+             warning (f_"no support for remote libvirt connections \
+                         to '-ic %s'.  The conversion may fail when it \
+                         tries to read the source disks.") orig_uri;
              (module Input_libvirt.Libvirt_) in
 
   let input_options = {
