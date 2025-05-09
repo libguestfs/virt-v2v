@@ -173,24 +173,11 @@ let rec main () =
     input_mode := Some (Select_input.input_mode_of_string mode)
   in
 
-  let output_mode = ref `Not_set in
+  let output_mode = ref None in
   let set_output_mode mode =
-    if !output_mode <> `Not_set then
+    if !output_mode <> None then
       error (f_"%s option used more than once on the command line") "-o";
-    match mode with
-    | "glance" -> output_mode := `Glance
-    | "kubevirt" -> output_mode := `Kubevirt
-    | "libvirt" -> output_mode := `Libvirt
-    | "disk" | "local" -> output_mode := `Disk
-    | "null" -> output_mode := `Null
-    | "openstack" | "osp" | "rhosp" -> output_mode := `Openstack
-    | "ovirt" | "rhv" | "rhev" -> output_mode := `OVirt
-    | "ovirt-upload" | "ovirt_upload" | "rhv-upload" | "rhv_upload" ->
-       output_mode := `OVirt_Upload
-    | "qemu" -> output_mode := `QEmu
-    | "vdsm" -> output_mode := `VDSM
-    | s ->
-       error (f_"unknown -o option: %s") s
+    output_mode := Some (Select_output.output_mode_of_string mode)
   in
 
   (* Options that are errors. *)
@@ -401,19 +388,8 @@ read the man page virt-v2v(1).
     exit 0
   );
 
-  (* Get the output helper name and command line. *)
-  let (module Output_module) =
-    match output_mode with
-    | `Not_set | `Libvirt -> (module Output_libvirt.Libvirt_ : Output.OUTPUT)
-    | `Disk -> (module Output_disk.Disk)
-    | `Null -> (module Output_null.Null)
-    | `QEmu -> (module Output_qemu.QEMU)
-    | `Glance -> (module Output_glance.Glance)
-    | `Kubevirt -> (module Output_kubevirt.Kubevirt)
-    | `Openstack -> (module Output_openstack.Openstack)
-    | `OVirt_Upload -> (module Output_ovirt_upload.OVirtUpload)
-    | `OVirt -> (module Output_ovirt.OVirt)
-    | `VDSM -> (module Output_vdsm.VDSM) in
+  (* Select the output module. *)
+  let (module Output_module) = Select_output.select_output output_mode in
 
   let output_options = {
     Output.output_alloc = output_alloc;
@@ -438,7 +414,7 @@ read the man page virt-v2v(1).
    *)
   let remove_serial_console =
     match output_mode with
-    | `OVirt | `VDSM -> true
+    | Some Select_output.OVirt | Some VDSM -> true
     | _ -> false in
 
   (* Get the conversion options. *)

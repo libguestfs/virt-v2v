@@ -65,7 +65,8 @@ SOURCES_MLI = \
 	output_qemu.mli \
 	output_vdsm.mli \
 	python_script.mli \
-	qemuopts.mli
+	qemuopts.mli \
+	select_output.mli
 
 SOURCES_ML = \
 	changeuid.ml \
@@ -91,7 +92,8 @@ SOURCES_ML = \
 	output_qemu.ml \
 	output_ovirt.ml \
 	output_ovirt_upload.ml \
-	output_vdsm.ml
+	output_vdsm.ml \
+	select_output.ml
 
 SOURCES_C = \
 	qemuopts-c.c
