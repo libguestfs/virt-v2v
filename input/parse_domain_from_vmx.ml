@@ -29,15 +29,15 @@ open Utils
 open Name_from_disk
 
 type vmx_source =
-  | File of string              (* local file or NFS *)
-  | SSH of Nbdkit_ssh.password option * Xml.uri (* SSH URI *)
+  | VMXSourceFile of string     (* local file or NFS *)
+  | VMXSourceSSH of Nbdkit_ssh.password option * Xml.uri (* SSH URI *)
 
 (* The single filename on the command line is interpreted either as
  * a local file or a remote SSH URI (only if ‘-it ssh’).
  *)
 let vmx_source_of_arg input_password input_transport arg =
   match input_transport, arg with
-  | None, arg -> File arg
+  | None, arg -> VMXSourceFile arg
   | Some `SSH, arg ->
      let uri =
        try Xml.parse_uri arg
@@ -49,7 +49,7 @@ let vmx_source_of_arg input_password input_transport arg =
        error (f_"vmx URI remote server name omitted");
      if uri.Xml.uri_path = None || uri.Xml.uri_path = Some "/" then
        error (f_"vmx URI path component looks incorrect");
-     SSH (input_password, uri)
+     VMXSourceSSH (input_password, uri)
 
 let rec find_disks vmx vmx_source =
   (* Set the s_disk_id field to an incrementing number. *)
@@ -334,8 +334,8 @@ let parse_domain_from_vmx vmx_source =
    *)
   let vmx =
     match vmx_source with
-    | File filename -> Parse_vmx.parse_file filename
-    | SSH (password, uri) ->
+    | VMXSourceFile filename -> Parse_vmx.parse_file filename
+    | VMXSourceSSH (password, uri) ->
        let server =
          match uri.uri_server with
          | None -> assert false (* checked by vmx_source_of_arg *)
@@ -359,8 +359,8 @@ let parse_domain_from_vmx vmx_source =
     | None ->
        warning (f_"no displayName key found in VMX file");
        match vmx_source with
-       | File filename -> name_from_disk filename
-       | SSH (_, uri) ->
+       | VMXSourceFile filename -> name_from_disk filename
+       | VMXSourceSSH (_, uri) ->
           match uri.uri_path with
           | None -> assert false (* checked by vmx_source_of_arg *)
           | Some path -> name_from_disk path in

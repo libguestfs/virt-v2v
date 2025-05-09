@@ -62,7 +62,7 @@ module VMX = struct
     let source, filenames = parse_domain_from_vmx vmx_source in
 
     (match vmx_source with
-     | File vmx_filename ->
+     | VMXSourceFile vmx_filename ->
         (* Local file in VMDK format, use qemu-nbd. *)
         List.iteri (
           fun i filename ->
@@ -77,7 +77,7 @@ module VMX = struct
             On_exit.kill pid
         ) filenames
 
-     | SSH (password, uri) ->
+     | VMXSourceSSH (password, uri) ->
         List.iteri (
           fun i filename ->
             let socket = sprintf "%s/in%d" dir i in
