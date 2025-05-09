@@ -39,6 +39,7 @@ SOURCES_MLI = \
 	parse_domain_from_vmx.mli \
 	parse_libvirt_xml.mli \
 	parse_vmx.mli \
+	select_input.mli \
 	ssh.mli \
 	vCenter.mli
 
@@ -61,7 +62,8 @@ SOURCES_ML = \
 	input_vcenter_https.ml \
 	input_vddk.ml \
 	input_vmx.ml \
-	input_xen_ssh.ml
+	input_xen_ssh.ml \
+	select_input.ml
 
 # We pretend that we're building a C library.  automake handles the
 # compilation of the C sources for us.  At the end we take the C

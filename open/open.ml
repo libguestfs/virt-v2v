@@ -58,18 +58,11 @@ let rec main () =
     )
   in
 
-  let input_mode = ref `Not_set in
+  let input_mode = ref None in
   let set_input_mode mode =
-    if !input_mode <> `Not_set then
+    if !input_mode <> None then
       error (f_"%s option used more than once on the command line") "-i";
-    match mode with
-    | "disk" | "local" -> input_mode := `Disk
-    | "libvirt" -> input_mode := `Libvirt
-    | "libvirtxml" -> input_mode := `LibvirtXML
-    | "ova" -> input_mode := `OVA
-    | "vmx" -> input_mode := `VMX
-    | s ->
-       error (f_"unknown -i option: %s") s
+    input_mode := Some (Select_input.input_mode_of_string mode)
   in
 
   let command_template = ref None in
@@ -157,55 +150,9 @@ read the man page virt-v2v-open(1).
    | _, _ -> ()
   );
 
-  (* Get the input module. *)
+  (* Select the input module. *)
   let (module Input_module) =
-    match input_mode with
-    | `Disk -> (module Input_disk.Disk : Input.INPUT)
-    | `LibvirtXML -> (module Input_libvirt.LibvirtXML)
-    | `OVA -> (module Input_ova.OVA)
-    | `VMX -> (module Input_vmx.VMX)
-    | `Not_set | `Libvirt ->
-       match input_conn with
-       | None -> (module Input_libvirt.Libvirt_)
-       | Some orig_uri ->
-          let { Xml.uri_server = server; uri_scheme = scheme } =
-            try Xml.parse_uri orig_uri
-            with Invalid_argument msg ->
-              error (f_"could not parse '-ic %s'.  \
-                        Original error message was: %s")
-                orig_uri msg in
-
-          match server, scheme, input_transport with
-          | None, _, _
-            | Some "", _, _       (* Not a remote URI. *)
-
-            | Some _, None, _     (* No scheme? *)
-            | Some _, Some "", _ ->
-             (module Input_libvirt.Libvirt_)
-
-          (* vCenter over https. *)
-          | Some server, Some ("esx"|"gsx"|"vpx"), None ->
-             (module Input_vcenter_https.VCenterHTTPS)
-
-          (* vCenter or ESXi using nbdkit vddk plugin *)
-          | Some server, Some ("esx"|"gsx"|"vpx"), Some Input.VDDK ->
-             (module Input_vddk.VDDK)
-
-          (* Xen over SSH *)
-          | Some server, Some "xen+ssh", _ ->
-             (module Input_xen_ssh.XenSSH)
-
-          (* Old virt-v2v also supported qemu+ssh://.  However I am
-           * deliberately not supporting this in new virt-v2v.  Don't
-           * use virt-v2v if a guest already runs on KVM.
-           *)
-
-          (* Unknown remote scheme. *)
-          | Some _, Some _, _ ->
-             warning (f_"no support for remote libvirt connections \
-                         to '-ic %s'.  The conversion may fail when it \
-                         tries to read the source disks.") orig_uri;
-             (module Input_libvirt.Libvirt_) in
+    Select_input.select_input input_mode input_conn input_transport in
 
   let input_options = {
     Input.bandwidth = None;
