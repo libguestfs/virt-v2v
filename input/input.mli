@@ -16,13 +16,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+type input_transport = SSH | VDDK
+(** [-it] option on the command line *)
+
 type options = {
   bandwidth : Types.bandwidth option;     (* [--bandwidth] option *)
   input_conn : string option;             (* [-ic] option *)
   input_format : string option;           (* [-if] option *)
   input_options : (string * string) list; (* [-io] options *)
   input_password : string option;         (* [-ip] option *)
-  input_transport : [`SSH|`VDDK] option;  (* [-it] option *)
+  input_transport : input_transport option;(* [-it] option *)
   read_only : bool;                       (* read-only (usually true) *)
 }
 

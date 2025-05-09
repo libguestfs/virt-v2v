@@ -16,13 +16,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+type input_transport = SSH | VDDK
+
 type options = {
   bandwidth : Types.bandwidth option;
   input_conn : string option;
   input_format : string option;
   input_options : (string * string) list;
   input_password : string option;
-  input_transport : [`SSH|`VDDK] option;
+  input_transport : input_transport option;
   read_only : bool;
 }
 

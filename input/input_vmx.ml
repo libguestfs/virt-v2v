@@ -52,8 +52,8 @@ module VMX = struct
          let input_transport =
            match options.input_transport with
            | None -> None
-           | Some `SSH -> Some `SSH
-           | Some `VDDK ->
+           | Some SSH -> Some `SSH
+           | Some VDDK ->
               error (f_"-i vmx: cannot use -it vddk in this input mode") in
          vmx_source_of_arg input_password input_transport arg
       | _ ->

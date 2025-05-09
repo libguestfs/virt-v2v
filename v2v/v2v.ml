@@ -321,8 +321,8 @@ read the man page virt-v2v(1).
   let input_transport =
     match !input_transport with
     | None -> None
-    | Some "ssh" -> Some `SSH
-    | Some "vddk" -> Some `VDDK
+    | Some "ssh" -> Some Input.SSH
+    | Some "vddk" -> Some Input.VDDK
     | Some transport ->
        error (f_"unknown input transport ‘-it %s’") transport in
   let output_alloc =
@@ -412,7 +412,7 @@ read the man page virt-v2v(1).
              (module Input_vcenter_https.VCenterHTTPS)
 
           (* vCenter or ESXi using nbdkit vddk plugin *)
-          | Some server, Some ("esx"|"gsx"|"vpx"), Some `VDDK ->
+          | Some server, Some ("esx"|"gsx"|"vpx"), Some Input.VDDK ->
              (module Input_vddk.VDDK)
 
           (* Xen over SSH *)
