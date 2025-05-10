@@ -139,7 +139,7 @@ For each disk you must supply one of each of these options:
       let fields =
         String.nsplit "/" output_storage in (* ... "data-center" "UUID" *)
       let fields = List.rev fields in       (* "UUID" "data-center" ... *)
-      let fields = List.dropwhile ((=) "") fields in
+      let fields = List.drop_while ((=) "") fields in
       match fields with
       | uuid :: rest when String.length uuid = 36 ->
          let mp = String.concat "/" (List.rev rest) in
