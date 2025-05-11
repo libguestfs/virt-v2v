@@ -206,13 +206,13 @@ let rec wait_for_file filename timeout =
 
 let with_nbd_connect_unix ?(meta_contexts = []) ~socket f =
   let nbd = NBD.create () in
-  protect
-    ~f:(fun () ->
+  Fun.protect
+    (fun () ->
           NBD.set_debug nbd (verbose ());
           List.iter (NBD.add_meta_context nbd) meta_contexts;
           NBD.connect_unix nbd socket;
-          protect
-            ~f:(fun () -> f nbd)
+          Fun.protect
+            (fun () -> f nbd)
             ~finally:(fun () -> NBD.shutdown nbd)
        )
     ~finally:(fun () -> NBD.close nbd)

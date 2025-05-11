@@ -47,7 +47,7 @@ let inspect_defaults = {
 
 (* Test Create_ovf.get_ostype *)
 let () =
-  let printer = identity in
+  let printer = Fun.id in
   assert_equal ~printer "RHEL6"
                (Create_ovf.get_ostype {
                     inspect_defaults with
@@ -222,7 +222,7 @@ foo.c.b = \"abc\"
     ) t in
   let xs = List.sort compare xs in
   let s = String.concat "" xs in
-  assert_equal ~printer:identity "\
+  assert_equal ~printer:Fun.id "\
 foo.a.b = \"abc\"
 foo.a.c = \"abc\"
 foo.a.present = \"true\"

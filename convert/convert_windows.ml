@@ -240,7 +240,7 @@ let convert (g : G.guestfs) source inspect i_firmware
      *)
     let extra_uninstall_params =
       "PREVENT_REBOOT=Yes LAUNCHED_BY_SETUP_EXE=Yes" in
-    uninstallation_commands "Parallels Tools" matchfn identity
+    uninstallation_commands "Parallels Tools" matchfn Fun.id
       extra_uninstall_params in
 
   (* Locate and retrieve all uninstallation commands for VMware Tools. *)
