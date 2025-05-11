@@ -104,7 +104,7 @@ The os-* parameters and environment variables are optional.
          verify_server_certificate := bool_of_string v
       | "guest-id", v ->
          guest_id := Some v
-      | k, v when String.is_prefix k "os-" ->
+      | k, v when String.starts_with "os-" k ->
          (* Accumulate any remaining/unknown -oo os-* parameters
           * into the authentication list, where they will be
           * pass unmodified through to the openstack command.

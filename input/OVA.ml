@@ -136,7 +136,7 @@ let rec parse_ova ova =
    * likely not what you want).  (RHBZ#1964324)
    *)
   let top_dir =
-    if top_dir = "/" || not (String.is_suffix top_dir "/") then top_dir
+    if top_dir = "/" || not (String.ends_with "/" top_dir) then top_dir
     else String.sub top_dir 0 (String.length top_dir - 1) in
 
   (* If virt-v2v is running as root, and the backend is libvirt, then
@@ -255,7 +255,7 @@ and find_files dir ext =
        let files = Array.to_list (Sys.readdir dir) in
        (* Ignore dot-underscore-files, added when using 'tar' on some Macs. *)
        let files =
-         List.filter (fun x -> not (String.is_prefix x "._")) files in
+         List.filter (fun x -> not (String.starts_with "._" x)) files in
        (* Prefix with the directory to form a path. *)
        let files = List.map (Filename.concat dir) files in
        let dirs, files = List.partition Sys.is_directory files in
@@ -290,7 +290,7 @@ let get_manifest { top_dir; ova_type } =
          *)
         let mf_folder = Filename.dirname mf in
         let mf_subfolder =
-          if String.is_prefix mf_folder (top_dir // "") then ( (* 2 *)
+          if String.starts_with (top_dir // "") mf_folder then ( (* 2 *)
             let len = String.length top_dir + 1 in
             String.sub mf_folder len (String.length mf_folder - len)
           )
@@ -337,7 +337,7 @@ let get_file_list { top_dir; ova_type } =
      let cmd = sprintf "tar -tf %s" (quote tar) in
      let files = external_command cmd in
      (* Don't include directories in the final list. *)
-     let files = List.filter (fun s -> not (String.is_suffix s "/")) files in
+     let files = List.filter (fun s -> not (String.ends_with "/" s)) files in
      let files = List.sort compare files in
      List.map (fun filename -> TarFile (tar, filename)) files
 
@@ -357,7 +357,7 @@ let resolve_href ({ top_dir; ova_type } as t) href =
      let real_top_dir = Realpath.realpath top_dir in
      (try
         let filename = Realpath.realpath filename in
-        if not (String.is_prefix filename real_top_dir) then
+        if not (String.starts_with real_top_dir filename) then
           error (f_"-i ova: invalid OVA file: path ‘%s’ references a file \
                     outside the archive") href;
         Some (LocalFile filename)
@@ -380,7 +380,7 @@ let resolve_href ({ top_dir; ova_type } as t) href =
       * filename:   href                foo/href
       *)
      let filename =
-       if String.is_prefix ovf_folder (top_dir // "") then ( (* 2 *)
+       if String.starts_with (top_dir // "") ovf_folder then ( (* 2 *)
          let len = String.length top_dir + 1 in
          String.sub ovf_folder len (String.length ovf_folder - len) // href
        )

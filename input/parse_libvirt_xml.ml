@@ -397,7 +397,7 @@ let parse_libvirt_xml ?conn xml =
         let target_dev = xpath_string "target/@dev" in
         match target_dev with
         | None -> None
-        | Some dev when String.is_prefix dev "sr" ->
+        | Some dev when String.starts_with "sr" dev ->
            (* "srN" devices are found mostly in the physical XML written by
             * virt-p2v.
             *)
@@ -415,7 +415,7 @@ let parse_libvirt_xml ?conn xml =
                             the device name could not be recognized") dev;
                 None
              | prefix :: rest ->
-                if String.is_prefix dev prefix then (
+                if String.starts_with prefix dev then (
                   let offset = String.length prefix in
                   get_drive_slot dev offset
                 )

@@ -497,7 +497,7 @@ let set_root_choice root_choice = function
   | "ask" -> root_choice := AskRoot
   | "single" -> root_choice := SingleRoot
   | "first" -> root_choice := FirstRoot
-  | dev when String.is_prefix dev "/dev/" -> root_choice := RootDev dev
+  | dev when String.starts_with "/dev/" dev -> root_choice := RootDev dev
   | s -> error (f_"unknown --root option: %s") s
 
 type output_allocation = Sparse | Preallocated

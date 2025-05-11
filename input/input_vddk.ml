@@ -86,7 +86,7 @@ information on these settings.
           let error_invalid_key () =
             error (f_"-it vddk: ‘-io %s’ is not a valid input option") key
           in
-          if not (String.is_prefix key "vddk-") then error_invalid_key ();
+          if not (String.starts_with "vddk-" key) then error_invalid_key ();
           let key = String.sub key 5 (String.length key-5) in
           if not (List.mem key vddk_option_keys) then error_invalid_key ();
           (key, value)

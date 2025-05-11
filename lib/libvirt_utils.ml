@@ -66,7 +66,7 @@ let get_domain conn name =
    * from a snapshot - which is safe (RHEL-88543).
    *)
   let uri = Libvirt.Connect.get_uri conn in
-  if not (String.is_prefix uri "test:") then (
+  if not (String.starts_with "test:" uri) then (
     (match (Libvirt.Domain.get_info dom).Libvirt.Domain.state with
      | InfoRunning | InfoBlocked | InfoPaused ->
         warning (f_"libvirt domain ‘%s’ is running or paused.  Converting \

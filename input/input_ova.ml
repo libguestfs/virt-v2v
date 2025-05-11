@@ -229,7 +229,8 @@ module OVA = struct
   and get_snapshot_if_matches href filename =
     if PCRE.matches re_snapshot filename then (
       let snapshot = PCRE.sub 1 in
-      if String.is_suffix filename (sprintf "%s.%s" href snapshot) then
+      let suffix = sprintf "%s.%s" href snapshot in
+      if String.ends_with ~suffix filename then
         Some snapshot
       else
         None

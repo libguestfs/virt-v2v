@@ -278,9 +278,9 @@ and parse_string str =
    * to pass a .vmdk file as a .vmx file.  Luckily this is easy to
    * do with the whole file as a string.
    *)
-  if String.is_prefix str "VMDK" ||
-     String.is_prefix str "KDMV" ||
-     String.is_prefix str "# Disk DescriptorFile\n" then
+  if String.starts_with "VMDK" str ||
+     String.starts_with "KDMV" str ||
+     String.starts_with "# Disk DescriptorFile\n" str then
     error "input file is a VMDK (disk image), but we are expecting a \
            VMX (VMware metadata)";
 

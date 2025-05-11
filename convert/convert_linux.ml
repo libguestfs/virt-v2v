@@ -350,15 +350,15 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       else false in
     List.iter (
       fun { G.app2_name = name } ->
-        if String.is_prefix name "vmware-tools-libraries-" then
+        if String.starts_with "vmware-tools-libraries-" name then
           List.push_front name libraries
-        else if String.is_prefix name "vmware-tools-" then
+        else if String.starts_with "vmware-tools-" name then
           List.push_front name remove
         else if name = "VMwareTools" then
           List.push_front name remove
-        else if String.is_prefix name "kmod-vmware-tools" then
+        else if String.starts_with "kmod-vmware-tools" name then
           List.push_front name remove
-        else if String.is_prefix name "open-vm-tools-" then
+        else if String.starts_with "open-vm-tools-" name then
           List.push_front name remove
         else if name = "open-vm-tools" && not has_ubuntu_server then
           List.push_front name remove
@@ -384,7 +384,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
             let provides =
               List.filter (
                 fun s ->
-                  not (library = s || String.is_prefix s (library ^ " = "))
+                  not (library = s || String.starts_with (library ^ " = ") s)
               ) provides in
 
             (* If the package provides something other than itself, then
@@ -464,7 +464,8 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
   and unconfigure_citrix () =
     let pkgs =
       List.filter (
-        fun { G.app2_name = name } -> String.is_prefix name "xe-guest-utilities"
+        fun { G.app2_name = name } ->
+          String.starts_with "xe-guest-utilities" name
       ) inspect.i_apps in
     let pkgs = List.map (fun { G.app2_name = name } -> name) pkgs in
 
@@ -1178,10 +1179,10 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       let replace device =
         try List.assoc device map
         with Not_found ->
-          if not (String.is_prefix device "md") &&
-             not (String.is_prefix device "fd") &&
-             not (String.is_prefix device "sr") &&
-             not (String.is_prefix device "scd") &&
+          if not (String.starts_with "md" device) &&
+             not (String.starts_with "fd" device) &&
+             not (String.starts_with "sr" device) &&
+             not (String.starts_with "scd" device) &&
              device <> "cdrom" then
             warning (f_"%s references unknown device \"%s\".  You may have to \
                         fix this entry manually after conversion.")
