@@ -87,13 +87,13 @@ module Kubevirt = struct
     !compressed, options.output_alloc, options.output_format,
     output_name, output_storage
 
-  let setup dir options source =
-    let disks = get_disks dir in
+  let setup dir options source input_disks =
+    let input_sizes = get_disk_sizes input_disks in
     let compressed, output_alloc, output_format, output_name, output_storage =
       options in
 
-    List.iter (
-      fun (i, size) ->
+    List.iteri (
+      fun i size ->
         let socket = sprintf "%s/out%d" dir i in
         On_exit.unlink socket;
 
@@ -101,7 +101,7 @@ module Kubevirt = struct
         let outdisk = disk_path output_storage output_name i in
         output_to_local_file ~compressed output_alloc output_format
           outdisk size socket
-    ) disks
+    ) input_sizes
 
   let finalize dir options () source inspect target_meta =
     let _, output_alloc, output_format, output_name, output_storage = options in

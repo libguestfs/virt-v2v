@@ -436,7 +436,7 @@ read the man page virt-v2v(1).
   (* Start the input module (runs an NBD server in the background). *)
   message (f_"Setting up the source: %s")
     (Input_module.to_string input_options args);
-  let source = Input_module.setup v2vdir input_options args in
+  let source, input_disks = Input_module.setup v2vdir input_options args in
 
   (* If --print-source then print the source metadata and exit. *)
   if print_source then (
@@ -454,13 +454,14 @@ read the man page virt-v2v(1).
 
   (* Do the conversion. *)
   with_open_out (v2vdir // "convert") (fun _ -> ());
-  let inspect, target_meta = Convert.convert v2vdir conv_options source in
+  let inspect, target_meta = Convert.convert input_disks conv_options source in
   unlink (v2vdir // "convert");
 
   (* Start the output module (runs an NBD server in the background). *)
   message (f_"Setting up the destination: %s")
     (Output_module.to_string output_options);
-  let output_t = Output_module.setup v2vdir output_poptions source in
+  let output_t =
+    Output_module.setup v2vdir output_poptions source input_disks in
 
   (* Debug the v2vdir. *)
   if verbose () then (
@@ -471,29 +472,28 @@ read the man page virt-v2v(1).
   (* Do the copy. *)
   with_open_out (v2vdir // "copy") (fun _ -> ());
 
-  (* Get the list of disks and corresponding sockets. *)
-  let rec loop acc i =
-    let input_socket = sprintf "%s/in%d" v2vdir i
-    and output_socket = sprintf "%s/out%d" v2vdir i in
-    if Sys.file_exists input_socket && Sys.file_exists output_socket then
-      loop ((i, input_socket, output_socket) :: acc) (i+1)
-    else
-      List.rev acc
-  in
-  let disks = ref (loop [] 0) in
-  let nr_disks = List.length !disks in
+  (* Get the list of disks and corresponding NBD URIs. *)
+  let disks =
+    List.mapi (
+      fun i input_uri ->
+        let input_uri = NBD_URI.to_uri input_uri in
+        let output_socket = sprintf "%s/out%d" v2vdir i in
+        assert (Sys.file_exists output_socket);
+        let output_uri = sprintf "nbd+unix:///?socket=%s" output_socket in
+        (i, input_uri, output_uri)
+    ) input_disks in
+  let nr_disks = List.length disks in
 
   (* Copy the disks. *)
+  let disks = ref disks in
   let nbdcopy_pids = ref [] in
   let rec copy_loop () =
     if List.length !nbdcopy_pids < parallel && !disks <> [] then (
       (* Schedule another nbdcopy process. *)
-      let i, input_socket, output_socket = List.pop_front disks in
+      let i, input_uri, output_uri = List.pop_front disks in
       message (f_"Copying disk %d/%d") (i+1) nr_disks;
 
-      let request_size = Output_module.request_size
-      and input_uri = nbd_uri_of_socket input_socket
-      and output_uri = nbd_uri_of_socket output_socket in
+      let request_size = Output_module.request_size in
 
       (* In verbose mode print some information about each
        * side of the pipeline.
@@ -623,8 +623,5 @@ and nbdinfo ?(content = false) uri =
       (if content then " --content" else " --no-content")
       (quote uri) in
   external_command cmd
-
-(* Convert a Unix domain socket path to an NBD URI. *)
-and nbd_uri_of_socket = sprintf "nbd+unix:///?socket=%s"
 
 let () = run_main_and_handle_errors main

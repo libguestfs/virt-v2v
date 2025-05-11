@@ -313,7 +313,7 @@ read the man page virt-v2v-in-place(1).
   (* Start the input module (runs an NBD server in the background). *)
   message (f_"Setting up the source: %s")
     (Input_module.to_string input_options args);
-  let source = Input_module.setup v2vdir input_options args in
+  let source, input_disks = Input_module.setup v2vdir input_options args in
 
   (* If --print-source then print the source metadata and exit. *)
   if print_source then (
@@ -325,7 +325,7 @@ read the man page virt-v2v-in-place(1).
 
   (* Do the conversion. *)
   with_open_out (v2vdir // "convert") (fun _ -> ());
-  let inspect, target_meta = Convert.convert v2vdir conv_options source in
+  let inspect, target_meta = Convert.convert input_disks conv_options source in
   unlink (v2vdir // "convert");
 
   (* Debug the v2vdir. *)
@@ -342,7 +342,7 @@ read the man page virt-v2v-in-place(1).
     | Output_xml_to_file filename -> Some (open_out filename) in
   Option.iter (
     fun chan ->
-      let doc = create_inspector_xml v2vdir inspect target_meta in
+      let doc = create_inspector_xml input_disks inspect target_meta in
       DOM.doc_to_chan chan doc;
       Stdlib.flush chan
   ) chan;

@@ -140,9 +140,9 @@ after their uploads (if you do, you must supply one for each disk):
     if uuid = nil_uuid then false
     else PCRE.matches (Lazy.force rex_uuid) uuid
 
-  let rec setup dir options source =
-    error_if_disk_count_gt dir 23;
-    let disks = get_disks dir in
+  let rec setup dir options source input_disks =
+    error_if_disk_count_gt input_disks 23;
+    let input_sizes = get_disk_sizes input_disks in
     let output_conn, output_format,
         output_password, output_name, output_storage,
         ovirt_cafile, ovirt_cluster, ovirt_direct,
@@ -283,13 +283,13 @@ See also the virt-v2v-output-ovirt(1) manual.");
     let disk_uuids =
       match ovirt_disk_uuids with
       | Some uuids ->
-         let nr_disks = List.length disks in
+         let nr_disks = List.length input_disks in
          if List.length uuids <> nr_disks then
            error (f_"the number of ‘-oo ovirt-disk-uuid’ parameters passed on \
                      the command line has to match the number of guest \
                      disk images (for this guest: %d)") nr_disks;
          uuids
-      | None -> List.map (fun _ -> uuidgen ()) disks in
+      | None -> List.map (fun _ -> uuidgen ()) input_disks in
 
     (* This will accumulate the list of transfer IDs from the transfer
      * script.
@@ -349,8 +349,8 @@ See also the virt-v2v-output-ovirt(1) manual.");
     (* Create an nbdkit instance for each disk and set the
      * target URI to point to the NBD socket.
      *)
-    List.iter (
-      fun ((i, size), uuid) ->
+    List.iteri (
+      fun i (size, uuid) ->
         let socket = sprintf "%s/out%d" dir i in
         On_exit.unlink socket;
 
@@ -414,11 +414,10 @@ See also the virt-v2v-output-ovirt(1) manual.");
           Nbdkit.add_arg cmd "is_ovirt_host" "true";
         let _, pid = Nbdkit.run_unix socket cmd in
         List.push_front pid nbdkit_pids
-    ) (List.combine disks disk_uuids);
+    ) (List.combine input_sizes disk_uuids);
 
     (* Stash some data we will need during finalization. *)
-    let disk_sizes = List.map snd disks in
-    let t = (disk_sizes : int64 list), disk_uuids, !transfer_ids,
+    let t = (input_sizes : int64 list), disk_uuids, !transfer_ids,
             finalize_script, createvm_script, json_params,
             ovirt_storagedomain_uuid, ovirt_cluster_uuid,
             ovirt_cluster_cpu_architecture, ovirt_cluster_name, nbdkit_pids in
@@ -433,7 +432,7 @@ See also the virt-v2v-output-ovirt(1) manual.");
         output_password, output_name, output_storage,
         ovirt_cafile, ovirt_cluster, ovirt_direct,
         ovirt_verifypeer, ovirt_disk_uuids = options in
-    let disk_sizes, disk_uuids, transfer_ids,
+    let input_sizes, disk_uuids, transfer_ids,
         finalize_script, createvm_script, json_params,
         ovirt_storagedomain_uuid, ovirt_cluster_uuid,
         ovirt_cluster_cpu_architecture, ovirt_cluster_name,
@@ -481,12 +480,12 @@ See also the virt-v2v-output-ovirt(1) manual.");
       | Some uuid -> uuid in
 
     (* The volume and VM UUIDs are made up. *)
-    let vol_uuids = List.map (fun _ -> uuidgen ()) disk_sizes
+    let vol_uuids = List.map (fun _ -> uuidgen ()) input_sizes
     and vm_uuid = uuidgen () in
 
     (* Create the metadata. *)
     let ovf =
-      Create_ovf.create_ovf source inspect target_meta disk_sizes
+      Create_ovf.create_ovf source inspect target_meta input_sizes
         Sparse output_format output_name
         sd_uuid disk_uuids vol_uuids dir vm_uuid OVirt in
     let ovf = DOM.doc_to_string ovf in

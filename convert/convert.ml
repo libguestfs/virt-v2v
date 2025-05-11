@@ -48,7 +48,7 @@ type mpstat = {
   mp_vfs : string;                      (* VFS type (eg. "ext4") *)
 }
 
-let rec convert dir options source =
+let rec convert input_disks options source =
   let target_nics = List.map (Networks.map options.network_map) source.s_nics in
 
   message (f_"Opening the source");
@@ -62,17 +62,19 @@ let rec convert dir options source =
    * ID:clevis" command line options (if any). *)
   g#set_network true;
   List.iter (
-    fun { s_disk_id = i } ->
+    fun uri ->
       (* NB: Old virt-v2v used copyonread here, when it was using a
        * qcow2 file as overlay.  We MUST NOT use copyonread!  It
        * doesn't do anything if there is no backing chain, but worse
        * than that I observed a huge (33x!) slow down.
        *)
-      let socket = sprintf "unix:%s/in%d" dir i in
-      g#add_drive_opts ""
+      let socket, export =
+        match uri with NBD_URI.Unix (socket, export) ->
+          sprintf "unix:%s" socket, Option.value export ~default:"" in
+      g#add_drive_opts export
         ~format:"raw" ~protocol:"nbd" ~server:[| socket |]
         ~cachemode:"unsafe" ~discard:"besteffort"
-  ) source.s_disks;
+  ) input_disks;
 
   g#launch ();
 

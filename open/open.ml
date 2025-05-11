@@ -181,7 +181,7 @@ read the man page virt-v2v-open(1).
   (* Start the input module (runs an NBD server in the background). *)
   message (f_"Setting up the source: %s")
     (Input_module.to_string input_options args);
-  let source = Input_module.setup v2vdir input_options args in
+  let source, input_disks = Input_module.setup v2vdir input_options args in
 
   message (f_"Running external command");
 
@@ -195,10 +195,10 @@ read the man page virt-v2v-open(1).
    *)
   let add_params =
     List.map (
-      fun { s_disk_id = i } ->
-        let socket = sprintf "nbd+unix://?socket=%s/in%d" v2vdir i in
-        sprintf "-a %s" (quote socket)
-    ) source.s_disks
+      fun uri ->
+        let uri = NBD_URI.to_uri uri in
+        sprintf "-a %s" (quote uri)
+    ) input_disks
     |> String.concat " " in
 
   (* Run external program. *)

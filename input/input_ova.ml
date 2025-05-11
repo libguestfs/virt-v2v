@@ -187,19 +187,22 @@ module OVA = struct
     } in
 
     (* Run qemu-nbd for each disk. *)
-    List.iteri (
-      fun i qemu_uri ->
-        let socket = sprintf "%s/in%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i qemu_uri ->
+          let socket = sprintf "%s/in%d" dir i in
+          On_exit.unlink socket;
 
-        let cmd = QemuNBD.create qemu_uri in
-        QemuNBD.set_snapshot cmd options.read_only; (* protective overlay *)
-        QemuNBD.set_format cmd None; (* auto-detect format *)
-        let _, pid = QemuNBD.run_unix socket cmd in
-        On_exit.kill pid
-      ) qemu_uris;
+          let cmd = QemuNBD.create qemu_uri in
+          QemuNBD.set_snapshot cmd options.read_only; (* protective overlay *)
+          QemuNBD.set_format cmd None; (* auto-detect format *)
+          let _, pid = QemuNBD.run_unix socket cmd in
+          On_exit.kill pid;
 
-    source
+          NBD_URI.Unix (socket, None)
+      ) qemu_uris in
+
+    source, uris
 
   and find_file_or_snapshot ova_t href manifest =
     match OVA.resolve_href ova_t href with

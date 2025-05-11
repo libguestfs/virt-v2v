@@ -1,4 +1,4 @@
-(* virt-v2v-in-place
+(* virt-v2v
  * Copyright (C) 2009-2025 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,8 +16,10 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-val create_inspector_xml : NBD_URI.t list -> Types.inspect ->
-                           Types.target_meta ->
-                           DOM.doc
-(** Create the XML output of virt-v2v-inspector which contains the
-    post-conversion metadata. *)
+(** Type for NBD URIs. *)
+
+type t = Unix of string * string option
+(** nbd+unix:// + Unix domain socket path + optional export *)
+
+val to_uri : t -> string
+(** Convert the type into an NBD URI. *)

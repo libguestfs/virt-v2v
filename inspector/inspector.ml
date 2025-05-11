@@ -288,11 +288,11 @@ read the man page virt-v2v-inspector(1).
   (* Start the input module (runs an NBD server in the background). *)
   message (f_"Setting up the source: %s")
     (Input_module.to_string input_options args);
-  let source = Input_module.setup v2vdir input_options args in
+  let source, input_disks = Input_module.setup v2vdir input_options args in
 
   (* Do the conversion. *)
   with_open_out (v2vdir // "convert") (fun _ -> ());
-  let inspect, target_meta = Convert.convert v2vdir conv_options source in
+  let inspect, target_meta = Convert.convert input_disks conv_options source in
   unlink (v2vdir // "convert");
 
   (* Debug the v2vdir. *)
@@ -302,7 +302,7 @@ read the man page virt-v2v-inspector(1).
   );
 
   (* Dump out the information. *)
-  let doc = create_inspector_xml v2vdir inspect target_meta in
+  let doc = create_inspector_xml input_disks inspect target_meta in
   let chan =
     match output_file with
     | None -> Stdlib.stdout

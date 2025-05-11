@@ -55,9 +55,9 @@ module OVirt = struct
 
     (options.output_alloc, options.output_format, output_name, output_storage)
 
-  let rec setup dir options source =
-    error_if_disk_count_gt dir 23;
-    let disks = get_disks dir in
+  let rec setup dir options source input_disks =
+    error_if_disk_count_gt input_disks 23;
+    let input_sizes = get_disk_sizes input_disks in
     let output_alloc, output_format, output_name, output_storage = options in
 
     (* UID:GID required for files and directories when writing to ESD. *)
@@ -104,8 +104,8 @@ module OVirt = struct
     (* Create unique UUIDs for everything *)
     let vm_uuid = uuidgen () in
     (* Generate random image and volume UUIDs for each target disk. *)
-    let image_uuids = List.map (fun _ -> uuidgen ()) disks in
-    let vol_uuids = List.map (fun _ -> uuidgen ()) disks in
+    let image_uuids = List.map (fun _ -> uuidgen ()) input_disks in
+    let vol_uuids = List.map (fun _ -> uuidgen ()) input_disks in
 
     (* We need to create the target image director(ies) so there's a place
      * for the main program to copy the images to.  However if image
@@ -153,10 +153,9 @@ module OVirt = struct
       ) (List.combine image_uuids vol_uuids) in
 
     (* Generate the .meta file associated with each volume. *)
-    let sizes = List.map snd disks in
     let metas =
       Create_ovf.create_meta_files output_alloc output_format
-        esd_uuid image_uuids sizes in
+        esd_uuid image_uuids input_sizes in
     List.iter (
       fun (filename, meta) ->
         let meta_filename = filename ^ ".meta" in
@@ -164,8 +163,8 @@ module OVirt = struct
     ) (List.combine filenames metas);
 
     (* Set up the NBD servers. *)
-    List.iter (
-      fun ((i, size), filename) ->
+    List.iteri (
+      fun i (size, filename) ->
         let socket = sprintf "%s/out%d" dir i in
         On_exit.unlink socket;
 
@@ -192,10 +191,10 @@ module OVirt = struct
 
         output_to_local_file ~changeuid ~on_exit_kill
           output_alloc output_format filename size socket
-    ) (List.combine disks filenames);
+    ) (List.combine input_sizes filenames);
 
     (* Save parameters since we need them during finalization. *)
-    let t = esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes in
+    let t = esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, input_sizes in
     t
 
   and mount_and_check_storage_domain domain_class os =

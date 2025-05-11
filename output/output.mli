@@ -47,8 +47,8 @@ module type OUTPUT = sig
       stores the parsed information and is passed to both
       {!setup} and {!finalize} methods. *)
 
-  val setup : string -> poptions -> Types.source -> t
-  (** [setup dir poptions source]
+  val setup : string -> poptions -> Types.source -> NBD_URI.t list -> t
+  (** [setup dir poptions source input_disks]
 
       Set up the output mode.  Sets up a disk pipeline
       [dir // "outX"] for each output disk. *)
@@ -72,16 +72,14 @@ val error_option_cannot_be_used_in_output_mode : string -> string -> unit
 (** [error_option_cannot_be_used_in_output_mode mode option]
     prints error message that option cannot be used in this output mode. *)
 
-val get_disks : string -> (int * int64) list
-(** Examines the v2v directory and opens each input socket (in0 etc),
-    returning a list of input disk index and size. *)
+val get_disk_sizes : NBD_URI.t list -> int64 list
+(** Call NBD.get_size on each input disk. *)
 
-val error_if_disk_count_gt : string -> int -> unit
+val error_if_disk_count_gt : NBD_URI.t list -> int -> unit
 (** This function lets an output module enforce a maximum disk count.
-    [error_if_disk_count_gt dir n] checks whether the domain has more than [n]
-    disks that need to be copied, by examining the existence of input NBD socket
-    "in[n]" in the v2v directory [dir].  If the socket exists, [error] is
-    called. *)
+
+    [error_if_disk_count_gt input_disks n] checks whether the domain
+    has more than [n] disks that need to be copied. *)
 
 type on_exit_kill = Kill | KillAndWait
 

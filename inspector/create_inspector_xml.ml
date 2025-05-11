@@ -28,10 +28,10 @@ open DOM
 (* This is where we construct the final XML document based on
  * these inputs:
  *   - Global configuration like the version of v2v etc.
- *   - The NBD input sockets: v2vdir // "in0", "in1", etc
+ *   - The NBD input disks
  *   - The inspection data (Types.inspect)
  *)
-let rec create_inspector_xml v2vdir inspect target_meta =
+let rec create_inspector_xml input_disks inspect target_meta =
   let body = ref [] in
 
   (* Record the version of virt-v2v etc, mainly for debugging. *)
@@ -45,20 +45,23 @@ let rec create_inspector_xml v2vdir inspect target_meta =
   (* The disks. *)
   let disks = ref [] in
 
-  List.iter (
-    fun (i, virtual_size) ->
+  List.iteri (
+    fun index uri ->
+      let uri = NBD_URI.to_uri uri in
+      let virtual_size = Utils.with_nbd_connect_uri ~uri NBD.get_size in
+
       let elems = ref [] in
       List.push_back elems (e "virtual-size" []
                               [PCData (Int64.to_string virtual_size)]);
-      (match get_input_disk_allocated v2vdir i with
+      (match get_input_disk_allocated uri with
        | None -> ()
        | Some real_size ->
           List.push_back elems (e "allocated" [ "estimated", "true" ]
                                   [PCData (Int64.to_string real_size)])
       );
 
-      List.push_back disks (e "disk" [ "index", string_of_int i ] !elems)
-  ) (get_disks v2vdir);
+      List.push_back disks (e "disk" [ "index", string_of_int index ] !elems)
+  ) input_disks;
   List.push_back body (e "disks" [] !disks);
 
   (* The <firmware> field is outside the <operatingsystem> element,
@@ -120,25 +123,10 @@ let rec create_inspector_xml v2vdir inspect target_meta =
   (* Construct the final document. *)
   (doc "v2v-inspection" [] !body : DOM.doc)
 
-
-(* This is a copy of {!Output.get_disks}. *)
-and get_disks dir =
-  let rec loop acc i =
-    let socket = sprintf "%s/in%d" dir i in
-    if Sys.file_exists socket then (
-      let size = Utils.with_nbd_connect_unix ~socket NBD.get_size in
-      loop ((i, size) :: acc) (i+1)
-    )
-    else
-      List.rev acc
-  in
-  loop [] 0
-
-(* This is like {!Utils.get_disk_allocated} but works on the input disks. *)
-and get_input_disk_allocated dir i =
-  let socket = sprintf "%s/in%d" dir i
-  and alloc_ctx = "base:allocation" in
-  with_nbd_connect_unix ~socket ~meta_contexts:[alloc_ctx]
+(* This is like {!Utils.get_disk_allocated}. *)
+and get_input_disk_allocated uri =
+  let alloc_ctx = "base:allocation" in
+  with_nbd_connect_uri ~uri ~meta_contexts:[alloc_ctx]
     (fun nbd ->
       if NBD.can_meta_context nbd alloc_ctx then (
         (* Get the list of extents, using a 2GiB chunk size as hint. *)

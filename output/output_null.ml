@@ -51,9 +51,7 @@ module Null = struct
     if options.output_storage <> None then
       error_option_cannot_be_used_in_output_mode "null" "-os"
 
-  let setup dir () source =
-    let disks = get_disks dir in
-
+  let setup dir () source input_disks =
     (* Check nbdkit is installed and has the required plugin. *)
     if not (Nbdkit.is_installed ()) then
       error (f_"nbdkit is not installed or not working.  \
@@ -79,13 +77,13 @@ module Null = struct
       On_exit.kill pid in
 
     (* Use hard links to the same socket for the other disks. *)
-    List.iter (
-      fun (i, _) ->
+    List.iteri (
+      fun i _ ->
         if i > 0 then (
           let output = sprintf "%s/out%d" dir i in
           link socket output
         )
-    ) disks
+    ) input_disks
 
   let finalize dir () () source inspect target_meta =
     () (* nothing to do *)

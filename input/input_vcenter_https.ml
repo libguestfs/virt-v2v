@@ -123,23 +123,27 @@ module VCenterHTTPS = struct
          error (f_"vcenter: <vmware:datacenterpath> was not found in the XML.  \
                    You need to upgrade to libvirt ≥ 1.2.20.") in
 
-    List.iteri (
-      fun i { d_format = format; d_type } ->
-        let socket = sprintf "%s/in%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i { d_format = format; d_type } ->
+          let socket = sprintf "%s/in%d" dir i in
+          On_exit.unlink socket;
 
-        match d_type with
-        | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
-           assert false
+          (match d_type with
+           | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
+              assert false
 
-        | LocalFile path ->
-           let cor = dir // "convert" in
-           let pid = VCenter.start_nbdkit_for_path
-                       ?bandwidth:options.bandwidth
-                       ~cor ~password_file
-                       dcPath uri server path socket in
-           On_exit.kill pid
-    ) disks;
+           | LocalFile path ->
+              let cor = dir // "convert" in
+              let pid = VCenter.start_nbdkit_for_path
+                          ?bandwidth:options.bandwidth
+                          ~cor ~password_file
+                          dcPath uri server path socket in
+              On_exit.kill pid
+          );
 
-    source
+          NBD_URI.Unix (socket, None)
+    ) disks in
+
+    source, uris
 end

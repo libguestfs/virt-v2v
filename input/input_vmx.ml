@@ -61,65 +61,71 @@ module VMX = struct
 
     let source, filenames = parse_domain_from_vmx vmx_source in
 
-    (match vmx_source with
-     | VMXSourceFile vmx_filename ->
-        (* Local file in VMDK format, use qemu-nbd. *)
-        List.iteri (
-          fun i filename ->
-            let socket = sprintf "%s/in%d" dir i in
-            On_exit.unlink socket;
+    let uris =
+      match vmx_source with
+      | VMXSourceFile vmx_filename ->
+         (* Local file in VMDK format, use qemu-nbd. *)
+         List.mapi (
+           fun i filename ->
+             let socket = sprintf "%s/in%d" dir i in
+             On_exit.unlink socket;
 
-            let cmd = QemuNBD.create
-                        (absolute_path_from_other_file vmx_filename filename) in
-            QemuNBD.set_snapshot cmd true; (* protective overlay *)
-            QemuNBD.set_format cmd (Some "vmdk");
-            let _, pid = QemuNBD.run_unix socket cmd in
-            On_exit.kill pid
-        ) filenames
+             let cmd = QemuNBD.create
+                         (absolute_path_from_other_file vmx_filename
+                            filename) in
+             QemuNBD.set_snapshot cmd true; (* protective overlay *)
+             QemuNBD.set_format cmd (Some "vmdk");
+             let _, pid = QemuNBD.run_unix socket cmd in
+             On_exit.kill pid;
 
-     | VMXSourceSSH (password, uri) ->
-        List.iteri (
-          fun i filename ->
-            let socket = sprintf "%s/in%d" dir i in
-            On_exit.unlink socket;
+             NBD_URI.Unix (socket, None)
+         ) filenames
 
-            let vmx_path =
-              match uri.uri_path with
-              | None -> assert false (* checked by vmx_source_of_arg *)
-              | Some path -> path in
-            let abs_path = absolute_path_from_other_file vmx_path filename in
-            let flat_vmdk = PCRE.replace (PCRE.compile "\\.vmdk$")
-                              "-flat.vmdk" abs_path in
+      | VMXSourceSSH (password, uri) ->
+         List.mapi (
+           fun i filename ->
+             let socket = sprintf "%s/in%d" dir i in
+             On_exit.unlink socket;
 
-            let server =
-              match uri.uri_server with
-              | None -> assert false (* checked by vmx_source_of_arg *)
-              | Some server -> server in
-            let port =
-              match uri.uri_port with
-              | i when i <= 0 -> None
-              | i -> Some (string_of_int i) in
-            let user = uri.Xml.uri_user in
+             let vmx_path =
+               match uri.uri_path with
+               | None -> assert false (* checked by vmx_source_of_arg *)
+               | Some path -> path in
+             let abs_path = absolute_path_from_other_file vmx_path filename in
+             let flat_vmdk = PCRE.replace (PCRE.compile "\\.vmdk$")
+                               "-flat.vmdk" abs_path in
 
-            (* RHBZ#1774386 *)
-            if not (Ssh.remote_file_exists ?password ?port ~server ?user
-                      flat_vmdk) then
-              error (f_"This transport does not support guests with snapshots. \
-                        Either collapse the snapshots for this guest and try \
-                        the conversion again, or use one of the alternate \
-                        conversion methods described in \
-                        virt-v2v-input-vmware(1) section \"NOTES\".");
+             let server =
+               match uri.uri_server with
+               | None -> assert false (* checked by vmx_source_of_arg *)
+               | Some server -> server in
+             let port =
+               match uri.uri_port with
+               | i when i <= 0 -> None
+               | i -> Some (string_of_int i) in
+             let user = uri.Xml.uri_user in
 
-            let cor = dir // "convert" in
-            let bandwidth = options.bandwidth in
-            let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
-                           ~server ?port ?user flat_vmdk in
-            let _, pid = Nbdkit.run_unix socket nbdkit in
-            On_exit.kill pid
-        ) filenames
-    );
+             (* RHBZ#1774386 *)
+             if not (Ssh.remote_file_exists ?password ?port ~server ?user
+                       flat_vmdk) then
+               error (f_"This transport does not support guests with \
+                         snapshots. \
+                         Either collapse the snapshots for this guest and try \
+                         the conversion again, or use one of the alternate \
+                         conversion methods described in \
+                         virt-v2v-input-vmware(1) section \"NOTES\".");
 
-    source
+             let cor = dir // "convert" in
+             let bandwidth = options.bandwidth in
+             let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
+                            ~server ?port ?user flat_vmdk in
+             let _, pid = Nbdkit.run_unix socket nbdkit in
+             On_exit.kill pid;
+
+             NBD_URI.Unix (socket, None)
+         ) filenames in
+
+    source, uris
 
   (* The filename can be an absolute path, but is more often a
    * path relative to the location of the vmx file (which might

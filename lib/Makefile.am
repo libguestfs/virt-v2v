@@ -33,6 +33,7 @@ SOURCES_MLI = \
 	YAML.mli \
 	libvirt_utils.mli \
 	nbdkit.mli \
+	NBD_URI.mli \
 	networks.mli \
 	qemuNBD.mli \
 	types.mli \
@@ -41,6 +42,7 @@ SOURCES_MLI = \
 SOURCES_ML = \
 	types.ml \
 	utils.ml \
+	NBD_URI.ml \
 	nbdkit.ml \
 	qemuNBD.ml \
 	networks.ml \

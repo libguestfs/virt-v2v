@@ -53,8 +53,8 @@ module Glance = struct
 
     options.output_format, output_name
 
-  let setup dir options source =
-    let disks = get_disks dir in
+  let setup dir options source input_disks =
+    let input_sizes = get_disk_sizes input_disks in
     let output_format, output_name = options in
 
     (* This does nothing useful except to check that the user has
@@ -81,15 +81,15 @@ module Glance = struct
     let tmpdir = Mkdtemp.temp_dir ~base_dir:large_tmpdir "glance." in
 
     (* This will write disks to the large temporary directory. *)
-    List.iter (
-      fun (i, size) ->
+    List.iteri (
+      fun i size ->
         let socket = sprintf "%s/out%d" dir i in
         On_exit.unlink socket;
 
         (* Create the actual output disk. *)
         let outdisk = sprintf "%s/%d" tmpdir i in
         output_to_local_file Sparse output_format outdisk size socket
-    ) disks;
+    ) input_sizes;
 
     tmpdir
 

@@ -206,8 +206,8 @@ The os-* parameters and environment variables are optional.
      run_openstack_command,
      run_openstack_command_capture_json)
 
-  let setup dir options source =
-    let disks = get_disks dir in
+  let setup dir options source input_disks =
+    let input_sizes = get_disk_sizes input_disks in
     let output_storage, output_name,
         server_id, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
@@ -316,8 +316,8 @@ The os-* parameters and environment variables are optional.
     in
 
     (* Create the Cinder volumes. *)
-    List.iter (
-      fun (i, size) ->
+    List.iteri (
+      fun i size ->
         (* Unclear what we should set the name to, so just make
          * something related to the guest name.  Cinder volume
          * names do not need to be unique.
@@ -327,7 +327,7 @@ The os-* parameters and environment variables are optional.
         (* Create the cinder volume. *)
         let id = create_cinder_volume name description size in
         List.push_back volume_ids id
-    ) disks;
+    ) input_sizes;
 
     (* Attach volume to current VM and wait for it to appear.
      * Returns the block device name.
@@ -382,13 +382,13 @@ The os-* parameters and environment variables are optional.
     let devices = List.map attach_volume !volume_ids in
 
     (* Create nbdkit instances for each device node. *)
-    List.iter (
-      fun ((i, size), dev) ->
+    List.iteri (
+      fun i (size, dev) ->
         let socket = sprintf "%s/out%d" dir i in
         On_exit.unlink socket;
 
         output_to_local_file Sparse "raw" dev size socket
-      ) (List.combine disks devices);
+      ) (List.combine input_sizes devices);
 
     !volume_ids
 

@@ -100,33 +100,37 @@ module XenSSH = struct
       | Some ip -> Some (Nbdkit_ssh.PasswordFile ip) in
 
     (* Create an nbdkit instance for each disk. *)
-    List.iteri (
-      fun i { d_format = format; d_type } ->
-        let socket = sprintf "%s/in%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i { d_format = format; d_type } ->
+          let socket = sprintf "%s/in%d" dir i in
+          On_exit.unlink socket;
 
-        match d_type with
-        | NBD _ | HTTP _ -> (* These should never happen? *)
-           assert false
+          (match d_type with
+           | NBD _ | HTTP _ -> (* These should never happen? *)
+              assert false
 
-        | BlockDev _ ->
-           (* Conversion from a remote block device over SSH isn't
-            * supported because OpenSSH sftp server doesn't know how
-            * to get the size of a block device.  Therefore we disallow
-            * this and refer users to the manual.
-            *)
-           error (f_"input from xen over ssh does not support disks stored on \
-                     remote block devices.  See virt-v2v-input-xen(1) \
-                     section \"Xen or ssh conversions from block devices\".")
+           | BlockDev _ ->
+              (* Conversion from a remote block device over SSH isn't
+               * supported because OpenSSH sftp server doesn't know how
+               * to get the size of a block device.  Therefore we disallow
+               * this and refer users to the manual.
+               *)
+              error (f_"input from xen over ssh does not support disks stored \
+                        on remote block devices.  See virt-v2v-input-xen(1) \
+                        section \"Xen or ssh conversions from block devices\".")
 
-        | LocalFile path ->
-           let cor = dir // "convert" in
-           let bandwidth = options.bandwidth in
-           let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
-                          ?port ~server ?user path in
-           let _, pid = Nbdkit.run_unix socket nbdkit in
-           On_exit.kill pid
-    ) disks;
+           | LocalFile path ->
+              let cor = dir // "convert" in
+              let bandwidth = options.bandwidth in
+              let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
+                             ?port ~server ?user path in
+              let _, pid = Nbdkit.run_unix socket nbdkit in
+              On_exit.kill pid
+          );
 
-    source
+          NBD_URI.Unix (socket, None)
+    ) disks in
+
+    source, uris
 end

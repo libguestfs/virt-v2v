@@ -77,74 +77,77 @@ and setup_servers options dir disks =
 
   let nr_disks = List.length disks in
 
-  List.iteri (
+  List.mapi (
     fun i { d_format = format; d_type; d_checksum } ->
       let socket = sprintf "%s/in%d" dir i in
       On_exit.unlink socket;
 
-      match d_type with
-      (* Forward to another NBD server using nbdkit-nbd-plugin. *)
-      | NBD (hostname, port) ->
-         let cmd = Nbdkit.create "nbd" in
-         if options.read_only then
-           Nbdkit.add_filter cmd "cow";
-         Nbdkit.add_arg cmd "hostname" hostname;
-         Nbdkit.add_arg cmd "port" (string_of_int port);
-         Nbdkit.add_arg cmd "shared" "true";
-         let _, pid = Nbdkit.run_unix socket cmd in
+      (match d_type with
+       (* Forward to another NBD server using nbdkit-nbd-plugin. *)
+       | NBD (hostname, port) ->
+          let cmd = Nbdkit.create "nbd" in
+          if options.read_only then
+            Nbdkit.add_filter cmd "cow";
+          Nbdkit.add_arg cmd "hostname" hostname;
+          Nbdkit.add_arg cmd "port" (string_of_int port);
+          Nbdkit.add_arg cmd "shared" "true";
+          let _, pid = Nbdkit.run_unix socket cmd in
 
-         (* --exit-with-parent should ensure nbdkit is cleaned
-          * up when we exit, but it's not supported everywhere.
-          *)
-         On_exit.kill pid;
+          (* --exit-with-parent should ensure nbdkit is cleaned
+           * up when we exit, but it's not supported everywhere.
+           *)
+          On_exit.kill pid;
 
-         Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
+          Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
 
-      (* Forward to an HTTP/HTTPS server using nbdkit-curl-plugin. *)
-      | HTTP url ->
-         if not options.read_only then
-           error (f_"in-place mode does not work with HTTP source");
+       (* Forward to an HTTP/HTTPS server using nbdkit-curl-plugin. *)
+       | HTTP url ->
+          if not options.read_only then
+            error (f_"in-place mode does not work with HTTP source");
 
-         let cor = dir // "convert" in
-         let cmd = Nbdkit_curl.create_curl ~cor url in
-         let _, pid = Nbdkit.run_unix socket cmd in
+          let cor = dir // "convert" in
+          let cmd = Nbdkit_curl.create_curl ~cor url in
+          let _, pid = Nbdkit.run_unix socket cmd in
 
-         (* --exit-with-parent should ensure nbdkit is cleaned
-          * up when we exit, but it's not supported everywhere.
-          *)
-         On_exit.kill pid;
+          (* --exit-with-parent should ensure nbdkit is cleaned
+           * up when we exit, but it's not supported everywhere.
+           *)
+          On_exit.kill pid;
 
-         Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
+          Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
 
-      | BlockDev filename | LocalFile filename ->
-         match format with
-         | Some "raw" ->
-            (* It's much faster to compute the checksum over
-             * the raw file or block device than over NBD:
-             *)
-            Option.iter (do_checksum_raw_file filename i nr_disks) d_checksum;
+       | BlockDev filename | LocalFile filename ->
+          match format with
+          | Some "raw" ->
+             (* It's much faster to compute the checksum over
+              * the raw file or block device than over NBD:
+              *)
+             Option.iter (do_checksum_raw_file filename i nr_disks) d_checksum;
 
-            let cmd = Nbdkit.create "file" in
-            if options.read_only then
-              Nbdkit.add_filter cmd "cow";
-            Nbdkit.add_arg cmd "file" filename;
-            Nbdkit.add_arg cmd "cache" "none";
-            let _, pid = Nbdkit.run_unix socket cmd in
+             let cmd = Nbdkit.create "file" in
+             if options.read_only then
+               Nbdkit.add_filter cmd "cow";
+             Nbdkit.add_arg cmd "file" filename;
+             Nbdkit.add_arg cmd "cache" "none";
+             let _, pid = Nbdkit.run_unix socket cmd in
 
-            (* --exit-with-parent should ensure nbdkit is cleaned
-             * up when we exit, but it's not supported everywhere.
-             *)
-            On_exit.kill pid
+             (* --exit-with-parent should ensure nbdkit is cleaned
+              * up when we exit, but it's not supported everywhere.
+              *)
+             On_exit.kill pid
 
-         (* We use qemu-nbd for all other formats including auto-detect. *)
-         | _ ->
-            let cmd = QemuNBD.create filename in
-            QemuNBD.set_snapshot cmd options.read_only;
-            QemuNBD.set_format cmd format;
-            let _, pid = QemuNBD.run_unix socket cmd in
-            On_exit.kill pid;
+          (* We use qemu-nbd for all other formats including auto-detect. *)
+          | _ ->
+             let cmd = QemuNBD.create filename in
+             QemuNBD.set_snapshot cmd options.read_only;
+             QemuNBD.set_format cmd format;
+             let _, pid = QemuNBD.run_unix socket cmd in
+             On_exit.kill pid;
 
-            Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
+             Option.iter (do_checksum_nbd socket i nr_disks) d_checksum
+      );
+
+      NBD_URI.Unix (socket, None)
   ) disks
 
 (* Handle the <disk><checksum> field over an NBD endpoint. *)
@@ -218,8 +221,8 @@ module Libvirt_ = struct
 
   let setup dir options args =
     let source, data = get_source_from_libvirt options args in
-    setup_servers options dir data;
-    source
+    let uris = setup_servers options dir data in
+    source, uris
 end
 
 module LibvirtXML = struct
@@ -230,6 +233,6 @@ module LibvirtXML = struct
 
   let setup dir options args =
     let source, data = get_source_from_libvirt_xml options args in
-    setup_servers options dir data;
-    source
+    let uris = setup_servers options dir data in
+    source, uris
 end

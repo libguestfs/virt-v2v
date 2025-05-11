@@ -42,7 +42,7 @@ module type OUTPUT = sig
   val to_string : options -> string
   val query_output_options : unit -> unit
   val parse_options : options -> Types.source -> poptions
-  val setup : string -> poptions -> Types.source -> t
+  val setup : string -> poptions -> Types.source -> NBD_URI.t list -> t
   val finalize : string -> poptions -> t ->
                  Types.source -> Types.inspect -> Types.target_meta ->
                  unit
@@ -52,21 +52,15 @@ end
 let error_option_cannot_be_used_in_output_mode mode opt =
   error (f_"-o %s: %s option cannot be used in this output mode") mode opt
 
-let get_disks dir =
-  let rec loop acc i =
-    let socket = sprintf "%s/in%d" dir i in
-    if Sys.file_exists socket then (
-      let size = Utils.with_nbd_connect_unix ~socket NBD.get_size in
-      loop ((i, size) :: acc) (i+1)
-    )
-    else
-      List.rev acc
-  in
-  loop [] 0
+let get_disk_sizes =
+  List.map (
+    fun uri ->
+      let uri = NBD_URI.to_uri uri in
+      Utils.with_nbd_connect_uri ~uri NBD.get_size
+  )
 
-let error_if_disk_count_gt dir n =
-  let socket = sprintf "%s/in%d" dir n in
-  if Sys.file_exists socket then
+let error_if_disk_count_gt input_disks n =
+  if List.length input_disks > n then
     error (f_"this output module doesn't support copying more than %d disks") n
 
 type on_exit_kill = Kill | KillAndWait

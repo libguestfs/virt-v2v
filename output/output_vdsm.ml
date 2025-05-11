@@ -120,20 +120,20 @@ For each disk you must supply one of each of these options:
      image_uuids, vol_uuids, vm_uuid, ovf_output,
      compat, ovf_flavour)
 
-  let setup dir options source =
-    error_if_disk_count_gt dir 23;
-    let disks = get_disks dir in
+  let setup dir options source input_disks =
+    error_if_disk_count_gt input_disks 23;
+    let input_sizes = get_disk_sizes input_disks in
     let output_alloc, output_format,
         output_name, output_storage,
         image_uuids, vol_uuids, vm_uuid, ovf_output,
         compat, ovf_flavour = options in
 
-    if List.length image_uuids <> List.length disks ||
-       List.length vol_uuids <> List.length disks then
+    if List.length image_uuids <> List.length input_disks ||
+       List.length vol_uuids <> List.length input_disks then
       error (f_"the number of ‘-oo vdsm-image-uuid’ and ‘-oo vdsm-vol-uuid’ \
                 parameters passed on the command line has to match the \
                 number of guest disk images (for this guest: %d)")
-        (List.length disks);
+        (List.length input_disks);
 
     let dd_mp, dd_uuid =
       let fields =
@@ -189,10 +189,9 @@ For each disk you must supply one of each of these options:
       ) (List.combine image_uuids vol_uuids) in
 
     (* Generate the .meta files associated with each volume. *)
-    let sizes = List.map snd disks in
     let metas =
       Create_ovf.create_meta_files output_alloc output_format
-        dd_uuid image_uuids sizes in
+        dd_uuid image_uuids input_sizes in
     List.iter (
       fun (filename, meta) ->
         let meta_filename = filename ^ ".meta" in
@@ -200,17 +199,17 @@ For each disk you must supply one of each of these options:
     ) (List.combine filenames metas);
 
     (* Set up the NBD servers. *)
-    List.iter (
-      fun ((i, size), filename) ->
+    List.iteri (
+      fun i (size, filename) ->
         let socket = sprintf "%s/out%d" dir i in
         On_exit.unlink socket;
 
         (* Create the actual output disk. *)
         output_to_local_file output_alloc output_format filename size socket
-    ) (List.combine disks filenames);
+    ) (List.combine input_sizes filenames);
 
     (* Save parameters since we need them during finalization. *)
-    let t = dd_mp, dd_uuid, sizes in
+    let t = dd_mp, dd_uuid, input_sizes in
     t
 
   let finalize dir options t source inspect target_meta =

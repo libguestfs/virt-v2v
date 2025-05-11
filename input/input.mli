@@ -37,10 +37,11 @@ module type INPUT = sig
   val query_input_options : unit -> unit
   (** When the user passes [-io ?] this is used to print help. *)
 
-  val setup : string -> options -> string list -> Types.source
+  val setup : string -> options -> string list ->
+              Types.source * NBD_URI.t list
   (** [setup dir options args]
 
       Set up the input mode.  Examines the source and extracts
-      source metadata ([Types.source]).  Creates a disk pipeline
-      [dir // "inX"] for each input disk. *)
+      source metadata ([Types.source]).  Also creates a disk pipeline
+      for each input disk and returns the list of NBD URIs. *)
 end

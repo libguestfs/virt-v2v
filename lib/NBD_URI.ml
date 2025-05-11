@@ -1,4 +1,4 @@
-(* virt-v2v-in-place
+(* virt-v2v
  * Copyright (C) 2009-2025 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,8 +16,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-val create_inspector_xml : NBD_URI.t list -> Types.inspect ->
-                           Types.target_meta ->
-                           DOM.doc
-(** Create the XML output of virt-v2v-inspector which contains the
-    post-conversion metadata. *)
+open Std_utils
+
+open Printf
+
+type t = Unix of string * string option
+
+let to_uri (Unix (socket, export)) =
+  let export =
+    export |> Option.map Utils.uri_quote |> Option.value ~default:"" in
+  (* We assume here that the socket filename does not contain any
+   * characters that need escaping, which is a safe assumption
+   * for v2vdir and sockets in that directory.
+   *)
+  sprintf "nbd+unix:///%s?socket=%s" export socket

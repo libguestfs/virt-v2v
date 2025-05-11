@@ -26,7 +26,8 @@ type options = {
   customize_ops : Customize_cmdline.ops; (** virt-customize options *)
 }
 
-val convert : string -> options -> Types.source -> Types.inspect * Types.target_meta
-(** [convert dir options source]
+val convert : NBD_URI.t list -> options -> Types.source ->
+              Types.inspect * Types.target_meta
+(** [convert input_disks options source]
 
     Convert a guest to run on KVM. *)

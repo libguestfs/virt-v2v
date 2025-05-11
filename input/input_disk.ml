@@ -98,34 +98,38 @@ module Disk = struct
     if options.read_only && not (Nbdkit.probe_filter "cow") then
       error (f_"nbdkit-cow-filter is not installed or not working");
 
-    List.iteri (
-      fun i disk ->
-        let socket = sprintf "%s/in%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i disk ->
+          let socket = sprintf "%s/in%d" dir i in
+          On_exit.unlink socket;
 
-        match input_format with
-        | "raw" ->
-           let cmd = Nbdkit.create "file" in
-           if options.read_only then
-             Nbdkit.add_filter cmd "cow";
-           Nbdkit.add_arg cmd "file" disk;
-           Nbdkit.add_arg cmd "cache" "none";
-           let _, pid = Nbdkit.run_unix socket cmd in
+          (match input_format with
+           | "raw" ->
+              let cmd = Nbdkit.create "file" in
+              if options.read_only then
+                Nbdkit.add_filter cmd "cow";
+              Nbdkit.add_arg cmd "file" disk;
+              Nbdkit.add_arg cmd "cache" "none";
+              let _, pid = Nbdkit.run_unix socket cmd in
 
-           (* --exit-with-parent should ensure nbdkit is cleaned
-            * up when we exit, but it's not supported everywhere.
-            *)
-           On_exit.kill pid
+              (* --exit-with-parent should ensure nbdkit is cleaned
+               * up when we exit, but it's not supported everywhere.
+               *)
+              On_exit.kill pid
 
-        | format ->
-           let cmd = QemuNBD.create disk in
-           QemuNBD.set_snapshot cmd options.read_only;
-           QemuNBD.set_format cmd (Some format);
-           let _, pid = QemuNBD.run_unix socket cmd in
-           On_exit.kill pid
-    ) args;
+           | format ->
+              let cmd = QemuNBD.create disk in
+              QemuNBD.set_snapshot cmd options.read_only;
+              QemuNBD.set_format cmd (Some format);
+              let _, pid = QemuNBD.run_unix socket cmd in
+              On_exit.kill pid
+          );
 
-    source
+          NBD_URI.Unix (socket, None)
+      ) args in
+
+    source, uris
 
   (* For a list of local disks, try to detect the input format if
    * the [-if] option was not used on the command line.  If the

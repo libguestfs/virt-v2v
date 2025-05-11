@@ -204,37 +204,41 @@ information on these settings.
       ) in
 
     (* Create an nbdkit instance for each disk. *)
-    List.combine disks file_overrides |>
-    List.iteri (
-      fun i ({ d_format = format; d_type }, file_override) ->
-        let socket = sprintf "%s/in%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.combine disks file_overrides |>
+      List.mapi (
+        fun i ({ d_format = format; d_type }, file_override) ->
+          let socket = sprintf "%s/in%d" dir i in
+          On_exit.unlink socket;
 
-        match d_type with
-        | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
-           assert false
+          (match d_type with
+           | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
+              assert false
 
-        | LocalFile orig_file ->
-           (* If -io vddk-file, override it here. *)
-           let file = Option.value file_override ~default:orig_file in
+           | LocalFile orig_file ->
+              (* If -io vddk-file, override it here. *)
+              let file = Option.value file_override ~default:orig_file in
 
-           (* The <source file=...> attribute returned by the libvirt
-            * VMX driver looks like "[datastore] path".  We can use it
-            * directly as the nbdkit file= parameter, and it is passed
-            * directly in this form to VDDK.
-            *)
-           let nbdkit =
-             let cor = dir // "convert" in
-             Nbdkit_vddk.create_vddk ?bandwidth:options.bandwidth
-               ?config ?cookie ~cor
-               ?libdir ~moref
-               ?nfchostport ~noextents
-               ?password_file:options.input_password ?port
-               ~server ?snapshot ~thumbprint ?transports ?user
-               file in
-           let _, pid = Nbdkit.run_unix socket nbdkit in
-           On_exit.kill pid
-    );
+              (* The <source file=...> attribute returned by the libvirt
+               * VMX driver looks like "[datastore] path".  We can use it
+               * directly as the nbdkit file= parameter, and it is passed
+               * directly in this form to VDDK.
+               *)
+              let nbdkit =
+                let cor = dir // "convert" in
+                Nbdkit_vddk.create_vddk ?bandwidth:options.bandwidth
+                  ?config ?cookie ~cor
+                  ?libdir ~moref
+                  ?nfchostport ~noextents
+                  ?password_file:options.input_password ?port
+                  ~server ?snapshot ~thumbprint ?transports ?user
+                  file in
+              let _, pid = Nbdkit.run_unix socket nbdkit in
+              On_exit.kill pid
+          );
 
-    source
+          NBD_URI.Unix (socket, None)
+      ) in
+
+    source, uris
 end

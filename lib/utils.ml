@@ -204,13 +204,13 @@ let rec wait_for_file filename timeout =
     wait_for_file filename (timeout-1)
   )
 
-let with_nbd_connect_unix ?(meta_contexts = []) ~socket f =
+let with_nbd_connect_uri ?(meta_contexts = []) ~uri f =
   let nbd = NBD.create () in
   Fun.protect
     (fun () ->
           NBD.set_debug nbd (verbose ());
           List.iter (NBD.add_meta_context nbd) meta_contexts;
-          NBD.connect_unix nbd socket;
+          NBD.connect_uri nbd uri;
           Fun.protect
             (fun () -> f nbd)
             ~finally:(fun () -> NBD.shutdown nbd)
@@ -218,9 +218,9 @@ let with_nbd_connect_unix ?(meta_contexts = []) ~socket f =
     ~finally:(fun () -> NBD.close nbd)
 
 let get_disk_allocated ~dir ~disknr =
-  let socket = sprintf "%s/out%d" dir disknr
-  and alloc_ctx = "base:allocation" in
-  with_nbd_connect_unix ~socket ~meta_contexts:[alloc_ctx]
+  let uri = sprintf "nbd+unix://?socket=%s/out%d" dir disknr in
+  let alloc_ctx = "base:allocation" in
+  with_nbd_connect_uri ~uri ~meta_contexts:[alloc_ctx]
     (fun nbd ->
          if NBD.can_meta_context nbd alloc_ctx then (
            (* Get the list of extents, using a 2GiB chunk size as hint. *)

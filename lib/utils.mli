@@ -78,13 +78,13 @@ val wait_for_file : string -> int -> bool
 (** [wait_for_file filename timeout] waits up to [timeout] seconds for
     [filename] to appear.  It returns [true] if the file appeared. *)
 
-val with_nbd_connect_unix : ?meta_contexts:string list ->
-                            socket:string ->
-                            (NBD.t -> 'a) ->
-                            'a
-(** [with_nbd_connect_unix socket meta_contexts f] calls function [f] with the
-    NBD server at Unix domain socket [socket] connected, and the metadata
-    contexts in [meta_contexts] requested (each of which is not necessarily
+val with_nbd_connect_uri : ?meta_contexts:string list ->
+                           uri:string ->
+                           (NBD.t -> 'a) ->
+                           'a
+(** [with_nbd_connect_uri uri meta_contexts f] calls function [f] with the
+    NBD server at [uri] connected, and the metadata contexts in
+    [meta_contexts] requested (each of which is not necessarily
     supported by the server though). The connection is torn down either on
     normal return or if the function [f] throws an exception. *)
 
