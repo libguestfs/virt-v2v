@@ -168,7 +168,8 @@ information on these settings.
       | None ->
          error (f_"‘-ic %s’ URL does not contain a host name field") input_conn in
 
-    let user = uri.Xml.uri_user in
+    (* For VDDK we require some user.  If it's not supplied, assume root. *)
+    let user = uri.Xml.uri_user |> Option.value ~default:"root" in
 
     (* If asking for a password, do it now. *)
     let password_file =
@@ -182,7 +183,7 @@ information on these settings.
           * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
           * AskForPassword case we read the password here.
           *)
-         printf "password: ";
+         printf (f_"%s: enter password for ‘%s’: ") "vddk" user;
          let open Unix in
          let orig = tcgetattr stdin in
          let tios = { orig with c_echo = false } in
@@ -296,11 +297,8 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
       Nbdkit.add_arg cmd "server" server;
       Nbdkit.add_arg cmd "vm" (sprintf "moref=%s" moref);
 
-      (* For VDDK we require some user.  If it's not supplied, assume root. *)
-      let user = Option.value ~default:"root" user in
+      (* VDDK requires user and password parameters. *)
       Nbdkit.add_arg cmd "user" user;
-
-      (* VDDK also requires a password parameter. *)
       Nbdkit.add_arg cmd "password" ("+" ^ password_file);
 
       (* The passthrough parameters. *)
