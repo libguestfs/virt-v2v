@@ -43,13 +43,11 @@ val version : unit -> version
 val probe_plugin : string -> bool
 (** Probe if a particular plugin is available. *)
 
-(*
 val probe_plugin_parameter : string -> string -> bool
 (** Probe if a particular plugin parameter is available.
 
     [probe_plugin_parameter filter regex] greps for regex
     in the output of [nbdkit plugin --help]. *)
-*)
 
 val probe_filter : string -> bool
 (** Probe if a particular filter is available. *)

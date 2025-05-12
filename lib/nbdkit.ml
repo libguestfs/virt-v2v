@@ -65,6 +65,11 @@ let probe_plugin name =
   let cmd = sprintf "nbdkit %s --version >/dev/null 2>&1" (quote name) in
   Sys.command cmd = 0
 
+let probe_plugin_parameter name regex =
+  let cmd = sprintf "nbdkit %s --help | grep -sq %s"
+              (quote name) (quote regex) in
+  Sys.command cmd = 0
+
 let probe_filter name =
   let cmd = sprintf "nbdkit null --filter=%s --version >/dev/null 2>&1"
               (quote name) in
