@@ -140,7 +140,7 @@ module Libvirt_ = struct
           On_exit.unlink socket;
 
           (* Create the actual output disk. *)
-          let outdisk = target_path // output_name ^ "-sd" ^ (drive_name i) in
+          let outdisk = disk_path target_path output_name i in
           output_to_local_file ~compressed output_alloc output_format
             outdisk size socket;
 
