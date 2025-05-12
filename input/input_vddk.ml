@@ -35,10 +35,6 @@ open Input
  *)
 let libNN = sprintf "lib%d" Sys.word_size
 
-type password =
-| AskForPassword                (* password=- *)
-| PasswordFile of string        (* password=+file *)
-
 module VDDK = struct
   let to_string options args =
     let xs = "-it vddk" :: args in
@@ -174,6 +170,34 @@ information on these settings.
 
     let user = uri.Xml.uri_user in
 
+    (* If asking for a password, do it now. *)
+    let password_file =
+      match options.input_password with
+      | None ->
+         (* Because we will start nbdkit in the background and then wait
+          * for 30 seconds for it to start up, we cannot use the
+          * password=- feature of nbdkit to read the password
+          * interactively (since in the words of the movie the user has
+          * only "30 seconds to comply").  In any case this feature broke
+          * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
+          * AskForPassword case we read the password here.
+          *)
+         printf "password: ";
+         let open Unix in
+         let orig = tcgetattr stdin in
+         let tios = { orig with c_echo = false } in
+         tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
+         let password = read_line () in
+         tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
+         printf "\n";
+         let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
+         with_open_out password_file (fun chan -> output_string chan password);
+         On_exit.unlink password_file;
+         password_file
+
+      | Some password_file ->
+         password_file in
+
     let config =
       try Some (List.assoc "config" io_options) with Not_found -> None in
     let cookie =
@@ -276,10 +300,8 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
       let user = Option.value ~default:"root" user in
       Nbdkit.add_arg cmd "user" user;
 
-      let password =
-        match options.input_password with
-        | None -> AskForPassword
-        | Some password_file -> PasswordFile password_file in
+      (* VDDK also requires a password parameter. *)
+      Nbdkit.add_arg cmd "password" ("+" ^ password_file);
 
       (* The passthrough parameters. *)
       let passthru cmd name v = Option.iter (Nbdkit.add_arg cmd name) v in
@@ -385,33 +407,6 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
               Nbdkit.add_arg cmd "rate-file" filename
            | DynamicBandwidth (Some rate, filename) ->
               Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
-      );
-
-      (* Handle the password parameter specially. *)
-      (match password with
-       | AskForPassword ->
-          (* Because we will start nbdkit in the background and then wait
-           * for 30 seconds for it to start up, we cannot use the
-           * password=- feature of nbdkit to read the password
-           * interactively (since in the words of the movie the user has
-           * only "30 seconds to comply").  In any case this feature broke
-           * in the VDDK plugin in nbdkit 1.18 and 1.20.  So in the
-           * AskForPassword case we read the password here.
-           *)
-          printf "password: ";
-          let open Unix in
-          let orig = tcgetattr stdin in
-          let tios = { orig with c_echo = false } in
-          tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
-          let password = read_line () in
-          tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
-          printf "\n";
-          let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
-          On_exit.unlink password_file;
-          with_open_out password_file (fun chan -> output_string chan password);
-          Nbdkit.add_arg cmd "password" ("+" ^ password_file)
-       | PasswordFile password_file ->
-          Nbdkit.add_arg cmd "password" ("+" ^ password_file)
       );
 
       cmd
