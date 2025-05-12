@@ -154,15 +154,63 @@ let create_local_output_disks dir
       input_disks =
   let input_sizes = get_disk_sizes input_disks in
 
-  List.mapi (
-    fun i size ->
-      let socket = sprintf "%s/out%d" dir i in
-      On_exit.unlink socket;
+  let output_disk_names =
+    List.mapi (fun i _ -> disk_path output_storage output_name i) input_disks in
 
-      (* Create the actual output disk. *)
-      let outdisk = disk_path output_storage output_name i in
-      output_to_local_file ~compressed output_alloc output_format
-        outdisk size socket;
+  (* In the special case where we will write to uncompressed raw
+   * local files, create a single nbdkit instance using the 'dir' option
+   * and choose which file to write using the export name.
+   *)
+  if not compressed && output_format = "raw" then (
+    (* Check nbdkit is installed and has the required plugin. *)
+    if not (Nbdkit.is_installed ()) then
+      error (f_"nbdkit is not installed or not working.  It is required \
+                to use ‘-o disk’.");
+    if not (Nbdkit.probe_plugin "file") then
+      error (f_"nbdkit-file-plugin is not installed or not working");
 
-      NBD_URI.Unix (socket, None)
-  ) input_sizes
+    (* We still have to create the output disks. *)
+    let g = open_guestfs () in
+    let preallocation =
+      match output_alloc with
+      | Preallocated -> Some "full"
+      | Sparse -> None in
+    List.iter (
+      fun (size, filename) ->
+        g#disk_create ?preallocation filename output_format size
+    ) (List.combine input_sizes output_disk_names);
+
+    let socket = sprintf "%s/out0" dir in
+    On_exit.unlink socket;
+
+    (* Create the single nbdkit-file-plugin instance. *)
+    let cmd = Nbdkit.create "file" in
+    Nbdkit.add_arg cmd "dir" output_storage;
+    Nbdkit.add_arg cmd "cache" "none";
+    let _, pid = Nbdkit.run_unix socket cmd in
+    On_exit.kill pid;
+
+    (* Use NBD export names to select the right disk to write. *)
+    let uris =
+      List.mapi (
+        fun i _ ->
+          let export = sprintf "%s-sd%s" output_name (drive_name i) in
+          NBD_URI.Unix (socket, Some export)
+      ) input_disks in
+
+    uris
+  )
+  else (
+    (* Not the special case, use {!output_to_local_file} on each disk. *)
+    List.mapi (
+      fun i (size, outdisk) ->
+        let socket = sprintf "%s/out%d" dir i in
+        On_exit.unlink socket;
+
+        (* Create the actual output disk. *)
+        output_to_local_file ~compressed output_alloc output_format
+          outdisk size socket;
+
+        NBD_URI.Unix (socket, None)
+    ) (List.combine input_sizes output_disk_names)
+  )
