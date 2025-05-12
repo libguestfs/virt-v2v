@@ -128,8 +128,7 @@ and setup_servers options dir disks =
             if options.read_only then
               Nbdkit.add_filter cmd "cow";
             Nbdkit.add_arg cmd "file" filename;
-            if Nbdkit.version () >= (1, 22, 0) then
-              Nbdkit.add_arg cmd "cache" "none";
+            Nbdkit.add_arg cmd "cache" "none";
             let _, pid = Nbdkit.run_unix socket cmd in
 
             (* --exit-with-parent should ensure nbdkit is cleaned

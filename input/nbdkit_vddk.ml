@@ -25,24 +25,9 @@ open Tools_utils
 open Types
 open Utils
 
-(* This is the first version that did not require LD_LIBRARY_PATH. *)
-let nbdkit_min_version = (1, 17, 10)
-
 type password =
 | AskForPassword                (* password=- *)
 | PasswordFile of string        (* password=+file *)
-
-(* Check that nbdkit is available and new enough. *)
-let error_unless_nbdkit_version_ge min_version =
-  let version = Nbdkit.version () in
-  if version < min_version then (
-    let min_major, min_minor, min_release = min_version in
-    error (f_"nbdkit is too old.  nbdkit >= %d.%d.%d is required.")
-          min_major min_minor min_release
-  )
-
-let error_unless_nbdkit_min_version () =
-  error_unless_nbdkit_version_ge nbdkit_min_version
 
 (* VDDK libraries are located under lib32/ or lib64/ relative to the
  * libdir.  Note this is unrelated to Linux multilib or multiarch.
@@ -61,8 +46,6 @@ let create_vddk ?bandwidth ?config ?cookie ?cor ?libdir ~moref
 
   if not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
-
-  error_unless_nbdkit_min_version ();
 
   (* Check that the VDDK path looks reasonable. *)
   let error_unless_vddk_libdir () =

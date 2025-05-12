@@ -139,11 +139,8 @@ let run_unix socket cmd =
     add_arg "system_u:object_r:svirt_socket_t:s0"
   );
 
-  (* Reduce verbosity in nbdkit >= 1.17.4. *)
-  let version = version () in
-  if version >= (1, 17, 4) then (
-    add_arg "-D"; add_arg "nbdkit.backend.datapath=0"
-  );
+  (* Reduce verbosity in nbdkit. *)
+  add_arg "-D"; add_arg "nbdkit.backend.datapath=0";
 
   List.iter (
     fun (name, value) ->

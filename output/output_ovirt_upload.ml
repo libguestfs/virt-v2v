@@ -148,12 +148,6 @@ after their uploads (if you do, you must supply one for each disk):
         ovirt_cafile, ovirt_cluster, ovirt_direct,
         ovirt_verifypeer, ovirt_disk_uuids = options in
 
-    (* We need nbdkit >= 1.22 for API_VERSION 2 and parallel threading model
-     * in the python plugin.
-     *)
-    let nbdkit_min_version = (1, 22, 0) in
-    let nbdkit_min_version_string = "1.22.0" in
-
     (* Check that the 'ovirtsdk4' Python module is available. *)
     let error_unless_ovirtsdk4_module_available () =
       let res = run_command [ Python_script.python; "-c";
@@ -169,13 +163,6 @@ after their uploads (if you do, you must supply one for each disk):
         error (f_"nbdkit is not installed or not working.  It is required \
                   to use ‘-o ovirt-upload’.  See the virt-v2v-output-ovirt(1) \
                   manual.")
-    in
-
-    let error_unless_nbdkit_min_version () =
-      let version = Nbdkit.version () in
-      if version < nbdkit_min_version then
-        error (f_"nbdkit is not new enough, you need to upgrade to nbdkit ≥ %s")
-          nbdkit_min_version_string
     in
 
     (* Check that the python3 plugin is installed and working
@@ -210,7 +197,6 @@ See also the virt-v2v-output-ovirt(1) manual.");
     Python_script.error_unless_python_interpreter_found ();
     error_unless_ovirtsdk4_module_available ();
     error_unless_nbdkit_working ();
-    error_unless_nbdkit_min_version ();
     error_unless_nbdkit_compiled_with_selinux ();
 
     (* Python code. *)

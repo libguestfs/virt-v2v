@@ -56,7 +56,7 @@ REQUIREMENTS
 
 * OCaml bindings for libnbd
 
-* nbdkit >= 1.27.4 (https://gitlab.com/nbdkit/nbdkit)
+* nbdkit >= 1.28 (https://gitlab.com/nbdkit/nbdkit)
 
 * These nbdkit plugins and filters:
 

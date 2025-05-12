@@ -25,22 +25,9 @@ open Tools_utils
 open Types
 open Utils
 
-let nbdkit_min_version = (1, 12, 0)
-
 type password =
   | AskForPassword
   | PasswordFile of string
-
-let error_unless_nbdkit_version_ge min_version =
-  let version = Nbdkit.version () in
-  if version < min_version then (
-    let min_major, min_minor, min_release = min_version in
-    error (f_"nbdkit is too old.  nbdkit >= %d.%d.%d is required.")
-          min_major min_minor min_release
-  )
-
-let error_unless_nbdkit_min_version () =
-  error_unless_nbdkit_version_ge nbdkit_min_version
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
 let create_ssh ?bandwidth ?cor ?(retry=true)
@@ -53,8 +40,6 @@ let create_ssh ?bandwidth ?cor ?(retry=true)
 
   if not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
-
-  error_unless_nbdkit_min_version ();
 
   (* Construct the nbdkit command. *)
   let cmd = Nbdkit.create "ssh" in
