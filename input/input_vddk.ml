@@ -190,7 +190,7 @@ information on these settings.
          tcsetattr stdin TCSAFLUSH tios; (* Disable echo. *)
          let password = read_line () in
          tcsetattr stdin TCSAFLUSH orig; (* Restore echo. *)
-         printf "\n";
+         printf "\n%!";
          let password_file = Filename.temp_file "v2vnbdkit" ".txt" in
          with_open_out password_file (fun chan -> output_string chan password);
          On_exit.unlink password_file;
