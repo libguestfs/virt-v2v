@@ -349,85 +349,90 @@ See also the virt-v2v-output-ovirt(1) manual.");
     (* Create an nbdkit instance for each disk and set the
      * target URI to point to the NBD socket.
      *)
-    List.iteri (
-      fun i (size, uuid) ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i (size, uuid) ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        let disk_name = sprintf "%s-%03d" output_name i in
-        let json_params =
-          ("disk_name", JSON.String disk_name) :: json_params in
+          let disk_name = sprintf "%s-%03d" output_name i in
+          let json_params =
+            ("disk_name", JSON.String disk_name) :: json_params in
 
-        let disk_format =
-          match output_format with
-          | "raw" as fmt -> fmt
-          | "qcow2" as fmt -> fmt
-          | _ ->
-             error (f_"ovirt-upload: -of %s: Only output format ‘raw’ or ‘qcow2’ \
-                       is supported.  If the input is in a different format \
-                       then force one of these output formats by adding \
-                       either ‘-of raw’ or ‘-of qcow2’ on the command line.")
-               output_format in
-        let json_params =
-          ("disk_format", JSON.String disk_format) :: json_params in
+          let disk_format =
+            match output_format with
+            | "raw" as fmt -> fmt
+            | "qcow2" as fmt -> fmt
+            | _ ->
+               error (f_"ovirt-upload: -of %s: Only output format ‘raw’ \
+                         or ‘qcow2’ \
+                         is supported.  If the input is in a different format \
+                         then force one of these output formats by adding \
+                         either ‘-of raw’ or ‘-of qcow2’ on the command line.")
+                 output_format in
+          let json_params =
+            ("disk_format", JSON.String disk_format) :: json_params in
 
-        let json_params =
-          ("disk_size", JSON.Int size) :: json_params in
+          let json_params =
+            ("disk_size", JSON.Int size) :: json_params in
 
-        let json_params =
-          ("disk_uuid", JSON.String uuid) :: json_params in
+          let json_params =
+            ("disk_uuid", JSON.String uuid) :: json_params in
 
-        (* Write the JSON parameters to a file. *)
-        let json_param_file = dir // sprintf "out.params%d.json" i in
-        with_open_out
-          json_param_file
-          (fun chan -> output_string chan (JSON.string_of_doc json_params));
+          (* Write the JSON parameters to a file. *)
+          let json_param_file = dir // sprintf "out.params%d.json" i in
+          with_open_out
+            json_param_file
+            (fun chan -> output_string chan (JSON.string_of_doc json_params));
 
-        (* Start the transfer. *)
-        let transfer_json = dir // sprintf "v2vtransfer%d.json" i in
-        let fd =
-          Unix.openfile transfer_json [O_WRONLY; O_CREAT; O_TRUNC] 0o600 in
-        if Python_script.run_command ~stdout_fd:fd
-             transfer_script json_params [] <> 0 then
-          error (f_"failed to start transfer, see earlier errors");
-        if verbose () then
-          debug "transfer output before parsing: %s"
-                (read_whole_file transfer_json);
-        let json = JSON_parser.json_parser_tree_parse_file transfer_json in
-        debug "transfer output parsed as: %s"
-          (JSON.string_of_doc ~fmt:JSON.Indented ["", json]);
-        let destination_url =
-          JSON_parser.object_get_string "destination_url" json in
-        let transfer_id =
-          JSON_parser.object_get_string "transfer_id" json in
-        List.push_back transfer_ids transfer_id;
-        let is_ovirt_host =
-          JSON_parser.object_get_bool "is_ovirt_host" json in
+          (* Start the transfer. *)
+          let transfer_json = dir // sprintf "v2vtransfer%d.json" i in
+          let fd =
+            Unix.openfile transfer_json [O_WRONLY; O_CREAT; O_TRUNC] 0o600 in
+          if Python_script.run_command ~stdout_fd:fd
+               transfer_script json_params [] <> 0 then
+            error (f_"failed to start transfer, see earlier errors");
+          if verbose () then
+            debug "transfer output before parsing: %s"
+              (read_whole_file transfer_json);
+          let json = JSON_parser.json_parser_tree_parse_file transfer_json in
+          debug "transfer output parsed as: %s"
+            (JSON.string_of_doc ~fmt:JSON.Indented ["", json]);
+          let destination_url =
+            JSON_parser.object_get_string "destination_url" json in
+          let transfer_id =
+            JSON_parser.object_get_string "transfer_id" json in
+          List.push_back transfer_ids transfer_id;
+          let is_ovirt_host =
+            JSON_parser.object_get_bool "is_ovirt_host" json in
 
-        (* Create the nbdkit instance. *)
-        Nbdkit.add_arg cmd "size" (Int64.to_string size);
-        Nbdkit.add_arg cmd "url" destination_url;
-        Option.iter (Nbdkit.add_arg cmd "cafile") ovirt_cafile;
-        if not ovirt_verifypeer then
-          Nbdkit.add_arg cmd "insecure" "true";
-        if is_ovirt_host then
-          Nbdkit.add_arg cmd "is_ovirt_host" "true";
-        let _, pid = Nbdkit.run_unix socket cmd in
-        List.push_front pid nbdkit_pids
-    ) (List.combine input_sizes disk_uuids);
+          (* Create the nbdkit instance. *)
+          Nbdkit.add_arg cmd "size" (Int64.to_string size);
+          Nbdkit.add_arg cmd "url" destination_url;
+          Option.iter (Nbdkit.add_arg cmd "cafile") ovirt_cafile;
+          if not ovirt_verifypeer then
+            Nbdkit.add_arg cmd "insecure" "true";
+          if is_ovirt_host then
+            Nbdkit.add_arg cmd "is_ovirt_host" "true";
+          let _, pid = Nbdkit.run_unix socket cmd in
+          List.push_front pid nbdkit_pids;
+
+          NBD_URI.Unix (socket, None)
+      ) (List.combine input_sizes disk_uuids) in
 
     (* Stash some data we will need during finalization. *)
     let t = (input_sizes : int64 list), disk_uuids, !transfer_ids,
             finalize_script, createvm_script, json_params,
             ovirt_storagedomain_uuid, ovirt_cluster_uuid,
             ovirt_cluster_cpu_architecture, ovirt_cluster_name, nbdkit_pids in
-    t
+
+    t, uris
 
   and json_optstring = function
     | Some s -> JSON.String s
     | None -> JSON.Null
 
-  let finalize dir options t source inspect target_meta =
+  let finalize dir options t output_disks source inspect target_meta =
     let output_conn, output_format,
         output_password, output_name, output_storage,
         ovirt_cafile, ovirt_cluster, ovirt_direct,
@@ -487,7 +492,7 @@ See also the virt-v2v-output-ovirt(1) manual.");
     let ovf =
       Create_ovf.create_ovf source inspect target_meta input_sizes
         Sparse output_format output_name
-        sd_uuid disk_uuids vol_uuids dir vm_uuid OVirt in
+        sd_uuid disk_uuids vol_uuids output_disks vm_uuid OVirt in
     let ovf = DOM.doc_to_string ovf in
 
     let json_params =

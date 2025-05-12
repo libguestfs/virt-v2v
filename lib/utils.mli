@@ -88,13 +88,13 @@ val with_nbd_connect_uri : ?meta_contexts:string list ->
     supported by the server though). The connection is torn down either on
     normal return or if the function [f] throws an exception. *)
 
-val get_disk_allocated : dir:string -> disknr:int -> int64 option
-(** Callable only in the finalization step. [get_disk_allocated dir disknr]
-    examines output disk [disknr] through the corresponding NBD server socket
-    that resides in [dir]. Returns the number of bytes allocated in the disk
-    image, according to the "base:allocation" metadata context. If the context
-    is not supported by the NBD server behind the socket, the function returns
-    None. *)
+val get_disk_allocated : string -> int64 option
+(** Examines the disk [uri].  Return the number of bytes allocated
+    in the disk image, according to the "base:allocation" metadata
+    context.  If the context is not supported by the NBD server
+    behind the socket, the function returns None.
+
+    For output disks this is callable only in the finalization step. *)
 
 val get_uefi_arch_suffix : string -> string option
 (** [get_uefi_arch_suffix arch] maps [arch] from [inspect.i_arch] representation

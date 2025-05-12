@@ -42,8 +42,9 @@ module type OUTPUT = sig
   val to_string : options -> string
   val query_output_options : unit -> unit
   val parse_options : options -> Types.source -> poptions
-  val setup : string -> poptions -> Types.source -> NBD_URI.t list -> t
-  val finalize : string -> poptions -> t ->
+  val setup : string -> poptions -> Types.source -> NBD_URI.t list ->
+              t * NBD_URI.t list
+  val finalize : string -> poptions -> t -> NBD_URI.t list ->
                  Types.source -> Types.inspect -> Types.target_meta ->
                  unit
   val request_size : int option

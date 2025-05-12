@@ -460,7 +460,7 @@ read the man page virt-v2v(1).
   (* Start the output module (runs an NBD server in the background). *)
   message (f_"Setting up the destination: %s")
     (Output_module.to_string output_options);
-  let output_t =
+  let output_t, output_disks =
     Output_module.setup v2vdir output_poptions source input_disks in
 
   (* Debug the v2vdir. *)
@@ -474,14 +474,13 @@ read the man page virt-v2v(1).
 
   (* Get the list of disks and corresponding NBD URIs. *)
   let disks =
+    List.combine input_disks output_disks |>
     List.mapi (
-      fun i input_uri ->
-        let input_uri = NBD_URI.to_uri input_uri in
-        let output_socket = sprintf "%s/out%d" v2vdir i in
-        assert (Sys.file_exists output_socket);
-        let output_uri = sprintf "nbd+unix:///?socket=%s" output_socket in
+      fun i (input_uri, output_uri) ->
+        let input_uri = NBD_URI.to_uri input_uri
+        and output_uri = NBD_URI.to_uri output_uri in
         (i, input_uri, output_uri)
-    ) input_disks in
+    ) in
   let nr_disks = List.length disks in
 
   (* Copy the disks. *)
@@ -541,7 +540,7 @@ read the man page virt-v2v(1).
 
   (* Do the finalization step. *)
   message (f_"Creating output metadata");
-  Output_module.finalize v2vdir output_poptions output_t
+  Output_module.finalize v2vdir output_poptions output_t output_disks
     source inspect target_meta;
 
   message (f_"Finishing off");

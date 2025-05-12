@@ -53,7 +53,7 @@ let rec create_inspector_xml input_disks inspect target_meta =
       let elems = ref [] in
       List.push_back elems (e "virtual-size" []
                               [PCData (Int64.to_string virtual_size)]);
-      (match get_input_disk_allocated uri with
+      (match get_disk_allocated uri with
        | None -> ()
        | Some real_size ->
           List.push_back elems (e "allocated" [ "estimated", "true" ]
@@ -122,34 +122,3 @@ let rec create_inspector_xml input_disks inspect target_meta =
 
   (* Construct the final document. *)
   (doc "v2v-inspection" [] !body : DOM.doc)
-
-(* This is like {!Utils.get_disk_allocated}. *)
-and get_input_disk_allocated uri =
-  let alloc_ctx = "base:allocation" in
-  with_nbd_connect_uri ~uri ~meta_contexts:[alloc_ctx]
-    (fun nbd ->
-      if NBD.can_meta_context nbd alloc_ctx then (
-        (* Get the list of extents, using a 2GiB chunk size as hint. *)
-        let size = NBD.get_size nbd
-        and allocated = ref 0_L
-        and fetch_offset = ref 0_L in
-        while !fetch_offset < size do
-          let remaining = size -^ !fetch_offset in
-          let fetch_size = min 0x8000_0000_L remaining in
-          NBD.block_status nbd fetch_size !fetch_offset
-            (fun ctx offset entries err ->
-              assert (ctx = alloc_ctx);
-              for i = 0 to Array.length entries / 2 - 1 do
-                let len = entries.(i * 2)
-                and typ = entries.(i * 2 + 1) in
-                assert (len > 0_L);
-                if typ &^ 1_L = 0_L then
-                  allocated := !allocated +^ len;
-                fetch_offset := !fetch_offset +^ len
-              done;
-              0
-            )
-        done;
-        Some !allocated
-      ) else None
-    )

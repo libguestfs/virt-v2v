@@ -163,39 +163,42 @@ module OVirt = struct
     ) (List.combine filenames metas);
 
     (* Set up the NBD servers. *)
-    List.iteri (
-      fun i (size, filename) ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i (size, filename) ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        (* Create the actual output disk. *)
-        let changeuid f =
-          Changeuid.func changeuid_t (
-            fun () ->
-              (* Run the command to create the file. *)
-              f ();
-              (* Make the file sufficiently writable so that possibly root, or
-               * root squashed nbdkit will definitely be able to open it.
-               * An example of how root squashing nonsense makes everyone
-               * less secure.
-               *)
-              chmod filename 0o666
-          )
-        in
+          (* Create the actual output disk. *)
+          let changeuid f =
+            Changeuid.func changeuid_t (
+              fun () ->
+                (* Run the command to create the file. *)
+                f ();
+                (* Make the file sufficiently writable so that possibly root,
+                 * or root squashed nbdkit will definitely be able to open it.
+                 * An example of how root squashing nonsense makes everyone
+                 * less secure.
+                 *)
+                chmod filename 0o666
+            )
+          in
 
-        (* We have to wait for the NBD server to exit rather than just
-         * killing it, otherwise it races with unmounting.  See:
-         * https://bugzilla.redhat.com/show_bug.cgi?id=1953286#c26
-         *)
-        let on_exit_kill = Output.KillAndWait in
+          (* We have to wait for the NBD server to exit rather than just
+           * killing it, otherwise it races with unmounting.  See:
+           * https://bugzilla.redhat.com/show_bug.cgi?id=1953286#c26
+           *)
+          let on_exit_kill = Output.KillAndWait in
 
-        output_to_local_file ~changeuid ~on_exit_kill
-          output_alloc output_format filename size socket
-    ) (List.combine input_sizes filenames);
+          output_to_local_file ~changeuid ~on_exit_kill
+            output_alloc output_format filename size socket;
+
+          NBD_URI.Unix (socket, None)
+      ) (List.combine input_sizes filenames) in
 
     (* Save parameters since we need them during finalization. *)
     let t = esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, input_sizes in
-    t
+    t, uris
 
   and mount_and_check_storage_domain domain_class os =
     (* The user can either specify -os nfs:/export, or a local directory
@@ -282,7 +285,7 @@ module OVirt = struct
     (* Looks good, so return the SD mountpoint and UUID. *)
     (mp, uuid)
 
-  let finalize dir options t source inspect target_meta =
+  let finalize dir options t output_disks source inspect target_meta =
     let output_alloc, output_format, output_name, output_storage = options in
     let esd_mp, esd_uuid, vm_uuid, image_uuids, vol_uuids, sizes = t in
 
@@ -303,7 +306,7 @@ module OVirt = struct
     let ovf =
       Create_ovf.create_ovf source inspect target_meta sizes
         output_alloc output_format output_name esd_uuid image_uuids vol_uuids
-        ~need_actual_sizes:true dir vm_uuid
+        ~need_actual_sizes:true output_disks vm_uuid
         Create_ovf.OVirtExportStorageDomain in
 
     (* Write it to the metadata file. *)

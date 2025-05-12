@@ -217,8 +217,7 @@ let with_nbd_connect_uri ?(meta_contexts = []) ~uri f =
        )
     ~finally:(fun () -> NBD.close nbd)
 
-let get_disk_allocated ~dir ~disknr =
-  let uri = sprintf "nbd+unix://?socket=%s/out%d" dir disknr in
+let get_disk_allocated uri =
   let alloc_ctx = "base:allocation" in
   with_nbd_connect_uri ~uri ~meta_contexts:[alloc_ctx]
     (fun nbd ->

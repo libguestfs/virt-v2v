@@ -133,20 +133,23 @@ module Libvirt_ = struct
     let pool_name = Libvirt.Pool.get_name (Libvirt.Pool.const pool) in
 
     (* Set up the NBD servers. *)
-    List.iteri (
-      fun i size ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i size ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        (* Create the actual output disk. *)
-        let outdisk = target_path // output_name ^ "-sd" ^ (drive_name i) in
-        output_to_local_file ~compressed output_alloc output_format
-          outdisk size socket
-    ) input_sizes;
+          (* Create the actual output disk. *)
+          let outdisk = target_path // output_name ^ "-sd" ^ (drive_name i) in
+          output_to_local_file ~compressed output_alloc output_format
+            outdisk size socket;
 
-    (capabilities_xml, pool_name)
+          NBD_URI.Unix (socket, None)
+      ) input_sizes in
 
-  let rec finalize dir options t source inspect target_meta =
+    (capabilities_xml, pool_name), uris
+
+  let rec finalize dir options t output_disks source inspect target_meta =
     let conn, _, output_alloc, output_format, output_name, output_pool =
       options in
     let capabilities_xml, pool_name = t in

@@ -76,16 +76,13 @@ module Null = struct
        *)
       On_exit.kill pid in
 
-    (* Use hard links to the same socket for the other disks. *)
-    List.iteri (
-      fun i _ ->
-        if i > 0 then (
-          let output = sprintf "%s/out%d" dir i in
-          link socket output
-        )
-    ) input_disks
+    (* Same socket repeated for each input disk. *)
+    let uris =
+      List.make (List.length input_disks) (NBD_URI.Unix (socket, None)) in
 
-  let finalize dir () () source inspect target_meta =
+    (), uris
+
+  let finalize dir () () output_disks source inspect target_meta =
     () (* nothing to do *)
 
   let request_size = None

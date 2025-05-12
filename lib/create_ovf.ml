@@ -548,7 +548,8 @@ let rec create_ovf source inspect
           sizes
           output_alloc output_format
           output_name
-          sd_uuid image_uuids vol_uuids ?(need_actual_sizes = false) dir
+          sd_uuid image_uuids vol_uuids
+          ?(need_actual_sizes = false) output_disks
           vm_uuid ovf_flavour =
   assert (List.length sizes = List.length vol_uuids);
 
@@ -763,7 +764,8 @@ let rec create_ovf source inspect
 
   (* Add disks to the OVF XML. *)
   add_disks sizes guestcaps output_alloc output_format
-    sd_uuid image_uuids vol_uuids need_actual_sizes dir ovf_flavour ovf;
+    sd_uuid image_uuids vol_uuids need_actual_sizes output_disks
+    ovf_flavour ovf;
 
   (* Old virt-v2v ignored removable media. XXX *)
 
@@ -812,7 +814,8 @@ and get_flavoured_section ovf ovirt_path esd_path esd_path_attr = function
 
 (* This modifies the OVF DOM, adding a section for each disk. *)
 and add_disks sizes guestcaps output_alloc output_format
-    sd_uuid image_uuids vol_uuids need_actual_sizes dir ovf_flavour ovf =
+    sd_uuid image_uuids vol_uuids need_actual_sizes output_disks
+    ovf_flavour ovf =
   let references =
     let nodes = path_to_nodes ovf ["ovf:Envelope"; "References"] in
     match nodes with
@@ -834,7 +837,7 @@ and add_disks sizes guestcaps output_alloc output_format
 
   (* Iterate over the disks, adding them to the OVF document. *)
   List.iteri (
-    fun i (size, image_uuid, vol_uuid) ->
+    fun i (size, image_uuid, vol_uuid, output_uri) ->
       (* This sets the boot order to boot the first disk first.  This
        * isn't generally correct.  We should copy over the boot order
        * from the source hypervisor.  See long discussion in
@@ -862,7 +865,7 @@ and add_disks sizes guestcaps output_alloc output_format
       let size_gb = bytes_to_gb size in
       let actual_size =
         if need_actual_sizes then
-          get_disk_allocated ~dir ~disknr:i
+          get_disk_allocated (NBD_URI.to_uri output_uri)
         else
           None
       in
@@ -960,7 +963,7 @@ and add_disks sizes guestcaps output_alloc output_format
 
         e "Item" [] !item_subnodes in
       append_child item virtualhardware_section;
-  ) (List.combine3 sizes image_uuids vol_uuids)
+  ) (List.combine4 sizes image_uuids vol_uuids output_disks)
 
 (* This modifies the OVF DOM, adding a section for each NIC. *)
 and add_networks nics guestcaps ovf_flavour ovf =

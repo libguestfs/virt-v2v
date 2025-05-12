@@ -47,7 +47,9 @@ val create_ovf : Types.source -> Types.inspect ->
                  Types.target_meta -> int64 list ->
                  Types.output_allocation -> string -> string ->
                  string -> string list ->
-                 string list -> ?need_actual_sizes:bool -> string -> string ->
+                 string list ->
+                 ?need_actual_sizes:bool -> NBD_URI.t list ->
+                 string ->
                  ovf_flavour -> DOM.doc
 (** Create the OVF file.
 

@@ -47,16 +47,17 @@ module type OUTPUT = sig
       stores the parsed information and is passed to both
       {!setup} and {!finalize} methods. *)
 
-  val setup : string -> poptions -> Types.source -> NBD_URI.t list -> t
+  val setup : string -> poptions -> Types.source -> NBD_URI.t list ->
+              t * NBD_URI.t list
   (** [setup dir poptions source input_disks]
 
       Set up the output mode.  Sets up a disk pipeline
-      [dir // "outX"] for each output disk. *)
+      for each output disk, and returns the list of output disks. *)
 
-  val finalize : string -> poptions -> t ->
+  val finalize : string -> poptions -> t -> NBD_URI.t list ->
                  Types.source -> Types.inspect -> Types.target_meta ->
                  unit
-  (** [finalize dir poptions t inspect target_meta]
+  (** [finalize dir poptions t output_disks inspect target_meta]
 
       Finalizes the conversion and writes metadata. *)
 

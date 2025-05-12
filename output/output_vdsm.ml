@@ -199,20 +199,23 @@ For each disk you must supply one of each of these options:
     ) (List.combine filenames metas);
 
     (* Set up the NBD servers. *)
-    List.iteri (
-      fun i (size, filename) ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i (size, filename) ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        (* Create the actual output disk. *)
-        output_to_local_file output_alloc output_format filename size socket
-    ) (List.combine input_sizes filenames);
+          (* Create the actual output disk. *)
+          output_to_local_file output_alloc output_format filename size socket;
+
+          NBD_URI.Unix (socket, None)
+      ) (List.combine input_sizes filenames) in
 
     (* Save parameters since we need them during finalization. *)
     let t = dd_mp, dd_uuid, input_sizes in
-    t
+    t, uris
 
-  let finalize dir options t source inspect target_meta =
+  let finalize dir options t output_disks source inspect target_meta =
     let output_alloc, output_format,
         output_name, output_storage,
         image_uuids, vol_uuids, vm_uuid, ovf_output,
@@ -224,7 +227,7 @@ For each disk you must supply one of each of these options:
                 output_alloc output_format output_name dd_uuid
                 image_uuids
                 vol_uuids
-                dir
+                output_disks
                 vm_uuid
                 ovf_flavour in
 

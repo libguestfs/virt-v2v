@@ -81,19 +81,22 @@ module Glance = struct
     let tmpdir = Mkdtemp.temp_dir ~base_dir:large_tmpdir "glance." in
 
     (* This will write disks to the large temporary directory. *)
-    List.iteri (
-      fun i size ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i size ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        (* Create the actual output disk. *)
-        let outdisk = sprintf "%s/%d" tmpdir i in
-        output_to_local_file Sparse output_format outdisk size socket
-    ) input_sizes;
+          (* Create the actual output disk. *)
+          let outdisk = sprintf "%s/%d" tmpdir i in
+          output_to_local_file Sparse output_format outdisk size socket;
 
-    tmpdir
+          NBD_URI.Unix (socket, None)
+    ) input_sizes in
 
-  let finalize dir options tmpdir source inspect target_meta =
+    tmpdir, uris
+
+  let finalize dir options tmpdir output_disks source inspect target_meta =
     let output_format, output_name = options in
 
     let min_ram = source.s_memory /^ 1024L /^ 1024L in

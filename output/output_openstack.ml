@@ -382,17 +382,21 @@ The os-* parameters and environment variables are optional.
     let devices = List.map attach_volume !volume_ids in
 
     (* Create nbdkit instances for each device node. *)
-    List.iteri (
-      fun i (size, dev) ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i (size, dev) ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        output_to_local_file Sparse "raw" dev size socket
-      ) (List.combine input_sizes devices);
+          output_to_local_file Sparse "raw" dev size socket;
 
-    !volume_ids
+          NBD_URI.Unix (socket, None)
+      ) (List.combine input_sizes devices) in
 
-  let rec finalize dir options volume_ids source inspect target_meta =
+    !volume_ids, uris
+
+  let rec finalize dir options volume_ids output_disks
+            source inspect target_meta =
     let output_storage, output_name,
         server_id, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in

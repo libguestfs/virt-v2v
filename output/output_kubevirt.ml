@@ -92,18 +92,23 @@ module Kubevirt = struct
     let compressed, output_alloc, output_format, output_name, output_storage =
       options in
 
-    List.iteri (
-      fun i size ->
-        let socket = sprintf "%s/out%d" dir i in
-        On_exit.unlink socket;
+    let uris =
+      List.mapi (
+        fun i size ->
+          let socket = sprintf "%s/out%d" dir i in
+          On_exit.unlink socket;
 
-        (* Create the actual output disk. *)
-        let outdisk = disk_path output_storage output_name i in
-        output_to_local_file ~compressed output_alloc output_format
-          outdisk size socket
-    ) input_sizes
+          (* Create the actual output disk. *)
+          let outdisk = disk_path output_storage output_name i in
+          output_to_local_file ~compressed output_alloc output_format
+            outdisk size socket;
 
-  let finalize dir options () source inspect target_meta =
+          NBD_URI.Unix (socket, None)
+      ) input_sizes in
+
+    (), uris
+
+  let finalize dir options () output_disks source inspect target_meta =
     let _, output_alloc, output_format, output_name, output_storage = options in
 
     let doc = create_kubevirt_yaml source inspect target_meta
