@@ -414,7 +414,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     let uris =
       List.combine disks file_overrides |>
       List.mapi (
-        fun i ({ d_format = format; d_type }, file_override) ->
+        fun i ({ d_type }, file_override) ->
           let socket = sprintf "%s/in%d" dir i in
           On_exit.unlink socket;
 
