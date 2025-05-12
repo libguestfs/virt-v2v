@@ -33,6 +33,9 @@ val have_selinux : bool
 val uri_quote : string -> string
 (** Take a string and perform %xx escaping as used in some parts of URLs. *)
 
+val fnmatch_escape : string -> string
+(** Escape characters like [?] and [*] which are special for fnmatch(3).  *)
+
 val kvm_arch : string -> string
 (** Map guest architecture found by inspection to the architecture
     that KVM must emulate.  Note for x86 we assume a 64 bit hypervisor. *)

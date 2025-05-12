@@ -410,34 +410,75 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
       cmd
     in
 
-    (* Create an nbdkit instance for each disk. *)
-    let uris =
+    (* Collect all the VDDK filename(s) we will be accessing, one
+     * for each input disk.  This takes into account the
+     * '-io vddk-file' override.
+     *)
+    let files =
       List.combine disks file_overrides |>
-      List.mapi (
-        fun i ({ d_type }, file_override) ->
-          let socket = sprintf "%s/in%d" dir i in
-          On_exit.unlink socket;
+      List.map (
+        function
+        (* These should never happen? *)
+          | { d_type = BlockDev _ | NBD _ | HTTP _ }, _ ->
+             assert false
 
-          (match d_type with
-           | BlockDev _ | NBD _ | HTTP _ -> (* These should never happen? *)
-              assert false
+          | { d_type = LocalFile file }, None ->
+             (* The <source file=...> attribute returned by the libvirt
+              * VMX driver looks like "[datastore] path".  We can use it
+              * directly as the nbdkit file= parameter, and it is passed
+              * directly in this form to VDDK.
+              *)
+             file
 
-           | LocalFile orig_file ->
-              (* If -io vddk-file, override it here. *)
-              let file = Option.value file_override ~default:orig_file in
+          | { d_type = LocalFile _ }, Some file_override ->
+             (* If -io vddk-file, override it here. *)
+             file_override
+      ) in
+    assert (files <> []);
 
-              (* The <source file=...> attribute returned by the libvirt
-               * VMX driver looks like "[datastore] path".  We can use it
-               * directly as the nbdkit file= parameter, and it is passed
-               * directly in this form to VDDK.
-               *)
-              let nbdkit = create_nbdkit_vddk () in
-              Nbdkit.add_arg nbdkit "file" file;
-              let _, pid = Nbdkit.run_unix socket nbdkit in
-              On_exit.kill pid
-          );
+    let uris =
+      (* If nbdkit-vddk-plugin has the 'export' feature (added in
+       * nbdkit 1.43.8) then we only have to run a single
+       * instance of nbdkit.
+       *)
+      if Nbdkit.probe_plugin_parameter "vddk" "export=" then (
+        let wildcard =
+          match files with
+          | [] -> assert false (* can't happen, see assert above *)
+          | [f] -> f
+          | files ->
+             (* Calculate the longest common prefix across all the files,
+              * then set the wildcard to this.
+              * XXX May not work if there are subdirectories?
+              * XXX Is every file we want to read called *.vmdk?
+              *)
+             let prefix = String.longest_common_prefix files in
+             fnmatch_escape prefix ^ "*.vmdk" in
 
-          NBD_URI.Unix (socket, None)
+        let socket = sprintf "%s/in0" dir in
+        On_exit.unlink socket;
+
+        let nbdkit = create_nbdkit_vddk () in
+        Nbdkit.add_arg nbdkit "export" wildcard;
+        let _, pid = Nbdkit.run_unix socket nbdkit in
+        On_exit.kill pid;
+
+        (* Use NBD export names to select the right disk to read. *)
+        List.map (fun file -> NBD_URI.Unix (socket, Some file)) files
+      ) else (
+        (* Create an nbdkit instance for each disk. *)
+        List.mapi (
+          fun i file ->
+            let socket = sprintf "%s/in%d" dir i in
+            On_exit.unlink socket;
+
+            let nbdkit = create_nbdkit_vddk () in
+            Nbdkit.add_arg nbdkit "file" file;
+            let _, pid = Nbdkit.run_unix socket nbdkit in
+            On_exit.kill pid;
+
+            NBD_URI.Unix (socket, None)
+        ) files
       ) in
 
     source, uris

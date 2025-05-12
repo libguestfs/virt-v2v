@@ -54,6 +54,21 @@ let uri_quote str =
   done;
   String.concat "" (List.rev !xs)
 
+(* Escape characters like [?] and [*] which are special for fnmatch(3). *)
+let fnmatch_escape str =
+  let len = String.length str in
+  let xs = ref [] in
+  for i = 0 to len-1 do
+    xs :=
+      (match str.[i] with
+       | '[' | ']' | '?' | '*' as c ->
+          sprintf "\\%c" c
+       | c ->
+          String.make 1 c
+      ) :: !xs
+  done;
+  String.concat "" (List.rev !xs)
+
 (* Map guest architecture found by inspection to the architecture
  * that KVM must emulate.  Note for x86 we assume a 64 bit hypervisor.
  *)
