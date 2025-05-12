@@ -82,6 +82,19 @@ val error_if_disk_count_gt : NBD_URI.t list -> int -> unit
     [error_if_disk_count_gt input_disks n] checks whether the domain
     has more than [n] disks that need to be copied. *)
 
+val create_local_output_disks : string ->
+                                ?compressed:bool ->
+                                Types.output_allocation ->
+                                string -> string -> string ->
+                                NBD_URI.t list ->
+                                NBD_URI.t list
+(** When an output mode wants to create one output disk per
+    input disk, using the names "<output_storage>/<output_name>-sdX",
+    this function does it all, taking a list of input NBD URIs and
+    returning a list of output NBD URIs.
+
+    For anything more complicated, use {!output_to_local_file} instead. *)
+
 type on_exit_kill = Kill | KillAndWait
 
 val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->

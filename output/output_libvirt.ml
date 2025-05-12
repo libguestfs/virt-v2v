@@ -73,7 +73,6 @@ module Libvirt_ = struct
      output_name, output_pool)
 
   let setup dir options source input_disks =
-    let input_sizes = get_disk_sizes input_disks in
     let conn, compressed, output_alloc, output_format,
         output_name, output_pool = options in
     let conn = Lazy.force conn in
@@ -134,18 +133,8 @@ module Libvirt_ = struct
 
     (* Set up the NBD servers. *)
     let uris =
-      List.mapi (
-        fun i size ->
-          let socket = sprintf "%s/out%d" dir i in
-          On_exit.unlink socket;
-
-          (* Create the actual output disk. *)
-          let outdisk = disk_path target_path output_name i in
-          output_to_local_file ~compressed output_alloc output_format
-            outdisk size socket;
-
-          NBD_URI.Unix (socket, None)
-      ) input_sizes in
+      create_local_output_disks dir ~compressed output_alloc output_format
+        output_name target_path input_disks in
 
     (capabilities_xml, pool_name), uris
 
