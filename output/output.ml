@@ -102,10 +102,8 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
     | "raw" ->
        let cmd = Nbdkit.create "file" in
        Nbdkit.add_arg cmd "file" filename;
-       if Nbdkit.version () >= (1, 22, 0) then (
-         let cmd = Nbdkit.add_arg cmd "cache" "none" in
-         cmd
-       );
+       if Nbdkit.version () >= (1, 22, 0) then
+         Nbdkit.add_arg cmd "cache" "none";
        let _, pid = Nbdkit.run_unix socket cmd in
        pid
 
