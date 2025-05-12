@@ -33,7 +33,6 @@ SOURCES_MLI = \
 	name_from_disk.mli \
 	nbdkit_curl.mli \
 	nbdkit_ssh.mli \
-	nbdkit_vddk.mli \
 	OVA.mli \
 	OVF.mli \
 	parse_domain_from_vmx.mli \
@@ -50,7 +49,6 @@ SOURCES_ML = \
 	OVA.ml \
 	nbdkit_curl.ml \
 	nbdkit_ssh.ml \
-	nbdkit_vddk.ml \
 	ssh.ml \
 	parse_vmx.ml \
 	parse_domain_from_vmx.ml \
