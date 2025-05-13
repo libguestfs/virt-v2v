@@ -138,6 +138,9 @@ OCaml E<ge> 4.08 is now required.
 
 libnbd E<ge> 1.14 is now required.
 
+nbdkit E<ge> 1.28 is now required, although it is better to use more
+recent versions where possible.
+
 OCaml oUnit is no longer used.
 
 We now assume that C<__attribute__((cleanup))> always works.  This
@@ -169,8 +172,21 @@ L<nbdkit-cacheextents-filter(1)> is no longer used, as it did not help
 performance now that we have switched to using L<nbdcopy(1)> (thanks
 Martin Kletzander).
 
+With multi-disk guests, in some common cases we are now able to use a
+single L<nbdkit(1)> instance to read or write all disks, instead of
+needing to run an nbdkit instance per disk, which can greatly reduce
+the number of external processes that virt-v2v will run.  The
+performance and results should not be different.  To take full
+advantage of this you have to use nbdkit E<ge> 1.44.
+
 Several typos and spelling mistakes in the documentation were fixed
 (thanks Eric Blake).
+
+Duplicated code used to parse input (I<-i>) and output (I<-o>))
+options across the tools has been refactored in one place.
+
+Some internal OCaml List and String functions that we used have been
+replaced by ones from the OCaml stdlib, reducing code maintenance.
 
 =head2 Bugs fixed
 
@@ -178,7 +194,7 @@ Several typos and spelling mistakes in the documentation were fixed
 
 ./bugs-in-changelog.sh v2.6.0..
 
-# List below updated to d6990738b05d91a9491e9dbfe6480033e1f4ea86
+# List below updated to b49ee1436870f720cd0a4aee7593f38fa9f4089f
 
 =end comment
 
@@ -261,10 +277,18 @@ There is no nbdcopy info in v2v debug log since virt-v2v version
 
 virt-v2v-inspector is failing on snapshots of running VMs [rhel-9.7]
 
+=item L<https://issues.redhat.com/browse/RHEL-88985>
+
+Add possible roots to the virt-v2v-inspector output [rhel-9.7]
+
 =item L<https://github.com/libguestfs/virt-v2v/issues/79>
 
 virt-v2v 2.7.4 error: libguestfs error: you must call
 guestfs_add_drive before guestfs_launch
+
+=item L<https://github.com/libguestfs/virt-v2v/issues/86>
+
+Rename RHV to oVirt
 
 =back
 
