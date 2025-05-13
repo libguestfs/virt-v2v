@@ -1,35 +1,30 @@
-virt-v2v -o ovirt-upload
-----------------------
+To-do list for virt-v2v
+======================================================================
 
-* Set or disable the ticket timeout.  The default is going to be
-  increased (from current 60 seconds), so maybe we won't have to
-  set it.  See also:
-  https://bugzilla.redhat.com/show_bug.cgi?id=1563278
+We open the input NBD endpoint up to 5 times per disk during a
+conversion (especially if --verbose mode is used):
 
-* qcow2 cannot be supported yet because there is not yet any
-  concept in imageio of read+write handles.
-  https://bugzilla.redhat.com/show_bug.cgi?id=1563299
+ * Once for conversion
 
-* preallocated cannot be supported yet because imageio doesn't
-  know how to zero the image efficiently, instead it runs an
-  fallocate process which writes to every block and that takes
-  many minutes.
+ * nbdinfo opens the connection twice (because we're using --content)
 
-* Really check what insecure/rhv_cafile do and implement it correctly.
+ * The output side opens the input connection just to get the virtual
+   size of the disk, so it knows how large to create the output disk.
+   (Could be avoided if conversion kept this information, but that's a
+   layering violation.)
 
-* Measure and resolve performance problems.
+ * once for nbdcopy
 
-* Allocated image size is unknown for v2v uploads, but imageio needs
-  to know it.  We pass initial_size == provisioned_size == virtual size.
-  That can't be fixed from the v2v side.
+This has quite a lot of overhead for some inputs.  For VDDK, opening a
+connection is very slow.  In one conversion of a guest with 5 disks I
+measured 10% of the total run time of virt-v2v being spent simply
+opening VDDK connections (5 x 5 = 25 times in all).
 
-* There are unresolved issues about how to clean up disks on failure.
+--
 
-virt-v2v -o openstack
----------------------
-
-Use the metadata service to find the -oo server-id setting.  It would
-no longer need to be specified on the command line.  Note there are
-two variations of metadata service in OpenStack, either the config
-disk or link-local network address.  We would need to support both, or
-the possibility that there is no metadata service.
+In virt-v2v -o openstack Use the metadata service to find the -oo
+server-id setting.  It would no longer need to be specified on the
+command line.  Note there are two variations of metadata service in
+OpenStack, either the config disk or link-local network address.  We
+would need to support both, or the possibility that there is no
+metadata service.
