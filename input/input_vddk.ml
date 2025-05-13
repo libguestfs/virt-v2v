@@ -166,7 +166,8 @@ information on these settings.
       match uri.Xml.uri_server with
       | Some server -> server
       | None ->
-         error (f_"‘-ic %s’ URL does not contain a host name field") input_conn in
+         error (f_"‘-ic %s’ URL does not contain a host name field")
+           input_conn in
 
     (* For VDDK we require some user.  If it's not supplied, assume root. *)
     let user = uri.Xml.uri_user |> Option.value ~default:"root" in
