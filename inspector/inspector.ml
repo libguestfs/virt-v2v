@@ -238,11 +238,9 @@ read the man page virt-v2v-inspector(1).
       pr "mac-option\n";
       pr "mac-ip-option\n";
       pr "customize-ops\n";
-      pr "input:disk\n";
-      pr "input:libvirt\n";
-      pr "input:libvirtxml\n";
-      pr "input:ova\n";
-      pr "input:vmx\n";
+      Select_input.input_modes |>
+        List.map Select_input.string_of_input_mode |>
+        List.iter (pr "input:%s\n");
       pr "convert:linux\n";
       pr "convert:windows\n";
       List.iter (pr "ovf:%s\n") Create_ovf.ovf_flavours;

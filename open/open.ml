@@ -145,11 +145,9 @@ read the man page virt-v2v-open(1).
       pr "libguestfs-rewrite\n";
       pr "colours-option\n";
       pr "io\n";
-      pr "input:disk\n";
-      pr "input:libvirt\n";
-      pr "input:libvirtxml\n";
-      pr "input:ova\n";
-      pr "input:vmx\n";
+      Select_input.input_modes |>
+        List.map Select_input.string_of_input_mode |>
+        List.iter (pr "input:%s\n");
       exit 0
    | _, _ -> ()
   );

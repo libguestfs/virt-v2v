@@ -345,23 +345,12 @@ read the man page virt-v2v(1).
       pr "mac-ip-option\n";
       pr "parallel-option\n";
       pr "customize-ops\n";
-      pr "input:disk\n";
-      pr "input:libvirt\n";
-      pr "input:libvirtxml\n";
-      pr "input:ova\n";
-      pr "input:vmx\n";
-      pr "output:glance\n";
-      pr "output:kubevirt\n";
-      pr "output:libvirt\n";
-      pr "output:local\n";
-      pr "output:null\n";
-      pr "output:openstack\n";
-      pr "output:ovirt\n";
-      pr "output:ovirt-upload\n";
-      pr "output:qemu\n";
-      pr "output:rhv\n";
-      pr "output:rhv-upload\n";
-      pr "output:vdsm\n";
+      Select_input.input_modes |>
+        List.map Select_input.string_of_input_mode |>
+        List.iter (pr "input:%s\n");
+      Select_output.output_modes |>
+        List.map Select_output.string_of_output_mode |>
+        List.iter (pr "output:%s\n");
       pr "convert:linux\n";
       pr "convert:windows\n";
       List.iter (pr "ovf:%s\n") Create_ovf.ovf_flavours;
