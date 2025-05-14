@@ -24,6 +24,12 @@ type input_mode =
   | VMX
 (** [-i] option on the command line *)
 
+val input_modes : input_mode list
+(** A list of the available input modes. *)
+
+val string_of_input_mode : input_mode -> string
+(** Return the canonical string form of an input mode *)
+
 val input_mode_of_string : string -> input_mode
 (** Return the input mode corresponding to a string.  This is
     used when parsing the command line.  If the input mode

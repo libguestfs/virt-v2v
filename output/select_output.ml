@@ -31,6 +31,31 @@ type output_mode =
   | QEmu
   | VDSM
 
+let output_modes = [
+    Disk;
+    Glance;
+    Kubevirt;
+    Libvirt;
+    Null;
+    Openstack;
+    OVirt;
+    OVirt_Upload;
+    QEmu;
+    VDSM;
+  ]
+
+let string_of_output_mode = function
+  | Disk -> "disk"
+  | Glance -> "glance"
+  | Kubevirt -> "kubevirt"
+  | Libvirt -> "libvirt"
+  | Null -> "null"
+  | Openstack -> "openstack"
+  | OVirt -> "ovirt"
+  | OVirt_Upload -> "ovirt-upload"
+  | QEmu -> "qemu"
+  | VDSM -> "vdsm"
+
 let output_mode_of_string = function
   | "glance" -> Glance
   | "kubevirt" -> Kubevirt

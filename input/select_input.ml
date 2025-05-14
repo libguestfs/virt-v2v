@@ -26,6 +26,21 @@ type input_mode =
   | OVA
   | VMX
 
+let input_modes = [
+    Disk;
+    Libvirt;
+    LibvirtXML;
+    OVA;
+    VMX;
+  ]
+
+let string_of_input_mode = function
+  | Disk -> "disk"
+  | Libvirt -> "libvirt"
+  | LibvirtXML -> "libvirtxml"
+  | OVA -> "ova"
+  | VMX -> "vmx"
+
 let input_mode_of_string = function
   | "disk" | "local" -> Disk
   | "libvirt" -> Libvirt

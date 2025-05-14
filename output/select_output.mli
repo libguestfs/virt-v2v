@@ -29,6 +29,12 @@ type output_mode =
   | VDSM
 (** [-o] option on the command line *)
 
+val output_modes : output_mode list
+(** A list of the available output modes. *)
+
+val string_of_output_mode : output_mode -> string
+(** Return the canonical string form of an output mode *)
+
 val output_mode_of_string : string -> output_mode
 (** Return the output mode corresponding to a string.  This is
     used when parsing the command line.  If the output mode
