@@ -58,6 +58,10 @@ let rec main () =
     )
   in
 
+  let input_modes =
+    Select_input.input_modes |>
+    List.map Select_input.string_of_input_mode |>
+    String.concat "|" in
   let input_mode = ref None in
   let set_input_mode mode =
     if !input_mode <> None then
@@ -68,7 +72,7 @@ let rec main () =
   let command_template = ref None in
 
   let argspec = [
-    [ S 'i' ],       Getopt.String ("disk|libvirt|libvirtxml|ova|vmx", set_input_mode),
+    [ S 'i' ],       Getopt.String (input_modes, set_input_mode),
                                     s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
                                     s_"Libvirt URI";

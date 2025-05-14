@@ -166,6 +166,10 @@ let rec main () =
   (* Other options that we handle here. *)
   let print_source = ref false in
 
+  let input_modes =
+    Select_input.input_modes |>
+    List.map Select_input.string_of_input_mode |>
+    String.concat "|" in
   let input_mode = ref None in
   let set_input_mode mode =
     if !input_mode <> None then
@@ -173,6 +177,10 @@ let rec main () =
     input_mode := Some (Select_input.input_mode_of_string mode)
   in
 
+  let output_modes =
+    Select_output.output_modes |>
+    List.map Select_output.string_of_output_mode |>
+    String.concat "|" in
   let output_mode = ref None in
   let set_output_mode mode =
     if !output_mode <> None then
@@ -195,7 +203,7 @@ let rec main () =
       s_"Map bridge ‘in’ to ‘out’";
     [ L"block-driver" ], Getopt.String ("driver", set_string_option_once "--block-driver" block_driver),
                                     s_"Prefer 'virtio-blk' or 'virtio-scsi'";
-    [ S 'i' ],       Getopt.String ("disk|libvirt|libvirtxml|ova|vmx", set_input_mode),
+    [ S 'i' ],       Getopt.String (input_modes, set_input_mode),
       s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
                                     s_"Libvirt URI";
@@ -213,7 +221,7 @@ let rec main () =
       s_"Map NIC to network or bridge or assign static IP";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
       s_"Map network ‘in’ to ‘out’";
-    [ S 'o' ],       Getopt.String ("glance|kubevirt|libvirt|local|null|openstack|ovirt|ovirt-upload|qemu|vdsm", set_output_mode),
+    [ S 'o' ],       Getopt.String (output_modes, set_output_mode),
       s_"Set output mode (default: libvirt)";
     [ M"oa" ],       Getopt.String ("sparse|preallocated", set_output_alloc),
                                     s_"Set output allocation mode";
