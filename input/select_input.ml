@@ -19,7 +19,12 @@
 open Tools_utils
 open Common_gettext.Gettext
 
-type input_mode = Disk | Libvirt | LibvirtXML | OVA | VMX
+type input_mode =
+  | Disk
+  | Libvirt
+  | LibvirtXML
+  | OVA
+  | VMX
 
 let input_mode_of_string = function
   | "disk" | "local" -> Disk

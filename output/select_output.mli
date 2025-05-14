@@ -16,8 +16,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-type output_mode = Disk | Glance | Kubevirt | Libvirt | Null
-                   | Openstack | OVirt | OVirt_Upload | QEmu | VDSM
+type output_mode =
+  | Disk
+  | Glance
+  | Kubevirt
+  | Libvirt
+  | Null
+  | Openstack
+  | OVirt
+  | OVirt_Upload
+  | QEmu
+  | VDSM
 (** [-o] option on the command line *)
 
 val output_mode_of_string : string -> output_mode

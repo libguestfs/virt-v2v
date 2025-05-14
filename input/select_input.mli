@@ -16,7 +16,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-type input_mode = Disk | Libvirt | LibvirtXML | OVA | VMX
+type input_mode =
+  | Disk
+  | Libvirt
+  | LibvirtXML
+  | OVA
+  | VMX
 (** [-i] option on the command line *)
 
 val input_mode_of_string : string -> input_mode

@@ -19,8 +19,17 @@
 open Tools_utils
 open Common_gettext.Gettext
 
-type output_mode = Disk | Glance | Kubevirt | Libvirt | Null
-                   | Openstack | OVirt | OVirt_Upload | QEmu | VDSM
+type output_mode =
+  | Disk
+  | Glance
+  | Kubevirt
+  | Libvirt
+  | Null
+  | Openstack
+  | OVirt
+  | OVirt_Upload
+  | QEmu
+  | VDSM
 
 let output_mode_of_string = function
   | "glance" -> Glance
