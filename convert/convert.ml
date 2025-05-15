@@ -81,6 +81,10 @@ let rec convert input_disks options source =
   (* Decrypt the disks. *)
   inspect_decrypt g options.ks;
 
+  (* Check (fsck) the filesystems before conversion. *)
+  message (f_"Checking filesystem integrity before conversion");
+  do_fsck g;
+
   (* Detect firmware. *)
   message (f_"Detecting if this guest uses BIOS or UEFI to boot");
   let i_firmware = Firmware.detect_firmware g in
@@ -109,6 +113,11 @@ let rec convert input_disks options source =
    *)
   message (f_"Mapping filesystem data to avoid copying unused and blank areas");
   do_fstrim g inspect;
+
+  (* Check (fsck) the filesystems after conversion. *)
+  g#umount_all ();
+  message (f_"Checking filesystem integrity after conversion");
+  do_fsck g;
 
   message (f_"Closing the overlay");
   g#umount_all ();
@@ -221,6 +230,43 @@ and do_fstrim g inspect =
                       \"Trimming\" in virt-v2v(1).\n\n\
                       Original message: %s") dev msg
       )
+  ) fses
+
+(* Perform fsck before and after conversion.
+ *
+ * If fsck returns an error then the conversion will fail.  We do not
+ * attempt to do any repairs.
+ *)
+and do_fsck g =
+  let fses = g#list_filesystems () in
+  List.iter (function
+      | dev, _ when String.starts_with "btrfsvol:" dev ->
+         (* Ignore btrfs volumes, since we should see the btrfs device
+          * somewhere else in the list and checking that is sufficient.
+          *)
+         ()
+
+      | dev, "btrfs" ->
+         (* btrfs-check would be the obvious thing, but the general
+          * opinion seems to be that it's broken, and you should use
+          * btrfs scrub instead.
+          *)
+         Fun.protect ~finally:g#umount_all (
+           fun () ->
+             g#mount_ro dev "/";
+             g#btrfs_scrub_full "/" ~readonly:true;
+         );
+
+      | dev, "ext4" ->
+         g#e2fsck dev (* ~correct:false is the default *)
+
+      | dev, "xfs" ->
+         if g#xfs_repair ~nomodify:true dev <> 0 then
+           error (f_"detected errors on the XFS filesystem on %s") dev
+
+      | _, _ ->
+         (* Ignore other filesystem types. *)
+         ()
   ) fses
 
 (* Conversion. *)
