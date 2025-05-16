@@ -49,6 +49,12 @@ unnecessary debugging and SRIOV files.  Libosinfo is no longer used
 for this as the osinfo metadata used had grown out of date.  (Cole
 Robinson)
 
+We now check filesystem integrity (using tools like L<fsck(8)>) before
+and after conversion, to ensure both that we fully understand the
+filesystem before conversion and that no corruption has happened
+during conversion.  At the moment this is only implemented for Btrfs,
+ext4 and XFS.
+
 =head2 Features removed
 
 Handling of I<kmod-xenpv> has been removed.  This only applied to RHEL
