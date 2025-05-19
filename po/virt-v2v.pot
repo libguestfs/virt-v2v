@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.7.15\n"
+"Project-Id-Version: virt-v2v 2.7.16\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-05-12 16:30+0100\n"
+"POT-Creation-Date: 2025-05-19 14:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,11 +64,11 @@ msgid "%s is not a regular file in the guest"
 msgstr ""
 
 #. open/open.ml:39
-#. inspector/inspector.ml:142
+#. inspector/inspector.ml:146
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:154
+#. in-place/in_place.ml:158
 #. in-place/in_place.ml:45
-#: v2v/v2v.ml:179 v2v/v2v.ml:172 v2v/v2v.ml:152 v2v/v2v.ml:44 open/open.ml:64
+#: v2v/v2v.ml:187 v2v/v2v.ml:176 v2v/v2v.ml:152 v2v/v2v.ml:44 open/open.ml:68
 msgid "%s option used more than once on the command line"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "%s: command exited with an error"
 msgstr ""
 
-#: v2v/v2v.ml:250
+#: v2v/v2v.ml:258
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -117,7 +117,7 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: in-place/in_place.ml:195
+#: in-place/in_place.ml:199
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -132,7 +132,7 @@ msgid ""
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
-#: input/input_vddk.ml:186
+#: input/input_vddk.ml:187
 msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
@@ -140,7 +140,7 @@ msgstr ""
 msgid "%s: error: %s"
 msgstr ""
 
-#: inspector/inspector.ml:181
+#: inspector/inspector.ml:185
 msgid ""
 "%s: estimate disk space needed before virt-v2v conversion\n"
 "\n"
@@ -150,7 +150,7 @@ msgid ""
 "read the man page virt-v2v-inspector(1).\n"
 msgstr ""
 
-#: open/open.ml:90
+#: open/open.ml:94
 msgid ""
 "%s: open the virt-v2v input and run a program on it\n"
 "\n"
@@ -212,7 +212,7 @@ msgstr ""
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 
-#: v2v/v2v.ml:316
+#: v2v/v2v.ml:324
 msgid "--parallel parameter must be >= 1"
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr ""
 msgid "Copying (in image): %s to %s"
 msgstr ""
 
-#: v2v/v2v.ml:493
+#: v2v/v2v.ml:490
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -537,7 +537,7 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:542
+#: v2v/v2v.ml:539
 msgid "Creating output metadata"
 msgstr ""
 
@@ -597,7 +597,7 @@ msgstr ""
 msgid "Export Storage Domain"
 msgstr ""
 
-#: open/open.ml:84
+#: open/open.ml:88
 msgid "External command to run"
 msgstr ""
 
@@ -627,8 +627,8 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#. in-place/in_place.ml:350
-#: v2v/v2v.ml:546 open/open.ml:218 inspector/inspector.ml:313
+#. in-place/in_place.ml:352
+#: v2v/v2v.ml:543 open/open.ml:220 inspector/inspector.ml:315
 msgid "Finishing off"
 msgstr ""
 
@@ -636,7 +636,7 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:237 inspector/inspector.ml:168 in-place/in_place.ml:182
+#: v2v/v2v.ml:245 inspector/inspector.ml:172 in-place/in_place.ml:186
 msgid "How to choose root filesystem"
 msgstr ""
 
@@ -664,8 +664,8 @@ msgstr ""
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
-#. in-place/in_place.ml:168
-#: v2v/v2v.ml:203 open/open.ml:76 inspector/inspector.ml:154
+#. in-place/in_place.ml:172
+#: v2v/v2v.ml:211 open/open.ml:80 inspector/inspector.ml:158
 msgid "Input format"
 msgstr ""
 
@@ -694,7 +694,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:209 open/open.ml:82 inspector/inspector.ml:160
+#: v2v/v2v.ml:217 open/open.ml:86 inspector/inspector.ml:164
 msgid "Input transport"
 msgstr ""
 
@@ -718,8 +718,8 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#. in-place/in_place.ml:166
-#: v2v/v2v.ml:201 open/open.ml:74 inspector/inspector.ml:152
+#. in-place/in_place.ml:170
+#: v2v/v2v.ml:209 open/open.ml:78 inspector/inspector.ml:156
 msgid "Libvirt URI"
 msgstr ""
 
@@ -741,15 +741,15 @@ msgstr ""
 msgid "Making directory: %s"
 msgstr ""
 
-#: v2v/v2v.ml:213 inspector/inspector.ml:162 in-place/in_place.ml:174
+#: v2v/v2v.ml:221 inspector/inspector.ml:166 in-place/in_place.ml:178
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:195 inspector/inspector.ml:148 in-place/in_place.ml:160
+#: v2v/v2v.ml:203 inspector/inspector.ml:152 in-place/in_place.ml:164
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:215 inspector/inspector.ml:164 in-place/in_place.ml:176
+#: v2v/v2v.ml:223 inspector/inspector.ml:168 in-place/in_place.ml:180
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -786,7 +786,7 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:221
+#: v2v/v2v.ml:229
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -870,11 +870,11 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:197 in-place/in_place.ml:162
+#: v2v/v2v.ml:205 in-place/in_place.ml:166
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
 msgstr ""
 
-#: v2v/v2v.ml:235 in-place/in_place.ml:180
+#: v2v/v2v.ml:243 in-place/in_place.ml:184
 msgid "Print source and stop"
 msgstr ""
 
@@ -910,7 +910,7 @@ msgstr ""
 msgid "Removing all the subscriptions"
 msgstr ""
 
-#: v2v/v2v.ml:225
+#: v2v/v2v.ml:233
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -934,11 +934,11 @@ msgstr ""
 msgid "Run touch on a file"
 msgstr ""
 
-#: v2v/v2v.ml:233
+#: v2v/v2v.ml:241
 msgid "Run up to N instances of nbdcopy in parallel"
 msgstr ""
 
-#: open/open.ml:186
+#: open/open.ml:188
 msgid "Running external command"
 msgstr ""
 
@@ -996,41 +996,41 @@ msgstr ""
 msgid "Scrubbing: %s"
 msgstr ""
 
-#: v2v/v2v.ml:193
+#: v2v/v2v.ml:201
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:191
+#: v2v/v2v.ml:199
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#. in-place/in_place.ml:164
-#: v2v/v2v.ml:199 open/open.ml:72 inspector/inspector.ml:150
+#. in-place/in_place.ml:168
+#: v2v/v2v.ml:207 open/open.ml:76 inspector/inspector.ml:154
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#. in-place/in_place.ml:170
-#: v2v/v2v.ml:205 open/open.ml:78 inspector/inspector.ml:156
+#. in-place/in_place.ml:174
+#: v2v/v2v.ml:213 open/open.ml:82 inspector/inspector.ml:160
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:227
+#: v2v/v2v.ml:235
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:219
+#: v2v/v2v.ml:227
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:223
+#: v2v/v2v.ml:231
 msgid "Set output format"
 msgstr ""
 
-#: v2v/v2v.ml:217
+#: v2v/v2v.ml:225
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:231
+#: v2v/v2v.ml:239
 msgid "Set output storage location"
 msgstr ""
 
@@ -1054,7 +1054,7 @@ msgstr ""
 msgid "Set the hostname"
 msgstr ""
 
-#: inspector/inspector.ml:166 in-place/in_place.ml:178
+#: inspector/inspector.ml:170 in-place/in_place.ml:182
 msgid "Set the output filename"
 msgstr ""
 
@@ -1086,16 +1086,16 @@ msgstr ""
 msgid "Setting the timezone: %s"
 msgstr ""
 
-#: v2v/v2v.ml:461
+#: v2v/v2v.ml:458
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#. in-place/in_place.ml:314
-#: v2v/v2v.ml:437 open/open.ml:182 inspector/inspector.ml:289
+#. in-place/in_place.ml:316
+#: v2v/v2v.ml:434 open/open.ml:184 inspector/inspector.ml:291
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:443 in-place/in_place.ml:320
+#: v2v/v2v.ml:440 in-place/in_place.ml:322
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -1115,7 +1115,7 @@ msgstr ""
 msgid "TIMEZONE"
 msgstr ""
 
-#: v2v/v2v.ml:185
+#: v2v/v2v.ml:193
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
@@ -1207,16 +1207,16 @@ msgstr ""
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#. in-place/in_place.ml:172
-#: v2v/v2v.ml:207 open/open.ml:80 inspector/inspector.ml:158
+#. in-place/in_place.ml:176
+#: v2v/v2v.ml:215 open/open.ml:84 inspector/inspector.ml:162
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:229
+#: v2v/v2v.ml:237
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:211
+#: v2v/v2v.ml:219
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
@@ -1386,7 +1386,7 @@ msgid ""
 msgstr ""
 
 #. input/input_vcenter_https.ml:94
-#: input/select_input.ml:45 input/input_xen_ssh.ml:71 input/input_vddk.ml:131
+#: input/select_input.ml:65 input/input_xen_ssh.ml:71 input/input_vddk.ml:131
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1644,8 +1644,8 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#. in-place/in_place.ml:369
-#: v2v/v2v.ml:565 open/open.ml:236 inspector/inspector.ml:332
+#. in-place/in_place.ml:371
+#: v2v/v2v.ml:562 open/open.ml:238 inspector/inspector.ml:334
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1682,7 +1682,7 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:523
+#: v2v/v2v.ml:520
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 
@@ -1827,7 +1827,7 @@ msgid ""
 "twice"
 msgstr ""
 
-#: input/input_vddk.ml:276
+#: input/input_vddk.ml:277
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1839,7 +1839,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: input/input_vddk.ml:270
+#: input/input_vddk.ml:271
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1863,7 +1863,7 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
-#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:242
+#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:243
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
@@ -1911,7 +1911,7 @@ msgstr ""
 
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:99
-#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:246
+#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:247
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
 
@@ -1936,7 +1936,7 @@ msgstr ""
 msgid "nbdkit-ssh-plugin is not installed"
 msgstr ""
 
-#: input/input_vddk.ml:244
+#: input/input_vddk.ml:245
 msgid "nbdkit-vddk-plugin is not installed"
 msgstr ""
 
@@ -1996,7 +1996,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: input/select_input.ml:84
+#: input/select_input.ml:104
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -2165,7 +2165,7 @@ msgid ""
 "options instead (described in the virt-customize(1) manual)."
 msgstr ""
 
-#: lib/utils.ml:179
+#: lib/utils.ml:194
 msgid ""
 "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
@@ -2375,11 +2375,11 @@ msgstr ""
 msgid "unknown --root option: %s"
 msgstr ""
 
-#: input/select_input.ml:30
+#: input/select_input.ml:50
 msgid "unknown -i option: %s"
 msgstr ""
 
-#: output/select_output.ml:37
+#: output/select_output.ml:71
 msgid "unknown -o option: %s"
 msgstr ""
 
@@ -2399,7 +2399,7 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:297 in-place/in_place.ml:234
+#: v2v/v2v.ml:305 in-place/in_place.ml:238
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
@@ -2411,7 +2411,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:307 open/open.ml:128 inspector/inspector.ml:221
+#: v2v/v2v.ml:315 open/open.ml:132 inspector/inspector.ml:225
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
@@ -2497,7 +2497,7 @@ msgid ""
 "input libvirt XML was ignored"
 msgstr ""
 
-#: input/select_input.ml:62
+#: input/select_input.ml:82
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
 msgstr ""
 
@@ -2529,7 +2529,7 @@ msgstr ""
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr ""
 
-#: open/open.ml:132
+#: open/open.ml:136
 msgid "you must supply the --run parameter"
 msgstr ""
 
@@ -2537,11 +2537,11 @@ msgstr ""
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: input/input_vddk.ml:232
+#: input/input_vddk.ml:233
 msgid "‘-io vddk-file=’ must be used exactly %d times"
 msgstr ""
 
-#: input/input_vddk.ml:254
+#: input/input_vddk.ml:255
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
