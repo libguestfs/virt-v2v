@@ -21,7 +21,8 @@ dnl Of course we need libguestfs.
 dnl
 dnl We need libguestfs 1.55.6 for guestfs_sh_out.
 dnl We need libguestfs 1.55.12 for guestfs_btrfs_scrub_full.
-PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.55.12])
+dnl We need libguestfs 1.55.13 for guestfs_e2fsck FORCENO flag.
+PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.55.13])
 printf "libguestfs version is "; $PKG_CONFIG --modversion libguestfs
 
 dnl And libnbd.
