@@ -159,6 +159,8 @@ Python.
 Tests should no longer break if ntfs-3g is not supported by
 libguestfs.
 
+Fix compatibility with GNU gettext 0.25.
+
 =head2 Internals
 
 The tests were modified to use a set of common functions and remove
