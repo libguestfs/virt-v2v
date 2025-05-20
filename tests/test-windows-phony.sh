@@ -82,3 +82,9 @@ mktest "inspect-get-osinfo /dev/sda2" "$osinfo_name"
 
 guestfish --ro -a "$d/$guestname-sda" -i < "$script" > "$response"
 diff -u "$expected" "$response"
+
+# host osinfo-db may be too old for win2k25
+if [ $osinfo_name != "win2k25" ] ; then
+    # Sanity check that _some_ osinfo annotation ends up in XML
+    grep -q "libosinfo:os id='http://microsoft.com/win/" $d/$guestname.xml
+fi
