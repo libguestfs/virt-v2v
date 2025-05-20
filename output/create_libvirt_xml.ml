@@ -30,135 +30,14 @@ open DOM
 let string_set_of_list =
   List.fold_left (fun set x -> StringSet.add x set) StringSet.empty
 
-(* XXX libguestfs provides g#inspect_get_osinfo which provides this
- * information.  Why are we hard-coding it here?
- *)
-let get_osinfo_id = function
-  | { i_type = "linux"; i_distro = "rhel";
-      i_major_version = major; i_minor_version = minor } ->
-    Some (sprintf "http://redhat.com/rhel/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "centos";
-      i_major_version = major; i_minor_version = minor } when major < 7 ->
-    Some (sprintf "http://centos.org/centos/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "centos"; i_major_version = major }
-    when major = 7 ->
-    Some (sprintf "http://centos.org/centos/%d.0" major)
-
-  | { i_type = "linux"; i_distro = "centos"; i_major_version = major }
-    when major >= 8 ->
-    Some (sprintf "http://centos.org/centos/%d" major)
-
-  | { i_type = "linux"; i_distro = "circle";
-      i_major_version = major; i_minor_version = minor } ->
-    Some (sprintf "http://cclinux.org/circle/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "rocky";
-      i_major_version = major; i_minor_version = minor } ->
-    Some (sprintf "http://rockylinux.org/rocky/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "sles";
-      i_major_version = major; i_minor_version = 0;
-      i_product_name = product } when String.find product "Desktop" >= 0 ->
-    Some (sprintf "http://suse.com/sled/%d" major)
-
-  | { i_type = "linux"; i_distro = "sles";
-      i_major_version = major; i_minor_version = minor;
-      i_product_name = product } when String.find product "Desktop" >= 0 ->
-    Some (sprintf "http://suse.com/sled/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "sles";
-      i_major_version = major; i_minor_version = 0 } ->
-    Some (sprintf "http://suse.com/sles/%d" major)
-
-  | { i_type = "linux"; i_distro = "sles";
-      i_major_version = major; i_minor_version = minor } ->
-    Some (sprintf "http://suse.com/sles/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "opensuse";
-      i_major_version = major; i_minor_version = minor } ->
-    Some (sprintf "http://opensuse.org/opensuse/%d.%d" major minor)
-
-  | { i_type = "linux"; i_distro = "debian"; i_major_version = major } ->
-    Some (sprintf "http://debian.org/debian/%d" major)
-
-  | { i_type = "linux"; i_distro = "ubuntu";
-      i_major_version = major; i_minor_version = minor } ->
-    Some (sprintf "http://ubuntu.com/ubuntu/%d.%02d" major minor)
-
-  | { i_type = "linux"; i_distro = "fedora"; i_major_version = major } ->
-    Some (sprintf "http://fedoraproject.org/fedora/%d" major)
-
-  | { i_type = "windows"; i_major_version = major; i_minor_version = minor }
-    when major < 4 ->
-    Some (sprintf "http://microsoft.com/win/%d.%d" major minor)
-
-  | { i_type = "windows"; i_major_version = 5; i_minor_version = 1 } ->
-    Some "http://microsoft.com/win/xp"
-
-  | { i_type = "windows"; i_major_version = 5; i_minor_version = 2;
-      i_product_name = product } when String.find product "XP" >= 0 ->
-    Some "http://microsoft.com/win/xp"
-
-  | { i_type = "windows"; i_major_version = 5; i_minor_version = 2;
-      i_product_name = product } when String.find product "R2" >= 0 ->
-    Some "http://microsoft.com/win/2k3r2"
-
-  | { i_type = "windows"; i_major_version = 5; i_minor_version = 2 } ->
-    Some "http://microsoft.com/win/2k3"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 0;
-      i_product_variant = "Server" } ->
-    Some "http://microsoft.com/win/2k8"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 0 } ->
-    Some "http://microsoft.com/win/vista"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 1;
-      i_product_variant = "Server" } ->
-    Some "http://microsoft.com/win/2k8r2"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 1 } ->
-    Some "http://microsoft.com/win/7"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 2;
-      i_product_variant = "Server" } ->
-    Some "http://microsoft.com/win/2k12"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 2 } ->
-    Some "http://microsoft.com/win/8"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 3;
-      i_product_variant = "Server" } ->
-    Some "http://microsoft.com/win/2k12r2"
-
-  | { i_type = "windows"; i_major_version = 6; i_minor_version = 3 } ->
-    Some "http://microsoft.com/win/8.1"
-
-  | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
-      i_product_variant = "Server"; i_product_name = product }
-      when String.find product "2019" >= 0 ->
-    Some "http://microsoft.com/win/2k19"
-
-  | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
-      i_product_variant = "Server"; i_product_name = product }
-      when String.find product "2022" >= 0 ->
-    Some "http://microsoft.com/win/2k22"
-
-  | { i_type = "windows"; i_major_version = 10; i_minor_version = 0;
-      i_product_variant = "Server" } ->
-    Some "http://microsoft.com/win/2k16"
-
-  | { i_type = "windows"; i_major_version = 10; i_minor_version = 0 } ->
-    Some "http://microsoft.com/win/10"
-
-  | { i_type = typ; i_distro = distro;
-      i_major_version = major; i_minor_version = minor; i_arch = arch;
-      i_product_name = product } ->
-    warning (f_"get_osinfo_id: unknown guest operating system: \
-                %s %s %d.%d %s (%s)")
-      typ distro major minor arch product;
+let get_osinfo_id inspect =
+  match Libosinfo_utils.get_os_by_short_id inspect.i_osinfo
+  with
+  | Some os ->
+    Some(os#get_id ())
+  | None ->
+    warning (f_"get_osinfo_id: unknown guest operating system: %s")
+      inspect.i_osinfo;
     None
 
 let create_libvirt_xml ?pool source inspect
