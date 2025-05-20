@@ -258,7 +258,7 @@ and do_fsck g =
          );
 
       | dev, "ext4" ->
-         g#e2fsck dev (* ~correct:false is the default *)
+         g#e2fsck ~forceno:true dev
 
       | dev, "xfs" ->
          if g#xfs_repair ~nomodify:true dev <> 0 then
