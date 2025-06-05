@@ -83,7 +83,7 @@ let rec convert input_disks options source =
 
   (* Check (fsck) the filesystems before conversion. *)
   message (f_"Checking filesystem integrity before conversion");
-  do_fsck g;
+  do_fsck ~before:true g;
 
   (* Detect firmware. *)
   message (f_"Detecting if this guest uses BIOS or UEFI to boot");
@@ -237,7 +237,7 @@ and do_fstrim g inspect =
  * If fsck returns an error then the conversion will fail.  We do not
  * attempt to do any repairs.
  *)
-and do_fsck g =
+and do_fsck ?(before=false) g =
   let fses = g#list_filesystems () in
   List.iter (function
       | dev, _ when String.starts_with "btrfsvol:" dev ->
@@ -261,6 +261,16 @@ and do_fsck g =
          g#e2fsck ~forceno:true dev
 
       | dev, "xfs" ->
+         if before then (
+           (* xfs_repair cannot replay the dirty log, only the kernel can,
+            * so we must first mount then unmount the filesystem, and then
+            * we can run xfs_repair.  Unlike what is documented, xfs_repair
+            * doesn't return 2 in this case.  Mount r/o is fine as that
+            * will still replay the log (RHEL-95365)
+            *)
+           Fun.protect ~finally:g#umount_all (fun () -> g#mount_ro dev "/");
+         );
+
          if g#xfs_repair ~nomodify:true dev <> 0 then
            error (f_"detected errors on the XFS filesystem on %s") dev
 
