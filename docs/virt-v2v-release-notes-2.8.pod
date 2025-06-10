@@ -133,12 +133,16 @@ common enough that we have now documented this problem in the manual
 Debug information now contains much more readable information about
 guest mountpoints, similar to the output of L<virt-df(1)>.
 
+I<-o libvirt> mode no longer generates its own osinfo short IDs.
+Instead we use the osinfo short IDs from libguestfs inspection (Cole
+Robinson).
+
 =head2 Build changes
 
 json-c is now required.  This replaces Jansson which was previously
 used for parsing JSON input files.
 
-libguestfs E<ge> 1.55.6 is now required.
+libguestfs E<ge> 1.56 is now required.
 
 OCaml E<ge> 4.08 is now required.
 
