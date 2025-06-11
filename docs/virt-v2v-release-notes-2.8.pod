@@ -137,6 +137,9 @@ I<-o libvirt> mode no longer generates its own osinfo short IDs.
 Instead we use the osinfo short IDs from libguestfs inspection (Cole
 Robinson).
 
+Document how to activate Bitlocker for Windows 11 with vTPM
+(thanks Ming Xie).
+
 =head2 Build changes
 
 json-c is now required.  This replaces Jansson which was previously
@@ -292,6 +295,11 @@ virt-v2v-inspector is failing on snapshots of running VMs [rhel-9.7]
 =item L<https://issues.redhat.com/browse/RHEL-88985>
 
 Add possible roots to the virt-v2v-inspector output [rhel-9.7]
+
+=item L<https://issues.redhat.com/browse/RHEL-70840>
+
+v2v can't convert win11-efi-secure guest with vtpm: "Activation of
+partially decrypted BITLK device is not supported" [rhel-9.6]
 
 =item L<https://github.com/libguestfs/virt-v2v/issues/79>
 

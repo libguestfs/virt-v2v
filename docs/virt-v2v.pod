@@ -1192,6 +1192,22 @@ entries.
 For further information see:
 L<https://issues.redhat.com/browse/MTV-2256>
 
+=head3 "Activation of partially decrypted BITLK device is not supported"
+
+This error from L<cryptsetup(8)> may occur for Windows 11 guests that
+have a virtual TPM.  Even if Bitlocker is not activated, the disk is
+still encrypted, and so a I<--key> parameter is still required.
+However it may not be possible to retrieve the key from the TPM.
+
+A workaround is to turn on Bitlocker in the Bitlocker Drive Encryption
+settings in the Control Panel.  The Bitlocker key must be passed to
+virt-v2v on the command line.
+
+For further information see:
+L<https://issues.redhat.com/browse/RHEL-70840>
+and
+L<https://windowstechpro.com/how-to-enable-bitlocker-on-windows-11/>
+
 =head2 Networks and bridges
 
 Guests are usually connected to one or more networks, and when
