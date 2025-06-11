@@ -7,7 +7,7 @@ virt-v2v-release-notes - virt-v2v release notes for 2.8
 These are the release notes for S<B<virt-v2v 2.8>>.
 This describes the major changes since 2.6.
 
-Virt-v2v 2.8.0 was released on S<B<XXX XXX 2025>>.
+Virt-v2v 2.8.0 was released on S<B<11th June 2025>>.
 
 =begin comment
 
@@ -197,8 +197,8 @@ advantage of this you have to use nbdkit E<ge> 1.44.
 Several typos and spelling mistakes in the documentation were fixed
 (thanks Eric Blake).
 
-Duplicated code used to parse input (I<-i>) and output (I<-o>))
-options across the tools has been refactored in one place.
+Duplicated code used to parse input (I<-i>) and output (I<-o>) options
+across the tools has been refactored in one place.
 
 Some internal OCaml List and String functions that we used have been
 replaced by ones from the OCaml stdlib, reducing code maintenance.
