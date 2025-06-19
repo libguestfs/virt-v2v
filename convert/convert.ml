@@ -258,6 +258,11 @@ and do_fsck ?(before=false) g =
          );
 
       | dev, "ext4" ->
+         if before then (
+           (* Replay and hence repair a dirty log (RHEL-97600) *)
+           Fun.protect ~finally:g#umount_all (fun () -> g#mount_ro dev "/");
+         );
+
          g#e2fsck ~forceno:true dev
 
       | dev, "xfs" ->
