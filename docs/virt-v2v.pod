@@ -1109,6 +1109,23 @@ the kind of driver installation and other changes that we may make to
 Windows guests.  It is recommended that you disable or remove this
 before conversion.  It may be enabled again after conversion.
 
+=head2 The guest should not be running
+
+The guest must be cleanly shut down before conversion begins, and must
+not be restarted on the source except if conversion fails.  If the
+guest is running or starts running during conversion then you will end
+up with filesystem corruption in the converted guest.
+
+Virt-v2v tries to ensure the guest is shut down before conversion when
+it can, but sometimes that is not possible.  It is also not possible
+to prevent a guest from being started while conversion is going on, or
+after a successful conversion.  That must be done by some higher layer
+management tool instead.
+
+It is possible to convert from a snapshot, but this should only be
+done to test if a conversion would succeed (with the result being
+thrown away), and you should fully understand what you are doing.
+
 =head1 POST-CONVERSION TASKS
 
 =head2 Guest network configuration

@@ -126,11 +126,10 @@ if the guest has snapshots; refer to L</NOTES>.
 
 =head2 VMX: Guest must be shut down
 
-B<The guest must be shut down before conversion starts>.  If you don't
-shut it down, you will end up with a corrupted VM disk on the target.
-With other methods, virt-v2v tries to prevent concurrent access, but
-because the I<-i vmx> method works directly against the storage,
-checking for concurrent access is not possible.
+B<The guest must be shut down before conversion starts>.  Because the
+I<-i vmx> method works directly against the storage, checking for
+concurrent access is not possible.  See also
+L<virt-v2v(1)/The guest should not be running>.
 
 =head2 VMX: Access to the storage containing the VMX and VMDK files
 
