@@ -871,6 +871,286 @@ Enable tracing of libguestfs API calls.
 
 __CUSTOMIZE_OPTIONS__
 
+=head1 RESOURCE REQUIREMENTS
+
+=head2 Network
+
+The most important resource for virt-v2v appears to be network
+bandwidth.  Virt-v2v should be able to copy guest data at gigabit
+ethernet speeds or greater.
+
+Ensure that the network connections between servers (conversion
+server, NFS server, vCenter, Xen) are as fast and as low latency as
+possible.
+
+=head2 Disk space
+
+Virt-v2v places potentially large temporary files in
+C<$VIRT_V2V_TMPDIR> (usually F</var/tmp>, see also
+L</ENVIRONMENT VARIABLES> below).  Using tmpfs is a bad idea.
+
+For each guest disk, an overlay is stored temporarily.  This stores
+the changes made during conversion, and is used as a cache.  The
+overlays are not particularly large - tens or low hundreds of
+megabytes per disk is typical.  In addition to the overlay(s), input
+and output methods may use disk space, as outlined in the table below.
+
+=over 4
+
+=item I<-i ova>
+
+This temporarily places a full copy of the uncompressed source disks
+in C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
+
+=item I<-o glance>
+
+This temporarily places a full copy of the output disks in
+C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
+
+=item I<-o local>
+
+=item I<-o qemu>
+
+You must ensure there is sufficient space in the output directory for
+the converted guest.
+
+=back
+
+See also L</Minimum free space check in the host> below.
+
+=head2 VMware vCenter resources
+
+Copying from VMware vCenter is currently quite slow, but we believe
+this to be an issue with VMware.  Ensuring the VMware ESXi hypervisor
+and vCenter are running on fast hardware with plenty of memory should
+alleviate this.
+
+=head2 Compute power and RAM
+
+Virt-v2v is not especially compute or RAM intensive.  If you are
+running many parallel conversions, then you may consider allocating
+one CPU core and 2 GB of RAM per running instance.
+
+Virt-v2v can be run in a virtual machine.
+
+=head2 Trimming
+
+Virt-v2v attempts to optimize the speed of conversion by ignoring
+guest filesystem data which is not used.  This would include unused
+filesystem blocks, blocks containing zeroes, and deleted files.
+
+To do this, virt-v2v issues a non-destructive L<fstrim(8)> operation.
+As this happens to an overlay placed over the guest data, it does
+B<not> affect the source in any way.
+
+If this fstrim operation fails, you will see a warning, but virt-v2v
+will continue anyway.  It may run more slowly (in some cases much more
+slowly), because it is copying the unused parts of the disk.
+
+Unfortunately support for fstrim is not universal, and it also depends
+on specific details of the filesystem, partition alignment, and
+backing storage.  As an example, NTFS filesystems cannot be fstrimmed
+if they occupy a partition which is not aligned to the underlying
+storage.  That was the default on Windows before Vista.  As another
+example, VFAT filesystems (used by UEFI guests) cannot be trimmed at
+all.
+
+fstrim support in the Linux kernel is improving gradually, so over
+time some of these restrictions will be lifted and virt-v2v will work
+faster.
+
+=head2 Free space for conversion
+
+=head3 Free space in the guest
+
+Virt-v2v checks there is sufficient free space in the guest filesystem
+to perform the conversion.  Currently it checks:
+
+=over 4
+
+=item Linux root filesystem
+
+Minimum free space: 100 MB
+
+=item Linux F</boot>
+
+Minimum free space: 50 MB
+
+This is because we need to build a new initramfs for some Enterprise
+Linux conversions.
+
+=item Windows C<C:> drive
+
+Minimum free space: 100 MB
+
+We may have to copy in many virtio drivers and guest agents.
+
+=item Any other mountable filesystem
+
+Minimum free space: 10 MB
+
+=back
+
+In addition to the actual free space, each filesystem is required to
+have at least 100 available inodes.
+
+=head3 Minimum free space check in the host
+
+You must have sufficient free space in the host directory used to
+store large temporary overlays.  To find out which directory this is, use:
+
+ $ df -h "`guestfish get-cachedir`"
+ Filesystem        Size  Used Avail Use% Mounted on
+ /dev/mapper/root   50G   40G  6.8G  86% /
+
+and look under the C<Avail> column.  Virt-v2v will refuse to do the
+conversion at all unless at least 1GB is available there.  You can
+change the directory that virt-v2v uses by setting
+C<$VIRT_V2V_TMPDIR>.
+
+See also L</Resource requirements> above and L</ENVIRONMENT VARIABLES>
+below.
+
+=head2 Running virt-v2v as root or non-root
+
+Nothing in virt-v2v inherently needs root access, and it will run just
+fine as a non-root user.  However, certain external features may
+require either root or a special user:
+
+=over 4
+
+=item Mounting the Export Storage Domain
+
+When using I<-o ovirt -os server:/esd> virt-v2v has to have sufficient
+privileges to NFS mount the Export Storage Domain from C<server>.
+
+You can avoid needing root here by mounting it yourself before running
+virt-v2v, and passing I<-os /mountpoint> instead, but first of all
+read the next S<section ...>
+
+=item Writing to the Export Storage Domain as 36:36
+
+oVirt cannot read files and directories from the Export Storage
+Domain unless they have UID:GID 36:36.  You will see VM import
+problems if the UID:GID is not correct.
+
+When you run virt-v2v I<-o ovirt> as root, virt-v2v attempts to create
+files and directories with the correct ownership.  If you run virt-v2v
+as non-root, it will probably still work, but you will need to
+manually change ownership after virt-v2v has finished.
+
+=item Writing to libvirt
+
+When using I<-o libvirt>, you may need to run virt-v2v as root so that
+it can write to the libvirt system instance (ie. C<qemu:///system>)
+and to the default location for disk images (usually
+F</var/lib/libvirt/images>).
+
+You can avoid this by setting up libvirt connection authentication,
+see L<http://libvirt.org/auth.html>.  Alternatively, use
+I<-oc qemu:///session>, which will write to your per-user libvirt
+instance.
+
+See also L</Starting the libvirt system instance>.
+
+=item Writing to Openstack
+
+Because of how Cinder volumes are presented as F</dev> block devices,
+using I<-o openstack> normally requires that virt-v2v is run as root.
+
+=item Writing to Glance
+
+This does I<not> need root (in fact it probably won’t work), but may
+require either a special user and/or for you to source a script that
+sets authentication environment variables.  Consult the Glance
+documentation.
+
+=item Writing to block devices
+
+This normally requires root.  See the next section.
+
+=back
+
+=head2 Writing to block devices
+
+Some output modes write to local files.  In general these modes also
+let you write to block devices, but before you run virt-v2v you may
+have to arrange for symbolic links to the desired block devices in the
+output directory.
+
+For example if using I<-o local -os /dir> then virt-v2v would normally
+create files called:
+
+ /dir/name-sda     # first disk
+ /dir/name-sdb     # second disk
+ ...
+ /dir/name.xml     # metadata
+
+If you wish the disks to be written to block devices then you would
+need to create F</dir/I<name>-sda> (etc) as symlinks to the block
+devices:
+
+ # lvcreate -L 10G -n VolumeForDiskA VG
+ # lvcreate -L 6G -n VolumeForDiskB VG
+ # ln -sf /dev/VG/VolumeForDiskA /dir/name-sda
+ # ln -sf /dev/VG/VolumeForDiskB /dir/name-sdb
+
+Note that you must precreate the correct number of block devices of
+the correct size.  Typically I<-of raw> has to be used too, but other
+formats such as qcow2 can be useful occasionally so virt-v2v does not
+force you to use raw on block devices.
+
+=head1 POST-CONVERSION TASKS
+
+=head2 Guest network configuration
+
+Virt-v2v cannot currently reconfigure a guest’s network configuration.
+If the converted guest is not connected to the same subnet as the
+source, its network configuration may have to be updated.  See also
+L<virt-customize(1)>.
+
+=head2 Converting a Windows guest
+
+When converting a Windows guests, the conversion process is split into
+two stages:
+
+=over
+
+=item 1
+
+Offline conversion.
+
+=item 2
+
+First boot.
+
+=back
+
+The guest will be bootable after the offline conversion stage, but
+will not yet have all necessary drivers installed to work correctly.
+These will be installed automatically the first time the guest boots.
+
+B<N.B.> Windows may reboot 4 or more times the first time after
+conversion.  This is required to install the required drivers, guest
+agents, remove VMware Tools, and configure the network.  Take care not
+to interrupt the automatic driver installation process when logging in
+to the guest for the first time, as this may prevent the guest from
+subsequently booting correctly.
+
+=head2 Removing VMware Tools from Windows guests
+
+Virt-v2v attempts to remove VMware Tools.  For Windows guests this is
+supposed to happen during the first boot after conversion.
+
+We use VMware's recommended uninstallation method as that is the
+safest choice.  If this fails, VMware Tools must be manually removed
+by some other method.
+
+One possible method is described here:
+L<https://gist.github.com/broestls/f872872a00acee2fca02017160840624>
+You should carefully check this script since it makes very invasive
+changes to the Windows Registry and filesystem.
+
 =head1 NOTES
 
 =head2 Xen paravirtualized guests
@@ -1264,286 +1544,6 @@ remain the same on source and target hypervisors.  Most guests will
 use the MAC address to set up persistent associations between NICs and
 internal names (like C<eth0>), with firewall settings, or even for
 other purposes like software licensing.
-
-=head2 Resource requirements
-
-=head3 Network
-
-The most important resource for virt-v2v appears to be network
-bandwidth.  Virt-v2v should be able to copy guest data at gigabit
-ethernet speeds or greater.
-
-Ensure that the network connections between servers (conversion
-server, NFS server, vCenter, Xen) are as fast and as low latency as
-possible.
-
-=head3 Disk space
-
-Virt-v2v places potentially large temporary files in
-C<$VIRT_V2V_TMPDIR> (usually F</var/tmp>, see also
-L</ENVIRONMENT VARIABLES> below).  Using tmpfs is a bad idea.
-
-For each guest disk, an overlay is stored temporarily.  This stores
-the changes made during conversion, and is used as a cache.  The
-overlays are not particularly large - tens or low hundreds of
-megabytes per disk is typical.  In addition to the overlay(s), input
-and output methods may use disk space, as outlined in the table below.
-
-=over 4
-
-=item I<-i ova>
-
-This temporarily places a full copy of the uncompressed source disks
-in C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
-
-=item I<-o glance>
-
-This temporarily places a full copy of the output disks in
-C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
-
-=item I<-o local>
-
-=item I<-o qemu>
-
-You must ensure there is sufficient space in the output directory for
-the converted guest.
-
-=back
-
-See also L</Minimum free space check in the host> below.
-
-=head3 VMware vCenter resources
-
-Copying from VMware vCenter is currently quite slow, but we believe
-this to be an issue with VMware.  Ensuring the VMware ESXi hypervisor
-and vCenter are running on fast hardware with plenty of memory should
-alleviate this.
-
-=head3 Compute power and RAM
-
-Virt-v2v is not especially compute or RAM intensive.  If you are
-running many parallel conversions, then you may consider allocating
-one CPU core and 2 GB of RAM per running instance.
-
-Virt-v2v can be run in a virtual machine.
-
-=head3 Trimming
-
-Virt-v2v attempts to optimize the speed of conversion by ignoring
-guest filesystem data which is not used.  This would include unused
-filesystem blocks, blocks containing zeroes, and deleted files.
-
-To do this, virt-v2v issues a non-destructive L<fstrim(8)> operation.
-As this happens to an overlay placed over the guest data, it does
-B<not> affect the source in any way.
-
-If this fstrim operation fails, you will see a warning, but virt-v2v
-will continue anyway.  It may run more slowly (in some cases much more
-slowly), because it is copying the unused parts of the disk.
-
-Unfortunately support for fstrim is not universal, and it also depends
-on specific details of the filesystem, partition alignment, and
-backing storage.  As an example, NTFS filesystems cannot be fstrimmed
-if they occupy a partition which is not aligned to the underlying
-storage.  That was the default on Windows before Vista.  As another
-example, VFAT filesystems (used by UEFI guests) cannot be trimmed at
-all.
-
-fstrim support in the Linux kernel is improving gradually, so over
-time some of these restrictions will be lifted and virt-v2v will work
-faster.
-
-=head2 Post-conversion tasks
-
-=head3 Guest network configuration
-
-Virt-v2v cannot currently reconfigure a guest’s network configuration.
-If the converted guest is not connected to the same subnet as the
-source, its network configuration may have to be updated.  See also
-L<virt-customize(1)>.
-
-=head3 Converting a Windows guest
-
-When converting a Windows guests, the conversion process is split into
-two stages:
-
-=over
-
-=item 1
-
-Offline conversion.
-
-=item 2
-
-First boot.
-
-=back
-
-The guest will be bootable after the offline conversion stage, but
-will not yet have all necessary drivers installed to work correctly.
-These will be installed automatically the first time the guest boots.
-
-B<N.B.> Windows may reboot 4 or more times the first time after
-conversion.  This is required to install the required drivers, guest
-agents, remove VMware Tools, and configure the network.  Take care not
-to interrupt the automatic driver installation process when logging in
-to the guest for the first time, as this may prevent the guest from
-subsequently booting correctly.
-
-=head3 Removing VMware Tools from Windows guests
-
-Virt-v2v attempts to remove VMware Tools.  For Windows guests this is
-supposed to happen during the first boot after conversion.
-
-We use VMware's recommended uninstallation method as that is the
-safest choice.  If this fails, VMware Tools must be manually removed
-by some other method.
-
-One possible method is described here:
-L<https://gist.github.com/broestls/f872872a00acee2fca02017160840624>
-You should carefully check this script since it makes very invasive
-changes to the Windows Registry and filesystem.
-
-=head2 Free space for conversion
-
-=head3 Free space in the guest
-
-Virt-v2v checks there is sufficient free space in the guest filesystem
-to perform the conversion.  Currently it checks:
-
-=over 4
-
-=item Linux root filesystem
-
-Minimum free space: 100 MB
-
-=item Linux F</boot>
-
-Minimum free space: 50 MB
-
-This is because we need to build a new initramfs for some Enterprise
-Linux conversions.
-
-=item Windows C<C:> drive
-
-Minimum free space: 100 MB
-
-We may have to copy in many virtio drivers and guest agents.
-
-=item Any other mountable filesystem
-
-Minimum free space: 10 MB
-
-=back
-
-In addition to the actual free space, each filesystem is required to
-have at least 100 available inodes.
-
-=head3 Minimum free space check in the host
-
-You must have sufficient free space in the host directory used to
-store large temporary overlays.  To find out which directory this is, use:
-
- $ df -h "`guestfish get-cachedir`"
- Filesystem        Size  Used Avail Use% Mounted on
- /dev/mapper/root   50G   40G  6.8G  86% /
-
-and look under the C<Avail> column.  Virt-v2v will refuse to do the
-conversion at all unless at least 1GB is available there.  You can
-change the directory that virt-v2v uses by setting
-C<$VIRT_V2V_TMPDIR>.
-
-See also L</Resource requirements> above and L</ENVIRONMENT VARIABLES>
-below.
-
-=head2 Running virt-v2v as root or non-root
-
-Nothing in virt-v2v inherently needs root access, and it will run just
-fine as a non-root user.  However, certain external features may
-require either root or a special user:
-
-=over 4
-
-=item Mounting the Export Storage Domain
-
-When using I<-o ovirt -os server:/esd> virt-v2v has to have sufficient
-privileges to NFS mount the Export Storage Domain from C<server>.
-
-You can avoid needing root here by mounting it yourself before running
-virt-v2v, and passing I<-os /mountpoint> instead, but first of all
-read the next S<section ...>
-
-=item Writing to the Export Storage Domain as 36:36
-
-oVirt cannot read files and directories from the Export Storage
-Domain unless they have UID:GID 36:36.  You will see VM import
-problems if the UID:GID is not correct.
-
-When you run virt-v2v I<-o ovirt> as root, virt-v2v attempts to create
-files and directories with the correct ownership.  If you run virt-v2v
-as non-root, it will probably still work, but you will need to
-manually change ownership after virt-v2v has finished.
-
-=item Writing to libvirt
-
-When using I<-o libvirt>, you may need to run virt-v2v as root so that
-it can write to the libvirt system instance (ie. C<qemu:///system>)
-and to the default location for disk images (usually
-F</var/lib/libvirt/images>).
-
-You can avoid this by setting up libvirt connection authentication,
-see L<http://libvirt.org/auth.html>.  Alternatively, use
-I<-oc qemu:///session>, which will write to your per-user libvirt
-instance.
-
-See also L</Starting the libvirt system instance>.
-
-=item Writing to Openstack
-
-Because of how Cinder volumes are presented as F</dev> block devices,
-using I<-o openstack> normally requires that virt-v2v is run as root.
-
-=item Writing to Glance
-
-This does I<not> need root (in fact it probably won’t work), but may
-require either a special user and/or for you to source a script that
-sets authentication environment variables.  Consult the Glance
-documentation.
-
-=item Writing to block devices
-
-This normally requires root.  See the next section.
-
-=back
-
-=head2 Writing to block devices
-
-Some output modes write to local files.  In general these modes also
-let you write to block devices, but before you run virt-v2v you may
-have to arrange for symbolic links to the desired block devices in the
-output directory.
-
-For example if using I<-o local -os /dir> then virt-v2v would normally
-create files called:
-
- /dir/name-sda     # first disk
- /dir/name-sdb     # second disk
- ...
- /dir/name.xml     # metadata
-
-If you wish the disks to be written to block devices then you would
-need to create F</dir/I<name>-sda> (etc) as symlinks to the block
-devices:
-
- # lvcreate -L 10G -n VolumeForDiskA VG
- # lvcreate -L 6G -n VolumeForDiskB VG
- # ln -sf /dev/VG/VolumeForDiskA /dir/name-sda
- # ln -sf /dev/VG/VolumeForDiskB /dir/name-sdb
-
-Note that you must precreate the correct number of block devices of
-the correct size.  Typically I<-of raw> has to be used too, but other
-formats such as qcow2 can be useful occasionally so virt-v2v does not
-force you to use raw on block devices.
 
 =head2 Minimal XML for -i libvirtxml option
 
