@@ -122,8 +122,9 @@ a local file.
    "ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx" \
    -o local -os /var/tmp
 
-The guest must not be running.  Virt-v2v would I<not> need to be run
-as root in this case.
+The guest must not be running.
+
+Virt-v2v does I<not> need to be run as root.
 
 For more information about converting from VMX files see
 L<virt-v2v-input-vmware(1)>.
