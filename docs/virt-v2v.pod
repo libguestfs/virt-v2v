@@ -1100,6 +1100,15 @@ the correct size.  Typically I<-of raw> has to be used too, but other
 formats such as qcow2 can be useful occasionally so virt-v2v does not
 force you to use raw on block devices.
 
+=head1 PRE-CONVERSION TASKS
+
+=head2 Remove Anti-Virus (AV) and Group Policy (GPO)
+
+Anti-Virus software and Windows Group Policy is designed to prevent
+the kind of driver installation and other changes that we may make to
+Windows guests.  It is recommended that you disable or remove this
+before conversion.  It may be enabled again after conversion.
+
 =head1 POST-CONVERSION TASKS
 
 =head2 Guest network configuration
