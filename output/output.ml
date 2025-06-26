@@ -177,7 +177,17 @@ let create_local_output_disks dir
       | Sparse -> None in
     List.iter (
       fun (size, filename) ->
-        g#disk_create ?preallocation filename output_format size
+        g#disk_create ?preallocation filename output_format size;
+
+        (* We've had issues with there not being enough space to write
+         * the disk image.  Run df on the output filename.  df follows
+         * symlinks and reports the space on the filesystem.  But don't
+         * fail here if df cannot be run.
+         *)
+        if verbose () then (
+          let cmd = sprintf "df %s 1>&2" (quote filename) in
+          ignore (Sys.command cmd)
+        )
     ) (List.combine input_sizes output_disk_names);
 
     let socket = sprintf "%s/out0" dir in
