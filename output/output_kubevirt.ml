@@ -35,7 +35,8 @@ let rfc1123_re =
     "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
 
 module Kubevirt = struct
-  type poptions = bool * output_allocation * string * string * string
+  type poptions =
+    bool * string list option * output_allocation * string * string * string
 
   type t = unit
 
@@ -49,15 +50,18 @@ module Kubevirt = struct
     printf (f_"Output options that can be used with -o kubevirt:
 
   -oo compressed      Compress the output file (used only with -of qcow2)
+  -oo disk=disk1      Specify filename of output disk (if used, must be
+                          given once for each disk, else -os path is used)
 ")
-
 
   let parse_options options source =
     let compressed = ref false in
+    let disks = ref [] in
     List.iter (
       function
       | "compressed", "" -> compressed := true
       | "compressed", v -> compressed := bool_of_string v
+      | "disk", v -> List.push_back disks v
       | k, _ ->
          error (f_"-o kubevirt: unknown output option ‘-oo %s’") k
     ) options.output_options;
@@ -84,23 +88,57 @@ module Kubevirt = struct
                 end with an alphanumeric character.  Rerun virt-v2v with \
                 the '-on name' option to rename it.");
 
-    !compressed, options.output_alloc, options.output_format,
+    let disks = match !disks with [] -> None | disks -> Some disks in
+
+    !compressed, disks,
+    options.output_alloc, options.output_format,
     output_name, output_storage
 
   let setup dir options source input_disks =
-    let compressed, output_alloc, output_format, output_name, output_storage =
-      options in
+    let compressed, disks,
+        output_alloc, output_format, output_name, output_storage = options in
 
     let uris =
-      create_local_output_disks dir ~compressed output_alloc output_format
-        output_name output_storage input_disks in
+      match disks with
+      | None ->
+         create_local_output_disks dir ~compressed
+           output_alloc output_format output_name output_storage input_disks
+      | Some disks ->
+         (* -oo disk specified, so create the disks by hand. *)
+         let nr_input_disks = List.length input_disks
+         and nr_output_disks = List.length disks in
+         if nr_input_disks <> nr_output_disks then
+           error (f_"incorrect number of '-oo disk' parameters.  This guest \
+                     has %d disks, but the parameter was used %d times.")
+             nr_input_disks nr_output_disks;
+
+         let input_sizes = get_disk_sizes input_disks in
+         List.mapi (
+           fun i (disk, size) ->
+             let socket = sprintf "%s/out%d" dir i in
+             On_exit.unlink socket;
+
+             output_to_local_file ~compressed
+               output_alloc output_format disk size socket;
+
+             NBD_URI.Unix (socket, None)
+         ) (List.combine disks input_sizes)
+    in
+
     (), uris
 
   let finalize dir options () output_disks source inspect target_meta =
-    let _, output_alloc, output_format, output_name, output_storage = options in
+    let _, disks,
+        output_alloc, output_format, output_name, output_storage = options in
 
-    let doc = create_kubevirt_yaml source inspect target_meta
-                (disk_path output_storage output_name)
+    (* This function will return the disk path for the i'th disk. *)
+    let disk_path =
+      match disks with
+      | None -> Output.disk_path output_storage output_name
+      | Some disks -> List.nth disks
+    in
+
+    let doc = create_kubevirt_yaml source inspect target_meta disk_path
                 output_format output_name in
 
     let file = output_storage // output_name ^ ".yaml" in
