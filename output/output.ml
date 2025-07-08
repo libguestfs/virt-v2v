@@ -66,7 +66,9 @@ let error_if_disk_count_gt input_disks n =
 
 type on_exit_kill = Kill | KillAndWait
 
-let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
+let output_to_local_file ?(changeuid = fun f -> f ())
+      ?(compressed = false)
+      ?(create = true)
       ?(on_exit_kill = Kill)
       output_alloc output_format filename size socket =
   (* Check nbdkit is installed and has the required plugin. *)
@@ -83,13 +85,15 @@ let output_to_local_file ?(changeuid = fun f -> f ()) ?(compressed = false)
                 is a local qcow2-format file, i.e. ‘-of qcow2’")
   );
 
-  let g = open_guestfs () in
-  let preallocation =
-    match output_alloc with
-    | Preallocated -> Some "full"
-    | Sparse -> None in
-  changeuid (
-    fun () -> g#disk_create ?preallocation filename output_format size
+  if create then (
+    let g = open_guestfs () in
+    let preallocation =
+      match output_alloc with
+      | Preallocated -> Some "full"
+      | Sparse -> None in
+    changeuid (
+      fun () -> g#disk_create ?preallocation filename output_format size
+    )
   );
 
   let pid =
@@ -151,6 +155,7 @@ let disk_path os name i =
 
 let create_local_output_disks dir
       ?(compressed = false)
+      ?(create = true)
       output_alloc output_format output_name output_storage
       input_disks =
   let input_sizes = get_disk_sizes input_disks in
@@ -171,25 +176,27 @@ let create_local_output_disks dir
       error (f_"nbdkit-file-plugin is not installed or not working");
 
     (* We still have to create the output disks. *)
-    let g = open_guestfs () in
-    let preallocation =
-      match output_alloc with
-      | Preallocated -> Some "full"
-      | Sparse -> None in
-    List.iter (
-      fun (size, filename) ->
-        g#disk_create ?preallocation filename output_format size;
+    if create then (
+      let g = open_guestfs () in
+      let preallocation =
+        match output_alloc with
+        | Preallocated -> Some "full"
+        | Sparse -> None in
+      List.iter (
+        fun (size, filename) ->
+          g#disk_create ?preallocation filename output_format size;
 
-        (* We've had issues with there not being enough space to write
-         * the disk image.  Run df on the output filename.  df follows
-         * symlinks and reports the space on the filesystem.  But don't
-         * fail here if df cannot be run.
-         *)
-        if verbose () then (
-          let cmd = sprintf "df %s 1>&2" (quote filename) in
-          ignore (Sys.command cmd)
-        )
-    ) (List.combine input_sizes output_disk_names);
+          (* We've had issues with there not being enough space to write
+           * the disk image.  Run df on the output filename.  df follows
+           * symlinks and reports the space on the filesystem.  But don't
+           * fail here if df cannot be run.
+           *)
+          if verbose () then (
+            let cmd = sprintf "df %s 1>&2" (quote filename) in
+            ignore (Sys.command cmd)
+          )
+      ) (List.combine input_sizes output_disk_names)
+    );
 
     let socket = sprintf "%s/out0" dir in
     On_exit.unlink socket;
@@ -220,7 +227,7 @@ let create_local_output_disks dir
         On_exit.unlink socket;
 
         (* Create the actual output disk. *)
-        output_to_local_file ~compressed output_alloc output_format
+        output_to_local_file ~compressed ~create output_alloc output_format
           outdisk size socket;
 
         NBD_URI.Unix (socket, None)
