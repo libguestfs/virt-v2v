@@ -611,14 +611,6 @@ volume property.
 When using I<-o qemu> only, this boots the guest immediately after
 virt-v2v finishes.
 
-=item B<-oo verify-server-certificate>
-
-=item B<-oo verify-server-certificate=>C<true|false>
-
-For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, this can
-be used to disable SSL certification validation when connecting to
-OpenStack by specifying I<-oo verify-server-certificate=false>.
-
 =item B<-oo os->*B<=>*
 
 For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, set optional
@@ -735,6 +727,14 @@ The OVF format understood by oVirt REST API.
 
 For backward compatibility the default is I<ovirtexp>, but this may change in
 the future.
+
+=item B<-oo verify-server-certificate>
+
+=item B<-oo verify-server-certificate=>C<true|false>
+
+For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, this can
+be used to disable SSL certification validation when connecting to
+OpenStack by specifying I<-oo verify-server-certificate=false>.
 
 =item B<-op> file
 
