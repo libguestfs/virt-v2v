@@ -95,6 +95,7 @@ TESTS = \
 	test-networks-and-bridges.sh \
 	test-o-glance.sh \
 	test-o-kubevirt-fedora.sh \
+	test-o-kubevirt-oo-disk.sh \
 	test-o-kubevirt-windows.sh \
 	test-o-libvirt.sh \
 	test-o-local-qcow2-compressed.sh \
@@ -288,6 +289,7 @@ EXTRA_DIST += \
 	test-o-glance.sh \
 	test-o-kubevirt-fedora.sh \
 	test-o-kubevirt-fedora.yaml.expected \
+	test-o-kubevirt-oo-disk.sh \
 	test-o-kubevirt-windows.sh \
 	test-o-kubevirt-windows.yaml.expected \
 	test-o-libvirt.sh \

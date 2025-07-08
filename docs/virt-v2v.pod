@@ -466,8 +466,9 @@ Set the output method to I<kubevirt>.  B<Note the way this mode works
 is experimental and will change in future.>
 
 In this mode, the converted guest is written to a local directory
-specified by I<-os /dir> (the directory must exist).  The converted
-guest’s disks are written to:
+specified by I<-os /dir> (the directory must exist).
+
+By default the converted guest’s disks are written to:
 
  /dir/name-sda
  /dir/name-sdb
@@ -478,6 +479,8 @@ and guest metadata is created in the associated YAML file:
  /dir/name.yaml
 
 where C<name> is the guest name.
+
+You can override the disk paths by using I<-oo disk=...> option(s).
 
 =item B<-o> B<libvirt>
 
@@ -599,6 +602,14 @@ To display short help on what options are available you can use:
 For outputs which support qcow2 format (I<-of qcow2>), this writes a
 compressed qcow2 file.  It is the equivalent to the I<-c> option of
 L<qemu-img(1)>.
+
+=item B<-oo disk=>DISK
+
+For I<-o kubevirt> this overrides the path to each output disk,
+instead of using the default which is C<DISK-sda> etc in the output
+storage (I<-os>) path.  If you use this option at all, you must repeat
+it once for each guest disk.  If you don't use it, then the default
+method of putting disks in the output storage path is used.
 
 =item B<-oo guest-id=>C<ID>
 
