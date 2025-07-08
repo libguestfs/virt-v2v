@@ -603,6 +603,11 @@ For outputs which support qcow2 format (I<-of qcow2>), this writes a
 compressed qcow2 file.  It is the equivalent to the I<-c> option of
 L<qemu-img(1)>.
 
+=item B<-oo create=false>
+
+For I<-o kubevirt>, indicate that another management process will
+create the output disks, so do not (re-)create them in virt-v2v.
+
 =item B<-oo disk=>DISK
 
 For I<-o kubevirt> this overrides the path to each output disk,
