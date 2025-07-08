@@ -36,7 +36,8 @@ let rfc1123_re =
 
 module Kubevirt = struct
   type poptions =
-    bool * string list option * output_allocation * string * string * string
+    bool * bool * string list option *
+      output_allocation * string * string * string
 
   type t = unit
 
@@ -50,17 +51,21 @@ module Kubevirt = struct
     printf (f_"Output options that can be used with -o kubevirt:
 
   -oo compressed      Compress the output file (used only with -of qcow2)
+  -oo create=false    Do not create the output disks
   -oo disk=disk1      Specify filename of output disk (if used, must be
                           given once for each disk, else -os path is used)
 ")
 
   let parse_options options source =
     let compressed = ref false in
+    let create = ref true in
     let disks = ref [] in
     List.iter (
       function
       | "compressed", "" -> compressed := true
       | "compressed", v -> compressed := bool_of_string v
+      | "create", "" -> create := true
+      | "create", v -> create := bool_of_string v
       | "disk", v -> List.push_back disks v
       | k, _ ->
          error (f_"-o kubevirt: unknown output option ‘-oo %s’") k
@@ -90,18 +95,18 @@ module Kubevirt = struct
 
     let disks = match !disks with [] -> None | disks -> Some disks in
 
-    !compressed, disks,
+    !compressed, !create, disks,
     options.output_alloc, options.output_format,
     output_name, output_storage
 
   let setup dir options source input_disks =
-    let compressed, disks,
+    let compressed, create, disks,
         output_alloc, output_format, output_name, output_storage = options in
 
     let uris =
       match disks with
       | None ->
-         create_local_output_disks dir ~compressed
+         create_local_output_disks dir ~compressed ~create
            output_alloc output_format output_name output_storage input_disks
       | Some disks ->
          (* -oo disk specified, so create the disks by hand. *)
@@ -118,7 +123,7 @@ module Kubevirt = struct
              let socket = sprintf "%s/out%d" dir i in
              On_exit.unlink socket;
 
-             output_to_local_file ~compressed
+             output_to_local_file ~compressed ~create
                output_alloc output_format disk size socket;
 
              NBD_URI.Unix (socket, None)
@@ -128,7 +133,7 @@ module Kubevirt = struct
     (), uris
 
   let finalize dir options () output_disks source inspect target_meta =
-    let _, disks,
+    let _, _, disks,
         output_alloc, output_format, output_name, output_storage = options in
 
     (* This function will return the disk path for the i'th disk. *)
