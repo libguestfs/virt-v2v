@@ -84,6 +84,7 @@ val error_if_disk_count_gt : NBD_URI.t list -> int -> unit
 
 val create_local_output_disks : string ->
                                 ?compressed:bool ->
+                                ?create:bool ->
                                 Types.output_allocation ->
                                 string -> string -> string ->
                                 NBD_URI.t list ->
@@ -98,7 +99,9 @@ val create_local_output_disks : string ->
 type on_exit_kill = Kill | KillAndWait
 
 val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->
-                           ?compressed:bool -> ?on_exit_kill:on_exit_kill ->
+                           ?compressed:bool ->
+                           ?create:bool ->
+                           ?on_exit_kill:on_exit_kill ->
                            Types.output_allocation ->
                            string -> string -> int64 -> string ->
                            unit
