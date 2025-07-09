@@ -58,6 +58,13 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
    *)
   Nbdkit.add_filter_if_available cmd "retry";
 
+  (* Add the count filter if available, to report bytes read.
+   * Since it writes a debug message, only do this if verbose.
+   * This should be close to the plugin so we're reporting what
+   * is read over the wire.
+   *)
+  if verbose () then Nbdkit.add_filter_if_available cmd "count";
+
   (* IMPORTANT! Add the COW filter.  It must be furthest away
    * except for the rate filter.
    *)
