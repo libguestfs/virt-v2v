@@ -53,7 +53,6 @@ All other settings are optional:
   -io vddk-file=FILE           Override nbdkit-vddk-plugin file= parameter
   -io vddk-libdir=LIBDIR       VDDK library parent directory
   -io vddk-nfchostport=PORT    VDDK nfchostport
-  -io vddk-noextents=true      Avoid slow VDDK QueryAllocatedBlocks API
   -io vddk-port=PORT           VDDK port
   -io vddk-snapshot=SNAPSHOT-MOREF
                                VDDK snapshot moref
@@ -74,7 +73,6 @@ information on these settings.
         "file";
         "libdir";
         "nfchostport";
-        "noextents";
         "port";
         "snapshot";
         "thumbprint";
@@ -173,9 +171,6 @@ information on these settings.
       try Some (List.assoc "libdir" io_options) with Not_found -> None in
     let nfchostport =
       try Some (List.assoc "nfchostport" io_options) with Not_found -> None in
-    let noextents =
-      try bool_of_string (List.assoc "noextents" io_options)
-      with Not_found -> false in
     let port =
       try Some (List.assoc "port" io_options) with Not_found -> None in
     let snapshot =
@@ -228,7 +223,7 @@ information on these settings.
              Nbdkit_vddk.create_vddk ?bandwidth:options.bandwidth
                ?config ?cookie ~cor
                ?libdir ~moref
-               ?nfchostport ~noextents
+               ?nfchostport
                ?password_file:options.input_password ?port
                ~server ?snapshot ~thumbprint ?transports ?user
                file in

@@ -25,7 +25,6 @@ val create_vddk : ?bandwidth:Types.bandwidth ->
                   ?libdir:string ->
                   moref:string ->
                   ?nfchostport:string ->
-                  noextents:bool ->
                   ?password_file:string ->
                   ?port:string ->
                   server:string ->

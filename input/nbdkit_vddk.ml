@@ -51,7 +51,7 @@ let libNN = sprintf "lib%d" Sys.word_size
 
 (* Create an nbdkit module specialized for reading from VDDK sources. *)
 let create_vddk ?bandwidth ?config ?cookie ?cor ?libdir ~moref
-      ?nfchostport ~noextents ?password_file ?port
+      ?nfchostport ?password_file ?port
       ~server ?snapshot ~thumbprint ?transports ?user file =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
@@ -139,36 +139,6 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
    * interruptions in service.  It must be closest to the plugin.
    *)
   Nbdkit.add_filter_if_available cmd "retry";
-
-  (* VDDK's QueryAllocatedBlocks API is infamously slow.  It appears
-   * to block all other requests while it is running.  This API is
-   * also only called during the copy phase, not during conversion
-   * (or if it is, extremely rarely).
-   *
-   * If fstrim was successful, then trimmed blocks are stored in
-   * the COW filter (see below), and so requests for extents stop
-   * at that layer.  However for areas of the disk that fstrim
-   * thinks contain data, we still have to go through to VDDK to
-   * fetch extents.
-   *
-   * We could therefore add nbdkit-noextents-filter here (below COW,
-   * above VDDK plugin) which stops extents requests from going
-   * to VDDK, which would stop QueryAllocatedBlocks ever being
-   * called.  In my testing this is a moderate performance win.
-   *
-   * However ... in the case where fstrim failed, or for filesystems
-   * or partitions on the disk that we don't understand, doing this
-   * would mean that those are copied completely, as there would be
-   * no extent data (nbdcopy will still sparsify them on the target,
-   * but we'd have to copy all the bits from VMware).  Because
-   * here we don't know if this is the case, be conservative and
-   * actually don't use this filter.
-   *
-   * If used, this filter should be close to the plugin and MUST
-   * be below the COW filter.
-   *)
-  if noextents then
-    Nbdkit.add_filter_if_available cmd "noextents";
 
   (* Split very large requests to avoid out of memory errors on the
    * server.  Since we're using this filter, also add minblock=512
