@@ -71,7 +71,6 @@ REQUIREMENTS
   + nbdkit-blocksize-filter
   + nbdkit-cow-filter
   + nbdkit-multi-conn-filter
-  + nbdkit-noextents-filter
   + nbdkit-rate-filter
   + nbdkit-retry-filter
 
