@@ -69,6 +69,7 @@ REQUIREMENTS
   + nbdkit-vddk-plugin
 
   + nbdkit-blocksize-filter
+  + nbdkit-count-filter
   + nbdkit-cow-filter
   + nbdkit-multi-conn-filter
   + nbdkit-rate-filter
