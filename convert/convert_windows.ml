@@ -396,9 +396,59 @@ let convert (g : G.guestfs) source inspect i_firmware
   and configure_pnputil_install () =
     let fb_script = "@echo off\n\
                      \n\
-                     echo Wait for VirtIO drivers to be installed\n\
-                     %systemroot%\\Sysnative\\PnPutil -i -a \
-                     %systemroot%\\Drivers\\Virtio\\*.inf" in
+                     setlocal EnableDelayedExpansion\n\
+                     set log=%~dp0pnputil.log\n\
+                     set inf_dir=%systemroot%\\Drivers\\Virtio\\\n\
+                     echo Installing drivers from %inf_dir% > \"%log%\"\n\
+                     set FAILED=0\n\
+                     set REBOOT_PENDING=0\n\
+                     \n\
+                     timeout /t 10 /nobreak >nul\n\
+                     \n\
+                     reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired\" >nul 2>&1\n\
+                     if %errorlevel%==0 (\n\
+                     echo Windows Update: Reboot required.\n\
+                     set REBOOT_PENDING=1\n\
+                     )\n\
+                     \n\
+                     reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootPending\" >nul 2>&1\n\
+                     if %errorlevel%==0 (\n\
+                     echo CBS: Reboot required.\n\
+                     set REBOOT_PENDING=1\n\
+                     )\n\
+                     \n\
+                     reg query \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\" /v PendingFileRenameOperations >nul 2>&1\n\
+                     if %errorlevel%==0 (\n\
+                     echo Session Manager: Reboot required.\n\
+                     set REBOOT_PENDING=1\n\
+                     )\n\
+                     \n\
+                     if \"%REBOOT_PENDING%\"==\"1\" (\n\
+                     echo A reboot is pending.\n\
+                     exit /b 1\n\
+                     ) else (\n\
+                     echo No pending reboot detected.\n\
+                     rem exit /b 0\n\
+                     )\n\
+                     \n\
+                     for %%f in (\"%inf_dir%*.inf\") do (\n\
+                     echo Installing: %%~nxf >> \"%log%\"\n\
+                     %systemroot%\\Sysnative\\PnPutil -i -a \"%%f\" >> \"%log%\" 2>&1\n\
+                     if !errorlevel! NEQ 0 (\n\
+                     echo Failed to install %%~nxf >> \"%log%\"\n\
+                     set FAILED=1\n\
+                     exit /b 1\n\
+                     ) else (\n\
+                     echo Successfully installed %%~nxf >> \"%log%\"\n\
+                     )\n\
+                     )\n\
+                     if !FAILED! NEQ 0 (\n\
+                     echo Some drivers failed to install. >> \"%log%\"\n\
+                     exit /b 1\n\
+                     else (\n\
+                     echo All drivers installed successfully. >> \"%log%\"\n\
+                     exit /b 0\n\
+                     )" in
 
     (* Set priority higher than that of "network-configure" firstboot script. *)
     Firstboot.add_firstboot_script g inspect.i_root ~prio:2000
