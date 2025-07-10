@@ -446,7 +446,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
         let wildcard =
           match files with
           | [] -> assert false (* can't happen, see assert above *)
-          | [f] -> f
+          | [f] -> fnmatch_escape f
           | files ->
              (* Calculate the longest common prefix across all the files,
               * then set the wildcard to this.
@@ -454,8 +454,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
               * XXX Is every file we want to read called *.vmdk?
               *)
              let prefix = String.longest_common_prefix files in
-             prefix ^ "*.vmdk" in
-        let wildcard = fnmatch_escape wildcard in
+             fnmatch_escape prefix ^ "*.vmdk" in
 
         let socket = sprintf "%s/in0" dir in
         On_exit.unlink socket;
