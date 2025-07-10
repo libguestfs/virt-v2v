@@ -396,9 +396,51 @@ let convert (g : G.guestfs) source inspect i_firmware
   and configure_pnputil_install () =
     let fb_script = "@echo off\n\
                      \n\
-                     echo Wait for VirtIO drivers to be installed\n\
-                     %systemroot%\\Sysnative\\PnPutil -i -a \
-                     %systemroot%\\Drivers\\Virtio\\*.inf" in
+                     setlocal EnableDelayedExpansion\n\
+                     set inf_dir=%systemroot%\\Drivers\\Virtio\\\n\
+                     echo Installing drivers from %inf_dir%\n\
+                     set REBOOT_PENDING=0\n\
+                     \n\
+                     timeout /t 10 /nobreak\n\
+                     \n\
+                     reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired\"\n\
+                     if %errorlevel%==0 (\n\
+                     echo Windows Update: Reboot required.\n\
+                     set REBOOT_PENDING=1\n\
+                     )\n\
+                     \n\
+                     reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootPending\"\n\
+                     if %errorlevel%==0 (\n\
+                     echo CBS: Reboot required.\n\
+                     set REBOOT_PENDING=1\n\
+                     )\n\
+                     \n\
+                     reg query \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\" /v PendingFileRenameOperations\n\
+                     if %errorlevel%==0 (\n\
+                     echo Session Manager: Reboot required.\n\
+                     set REBOOT_PENDING=1\n\
+                     )\n\
+                     \n\
+                     if \"%REBOOT_PENDING%\"==\"1\" (\n\
+                     echo A reboot is pending.\n\
+                     exit /b 249\n\
+                     ) else (\n\
+                     echo No pending reboot detected.\n\
+                     )\n\
+                     \n\
+                     for %%f in (\"%inf_dir%*.inf\") do (\n\
+                     echo Installing: %%~nxf.\n\
+                     %systemroot%\\Sysnative\\PnPutil -i -a \"%%f\"\n\
+                     if !errorlevel! NEQ 0 (\n\
+                     echo Failed to install %%~nxf.\n\
+                     exit /b 249\n\
+                     ) else (\n\
+                     echo Successfully installed %%~nxf.\n\
+                     )\n\
+                     )\n\
+                     echo All drivers installed successfully.\n\
+                     exit /b 0\n\
+                     )" in
 
     (* Set priority higher than that of "network-configure" firstboot script. *)
     Firstboot.add_firstboot_script g inspect.i_root ~prio:2000
