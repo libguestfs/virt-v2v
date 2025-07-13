@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.8.1\n"
+"Project-Id-Version: virt-v2v 2.9.1\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-06-26 16:05+0100\n"
+"POT-Creation-Date: 2025-07-13 12:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,7 +132,7 @@ msgid ""
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
-#: input/input_vddk.ml:187
+#: input/input_vddk.ml:185
 msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
@@ -224,7 +224,7 @@ msgstr ""
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr ""
 
-#: input/input_vddk.ml:122 input/input_vcenter_https.ml:88
+#: input/input_vddk.ml:120 input/input_vcenter_https.ml:88
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
 
@@ -238,7 +238,7 @@ msgstr ""
 
 #. input/input_vcenter_https.ml:70
 #. input/input_libvirt.ml:41
-#: input/input_xen_ssh.ml:57 input/input_vddk.ml:112
+#: input/input_xen_ssh.ml:57 input/input_vddk.ml:110
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
 msgstr ""
 
@@ -278,7 +278,7 @@ msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
 
-#: input/input_vddk.ml:92
+#: input/input_vddk.ml:90
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgstr ""
 
@@ -294,18 +294,18 @@ msgstr ""
 msgid "-o disk: unknown output option ‘-oo %s’"
 msgstr ""
 
-#: output/output_kubevirt.ml:72
+#: output/output_kubevirt.ml:81
 msgid "-o kubevirt: output directory was not specified, use '-os /dir'"
 msgstr ""
 
-#: output/output_kubevirt.ml:82
+#: output/output_kubevirt.ml:91
 msgid ""
 "-o kubevirt: the guest name must contain only lowercase alphanumeric "
 "characters, '-' or '.', and must start and end with an alphanumeric "
 "character.  Rerun virt-v2v with the '-on name' option to rename it."
 msgstr ""
 
-#: output/output_kubevirt.ml:62
+#: output/output_kubevirt.ml:71
 msgid "-o kubevirt: unknown output option ‘-oo %s’"
 msgstr ""
 
@@ -407,7 +407,7 @@ msgstr ""
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
 msgstr ""
 
-#. output/output_kubevirt.ml:75
+#. output/output_kubevirt.ml:84
 #. output/output_disk.ml:68
 #: output/output_vdsm.ml:112 output/output_qemu.ml:74
 msgid "-os %s: output directory does not exist or is not a directory"
@@ -446,7 +446,7 @@ msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
 
-#: input/input_vddk.ml:156
+#: input/input_vddk.ml:154
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -683,7 +683,6 @@ msgid ""
 "  -io vddk-file=FILE           Override nbdkit-vddk-plugin file= parameter\n"
 "  -io vddk-libdir=LIBDIR       VDDK library parent directory\n"
 "  -io vddk-nfchostport=PORT    VDDK nfchostport\n"
-"  -io vddk-noextents=true      Avoid slow VDDK QueryAllocatedBlocks API\n"
 "  -io vddk-port=PORT           VDDK port\n"
 "  -io vddk-snapshot=SNAPSHOT-MOREF\n"
 "                               VDDK snapshot moref\n"
@@ -841,11 +840,14 @@ msgid ""
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
 
-#: output/output_kubevirt.ml:49
+#: output/output_kubevirt.ml:51
 msgid ""
 "Output options that can be used with -o kubevirt:\n"
 "\n"
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
+"  -oo create=false    Do not create the output disks\n"
+"  -oo disk=disk1      Specify filename of output disk (if used, must be\n"
+"                          given once for each disk, else -os path is used)\n"
 msgstr ""
 
 #: output/output_libvirt.ml:47
@@ -1238,7 +1240,7 @@ msgid ""
 "report a bug against virt-v2v."
 msgstr ""
 
-#: input/input_vddk.ml:102
+#: input/input_vddk.ml:100
 msgid ""
 "You must pass the ‘-io vddk-thumbprint’ option with the SSL thumbprint of "
 "the VMware server.  To find the thumbprint, see the nbdkit-vddk-plugin(1) "
@@ -1386,7 +1388,7 @@ msgid ""
 msgstr ""
 
 #. input/input_vcenter_https.ml:94
-#: input/select_input.ml:65 input/input_xen_ssh.ml:71 input/input_vddk.ml:131
+#: input/select_input.ml:65 input/input_xen_ssh.ml:71 input/input_vddk.ml:129
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1586,11 +1588,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:374 common/mlcustomize/firstboot.ml:165
+#: common/mlcustomize/firstboot.ml:380 common/mlcustomize/firstboot.ml:165
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:401
+#: common/mlcustomize/firstboot.ml:407
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
@@ -1625,7 +1627,7 @@ msgstr ""
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
-#: input/input_vddk.ml:126
+#: input/input_vddk.ml:124
 msgid "in-place mode does not work with VDDK source"
 msgstr ""
 
@@ -1635,6 +1637,12 @@ msgstr ""
 
 #: input/input_xen_ssh.ml:50
 msgid "in-place mode does not work with Xen over SSH source"
+msgstr ""
+
+#: output/output_kubevirt.ml:116
+msgid ""
+"incorrect number of '-oo disk' parameters.  This guest has %d disks, but the "
+"parameter was used %d times."
 msgstr ""
 
 #: input/input_xen_ssh.ml:119
@@ -1827,7 +1835,7 @@ msgid ""
 "twice"
 msgstr ""
 
-#: input/input_vddk.ml:277
+#: input/input_vddk.ml:272
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1839,7 +1847,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: input/input_vddk.ml:271
+#: input/input_vddk.ml:266
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1863,7 +1871,7 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
-#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:243
+#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:238
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
@@ -1878,7 +1886,7 @@ msgid ""
 "libvirtxml’."
 msgstr ""
 
-#: output/output.ml:167 output/output.ml:74
+#: output/output.ml:173 output/output.ml:76
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
@@ -1911,7 +1919,7 @@ msgstr ""
 
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:99
-#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:247
+#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:242
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
 
@@ -1920,7 +1928,7 @@ msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
 #. input/input_disk.ml:97
-#: output/output.ml:170 output/output.ml:77 input/input_libvirt.ml:72
+#: output/output.ml:176 output/output.ml:79 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
@@ -1936,7 +1944,7 @@ msgstr ""
 msgid "nbdkit-ssh-plugin is not installed"
 msgstr ""
 
-#: input/input_vddk.ml:245
+#: input/input_vddk.ml:240
 msgid "nbdkit-vddk-plugin is not installed"
 msgstr ""
 
@@ -2048,7 +2056,7 @@ msgid ""
 "\"available\""
 msgstr ""
 
-#: output/output.ml:127
+#: output/output.ml:132
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 
@@ -2533,21 +2541,21 @@ msgstr ""
 msgid "you must supply the --run parameter"
 msgstr ""
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:169
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:167
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: input/input_vddk.ml:233
+#: input/input_vddk.ml:228
 msgid "‘-io vddk-file=’ must be used exactly %d times"
 msgstr ""
 
-#: input/input_vddk.ml:255
+#: input/input_vddk.ml:250
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
 msgstr ""
 
-#: output/output.ml:82
+#: output/output.ml:84
 msgid ""
 "‘-oo compressed’ is only allowed when the output format is a local qcow2-"
 "format file, i.e. ‘-of qcow2’"
