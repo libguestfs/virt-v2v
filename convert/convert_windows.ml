@@ -431,7 +431,7 @@ let convert (g : G.guestfs) source inspect i_firmware
                      for %%f in (\"%inf_dir%*.inf\") do (\n\
                      echo Installing: %%~nxf.\n\
                      %systemroot%\\Sysnative\\PnPutil -i -a \"%%f\"\n\
-                     if !errorlevel! NEQ 0 (\n\
+                     if !errorlevel! neq 0 if !errorlevel! neq 259 (\n\
                      echo Failed to install %%~nxf.\n\
                      exit /b 249\n\
                      ) else (\n\
