@@ -469,6 +469,11 @@ read the man page virt-v2v(1).
   (* Do the copy. *)
   with_open_out (v2vdir // "copy") (fun _ -> ());
 
+  if verbose () then (
+    eprintf "info: nbdcopy version:\n%!";
+    ignore (Sys.command (sprintf "%s --version >&2" Config.nbdcopy))
+  );
+
   (* Get the list of disks and corresponding NBD URIs. *)
   let disks =
     List.combine input_disks output_disks |>
