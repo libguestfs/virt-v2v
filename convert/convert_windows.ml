@@ -401,8 +401,6 @@ let convert (g : G.guestfs) source inspect i_firmware
                      echo Installing drivers from %inf_dir%\n\
                      set REBOOT_PENDING=0\n\
                      \n\
-                     timeout /t 10 /nobreak\n\
-                     \n\
                      reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired\"\n\
                      if %errorlevel%==0 (\n\
                      echo Windows Update: Reboot required.\n\
