@@ -1,0 +1,21 @@
+The original intent of this timeout command was to wait for Windows
+Update to settle down before testing for the registry entries that
+show that Windows has to be rebooted (this is obviously inherently
+racy).
+
+However it caused a regression.  If Windows sets the timezone while
+the timeout command is running (in one case, setting the wallclock
+time back by 2 hours), then the timeout command will wait for 2 hours
++ 10 seconds.  Unbelievable, but true.
+
+Alternatives were considered:
+
+ - Using a 'ping 127.0.0.1' command, which is effectively a 5 second
+   delay.  We worried this might cause issues on IPv6-only stacks.
+
+ - Using a Powershell command, although that might have the same
+   problem.
+
+For now, remove the timeout and carry out more testing.
+
+Thanks: Ming Xie
