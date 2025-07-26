@@ -60,6 +60,11 @@ AM_CONDITIONAL([HAVE_ZIP],[test "x$ZIP" != "xno"])
 AC_PATH_PROGS([UNZIP],[unzip],[no])
 AC_DEFINE_UNQUOTED([UNZIP],["$UNZIP"],[Name of unzip program.])
 
+dnl Detect nbdkit also under /usr/sbin or /sbin in case they're not on $PATH
+AC_PATH_PROG(NBDKIT,[nbdkit], [no], [/usr/sbin$PATH_SEPARATOR/sbin$PATH_SEPARATOR$PATH])
+AS_IF([test "x$NBDKIT" = "xno"],
+      [AC_MSG_WARN([nbdkit binary (from nbdkit) not found, some runtime functionality will be missing])])
+
 dnl nbdinfo, nbdcopy, required by virt-v2v
 AC_CHECK_PROG([NBDINFO], [nbdinfo], [nbdinfo], [no])
 AC_CHECK_PROG([NBDCOPY], [nbdcopy], [nbdcopy], [no])
