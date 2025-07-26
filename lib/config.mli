@@ -34,6 +34,9 @@ val datadir : string
 val host_cpu : string
 (** The configure value [@host_cpu@] *)
 
+val nbdkit : string option
+(** The location of the nbdkit program, from configure value [@NBDKIT@] *)
+
 val nbdcopy : string
 (** The location of the nbdcopy program, from configure value [@NBDCOPY@] *)
 
