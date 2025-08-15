@@ -53,6 +53,8 @@ module VDDK = struct
 
 All other settings are optional:
 
+  -io vddk-compression=COMPR   Set VDDK compression mode (see
+                                 nbdkit-vddk-plugin documentation)
   -io vddk-config=FILE         VDDK configuration file
   -io vddk-cookie=COOKIE       VDDK cookie
   -io vddk-file=FILE           Override nbdkit-vddk-plugin file= parameter
@@ -73,7 +75,8 @@ information on these settings.
      * Also removes the "vddk-" prefix from the internal list.
      *)
     let vddk_option_keys =
-      [ "config";
+      [ "compression";
+        "config";
         "cookie";
         "file";
         "libdir";
@@ -198,6 +201,8 @@ information on these settings.
       | Some password_file ->
          password_file in
 
+    let compression =
+      try Some (List.assoc "compression" io_options) with Not_found -> None in
     let config =
       try Some (List.assoc "config" io_options) with Not_found -> None in
     let cookie =
@@ -299,6 +304,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
 
       (* The passthrough parameters. *)
       let passthru cmd name v = Option.iter (Nbdkit.add_arg cmd name) v in
+      passthru cmd "compression" compression;
       passthru cmd "config" config;
       passthru cmd "cookie" cookie;
       passthru cmd "libdir" libdir;

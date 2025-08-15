@@ -345,6 +345,8 @@ Set the thumbprint of the remote VMware server.
 This parameter is required when using the I<-it vddk> (VDDK) transport.
 See L<virt-v2v-input-vmware(1)> for details.
 
+=item B<-io vddk-compression=>COMPRESSION
+
 =item B<-io vddk-config=>FILENAME
 
 =item B<-io vddk-cookie=>COOKIE
