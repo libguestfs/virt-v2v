@@ -20,7 +20,7 @@
 # freeform string.
 m4_define([v2v_major],   [2])
 m4_define([v2v_minor],   [9])
-m4_define([v2v_release], [2])
+m4_define([v2v_release], [3])
 
 AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 
