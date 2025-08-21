@@ -61,6 +61,9 @@ case "$guestname" in
         ;;
 esac
 
+# Increase the amount of memory in the virt-builder appliance.
+extra[${#extra[*]}]='--memsize=8192'
+
 # Build a guest (using virt-builder).
 virt-builder "$guestname" --quiet -o "$disk" "${extra[@]}"
 
