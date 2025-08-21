@@ -18,8 +18,6 @@
 
 # Test virt-v2v rejects a blank disk.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

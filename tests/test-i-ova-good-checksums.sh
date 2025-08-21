@@ -18,8 +18,6 @@
 
 # Test -i ova option with good checksums.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

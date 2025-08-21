@@ -22,8 +22,6 @@
 # Note: This test is expected to fail on NFS, we should automatically
 # skip in that case (XXX - how?).
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

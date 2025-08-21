@@ -18,8 +18,6 @@
 
 # Test --print-source option.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

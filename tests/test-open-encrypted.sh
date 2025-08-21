@@ -20,7 +20,6 @@
 
 unset CDPATH
 export LANG=C
-set -e
 
 source ./functions.sh
 set -e

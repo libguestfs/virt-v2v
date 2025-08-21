@@ -19,8 +19,6 @@
 # Regression test for virt-v2v handling of blank disks:
 # https://bugzilla.redhat.com/show_bug.cgi?id=1232192
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

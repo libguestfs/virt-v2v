@@ -18,8 +18,6 @@
 
 # Test -i ova option with a directory.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

@@ -18,8 +18,6 @@
 
 # Test -i ova option with ova file compressed in different ways
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

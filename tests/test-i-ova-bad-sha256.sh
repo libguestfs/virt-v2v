@@ -18,8 +18,6 @@
 
 # Test -i ova option with a good manifest containing a bad SHA256 checksum.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

@@ -21,8 +21,6 @@
 # This test is fairly terrible.  It doesn't test SSH at all (which has
 # been broken since 1.42).  It doesn't test copying at all.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

@@ -18,8 +18,6 @@
 
 # Test -o ovirt.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

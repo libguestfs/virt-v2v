@@ -19,8 +19,6 @@
 # Test cdrom dev assignment.
 # https://bugzilla.redhat.com/show_bug.cgi?id=1238053
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

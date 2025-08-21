@@ -18,9 +18,6 @@
 
 # Test -o vdsm options -oo vdsm-*-uuid
 
-set -e
-set -x
-
 source ./functions.sh
 set -e
 set -x

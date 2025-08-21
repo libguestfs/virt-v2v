@@ -18,8 +18,6 @@
 
 # Test virt-customize options of virt-v2v.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

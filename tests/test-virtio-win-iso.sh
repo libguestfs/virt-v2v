@@ -19,8 +19,6 @@
 
 # Test virt-v2v Windows conversion with VirtIO drivers on an ISO image.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

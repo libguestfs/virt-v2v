@@ -18,9 +18,6 @@
 
 # Test detection of duplicate --network and --bridge parameters.
 
-set -e
-set -x
-
 source ./functions.sh
 set -e
 set -x

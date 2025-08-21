@@ -18,8 +18,6 @@
 
 # Test virt-v2v -oa (sparse/preallocated) option + -of raw.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

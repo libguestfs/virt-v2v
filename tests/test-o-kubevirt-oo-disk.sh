@@ -18,9 +18,6 @@
 
 # Test -o kubevirt + -oo disk option.
 
-set -e
-set -x
-
 source ./functions.sh
 set -e
 set -x

@@ -18,8 +18,6 @@
 
 # Test --network and --bridge parameters.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

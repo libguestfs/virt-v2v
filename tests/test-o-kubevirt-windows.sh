@@ -18,9 +18,6 @@
 
 # Test -o kubevirt using phony Windows guest.
 
-set -e
-set -x
-
 source ./functions.sh
 set -e
 set -x

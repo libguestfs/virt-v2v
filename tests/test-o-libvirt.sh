@@ -18,8 +18,6 @@
 
 # Test -o libvirt.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

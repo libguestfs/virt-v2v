@@ -19,8 +19,6 @@
 # Test converting a guest with a floppy disk.
 # https://bugzilla.redhat.com/show_bug.cgi?id=1309706
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

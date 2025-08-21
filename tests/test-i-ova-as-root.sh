@@ -22,8 +22,6 @@
 # https://bugzilla.redhat.com/show_bug.cgi?id=1375157#c6
 # https://bugzilla.redhat.com/show_bug.cgi?id=1430680
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

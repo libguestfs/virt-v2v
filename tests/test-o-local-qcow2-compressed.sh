@@ -18,8 +18,6 @@
 
 # Test -o local -of qcow2 -oo compressed.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

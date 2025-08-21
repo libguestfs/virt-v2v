@@ -22,9 +22,6 @@
 # tests/test-o-ovirt-upload-module/ovirtsdk4) to fake responses from
 # oVirt.
 
-set -e
-set -x
-
 source ./functions.sh
 set -e
 set -x

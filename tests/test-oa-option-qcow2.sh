@@ -18,8 +18,6 @@
 
 # Test virt-v2v -oa (sparse/preallocated) option + -of qcow2.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

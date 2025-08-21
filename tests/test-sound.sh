@@ -18,8 +18,6 @@
 
 # Test <sound> is transferred to destination domain.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

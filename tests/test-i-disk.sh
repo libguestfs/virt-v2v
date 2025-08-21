@@ -18,8 +18,6 @@
 
 # Test -i disk option.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

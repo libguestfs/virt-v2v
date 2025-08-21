@@ -18,8 +18,6 @@
 
 # Test virt-v2v (Phony) Windows conversion.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

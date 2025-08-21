@@ -18,8 +18,6 @@
 
 # Test virt-v2v on real guests.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

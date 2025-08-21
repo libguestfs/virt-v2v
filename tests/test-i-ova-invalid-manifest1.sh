@@ -18,8 +18,6 @@
 
 # Test -i ova option with invalid manifest.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x

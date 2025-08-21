@@ -18,8 +18,6 @@
 
 # Test virt-v2v -of (format conversion) option.
 
-set -e
-
 source ./functions.sh
 set -e
 set -x
