@@ -63,6 +63,8 @@ $VG virt-v2v --debug-gc \
     -oo verify-server-certificate=false \
     -oo dev-disk-by-id=$d
 
+cat $d/log
+
 # Check the log of openstack commands to make sure they look reasonable.
 grep 'token issue' $d/log
 grep 'volume create.*size 1.*temporary volume.*test-sda' $d/log

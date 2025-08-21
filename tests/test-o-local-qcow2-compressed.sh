@@ -44,3 +44,5 @@ $VG virt-v2v --debug-gc \
 ls -l $d
 test -f $d/windows.xml
 test -f $d/windows-sda
+
+cat $d/windows.xml

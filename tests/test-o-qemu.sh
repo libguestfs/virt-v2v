@@ -41,6 +41,8 @@ $VG virt-v2v --debug-gc \
     -i libvirt -ic "$libvirt_uri" windows \
     -o qemu -os $d
 
+cat $d/windows.sh
+
 # Test that the disk was created.
 test -f $d/windows-sda
 

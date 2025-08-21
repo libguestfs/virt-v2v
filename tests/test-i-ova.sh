@@ -64,6 +64,8 @@ $VG virt-v2v --debug-gc \
 test -f $d/$raw
 test -f $d/TestOva.xml
 
+cat $d/TestOva.xml
+
 # Normalize the XML output.
 mv $d/TestOva.xml $d/TestOva.xml.old
 sed \

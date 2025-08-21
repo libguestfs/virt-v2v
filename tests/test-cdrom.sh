@@ -44,6 +44,7 @@ $VG virt-v2v --debug-gc \
 
 # Test the libvirt XML metadata was created.
 test -f $d/windows.xml
+cat $d/windows.xml
 
 # Grab just the <disk>..</disk> output and compare it to what we
 # expect.  https://stackoverflow.com/questions/16587218

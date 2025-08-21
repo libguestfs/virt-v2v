@@ -44,5 +44,7 @@ $VG virt-v2v --debug-gc \
 # Test the libvirt XML metadata was created.
 test -f $d/windows.xml
 
+cat $d/windows.xml
+
 # Check the <sound> element exists in the output.
 grep 'sound model=.ich9' $d/windows.xml

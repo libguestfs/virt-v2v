@@ -41,3 +41,5 @@ $VG virt-v2v --debug-gc \
 # Test the libvirt XML metadata and a disk was created.
 test -f $d/windows.xml
 test -f $d/windows-sda
+
+cat $d/windows.xml

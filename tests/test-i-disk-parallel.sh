@@ -52,3 +52,5 @@ test -f $d/windows-sda
 test -f $d/windows-sdb
 test -f $d/windows-sdc
 test -f $d/windows-sdd
+
+cat $d/windows.xml
