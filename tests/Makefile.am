@@ -161,7 +161,10 @@ real_guests_scripts = \
 	test-conversion-of-debian-7.sh \
 	test-conversion-of-debian-8.sh \
 	test-conversion-of-debian-9.sh \
-	test-conversion-of-fedora-37.sh \
+	test-conversion-of-debian-10.sh \
+	test-conversion-of-debian-11.sh \
+	test-conversion-of-debian-12.sh \
+	test-conversion-of-fedora-42.sh \
 	test-conversion-of-opensuse-13.1.sh \
 	test-conversion-of-opensuse-13.2.sh \
 	test-conversion-of-opensuse-42.1.sh \
@@ -169,6 +172,8 @@ real_guests_scripts = \
 	test-conversion-of-rhel-6.10.sh \
 	test-conversion-of-rhel-7.9.sh \
 	test-conversion-of-rhel-8.7.sh \
+	test-conversion-of-rhel-9.4.sh \
+	test-conversion-of-rhel-10.0.sh \
 	test-conversion-of-ubuntu-16.04.sh \
 	test-conversion-of-ubuntu-18.04.sh \
 	test-conversion-of-ubuntu-20.04.sh \
