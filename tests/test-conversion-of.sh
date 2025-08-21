@@ -49,9 +49,12 @@ skip_unless_virt_builder_guest "$guestname"
 # See virt-builder --notes "$guestname"
 declare -a extra
 
-# Don't try to update Windows versions.
 case "$guestname" in
+    # Don't try to update Windows versions.
     windows*)
+        ;;
+    # Or RHEL versions as they require access to private repos.
+    rhel*)
         ;;
     *)
         extra[${#extra[*]}]='--update'
