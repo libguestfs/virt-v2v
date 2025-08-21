@@ -27,6 +27,7 @@
       <driver name='qemu' type='raw'/>
       <source file='TestOva-sda'/>
       <target dev='vda' bus='virtio'/>
+      <boot order='1'/>
     </disk>
     <disk device='cdrom' type='file'>
       <driver name='qemu' type='raw'/>

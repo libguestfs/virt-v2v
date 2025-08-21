@@ -41,7 +41,8 @@ let get_osinfo_id inspect =
     None
 
 let create_libvirt_xml ?pool source inspect
-      { guestcaps; target_buses; target_firmware; target_nics }
+      { guestcaps; target_buses; target_nics; target_firmware;
+        target_boot_device }
       target_features outdisk_name output_format output_name =
   (* The main body of the libvirt XML document. *)
   let body = ref [] in
@@ -206,6 +207,18 @@ let create_libvirt_xml ?pool source inspect
     | BusSlotDisk d ->
        let outdisk = outdisk_name d.s_disk_id in
 
+       let boot_order =
+         match target_boot_device with
+         | None ->
+            (* No known boot device, just number them sequentially. *)
+            i+1
+         | Some disk_index when disk_index = i ->
+            (* For the boot disk, use order 1. *)
+            1
+         | Some _ ->
+            (* For the others number them sequentially starting at 2. *)
+            i+2 in
+
         e "disk" (
           [
             "type", if pool = None then "file" else "volume";
@@ -231,6 +244,7 @@ let create_libvirt_xml ?pool source inspect
             "dev", drive_prefix ^ drive_name i;
             "bus", bus_name;
           ] [];
+          e "boot" [ "order", string_of_int boot_order ] [];
         ]
 
     | BusSlotRemovable { s_removable_type = CDROM } ->
