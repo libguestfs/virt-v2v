@@ -56,6 +56,12 @@ case "$guestname" in
     # Or RHEL versions as they require access to private repos.
     rhel*)
         ;;
+    # Debian 9+ conversions fail because grub-pc cannot be updated.
+    # Uninstall it before updating.
+    debian*)
+        extra[${#extra[*]}]='--uninstall=grub-pc'
+        extra[${#extra[*]}]='--update'
+        ;;
     *)
         extra[${#extra[*]}]='--update'
         ;;
