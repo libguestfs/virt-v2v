@@ -94,6 +94,10 @@ let rec convert input_disks options source =
   let root = Choose_root.choose_root options.root_choice g in
   let inspect = Mount_filesystems.mount_filesystems g root in
 
+  (* Detect boot device. *)
+  message (f_"Detecting the boot device");
+  let target_boot_device = get_target_boot_device g inspect in
+
   let mpstats = get_mpstats g in
   check_guest_free_space inspect mpstats;
 
@@ -136,7 +140,7 @@ let rec convert input_disks options source =
 
   (* Create target metadata file. *)
   let target_meta = { guestcaps; target_buses; target_nics;
-                      target_firmware; target_boot_device = None } in
+                      target_firmware; target_boot_device } in
 
   (* This is a good place to dump everything we know about the guest. *)
   if verbose () then debug_info source inspect target_meta mpstats;
@@ -360,6 +364,37 @@ and get_target_firmware i_firmware guestcaps source output =
    | TargetUEFI -> info (f_"This guest requires UEFI on the target to boot."));
 
   target_firmware
+
+and get_target_boot_device g inspect =
+  (* We only do it for Linux, as most likely Windows never(?) boots
+   * from any drive other than C:.  We can revisit this decision
+   * if someone reports a bug.
+   *)
+  match inspect.i_type with
+  | "linux" ->
+     (try
+        (* In sane cases, the Grub stage1/boot.img (ie. the boot sector) is
+         * always on the same drive as /boot.  So we can just find out
+         * where /boot is mounted and use that.
+         *)
+        let boot_mountpoint = List.assoc "/boot" inspect.i_mountpoints in
+        let boot_device = g#part_to_dev boot_mountpoint in
+        let boot_device = g#device_index boot_device in
+        Some boot_device
+      with
+      | Not_found -> None
+      | G.Error msg
+           (* Returned by part_to_dev if the /boot mountpoint is not
+            * a partition name.
+            *)
+           when String.find msg "device name is not a partition" >= 0 -> None
+      | G.Error msg
+           (* Returned by device_index if the /boot device is not
+            * a normal drive name (eg. /dev/mdX).
+            *)
+           when String.find msg "device not found" >= 0 -> None
+     )
+  | _ -> None
 
 (* After conversion we dump as much information about the guest
  * as we can in one place.  Note this is only called when verbose
