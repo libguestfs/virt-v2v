@@ -135,7 +135,8 @@ let rec convert input_disks options source =
     get_target_firmware i_firmware guestcaps source output in
 
   (* Create target metadata file. *)
-  let target_meta = { guestcaps; target_buses; target_firmware; target_nics } in
+  let target_meta = { guestcaps; target_buses; target_nics;
+                      target_firmware; target_boot_device = None } in
 
   (* This is a good place to dump everything we know about the guest. *)
   if verbose () then debug_info source inspect target_meta mpstats;
@@ -365,7 +366,8 @@ and get_target_firmware i_firmware guestcaps source output =
  * is enabled.
  *)
 and debug_info source inspect
-               { guestcaps; target_buses; target_firmware; target_nics }
+               { guestcaps; target_buses; target_nics;
+                 target_firmware; target_boot_device }
                mpstats =
   eprintf "info:\n";
   eprintf "%s\n" (string_of_source source);
@@ -373,6 +375,8 @@ and debug_info source inspect
   eprintf "%s\n" (string_of_guestcaps guestcaps);
   eprintf "%s\n" (string_of_target_buses target_buses);
   eprintf "target firmware: %s\n" (string_of_target_firmware target_firmware);
+  eprintf "target boot device: %s\n"
+    (match target_boot_device with None -> "" | Some i -> string_of_int i);
   eprintf "target NICs:\n";
   List.iter (fun nic -> eprintf "%s\n" (string_of_source_nic nic))
     target_nics;

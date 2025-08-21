@@ -367,8 +367,21 @@ val string_of_target_buses : target_buses -> string
 type target_meta = {
   guestcaps : guestcaps;
   target_buses : target_buses;
+  target_nics : target_nics;
+
   target_firmware : target_firmware;
-  target_nics : target_nics
+
+  target_boot_device : int option;
+  (** The disk index of the device containing the bootloader (index
+      starting from 0).
+
+      For libvirt guests this should usually be mapped to
+      [<boot order='1'>] for this disk, and [<boot order='N'>]
+      where N > 1 for each other disk (order does not matter
+      for the other disks).
+
+      This is only necessary for SeaBIOS so only collected for
+      a subset of BIOS guests (RHEL-108991). *)
 }
 
 (** {2 Command line parameters} *)
