@@ -485,8 +485,9 @@ let string_of_target_buses buses =
 type target_meta = {
   guestcaps : guestcaps;
   target_buses : target_buses;
+  target_nics : target_nics;
   target_firmware : target_firmware;
-  target_nics : target_nics
+  target_boot_device : int option;
 }
 
 type root_choice = AskRoot | SingleRoot | FirstRoot | RootDev of string
