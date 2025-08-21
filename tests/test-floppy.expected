@@ -1,6 +1,7 @@
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw'/>
       <target dev='vda' bus='virtio'/>
+      <boot order='1'/>
     </disk>
     <disk device='floppy' type='file'>
       <driver name='qemu' type='raw'/>

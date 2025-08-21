@@ -544,7 +544,7 @@ let create_meta_files output_alloc output_format sd_uuid image_uuids sizes =
 
 (* Create the OVF file. *)
 let rec create_ovf source inspect
-          { guestcaps; target_firmware; target_nics }
+          { guestcaps; target_nics; target_firmware; target_boot_device }
           sizes
           output_alloc output_format
           output_name
@@ -763,7 +763,7 @@ let rec create_ovf source inspect
     ] in
 
   (* Add disks to the OVF XML. *)
-  add_disks sizes guestcaps output_alloc output_format
+  add_disks sizes guestcaps target_boot_device output_alloc output_format
     sd_uuid image_uuids vol_uuids need_actual_sizes output_disks
     ovf_flavour ovf;
 
@@ -813,7 +813,7 @@ and get_flavoured_section ovf ovirt_path esd_path esd_path_attr = function
      with Not_found -> assert false
 
 (* This modifies the OVF DOM, adding a section for each disk. *)
-and add_disks sizes guestcaps output_alloc output_format
+and add_disks sizes guestcaps target_boot_device output_alloc output_format
     sd_uuid image_uuids vol_uuids need_actual_sizes output_disks
     ovf_flavour ovf =
   let references =
@@ -838,14 +838,11 @@ and add_disks sizes guestcaps output_alloc output_format
   (* Iterate over the disks, adding them to the OVF document. *)
   List.iteri (
     fun i (size, image_uuid, vol_uuid, output_uri) ->
-      (* This sets the boot order to boot the first disk first.  This
-       * isn't generally correct.  We should copy over the boot order
-       * from the source hypervisor.  See long discussion in
-       * https://bugzilla.redhat.com/show_bug.cgi?id=1308535 for
-       * what we should be doing.  (XXX)
-       *)
-      let is_bootable_drive = i == 0 in
-      let boot_order = i+1 in
+      let is_bootable_drive, boot_order =
+        match target_boot_device with
+        | None -> i = 0, i+1
+        | Some disk_index when disk_index = i -> true, 1
+        | Some _ -> false, i+2 in
 
       let fileref =
         match ovf_flavour with

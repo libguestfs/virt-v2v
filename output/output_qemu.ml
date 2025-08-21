@@ -105,7 +105,8 @@ module QEMU = struct
     let _, qemu_boot, output_alloc, output_format,
         output_name, output_storage = options in
 
-    let { guestcaps; target_buses; target_firmware } = target_meta in
+    let { guestcaps; target_buses;
+          target_firmware; target_boot_device } = target_meta in
 
     (* Start the shell script.  Write it to a temporary file
      * which we rename at the end.
@@ -279,8 +280,17 @@ module QEMU = struct
        * "disk_id".
        *)
       let outdisk = disk_path output_storage output_name disk_id in
-      arg_list "-drive" [ "file=" ^ outdisk; "format=" ^ output_format;
-                          "if=none"; "id=" ^ backend_name; "media=disk" ]
+      let bootindex =
+         match target_boot_device with
+         | None -> disk_id+1
+         | Some disk_index when disk_index = disk_id -> 1
+         | Some _ -> disk_id+2 in
+      arg_list "-drive" [ "file=" ^ outdisk;
+                          "format=" ^ output_format;
+                          "if=none";
+                          "id=" ^ backend_name;
+                          "media=disk";
+                          sprintf "bootindex=%d" bootindex ]
 
     and add_cdrom_backend backend_name =
       (* Add a drive (back-end) for an "ide-cd" or "scsi-cd" device (front-end).
