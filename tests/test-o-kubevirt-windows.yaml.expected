@@ -36,6 +36,7 @@ spec:
           disks:
           - disk:
               bus: virtio
+            bootOrder: 1
             name: disk-0
           interfaces:
           - name: net_default
