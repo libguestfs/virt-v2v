@@ -27,7 +27,8 @@ open Utils
 open YAML
 
 let create_kubevirt_yaml source inspect
-      { guestcaps; target_buses; target_firmware; target_nics }
+      { guestcaps; target_buses; target_nics;
+        target_firmware; target_boot_device }
       outdisk_name output_format output_name =
   (* The body of the YAML contains various sections attached to
    * a tree.  We fill in these sections first.
@@ -164,8 +165,14 @@ let create_kubevirt_yaml source inspect
        (* XXX How to place devices on the bus? *) ()
     | BusSlotDisk d ->
        let disk_id = sprintf "disk-%d" d.s_disk_id in
+       let boot_order =
+         match target_boot_device with
+         | None -> d.s_disk_id + 1
+         | Some disk_index when disk_index = d.s_disk_id -> 1
+         | Some _ -> d.s_disk_id + 2 in
        let disk = Assoc [
          "disk", Assoc ["bus", String "virtio"];
+         "bootOrder", Int boot_order;
          "name", String disk_id
        ] in
        List.push_back disks disk;
