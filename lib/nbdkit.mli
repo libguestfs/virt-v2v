@@ -40,6 +40,12 @@ type version = int * int * int
 val version : unit -> version
 (** Get the installed version of nbdkit. *)
 
+val probe_server_parameter : string -> bool
+(** Probe if a particular server parameter is available.
+
+    eg. [probe_server_parameter "--name"] tests if the [--name]
+    parameter is available in this build of nbdkit. *)
+
 val probe_plugin : string -> bool
 (** Probe if a particular plugin is available. *)
 

@@ -61,6 +61,18 @@ let get_version = lazy (
 )
 let version () = Lazy.force get_version
 
+let probe_server_parameter name =
+  let list_options =
+    if String.length name = 2 &&
+         name.[0] = '-' &&
+         name.[1] <> '-' then
+      "--short-options"
+    else
+      "--long-options" in
+  let regex = sprintf "^%s$" name in
+  let cmd = sprintf "nbdkit %s | grep -sq %s" list_options (quote regex) in
+  Sys.command cmd = 0
+
 let probe_plugin name =
   let cmd = sprintf "nbdkit %s --version >/dev/null 2>&1" (quote name) in
   Sys.command cmd = 0
