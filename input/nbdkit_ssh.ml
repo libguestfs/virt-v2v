@@ -30,7 +30,7 @@ type password =
   | PasswordFile of string
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
-let create_ssh ?bandwidth ?cor ?(retry=true)
+let create_ssh ?name ?bandwidth ?cor ?(retry=true)
       ~server ?port ?user ?password path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
@@ -42,7 +42,7 @@ let create_ssh ?bandwidth ?cor ?(retry=true)
     error (f_"nbdkit-cow-filter is not installed or not working");
 
   (* Construct the nbdkit command. *)
-  let cmd = Nbdkit.create "ssh" in
+  let cmd = Nbdkit.create ?name "ssh" in
   Nbdkit.add_arg cmd "host" server;
   Nbdkit.add_arg cmd "path" path;
   Option.iter (Nbdkit.add_arg cmd "port") port;

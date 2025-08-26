@@ -98,7 +98,8 @@ val create_local_output_disks : string ->
 
 type on_exit_kill = Kill | KillAndWait
 
-val output_to_local_file : ?changeuid:((unit -> unit) -> unit) ->
+val output_to_local_file : ?name:string ->
+                           ?changeuid:((unit -> unit) -> unit) ->
                            ?compressed:bool ->
                            ?create:bool ->
                            ?on_exit_kill:on_exit_kill ->

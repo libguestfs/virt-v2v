@@ -26,7 +26,7 @@ open Types
 open Utils
 
 (* Create an nbdkit module specialized for reading from Curl sources. *)
-let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
+let create_curl ?name ?bandwidth ?cookie_script ?cookie_script_renew ?cor
                 ?(sslverify=true) url =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
@@ -38,7 +38,7 @@ let create_curl ?bandwidth ?cookie_script ?cookie_script_renew ?cor
     error (f_"nbdkit-cow-filter is not installed or not working");
 
   (* Construct the nbdkit command. *)
-  let cmd = Nbdkit.create "curl" in
+  let cmd = Nbdkit.create ?name "curl" in
   Nbdkit.add_arg cmd "url" url;
 
   (* https://bugzilla.redhat.com/show_bug.cgi?id=1146007#c10 *)

@@ -286,8 +286,8 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     error_unless_nbdkit_vddk_working ();
 
     (* Helper to create an nbdkit command object. *)
-    let create_nbdkit_vddk () =
-      let cmd = Nbdkit.create "vddk" in
+    let create_nbdkit_vddk ?name () =
+      let cmd = Nbdkit.create ?name "vddk" in
 
       (* Suppress datapath messages. *)
       Nbdkit.add_debug_flag cmd "vddk.datapath" "0";

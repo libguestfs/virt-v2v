@@ -94,6 +94,7 @@ let probe_filter_parameter name regex =
 
 type cmd = {
   plugin : string;
+  name : string option;
   mutable filters : string list;
   mutable args : (string * string) list; (* stored reversed *)
   mutable env : (string * string) list;
@@ -103,8 +104,9 @@ type cmd = {
   verbose : bool;
 }
 
-let create ?(quiet = false) plugin = {
+let create ?(quiet = false) ?name plugin = {
   plugin;
+  name;
   filters = [];
   args = [];
   env = [ "LANG", "C" ];
@@ -145,6 +147,17 @@ let run_unix socket cmd =
   in
 
   add_arg "nbdkit";
+
+  (match cmd.name with
+   | None -> ()
+   | Some name ->
+      (* --name parameter should be first, so it appears early in 'ps'. *)
+      if probe_server_parameter "--name" then (
+        add_arg "--name";
+        add_arg name
+      )
+  );
+
   add_arg "--exit-with-parent";
   add_arg "--foreground";
   add_arg "--pidfile"; add_arg pidfile;
