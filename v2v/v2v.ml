@@ -74,7 +74,12 @@ let rec main () =
     )
   in
 
+  let memsize = ref None in
+  let set_memsize arg = memsize := Some arg in
   let parallel = ref 1 in
+  let smp = ref None in
+  let set_smp arg = smp := Some arg in
+
   let network_map = Networks.create () in
   let static_ips = ref [] in
   let rec add_network str =
@@ -219,6 +224,8 @@ let rec main () =
                                     s_"Use virt-v2v-in-place instead";
     [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
       s_"Map NIC to network or bridge or assign static IP";
+    [ S 'm'; L"memsize" ], Getopt.Int ("mb", set_memsize),
+                                    s_"Set memory size";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
       s_"Map network ‘in’ to ‘out’";
     [ S 'o' ],       Getopt.String (output_modes, set_output_mode),
@@ -243,6 +250,8 @@ let rec main () =
       s_"Print source and stop";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
       s_"How to choose root filesystem";
+    [ L"smp" ],      Getopt.Int ("vcpus", set_smp),
+                                    s_"Set number of vCPUs";
   ] in
 
   (* Append virt-customize options. *)
@@ -313,6 +322,7 @@ read the man page virt-v2v(1).
     | Some "vddk" -> Some Input.VDDK
     | Some transport ->
        error (f_"unknown input transport ‘-it %s’") transport in
+  let memsize = !memsize in
   let output_alloc =
     match !output_alloc with
     | `Not_set | `Sparse -> Types.Sparse
@@ -324,6 +334,7 @@ read the man page virt-v2v(1).
     error (f_"--parallel parameter must be >= 1");
   let print_source = !print_source in
   let root_choice = !root_choice in
+  let smp = !smp in
   let static_ips = !static_ips in
 
   (* No arguments and machine-readable mode?  Print out some facts
@@ -419,8 +430,10 @@ read the man page virt-v2v(1).
     Convert.block_driver = block_driver;
     keep_serial_console = not remove_serial_console;
     ks = opthandle.ks;
+    memsize;
     network_map;
     root_choice;
+    smp;
     static_ips;
     customize_ops;
   } in

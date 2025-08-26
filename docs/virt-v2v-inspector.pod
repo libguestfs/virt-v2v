@@ -194,6 +194,10 @@ virt-v2v-inspector.
 
 =item B<--machine-readable>=format
 
+=item B<-m> MB
+
+=item B<--memsize> MB
+
 =item B<-n> ...
 
 =item B<--network> ...
@@ -203,6 +207,8 @@ virt-v2v-inspector.
 =item B<--quiet>
 
 =item B<--root> ...
+
+=item B<--smp> N
 
 =item B<--wrap>
 

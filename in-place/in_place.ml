@@ -67,6 +67,11 @@ let rec main () =
     )
   in
 
+  let memsize = ref None in
+  let set_memsize arg = memsize := Some arg in
+  let smp = ref None in
+  let set_smp arg = smp := Some arg in
+
   let network_map = Networks.create () in
 
   let output_xml = ref No_output_xml in
@@ -176,6 +181,8 @@ let rec main () =
                                     s_"Use password from file to connect to input hypervisor";
     [ L"mac" ],      Getopt.String ("mac:network|bridge|ip:out", add_mac),
                                     s_"Map NIC to network or bridge or assign static IP";
+    [ S 'm'; L"memsize" ], Getopt.Int ("mb", set_memsize),
+                                    s_"Set memory size";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
                                     s_"Map network ‘in’ to ‘out’";
     [ S 'O' ],       Getopt.String ("output.xml", set_output_xml_option),
@@ -184,6 +191,8 @@ let rec main () =
                                     s_"Print source and stop";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
                                     s_"How to choose root filesystem";
+    [ L"smp" ],      Getopt.Int ("vcpus", set_smp),
+                                    s_"Set number of vCPUs";
   ] in
 
   (* Append virt-customize options. *)
@@ -239,9 +248,11 @@ read the man page virt-v2v-in-place(1).
   let customize_ops = get_customize_ops () in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
+  let memsize = !memsize in
   let output_xml = !output_xml in
   let print_source = !print_source in
   let root_choice = !root_choice in
+  let smp = !smp in
   let static_ips = !static_ips in
 
   (* No arguments and machine-readable mode?  Print out some facts
@@ -301,8 +312,10 @@ read the man page virt-v2v-in-place(1).
     Convert.block_driver = block_driver;
     keep_serial_console = true;
     ks = opthandle.ks;
+    memsize;
     network_map;
     root_choice;
+    smp;
     static_ips;
     customize_ops;
   } in
