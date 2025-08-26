@@ -101,12 +101,13 @@ module Disk = struct
     let uris =
       List.mapi (
         fun i disk ->
-          let socket = sprintf "%s/in%d" dir i in
+          let sockname = sprintf "in%d" i in
+          let socket = sprintf "%s/%s" dir sockname in
           On_exit.unlink socket;
 
           (match input_format with
            | "raw" ->
-              let cmd = Nbdkit.create "file" in
+              let cmd = Nbdkit.create ~name:sockname "file" in
               if options.read_only then
                 Nbdkit.add_filter cmd "cow";
               Nbdkit.add_arg cmd "file" disk;

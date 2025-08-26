@@ -437,7 +437,7 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
         let socket = sprintf "%s/in0" dir in
         On_exit.unlink socket;
 
-        let nbdkit = create_nbdkit_vddk () in
+        let nbdkit = create_nbdkit_vddk ~name:"in" () in
         Nbdkit.add_arg nbdkit "export" wildcard;
         let _, pid = Nbdkit.run_unix socket nbdkit in
         On_exit.kill pid;
@@ -448,10 +448,11 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
         (* Create an nbdkit instance for each disk. *)
         List.mapi (
           fun i file ->
-            let socket = sprintf "%s/in%d" dir i in
+            let sockname = sprintf "in%d" i in
+            let socket = sprintf "%s/%s" dir sockname in
             On_exit.unlink socket;
 
-            let nbdkit = create_nbdkit_vddk () in
+            let nbdkit = create_nbdkit_vddk ~name:sockname () in
             Nbdkit.add_arg nbdkit "file" file;
             let _, pid = Nbdkit.run_unix socket nbdkit in
             On_exit.kill pid;

@@ -203,7 +203,7 @@ let create_local_output_disks dir
     On_exit.unlink socket;
 
     (* Create the single nbdkit-file-plugin instance. *)
-    let cmd = Nbdkit.create "file" in
+    let cmd = Nbdkit.create ~name:"out" "file" in
     Nbdkit.add_arg cmd "dir" output_storage;
     Nbdkit.add_arg cmd "cache" "none";
     if verbose () then Nbdkit.add_filter_if_available cmd "count";
@@ -224,11 +224,13 @@ let create_local_output_disks dir
     (* Not the special case, use {!output_to_local_file} on each disk. *)
     List.mapi (
       fun i (size, outdisk) ->
-        let socket = sprintf "%s/out%d" dir i in
+        let sockname = sprintf "out%d" i in
+        let socket = sprintf "%s/%s" dir sockname in
         On_exit.unlink socket;
 
         (* Create the actual output disk. *)
-        output_to_local_file ~compressed ~create output_alloc output_format
+        output_to_local_file ~name:sockname ~compressed ~create
+          output_alloc output_format
           outdisk size socket;
 
         NBD_URI.Unix (socket, None)

@@ -79,13 +79,14 @@ and setup_servers options dir disks =
 
   List.mapi (
     fun i { d_format = format; d_type; d_checksum } ->
-      let socket = sprintf "%s/in%d" dir i in
+      let sockname = sprintf "in%d" i in
+      let socket = sprintf "%s/%s" dir sockname in
       On_exit.unlink socket;
 
       (match d_type with
        (* Forward to another NBD server using nbdkit-nbd-plugin. *)
        | NBD (hostname, port) ->
-          let cmd = Nbdkit.create "nbd" in
+          let cmd = Nbdkit.create ~name:sockname "nbd" in
           if options.read_only then
             Nbdkit.add_filter cmd "cow";
           Nbdkit.add_arg cmd "hostname" hostname;
@@ -106,7 +107,7 @@ and setup_servers options dir disks =
             error (f_"in-place mode does not work with HTTP source");
 
           let cor = dir // "convert" in
-          let cmd = Nbdkit_curl.create_curl ~cor url in
+          let cmd = Nbdkit_curl.create_curl ~name:sockname ~cor url in
           let _, pid = Nbdkit.run_unix socket cmd in
 
           (* --exit-with-parent should ensure nbdkit is cleaned
@@ -124,7 +125,7 @@ and setup_servers options dir disks =
               *)
              Option.iter (do_checksum_raw_file filename i nr_disks) d_checksum;
 
-             let cmd = Nbdkit.create "file" in
+             let cmd = Nbdkit.create ~name:sockname "file" in
              if options.read_only then
                Nbdkit.add_filter cmd "cow";
              Nbdkit.add_arg cmd "file" filename;
