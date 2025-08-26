@@ -197,6 +197,14 @@ This option is used to make the output more machine friendly
 when being parsed by other programs.  See
 L<virt-v2v(1)/Machine readable output>.
 
+=item B<-m> MB
+
+=item B<--memsize> MB
+
+Change the amount of memory allocated when doing the conversion.
+Virt-v2v-in-place will usually choose a suitable default.  Increase
+this if you see that the conversion step is running out of memory.
+
 =item B<-n> in:out
 
 =item B<-n> out
@@ -243,6 +251,15 @@ This disables progress bars and other unnecessary output.
 
 Choose the root filesystem to be converted.  See the documentation of
 this option in L<virt-v2v(1)>.
+
+=item B<--smp> N
+
+Change the number of virtual CPUs used when doing the conversion.
+Virt-v2v-in-place will usually choose a suitable default.
+
+Increasing this beyond 8 may improve conversion performance, if your
+host has sufficient physical CPUs.  You may also need to increase the
+memory size (I<--memsize> option).
 
 =item B<-v>
 

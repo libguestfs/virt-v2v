@@ -20,8 +20,10 @@ type options = {
   block_driver : Types.guestcaps_block_type; (** [--block-driver] option *)
   keep_serial_console : bool;
   ks : Tools_utils.key_store;      (** [--key] option *)
+  memsize : int option;            (** [--memsize] option *)
   network_map : Networks.t;        (** [-b] and [-n] options *)
   root_choice : Types.root_choice; (** [--root] option *)
+  smp : int option;                (** [--smp] option *)
   static_ips : Types.static_ip list; (** [--mac :ip:] option *)
   customize_ops : Customize_cmdline.ops; (** virt-customize options *)
 }

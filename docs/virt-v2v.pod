@@ -386,6 +386,14 @@ This option is used to make the output more machine friendly
 when being parsed by other programs.  See
 L</Machine readable output> below.
 
+=item B<-m> MB
+
+=item B<--memsize> MB
+
+Change the amount of memory allocated when doing the conversion.
+Virt-v2v will usually choose a suitable default.  Increase this if you
+see that the conversion step is running out of memory.
+
 =item B<-n> in:out
 
 =item B<-n> out
@@ -645,6 +653,15 @@ Name a specific root device to convert, eg. S<I<--root /dev/sda2>>
 would mean to use the second partition on the first hard drive.  If
 the named root device does not exist or was not detected as a root
 device, then virt-v2v will fail.
+
+=item B<--smp> N
+
+Change the number of virtual CPUs used when doing the conversion.
+Virt-v2v will usually choose a suitable default.
+
+Increasing this beyond 8 may improve conversion performance, if your
+host has sufficient physical CPUs.  You may also need to increase the
+memory size (I<--memsize> option).
 
 =item B<-v>
 

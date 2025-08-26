@@ -34,8 +34,10 @@ type options = {
   block_driver : guestcaps_block_type;
   keep_serial_console : bool;
   ks : key_store;
+  memsize : int option;
   network_map : Networks.t;
   root_choice : root_choice;
+  smp : int option;
   static_ips : static_ip list;
   customize_ops : Customize_cmdline.ops;
 }
@@ -54,11 +56,28 @@ let rec convert input_disks options source =
   message (f_"Opening the source");
   let g = open_guestfs ~identifier:"v2v" () in
   g#set_program "virt-v2v";
-  g#set_memsize (g#get_memsize () * 2);
-  (* Setting the number of vCPUs allows parallel mkinitrd, but make
-   * sure this is not too large because each vCPU consumes guest RAM.
-   *)
-  g#set_smp (min 8 (Sysconf.nr_processors_online ()));
+  let memsize =
+    match options.memsize with
+    | None ->
+       (* Default (if [--memsize] option is not used) is to calculate
+        * some multiple of the libguestfs default memory size.
+        *)
+       g#get_memsize () * 2
+    | Some memsize -> memsize in
+  g#set_memsize memsize;
+  let smp =
+    match options.smp with
+    | None ->
+       (* Default (if [--smp] option is not used) is to set the number
+        * according to the number of physical CPUs on the host, but
+        * limit it because each vCPU consumes guest RAM.  This is
+        * necessary to allow parallel mkinitrd which greatly improves
+        * performance.
+        *)
+       min 8 (Sysconf.nr_processors_online ())
+    | Some smp -> smp in
+  g#set_smp smp;
+
   (* The network is used by the unconfigure_vmware () function, and the "--key
    * ID:clevis" command line options (if any). *)
   g#set_network true;
