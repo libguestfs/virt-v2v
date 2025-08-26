@@ -18,7 +18,8 @@
 
 (** Small wrapper around nbdkit-curl-plugin used by vcenter-https *)
 
-val create_curl : ?bandwidth:Types.bandwidth ->
+val create_curl : ?name:string ->
+                  ?bandwidth:Types.bandwidth ->
                   ?cookie_script:string ->
                   ?cookie_script_renew:int ->
                   ?cor:string ->

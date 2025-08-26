@@ -67,12 +67,16 @@ val probe_filter_parameter : string -> string -> bool
 type cmd
 (** An nbdkit command. *)
 
-val create : ?quiet:bool -> string -> cmd
+val create : ?quiet:bool -> ?name:string -> string -> cmd
 (** Create a new nbdkit command.
 
     The parameter is the required plugin name.  Normally the nbdkit
     verbose ([-v]) flag is inherited from virt-v2v but exceptionally
-    you can use ~quiet:true to make nbdkit always quiet. *)
+    you can use ~quiet:true to make nbdkit always quiet.
+
+    The optional [?name] parameter can be used to name this
+    nbdkit instance (the name appears in debugging messages
+    if using nbdkit >= 1.46). *)
 
 val add_debug_flag : cmd -> string -> string -> unit
 val set_readonly : cmd -> bool -> unit

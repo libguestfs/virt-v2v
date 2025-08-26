@@ -66,7 +66,8 @@ let error_if_disk_count_gt input_disks n =
 
 type on_exit_kill = Kill | KillAndWait
 
-let output_to_local_file ?(changeuid = fun f -> f ())
+let output_to_local_file ?name
+      ?(changeuid = fun f -> f ())
       ?(compressed = false)
       ?(create = true)
       ?(on_exit_kill = Kill)
@@ -99,7 +100,7 @@ let output_to_local_file ?(changeuid = fun f -> f ())
   let pid =
     match output_format with
     | "raw" ->
-       let cmd = Nbdkit.create "file" in
+       let cmd = Nbdkit.create ?name "file" in
        Nbdkit.add_arg cmd "file" filename;
        Nbdkit.add_arg cmd "cache" "none";
        if verbose () then Nbdkit.add_filter_if_available cmd "count";
