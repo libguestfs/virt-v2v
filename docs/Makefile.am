@@ -45,7 +45,6 @@ man_MANS = \
 	virt-v2v-hacking.1 \
 	virt-v2v-in-place.1 \
 	virt-v2v-input-vmware.1 \
-	virt-v2v-input-xen.1 \
 	virt-v2v-inspector.1 \
 	virt-v2v-open.1 \
 	virt-v2v-output-local.1 \
@@ -63,7 +62,6 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-hacking.1.html \
 	$(top_builddir)/website/virt-v2v-in-place.1.html \
 	$(top_builddir)/website/virt-v2v-input-vmware.1.html \
-	$(top_builddir)/website/virt-v2v-input-xen.1.html \
 	$(top_builddir)/website/virt-v2v-inspector.1.html \
 	$(top_builddir)/website/virt-v2v-open.1.html \
 	$(top_builddir)/website/virt-v2v-output-local.1.html \
@@ -76,6 +74,11 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-release-notes-2.8.1.html \
 	$(top_builddir)/website/virt-v2v-support.1.html
 
+if ENABLE_XEN
+man_MANS += virt-v2v-input-xen.1
+noinst_DATA += $(top_builddir)/website/virt-v2v-input-xen.1.html
+endif
+
 if ENABLE_OVIRT
 man_MANS += virt-v2v-output-ovirt.1
 noinst_DATA += $(top_builddir)/website/virt-v2v-output-ovirt.1.html
@@ -84,6 +87,7 @@ endif
 # Some man pages are preprocessed with m4 for conditional sections.
 PP_M4 = \
 	m4 \
+	-D ENABLE_XEN=$(ENABLE_XEN) \
 	-D ENABLE_GLANCE=$(ENABLE_GLANCE) \
 	-D ENABLE_OVIRT=$(ENABLE_OVIRT)
 
@@ -135,6 +139,7 @@ stamp-virt-v2v-input-vmware.pod: virt-v2v-input-vmware.pod
 	  $<
 	touch $@
 
+if ENABLE_XEN
 virt-v2v-input-xen.1 $(top_builddir)/website/virt-v2v-input-xen.1.html: stamp-virt-v2v-input-xen.pod
 
 stamp-virt-v2v-input-xen.pod: virt-v2v-input-xen.pod
@@ -145,6 +150,7 @@ stamp-virt-v2v-input-xen.pod: virt-v2v-input-xen.pod
 	  --warning safe \
 	  $<
 	touch $@
+endif
 
 virt-v2v-inspector.1 $(top_builddir)/website/virt-v2v-inspector.1.html: stamp-virt-v2v-inspector.pod
 
