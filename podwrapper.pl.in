@@ -167,6 +167,16 @@ given, they are searched in order.
 
 =cut
 
+my $pp;
+
+=item B<--pp "PREPROCESSOR">
+
+The whole POD input is passed through the preprocessor command.  This
+is done very easy, immediately after reading the file, and before any
+other processing.  For example: I<--pp "cpp -DDEBUG=1">
+
+=cut
+
 my $section;
 
 =item B<--section N>
@@ -254,6 +264,7 @@ GetOptions ("help|?" => \$help,
             "man=s" => \$man,
             "name=s" => \$name,
             "path=s" => \@paths,
+            "pp=s" => \$pp,
             "section=s" => \$section,
             "strict-checks!" => \$strict_checks,
             "text=s" => \$text,
@@ -320,6 +331,17 @@ my $release = "$package_name-$package_version";
 
 # Read the input.
 my $content = read_whole_file ($input);
+
+# Pass the input through the preprocessor.
+if ($pp) {
+    use IPC::Run3;
+    my $in = $content;
+    $content = "";
+    run3 ($pp, \$in, \$content);
+    die "$progname: error: preprocessor failed (see errors above)\n" if $?;
+    die "$progname: error: literal 'ifelse' appears in the output of the preprocessor.  It is likely that an m4 macro was not expanded\n"
+        if $content =~ /ifelse/
+}
 
 # Perform @inserts.
 foreach (@inserts) {
