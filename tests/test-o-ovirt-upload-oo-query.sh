@@ -23,6 +23,7 @@ set -e
 set -x
 
 skip_if_skipped
+requires bash -c 'virt-v2v --machine-readable | grep -sq output:ovirt-upload'
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"

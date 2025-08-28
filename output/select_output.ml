@@ -39,13 +39,12 @@ let output_modes =
     Libvirt;
     Null;
     Openstack;
-    OVirt;
-    OVirt_Upload;
     QEmu;
-    VDSM;
   ] in
   if Config.enable_glance then
     List.push_front Glance modes;
+  if Config.enable_ovirt then
+    List.push_front_list [ OVirt; OVirt_Upload; VDSM ] modes;
   List.sort compare !modes
 
 let string_of_output_mode = function
@@ -84,6 +83,12 @@ let select_output = function
      else failwithf "-o glance is not enabled in this build"
   | Some Kubevirt -> (module Output_kubevirt.Kubevirt)
   | Some Openstack -> (module Output_openstack.Openstack)
-  | Some OVirt_Upload -> (module Output_ovirt_upload.OVirtUpload)
-  | Some OVirt -> (module Output_ovirt.OVirt)
-  | Some VDSM -> (module Output_vdsm.VDSM)
+  | Some OVirt_Upload ->
+     if Config.enable_ovirt then (module Output_ovirt_upload.OVirtUpload)
+     else failwithf "-o ovirt-upload is not enabled in this build"
+  | Some OVirt ->
+     if Config.enable_ovirt then (module Output_ovirt.OVirt)
+     else failwithf "-o ovirt is not enabled in this build"
+  | Some VDSM ->
+     if Config.enable_ovirt then (module Output_vdsm.VDSM)
+     else failwithf "-o vdsm is not enabled in this build"

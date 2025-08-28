@@ -108,6 +108,19 @@ AC_ARG_ENABLE([glance],
 AC_SUBST([ENABLE_GLANCE])
 AM_CONDITIONAL([ENABLE_GLANCE], [test "x$ENABLE_GLANCE" = "xyes"])
 
+AC_ARG_ENABLE([ovirt],
+    [AS_HELP_STRING([--disable-ovirt],
+                    [disable all oVirt output modes])],
+    [case $enableval in
+    yes|no) ;;
+    *) AC_MSG_ERROR([bad value $enableval for --enable-ovirt option]) ;;
+    esac
+    ENABLE_OVIRT=$enableval],
+    [ENABLE_OVIRT=yes]
+)
+AC_SUBST([ENABLE_OVIRT])
+AM_CONDITIONAL([ENABLE_OVIRT], [test "x$ENABLE_OVIRT" = "xyes"])
+
 dnl Check for external programs required to either build or run
 dnl virt-v2v.
 HEADING([Checking for external programs])
@@ -229,6 +242,7 @@ feature ()
 }
 
 feature "-o glance output mode"   test "x$ENABLE_GLANCE" = "xyes"
+feature "oVirt output modes"      test "x$ENABLE_OVIRT" = "xyes"
 
 echo
 echo "Please report bugs back to the mailing list:"
