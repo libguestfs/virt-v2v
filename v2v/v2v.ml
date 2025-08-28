@@ -199,15 +199,13 @@ let rec main () =
               ‘virt-v2v-in-place’ program")
   in
 
-  let argspec = [
+  let argspec = ref [
     [ L"bandwidth" ], Getopt.String ("bps", set_string_option_once "--bandwidth" bandwidth),
                                     s_"Set bandwidth to bits per sec";
     [ L"bandwidth-file" ], Getopt.String ("filename", set_string_option_once "--bandwidth-file" bandwidth_file),
                                     s_"Set bandwidth dynamically from file";
     [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
       s_"Map bridge ‘in’ to ‘out’";
-    [ L"block-driver" ], Getopt.String ("driver", set_string_option_once "--block-driver" block_driver),
-                                    s_"Prefer 'virtio-blk' or 'virtio-scsi'";
     [ S 'i' ],       Getopt.String (input_modes, set_input_mode),
       s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
@@ -254,12 +252,20 @@ let rec main () =
                                     s_"Set number of vCPUs";
   ] in
 
+  if Config.enable_block_driver then
+    List.push_front
+      ([ L"block-driver" ],
+       Getopt.String ("driver", set_string_option_once "--block-driver" block_driver),
+       s_"Prefer 'virtio-blk' or 'virtio-scsi'")
+      argspec;
+
   (* Append virt-customize options. *)
   let customize_argspec, get_customize_ops =
     Customize_cmdline.argspec ~v2v:true () in
   let customize_argspec =
     List.map (fun (spec, _, _) -> spec) customize_argspec in
-  let argspec = argspec @ customize_argspec in
+  List.push_back_list argspec customize_argspec;
+  let argspec = !argspec in
 
   let args = ref [] in
   let anon_fun s = List.push_front s args in
@@ -352,6 +358,8 @@ read the man page virt-v2v(1).
       pr "mac-ip-option\n";
       pr "parallel-option\n";
       pr "customize-ops\n";
+      if Config.enable_block_driver then
+        pr "block-driver-option\n";
       Select_input.input_modes |>
         List.map Select_input.string_of_input_mode |>
         List.iter (pr "input:%s\n");

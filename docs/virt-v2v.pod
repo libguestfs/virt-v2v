@@ -232,6 +232,7 @@ The options are silently ignored for other input methods.
 
 See I<--network> below.
 
+ifelse(ENABLE_BLOCK_DRIVER, yes, `
 =item B<--block-driver> B<virtio-blk>
 
 =item B<--block-driver> B<virtio-scsi>
@@ -241,6 +242,7 @@ C<virtio-scsi>.  The default is C<virtio-blk>.
 
 Note this has no effect for Linux guests at the moment.  That may be
 added in future.
+')
 
 =item B<--colors>
 
