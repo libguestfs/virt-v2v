@@ -26,11 +26,15 @@ AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 
 # Headings within the configure script output.
 term_bold=""
+term_red=""
+term_green=""
 term_restore=""
 AS_IF([test -t 1], [
     AS_CASE(["$TERM"],
             [xterm*|vt220*], [
               term_bold="$(printf "\e@<:@1m")"
+              term_red="$(printf "\e@<:@22;31m")"
+              term_green="$(printf "\e@<:@22;32m")"
               term_restore="$(printf "\e@<:@0m")"
     ])
 ])
@@ -187,6 +191,30 @@ echo
 echo
 echo "------------------------------------------------------------"
 HEADING([Thank you for downloading $PACKAGE_STRING])
+echo
+echo "This is how we have configured the optional components for you today:"
+echo
+
+print ()
+{
+    printf '    %.40s %s\n' \
+        "$1 ........................................" "$2"
+}
+
+feature ()
+{
+    feat="$1"
+    shift
+    if "$@"; then
+        printf "$term_green"
+        print "$feat" "yes"
+    else
+        printf "$term_red"
+        print "$feat" "no"
+    fi
+    printf "$term_restore"
+}
+
 echo
 echo "Please report bugs back to the mailing list:"
 echo "https://lists.libguestfs.org"
