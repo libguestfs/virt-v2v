@@ -16,6 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+open Std_utils
 open Tools_utils
 open Common_gettext.Gettext
 
@@ -31,9 +32,9 @@ type output_mode =
   | QEmu
   | VDSM
 
-let output_modes = [
+let output_modes =
+  let modes = ref [
     Disk;
-    Glance;
     Kubevirt;
     Libvirt;
     Null;
@@ -42,7 +43,10 @@ let output_modes = [
     OVirt_Upload;
     QEmu;
     VDSM;
-  ]
+  ] in
+  if Config.enable_glance then
+    List.push_front Glance modes;
+  List.sort compare !modes
 
 let string_of_output_mode = function
   | Disk -> "disk"
@@ -75,7 +79,9 @@ let select_output = function
   | Some Disk -> (module Output_disk.Disk)
   | Some Null -> (module Output_null.Null)
   | Some QEmu -> (module Output_qemu.QEMU)
-  | Some Glance -> (module Output_glance.Glance)
+  | Some Glance ->
+     if Config.enable_glance then (module Output_glance.Glance)
+     else failwithf "-o glance is not enabled in this build"
   | Some Kubevirt -> (module Output_kubevirt.Kubevirt)
   | Some Openstack -> (module Output_openstack.Openstack)
   | Some OVirt_Upload -> (module Output_ovirt_upload.OVirtUpload)

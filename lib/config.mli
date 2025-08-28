@@ -39,3 +39,6 @@ val nbdcopy : string
 
 val nbdinfo : string
 (** The location of the nbdinfo program, from configure value [@NBDINFO@] *)
+
+val enable_glance : bool
+(** True if [-o glance] output mode is enabled *)

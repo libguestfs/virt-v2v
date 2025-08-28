@@ -60,6 +60,8 @@ AC_CONFIG_MACRO_DIR([m4])
 dnl Initialize libtool.
 LT_INIT
 
+HEADING([Checking for version and optional features])
+
 dnl Stable or development version?
 BRANCH_NUMBER=v2v_major.v2v_minor
 AC_SUBST([BRANCH_NUMBER])
@@ -91,6 +93,20 @@ AC_DEFINE_UNQUOTED([PACKAGE_VERSION_EXTRA],["$v2v_extra"],[Extra version string.
 PACKAGE_VERSION_FULL="v2v_major.v2v_minor.v2v_release${v2v_extra}"
 AC_DEFINE_UNQUOTED([PACKAGE_VERSION_FULL],["$PACKAGE_VERSION_FULL"],[Full version string.])
 AC_SUBST([PACKAGE_VERSION_FULL])
+
+dnl Allow some output modes to be disabled.
+AC_ARG_ENABLE([glance],
+    [AS_HELP_STRING([--disable-glance],
+                    [disable -o glance output mode])],
+    [case $enableval in
+    yes|no) ;;
+    *) AC_MSG_ERROR([bad value $enableval for --enable-glance option]) ;;
+    esac
+    ENABLE_GLANCE=$enableval],
+    [ENABLE_GLANCE=yes]
+)
+AC_SUBST([ENABLE_GLANCE])
+AM_CONDITIONAL([ENABLE_GLANCE], [test "x$ENABLE_GLANCE" = "xyes"])
 
 dnl Check for external programs required to either build or run
 dnl virt-v2v.
@@ -211,6 +227,8 @@ feature ()
     fi
     printf "$term_restore"
 }
+
+feature "-o glance output mode"   test "x$ENABLE_GLANCE" = "xyes"
 
 echo
 echo "Please report bugs back to the mailing list:"
