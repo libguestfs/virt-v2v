@@ -269,14 +269,9 @@ let rec main () =
 
 virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi -os imported esx_guest
 
-virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi esx_guest \
-         -o ovirt -os ovirt.nfs:/export_domain --network ovirtmgmt
-
 virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp
 
 virt-v2v -i disk disk.img -o local -os /var/tmp
-
-virt-v2v -i disk disk.img -o glance
 
 There is a companion front-end called \"virt-p2v\" which comes as an
 ISO or CD image that can be booted on physical machines.
