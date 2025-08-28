@@ -12,11 +12,12 @@ virt-v2v - Convert a guest to use KVM
 =head1 DESCRIPTION
 
 Virt-v2v converts a single guest from a foreign hypervisor to run on
-KVM.  It can read Linux and Windows guests running on VMware, Xen,
-Hyper-V and some other hypervisors, and convert them to KVM managed by
-libvirt, OpenStack, ifelse(ENABLE_OVIRT, yes, oVirt,) or several other
-targets.  It can modify the guest to make it bootable on KVM and
-install virtio drivers so it will run quickly.
+KVM.  It can read Linux and Windows guests running on VMware,
+ifelse(ENABLE_XEN, yes, Xen,) Hyper-V and some other hypervisors, and
+convert them to KVM managed by libvirt, OpenStack,
+ifelse(ENABLE_OVIRT, yes, oVirt,) or several other targets.  It can
+modify the guest to make it bootable on KVM and install virtio drivers
+so it will run quickly.
 
 There is also a companion front-end called L<virt-p2v(1)> which comes
 as an ISO, CD or PXE image that can be booted on physical machines to
@@ -59,7 +60,9 @@ management systems, guests.
 
 L<virt-v2v-input-vmware(1)> — Input from VMware.
 
+ifelse(ENABLE_XEN, yes, `
 L<virt-v2v-input-xen(1)> — Input from Xen.
+')
 
 L<virt-v2v-output-local(1)> — Output to local files or local libvirt.
 
@@ -196,9 +199,11 @@ This is only supported for:
 
 =over 4
 
+ifelse(ENABLE_XEN, yes, `
 =item *
 
 L<input from Xen|virt-v2v-input-xen(1)>
+')
 
 =item *
 
@@ -313,12 +318,13 @@ hypervisor.  See L<virt-v2v-input-vmware(1)>.
 Specify a libvirt connection URI to use when reading the guest.  This
 is only used when S<I<-i libvirt>>.
 
-Only local libvirt connections, VMware vCenter connections, or RHEL 5
-Xen remote connections can be used.  Other remote libvirt connections
-will not work in general.
+Only local libvirt connections, or VMware vCenter connections
+ifelse(ENABLE_XEN, yes, `, or RHEL 5 Xen remote connections')
+can be used.  Other remote libvirt connections will not work in
+general.
 
-See also L<virt-v2v-input-vmware(1)>,
-L<virt-v2v-input-xen(1)>.
+See also: L<virt-v2v-input-vmware(1)>
+ifelse(ENABLE_XEN, yes, `, L<virt-v2v-input-xen(1)>')
 
 =item B<-if> format
 
@@ -931,7 +937,7 @@ bandwidth.  Virt-v2v should be able to copy guest data at gigabit
 ethernet speeds or greater.
 
 Ensure that the network connections between servers (conversion
-server, NFS server, vCenter, Xen) are as fast and as low latency as
+server, NFS server, vCenter, etc.) are as fast and as low latency as
 possible.
 
 =head2 Disk space
@@ -1236,6 +1242,7 @@ changes to the Windows Registry and filesystem.
 
 =head1 NOTES
 
+ifelse(ENABLE_XEN, yes, `
 =head2 Xen paravirtualized guests
 
 Older versions of virt-v2v could turn a Xen paravirtualized (PV) guest
@@ -1247,26 +1254,27 @@ Therefore before conversion you should check that a regular kernel is
 installed.  For some older Linux distributions, this means installing
 a kernel from the table below:
 
- RHEL 4         i686 with > 10GB of RAM: install 'kernel-hugemem'
-                i686 SMP: install 'kernel-smp'
-                other i686: install 'kernel'
-                x86-64 SMP with > 8 CPUs: install 'kernel-largesmp'
-                x86-64 SMP: install 'kernel-smp'
-                other x86-64: install 'kernel'
+ RHEL 4         i686 with > 10GB of RAM: install "kernel-hugemem"
+                i686 SMP: install "kernel-smp"
+                other i686: install "kernel"
+                x86-64 SMP with > 8 CPUs: install "kernel-largesmp"
+                x86-64 SMP: install "kernel-smp"
+                other x86-64: install "kernel"
  
- RHEL 5         i686: install 'kernel-PAE'
-                x86-64: install 'kernel'
+ RHEL 5         i686: install "kernel-PAE"
+                x86-64: install "kernel"
  
- SLES 10        i586 with > 10GB of RAM: install 'kernel-bigsmp'
-                i586 SMP: install 'kernel-smp'
-                other i586: install 'kernel-default'
-                x86-64 SMP: install 'kernel-smp'
-                other x86-64: install 'kernel-default'
+ SLES 10        i586 with > 10GB of RAM: install "kernel-bigsmp"
+                i586 SMP: install "kernel-smp"
+                other i586: install "kernel-default"
+                x86-64 SMP: install "kernel-smp"
+                other x86-64: install "kernel-default"
  
- SLES 11+       i586: install 'kernel-pae'
-                x86-64: install 'kernel-default'
+ SLES 11+       i586: install "kernel-pae"
+                x86-64: install "kernel-default"
 
  Windows        (Does not apply, as there is no Xen PV Windows kernel)
+')
 
 =head2 Enabling virtio
 

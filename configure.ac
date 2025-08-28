@@ -94,6 +94,20 @@ PACKAGE_VERSION_FULL="v2v_major.v2v_minor.v2v_release${v2v_extra}"
 AC_DEFINE_UNQUOTED([PACKAGE_VERSION_FULL],["$PACKAGE_VERSION_FULL"],[Full version string.])
 AC_SUBST([PACKAGE_VERSION_FULL])
 
+dnl Allow some input modes to be disabled.
+AC_ARG_ENABLE([xen],
+    [AS_HELP_STRING([--disable-xen],
+                    [disable Xen input mode])],
+    [case $enableval in
+    yes|no) ;;
+    *) AC_MSG_ERROR([bad value $enableval for --enable-xen option]) ;;
+    esac
+    ENABLE_XEN=$enableval],
+    [ENABLE_XEN=yes]
+)
+AC_SUBST([ENABLE_XEN])
+AM_CONDITIONAL([ENABLE_XEN], [test "x$ENABLE_XEN" = "xyes"])
+
 dnl Allow some output modes to be disabled.
 AC_ARG_ENABLE([glance],
     [AS_HELP_STRING([--disable-glance],
@@ -241,6 +255,7 @@ feature ()
     printf "$term_restore"
 }
 
+feature "Xen input mode"          test "x$ENABLE_XEN" = "xyes"
 feature "-o glance output mode"   test "x$ENABLE_GLANCE" = "xyes"
 feature "oVirt output modes"      test "x$ENABLE_OVIRT" = "xyes"
 

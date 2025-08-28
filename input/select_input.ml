@@ -16,6 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+open Std_utils
 open Tools_utils
 open Common_gettext.Gettext
 
@@ -92,7 +93,8 @@ let select_input ?(allow_remote = true) input_mode input_conn input_transport =
 
         (* Xen over SSH *)
         | Some server, Some "xen+ssh", _, true ->
-           (module Input_xen_ssh.XenSSH)
+           if Config.enable_xen then (module Input_xen_ssh.XenSSH)
+           else failwithf "Xen input is not enabled in this build"
 
         (* Old virt-v2v also supported qemu+ssh://.  However I am
          * deliberately not supporting this in new virt-v2v.  Don't
