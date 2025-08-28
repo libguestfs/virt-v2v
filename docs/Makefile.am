@@ -78,10 +78,14 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-release-notes-2.8.1.html \
 	$(top_builddir)/website/virt-v2v-support.1.html
 
+# Some man pages are preprocessed with m4 for conditional sections.
+PP_M4 = m4 -D ENABLE_GLANCE=$(ENABLE_GLANCE)
+
 virt-v2v.1 $(top_builddir)/website/virt-v2v.1.html: stamp-virt-v2v.pod
 
 stamp-virt-v2v.pod: virt-v2v.pod
 	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
 	  --man virt-v2v.1 \
 	  --html $(top_builddir)/website/virt-v2v.1.html \
 	  --path $(top_srcdir)/common/options \
@@ -175,6 +179,7 @@ virt-v2v-output-openstack.1 $(top_builddir)/website/virt-v2v-output-openstack.1.
 
 stamp-virt-v2v-output-openstack.pod: virt-v2v-output-openstack.pod
 	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
 	  --man virt-v2v-output-openstack.1 \
 	  --html $(top_builddir)/website/virt-v2v-output-openstack.1.html \
 	  --license GPLv2+ \
