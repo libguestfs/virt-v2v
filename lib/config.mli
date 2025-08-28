@@ -42,3 +42,6 @@ val nbdinfo : string
 
 val enable_glance : bool
 (** True if [-o glance] output mode is enabled *)
+
+val enable_ovirt : bool
+(** True if oVirt output modes are enabled *)

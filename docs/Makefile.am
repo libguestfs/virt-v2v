@@ -50,7 +50,6 @@ man_MANS = \
 	virt-v2v-open.1 \
 	virt-v2v-output-local.1 \
 	virt-v2v-output-openstack.1 \
-	virt-v2v-output-ovirt.1 \
 	virt-v2v-release-notes-1.42.1 \
 	virt-v2v-release-notes-2.0.1 \
 	virt-v2v-release-notes-2.2.1 \
@@ -69,7 +68,6 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-open.1.html \
 	$(top_builddir)/website/virt-v2v-output-local.1.html \
 	$(top_builddir)/website/virt-v2v-output-openstack.1.html \
-	$(top_builddir)/website/virt-v2v-output-ovirt.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-1.42.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-2.0.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-2.2.1.html \
@@ -78,8 +76,16 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-release-notes-2.8.1.html \
 	$(top_builddir)/website/virt-v2v-support.1.html
 
+if ENABLE_OVIRT
+man_MANS += virt-v2v-output-ovirt.1
+noinst_DATA += $(top_builddir)/website/virt-v2v-output-ovirt.1.html
+endif
+
 # Some man pages are preprocessed with m4 for conditional sections.
-PP_M4 = m4 -D ENABLE_GLANCE=$(ENABLE_GLANCE)
+PP_M4 = \
+	m4 \
+	-D ENABLE_GLANCE=$(ENABLE_GLANCE) \
+	-D ENABLE_OVIRT=$(ENABLE_OVIRT)
 
 virt-v2v.1 $(top_builddir)/website/virt-v2v.1.html: stamp-virt-v2v.pod
 
@@ -187,6 +193,7 @@ stamp-virt-v2v-output-openstack.pod: virt-v2v-output-openstack.pod
 	  $<
 	touch $@
 
+if ENABLE_OVIRT
 virt-v2v-output-ovirt.1 $(top_builddir)/website/virt-v2v-output-ovirt.1.html: stamp-virt-v2v-output-ovirt.pod
 
 stamp-virt-v2v-output-ovirt.pod: virt-v2v-output-ovirt.pod
@@ -197,6 +204,7 @@ stamp-virt-v2v-output-ovirt.pod: virt-v2v-output-ovirt.pod
 	  --warning safe \
 	  $<
 	touch $@
+endif
 
 virt-v2v-release-notes-1.42.1 $(top_builddir)/website/virt-v2v-release-notes-1.42.1.html: stamp-virt-v2v-release-notes-1.42.pod
 

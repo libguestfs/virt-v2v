@@ -24,6 +24,7 @@ set -x
 
 skip_if_skipped
 requires test -s ../test-data/phony-guests/windows.img
+requires bash -c 'virt-v2v --machine-readable | grep -sq output:ovirt'
 
 libvirt_uri="test://$abs_top_builddir/test-data/phony-guests/guests.xml"
 f=../test-data/phony-guests/windows.img
