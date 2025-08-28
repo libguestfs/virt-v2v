@@ -40,6 +40,9 @@ val nbdcopy : string
 val nbdinfo : string
 (** The location of the nbdinfo program, from configure value [@NBDINFO@] *)
 
+val enable_block_driver : bool
+(** True if [--block-driver] option is enabled *)
+
 val enable_xen : bool
 (** True if Xen input is enabled *)
 

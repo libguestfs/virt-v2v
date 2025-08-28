@@ -25,6 +25,7 @@ set -x
 skip_if_skipped
 img_base="$abs_top_builddir/test-data/phony-guests/windows.img"
 requires test -s $img_base
+requires bash -c 'virt-v2v --machine-readable | grep -sq block-driver-option'
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 export VIRTIO_WIN="$srcdir/../test-data/fake-virtio-win/drivers"

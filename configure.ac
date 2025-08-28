@@ -94,6 +94,19 @@ PACKAGE_VERSION_FULL="v2v_major.v2v_minor.v2v_release${v2v_extra}"
 AC_DEFINE_UNQUOTED([PACKAGE_VERSION_FULL],["$PACKAGE_VERSION_FULL"],[Full version string.])
 AC_SUBST([PACKAGE_VERSION_FULL])
 
+AC_ARG_ENABLE([block-driver],
+    [AS_HELP_STRING([--disable-block-driver],
+                    [disable --block-driver feature])],
+    [case $enableval in
+    yes|no) ;;
+    *) AC_MSG_ERROR([bad value $enableval for --enable-block-driver option]) ;;
+    esac
+    ENABLE_BLOCK_DRIVER=$enableval],
+    [ENABLE_BLOCK_DRIVER=yes]
+)
+AC_SUBST([ENABLE_BLOCK_DRIVER])
+AM_CONDITIONAL([ENABLE_BLOCK_DRIVER], [test "x$ENABLE_BLOCK_DRIVER" = "xyes"])
+
 dnl Allow some input modes to be disabled.
 AC_ARG_ENABLE([xen],
     [AS_HELP_STRING([--disable-xen],
@@ -255,6 +268,7 @@ feature ()
     printf "$term_restore"
 }
 
+feature "--block-driver feature"  test "x$ENABLE_BLOCK_DRIVER" = "xyes"
 feature "Xen input mode"          test "x$ENABLE_XEN" = "xyes"
 feature "-o glance output mode"   test "x$ENABLE_GLANCE" = "xyes"
 feature "oVirt output modes"      test "x$ENABLE_OVIRT" = "xyes"

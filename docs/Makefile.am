@@ -87,6 +87,7 @@ endif
 # Some man pages are preprocessed with m4 for conditional sections.
 PP_M4 = \
 	m4 \
+	-D ENABLE_BLOCK_DRIVER=$(ENABLE_BLOCK_DRIVER) \
 	-D ENABLE_XEN=$(ENABLE_XEN) \
 	-D ENABLE_GLANCE=$(ENABLE_GLANCE) \
 	-D ENABLE_OVIRT=$(ENABLE_OVIRT)
@@ -120,6 +121,7 @@ virt-v2v-in-place.1 $(top_builddir)/website/virt-v2v-in-place.1.html: stamp-virt
 
 stamp-virt-v2v-in-place.pod: virt-v2v-in-place.pod
 	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
 	  --man virt-v2v-in-place.1 \
 	  --html $(top_builddir)/website/virt-v2v-in-place.1.html \
 	  --path $(top_srcdir)/common/options \
