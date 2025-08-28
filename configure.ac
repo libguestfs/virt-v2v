@@ -43,6 +43,7 @@ m4_define([HEADING],
            AS_ECHO(["${term_bold}$1${term_restore}"])])
 
 HEADING([Checking for C compiler and basic build environment])
+m4_include([m4/guestfs-c.m4])
 
 AC_CONFIG_AUX_DIR([build-aux])
 
@@ -95,10 +96,6 @@ dnl Check for external programs required to either build or run
 dnl virt-v2v.
 HEADING([Checking for external programs])
 m4_include([m4/guestfs-progs.m4])
-
-dnl The C compiler environment.
-HEADING([Checking for the C compiler environment])
-m4_include([m4/guestfs-c.m4])
 
 dnl Any C libraries required by virt-v2v.
 HEADING([Checking for libraries used by virt-v2v])
