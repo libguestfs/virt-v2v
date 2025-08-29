@@ -42,7 +42,7 @@ dnl Check for Perl modules needed by Perl documentation and tests.
 dnl XXX These should probably be required.
 AS_IF([test "x$PERL" != "xno"],[
     missing_perl_modules=no
-    for pm in Pod::Usage Getopt::Long Sys::Guestfs ; do
+    for pm in Pod::Usage Getopt::Long IPC::Run3 Sys::Guestfs ; do
         AC_MSG_CHECKING([for $pm])
         if ! $PERL -M$pm -e1 >&AS_MESSAGE_LOG_FD 2>&1; then
             AC_MSG_RESULT([no])
