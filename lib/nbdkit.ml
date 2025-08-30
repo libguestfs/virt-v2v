@@ -26,22 +26,15 @@ open Unix_utils
 
 open Utils
 
-let nbdkit_cmd : string ref = ref ""
-
 let is_installed =
-  match Config.nbdkit with
-  | Some path -> begin
-      nbdkit_cmd := path;
-      let cmd = sprintf "%s --version >/dev/null 2>&1" path in
-      let test = lazy (Sys.command cmd = 0) in
-      fun () -> Lazy.force test
-    end
-  | None -> fun () -> false
+  let cmd = sprintf "%s --version >/dev/null 2>&1" Config.nbdkit in
+  let test = lazy (Sys.command cmd = 0) in
+  Lazy.force test
 
 type config = (string * string) list
 
 let get_config = lazy (
-  let cmd = !nbdkit_cmd ^ " --dump-config" in
+  let cmd = sprintf "%s --dump-config" Config.nbdkit in
   let lines = external_command cmd in
   List.map (String.split "=") lines
 )
@@ -62,7 +55,7 @@ let get_version = lazy (
   and release = int_of_string (PCRE.sub 3) in
   if verbose () then (
     eprintf "info: nbdkit version:\n%!";
-    ignore (Sys.command (!nbdkit_cmd ^ " --version >&2"));
+    ignore (Sys.command (sprintf "%s --version >&2" Config.nbdkit));
     eprintf "parsed version: %d.%d.%d\n%!" major minor release
   );
   (major, minor, release)
@@ -82,22 +75,22 @@ let probe_server_parameter name =
   Sys.command cmd = 0
 
 let probe_plugin name =
-  let cmd = sprintf "%s %s --version >/dev/null 2>&1" !nbdkit_cmd (quote name) in
+  let cmd = sprintf "%s %s --version >/dev/null 2>&1" Config.nbdkit (quote name) in
   Sys.command cmd = 0
 
 let probe_plugin_parameter name regex =
   let cmd = sprintf "%s %s --help | grep -sq %s"
-              !nbdkit_cmd (quote name) (quote regex) in
+              Config.nbdkit (quote name) (quote regex) in
   Sys.command cmd = 0
 
 let probe_filter name =
   let cmd = sprintf "%s null --filter=%s --version >/dev/null 2>&1"
-              !nbdkit_cmd (quote name) in
+              Config.nbdkit (quote name) in
   Sys.command cmd = 0
 
 let probe_filter_parameter name regex =
   let cmd = sprintf "%s null --filter=%s --help | grep -sq %s"
-              !nbdkit_cmd (quote name) (quote regex) in
+              Config.nbdkit (quote name) (quote regex) in
   Sys.command cmd = 0
 
 type cmd = {
@@ -154,7 +147,7 @@ let run_unix socket cmd =
     add_arg, add_args_reversed, get_args
   in
 
-  add_arg !nbdkit_cmd;
+  add_arg Config.nbdkit;
 
   (match cmd.name with
    | None -> ()
@@ -206,7 +199,7 @@ let run_unix socket cmd =
   if pid = 0 then (
     (* Child process (nbdkit). *)
     List.iter (fun (k, v) -> putenv k v) cmd.env;
-    execvp !nbdkit_cmd args
+    execvp Config.nbdkit args
   );
 
   (* Wait for the pidfile to appear so we know that nbdkit
