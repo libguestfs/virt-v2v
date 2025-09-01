@@ -394,51 +394,51 @@ let convert (g : G.guestfs) source inspect i_firmware
     | None -> sprintf "reg delete \"%s\" /v %s /f" strkey name
 
   and configure_pnputil_install () =
-    let fb_script = "@echo off\n\
-                     \n\
-                     setlocal EnableDelayedExpansion\n\
-                     set inf_dir=%systemroot%\\Drivers\\Virtio\\\n\
-                     echo Installing drivers from %inf_dir%\n\
-                     set REBOOT_PENDING=0\n\
-                     \n\
-                     reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\\Auto Update\\RebootRequired\"\n\
-                     if %errorlevel%==0 (\n\
-                     echo Windows Update: Reboot required.\n\
-                     set REBOOT_PENDING=1\n\
-                     )\n\
-                     \n\
-                     reg query \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootPending\"\n\
-                     if %errorlevel%==0 (\n\
-                     echo CBS: Reboot required.\n\
-                     set REBOOT_PENDING=1\n\
-                     )\n\
-                     \n\
-                     reg query \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\" /v PendingFileRenameOperations\n\
-                     if %errorlevel%==0 (\n\
-                     echo Session Manager: Reboot required.\n\
-                     set REBOOT_PENDING=1\n\
-                     )\n\
-                     \n\
-                     if \"%REBOOT_PENDING%\"==\"1\" (\n\
-                     echo A reboot is pending.\n\
-                     exit /b 249\n\
-                     ) else (\n\
-                     echo No pending reboot detected.\n\
-                     )\n\
-                     \n\
-                     for %%f in (\"%inf_dir%*.inf\") do (\n\
-                     echo Installing: %%~nxf.\n\
-                     %systemroot%\\Sysnative\\PnPutil -i -a \"%%f\"\n\
-                     if !errorlevel! neq 0 if !errorlevel! neq 259 (\n\
-                     echo Failed to install %%~nxf.\n\
-                     exit /b 249\n\
-                     ) else (\n\
-                     echo Successfully installed %%~nxf.\n\
-                     )\n\
-                     )\n\
-                     echo All drivers installed successfully.\n\
-                     exit /b 0\n\
-                     )" in
+    let fb_script = {|@echo off
+
+setlocal EnableDelayedExpansion
+set inf_dir=%systemroot%\Drivers\Virtio\
+echo Installing drivers from %inf_dir%
+set REBOOT_PENDING=0
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired"
+if %errorlevel%==0 (
+echo Windows Update: Reboot required.
+set REBOOT_PENDING=1
+)
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending"
+if %errorlevel%==0 (
+echo CBS: Reboot required.
+set REBOOT_PENDING=1
+)
+
+reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager" /v PendingFileRenameOperations
+if %errorlevel%==0 (
+echo Session Manager: Reboot required.
+set REBOOT_PENDING=1
+)
+
+if "%REBOOT_PENDING%"=="1" (
+echo A reboot is pending.
+exit /b 249
+) else (
+echo No pending reboot detected.
+)
+
+for %%f in ("%inf_dir%*.inf") do (
+echo Installing: %%~nxf.
+%systemroot%\Sysnative\PnPutil -i -a "%%f"
+if !errorlevel! neq 0 if !errorlevel! neq 259 (
+echo Failed to install %%~nxf.
+exit /b 249
+) else (
+echo Successfully installed %%~nxf.
+)
+)
+echo All drivers installed successfully.
+exit /b 0
+)|} in
 
     (* Set priority higher than that of "network-configure" firstboot script. *)
     Firstboot.add_firstboot_script g inspect.i_root ~prio:2000
@@ -483,11 +483,11 @@ let convert (g : G.guestfs) source inspect i_firmware
     let pnp_wait_path = "/Program Files/Guestfs/Firstboot/pnp_wait.exe" in
 
     let fb_script = sprintf
-                      "@echo off\n\
-                       \n\
-                       echo Wait for PnP to complete\n\
-                       \"%s\"\n\
-                       %s"
+                      {|@echo off
+
+echo Wait for PnP to complete
+"%s"
+%s|}
                       (String.replace_char pnp_wait_path '/' '\\')
                       reg_restore_str in
 
@@ -499,21 +499,23 @@ let convert (g : G.guestfs) source inspect i_firmware
     (* Configure VMDP if possible *)
     g#upload tool_path "/vmdp.exe";
 
-    let fb_script = "echo V2V first boot script started\n\
-                     echo Decompressing VMDP installer\n\
-                     \"\\vmdp.exe\"\n\
-                     pushd \"VMDP-*\"\n\
-                     echo Installing VMDP\n\
-                     setup.exe /eula_accepted /no_reboot\n\
-                     popd\n" in
+    let fb_script = {|echo V2V first boot script started
+echo Decompressing VMDP installer
+"\vmdp.exe"
+pushd "VMDP-*"
+echo Installing VMDP
+setup.exe /eula_accepted /no_reboot
+popd
+|} in
 
-    let fb_recover_script = "echo Finishing VMDP installation\n\
-                             if not exist VMDP-* (\n\
-                               \"\\vmdp.exe\"\n\
-                             )\n\
-                             pushd \"VMDP-*\"\n\
-                             setup.exe /eula_accepted /no_reboot\n\
-                             popd\n" in
+    let fb_recover_script = {|echo Finishing VMDP installation
+if not exist VMDP-* (
+"\vmdp.exe"
+)
+pushd "VMDP-*"
+setup.exe /eula_accepted /no_reboot
+popd
+|} in
 
     Firstboot.add_firstboot_script g inspect.i_root
       "configure vmdp" fb_script;
@@ -526,10 +528,11 @@ let convert (g : G.guestfs) source inspect i_firmware
     | None -> () (* nothing to be uninstalled *)
     | Some uninst ->
       let fb_script = sprintf
-                        "@echo off\n\
-                         \n\
-                         echo uninstalling Xen PV driver\n\
-                         \"%s\"\n"
+                        {|@echo off
+
+echo uninstalling Xen PV driver
+"%s"
+|}
                         uninst in
       Firstboot.add_firstboot_script g inspect.i_root
         "uninstall Xen PV" fb_script
@@ -540,14 +543,15 @@ let convert (g : G.guestfs) source inspect i_firmware
     List.iter (
       fun uninst ->
         let fb_script = sprintf
-                          "@echo off\n\
-                           \n\
-                           REG DELETE %s /v RefCount /f\n\
-                           \n\
-                           echo uninstalling Parallels guest tools\n\
-                           rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too\n\
-                           %s\n\
-                           if errorlevel 3010 exit /b 0\n"
+                          {|@echo off
+
+REG DELETE %s /v RefCount /f
+
+echo uninstalling Parallels guest tools
+rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too
+%s
+if errorlevel 3010 exit /b 0
+|}
                           regkey uninst in
 
         Firstboot.add_firstboot_script g inspect.i_root
@@ -558,12 +562,13 @@ let convert (g : G.guestfs) source inspect i_firmware
     List.iter (
       fun uninst ->
         let fb_script = sprintf
-                          "@echo off\n\
-                           \n\
-                           echo uninstalling VMware Tools\n\
-                           rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too\n\
-                           %s\n\
-                           if errorlevel 3010 exit /b 0\n"
+                          {|@echo off
+
+echo uninstalling VMware Tools
+rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too
+%s
+if errorlevel 3010 exit /b 0
+|}
                           uninst in
 
         Firstboot.add_firstboot_script g inspect.i_root

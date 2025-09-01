@@ -571,42 +571,45 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
             (* Wait for the network to come online in the guest (best effort).
              *)
             fbs "wait online"
-              (sprintf "#!/bin/sh\n\
-                        if conn=$(nmcli networking connectivity); then\n\
-                        \ \ tries=0\n\
-                        \ \ while\n\
-                        \ \ \ \ test $tries -lt %d &&\n\
-                        \ \ \ \ test full != \"$conn\"\n\
-                        \ \ do\n\
-                        \ \ \ \ sleep 1\n\
-                        \ \ \ \ tries=$((tries + 1))\n\
-                        \ \ \ \ conn=$(nmcli networking connectivity)\n\
-                        \ \ done\n\
-                        elif systemctl -q is-active systemd-networkd; then\n\
-                        \ \ /usr/lib/systemd/systemd-networkd-wait-online \\\n\
-                        \ \ \ \ -q --timeout=%d\n\
-                        fi\n" timeout timeout);
+              (sprintf {|#!/bin/sh
+if conn=$(nmcli networking connectivity); then
+  tries=0
+  while
+    test $tries -lt %d &&
+    test full != "$conn"
+  do
+    sleep 1
+    tries=$((tries + 1))
+    conn=$(nmcli networking connectivity)
+  done
+elif systemctl -q is-active systemd-networkd; then
+  /usr/lib/systemd/systemd-networkd-wait-online \
+    -q --timeout=%d
+fi
+|} timeout timeout);
 
             (* Disable SELinux temporarily around package installation. Refer to
              * <https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c7> and
              * <https://bugzilla.redhat.com/show_bug.cgi?id=2028764#c8>.
              *)
             fbs "setenforce 0"
-              (sprintf "#!/bin/sh\n\
-                        rm -f %s\n\
-                        if command -v getenforce >/dev/null &&\n\
-                        \ \ test Enforcing = \"$(getenforce)\"\n\
-                        then\n\
-                        \ \ touch %s\n\
-                        \ \ setenforce 0\n\
-                        fi\n" selinux_enforcing selinux_enforcing);
+              (sprintf {|#!/bin/sh
+rm -f %s
+if command -v getenforce >/dev/null &&
+  test Enforcing = "$(getenforce)"
+then
+  touch %s
+  setenforce 0
+fi
+|} selinux_enforcing selinux_enforcing);
             fbs "install qga" inst_cmd;
             fbs "setenforce restore"
-              (sprintf "#!/bin/sh\n\
-                        if test -f %s; then\n\
-                        \ \ setenforce 1\n\
-                        \ \ rm -f %s\n\
-                        fi\n" selinux_enforcing selinux_enforcing);
+              (sprintf {|#!/bin/sh
+if test -f %s; then
+  setenforce 1
+  rm -f %s
+fi
+|} selinux_enforcing selinux_enforcing);
 
             (* On all the distro families covered by "qga_pkg_of_family" and
              * "qga_svc_start_cmd", the QEMU guest agent service is always
