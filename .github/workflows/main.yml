@@ -1,0 +1,129 @@
+# Run the jobs below on every push to master branch and pull request.
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+# Runs basic configure, make and make check.
+jobs:
+  # ubuntu:
+  #   name: Ubuntu
+  #   runs-on: ubuntu-${{ matrix.release }}
+  #   continue-on-error: true
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       release:
+  #         - 24.04
+
+  #   steps:
+  #     - name: Identify the system
+  #       run: |
+  #         cat /etc/os-release
+
+  #     - name: Enable source repositories
+  #       run: |
+  #         sudo sed -i 's/Types: deb$/Types: deb deb-src/g' \
+  #                  /etc/apt/sources.list.d/ubuntu.sources
+
+  #     - name: Install build dependencies
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get -y build-dep virt-v2v
+
+  #     - name: Install extra dependencies
+  #       run: |
+  #         # Git is needed to run git submodule command.
+  #         sudo apt-get -y install git
+
+  #     - name: Fix broken Ubuntu kernel permissions
+  #       run: |
+  #         # https://bugs.launchpad.net/ubuntu/+source/linux/+bug/759725
+  #         sudo chmod 0644 /boot/vmlinuz*
+
+  #     - name: Enable KVM
+  #       run: |
+  #         sudo chmod 0666 /dev/kvm
+
+  #     - name: Checkout sources
+  #       uses: actions/checkout@v5
+
+  #     - name: Checkout submodule
+  #       run: |
+  #         git submodule update --init
+
+  #     - name: Compile the code
+  #       run: |
+  #         autoreconf -fiv
+  #         ./configure
+  #         make -j
+
+  #     - name: Run the full tests
+  #       run: |
+  #         if ! make check; then
+  #             find -name test-suite.log -exec cat {} \;
+  #             exit 1
+  #         fi
+
+  fedora:
+    name: Fedora
+    runs-on: ubuntu-latest  # VM where the container runs
+    strategy:
+      fail-fast: false
+      matrix:
+        release:
+         - 43
+
+    container:
+      image: quay.io/fedora/fedora:${{ matrix.release }}
+      options: --security-opt seccomp=unconfined
+
+    steps:
+      - name: Identify the system
+        run: |
+          cat /etc/os-release
+
+      - name: Install build dependencies
+        run: |
+          dnf builddep -y virt-v2v
+
+      - name: Install extra dependencies
+        run: |
+          # Git is needed to run git submodule command.
+          dnf install -y git
+
+      - name: Checkout sources
+        uses: actions/checkout@v5
+
+      - name: Create user
+        run: |
+          useradd -m -s /bin/bash -G wheel guestfs
+          tail /etc/passwd
+
+      - name: Make checkout directory editable by the sscg user
+        run: |
+          chown -R guestfs:wheel ${GITHUB_WORKSPACE}
+
+      - name: Checkout submodule
+        run: |
+          su -c 'git submodule update --init' guestfs
+
+      - name: Compile the code
+        run: |
+          su -c '
+            autoreconf -fiv &&
+            ./configure CFLAGS="-fPIC -g -O2" &&
+            make -j
+          ' guestfs
+
+      # - name: Run the full tests
+      #   run: |
+      #     # We have to set $HOME since su -p won't set it below.
+      #     export HOME=/home/guestfs
+      #     if ! su -p -c 'make check' guestfs; then
+      #         find -name test-suite.log -exec cat {} \;
+      #         exit 1
+      #     fi
