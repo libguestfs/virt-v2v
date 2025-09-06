@@ -20,8 +20,8 @@
 
 val create_libvirt_xml : ?pool:string -> Types.source ->
                          Types.inspect -> Types.target_meta ->
-                         string list -> (int -> string) -> string -> string ->
+                         string list -> Types.domcaps_features -> (int -> string) -> string -> string ->
                          DOM.doc
 (** [create_libvirt_xml ?pool source inspect target_meta
-    target_features outdisk_map output_format output_name]
+    target_features domcaps_features outdisk_map output_format output_name]
     creates the final libvirt XML for the output hypervisor. *)

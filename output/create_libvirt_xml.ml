@@ -43,7 +43,9 @@ let get_osinfo_id inspect =
 let create_libvirt_xml ?pool source inspect
       { guestcaps; target_buses; target_nics; target_firmware;
         target_boot_device }
-      target_features outdisk_name output_format output_name =
+      target_features domcaps_features outdisk_name output_format output_name =
+  debug "info: domcaps: %s" (string_of_domcaps domcaps_features);
+
   (* The main body of the libvirt XML document. *)
   let body = ref [] in
 
@@ -289,9 +291,15 @@ let create_libvirt_xml ?pool source inspect
     List.push_back_list devices
       (List.mapi (make_disk "scsi" "sd")
                  (Array.to_list target_buses.target_scsi_bus));
-    List.push_back_list devices
-      (List.mapi (make_disk "floppy" "fd")
-                 (Array.to_list target_buses.target_floppy_bus)) in
+    let floppy_devices = Array.to_list target_buses.target_floppy_bus in
+    if not (List.for_all (function BusSlotEmpty -> true | _ -> false) floppy_devices) then (
+      if not domcaps_features.supports_floppy then
+        warning (f_"target hypervisor does not support floppy devices, \
+                    but floppy devices were found in the source guest")
+      else
+        List.push_back_list devices
+          (List.mapi (make_disk "floppy" "fd") floppy_devices)
+    ) in
 
   let nics =
     let net_model =

@@ -89,6 +89,11 @@ module Disk = struct
     (* We don't know what target features the hypervisor supports, but
      * assume a common set that libvirt supports.
      *)
+    let domcaps_features =
+      match target_meta.guestcaps.gcaps_arch with
+      | "i686" | "x86_64" -> { supports_floppy = true }
+      | _ -> { supports_floppy = false } in
+
     let target_features =
       match target_meta.guestcaps.gcaps_arch with
       | "i686" -> [ "acpi"; "apic"; "pae" ]
@@ -96,7 +101,7 @@ module Disk = struct
       | _ -> [] in
 
     let doc = create_libvirt_xml source inspect target_meta
-                target_features
+                target_features domcaps_features
                 (disk_path output_storage output_name)
                 output_format output_name in
 

@@ -313,7 +313,12 @@ and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
 and guestcaps_machine = I440FX | Q35 | Virt
 
+type domcaps_features = {
+  supports_floppy : bool; (* domain arch/type supports floppy *)
+}
+
 val string_of_guestcaps : guestcaps -> string
+val string_of_domcaps : domcaps_features -> string
 
 (** {2 Guest buses} *)
 
