@@ -130,6 +130,9 @@ let rec convert input_disks options source =
 
   g#umount_all ();
 
+  (* Post-conversion steps that run with filesystems unmounted *)
+  do_post_convert g inspect;
+
   (* Doing fstrim on all the filesystems reduces the transfer size
    * because unused blocks are marked in the overlay and thus do
    * not have to be copied.
@@ -227,6 +230,13 @@ and check_guest_free_space inspect mpstats =
                   filesystem ‘%s’.  %Ld inodes available < %Ld inodes needed")
           mp_path ffree needed_inodes
   ) mpstats
+
+(* Run OS specific post-conversion steps that run with filesystems unmounted *)
+and do_post_convert g inspect =
+  match inspect.i_type with
+  | "windows" -> Convert_windows.post_convert g inspect
+  | _ -> () (* No post-convert for other OS types *)
+
 
 (* Perform the fstrim. *)
 and do_fstrim g inspect =

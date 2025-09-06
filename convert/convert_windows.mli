@@ -24,3 +24,5 @@ val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
               Firmware.i_firmware -> Types.guestcaps_block_type ->
               bool -> Types.static_ip list ->
               Types.guestcaps
+
+val post_convert : Guestfs.guestfs -> Types.inspect -> unit

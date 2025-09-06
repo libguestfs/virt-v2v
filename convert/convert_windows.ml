@@ -984,3 +984,13 @@ if errorlevel 3010 exit /b 0
   in
 
   do_convert ()
+
+(* Post-conversion steps that run with filesystems unmounted *)
+let post_convert (g : G.guestfs) inspect =
+  (* Lock down firstboot dir permissions for windows guests *)
+  message (f_"Fixing NTFS permissions");
+  let path = "/Program Files/Guestfs" in
+  debug "info: fixing NTFS permissions on %s" path;
+  try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
+  with G.Error msg ->
+    warning (f_"ntfs_chmod on %s failed: %s") path msg

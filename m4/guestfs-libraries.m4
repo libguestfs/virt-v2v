@@ -19,8 +19,8 @@ dnl Any C libraries required by virt-v2v.
 
 dnl Of course we need libguestfs.
 dnl
-dnl We need libguestfs 1.57.1 for guestfs_setfiles.
-PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.57.1])
+dnl We need libguestfs 1.57.3 for guestfs_ntfs_chmod.
+PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.57.3])
 printf "libguestfs version is "; $PKG_CONFIG --modversion libguestfs
 
 dnl And libnbd.
