@@ -413,6 +413,16 @@ and guestcaps_block_type = Virtio_blk | Virtio_SCSI | IDE
 and guestcaps_net_type = Virtio_net | E1000 | RTL8139
 and guestcaps_machine = I440FX | Q35 | Virt
 
+type domcaps_features = {
+  supports_floppy : bool;
+}
+
+let string_of_domcaps domcaps =
+  sprintf "\
+           supports_floppy = %b\n\
+          "
+  domcaps.supports_floppy
+
 let string_of_block_type = function
   | Virtio_blk -> "virtio-blk"
   | Virtio_SCSI -> "virtio-scsi"

@@ -163,10 +163,32 @@ module Libvirt_ = struct
       target_features_of_capabilities_doc doc
         target_meta.guestcaps.gcaps_arch in
 
+    (* Get domain capabilities. *)
+    let machine_string =
+      match target_meta.guestcaps.gcaps_machine with
+      | Types.I440FX -> "i440fx"
+      | Types.Q35 -> "q35"
+      | Types.Virt -> "virt" in
+    let domcaps_xml =
+      try Libvirt.Connect.get_domain_capabilities
+            ~arch:target_meta.guestcaps.gcaps_arch
+            ~machine:machine_string
+            ~virttype:"kvm"
+            conn
+      with
+        Libvirt.Virterror { message } ->
+        error (f_"cannot get libvirt domain capabilities: %s")
+          (Option.value ~default:"" message) in
+    debug "libvirt domain capabilities XML:\n%s" domcaps_xml;
+
+    (* Parse domain capabilities XML to get the supported features. *)
+    let domcaps_doc = Xml.parse_memory domcaps_xml in
+    let domcaps_features = features_of_domcaps_doc domcaps_doc in
+
     (* Create the metadata. *)
     let doc =
       create_libvirt_xml ~pool:pool_name source inspect target_meta
-        target_features
+        target_features domcaps_features
         (fun i -> output_name ^ "-sd" ^ (drive_name i))
         output_format output_name in
 
@@ -224,6 +246,18 @@ module Libvirt_ = struct
       let features = xpath_get_nodes xpathctx "features/*" in
       List.map Xml.node_name features
     )
+
+  and features_of_domcaps_doc doc =
+    let xpathctx = Xml.xpath_new_context doc in
+    let xpath_string = xpath_string xpathctx in
+    let expr = "/domainCapabilities/devices/disk/enum[@name='diskDevice']/value[text()='floppy']" in
+
+    let supports_floppy =
+      match xpath_string expr with
+      | Some "floppy" -> true
+      | _ -> false in
+
+    { supports_floppy }
 
   let request_size = None
 end
