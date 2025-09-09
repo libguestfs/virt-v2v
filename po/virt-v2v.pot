@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.9.5\n"
+"Project-Id-Version: virt-v2v 2.9.6\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-08-29 08:45+0100\n"
+"POT-Creation-Date: 2025-09-09 21:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1300,6 +1300,10 @@ msgid ""
 "at boot."
 msgstr ""
 
+#: output/output_libvirt.ml:180
+msgid "cannot get libvirt domain capabilities: %s"
+msgstr ""
+
 #: output/output_libvirt.ml:85
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
@@ -1363,7 +1367,7 @@ msgid ""
 "messages"
 msgstr ""
 
-#: output/output_libvirt.ml:189
+#: output/output_libvirt.ml:211
 msgid ""
 "could not define libvirt domain: %s.\n"
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
@@ -1864,11 +1868,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: lib/nbdkit.ml:209
+#: lib/nbdkit.ml:210
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: lib/nbdkit.ml:211
+#: lib/nbdkit.ml:212
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -1953,7 +1957,7 @@ msgstr ""
 msgid "nbdkit-vddk-plugin is not installed"
 msgstr ""
 
-#: lib/nbdkit.ml:51
+#: lib/nbdkit.ml:52
 msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
@@ -2226,6 +2230,12 @@ msgstr ""
 msgid "success"
 msgstr ""
 
+#: output/create_libvirt_xml.ml:297
+msgid ""
+"target hypervisor does not support floppy devices, but floppy devices were "
+"found in the source guest"
+msgstr ""
+
 #: output/output_ovirt_upload.ml:156
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
@@ -2259,7 +2269,7 @@ msgid ""
 "this guest: %d)"
 msgstr ""
 
-#: output/output_libvirt.ml:217
+#: output/output_libvirt.ml:239
 msgid "the target hypervisor does not support a %s KVM guest"
 msgstr ""
 
@@ -2384,7 +2394,7 @@ msgstr ""
 msgid "unhandled checksum type ‘%s’"
 msgstr ""
 
-#: lib/types.ml:502
+#: lib/types.ml:512
 msgid "unknown --root option: %s"
 msgstr ""
 
