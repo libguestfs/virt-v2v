@@ -367,35 +367,54 @@ and get_target_firmware i_firmware guestcaps source output =
   target_firmware
 
 and get_target_boot_device g inspect =
-  (* We only do it for Linux, as most likely Windows never(?) boots
-   * from any drive other than C:.  We can revisit this decision
-   * if someone reports a bug.
-   *)
-  match inspect.i_type with
-  | "linux" ->
-     (try
-        (* In sane cases, the Grub stage1/boot.img (ie. the boot sector) is
-         * always on the same drive as /boot.  So we can just find out
-         * where /boot is mounted and use that.
-         *)
-        let boot_mountpoint = List.assoc "/boot" inspect.i_mountpoints in
-        let boot_device = g#part_to_dev boot_mountpoint in
-        let boot_device = g#device_index boot_device in
-        Some boot_device
-      with
-      | Not_found -> None
-      | G.Error msg
-           (* Returned by part_to_dev if the /boot mountpoint is not
-            * a partition name.
-            *)
-           when String.find msg "device name is not a partition" >= 0 -> None
-      | G.Error msg
-           (* Returned by device_index if the /boot device is not
-            * a normal drive name (eg. /dev/mdX).
-            *)
-           when String.find msg "device not found" >= 0 -> None
-     )
-  | _ -> None
+  with_return (fun {return} ->
+    (* We only do it for Linux, as most likely Windows never(?) boots
+     * from any drive other than C:.  We can revisit this decision
+     * if someone reports a bug.
+     *)
+    if inspect.i_type <> "linux" then return None;
+
+    (* Look for "GRUB" signature in the boot sector of each disk.
+     * If we find it, choose that disk.
+     *)
+    let devices = g#list_devices () |> Array.to_list in
+    let boot_device = List.find_opt (has_grub_signature g) devices in
+    let boot_device = Option.map g#device_index boot_device in
+    if boot_device <> None then return boot_device;
+
+    (* If that fails, in sane cases, the Grub stage1/boot.img (ie. the boot
+     * sector) is always on the same drive as /boot.  So we can just find
+     * out where /boot is mounted and use that.
+     *)
+    get_device_of_boot_filesystem g inspect
+  )
+
+and has_grub_signature g dev =
+  let boot_sector = g#pread_device dev 512 0_L in
+  let r = String.find boot_sector "GRUB" >= 0 in
+  debug "has_grub_signature: \"GRUB\" signature on %s? %b" dev r;
+  r
+
+and get_device_of_boot_filesystem g inspect =
+  try
+    let boot_mountpoint = List.assoc "/boot" inspect.i_mountpoints in
+    let boot_device = g#part_to_dev boot_mountpoint in
+    debug "get_device_of_boot_filesystem: found /boot filesystem on device %s"
+      boot_device;
+    let boot_device = g#device_index boot_device in
+    Some boot_device
+  with
+  | Not_found -> None
+    (* Returned by part_to_dev if the /boot mountpoint is not
+     * a partition name.
+     *)
+  | G.Error msg
+       when String.find msg "device name is not a partition" >= 0 -> None
+    (* Returned by device_index if the /boot device is not
+     * a normal drive name (eg. /dev/mdX).
+     *)
+  | G.Error msg
+       when String.find msg "device not found" >= 0 -> None
 
 (* After conversion we dump as much information about the guest
  * as we can in one place.  Note this is only called when verbose
