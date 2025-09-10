@@ -16,7 +16,6 @@ virt-v2v-input-vmware - Using virt-v2v to convert guests from VMware
     -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'
     -it vddk
     -io vddk-libdir=/path/to/vmware-vix-disklib-distrib
-    -io vddk-thumbprint=xx:xx:xx:...
     "GUEST NAME"
     [-o* options]
 
@@ -227,15 +226,9 @@ enabled unconditionally.
 
 =item 3.
 
-You must find the SSL "thumbprint" of your VMware server.  How to do
-this is explained in L<nbdkit-vddk-plugin(1)>, also available at the
-link above.
-
-=item 4.
-
 VDDK imports require a feature added in libvirt E<ge> 3.7.
 
-=item 5.
+=item 4.
 
 The VMware server must not be in maintenance mode.
 
@@ -329,23 +322,31 @@ continuing.
 The I<-it vddk> parameter selects VDDK as the input transport for disks.
 
 To import a particular guest from vCenter server or ESXi hypervisor,
-use a command like the following, substituting the URI, guest name and
-SSL thumbprint:
+use a command like the following, substituting the URI and guest name:
 
  $ virt-v2v \
      -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \
      -it vddk \
      -io vddk-libdir=/path/to/vmware-vix-disklib-distrib \
-     -io vddk-thumbprint=xx:xx:xx:... \
      "Windows 2003" \
      -o local -os /var/tmp
 
 Other options that you might need to add in rare circumstances include
 I<-io vddk-compression>, I<-io vddk-config>, I<-io vddk-cookie>, I<-io
 vddk-file>, I<-io vddk-nfchostport>, I<-io vddk-port>, I<-io
-vddk-snapshot>, and I<-io vddk-transports>, which are all explained in
-the L<nbdkit-vddk-plugin(1)> documentation.  Do not use these options
-unless you know what you are doing.
+vddk-snapshot>, I<-io vddk-thumbprint> and I<-io vddk-transports>,
+which are all explained in the L<nbdkit-vddk-plugin(1)> documentation.
+Do not use these options unless you know what you are doing.
+
+=head2 VDDK: Thumbprint
+
+You may specify the thumbprint of the VMware server using the I<-io
+vddk-thumbprint=XX:XX...> parameter.  Doing so increases security
+against some man-in-the-middle attacks.
+
+Since virt-v2v 2.10, this parameter is not required.  Virt-v2v will
+get the thumbprint from the server if it is not specified (but the
+L<openssl(1)> command must be installed for this to work).
 
 =head2 VDDK: Debugging VDDK failures
 
