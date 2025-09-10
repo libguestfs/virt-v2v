@@ -354,8 +354,7 @@ In most cases this parameter is required when using the I<-it vddk>
 
 Set the thumbprint of the remote VMware server.
 
-This parameter is required when using the I<-it vddk> (VDDK) transport.
-See L<virt-v2v-input-vmware(1)> for details.
+See L<virt-v2v-input-vmware(1)/VDDK: Thumbprint> for details.
 
 =item B<-io vddk-compression=>COMPRESSION
 

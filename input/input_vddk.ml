@@ -46,12 +46,8 @@ module VDDK = struct
     String.concat " " xs
 
   let query_input_options () =
-    printf (f_"Input options (-io) which can be used with -it vddk:
-
-  -io vddk-thumbprint=xx:xx:xx:...
-                               VDDK server thumbprint (required)
-
-All other settings are optional:
+    printf (f_"Input options (-io) which can be used with -it vddk
+(all settings are optional):
 
   -io vddk-compression=COMPR   Set VDDK compression mode (see
                                  nbdkit-vddk-plugin documentation)
@@ -63,6 +59,8 @@ All other settings are optional:
   -io vddk-port=PORT           VDDK port
   -io vddk-snapshot=SNAPSHOT-MOREF
                                VDDK snapshot moref
+  -io vddk-thumbprint=xx:xx:xx:...
+                               VDDK server thumbprint
   -io vddk-transports=MODE:MODE:..
                                VDDK transports
 
@@ -97,13 +95,6 @@ information on these settings.
           if not (List.mem key vddk_option_keys) then error_invalid_key ();
           (key, value)
       ) options.input_options in
-
-    (* thumbprint is mandatory. *)
-    if not (List.mem_assoc "thumbprint" io_options) then
-      error (f_"You must pass the ‘-io vddk-thumbprint’ option with the \
-                SSL thumbprint of the VMware server.  To find the thumbprint, \
-                see the nbdkit-vddk-plugin(1) manual.  See also the \
-                virt-v2v-input-vmware(1) manual.");
 
     (* Get the guest name. *)
     let guest =
@@ -201,6 +192,30 @@ information on these settings.
       | Some password_file ->
          password_file in
 
+    (* Thumbprint has to be passed to nbdkit.  If we don't have it
+     * then get it from the server.
+     *)
+    let thumbprint =
+      try List.assoc "thumbprint" io_options
+      with Not_found ->
+        let openssl =
+          try which "openssl"
+          with Executable_not_found _ ->
+            error (f_"‘openssl’ command not found: automatically detecting \
+                      thumbprint is not possible, so you must use \
+                      ‘-io vddk-thumbprint=XX:XX...’") in
+        let cmd = sprintf {|
+%s s_client -connect %s:443 </dev/null 2>/dev/null |
+%s x509 -in /dev/stdin -fingerprint -sha1 -noout 2>/dev/null |
+grep -i '^sha1 Fingerprint=' |
+sed 's/.*Fingerprint=\([A-F0-9:]\+\)/\1/' |}
+                    openssl (quote server) openssl in
+        let lines = external_command cmd in
+        if List.length lines = 0 then
+          error (f_"could not fetch thumbprint from the server, you mus use \
+                    ‘-io vddk-thumbprint=XX:XX...’");
+        List.hd lines in
+
     let compression =
       try Some (List.assoc "compression" io_options) with Not_found -> None in
     let config =
@@ -215,9 +230,6 @@ information on these settings.
       try Some (List.assoc "port" io_options) with Not_found -> None in
     let snapshot =
       try Some (List.assoc "snapshot" io_options) with Not_found -> None in
-    let thumbprint =
-      try List.assoc "thumbprint" io_options
-      with Not_found -> assert false (* checked above *) in
     let transports =
       try Some (List.assoc "transports" io_options) with Not_found -> None in
 
