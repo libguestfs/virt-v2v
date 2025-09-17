@@ -168,8 +168,13 @@ and ddb_regedits inspect drv_name drv_pciid =
    * one must add keys into the DriverDatabase.
    *)
 
+  let winarch =
+    match inspect.i_arch with
+    | "i386" -> "x86" | "x86_64" -> "amd64"
+    | _ -> assert false in
+
   let drv_inf = "guestor.inf" in
-  let drv_inf_label = drv_inf ^ "_tmp" in
+  let drv_inf_label = sprintf "%s_%s_0000000000000000" drv_inf winarch in
   let drv_config = "guestor_conf" in
 
   [
