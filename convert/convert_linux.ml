@@ -110,11 +110,31 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
               required in libguestfs.");
 
   (* We use Augeas for inspection and conversion, so initialize it early.
-   * Calling debug_augeas_errors will display any //error nodes in
-   * debugging output if verbose (but otherwise it does nothing).
    *)
-  g#aug_init "/" 1;
-  debug_augeas_errors g;
+  let () =
+    let aug_save_backup = 1
+    and aug_no_load = 32 in
+    g#aug_init "/" (aug_save_backup + aug_no_load);
+
+    (* Exclude some lense includes which are problematic on a case-by-case
+     * basis.  Note the double quotes are part of the incl, and the incl
+     * must exactly match the definition in the Augeas lens file.
+     * - "/etc/lvm/archive/*.vg" because of RHEL-113820
+     *)
+    let removed_incls = [ {|"/etc/lvm/archive/*.vg"|} ] in
+    List.iter (
+      fun incl ->
+        let augpath = sprintf "/augeas/load//incl[%s]" incl in
+        let n = g#aug_rm augpath in
+        debug "convert_linux: removed %d incl(s) matching %s" n incl;
+    ) removed_incls;
+
+    g#aug_load ();
+
+    (* Calling debug_augeas_errors will display any //error nodes in
+     * debugging output if verbose (but otherwise it does nothing).
+     *)
+    debug_augeas_errors g in
 
   (* Clean RPM database.  This must be done early to avoid RHBZ#1143866. *)
   Array.iter g#rm_f (g#glob_expand "/var/lib/rpm/__db.00?");
