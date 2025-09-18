@@ -258,7 +258,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
         fun { G.app2_name = name } -> name = package_name
       ) inspect.i_apps in
     if has_guest_additions then
-      uninstall_packages [package_name];
+      uninstall_packages_nonfatal [package_name];
 
     (* Guest Additions might have been installed from a tarball.  The
      * above code won't detect this case.  Look for the uninstall tool
@@ -403,7 +403,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
       )
     );
 
-    uninstall_packages !remove;
+    uninstall_packages_nonfatal !remove;
 
     (* VMware Tools may have been installed from a tarball, so the
      * above code won't remove it.  Look for the uninstall tool and run
@@ -451,7 +451,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
     let pkgs = List.map (fun { G.app2_name = name } -> name) pkgs in
 
     if pkgs <> [] then (
-      uninstall_packages pkgs;
+      uninstall_packages_nonfatal pkgs;
 
       (* Installing these guest utilities automatically unconfigures
        * ttys in /etc/inittab if the system uses it. We need to put
@@ -1360,7 +1360,13 @@ fi
       "/etc/lvm/cache/.cache"; "/etc/lvm/devices/system.devices"
     ];
 
-  and uninstall_packages pkgs =
+  (* This is a wrapper around Guestfs_packages.uninstall_command
+   * which catches errors and turns them into warnings, since
+   * uninstalling packages is best effort in virt-v2v.  It also
+   * reloads the Augeas configuration since removing packages might
+   * change /etc files.
+   *)
+  and uninstall_packages_nonfatal pkgs =
     if pkgs <> [] then (
       let cmd =
         try Guest_packages.uninstall_command pkgs inspect.i_package_management
