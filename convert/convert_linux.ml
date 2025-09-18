@@ -131,25 +131,6 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
   (*----------------------------------------------------------------------*)
   (* Conversion step. *)
 
-  let uninstall_packages pkgs =
-    if pkgs <> [] then (
-      let cmd =
-        try Guest_packages.uninstall_command pkgs inspect.i_package_management
-        with
-        | Guest_packages.Unknown_package_manager msg
-        | Guest_packages.Unimplemented_package_manager msg ->
-          error "%s" msg
-      in
-      (try ignore (g#sh cmd)
-       with G.Error msg ->
-         warning (f_"could not uninstall packages ‘%s’: %s (ignored)")
-           (String.concat " " pkgs) msg
-      );
-      (* Reload Augeas in case anything changed. *)
-      Linux.augeas_reload g
-    )
-  in
-
   let rec do_convert () =
     augeas_grub_configuration ();
 
@@ -1378,6 +1359,24 @@ fi
       "/etc/blkid/blkid.tab"; "/etc/blkid.tab";
       "/etc/lvm/cache/.cache"; "/etc/lvm/devices/system.devices"
     ];
+
+  and uninstall_packages pkgs =
+    if pkgs <> [] then (
+      let cmd =
+        try Guest_packages.uninstall_command pkgs inspect.i_package_management
+        with
+        | Guest_packages.Unknown_package_manager msg
+        | Guest_packages.Unimplemented_package_manager msg ->
+          error "%s" msg
+      in
+      (try ignore (g#sh cmd)
+       with G.Error msg ->
+         warning (f_"could not uninstall packages ‘%s’: %s (ignored)")
+           (String.concat " " pkgs) msg
+      );
+      (* Reload Augeas in case anything changed. *)
+      Linux.augeas_reload g
+    )
   in
 
   do_convert ()
