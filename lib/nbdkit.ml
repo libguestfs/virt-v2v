@@ -169,7 +169,7 @@ let run_unix socket cmd =
   add_arg "--unix"; add_arg socket;
   add_arg "--threads"; add_arg (string_of_int cmd.threads);
 
-  if have_selinux then (
+  if have_selinux () then (
     add_arg "--selinux-label";
     add_arg "system_u:object_r:svirt_socket_t:s0"
   );
@@ -218,7 +218,7 @@ let run_unix socket cmd =
 If the messages above are not sufficient to diagnose the problem then add the ‘virt-v2v -v -x’ options and examine the debugging output carefully.")
   );
 
-  if have_selinux then (
+  if have_selinux () then (
     (* Note that Unix domain sockets have both a file label and
      * a socket/process label.  Using --selinux-label above
      * only set the socket label, but we must also set the file

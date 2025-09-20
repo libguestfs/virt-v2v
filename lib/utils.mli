@@ -27,8 +27,8 @@ val string_of_process_status : Unix.process_status -> string
 (** Convert a process status (such as returned by {!Unix.wait}) into
     a printable string. *)
 
-val have_selinux : bool
-(** True if SELinux is enabled and enforcing on the host. *)
+val have_selinux : unit -> bool
+(** Return true if SELinux is enabled and enforcing on the host. *)
 
 val uri_quote : string -> string
 (** Take a string and perform %xx escaping as used in some parts of URLs. *)

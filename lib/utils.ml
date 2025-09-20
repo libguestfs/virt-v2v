@@ -37,7 +37,9 @@ let string_of_process_status = function
 
 (* Is SELinux enabled and enforcing on the host? *)
 let have_selinux =
-  0 = Sys.command "getenforce 2>/dev/null | grep -isq Enforcing"
+  let cmd = "getenforce 2>/dev/null | grep -isq Enforcing" in
+  let test = lazy (0 = Sys.command cmd) in
+  fun () -> Lazy.force test
 
 (* URI quoting. *)
 let uri_quote str =

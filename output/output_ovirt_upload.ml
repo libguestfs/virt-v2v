@@ -183,7 +183,7 @@ See also the virt-v2v-output-ovirt(1) manual.");
      * --selinux-label option).
      *)
     let error_unless_nbdkit_compiled_with_selinux () =
-      if have_selinux then (
+      if have_selinux () then (
         let config = Nbdkit.config () in
         let selinux = try List.assoc "selinux" config with Not_found -> "no" in
         if selinux = "no" then
