@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.9.6\n"
+"Project-Id-Version: virt-v2v 2.9.7\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-09-09 21:31+0100\n"
+"POT-Creation-Date: 2025-09-20 17:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,7 +127,7 @@ msgid ""
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
-#: input/input_vddk.ml:188
+#: input/input_vddk.ml:179
 msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr ""
 
-#: input/input_vddk.ml:123 input/input_vcenter_https.ml:88
+#: input/input_vddk.ml:114 input/input_vcenter_https.ml:88
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
 
@@ -233,7 +233,7 @@ msgstr ""
 
 #. input/input_vcenter_https.ml:70
 #. input/input_libvirt.ml:41
-#: input/input_xen_ssh.ml:57 input/input_vddk.ml:113
+#: input/input_xen_ssh.ml:57 input/input_vddk.ml:104
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
 msgstr ""
 
@@ -273,7 +273,7 @@ msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
 
-#: input/input_vddk.ml:93
+#: input/input_vddk.ml:91
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgstr ""
 
@@ -441,7 +441,7 @@ msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
 
-#: input/input_vddk.ml:157
+#: input/input_vddk.ml:148
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -666,12 +666,8 @@ msgstr ""
 
 #: input/input_vddk.ml:49
 msgid ""
-"Input options (-io) which can be used with -it vddk:\n"
-"\n"
-"  -io vddk-thumbprint=xx:xx:xx:...\n"
-"                               VDDK server thumbprint (required)\n"
-"\n"
-"All other settings are optional:\n"
+"Input options (-io) which can be used with -it vddk\n"
+"(all settings are optional):\n"
 "\n"
 "  -io vddk-compression=COMPR   Set VDDK compression mode (see\n"
 "                                 nbdkit-vddk-plugin documentation)\n"
@@ -683,6 +679,8 @@ msgid ""
 "  -io vddk-port=PORT           VDDK port\n"
 "  -io vddk-snapshot=SNAPSHOT-MOREF\n"
 "                               VDDK snapshot moref\n"
+"  -io vddk-thumbprint=xx:xx:xx:...\n"
+"                               VDDK server thumbprint\n"
 "  -io vddk-transports=MODE:MODE:..\n"
 "                               VDDK transports\n"
 "\n"
@@ -1245,13 +1243,6 @@ msgid ""
 "report a bug against virt-v2v."
 msgstr ""
 
-#: input/input_vddk.ml:103
-msgid ""
-"You must pass the ‘-io vddk-thumbprint’ option with the SSL thumbprint of "
-"the VMware server.  To find the thumbprint, see the nbdkit-vddk-plugin(1) "
-"manual.  See also the virt-v2v-input-vmware(1) manual."
-msgstr ""
-
 #: output/output_libvirt.ml:96
 msgid ""
 "a libvirt domain called ‘%s’ already exists on the target.\n"
@@ -1378,6 +1369,12 @@ msgstr ""
 msgid "could not determine a way to update the configuration of Grub2"
 msgstr ""
 
+#: input/input_vddk.ml:215
+msgid ""
+"could not fetch thumbprint from the server, you mus use ‘-io vddk-"
+"thumbprint=XX:XX...’"
+msgstr ""
+
 #: common/mldrivers/linux_bootloaders.ml:376
 msgid "could not find bootloader mount point (%s): %s"
 msgstr ""
@@ -1397,7 +1394,7 @@ msgid ""
 msgstr ""
 
 #. input/input_vcenter_https.ml:94
-#: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:132
+#: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:123
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1636,7 +1633,7 @@ msgstr ""
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
-#: input/input_vddk.ml:127
+#: input/input_vddk.ml:118
 msgid "in-place mode does not work with VDDK source"
 msgstr ""
 
@@ -1844,7 +1841,7 @@ msgid ""
 "twice"
 msgstr ""
 
-#: input/input_vddk.ml:277
+#: input/input_vddk.ml:289
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1856,7 +1853,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: input/input_vddk.ml:271
+#: input/input_vddk.ml:283
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1868,11 +1865,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: lib/nbdkit.ml:210
+#: lib/nbdkit.ml:214
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: lib/nbdkit.ml:212
+#: lib/nbdkit.ml:216
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -1880,7 +1877,7 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
-#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:243
+#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:255
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
@@ -1928,7 +1925,7 @@ msgstr ""
 
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:99
-#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:247
+#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:259
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
 
@@ -1953,11 +1950,11 @@ msgstr ""
 msgid "nbdkit-ssh-plugin is not installed"
 msgstr ""
 
-#: input/input_vddk.ml:245
+#: input/input_vddk.ml:257
 msgid "nbdkit-vddk-plugin is not installed"
 msgstr ""
 
-#: lib/nbdkit.ml:52
+#: lib/nbdkit.ml:56
 msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
@@ -2182,7 +2179,7 @@ msgid ""
 "options instead (described in the virt-customize(1) manual)."
 msgstr ""
 
-#: lib/utils.ml:194
+#: lib/utils.ml:196
 msgid ""
 "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
@@ -2556,15 +2553,15 @@ msgstr ""
 msgid "you must supply the --run parameter"
 msgstr ""
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:170
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:161
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: input/input_vddk.ml:233
+#: input/input_vddk.ml:245
 msgid "‘-io vddk-file=’ must be used exactly %d times"
 msgstr ""
 
-#: input/input_vddk.ml:255
+#: input/input_vddk.ml:267
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
@@ -2574,6 +2571,12 @@ msgstr ""
 msgid ""
 "‘-oo compressed’ is only allowed when the output format is a local qcow2-"
 "format file, i.e. ‘-of qcow2’"
+msgstr ""
+
+#: input/input_vddk.ml:204
+msgid ""
+"‘openssl’ command not found: automatically detecting thumbprint is not "
+"possible, so you must use ‘-io vddk-thumbprint=XX:XX...’"
 msgstr ""
 
 #: common/mltools/getopt-c.c:68
