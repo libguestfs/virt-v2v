@@ -23,7 +23,7 @@ val is_installed : unit -> bool
     rudimentary tests that it is working. *)
 
 type version = int * int * int
-(** Version of qemu-nbd: (major, minor, release). *)
+(** Version of qemu-nbd: [major, minor, release]. *)
 
 val version : unit -> version
 (** Get the installed version of qemu-nbd. *)
