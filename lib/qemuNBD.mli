@@ -38,7 +38,10 @@ val create : string -> cmd
     disk image to serve. *)
 
 val set_snapshot : cmd -> bool -> unit
-(** Set the snapshot [-s] flag. *)
+(** If true, set the snapshot [-s] flag.
+
+    For safety, all input methods where [options.read_only] is true
+    must set this, to ensure the input is not modified. *)
 
 val set_format : cmd -> string option -> unit
 (** Set the format [--format] parameter. *)
