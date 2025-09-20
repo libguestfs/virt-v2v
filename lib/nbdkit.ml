@@ -33,34 +33,38 @@ let is_installed =
 
 type config = (string * string) list
 
-let get_config = lazy (
-  let cmd = sprintf "%s --dump-config" Config.nbdkit in
-  let lines = external_command cmd in
-  List.map (String.split "=") lines
-)
-let config () = Lazy.force get_config
+let config =
+  let output =
+    lazy (
+      let cmd = sprintf "%s --dump-config" Config.nbdkit in
+      let lines = external_command cmd in
+      List.map (String.split "=") lines
+    ) in
+  fun () -> Lazy.force output
 
 type version = int * int * int
 
 let rex = PCRE.compile "^(\\d+)\\.(\\d+)\\.(\\d+)"
-let get_version = lazy (
-  let config = config () in
-  let version =
-    try List.assoc "version" config
-    with Not_found -> failwith "nbdkit: no version in --dump-config" in
-  if not (PCRE.matches rex version) then
-    error (f_"nbdkit: unexpected version in --dump-config: %s") version;
-  let major = int_of_string (PCRE.sub 1)
-  and minor = int_of_string (PCRE.sub 2)
-  and release = int_of_string (PCRE.sub 3) in
-  if verbose () then (
-    eprintf "info: nbdkit version:\n%!";
-    ignore (Sys.command (sprintf "%s --version >&2" Config.nbdkit));
-    eprintf "parsed version: %d.%d.%d\n%!" major minor release
-  );
-  (major, minor, release)
-)
-let version () = Lazy.force get_version
+let version =
+  let v =
+    lazy (
+      let config = config () in
+      let version =
+        try List.assoc "version" config
+        with Not_found -> failwith "nbdkit: no version in --dump-config" in
+      if not (PCRE.matches rex version) then
+        error (f_"nbdkit: unexpected version in --dump-config: %s") version;
+      let major = int_of_string (PCRE.sub 1)
+      and minor = int_of_string (PCRE.sub 2)
+      and release = int_of_string (PCRE.sub 3) in
+      if verbose () then (
+        eprintf "info: nbdkit version:\n%!";
+        ignore (Sys.command (sprintf "%s --version >&2" Config.nbdkit));
+        eprintf "parsed version: %d.%d.%d\n%!" major minor release
+      );
+      (major, minor, release)
+    ) in
+  fun () -> Lazy.force v
 
 let probe_server_parameter name =
   let list_options =
