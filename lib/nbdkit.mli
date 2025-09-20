@@ -28,14 +28,16 @@ val is_installed : unit -> bool
     return true even if none of the basic plugins are
     installed. *)
 
+(** {2 Probe configuration of nbdkit} *)
+
 type config = (string * string) list
 
 val config : unit -> config
 (** Returns the list of tuples from the [nbdkit --dump-config] command. *)
 
 type version = int * int * int
-(** Version of nbdkit: (major, minor, release).  The major
-    will always be [1]. *)
+(** Version of nbdkit: [major, minor, release].  The major
+    will always be 1. *)
 
 val version : unit -> version
 (** Get the installed version of nbdkit. *)
@@ -64,28 +66,38 @@ val probe_filter_parameter : string -> string -> bool
     [probe_filter_parameter filter regex] greps for regex
     in the output of [nbdkit --filter=filter null --help]. *)
 
+(** {2 Create an nbdkit command and run it} *)
+
 type cmd
 (** An nbdkit command. *)
 
 val create : ?quiet:bool -> ?name:string -> string -> cmd
 (** Create a new nbdkit command.
 
-    The parameter is the required plugin name.  Normally the nbdkit
-    verbose ([-v]) flag is inherited from virt-v2v but exceptionally
-    you can use ~quiet:true to make nbdkit always quiet.
+    The parameter is the required plugin name.
+
+    Normally the nbdkit verbose ([-v]) flag is inherited from
+    virt-v2v but exceptionally you can use [~quiet:true] to make
+    nbdkit always quiet.
 
     The optional [?name] parameter can be used to name this
     nbdkit instance (the name appears in debugging messages
     if using nbdkit >= 1.46). *)
 
 val add_debug_flag : cmd -> string -> string -> unit
+(** Add a debug flag ([-D] option). *)
+
 val set_readonly : cmd -> bool -> unit
+(** If true, set the readonly flag ([-r] option). *)
+
 val set_threads : cmd -> int -> unit
-(** Set various command line flags. *)
+(** Set the number of threads ([--threads] option).
+    The default is 16. *)
 
 val add_filter : cmd -> string -> unit
-(** Add a filter.  Use {!probe_filter} first to check the filter
-    is installed.  The filters are added closest to the plugin first. *)
+(** Add a filter.  You may need to use {!probe_filter} first to check
+    the filter is installed, otherwise nbdkit will fail to run.
+    The filters are added closest to the plugin first. *)
 
 val add_filter_if_available : cmd -> string -> unit
 (** Same as {!add_filter} but does the {!probe_filter} check and
@@ -106,6 +118,6 @@ val run_unix : string -> cmd -> string * int
 
     Returns the Unix domain socket name and the nbdkit process ID.
 
-    The --exit-with-parent, --foreground, --pidfile, --newstyle and
-    --unix flags are added automatically.  Other flags are set as
+    The [--exit-with-parent], [--foreground], [--pidfile], [--newstyle]
+    and [--unix] flags are added automatically.  Other flags are set as
     in the {!cmd} struct. *)
