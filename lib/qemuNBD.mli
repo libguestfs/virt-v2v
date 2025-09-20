@@ -29,7 +29,7 @@ val version : unit -> version
 (** Get the installed version of qemu-nbd. *)
 
 type cmd
-(** A qemu-nbd command line.  Note this type is immutable. *)
+(** A qemu-nbd command line. *)
 
 val create : string -> cmd
 (** Create a new qemu-nbd command.
