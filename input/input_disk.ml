@@ -26,7 +26,6 @@ open Common_gettext.Gettext
 open Types
 open Utils
 
-open Name_from_disk
 open Input
 
 module Disk = struct

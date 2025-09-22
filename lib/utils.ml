@@ -268,3 +268,24 @@ let get_uefi_arch_suffix = function
   | "x86_64" -> Some "X64"
   | "i386" -> Some "X32"
   | _ -> None
+
+let name_from_disk disk =
+  let name = Filename.basename disk in
+  (* Remove the extension (or suffix), only if it's one usually
+   * used for disk images. *)
+  let suffixes = [
+    ".img"; ".ova"; ".qcow2"; ".raw"; ".vmdk"; ".vmx";
+    "-sda";
+  ] in
+  let rec loop = function
+    | suff :: xs ->
+       if Filename.check_suffix name suff then
+         Filename.chop_suffix name suff
+       else
+         loop xs
+    | [] -> name
+  in
+  let name = loop suffixes in
+  if name = "" then
+    error (f_"invalid input filename (%s)") disk;
+  name

@@ -31,7 +31,6 @@ SOURCES_MLI = \
 	input_vddk.mli \
 	input_vmx.mli \
 	input_xen_ssh.mli \
-	name_from_disk.mli \
 	nbdkit_curl.mli \
 	nbdkit_ssh.mli \
 	OVA.mli \
@@ -45,7 +44,6 @@ SOURCES_MLI = \
 	$(NULL)
 
 SOURCES_ML = \
-	name_from_disk.ml \
 	parse_libvirt_xml.ml \
 	OVF.ml \
 	OVA.ml \

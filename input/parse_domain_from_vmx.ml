@@ -26,7 +26,6 @@ open Common_gettext.Gettext
 
 open Types
 open Utils
-open Name_from_disk
 
 type vmx_source =
   | VMXSourceFile of string     (* local file or NFS *)

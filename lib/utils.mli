@@ -103,3 +103,8 @@ val get_uefi_arch_suffix : string -> string option
 (** [get_uefi_arch_suffix arch] maps [arch] from [inspect.i_arch] representation
     to UEFI spec representation.  If a mapping cannot be found, [None] is
     returned. *)
+
+val name_from_disk : string -> string
+(** Take a disk name and derive from it a suitable source name.
+
+    Used in particular by [-i disk], [-i ova] and [-i vmx] modes. *)
