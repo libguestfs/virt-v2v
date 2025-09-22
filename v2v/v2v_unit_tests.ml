@@ -125,56 +125,56 @@ let () =
    *)
   ignore (Utils.qemu_img_supports_offset_and_size ())
 
-(* Test the VMX file parser in the Parse_vmx module. *)
+(* Test the VMX file parser in the VMX module. *)
 let () =
-  let cmp = Parse_vmx.equal in
-  let printer = Parse_vmx.to_string 0 in
+  let cmp = VMX.equal in
+  let printer = VMX.to_string 0 in
 
   (* This should be identical to the empty file. *)
-  let t = Parse_vmx.parse_string "\
+  let t = VMX.parse_string "\
 test.foo = \"a\"
 test.bar = \"b\"
 test.present = \"FALSE\"
 " in
-  assert_equal ~cmp ~printer Parse_vmx.empty t;
+  assert_equal ~cmp ~printer VMX.empty t;
 
   (* Test weird escapes. *)
-  let t1 = Parse_vmx.parse_string "\
+  let t1 = VMX.parse_string "\
 foo = \"a|20|21b\"
 " in
-  let t2 = Parse_vmx.parse_string "\
+  let t2 = VMX.parse_string "\
 foo = \"a !b\"
 " in
   assert_equal ~cmp ~printer t1 t2;
 
   (* Test case insensitivity. *)
-  let t1 = Parse_vmx.parse_string "\
+  let t1 = VMX.parse_string "\
 foo = \"abc\"
 " in
-  let t2 = Parse_vmx.parse_string "\
+  let t2 = VMX.parse_string "\
 fOO = \"abc\"
 " in
   assert_equal ~cmp ~printer t1 t2;
-  let t = Parse_vmx.parse_string "\
+  let t = VMX.parse_string "\
 flag = \"true\"
 " in
-  assert_bool "parse_vmx: failed case insensitivity test for booleans #1"
-              (Parse_vmx.get_bool t ["FLAG"] = Some true);
-  let t = Parse_vmx.parse_string "\
+  assert_bool "VMX: failed case insensitivity test for booleans #1"
+              (VMX.get_bool t ["FLAG"] = Some true);
+  let t = VMX.parse_string "\
 flag = \"TRUE\"
 " in
-  assert_bool "parse_vmx: failed case insensitivity test for booleans #2"
-              (Parse_vmx.get_bool t ["Flag"] = Some true);
+  assert_bool "VMX: failed case insensitivity test for booleans #2"
+              (VMX.get_bool t ["Flag"] = Some true);
 
   (* Missing keys. *)
-  let t = Parse_vmx.parse_string "\
+  let t = VMX.parse_string "\
 foo = \"a\"
 " in
-  assert_bool "parse_vmx: failed missing key test"
-              (Parse_vmx.get_string t ["bar"] = None);
+  assert_bool "VMX: failed missing key test"
+              (VMX.get_string t ["bar"] = None);
 
   (* namespace_present function *)
-  let t = Parse_vmx.parse_string "\
+  let t = VMX.parse_string "\
 foo.bar.present = \"TRUE\"
 foo.baz.present = \"FALSE\"
 foo.a.b = \"abc\"
@@ -183,27 +183,27 @@ foo.b = \"abc\"
 foo.c.a = \"abc\"
 foo.c.b = \"abc\"
 " in
- assert_bool "parse_vmx: namespace_present #1"
-             (Parse_vmx.namespace_present t ["foo"] = true);
- assert_bool "parse_vmx: namespace_present #2"
-             (Parse_vmx.namespace_present t ["foo"; "bar"] = true);
- assert_bool "parse_vmx: namespace_present #3"
+ assert_bool "VMX: namespace_present #1"
+             (VMX.namespace_present t ["foo"] = true);
+ assert_bool "VMX: namespace_present #2"
+             (VMX.namespace_present t ["foo"; "bar"] = true);
+ assert_bool "VMX: namespace_present #3"
              (* this whole namespace should have been culled *)
-             (Parse_vmx.namespace_present t ["foo"; "baz"] = false);
- assert_bool "parse_vmx: namespace_present #4"
-             (Parse_vmx.namespace_present t ["foo"; "a"] = true);
- assert_bool "parse_vmx: namespace_present #5"
+             (VMX.namespace_present t ["foo"; "baz"] = false);
+ assert_bool "VMX: namespace_present #4"
+             (VMX.namespace_present t ["foo"; "a"] = true);
+ assert_bool "VMX: namespace_present #5"
              (* this is a key, not a namespace *)
-             (Parse_vmx.namespace_present t ["foo"; "a"; "b"] = false);
- assert_bool "parse_vmx: namespace_present #6"
-             (Parse_vmx.namespace_present t ["foo"; "b"] = false);
- assert_bool "parse_vmx: namespace_present #7"
-             (Parse_vmx.namespace_present t ["foo"; "c"] = true);
- assert_bool "parse_vmx: namespace_present #8"
-             (Parse_vmx.namespace_present t ["foo"; "d"] = false);
+             (VMX.namespace_present t ["foo"; "a"; "b"] = false);
+ assert_bool "VMX: namespace_present #6"
+             (VMX.namespace_present t ["foo"; "b"] = false);
+ assert_bool "VMX: namespace_present #7"
+             (VMX.namespace_present t ["foo"; "c"] = true);
+ assert_bool "VMX: namespace_present #8"
+             (VMX.namespace_present t ["foo"; "d"] = false);
 
  (* map function *)
-  let t = Parse_vmx.parse_string "\
+  let t = VMX.parse_string "\
 foo.bar.present = \"TRUE\"
 foo.baz.present = \"FALSE\"
 foo.a.b = \"abc\"
@@ -213,7 +213,7 @@ foo.c.a = \"abc\"
 foo.c.b = \"abc\"
 " in
   let xs =
-    Parse_vmx.map (
+    VMX.map (
       fun path ->
         let path = String.concat "." path in
         function
@@ -236,7 +236,7 @@ foo.present = \"true\"
 " s;
 
   (* select_namespaces function *)
-  let t1 = Parse_vmx.parse_string "\
+  let t1 = VMX.parse_string "\
 foo.bar.present = \"TRUE\"
 foo.a.b = \"abc\"
 foo.a.c = \"abc\"
@@ -245,11 +245,11 @@ foo.c.a = \"abc\"
 foo.c.b = \"abc\"
 " in
   let t2 =
-    Parse_vmx.select_namespaces
+    VMX.select_namespaces
       (function ["foo"] -> true | _ -> false) t1 in
   assert_equal ~cmp ~printer t1 t2;
 
-  let t1 = Parse_vmx.parse_string "\
+  let t1 = VMX.parse_string "\
 foo.bar.present = \"TRUE\"
 foo.a.b = \"abc\"
 foo.a.c = \"abc\"
@@ -259,9 +259,9 @@ foo.c.b = \"abc\"
 foo.c.c.d.e.f = \"abc\"
 " in
   let t1 =
-    Parse_vmx.select_namespaces
+    VMX.select_namespaces
       (function ["foo"; "a"] -> true | _ -> false) t1 in
-  let t2 = Parse_vmx.parse_string "\
+  let t2 = VMX.parse_string "\
 foo.a.b = \"abc\"
 foo.a.c = \"abc\"
 " in

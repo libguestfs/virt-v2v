@@ -157,14 +157,14 @@ and find_hdds vmx vmx_source
    * deviceType.
    *)
   let hdds =
-    Parse_vmx.select_namespaces (
+    VMX.select_namespaces (
       function
       | [ns] ->
          (* Check the namespace is '(ide|scsi|nvme|sata)X:Y' *)
          if not (is_controller_target ns) then false
          else (
            (* Check the deviceType is one we are looking for. *)
-           let dt = Parse_vmx.get_string vmx [ns; "deviceType"] in
+           let dt = VMX.get_string vmx [ns; "deviceType"] in
            let dt = Option.map String.lowercase_ascii dt in
            List.mem dt device_types
          )
@@ -173,7 +173,7 @@ and find_hdds vmx vmx_source
 
   (* Map the subset to a list of disks. *)
   let hdds =
-    Parse_vmx.map (
+    VMX.map (
       fun path v ->
         match path, v with
         | [ns; "filename"], Some filename ->
@@ -185,7 +185,7 @@ and find_hdds vmx vmx_source
   let hdds = List.filter_map Fun.id hdds in
 
   (* We don't have a way to return the controllers and targets, so
-   * just make sure the disks are sorted into order, since Parse_vmx
+   * just make sure the disks are sorted into order, since VMX
    * won't return them in any particular order.
    *)
   let hdds = List.sort compare hdds in
@@ -213,14 +213,14 @@ and find_removables vmx =
 
   (* Find namespaces matching 'ideX:Y' with suitable deviceType. *)
   let devs =
-    Parse_vmx.select_namespaces (
+    VMX.select_namespaces (
       function
       | [ns] ->
          (* Check the namespace is 'ideX:Y' *)
          if not (is_ide_controller_target ns) then false
          else (
            (* Check the deviceType is one we are looking for. *)
-           match Parse_vmx.get_string vmx [ns; "deviceType"] with
+           match VMX.get_string vmx [ns; "deviceType"] with
            | Some str ->
               let str = String.lowercase_ascii str in
               List.mem str device_types
@@ -231,7 +231,7 @@ and find_removables vmx =
 
   (* Map the subset to a list of CD-ROMs. *)
   let devs =
-    Parse_vmx.map (
+    VMX.map (
       fun path v ->
         match path, v with
         | [ns], None ->
@@ -276,7 +276,7 @@ and find_nics vmx =
 
   (* Find namespaces matching 'ethernetX'. *)
   let nics =
-    Parse_vmx.select_namespaces (
+    VMX.select_namespaces (
       function
       | [ns] -> is_ethernet_port ns
       | _ -> false
@@ -284,13 +284,13 @@ and find_nics vmx =
 
   (* Map the subset to a list of NICs. *)
   let nics =
-    Parse_vmx.map (
+    VMX.map (
       fun path v ->
         match path, v with
         | [ns], None ->
            let port = get_ethernet_port ns in
-           let mac = Parse_vmx.get_string vmx [ns; "generatedAddress"] in
-           let model = Parse_vmx.get_string vmx [ns; "virtualDev"] in
+           let mac = VMX.get_string vmx [ns; "generatedAddress"] in
+           let model = VMX.get_string vmx [ns; "virtualDev"] in
            let model =
              match model with
              | Some m when String.lowercase_ascii m = "e1000" ->
@@ -298,13 +298,13 @@ and find_nics vmx =
              | Some model ->
                 Some (Source_other_nic (String.lowercase_ascii model))
              | None -> None in
-           let vnet = Parse_vmx.get_string vmx [ns; "networkName"] in
+           let vnet = VMX.get_string vmx [ns; "networkName"] in
            let vnet =
              match vnet with
              | Some vnet -> vnet
              | None -> ns (* "ethernetX" *) in
            let vnet_type =
-             match Parse_vmx.get_string vmx [ns; "connectionType"] with
+             match VMX.get_string vmx [ns; "connectionType"] with
              | Some b when String.lowercase_ascii b = "bridged" ->
                 Bridge
              | Some _ | None -> Network in
@@ -333,7 +333,7 @@ let parse_domain_from_vmx vmx_source =
    *)
   let vmx =
     match vmx_source with
-    | VMXSourceFile filename -> Parse_vmx.parse_file filename
+    | VMXSourceFile filename -> VMX.parse_file filename
     | VMXSourceSSH (password, uri) ->
        let server =
          match uri.uri_server with
@@ -350,10 +350,10 @@ let parse_domain_from_vmx vmx_source =
          | Some path -> path in
        let filename = tmpdir // "source.vmx" in
        Ssh.download_file ?password ?port ~server ?user path filename;
-       Parse_vmx.parse_file filename in
+       VMX.parse_file filename in
 
   let name =
-    match Parse_vmx.get_string vmx ["displayName"] with
+    match VMX.get_string vmx ["displayName"] with
     | Some s -> s
     | None ->
        warning (f_"no displayName key found in VMX file");
@@ -366,8 +366,8 @@ let parse_domain_from_vmx vmx_source =
 
   let genid =
     (* See: https://lists.nongnu.org/archive/html/qemu-devel/2018-07/msg02019.html *)
-    let genid_lo = Parse_vmx.get_int64 vmx ["vm"; "genid"]
-    and genid_hi = Parse_vmx.get_int64 vmx ["vm"; "genidX"] in
+    let genid_lo = VMX.get_int64 vmx ["vm"; "genid"]
+    and genid_hi = VMX.get_int64 vmx ["vm"; "genidX"] in
     match genid_lo, genid_hi with
     | None, None | Some _, None | None, Some _ ->
        None
@@ -383,18 +383,18 @@ let parse_domain_from_vmx vmx_source =
        Some uuid in
 
   let memory_mb =
-    match Parse_vmx.get_int64 vmx ["memSize"] with
+    match VMX.get_int64 vmx ["memSize"] with
     | None -> 32_L            (* default is really 32 MB! *)
     | Some i -> i in
   let memory = memory_mb *^ 1024L *^ 1024L in
 
   let vcpu =
-    match Parse_vmx.get_int vmx ["numvcpus"] with
+    match VMX.get_int vmx ["numvcpus"] with
     | None -> 1
     | Some i -> i in
 
   let cpu_topology =
-    match Parse_vmx.get_int vmx ["cpuid"; "coresPerSocket"] with
+    match VMX.get_int vmx ["cpuid"; "coresPerSocket"] with
     | None -> None
     | Some cores_per_socket ->
        let sockets = vcpu / cores_per_socket in
@@ -407,7 +407,7 @@ let parse_domain_from_vmx vmx_source =
                 s_cpu_threads = 1 } in
 
   let firmware =
-    match Parse_vmx.get_string vmx ["firmware"] with
+    match VMX.get_string vmx ["firmware"] with
     | None -> BIOS
     | Some "efi" -> UEFI
     (* Other values are not documented for this field ... *)
@@ -416,11 +416,11 @@ let parse_domain_from_vmx vmx_source =
        BIOS in
 
   let uefi_secureboot =
-    Parse_vmx.get_bool vmx ["uefi"; "secureBoot"; "enabled"] |>
+    VMX.get_bool vmx ["uefi"; "secureBoot"; "enabled"] |>
       Option.value ~default:false in
 
   let sound =
-    match Parse_vmx.get_string vmx ["sound"; "virtualDev"] with
+    match VMX.get_string vmx ["sound"; "virtualDev"] with
     | Some "sb16" -> Some { s_sound_model = SB16 }
     | Some "es1371" -> Some { s_sound_model = ES1370 (* hmmm ... *) }
     | Some "hdaudio" -> Some { s_sound_model = ICH6 (* intel-hda *) }

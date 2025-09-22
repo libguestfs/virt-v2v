@@ -131,7 +131,7 @@ check_PROGRAMS = v2v_unit_tests
 v2v_unit_tests_BOBJECTS = \
 	../lib/create_ovf.cmo \
 	../convert/windows.cmo \
-	../input/parse_vmx.cmo \
+	../input/VMX.cmo \
 	v2v_unit_tests.cmo
 v2v_unit_tests_XOBJECTS = $(v2v_unit_tests_BOBJECTS:.cmo=.cmx)
 
