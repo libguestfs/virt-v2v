@@ -22,16 +22,14 @@ set -x
 
 skip_if_skipped
 
-$srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
+$srcdir/../podcheck.pl virt-v2v-in-place.pod virt-v2v-in-place \
   --path $srcdir/../common/options \
   --ignore=\
---debug-overlay,\
 --ic,\
 --if,\
 --io,\
 --ip,\
 --it,\
---in-place,\
 --oa,\
 --oc,\
 --of,\

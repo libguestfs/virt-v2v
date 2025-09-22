@@ -21,11 +21,8 @@ EXTRA_DIST = \
 	test-docs.sh \
 	virt-v2v.pod \
 	virt-v2v-hacking.pod \
-	virt-v2v-in-place.pod \
 	virt-v2v-input-vmware.pod \
 	virt-v2v-input-xen.pod \
-	virt-v2v-inspector.pod \
-	virt-v2v-open.pod \
 	virt-v2v-output-local.pod \
 	virt-v2v-output-openstack.pod \
 	virt-v2v-output-ovirt.pod \
@@ -43,10 +40,7 @@ EXTRA_DIST = \
 man_MANS = \
 	virt-v2v.1 \
 	virt-v2v-hacking.1 \
-	virt-v2v-in-place.1 \
 	virt-v2v-input-vmware.1 \
-	virt-v2v-inspector.1 \
-	virt-v2v-open.1 \
 	virt-v2v-output-local.1 \
 	virt-v2v-output-openstack.1 \
 	virt-v2v-release-notes-1.42.1 \
@@ -60,10 +54,7 @@ man_MANS = \
 noinst_DATA = \
 	$(top_builddir)/website/virt-v2v.1.html \
 	$(top_builddir)/website/virt-v2v-hacking.1.html \
-	$(top_builddir)/website/virt-v2v-in-place.1.html \
 	$(top_builddir)/website/virt-v2v-input-vmware.1.html \
-	$(top_builddir)/website/virt-v2v-inspector.1.html \
-	$(top_builddir)/website/virt-v2v-open.1.html \
 	$(top_builddir)/website/virt-v2v-output-local.1.html \
 	$(top_builddir)/website/virt-v2v-output-openstack.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-1.42.1.html \
@@ -117,19 +108,6 @@ stamp-virt-v2v-hacking.pod: virt-v2v-hacking.pod
 	  $<
 	touch $@
 
-virt-v2v-in-place.1 $(top_builddir)/website/virt-v2v-in-place.1.html: stamp-virt-v2v-in-place.pod
-
-stamp-virt-v2v-in-place.pod: virt-v2v-in-place.pod
-	$(PODWRAPPER) \
-	  --pp "$(PP_M4)" \
-	  --man virt-v2v-in-place.1 \
-	  --html $(top_builddir)/website/virt-v2v-in-place.1.html \
-	  --path $(top_srcdir)/common/options \
-	  --license GPLv2+ \
-	  --warning safe \
-	  $<
-	touch $@
-
 virt-v2v-input-vmware.1 $(top_builddir)/website/virt-v2v-input-vmware.1.html: stamp-virt-v2v-input-vmware.pod
 
 stamp-virt-v2v-input-vmware.pod: virt-v2v-input-vmware.pod
@@ -153,30 +131,6 @@ stamp-virt-v2v-input-xen.pod: virt-v2v-input-xen.pod
 	  $<
 	touch $@
 endif
-
-virt-v2v-inspector.1 $(top_builddir)/website/virt-v2v-inspector.1.html: stamp-virt-v2v-inspector.pod
-
-stamp-virt-v2v-inspector.pod: virt-v2v-inspector.pod
-	$(PODWRAPPER) \
-	  --man virt-v2v-inspector.1 \
-	  --html $(top_builddir)/website/virt-v2v-inspector.1.html \
-	  --path $(top_srcdir)/common/options \
-	  --license GPLv2+ \
-	  --warning safe \
-	  $<
-	touch $@
-
-virt-v2v-open.1 $(top_builddir)/website/virt-v2v-open.1.html: stamp-virt-v2v-open.pod
-
-stamp-virt-v2v-open.pod: virt-v2v-open.pod
-	$(PODWRAPPER) \
-	  --man virt-v2v-open.1 \
-	  --html $(top_builddir)/website/virt-v2v-open.1.html \
-	  --path $(top_srcdir)/common/options \
-	  --license GPLv2+ \
-	  --warning safe \
-	  $<
-	touch $@
 
 virt-v2v-output-local.1 $(top_builddir)/website/virt-v2v-output-local.1.html: stamp-virt-v2v-output-local.pod
 

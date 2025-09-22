@@ -1,6 +1,6 @@
 #!/bin/bash -
 # libguestfs
-# Copyright (C) 2016-2025 Red Hat Inc.
+# Copyright (C) 2016 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,21 +22,12 @@ set -x
 
 skip_if_skipped
 
-$srcdir/../podcheck.pl virt-v2v.pod virt-v2v \
+$srcdir/../podcheck.pl virt-v2v-inspector.pod virt-v2v-inspector \
   --path $srcdir/../common/options \
   --ignore=\
---debug-overlay,\
 --ic,\
 --if,\
 --io,\
 --ip,\
 --it,\
---in-place,\
---oa,\
---oc,\
---of,\
---on,\
---oo,\
---op,\
---os,\
 $virt_customize_options

@@ -48,11 +48,8 @@ Makefile.in
 /docs/stamp-virt-v2v*.pod
 /docs/virt-v2v.1
 /docs/virt-v2v-hacking.1
-/docs/virt-v2v-in-place.1
 /docs/virt-v2v-input-vmware.1
 /docs/virt-v2v-input-xen.1
-/docs/virt-v2v-inspector.1
-/docs/virt-v2v-open.1
 /docs/virt-v2v-output-local.1
 /docs/virt-v2v-output-openstack.1
 /docs/virt-v2v-output-ovirt.1
@@ -66,10 +63,14 @@ Makefile.in
 /.gitattributes
 /.git-module-status
 /in-place/.depend
+/in-place/stamp-virt-v2v-in-place.pod
 /in-place/virt-v2v-in-place
+/in-place/virt-v2v-in-place.1
 /input/.depend
 /inspector/.depend
+/inspector/stamp-virt-v2v-inspector.pod
 /inspector/virt-v2v-inspector
+/inspector/virt-v2v-inspector.1
 /installcheck.sh
 /install-sh
 /libtool
@@ -87,7 +88,9 @@ Makefile.in
 /ocaml-dep.sh
 /ocaml-link.sh
 /open/.depend
+/open/stamp-virt-v2v-open.pod
 /open/virt-v2v-open
+/open/virt-v2v-open.1
 /output/.depend
 /output/output_ovirt_upload_*_source.ml
 /output/var_expander_tests

@@ -49,6 +49,50 @@ abs_top_srcdir="@abs_top_srcdir@"
 abs_builddir="@abs_builddir@"
 abs_top_builddir="@abs_top_builddir@"
 
+# List of virt-customize options, so we can skip testing these
+# options in */test-docs.sh.
+virt_customize_options=\
+--append-line,\
+--chmod,\
+--chown,\
+--commands-from-file,\
+--copy,\
+--copy-in,\
+--delete,\
+--edit,\
+--firstboot,\
+--firstboot-command,\
+--firstboot-install,\
+--hostname,\
+--install,\
+--link,\
+--mkdir,\
+--move,\
+--no-logfile,\
+--no-selinux-relabel,\
+--password,\
+--password-crypto,\
+--root-password,\
+--run,\
+--run-command,\
+--scrub,\
+--selinux-relabel,\
+--sm-attach,\
+--sm-credentials,\
+--sm-register,\
+--sm-remove,\
+--sm-unregister,\
+--ssh-inject,\
+--tar-in,\
+--timezone,\
+--touch,\
+--truncate,\
+--truncate-recursive,\
+--uninstall,\
+--update,\
+--upload,\
+--write
+
 # cleanup_fn cmd [args]
 #
 # Run the command ‘cmd [args]’ when the test script exits.  This is

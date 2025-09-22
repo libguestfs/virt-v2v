@@ -20,7 +20,8 @@ include $(top_srcdir)/subdir-rules.mk
 EXTRA_DIST = \
 	$(SOURCES_MLI) \
 	$(SOURCES_ML) \
-	$(SOURCES_C)
+	$(SOURCES_C) \
+	virt-v2v-in-place.pod
 
 SOURCES_MLI = \
 	in_place.mli
@@ -129,3 +130,24 @@ virttoolsdatadir = $(datadir)/virt-tools
 	$(filter %.ml,$(BUILT_SOURCES))
 	$(top_builddir)/ocaml-dep.sh $^
 -include .depend
+
+# Manual pages.
+
+man_MANS = virt-v2v-in-place.1
+noinst_DATA = $(top_builddir)/website/virt-v2v-in-place.1.html
+
+virt-v2v-in-place.1 $(top_builddir)/website/virt-v2v-in-place.1.html: stamp-virt-v2v-in-place.pod
+
+stamp-virt-v2v-in-place.pod: virt-v2v-in-place.pod
+	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
+	  --man virt-v2v-in-place.1 \
+	  --html $(top_builddir)/website/virt-v2v-in-place.1.html \
+	  --path $(top_srcdir)/common/options \
+	  --license GPLv2+ \
+	  --warning safe \
+	  $<
+	touch $@
+
+TESTS_ENVIRONMENT = $(top_builddir)/run --test
+TESTS = test-docs.sh
