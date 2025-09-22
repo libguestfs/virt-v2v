@@ -16,7 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Create kubevirt YAML for -o kubevirt *)
+(** Create kubevirt YAML for [-o kubevirt] mode. *)
 
 val create_kubevirt_yaml : Types.source ->
                            Types.inspect -> Types.target_meta ->

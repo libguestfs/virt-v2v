@@ -16,7 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Common Windows functions. *)
+(** Some Windows utility functions. *)
 
 val detect_antivirus : Types.inspect -> bool
 (** Return [true] if anti-virus (AV) software was detected in

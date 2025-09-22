@@ -16,6 +16,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+(** Functions for creating OVF files, used in OVirt output modes. *)
+
 type ovf_flavour =
   | OVirt
   | OVirtExportStorageDomain

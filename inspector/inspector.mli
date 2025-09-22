@@ -1,4 +1,4 @@
-(* virt-v2v-in-place
+(* virt-v2v-inspector
  * Copyright (C) 2009-2025 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,4 +16,5 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(* Nothing is exported. *)
+(* virt-v2v-inspector main program.
+   Nothing is exported. *)

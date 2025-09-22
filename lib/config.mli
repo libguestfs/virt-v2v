@@ -16,6 +16,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *)
 
+(** {2 Standard [./configure] values} *)
+
 val package_name : string
 (** The configure value [@PACKAGE_NAME@] *)
 
@@ -34,6 +36,8 @@ val datadir : string
 val host_cpu : string
 (** The configure value [@host_cpu@] *)
 
+(** {2 Virt-v2v [./configure] values} *)
+
 val nbdkit : string
 (** The location of the nbdkit program, from configure value [@NBDKIT@] *)
 
@@ -42,6 +46,8 @@ val nbdcopy : string
 
 val nbdinfo : string
 (** The location of the nbdinfo program, from configure value [@NBDINFO@] *)
+
+(** {2 [./configure --disable/--enable-*] options} *)
 
 val enable_block_driver : bool
 (** True if [--block-driver] option is enabled *)

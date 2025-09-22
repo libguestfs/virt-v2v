@@ -16,4 +16,5 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(* Nothing is exported. *)
+(* virt-v2v main program.
+   Nothing is exported. *)

@@ -20,4 +20,4 @@ val create_inspector_xml : NBD_URI.t list -> Types.inspect ->
                            Types.target_meta ->
                            DOM.doc
 (** Create the XML output of virt-v2v-inspector which contains the
-    post-conversion metadata. *)
+    post-conversion metadata ([-O] option). *)

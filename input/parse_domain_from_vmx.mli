@@ -16,6 +16,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+(** Some helper functions for parsing [.vmx] (VMware metadata) files
+    into a {!Types.source} structure and list of disks. *)
+
 type vmx_source =
   | VMXSourceFile of string     (** local file or NFS *)
   | VMXSourceSSH of Nbdkit_ssh.password option * Xml.uri (** SSH URI *)

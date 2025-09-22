@@ -27,9 +27,15 @@ type options = {
   static_ips : Types.static_ip list; (** [--mac :ip:] option *)
   customize_ops : Customize_cmdline.ops; (** virt-customize options *)
 }
+(** Command line options that get passed through to the conversion code. *)
 
 val convert : NBD_URI.t list -> options -> Types.source ->
               Types.inspect * Types.target_meta
-(** [convert input_disks options source]
+(** The function that is called from virt-v2v to perform the actual
+    conversion of a guest to run on KVM.
 
-    Convert a guest to run on KVM. *)
+    The first parameter is the list of disks (as NBD URIs).
+
+    As a side-effect of conversion we inspect the guest, so this
+    function returns the inspection data, as well as the target
+    metadata determined by the conversion process. *)
