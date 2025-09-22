@@ -18,6 +18,7 @@
 include $(top_srcdir)/subdir-rules.mk
 
 EXTRA_DIST = \
+	test-docs.sh \
 	$(SOURCES_MLI) \
 	$(SOURCES_ML) \
 	$(SOURCES_C) \
