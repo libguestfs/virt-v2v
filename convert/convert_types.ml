@@ -1,4 +1,4 @@
-(* virt-v2v
+(* helper-v2v-convert
  * Copyright (C) 2009-2025 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,8 +16,11 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-(** Convert a Windows guest to run on KVM.
-
-    This module converts a Windows guest to run on KVM. *)
-
-module Convert_windows : Convert_types.CONVERT
+module type CONVERT = sig
+  val name : string
+  val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
+                Firmware.i_firmware -> Types.guestcaps_block_type ->
+                bool -> Types.static_ip list ->
+                Types.guestcaps
+  val post_convert : Guestfs.guestfs -> Types.inspect -> unit
+end

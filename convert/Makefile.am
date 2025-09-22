@@ -26,12 +26,14 @@ SOURCES_MLI = \
 	choose_root.mli \
 	convert.mli \
 	convert_linux.mli \
+	convert_types.mli \
 	convert_windows.mli \
 	mount_filesystems.mli \
 	target_bus_assignment.mli \
 	windows.mli
 
 SOURCES_ML = \
+	convert_types.ml \
 	windows.ml \
 	convert_linux.ml \
 	convert_windows.ml \

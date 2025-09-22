@@ -120,18 +120,37 @@ let rec convert input_disks options source =
   let mpstats = get_mpstats g in
   check_guest_free_space inspect mpstats;
 
+  (* Choose which conversion module we will use. *)
+  let (module Conversion_module) =
+    match inspect with
+    | { i_type = "linux";
+        i_distro = ("fedora"
+                    | "rhel" | "centos" | "circle" | "scientificlinux"
+                    | "redhat-based" | "oraclelinux" | "rocky"
+                    | "sles" | "suse-based" | "opensuse"
+                    | "altlinux"
+                    | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } ->
+       (module Convert_linux.Convert_linux : Convert_types.CONVERT)
+    | { i_type = "windows" } ->
+       (module Convert_windows.Convert_windows : Convert_types.CONVERT)
+    | _ ->
+       error (f_"virt-v2v is unable to convert this guest type (%s/%s)")
+         inspect.i_type inspect.i_distro in
+  debug "picked conversion module %s" Conversion_module.name;
+
   (* Conversion. *)
   let guestcaps =
     do_convert g source inspect i_firmware
-      options.block_driver options.keep_serial_console options.static_ips in
+      options.block_driver options.keep_serial_console options.static_ips
+      Conversion_module.convert in
 
   (* Run virt-customize options. *)
   Customize_run.run g inspect.i_root options.customize_ops;
 
   g#umount_all ();
 
-  (* Post-conversion steps that run with filesystems unmounted *)
-  do_post_convert g inspect;
+  (* Post-conversion steps that run with filesystems unmounted. *)
+  Conversion_module.post_convert g inspect;
 
   (* Doing fstrim on all the filesystems reduces the transfer size
    * because unused blocks are marked in the overlay and thus do
@@ -231,13 +250,6 @@ and check_guest_free_space inspect mpstats =
           mp_path ffree needed_inodes
   ) mpstats
 
-(* Run OS specific post-conversion steps that run with filesystems unmounted *)
-and do_post_convert g inspect =
-  match inspect.i_type with
-  | "windows" -> Convert_windows.post_convert g inspect
-  | _ -> () (* No post-convert for other OS types *)
-
-
 (* Perform the fstrim. *)
 and do_fstrim g inspect =
   (* Get all filesystems. *)
@@ -331,7 +343,8 @@ and do_fsck ?(before=false) g =
 
 (* Conversion. *)
 and do_convert g source inspect i_firmware
-               block_driver keep_serial_console interfaces =
+               block_driver keep_serial_console interfaces
+               convert =
   (* Create the "Converting..." message.  Complicated! *)
   let () =
     let what_guest =
@@ -343,22 +356,6 @@ and do_convert g source inspect i_firmware
 
     message (f_"Converting %s to run on KVM") what_guest in
 
-  let convert, conversion_name =
-    match inspect with
-    | { i_type = "linux";
-        i_distro = ("fedora"
-                    | "rhel" | "centos" | "circle" | "scientificlinux"
-                    | "redhat-based" | "oraclelinux" | "rocky"
-                    | "sles" | "suse-based" | "opensuse"
-                    | "altlinux"
-                    | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } ->
-       Convert_linux.convert, "linux"
-    | { i_type = "windows" } ->
-       Convert_windows.convert, "windows"
-    | _ ->
-       error (f_"virt-v2v is unable to convert this guest type (%s/%s)")
-         inspect.i_type inspect.i_distro in
-  debug "picked conversion module %s" conversion_name;
   let guestcaps =
     convert g source inspect i_firmware
             block_driver keep_serial_console interfaces in

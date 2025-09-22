@@ -1406,3 +1406,9 @@ fi
   in
 
   do_convert ()
+
+module Convert_linux = struct
+  let name = "linux"
+  let convert = convert
+  let post_convert _ _ = ()
+end

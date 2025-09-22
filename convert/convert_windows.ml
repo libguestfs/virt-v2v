@@ -994,3 +994,9 @@ let post_convert (g : G.guestfs) inspect =
   try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
   with G.Error msg ->
     warning (f_"ntfs_chmod on %s failed: %s") path msg
+
+module Convert_windows = struct
+  let name = "windows"
+  let convert = convert
+  let post_convert = post_convert
+end
