@@ -20,7 +20,8 @@ include $(top_srcdir)/subdir-rules.mk
 EXTRA_DIST = \
 	$(SOURCES_MLI) \
 	$(SOURCES_ML) \
-	$(SOURCES_C)
+	$(SOURCES_C) \
+	$(NULL)
 
 SOURCES_MLI = \
 	choose_root.mli \
@@ -30,7 +31,8 @@ SOURCES_MLI = \
 	convert_windows.mli \
 	mount_filesystems.mli \
 	target_bus_assignment.mli \
-	windows.mli
+	windows.mli \
+	$(NULL)
 
 SOURCES_ML = \
 	convert_types.ml \
@@ -40,7 +42,8 @@ SOURCES_ML = \
 	choose_root.ml \
 	mount_filesystems.ml \
 	target_bus_assignment.ml \
-	convert.ml
+	convert.ml \
+	$(NULL)
 
 SOURCES_C = dummy.c
 
@@ -65,12 +68,14 @@ libmlconvert_a_CPPFLAGS = \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib
+	-I$(top_srcdir)/lib \
+	$(NULL)
 libmlconvert_a_CFLAGS = \
 	-pthread \
 	-fPIC \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
-	$(LIBGUESTFS_CFLAGS)
+	$(LIBGUESTFS_CFLAGS) \
+	$(NULL)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -87,7 +92,8 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mldrivers \
-	-I $(top_builddir)/common/mlxml
+	-I $(top_builddir)/common/mlxml \
+	$(NULL)
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
 endif
@@ -97,7 +103,8 @@ OCAMLCLIBS = \
 	$(LIBGUESTFS_LIBS) \
 	$(LIBXML2_LIBS) \
 	$(LIBNBD_LIBS) \
-	-lgnu
+	-lgnu \
+	$(NULL)
 
 OCAMLFLAGS = $(OCAML_FLAGS) $(OCAML_WARN_ERROR) -ccopt '$(CFLAGS)'
 
@@ -117,7 +124,8 @@ OCAMLLINKFLAGS = \
 	mlcustomize.$(MLARCHIVE) \
 	mldrivers.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
-	$(LINK_CUSTOM_OCAMLC_ONLY)
+	$(LINK_CUSTOM_OCAMLC_ONLY) \
+	$(NULL)
 
 libmlconvert_a_DEPENDENCIES = \
 	$(OBJECTS)

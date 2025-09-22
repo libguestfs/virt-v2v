@@ -91,7 +91,8 @@ EXTRA_DIST = \
 	website/index.css \
 	website/index.html.in \
 	website/pod.css \
-	website/standard.css
+	website/standard.css \
+	$(NULL)
 
 # When doing 'make dist' update a few files automatically.
 #
@@ -145,7 +146,8 @@ CLEANFILES += \
 	pod2htm?.tmp \
 	tmp/disk* \
 	tmp/run-* \
-	tmp/valgrind-*.log
+	tmp/valgrind-*.log \
+	$(NULL)
 
 clean-local:
 	-rm -rf tmp/libguestfs??????

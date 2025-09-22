@@ -19,7 +19,8 @@ include $(top_srcdir)/subdir-rules.mk
 
 EXTRA_DIST = \
 	$(SOURCES_MLI) \
-	$(SOURCES_ML)
+	$(SOURCES_ML) \
+	$(NULL)
 
 SOURCES_MLI = \
 	input.mli \
@@ -40,7 +41,8 @@ SOURCES_MLI = \
 	parse_vmx.mli \
 	select_input.mli \
 	ssh.mli \
-	vCenter.mli
+	vCenter.mli \
+	$(NULL)
 
 SOURCES_ML = \
 	name_from_disk.ml \
@@ -61,7 +63,8 @@ SOURCES_ML = \
 	input_vddk.ml \
 	input_vmx.ml \
 	input_xen_ssh.ml \
-	select_input.ml
+	select_input.ml \
+	$(NULL)
 
 # We pretend that we're building a C library.  automake handles the
 # compilation of the C sources for us.  At the end we take the C
@@ -84,12 +87,14 @@ libmlinput_a_CPPFLAGS = \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib
+	-I$(top_srcdir)/lib \
+	$(NULL)
 libmlinput_a_CFLAGS = \
 	-pthread \
 	-fPIC \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
-	$(LIBGUESTFS_CFLAGS)
+	$(LIBGUESTFS_CFLAGS) \
+	$(NULL)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -104,7 +109,8 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlgettext \
 	-I $(top_builddir)/common/mlpcre \
 	-I $(top_builddir)/common/mltools \
-	-I $(top_builddir)/common/mlxml
+	-I $(top_builddir)/common/mlxml \
+	$(NULL)
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
 endif
@@ -113,7 +119,8 @@ OCAMLCLIBS = \
 	-pthread \
 	$(LIBGUESTFS_LIBS) \
 	$(LIBXML2_LIBS) \
-	-lgnu
+	-lgnu \
+	$(NULL)
 
 OCAMLFLAGS = $(OCAML_FLAGS) $(OCAML_WARN_ERROR) -ccopt '$(CFLAGS)'
 
@@ -132,7 +139,8 @@ OCAMLLINKFLAGS = \
 	mltools.$(MLARCHIVE) \
 	mllibvirt.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
-	$(LINK_CUSTOM_OCAMLC_ONLY)
+	$(LINK_CUSTOM_OCAMLC_ONLY) \
+	$(NULL)
 
 libmlinput_a_DEPENDENCIES = \
 	$(OBJECTS)

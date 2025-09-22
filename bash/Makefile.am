@@ -23,7 +23,8 @@ scripts = \
 EXTRA_DIST = \
 	README \
 	$(scripts) \
-	$(TESTS)
+	$(TESTS) \
+	$(NULL)
 
 if HAVE_BASH_COMPLETION
 

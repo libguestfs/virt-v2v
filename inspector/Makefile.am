@@ -21,18 +21,20 @@ EXTRA_DIST = \
 	$(SOURCES_MLI) \
 	$(SOURCES_ML) \
 	$(SOURCES_C) \
-	virt-v2v-inspector.pod
+	virt-v2v-inspector.pod \
+	$(NULL)
 
 SOURCES_MLI = \
 	create_inspector_xml.mli \
-	inspector.mli
+	inspector.mli \
+	$(NULL)
 
 SOURCES_ML = \
 	create_inspector_xml.ml \
-	inspector.ml
+	inspector.ml \
+	$(NULL)
 
-SOURCES_C = \
-	dummy.c
+SOURCES_C = dummy.c
 
 bin_PROGRAMS = virt-v2v-inspector
 
@@ -42,12 +44,14 @@ virt_v2v_inspector_CPPFLAGS = \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib
+	-I$(top_srcdir)/lib \
+	$(NULL)
 virt_v2v_inspector_CFLAGS = \
 	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
-	$(LIBVIRT_CFLAGS)
+	$(LIBVIRT_CFLAGS) \
+	$(NULL)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -67,7 +71,8 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mlcustomize \
-	-I $(top_builddir)/common/mldrivers
+	-I $(top_builddir)/common/mldrivers \
+	$(NULL)
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
 endif
@@ -83,7 +88,8 @@ OCAMLCLIBS = \
 	$(LIBOSINFO_LIBS) \
 	$(LIBINTL) \
 	$(LIBNBD_LIBS) \
-	-lgnu
+	-lgnu \
+	$(NULL)
 
 OCAMLFLAGS = $(OCAML_FLAGS) $(OCAML_WARN_ERROR) -ccopt '$(CFLAGS)'
 
@@ -106,14 +112,16 @@ OCAMLLINKFLAGS = \
 	mlv2vlib.$(MLARCHIVE) \
 	mlconvert.$(MLARCHIVE) \
 	mlinput.$(MLARCHIVE) \
-	$(LINK_CUSTOM_OCAMLC_ONLY)
+	$(LINK_CUSTOM_OCAMLC_ONLY) \
+	$(NULL)
 
 virt_v2v_inspector_DEPENDENCIES = \
 	$(OBJECTS) \
 	$(top_builddir)/input/mlinput.$(MLARCHIVE) \
 	$(top_builddir)/convert/mlconvert.$(MLARCHIVE) \
 	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
+	$(top_srcdir)/ocaml-link.sh \
+	$(NULL)
 virt_v2v_inspector_LINK = \
 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \

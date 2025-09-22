@@ -25,7 +25,8 @@ EXTRA_DIST = \
 	guestfs-internal-all.h \
 	$(SOURCES_MLI) \
 	$(SOURCES_ML) \
-	$(SOURCES_C)
+	$(SOURCES_C) \
+	$(NULL)
 
 SOURCES_MLI = \
 	config.mli \
@@ -37,7 +38,8 @@ SOURCES_MLI = \
 	networks.mli \
 	qemuNBD.mli \
 	types.mli \
-	utils.mli
+	utils.mli \
+	$(NULL)
 
 SOURCES_ML = \
 	types.ml \
@@ -48,10 +50,10 @@ SOURCES_ML = \
 	networks.ml \
 	YAML.ml \
 	create_ovf.ml \
-	libvirt_utils.ml
+	libvirt_utils.ml \
+	$(NULL)
 
-SOURCES_C = \
-	dummy.c
+SOURCES_C = dummy.c
 
 # We pretend that we're building a C library.  automake handles the
 # compilation of the C sources for us.  At the end we take the C
@@ -73,10 +75,12 @@ libmlv2vlib_a_CPPFLAGS = \
 	-DCAML_NAME_SPACE \
 	-I. \
 	-I$(top_builddir) \
-	-I$(shell $(OCAMLC) -where)
+	-I$(shell $(OCAMLC) -where) \
+	$(NULL)
 libmlv2vlib_a_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
-	-fPIC
+	-fPIC \
+	$(NULL)
 
 BOBJECTS = config.cmo $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -89,7 +93,8 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlstdutils \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mlutils \
-	-I $(top_builddir)/common/mlxml
+	-I $(top_builddir)/common/mlxml \
+	$(NULL)
 OCAMLPACKAGES_TESTS = $(MLV2VLIB_CMA)
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub

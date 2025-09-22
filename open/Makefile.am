@@ -21,7 +21,8 @@ EXTRA_DIST = \
 	$(SOURCES_MLI) \
 	$(SOURCES_ML) \
 	$(SOURCES_C) \
-	virt-v2v-open.pod
+	virt-v2v-open.pod \
+	$(NULL)
 
 SOURCES_MLI = \
 	open.mli
@@ -40,12 +41,14 @@ virt_v2v_open_CPPFLAGS = \
 	-I. \
 	-I$(top_builddir) \
 	-I$(shell $(OCAMLC) -where) \
-	-I$(top_srcdir)/lib
+	-I$(top_srcdir)/lib \
+	$(NULL)
 virt_v2v_open_CFLAGS = \
 	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBGUESTFS_CFLAGS) \
-	$(LIBVIRT_CFLAGS)
+	$(LIBVIRT_CFLAGS) \
+	$(NULL)
 
 BOBJECTS = $(SOURCES_ML:.ml=.cmo)
 XOBJECTS = $(BOBJECTS:.cmo=.cmx)
@@ -64,7 +67,8 @@ OCAMLPACKAGES = \
 	-I $(top_builddir)/common/mlxml \
 	-I $(top_builddir)/common/mltools \
 	-I $(top_builddir)/common/mlcustomize \
-	-I $(top_builddir)/common/mldrivers
+	-I $(top_builddir)/common/mldrivers \
+	$(NULL)
 if HAVE_OCAML_PKG_GETTEXT
 OCAMLPACKAGES += -package gettext-stub
 endif
@@ -80,7 +84,8 @@ OCAMLCLIBS = \
 	$(LIBOSINFO_LIBS) \
 	$(LIBINTL) \
 	$(LIBNBD_LIBS) \
-	-lgnu
+	-lgnu \
+	$(NULL)
 
 OCAMLFLAGS = $(OCAML_FLAGS) $(OCAML_WARN_ERROR) -ccopt '$(CFLAGS)'
 
@@ -102,13 +107,15 @@ OCAMLLINKFLAGS = \
 	mldrivers.$(MLARCHIVE) \
 	mlv2vlib.$(MLARCHIVE) \
 	mlinput.$(MLARCHIVE) \
-	$(LINK_CUSTOM_OCAMLC_ONLY)
+	$(LINK_CUSTOM_OCAMLC_ONLY) \
+	$(NULL)
 
 virt_v2v_open_DEPENDENCIES = \
 	$(OBJECTS) \
 	$(top_builddir)/input/mlinput.$(MLARCHIVE) \
 	$(top_builddir)/lib/mlv2vlib.$(MLARCHIVE) \
-	$(top_srcdir)/ocaml-link.sh
+	$(top_srcdir)/ocaml-link.sh \
+	$(NULL)
 virt_v2v_open_LINK = \
 	$(top_srcdir)/ocaml-link.sh -cclib '$(OCAMLCLIBS)' -- \
 	  $(OCAMLFIND) $(BEST) $(OCAMLFLAGS) $(OCAMLPACKAGES) $(OCAMLLINKFLAGS) \
