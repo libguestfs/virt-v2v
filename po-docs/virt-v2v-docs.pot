@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.9.7\n"
+"Project-Id-Version: virt-v2v 2.9.8\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
-"POT-Creation-Date: 2025-09-20 17:17+0100\n"
+"POT-Creation-Date: 2025-09-22 15:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,17 +239,17 @@ msgstr ""
 #: docs/virt-v2v-input-vmware.pod:426 docs/virt-v2v-input-vmware.pod:430
 #: docs/virt-v2v-input-vmware.pod:498 docs/virt-v2v-input-vmware.pod:502
 #: docs/virt-v2v-input-vmware.pod:506 docs/virt-v2v-input-vmware.pod:510
-#: docs/virt-v2v-input-vmware.pod:514 docs/virt-v2v-inspector.pod:41
-#: docs/virt-v2v-inspector.pod:49 docs/virt-v2v-inspector.pod:53
-#: docs/virt-v2v-open.pod:35 docs/virt-v2v-open.pod:40
-#: docs/virt-v2v-output-local.pod:71 docs/virt-v2v-output-local.pod:76
-#: docs/virt-v2v-output-local.pod:81 docs/virt-v2v-output-ovirt.pod:120
-#: docs/virt-v2v-output-ovirt.pod:125 docs/virt-v2v.pod:208
-#: docs/virt-v2v.pod:213 docs/virt-v2v.pod:217 docs/virt-v2v.pod:221
-#: docs/virt-v2v.pod:732 docs/virt-v2v.pod:737 docs/virt-v2v.pod:742
-#: docs/virt-v2v.pod:746 docs/virt-v2v.pod:1450 docs/virt-v2v.pod:1455
-#: docs/virt-v2v.pod:1466 docs/virt-v2v.pod:1478 docs/virt-v2v.pod:1484
-#: docs/virt-v2v.pod:1489 docs/virt-v2v.pod:1507 docs/virt-v2v.pod:1511
+#: docs/virt-v2v-input-vmware.pod:514 docs/virt-v2v-output-local.pod:71
+#: docs/virt-v2v-output-local.pod:76 docs/virt-v2v-output-local.pod:81
+#: docs/virt-v2v-output-ovirt.pod:120 docs/virt-v2v-output-ovirt.pod:125
+#: docs/virt-v2v.pod:208 docs/virt-v2v.pod:213 docs/virt-v2v.pod:217
+#: docs/virt-v2v.pod:221 docs/virt-v2v.pod:732 docs/virt-v2v.pod:737
+#: docs/virt-v2v.pod:742 docs/virt-v2v.pod:746 docs/virt-v2v.pod:1450
+#: docs/virt-v2v.pod:1455 docs/virt-v2v.pod:1466 docs/virt-v2v.pod:1478
+#: docs/virt-v2v.pod:1484 docs/virt-v2v.pod:1489 docs/virt-v2v.pod:1507
+#: docs/virt-v2v.pod:1511 inspector/virt-v2v-inspector.pod:41
+#: inspector/virt-v2v-inspector.pod:49 inspector/virt-v2v-inspector.pod:53
+#: open/virt-v2v-open.pod:35 open/virt-v2v-open.pod:40
 msgid "*"
 msgstr ""
 
@@ -1349,7 +1349,8 @@ msgid ""
 msgstr ""
 
 #. type: =item
-#: common/options/keys-from-stdin-option.pod:1 docs/virt-v2v-inspector.pod:189
+#: common/options/keys-from-stdin-option.pod:1
+#: inspector/virt-v2v-inspector.pod:189
 msgid "B<--keys-from-stdin>"
 msgstr ""
 
@@ -1368,15 +1369,15 @@ msgid ""
 msgstr ""
 
 #. type: =head1
-#: docs/virt-v2v-hacking.pod:1 docs/virt-v2v-in-place.pod:1
-#: docs/virt-v2v-input-vmware.pod:1 docs/virt-v2v-input-xen.pod:1
-#: docs/virt-v2v-inspector.pod:1 docs/virt-v2v-open.pod:1
-#: docs/virt-v2v-output-local.pod:1 docs/virt-v2v-output-openstack.pod:1
-#: docs/virt-v2v-output-ovirt.pod:1 docs/virt-v2v-release-notes-1.42.pod:1
-#: docs/virt-v2v-release-notes-2.0.pod:1 docs/virt-v2v-release-notes-2.2.pod:1
-#: docs/virt-v2v-release-notes-2.4.pod:1 docs/virt-v2v-release-notes-2.6.pod:1
-#: docs/virt-v2v-release-notes-2.8.pod:1 docs/virt-v2v-support.pod:1
-#: docs/virt-v2v.pod:1
+#: docs/virt-v2v-hacking.pod:1 docs/virt-v2v-input-vmware.pod:1
+#: docs/virt-v2v-input-xen.pod:1 docs/virt-v2v-output-local.pod:1
+#: docs/virt-v2v-output-openstack.pod:1 docs/virt-v2v-output-ovirt.pod:1
+#: docs/virt-v2v-release-notes-1.42.pod:1 docs/virt-v2v-release-notes-2.0.pod:1
+#: docs/virt-v2v-release-notes-2.2.pod:1 docs/virt-v2v-release-notes-2.4.pod:1
+#: docs/virt-v2v-release-notes-2.6.pod:1 docs/virt-v2v-release-notes-2.8.pod:1
+#: docs/virt-v2v-support.pod:1 docs/virt-v2v.pod:1
+#: in-place/virt-v2v-in-place.pod:1 inspector/virt-v2v-inspector.pod:1
+#: open/virt-v2v-open.pod:1
 msgid "NAME"
 msgstr ""
 
@@ -1386,15 +1387,15 @@ msgid "virt-v2v-hacking -"
 msgstr ""
 
 #. type: =head1
-#: docs/virt-v2v-hacking.pod:5 docs/virt-v2v-in-place.pod:17
-#: docs/virt-v2v-input-vmware.pod:29 docs/virt-v2v-input-xen.pod:11
-#: docs/virt-v2v-inspector.pod:12 docs/virt-v2v-open.pod:13
-#: docs/virt-v2v-output-local.pod:16 docs/virt-v2v-output-openstack.pod:17
-#: docs/virt-v2v-output-ovirt.pod:23 docs/virt-v2v-release-notes-1.42.pod:5
-#: docs/virt-v2v-release-notes-2.0.pod:5 docs/virt-v2v-release-notes-2.2.pod:5
-#: docs/virt-v2v-release-notes-2.4.pod:5 docs/virt-v2v-release-notes-2.6.pod:5
-#: docs/virt-v2v-release-notes-2.8.pod:5 docs/virt-v2v-support.pod:6
-#: docs/virt-v2v.pod:12
+#: docs/virt-v2v-hacking.pod:5 docs/virt-v2v-input-vmware.pod:29
+#: docs/virt-v2v-input-xen.pod:11 docs/virt-v2v-output-local.pod:16
+#: docs/virt-v2v-output-openstack.pod:17 docs/virt-v2v-output-ovirt.pod:23
+#: docs/virt-v2v-release-notes-1.42.pod:5 docs/virt-v2v-release-notes-2.0.pod:5
+#: docs/virt-v2v-release-notes-2.2.pod:5 docs/virt-v2v-release-notes-2.4.pod:5
+#: docs/virt-v2v-release-notes-2.6.pod:5 docs/virt-v2v-release-notes-2.8.pod:5
+#: docs/virt-v2v-support.pod:6 docs/virt-v2v.pod:12
+#: in-place/virt-v2v-in-place.pod:17 inspector/virt-v2v-inspector.pod:12
+#: open/virt-v2v-open.pod:13
 msgid "DESCRIPTION"
 msgstr ""
 
@@ -1459,17 +1460,17 @@ msgid ""
 msgstr ""
 
 #. type: =head1
-#: docs/virt-v2v-hacking.pod:48 docs/virt-v2v-in-place.pod:364
-#: docs/virt-v2v-input-vmware.pod:691 docs/virt-v2v-input-xen.pod:144
-#: docs/virt-v2v-inspector.pod:228 docs/virt-v2v-open.pod:141
-#: docs/virt-v2v-output-local.pod:143 docs/virt-v2v-output-openstack.pod:226
-#: docs/virt-v2v-output-ovirt.pod:221 docs/virt-v2v-release-notes-1.42.pod:211
+#: docs/virt-v2v-hacking.pod:48 docs/virt-v2v-input-vmware.pod:691
+#: docs/virt-v2v-input-xen.pod:144 docs/virt-v2v-output-local.pod:143
+#: docs/virt-v2v-output-openstack.pod:226 docs/virt-v2v-output-ovirt.pod:221
+#: docs/virt-v2v-release-notes-1.42.pod:211
 #: docs/virt-v2v-release-notes-2.0.pod:360
 #: docs/virt-v2v-release-notes-2.2.pod:273
 #: docs/virt-v2v-release-notes-2.4.pod:153
 #: docs/virt-v2v-release-notes-2.6.pod:180
 #: docs/virt-v2v-release-notes-2.8.pod:315 docs/virt-v2v-support.pod:137
-#: docs/virt-v2v.pod:1887
+#: docs/virt-v2v.pod:1887 in-place/virt-v2v-in-place.pod:364
+#: inspector/virt-v2v-inspector.pod:228 open/virt-v2v-open.pod:141
 msgid "SEE ALSO"
 msgstr ""
 
@@ -1479,936 +1480,74 @@ msgid "L<virt-p2v(1)>, L<virt-v2v(1)>."
 msgstr ""
 
 #. type: =head1
-#: docs/virt-v2v-hacking.pod:53 docs/virt-v2v-in-place.pod:374
-#: docs/virt-v2v-inspector.pod:239 docs/virt-v2v-open.pod:153
-#: docs/virt-v2v-release-notes-1.42.pod:218
+#: docs/virt-v2v-hacking.pod:53 docs/virt-v2v-release-notes-1.42.pod:218
 #: docs/virt-v2v-release-notes-2.0.pod:366
 #: docs/virt-v2v-release-notes-2.2.pod:280
 #: docs/virt-v2v-release-notes-2.4.pod:157
 #: docs/virt-v2v-release-notes-2.6.pod:184
 #: docs/virt-v2v-release-notes-2.8.pod:319 docs/virt-v2v.pod:1909
+#: in-place/virt-v2v-in-place.pod:374 inspector/virt-v2v-inspector.pod:239
+#: open/virt-v2v-open.pod:153
 msgid "AUTHORS"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-hacking.pod:55 docs/virt-v2v-in-place.pod:386
-#: docs/virt-v2v-input-vmware.pod:697 docs/virt-v2v-input-xen.pod:150
-#: docs/virt-v2v-inspector.pod:251 docs/virt-v2v-open.pod:165
-#: docs/virt-v2v-output-local.pod:149 docs/virt-v2v-output-openstack.pod:233
-#: docs/virt-v2v-output-ovirt.pod:227 docs/virt-v2v-release-notes-1.42.pod:222
+#: docs/virt-v2v-hacking.pod:55 docs/virt-v2v-input-vmware.pod:697
+#: docs/virt-v2v-input-xen.pod:150 docs/virt-v2v-output-local.pod:149
+#: docs/virt-v2v-output-openstack.pod:233 docs/virt-v2v-output-ovirt.pod:227
+#: docs/virt-v2v-release-notes-1.42.pod:222
 #: docs/virt-v2v-release-notes-2.0.pod:392
 #: docs/virt-v2v-release-notes-2.2.pod:312
 #: docs/virt-v2v-release-notes-2.4.pod:187
 #: docs/virt-v2v-release-notes-2.6.pod:208
 #: docs/virt-v2v-release-notes-2.8.pod:335 docs/virt-v2v-support.pod:144
-#: docs/virt-v2v.pod:1921
+#: docs/virt-v2v.pod:1921 in-place/virt-v2v-in-place.pod:386
+#: inspector/virt-v2v-inspector.pod:251 open/virt-v2v-open.pod:165
 msgid "Richard W.M. Jones"
 msgstr ""
 
 #. type: =head1
-#: docs/virt-v2v-hacking.pod:57 docs/virt-v2v-in-place.pod:402
-#: docs/virt-v2v-input-vmware.pod:699 docs/virt-v2v-input-xen.pod:152
-#: docs/virt-v2v-inspector.pod:267 docs/virt-v2v-open.pod:181
-#: docs/virt-v2v-output-local.pod:151 docs/virt-v2v-output-openstack.pod:235
-#: docs/virt-v2v-output-ovirt.pod:229 docs/virt-v2v-release-notes-1.42.pod:236
+#: docs/virt-v2v-hacking.pod:57 docs/virt-v2v-input-vmware.pod:699
+#: docs/virt-v2v-input-xen.pod:152 docs/virt-v2v-output-local.pod:151
+#: docs/virt-v2v-output-openstack.pod:235 docs/virt-v2v-output-ovirt.pod:229
+#: docs/virt-v2v-release-notes-1.42.pod:236
 #: docs/virt-v2v-release-notes-2.0.pod:398
 #: docs/virt-v2v-release-notes-2.2.pod:326
 #: docs/virt-v2v-release-notes-2.4.pod:197
 #: docs/virt-v2v-release-notes-2.6.pod:218
 #: docs/virt-v2v-release-notes-2.8.pod:343 docs/virt-v2v-support.pod:146
-#: docs/virt-v2v.pod:1937
+#: docs/virt-v2v.pod:1937 in-place/virt-v2v-in-place.pod:402
+#: inspector/virt-v2v-inspector.pod:267 open/virt-v2v-open.pod:181
 msgid "COPYRIGHT"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-hacking.pod:59 docs/virt-v2v-in-place.pod:404
-#: docs/virt-v2v-input-vmware.pod:701 docs/virt-v2v-input-xen.pod:154
-#: docs/virt-v2v-inspector.pod:269 docs/virt-v2v-open.pod:183
-#: docs/virt-v2v-output-local.pod:153 docs/virt-v2v-output-openstack.pod:237
-#: docs/virt-v2v-output-ovirt.pod:231 docs/virt-v2v-release-notes-1.42.pod:238
+#: docs/virt-v2v-hacking.pod:59 docs/virt-v2v-input-vmware.pod:701
+#: docs/virt-v2v-input-xen.pod:154 docs/virt-v2v-output-local.pod:153
+#: docs/virt-v2v-output-openstack.pod:237 docs/virt-v2v-output-ovirt.pod:231
+#: docs/virt-v2v-release-notes-1.42.pod:238
 #: docs/virt-v2v-release-notes-2.0.pod:400
 #: docs/virt-v2v-release-notes-2.2.pod:328
 #: docs/virt-v2v-release-notes-2.4.pod:199
 #: docs/virt-v2v-release-notes-2.6.pod:220
 #: docs/virt-v2v-release-notes-2.8.pod:345 docs/virt-v2v-support.pod:148
-#: docs/virt-v2v.pod:1939
+#: docs/virt-v2v.pod:1939 in-place/virt-v2v-in-place.pod:404
+#: inspector/virt-v2v-inspector.pod:269 open/virt-v2v-open.pod:183
 msgid "Copyright (C) 2009-2025 Red Hat Inc."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:3
-msgid "virt-v2v-in-place - Convert a guest to use KVM in-place"
-msgstr ""
-
-#. type: =head1
-#: docs/virt-v2v-in-place.pod:5 docs/virt-v2v-input-vmware.pod:5
-#: docs/virt-v2v-input-xen.pod:5 docs/virt-v2v-inspector.pod:5
-#: docs/virt-v2v-open.pod:5 docs/virt-v2v-output-local.pod:6
-#: docs/virt-v2v-output-openstack.pod:5 docs/virt-v2v-output-ovirt.pod:5
-#: docs/virt-v2v.pod:5
-msgid "SYNOPSIS"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-in-place.pod:7
-#, no-wrap
-msgid ""
-" virt-v2v-in-place -i disk [other -i* options]\n"
-"                   [virt-customize options]\n"
-"                   filename\n"
-"                   [-O output.xml]\n"
-"\n"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-in-place.pod:12
-#, no-wrap
-msgid ""
-" virt-v2v-in-place -i libvirt|libvirtxml [other -i* options]\n"
-"                   [virt-customize options]\n"
-"                   guest\n"
-"                   [-O output.xml]\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:19
-msgid ""
-"Virt-v2v-in-place converts a single guest from a foreign hypervisor to run "
-"on KVM.  It does this conversion in place, modifying the original disk."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:23
-msgid ""
-"This manual page only documents the differences between this tool and "
-"virt-v2v.  You should read L<virt-v2v(1)> first."
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-in-place.pod:26
-msgid "Selecting the input disk"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:28
-msgid ""
-"You normally run virt-v2v with one or more I<-i*> options controlling the "
-"input mode.  Virt-v2v-in-place can only convert guests stored in local "
-"files."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:32
-msgid "This command will do an in-place conversion of F<filename.img>:"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-in-place.pod:34
-#, no-wrap
-msgid ""
-" virt-v2v-in-place -i disk filename.img\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:36
-msgid "If the guest has been copied to local libvirt then:"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-in-place.pod:38
-#, no-wrap
-msgid ""
-" virt-v2v-in-place -i libvirt guest\n"
-"\n"
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-in-place.pod:40
-msgid "Output XML"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:42
-msgid ""
-"Optionally use the I<-O> option to write post-conversion metadata about the "
-"guest to an XML file.  This is in the same format as "
-"L<virt-v2v-inspector(1)>.  This can be used, for example, to find out what "
-"operating system and firmware was found inside the guest during conversion."
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-in-place.pod:48
-msgid "Exit code"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:50
-msgid ""
-"If virt-v2v-in-place fails it will return a non-zero (error) exit code.  In "
-"this case, the disk image will be in an B<unknown, possibly corrupted "
-"state>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:54
-msgid ""
-"If the image contains important information you should ensure you have a "
-"backup before trying a virt-v2v-in-place conversion.  And you should check "
-"the exit code is zero before using the disk image after a conversion."
-msgstr ""
-
-#. type: =head1
-#: docs/virt-v2v-in-place.pod:59 docs/virt-v2v.pod:87
-msgid "EXAMPLES"
-msgstr ""
-
-#. type: =head1
-#: docs/virt-v2v-in-place.pod:61 docs/virt-v2v-inspector.pod:129
-#: docs/virt-v2v-open.pod:69 docs/virt-v2v.pod:175
-msgid "OPTIONS"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:65 docs/virt-v2v-inspector.pod:133
-#: docs/virt-v2v-open.pod:73 docs/virt-v2v.pod:179
-msgid "B<--help>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:67 docs/virt-v2v-inspector.pod:135
-#: docs/virt-v2v-open.pod:75 docs/virt-v2v.pod:181
-msgid "Display help."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:69 docs/virt-v2v-inspector.pod:177
-#: docs/virt-v2v.pod:229
-msgid "B<-b> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:71 docs/virt-v2v-inspector.pod:179
-#: docs/virt-v2v.pod:231
-msgid "B<--bridge> ..."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:73 docs/virt-v2v.pod:233
-msgid "See I<--network> below."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:75 docs/virt-v2v.pod:235
-msgid "ifelse(ENABLE_BLOCK_DRIVER, yes, ` =item B<--block-driver> B<virtio-blk>"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:78 docs/virt-v2v.pod:238
-msgid "B<--block-driver> B<virtio-scsi>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:80 docs/virt-v2v.pod:240
-msgid ""
-"When choosing a block driver for Windows guests, prefer C<virtio-blk> or "
-"C<virtio-scsi>.  The default is C<virtio-blk>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:83 docs/virt-v2v.pod:243
-msgid ""
-"Note this has no effect for Linux guests at the moment.  That may be added "
-"in future.  ')"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:87 docs/virt-v2v-inspector.pod:181
-#: docs/virt-v2v-open.pod:108 docs/virt-v2v.pod:247
-msgid "B<--colors>"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:89 docs/virt-v2v-inspector.pod:183
-#: docs/virt-v2v-open.pod:110 docs/virt-v2v.pod:249
-msgid "B<--colours>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:91 docs/virt-v2v.pod:251
-msgid ""
-"Use ANSI colour sequences to colourize messages.  This is the default when "
-"the output is a tty.  If the output of the program is redirected to a file, "
-"ANSI colour sequences are disabled unless you use this option."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:96 docs/virt-v2v-inspector.pod:185
-#: docs/virt-v2v.pod:256
-msgid "B<--echo-keys>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:98 docs/virt-v2v.pod:258
-msgid ""
-"When prompting for keys and passphrases, virt-v2v normally turns echoing off "
-"so you cannot see what you are typing.  If you are not worried about Tempest "
-"attacks and there is no one else in the room you can specify this flag to "
-"see what you are typing."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:103 docs/virt-v2v.pod:263
-msgid ""
-"Note this options only applies to keys and passphrases for encrypted devices "
-"and partitions, not for passwords used to connect to remote servers."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:107 docs/virt-v2v.pod:267
-msgid "B<-i> B<disk>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:109 docs/virt-v2v.pod:269
-msgid "Set the input method to I<disk>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:111 docs/virt-v2v.pod:271
-msgid ""
-"In this mode you can read a virtual machine disk image with no metadata.  "
-"virt-v2v tries to guess the best default metadata.  This is usually adequate "
-"but you can get finer control (eg. of memory and vCPUs) by using I<-i "
-"libvirtxml> instead.  Only guests that use a single disk can be imported "
-"this way."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:117 docs/virt-v2v.pod:277
-msgid "B<-i> B<libvirt>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:119 docs/virt-v2v.pod:279
-msgid "Set the input method to I<libvirt>.  This is the default."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:121 docs/virt-v2v.pod:281
-msgid ""
-"In this mode you have to specify a libvirt guest name or UUID on the command "
-"line.  You may also specify a libvirt connection URI (see I<-ic>)."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:125 docs/virt-v2v.pod:287
-msgid "B<-i> B<libvirtxml>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:127 docs/virt-v2v.pod:289
-msgid "Set the input method to I<libvirtxml>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:129 docs/virt-v2v.pod:291
-msgid ""
-"In this mode you have to pass a libvirt XML file on the command line.  This "
-"file is read in order to get metadata about the source guest (such as its "
-"name, amount of memory), and also to locate the input disks.  See L</Minimal "
-"XML for -i libvirtxml option> below."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:134 docs/virt-v2v.pod:296
-msgid "B<-i> B<local>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:136 docs/virt-v2v.pod:298
-msgid "This is the same as I<-i disk>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:138 docs/virt-v2v.pod:318
-msgid "B<-ic> libvirtURI"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:140 docs/virt-v2v.pod:320
-msgid ""
-"Specify a libvirt connection URI to use when reading the guest.  This is "
-"only used when S<I<-i libvirt>>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:143
-msgid "Only local libvirt connections to locally stored disks can be used."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:145 docs/virt-v2v.pod:331
-msgid "B<-if> format"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:147 docs/virt-v2v.pod:333
-msgid ""
-"For I<-i disk> only, this specifies the format of the input disk image.  For "
-"other input methods you should specify the input format in the metadata."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:151 docs/virt-v2v.pod:337
-msgid "B<-io> OPTION=VALUE"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:153 docs/virt-v2v.pod:339
-msgid ""
-"Set input option(s) related to the current input mode or transport.  To "
-"display short help on what options are available you can use:"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-in-place.pod:156
-#, no-wrap
-msgid ""
-" virt-v2v-in-place -it disk -io \"?\"\n"
-"\n"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:158 docs/virt-v2v.pod:380
-msgid "B<-ip> filename"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:160
-msgid ""
-"Supply a file containing a password to be used when connecting to the "
-"source.  If this is omitted then the input hypervisor may ask for the "
-"password interactively.  Note the file should contain the whole password, "
-"B<without any trailing newline>, and for security the file should have mode "
-"C<0600> so that others cannot read it."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:166 docs/virt-v2v.pod:400
-msgid "__INCLUDE:key-option.pod__"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:168 docs/virt-v2v.pod:402
-msgid "__INCLUDE:keys-from-stdin-option.pod__"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:170 docs/virt-v2v.pod:404
-msgid ""
-"Note I<--keys-from-stdin> only applies to keys and passphrases for encrypted "
-"devices and partitions, not for passwords used to connect to remote servers."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:174 docs/virt-v2v.pod:408
-msgid "B<--mac> aa:bb:cc:dd:ee:ffB<:network:>out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:176 docs/virt-v2v.pod:410
-msgid "B<--mac> aa:bb:cc:dd:ee:ffB<:bridge:>out"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:178 docs/virt-v2v.pod:412
-msgid "Map source NIC MAC address to a network or bridge."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:180 docs/virt-v2v-in-place.pod:236
-msgid "See L<virt-v2v(1)/Networks and bridges>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:182 docs/virt-v2v.pod:416
-msgid "B<--mac> aa:bb:cc:dd:ee:ffB<:ip:>ipaddr[,gw[,len[,ns,ns,...]]]"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:184 docs/virt-v2v.pod:418
-msgid ""
-"Force a particular interface (controlled by its MAC address) to have a "
-"static IP address after boot."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:187
-msgid ""
-"The fields in the parameter are: C<ipaddr> is the IP address.  C<gw> is the "
-"optional gateway IP address.  C<len> is the subnet mask length (an "
-"integer).  The final parameters are zero or more nameserver IP addresses."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:192 docs/virt-v2v.pod:426
-msgid "This option can be supplied zero or more times."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:194 docs/virt-v2v.pod:428
-msgid ""
-"You only need to use this option for certain broken guests such as Windows "
-"which are unable to preserve MAC to static IP address mappings "
-"automatically.  You don't need to use it if Windows is using DHCP.  It is "
-"currently ignored for Linux guests since they do not have this problem."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:200 docs/virt-v2v-inspector.pod:193
-#: docs/virt-v2v-open.pod:112 docs/virt-v2v.pod:434
-msgid "B<--machine-readable>"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:202 docs/virt-v2v-inspector.pod:195
-#: docs/virt-v2v-open.pod:114 docs/virt-v2v.pod:436
-msgid "B<--machine-readable>=format"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:204
-msgid ""
-"This option is used to make the output more machine friendly when being "
-"parsed by other programs.  See L<virt-v2v(1)/Machine readable output>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:208 docs/virt-v2v-inspector.pod:197
-#: docs/virt-v2v.pod:442
-msgid "B<-m> MB"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:210 docs/virt-v2v-inspector.pod:199
-#: docs/virt-v2v.pod:444
-msgid "B<--memsize> MB"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:212
-msgid ""
-"Change the amount of memory allocated when doing the conversion.  "
-"Virt-v2v-in-place will usually choose a suitable default.  Increase this if "
-"you see that the conversion step is running out of memory."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:216 docs/virt-v2v.pod:450
-msgid "B<-n> in:out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:218 docs/virt-v2v.pod:452
-msgid "B<-n> out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:220 docs/virt-v2v.pod:454
-msgid "B<--network> in:out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:222 docs/virt-v2v.pod:456
-msgid "B<--network> out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:224 docs/virt-v2v.pod:458
-msgid "B<-b> in:out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:226 docs/virt-v2v.pod:460
-msgid "B<-b> out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:228 docs/virt-v2v.pod:462
-msgid "B<--bridge> in:out"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:230 docs/virt-v2v.pod:464
-msgid "B<--bridge> out"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:232 docs/virt-v2v.pod:466
-msgid ""
-"Map network (or bridge) called C<in> to network (or bridge) called C<out>.  "
-"If no C<in:> prefix is given, all other networks (or bridges)  are mapped to "
-"C<out>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:238
-msgid "B<-O> output.xml"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:240 docs/virt-v2v-inspector.pod:141
-msgid "B<-O ->"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:242
-msgid ""
-"If this option is present, write post-conversion metadata about the guest to "
-"the named XML file, or to stdout if I<-O -> is used.  This is in the same "
-"format as L<virt-v2v-inspector(1)>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:246 docs/virt-v2v.pod:840
-msgid "B<--print-source>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:248
-msgid ""
-"Print information about the source guest and stop.  This option is useful "
-"when you are setting up network and bridge maps.  See L<virt-v2v(1)/Networks "
-"and bridges>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:252 docs/virt-v2v-inspector.pod:205
-#: docs/virt-v2v-open.pod:116 docs/virt-v2v.pod:846
-msgid "B<-q>"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:254 docs/virt-v2v-inspector.pod:207
-#: docs/virt-v2v-open.pod:118 docs/virt-v2v.pod:848
-msgid "B<--quiet>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:256 docs/virt-v2v.pod:850
-msgid "This disables progress bars and other unnecessary output."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:258 docs/virt-v2v-inspector.pod:209
-msgid "B<--root> ..."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:260
-msgid ""
-"Choose the root filesystem to be converted.  See the documentation of this "
-"option in L<virt-v2v(1)>."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:263 docs/virt-v2v-inspector.pod:211
-#: docs/virt-v2v.pod:895
-msgid "B<--smp> N"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:265
-msgid ""
-"Change the number of virtual CPUs used when doing the conversion.  "
-"Virt-v2v-in-place will usually choose a suitable default."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:268 docs/virt-v2v.pod:900
-msgid ""
-"Increasing this beyond 8 may improve conversion performance, if your host "
-"has sufficient physical CPUs.  You may also need to increase the memory size "
-"(I<--memsize> option)."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:272 docs/virt-v2v-inspector.pod:146
-#: docs/virt-v2v-open.pod:77 docs/virt-v2v.pod:904
-msgid "B<-v>"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:274 docs/virt-v2v-inspector.pod:148
-#: docs/virt-v2v-open.pod:79 docs/virt-v2v.pod:906
-msgid "B<--verbose>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:276 docs/virt-v2v-inspector.pod:150
-#: docs/virt-v2v-open.pod:81 docs/virt-v2v.pod:908
-msgid "Enable verbose messages for debugging."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:278 docs/virt-v2v-inspector.pod:152
-#: docs/virt-v2v-open.pod:83 docs/virt-v2v.pod:910
-msgid "B<-V>"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:280 docs/virt-v2v-inspector.pod:154
-#: docs/virt-v2v-open.pod:85 docs/virt-v2v.pod:912
-msgid "B<--version>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:282 docs/virt-v2v-inspector.pod:156
-#: docs/virt-v2v-open.pod:87 docs/virt-v2v.pod:914
-msgid "Display version number and exit."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:284 docs/virt-v2v-inspector.pod:213
-#: docs/virt-v2v-open.pod:120 docs/virt-v2v.pod:916
-msgid "B<--wrap>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:286 docs/virt-v2v.pod:918
-msgid ""
-"Wrap error, warning, and informative messages.  This is the default when the "
-"output is a tty.  If the output of the program is redirected to a file, "
-"wrapping is disabled unless you use this option."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-in-place.pod:290 docs/virt-v2v-inspector.pod:158
-#: docs/virt-v2v-open.pod:89 docs/virt-v2v.pod:922
-msgid "B<-x>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:292 docs/virt-v2v-inspector.pod:160
-#: docs/virt-v2v-open.pod:91 docs/virt-v2v.pod:924
-msgid "Enable tracing of libguestfs API calls."
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-in-place.pod:296 docs/virt-v2v.pod:1646
-msgid "Minimal XML for -i libvirtxml option"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:298 docs/virt-v2v.pod:1648
-msgid ""
-"When using the I<-i libvirtxml> option, you have to supply some libvirt "
-"XML.  Writing this from scratch is hard, so the template below is helpful."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:302 docs/virt-v2v.pod:1652
-msgid ""
-"B<Note this should only be used for testing and/or where you know what "
-"you're doing!> If you have libvirt metadata for the guest, always use that "
-"instead."
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-in-place.pod:306 docs/virt-v2v.pod:1656
-#, no-wrap
-msgid ""
-" <domain type='kvm'>\n"
-"   <name> NAME </name>\n"
-"   <memory>1048576</memory>\n"
-"   <vcpu>2</vcpu>\n"
-"   <os>\n"
-"     <type>hvm</type>\n"
-"     <boot dev='hd'/>\n"
-"   </os>\n"
-"   <features>\n"
-"     <acpi/>\n"
-"     <apic/>\n"
-"     <pae/>\n"
-"   </features>\n"
-"   <devices>\n"
-"     <disk type='file' device='disk'>\n"
-"       <driver name='qemu' type='raw'/>\n"
-"       <source file='/path/to/disk/image'/>\n"
-"       <target dev='hda' bus='ide'/>\n"
-"       <checksum method='sha256' fail='error'>123123...</checksum>\n"
-"     </disk>\n"
-"     <interface type='network'>\n"
-"       <mac address='52:54:00:01:02:03'/>\n"
-"       <source network='default'/>\n"
-"       <model type='rtl8139'/>\n"
-"     </interface>\n"
-"   </devices>\n"
-" </domain>\n"
-"\n"
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-in-place.pod:334
-msgid "Disk checksum"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:336
-msgid ""
-"The optional E<lt>checksumE<gt> field specifies the expected hash of the "
-"corresponding disk.  It can be specified by management tools in order to do "
-"end-to-end data integrity checks."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:340
-msgid ""
-"Note this is the checksum of the raw format content of the disk.  If the "
-"disk is in a container format (eg. qcow2) it is the checksum of the content, "
-"I<not> of the container."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:344
-msgid "The checksum method attribute can be C<md5>, C<sha256> or C<sha512>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:346
-msgid ""
-"The fail attribute can be C<error> to fail the conversion if the checksum "
-"does not match; C<warn> to print a warning but continue; C<ignore> to ignore "
-"the checksum and not even compute it; or C<print> to print the actual "
-"checksum and continue.  The default is C<fail=warn>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:352
-msgid ""
-"Computing the checksum of a remote (eg HTTP) source can be slow and "
-"expensive."
-msgstr ""
-
-#. type: =head1
-#: docs/virt-v2v-in-place.pod:355 docs/virt-v2v-inspector.pod:219
-#: docs/virt-v2v-open.pod:132 docs/virt-v2v.pod:1763
-msgid "FILES"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:357 docs/virt-v2v-inspector.pod:221
-#: docs/virt-v2v-open.pod:134
-msgid "Files used are the same as for virt-v2v.  See L<virt-v2v(1)/FILES>."
-msgstr ""
-
-#. type: =head1
-#: docs/virt-v2v-in-place.pod:359 docs/virt-v2v-inspector.pod:223
-#: docs/virt-v2v-open.pod:136 docs/virt-v2v.pod:1777
-msgid "ENVIRONMENT VARIABLES"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:361 docs/virt-v2v-inspector.pod:225
-#: docs/virt-v2v-open.pod:138
-msgid ""
-"Environment variables used are the same as for virt-v2v.  See "
-"L<virt-v2v(1)/ENVIRONMENT VARIABLES>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:366
-msgid ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, "
-"L<qemu-img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:376 docs/virt-v2v-inspector.pod:241
-#: docs/virt-v2v-open.pod:155 docs/virt-v2v.pod:1911
-msgid "Matthew Booth"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:378 docs/virt-v2v-inspector.pod:243
-#: docs/virt-v2v-open.pod:157 docs/virt-v2v.pod:1913
-msgid "Cédric Bosdonnat"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:380 docs/virt-v2v-inspector.pod:245
-#: docs/virt-v2v-open.pod:159 docs/virt-v2v-release-notes-2.0.pod:382
-#: docs/virt-v2v-release-notes-2.2.pod:302
-#: docs/virt-v2v-release-notes-2.4.pod:181 docs/virt-v2v.pod:1915
-msgid "Laszlo Ersek"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:382 docs/virt-v2v-inspector.pod:247
-#: docs/virt-v2v-open.pod:161 docs/virt-v2v-release-notes-1.42.pod:224
-#: docs/virt-v2v-release-notes-2.2.pod:320 docs/virt-v2v.pod:1917
-msgid "Tomáš Golembiovský"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:384 docs/virt-v2v-inspector.pod:249
-#: docs/virt-v2v-open.pod:163 docs/virt-v2v.pod:1919
-msgid "Shahar Havivi"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:388 docs/virt-v2v-inspector.pod:253
-#: docs/virt-v2v-open.pod:167 docs/virt-v2v-release-notes-2.4.pod:189
-#: docs/virt-v2v.pod:1923
-msgid "Roman Kagan"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:390 docs/virt-v2v-inspector.pod:255
-#: docs/virt-v2v-open.pod:169 docs/virt-v2v-release-notes-1.42.pod:228
-#: docs/virt-v2v.pod:1925
-msgid "Mike Latimer"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:392 docs/virt-v2v-inspector.pod:257
-#: docs/virt-v2v-open.pod:171 docs/virt-v2v-release-notes-1.42.pod:230
-#: docs/virt-v2v-release-notes-2.0.pod:388
-#: docs/virt-v2v-release-notes-2.6.pod:206 docs/virt-v2v.pod:1927
-msgid "Nir Soffer"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:394 docs/virt-v2v-inspector.pod:259
-#: docs/virt-v2v-open.pod:173 docs/virt-v2v-release-notes-1.42.pod:232
-#: docs/virt-v2v-release-notes-2.0.pod:390 docs/virt-v2v.pod:1929
-msgid "Pino Toscano"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:396 docs/virt-v2v-inspector.pod:261
-#: docs/virt-v2v-open.pod:175 docs/virt-v2v.pod:1931
-msgid "Xiaodai Wang"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:398 docs/virt-v2v-inspector.pod:263
-#: docs/virt-v2v-open.pod:177 docs/virt-v2v-release-notes-1.42.pod:234
-#: docs/virt-v2v-release-notes-2.2.pod:306 docs/virt-v2v.pod:1933
-msgid "Ming Xie"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-in-place.pod:400 docs/virt-v2v-inspector.pod:265
-#: docs/virt-v2v-open.pod:179 docs/virt-v2v.pod:1935
-msgid "Tingting Zheng"
 msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:3
 msgid "virt-v2v-input-vmware - Using virt-v2v to convert guests from VMware"
+msgstr ""
+
+#. type: =head1
+#: docs/virt-v2v-input-vmware.pod:5 docs/virt-v2v-input-xen.pod:5
+#: docs/virt-v2v-output-local.pod:6 docs/virt-v2v-output-openstack.pod:5
+#: docs/virt-v2v-output-ovirt.pod:5 docs/virt-v2v.pod:5
+#: in-place/virt-v2v-in-place.pod:5 inspector/virt-v2v-inspector.pod:5
+#: open/virt-v2v-open.pod:5
+msgid "SYNOPSIS"
 msgstr ""
 
 #. type: verbatim
@@ -4061,455 +3200,6 @@ msgid ""
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-inspector.pod:3
-msgid "virt-v2v-inspector - Estimate disk space needed before virt-v2v conversion"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-inspector.pod:7
-#, no-wrap
-msgid ""
-" virt-v2v-inspector [-i* options]\n"
-"                    [virt-customize options]\n"
-"                    guest\n"
-"                    [-O output.xml]\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:14
-msgid ""
-"Virt-v2v-inspector is a companion tool for L<virt-v2v(1)> which can be used "
-"before conversion to estimate the number of output disks and disk space that "
-"will be required to complete the virt-v2v conversion.  The common use for "
-"this is to preallocate target disks on management systems that need this "
-"(like Kubevirt)."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:20
-msgid ""
-"This manual page only documents the estimation feature, not all of the "
-"I<-i*> options which are the same as virt-v2v.  You should read "
-"L<virt-v2v(1)> first."
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-inspector.pod:24 docs/virt-v2v-open.pod:46
-msgid "Selecting the input guest"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:26
-msgid ""
-"You can run virt-v2v-inspector with the same I<-i*> options as virt-v2v.  "
-"(Don't use any I<-o*> options).  This will select the guest that you want to "
-"estimate."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:30
-msgid ""
-"For example to estimate the space required for a guest in a stored local "
-"disk called F<filename.img> you could do:"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-inspector.pod:33
-#, no-wrap
-msgid ""
-" virt-v2v-inspector -i disk filename.img\n"
-"\n"
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-inspector.pod:35
-msgid "Output"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:37
-msgid "The output from this tool is an XML document."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:43
-msgid ""
-"Fields which are annotated with an C<estimated='true'> attribute are "
-"estimated.  Virt-v2v cannot always know exactly the final size of some "
-"things, such as the exact real size of the output disk, since there might be "
-"small perturbations between runs.  Estimates are usually very close to the "
-"final values."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:51
-msgid "Numbers representing sizes are always given in bytes."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:55
-msgid ""
-"By default the output is written to stdout.  This is useful when using the "
-"program interactively.  However if you want to use this tool from another "
-"program it is better to send the output to a specific file using I<-O "
-"output.xml>"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-inspector.pod:62
-#, no-wrap
-msgid ""
-" <?xml version='1.0' encoding='utf-8'?>\n"
-" <v2v-inspection>\n"
-"   <program>virt-v2v-inspector</program>\n"
-"   <package>virt-v2v</package>\n"
-"   <version>2.1.9</version>\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:68
-msgid ""
-"The E<lt>programE<gt>, E<lt>packageE<gt> and E<lt>versionE<gt> elements "
-"refer to the current version of virt-v2v-inspector and are useful for "
-"debugging.  Make sure you use the same version of virt-v2v-inspector and "
-"virt-v2v."
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-inspector.pod:73
-#, no-wrap
-msgid ""
-"   <disks>\n"
-"     <disk index='0'>\n"
-"       <virtual-size>6442450944</virtual-size>\n"
-"       <allocated estimated='true'>1400897536</allocated>\n"
-"     </disk>\n"
-"     <disk index='1'>\n"
-"       <virtual-size>6442450944</virtual-size>\n"
-"       <allocated estimated='true'>45131520</allocated>\n"
-"     </disk>\n"
-"   </disks>\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:84
-msgid ""
-"The E<lt>disksE<gt> element lists information about each guest disk.  The "
-"example virtual machine above has two disks.  E<lt>virtual-sizeE<gt> "
-"describes the size of the disk as seen from inside the guest, while "
-"E<lt>allocatedE<gt> is an estimate of how much storage will be needed on the "
-"host after conversion.  This is assuming you use S<I<-oa sparse>> - see the "
-"notes below."
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-inspector.pod:91
-#, no-wrap
-msgid ""
-"   <operatingsystem>\n"
-"     <name>linux</name>\n"
-"     <distro>fedora</distro>\n"
-"     <osinfo>fedora32</osinfo>\n"
-"     <arch>x86_64</arch>\n"
-"     [...]\n"
-"   </operatingsystem>\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:99
-msgid ""
-"The E<lt>operatingsystemE<gt> element lists information about the guest "
-"operating system gleaned during conversion, in a manner similar to the "
-"L<virt-inspector(1)> tool from guestfs-tools."
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-inspector.pod:103
-msgid "Output allocation mode and output format"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:105
-msgid ""
-"Virt-v2v supports selecting the output allocation mode (I<-oa> option)  and "
-"output format (I<-of> option, eg. S<I<-of qcow2>>).  Since it is difficult "
-"to predict the effect of these options on the actual space occupied by the "
-"final image this tool does not account for them."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:110
-msgid "As a rule of thumb:"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:114
-msgid "S<virt-v2v -oa preallocated>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:116
-msgid ""
-"causes the disk images on the target to consume their full virtual size "
-"(excluding the effect of zero allocations will depends so much on the "
-"underlying storage that it is often hard even for experts to predict)."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:121
-msgid "S<virt-v2v -of qcow2>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:123
-msgid ""
-"uses the QCOW2 format where supported which means that the apparent size of "
-"the file will be equal to its sparse size, but otherwise should not affect "
-"estimates very much."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:137
-msgid "B<-O> F<output.xml>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:139
-msgid "Write the output to a file called F<output.xml>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:143
-msgid ""
-"Write the output to stdout.  This is also the default if the I<-O> option is "
-"omitted."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:162 docs/virt-v2v-open.pod:93
-msgid "B<-i> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:164 docs/virt-v2v-open.pod:95
-msgid "B<-ic> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:166 docs/virt-v2v-open.pod:97
-msgid "B<-if> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:168 docs/virt-v2v-open.pod:99
-msgid "B<-io> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:170 docs/virt-v2v-open.pod:101
-msgid "B<-ip> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:172 docs/virt-v2v-open.pod:103
-msgid "B<-it> ..."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:174
-msgid ""
-"All of the I<-i*> options supported by virt-v2v and also supported by "
-"virt-v2v-inspector."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:187
-msgid "B<--key> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:191
-msgid "B<--mac> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:201
-msgid "B<-n> ..."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-inspector.pod:203
-msgid "B<--network> ..."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:215 docs/virt-v2v-open.pod:122
-msgid "These options work in the same way as the equivalent virt-v2v options."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-inspector.pod:230
-msgid ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, L<guestfs(3)>, "
-"L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:3
-msgid "virt-v2v-open - Open the virt-v2v input and run a program on it"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-open.pod:7
-#, no-wrap
-msgid ""
-" virt-v2v-open [-i* options] guest --run 'program [--options] @@'\n"
-"\n"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-open.pod:9
-#, no-wrap
-msgid ""
-" virt-v2v-open -i disk guest.img --run 'virt-inspector --format=raw @@'\n"
-"\n"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-open.pod:11
-#, no-wrap
-msgid ""
-" virt-v2v-open -i disk guest.img --run 'guestfish --ro --format=raw @@ -i'\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:15
-msgid ""
-"Virt-v2v-open is a companion tool for L<virt-v2v(1)> and "
-"L<virt-v2v-inspector(1)> which can be used before conversion to open the "
-"input side of virt-v2v and run a program."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:19
-msgid ""
-"Some uses for this include running L<virt-inspector(1)> directly on the "
-"source guest to find source operating systems (to use with the virt-v2v "
-"I<--root> option).  Or running guestfish to take a look inside the source "
-"guest before conversion.  You can follow that by running "
-"L<virt-v2v-inspector(1)> to estimate how much space would be needed to "
-"convert that guest, and if conversion of the guest is possible."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:27
-msgid ""
-"This manual page only documents the program options, not all of the I<-i*> "
-"options which are the same as virt-v2v.  You should read L<virt-v2v(1)> "
-"first."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:31
-msgid "Notes:"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:37
-msgid ""
-"The source guest is always opened read-only.  You will not be able to make "
-"persistent changes."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:42
-msgid "L<virt-inspector(1)> can be used directly on local disk images."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:48
-msgid ""
-"You can run virt-v2v-open with the same I<-i*> options as virt-v2v.  (Don't "
-"use any I<-o*> options).  This will select the guest that you want to open."
-msgstr ""
-
-#. type: =head2
-#: docs/virt-v2v-open.pod:52
-msgid "Running the program"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:54
-msgid ""
-"On the command line, put the program that you want to run on the source "
-"guest and any other parameters that program needs into the I<--run> "
-"parameter.  C<@@> in the parameter is substituted with I<-a DISK ...> for "
-"each source disk, in a way which is compatible with L<virt-inspector(1)> and "
-"L<guestfish(1)>."
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-open.pod:60
-#, no-wrap
-msgid ""
-" virt-v2v-open [-i ...] guest \\\n"
-"               --run 'virt-inspector --format=raw @@ > output.xml'\n"
-"\n"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-open.pod:63
-#, no-wrap
-msgid ""
-" virt-v2v-open [-i ...] guest \\\n"
-"               --run 'guestfish --ro --format=raw @@ -i'\n"
-"\n"
-msgstr ""
-
-#. type: verbatim
-#: docs/virt-v2v-open.pod:66
-#, no-wrap
-msgid ""
-" virt-v2v-open [-i ...] guest \\\n"
-"               --run 'guestfish --ro --format=raw @@ run : "
-"list-filesystems'\n"
-"\n"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:105
-msgid ""
-"All of the I<-i*> options supported by virt-v2v are also supported by "
-"virt-v2v-open."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-open.pod:124
-msgid "B<--run> COMMAND"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:126
-msgid ""
-"The command that you want to run on the source guest.  C<@@> in the command "
-"is substituted with a list of I<-a DISK> options that is compatible with "
-"virt-inspector and guestfish."
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v-open.pod:143
-msgid ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, "
-"L<virt-v2v-inspector(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, "
-"L<nbdkit(1)>, L<http://libguestfs.org/>."
-msgstr ""
-
-#. type: textblock
 #: docs/virt-v2v-output-local.pod:3
 msgid ""
 "virt-v2v-output-local - Using virt-v2v to convert guests to local files or "
@@ -6150,10 +4840,50 @@ msgstr ""
 msgid "Daniel Erez"
 msgstr ""
 
+#. type: textblock
+#: docs/virt-v2v-release-notes-1.42.pod:224
+#: docs/virt-v2v-release-notes-2.2.pod:320 docs/virt-v2v.pod:1917
+#: in-place/virt-v2v-in-place.pod:382 inspector/virt-v2v-inspector.pod:247
+#: open/virt-v2v-open.pod:161
+msgid "Tomáš Golembiovský"
+msgstr ""
+
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:226
 #: docs/virt-v2v-release-notes-2.0.pod:384
 msgid "Martin Kletzander"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-1.42.pod:228 docs/virt-v2v.pod:1925
+#: in-place/virt-v2v-in-place.pod:390 inspector/virt-v2v-inspector.pod:255
+#: open/virt-v2v-open.pod:169
+msgid "Mike Latimer"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-1.42.pod:230
+#: docs/virt-v2v-release-notes-2.0.pod:388
+#: docs/virt-v2v-release-notes-2.6.pod:206 docs/virt-v2v.pod:1927
+#: in-place/virt-v2v-in-place.pod:392 inspector/virt-v2v-inspector.pod:257
+#: open/virt-v2v-open.pod:171
+msgid "Nir Soffer"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-1.42.pod:232
+#: docs/virt-v2v-release-notes-2.0.pod:390 docs/virt-v2v.pod:1929
+#: in-place/virt-v2v-in-place.pod:394 inspector/virt-v2v-inspector.pod:259
+#: open/virt-v2v-open.pod:173
+msgid "Pino Toscano"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-1.42.pod:234
+#: docs/virt-v2v-release-notes-2.2.pod:306 docs/virt-v2v.pod:1933
+#: in-place/virt-v2v-in-place.pod:398 inspector/virt-v2v-inspector.pod:263
+#: open/virt-v2v-open.pod:177
+msgid "Ming Xie"
 msgstr ""
 
 #. type: textblock
@@ -7035,6 +5765,15 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:380
 msgid "Kevin Locke"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.0.pod:382
+#: docs/virt-v2v-release-notes-2.2.pod:302
+#: docs/virt-v2v-release-notes-2.4.pod:181 docs/virt-v2v.pod:1915
+#: in-place/virt-v2v-in-place.pod:380 inspector/virt-v2v-inspector.pod:245
+#: open/virt-v2v-open.pod:159
+msgid "Laszlo Ersek"
 msgstr ""
 
 #. type: =item
@@ -8037,6 +6776,13 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:179
 msgid "Jürgen Hötzel"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.4.pod:189 docs/virt-v2v.pod:1923
+#: in-place/virt-v2v-in-place.pod:388 inspector/virt-v2v-inspector.pod:253
+#: open/virt-v2v-open.pod:167
+msgid "Roman Kagan"
 msgstr ""
 
 #. type: textblock
@@ -9487,6 +8233,11 @@ msgstr ""
 msgid "L<virt-v2v-release-notes-2.8(1)> — Release notes for 2.8 release."
 msgstr ""
 
+#. type: =head1
+#: docs/virt-v2v.pod:87 in-place/virt-v2v-in-place.pod:59
+msgid "EXAMPLES"
+msgstr ""
+
 #. type: =head2
 #: docs/virt-v2v.pod:89
 msgid "Convert from VMware vCenter server to local libvirt"
@@ -9688,6 +8439,24 @@ msgid ""
 "\n"
 msgstr ""
 
+#. type: =head1
+#: docs/virt-v2v.pod:175 in-place/virt-v2v-in-place.pod:61
+#: inspector/virt-v2v-inspector.pod:129 open/virt-v2v-open.pod:69
+msgid "OPTIONS"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:179 in-place/virt-v2v-in-place.pod:65
+#: inspector/virt-v2v-inspector.pod:133 open/virt-v2v-open.pod:73
+msgid "B<--help>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:181 in-place/virt-v2v-in-place.pod:67
+#: inspector/virt-v2v-inspector.pod:135 open/virt-v2v-open.pod:75
+msgid "Display help."
+msgstr ""
+
 #. type: =item
 #: docs/virt-v2v.pod:183
 msgid "B<--bandwidth> bps"
@@ -9761,9 +8530,158 @@ msgstr ""
 msgid "The options are silently ignored for other input methods."
 msgstr ""
 
+#. type: =item
+#: docs/virt-v2v.pod:229 in-place/virt-v2v-in-place.pod:69
+#: inspector/virt-v2v-inspector.pod:177
+msgid "B<-b> ..."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:231 in-place/virt-v2v-in-place.pod:71
+#: inspector/virt-v2v-inspector.pod:179
+msgid "B<--bridge> ..."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:233 in-place/virt-v2v-in-place.pod:73
+msgid "See I<--network> below."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:235 in-place/virt-v2v-in-place.pod:75
+msgid "ifelse(ENABLE_BLOCK_DRIVER, yes, ` =item B<--block-driver> B<virtio-blk>"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:238 in-place/virt-v2v-in-place.pod:78
+msgid "B<--block-driver> B<virtio-scsi>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:240 in-place/virt-v2v-in-place.pod:80
+msgid ""
+"When choosing a block driver for Windows guests, prefer C<virtio-blk> or "
+"C<virtio-scsi>.  The default is C<virtio-blk>."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:243 in-place/virt-v2v-in-place.pod:83
+msgid ""
+"Note this has no effect for Linux guests at the moment.  That may be added "
+"in future.  ')"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:247 in-place/virt-v2v-in-place.pod:87
+#: inspector/virt-v2v-inspector.pod:181 open/virt-v2v-open.pod:108
+msgid "B<--colors>"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:249 in-place/virt-v2v-in-place.pod:89
+#: inspector/virt-v2v-inspector.pod:183 open/virt-v2v-open.pod:110
+msgid "B<--colours>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:251 in-place/virt-v2v-in-place.pod:91
+msgid ""
+"Use ANSI colour sequences to colourize messages.  This is the default when "
+"the output is a tty.  If the output of the program is redirected to a file, "
+"ANSI colour sequences are disabled unless you use this option."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:256 in-place/virt-v2v-in-place.pod:96
+#: inspector/virt-v2v-inspector.pod:185
+msgid "B<--echo-keys>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:258 in-place/virt-v2v-in-place.pod:98
+msgid ""
+"When prompting for keys and passphrases, virt-v2v normally turns echoing off "
+"so you cannot see what you are typing.  If you are not worried about Tempest "
+"attacks and there is no one else in the room you can specify this flag to "
+"see what you are typing."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:263 in-place/virt-v2v-in-place.pod:103
+msgid ""
+"Note this options only applies to keys and passphrases for encrypted devices "
+"and partitions, not for passwords used to connect to remote servers."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:267 in-place/virt-v2v-in-place.pod:107
+msgid "B<-i> B<disk>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:269 in-place/virt-v2v-in-place.pod:109
+msgid "Set the input method to I<disk>."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:271 in-place/virt-v2v-in-place.pod:111
+msgid ""
+"In this mode you can read a virtual machine disk image with no metadata.  "
+"virt-v2v tries to guess the best default metadata.  This is usually adequate "
+"but you can get finer control (eg. of memory and vCPUs) by using I<-i "
+"libvirtxml> instead.  Only guests that use a single disk can be imported "
+"this way."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:277 in-place/virt-v2v-in-place.pod:117
+msgid "B<-i> B<libvirt>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:279 in-place/virt-v2v-in-place.pod:119
+msgid "Set the input method to I<libvirt>.  This is the default."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:281 in-place/virt-v2v-in-place.pod:121
+msgid ""
+"In this mode you have to specify a libvirt guest name or UUID on the command "
+"line.  You may also specify a libvirt connection URI (see I<-ic>)."
+msgstr ""
+
 #. type: textblock
 #: docs/virt-v2v.pod:285
 msgid "See L</Starting the libvirt system instance> below."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:287 in-place/virt-v2v-in-place.pod:125
+msgid "B<-i> B<libvirtxml>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:289 in-place/virt-v2v-in-place.pod:127
+msgid "Set the input method to I<libvirtxml>."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:291 in-place/virt-v2v-in-place.pod:129
+msgid ""
+"In this mode you have to pass a libvirt XML file on the command line.  This "
+"file is read in order to get metadata about the source guest (such as its "
+"name, amount of memory), and also to locate the input disks.  See L</Minimal "
+"XML for -i libvirtxml option> below."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:296 in-place/virt-v2v-in-place.pod:134
+msgid "B<-i> B<local>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:298 in-place/virt-v2v-in-place.pod:136
+msgid "This is the same as I<-i disk>."
 msgstr ""
 
 #. type: =item
@@ -9804,6 +8722,18 @@ msgid ""
 "L<virt-v2v-input-vmware(1)>."
 msgstr ""
 
+#. type: =item
+#: docs/virt-v2v.pod:318 in-place/virt-v2v-in-place.pod:138
+msgid "B<-ic> libvirtURI"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:320 in-place/virt-v2v-in-place.pod:140
+msgid ""
+"Specify a libvirt connection URI to use when reading the guest.  This is "
+"only used when S<I<-i libvirt>>."
+msgstr ""
+
 #. type: textblock
 #: docs/virt-v2v.pod:323
 msgid ""
@@ -9817,6 +8747,30 @@ msgstr ""
 msgid ""
 "See also: L<virt-v2v-input-vmware(1)> ifelse(ENABLE_XEN, yes, `, "
 "L<virt-v2v-input-xen(1)>')"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:331 in-place/virt-v2v-in-place.pod:145
+msgid "B<-if> format"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:333 in-place/virt-v2v-in-place.pod:147
+msgid ""
+"For I<-i disk> only, this specifies the format of the input disk image.  For "
+"other input methods you should specify the input format in the metadata."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:337 in-place/virt-v2v-in-place.pod:151
+msgid "B<-io> OPTION=VALUE"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:339 in-place/virt-v2v-in-place.pod:153
+msgid ""
+"Set input option(s) related to the current input mode or transport.  To "
+"display short help on what options are available you can use:"
 msgstr ""
 
 #. type: verbatim
@@ -9911,6 +8865,11 @@ msgid ""
 "optional."
 msgstr ""
 
+#. type: =item
+#: docs/virt-v2v.pod:380 in-place/virt-v2v-in-place.pod:158
+msgid "B<-ip> filename"
+msgstr ""
+
 #. type: textblock
 #: docs/virt-v2v.pod:382
 msgid ""
@@ -9947,8 +8906,52 @@ msgid ""
 msgstr ""
 
 #. type: textblock
+#: docs/virt-v2v.pod:400 in-place/virt-v2v-in-place.pod:166
+msgid "__INCLUDE:key-option.pod__"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:402 in-place/virt-v2v-in-place.pod:168
+msgid "__INCLUDE:keys-from-stdin-option.pod__"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:404 in-place/virt-v2v-in-place.pod:170
+msgid ""
+"Note I<--keys-from-stdin> only applies to keys and passphrases for encrypted "
+"devices and partitions, not for passwords used to connect to remote servers."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:408 in-place/virt-v2v-in-place.pod:174
+msgid "B<--mac> aa:bb:cc:dd:ee:ffB<:network:>out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:410 in-place/virt-v2v-in-place.pod:176
+msgid "B<--mac> aa:bb:cc:dd:ee:ffB<:bridge:>out"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:412 in-place/virt-v2v-in-place.pod:178
+msgid "Map source NIC MAC address to a network or bridge."
+msgstr ""
+
+#. type: textblock
 #: docs/virt-v2v.pod:414 docs/virt-v2v.pod:470
 msgid "See L</Networks and bridges> below."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:416 in-place/virt-v2v-in-place.pod:182
+msgid "B<--mac> aa:bb:cc:dd:ee:ffB<:ip:>ipaddr[,gw[,len[,ns,ns,...]]]"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:418 in-place/virt-v2v-in-place.pod:184
+msgid ""
+"Force a particular interface (controlled by its MAC address) to have a "
+"static IP address after boot."
 msgstr ""
 
 #. type: textblock
@@ -9960,10 +8963,48 @@ msgid ""
 msgstr ""
 
 #. type: textblock
+#: docs/virt-v2v.pod:426 in-place/virt-v2v-in-place.pod:192
+msgid "This option can be supplied zero or more times."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:428 in-place/virt-v2v-in-place.pod:194
+msgid ""
+"You only need to use this option for certain broken guests such as Windows "
+"which are unable to preserve MAC to static IP address mappings "
+"automatically.  You don't need to use it if Windows is using DHCP.  It is "
+"currently ignored for Linux guests since they do not have this problem."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:434 in-place/virt-v2v-in-place.pod:200
+#: inspector/virt-v2v-inspector.pod:193 open/virt-v2v-open.pod:112
+msgid "B<--machine-readable>"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:436 in-place/virt-v2v-in-place.pod:202
+#: inspector/virt-v2v-inspector.pod:195 open/virt-v2v-open.pod:114
+msgid "B<--machine-readable>=format"
+msgstr ""
+
+#. type: textblock
 #: docs/virt-v2v.pod:438
 msgid ""
 "This option is used to make the output more machine friendly when being "
 "parsed by other programs.  See L</Machine readable output> below."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:442 in-place/virt-v2v-in-place.pod:208
+#: inspector/virt-v2v-inspector.pod:197
+msgid "B<-m> MB"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:444 in-place/virt-v2v-in-place.pod:210
+#: inspector/virt-v2v-inspector.pod:199
+msgid "B<--memsize> MB"
 msgstr ""
 
 #. type: textblock
@@ -9972,6 +9013,54 @@ msgid ""
 "Change the amount of memory allocated when doing the conversion.  Virt-v2v "
 "will usually choose a suitable default.  Increase this if you see that the "
 "conversion step is running out of memory."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:450 in-place/virt-v2v-in-place.pod:216
+msgid "B<-n> in:out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:452 in-place/virt-v2v-in-place.pod:218
+msgid "B<-n> out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:454 in-place/virt-v2v-in-place.pod:220
+msgid "B<--network> in:out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:456 in-place/virt-v2v-in-place.pod:222
+msgid "B<--network> out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:458 in-place/virt-v2v-in-place.pod:224
+msgid "B<-b> in:out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:460 in-place/virt-v2v-in-place.pod:226
+msgid "B<-b> out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:462 in-place/virt-v2v-in-place.pod:228
+msgid "B<--bridge> in:out"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:464 in-place/virt-v2v-in-place.pod:230
+msgid "B<--bridge> out"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:466 in-place/virt-v2v-in-place.pod:232
+msgid ""
+"Map network (or bridge) called C<in> to network (or bridge) called C<out>.  "
+"If no C<in:> prefix is given, all other networks (or bridges)  are mapped to "
+"C<out>."
 msgstr ""
 
 #. type: =item
@@ -10748,12 +9837,34 @@ msgid ""
 "See the L<nbdcopy(1)> manual page for details."
 msgstr ""
 
+#. type: =item
+#: docs/virt-v2v.pod:840 in-place/virt-v2v-in-place.pod:246
+msgid "B<--print-source>"
+msgstr ""
+
 #. type: textblock
 #: docs/virt-v2v.pod:842
 msgid ""
 "Print information about the source guest and stop.  This option is useful "
 "when you are setting up network and bridge maps.  See L</Networks and "
 "bridges>."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:846 in-place/virt-v2v-in-place.pod:252
+#: inspector/virt-v2v-inspector.pod:205 open/virt-v2v-open.pod:116
+msgid "B<-q>"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:848 in-place/virt-v2v-in-place.pod:254
+#: inspector/virt-v2v-inspector.pod:207 open/virt-v2v-open.pod:118
+msgid "B<--quiet>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:850 in-place/virt-v2v-in-place.pod:256
+msgid "This disables progress bars and other unnecessary output."
 msgstr ""
 
 #. type: =item
@@ -10839,11 +9950,87 @@ msgid ""
 "will fail."
 msgstr ""
 
+#. type: =item
+#: docs/virt-v2v.pod:895 in-place/virt-v2v-in-place.pod:263
+#: inspector/virt-v2v-inspector.pod:211
+msgid "B<--smp> N"
+msgstr ""
+
 #. type: textblock
 #: docs/virt-v2v.pod:897
 msgid ""
 "Change the number of virtual CPUs used when doing the conversion.  Virt-v2v "
 "will usually choose a suitable default."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:900 in-place/virt-v2v-in-place.pod:268
+msgid ""
+"Increasing this beyond 8 may improve conversion performance, if your host "
+"has sufficient physical CPUs.  You may also need to increase the memory size "
+"(I<--memsize> option)."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:904 in-place/virt-v2v-in-place.pod:272
+#: inspector/virt-v2v-inspector.pod:146 open/virt-v2v-open.pod:77
+msgid "B<-v>"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:906 in-place/virt-v2v-in-place.pod:274
+#: inspector/virt-v2v-inspector.pod:148 open/virt-v2v-open.pod:79
+msgid "B<--verbose>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:908 in-place/virt-v2v-in-place.pod:276
+#: inspector/virt-v2v-inspector.pod:150 open/virt-v2v-open.pod:81
+msgid "Enable verbose messages for debugging."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:910 in-place/virt-v2v-in-place.pod:278
+#: inspector/virt-v2v-inspector.pod:152 open/virt-v2v-open.pod:83
+msgid "B<-V>"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:912 in-place/virt-v2v-in-place.pod:280
+#: inspector/virt-v2v-inspector.pod:154 open/virt-v2v-open.pod:85
+msgid "B<--version>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:914 in-place/virt-v2v-in-place.pod:282
+#: inspector/virt-v2v-inspector.pod:156 open/virt-v2v-open.pod:87
+msgid "Display version number and exit."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:916 in-place/virt-v2v-in-place.pod:284
+#: inspector/virt-v2v-inspector.pod:213 open/virt-v2v-open.pod:120
+msgid "B<--wrap>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:918 in-place/virt-v2v-in-place.pod:286
+msgid ""
+"Wrap error, warning, and informative messages.  This is the default when the "
+"output is a tty.  If the output of the program is redirected to a file, "
+"wrapping is disabled unless you use this option."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v.pod:922 in-place/virt-v2v-in-place.pod:290
+#: inspector/virt-v2v-inspector.pod:158 open/virt-v2v-open.pod:89
+msgid "B<-x>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:924 in-place/virt-v2v-in-place.pod:292
+#: inspector/virt-v2v-inspector.pod:160 open/virt-v2v-open.pod:91
+msgid "Enable tracing of libguestfs API calls."
 msgstr ""
 
 #. type: =head2
@@ -12292,6 +11479,60 @@ msgid ""
 msgstr ""
 
 #. type: =head2
+#: docs/virt-v2v.pod:1646 in-place/virt-v2v-in-place.pod:296
+msgid "Minimal XML for -i libvirtxml option"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1648 in-place/virt-v2v-in-place.pod:298
+msgid ""
+"When using the I<-i libvirtxml> option, you have to supply some libvirt "
+"XML.  Writing this from scratch is hard, so the template below is helpful."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1652 in-place/virt-v2v-in-place.pod:302
+msgid ""
+"B<Note this should only be used for testing and/or where you know what "
+"you're doing!> If you have libvirt metadata for the guest, always use that "
+"instead."
+msgstr ""
+
+#. type: verbatim
+#: docs/virt-v2v.pod:1656 in-place/virt-v2v-in-place.pod:306
+#, no-wrap
+msgid ""
+" <domain type='kvm'>\n"
+"   <name> NAME </name>\n"
+"   <memory>1048576</memory>\n"
+"   <vcpu>2</vcpu>\n"
+"   <os>\n"
+"     <type>hvm</type>\n"
+"     <boot dev='hd'/>\n"
+"   </os>\n"
+"   <features>\n"
+"     <acpi/>\n"
+"     <apic/>\n"
+"     <pae/>\n"
+"   </features>\n"
+"   <devices>\n"
+"     <disk type='file' device='disk'>\n"
+"       <driver name='qemu' type='raw'/>\n"
+"       <source file='/path/to/disk/image'/>\n"
+"       <target dev='hda' bus='ide'/>\n"
+"       <checksum method='sha256' fail='error'>123123...</checksum>\n"
+"     </disk>\n"
+"     <interface type='network'>\n"
+"       <mac address='52:54:00:01:02:03'/>\n"
+"       <source network='default'/>\n"
+"       <model type='rtl8139'/>\n"
+"     </interface>\n"
+"   </devices>\n"
+" </domain>\n"
+"\n"
+msgstr ""
+
+#. type: =head2
 #: docs/virt-v2v.pod:1684
 msgid "Machine readable output"
 msgstr ""
@@ -12448,6 +11689,12 @@ msgstr ""
 msgid "See also L<https://bugzilla.redhat.com/2182024>."
 msgstr ""
 
+#. type: =head1
+#: docs/virt-v2v.pod:1763 in-place/virt-v2v-in-place.pod:355
+#: inspector/virt-v2v-inspector.pod:219 open/virt-v2v-open.pod:132
+msgid "FILES"
+msgstr ""
+
 #. type: =item
 #: docs/virt-v2v.pod:1767 docs/virt-v2v.pod:1853
 msgid "F</usr/share/virtio-win>"
@@ -12463,6 +11710,12 @@ msgstr ""
 msgid ""
 "If this directory is present, then virtio drivers for Windows guests will be "
 "found from this directory and installed in the guest during conversion."
+msgstr ""
+
+#. type: =head1
+#: docs/virt-v2v.pod:1777 in-place/virt-v2v-in-place.pod:359
+#: inspector/virt-v2v-inspector.pod:223 open/virt-v2v-open.pod:136
+msgid "ENVIRONMENT VARIABLES"
 msgstr ""
 
 #. type: =item
@@ -12678,4 +11931,757 @@ msgid ""
 "L<qemu-img(1)>, L<engine-image-uploader(8)>, "
 "L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-ovirt.git>, "
 "L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/>."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1911 in-place/virt-v2v-in-place.pod:376
+#: inspector/virt-v2v-inspector.pod:241 open/virt-v2v-open.pod:155
+msgid "Matthew Booth"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1913 in-place/virt-v2v-in-place.pod:378
+#: inspector/virt-v2v-inspector.pod:243 open/virt-v2v-open.pod:157
+msgid "Cédric Bosdonnat"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1919 in-place/virt-v2v-in-place.pod:384
+#: inspector/virt-v2v-inspector.pod:249 open/virt-v2v-open.pod:163
+msgid "Shahar Havivi"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1931 in-place/virt-v2v-in-place.pod:396
+#: inspector/virt-v2v-inspector.pod:261 open/virt-v2v-open.pod:175
+msgid "Xiaodai Wang"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v.pod:1935 in-place/virt-v2v-in-place.pod:400
+#: inspector/virt-v2v-inspector.pod:265 open/virt-v2v-open.pod:179
+msgid "Tingting Zheng"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:3
+msgid "virt-v2v-in-place - Convert a guest to use KVM in-place"
+msgstr ""
+
+#. type: verbatim
+#: in-place/virt-v2v-in-place.pod:7
+#, no-wrap
+msgid ""
+" virt-v2v-in-place -i disk [other -i* options]\n"
+"                   [virt-customize options]\n"
+"                   filename\n"
+"                   [-O output.xml]\n"
+"\n"
+msgstr ""
+
+#. type: verbatim
+#: in-place/virt-v2v-in-place.pod:12
+#, no-wrap
+msgid ""
+" virt-v2v-in-place -i libvirt|libvirtxml [other -i* options]\n"
+"                   [virt-customize options]\n"
+"                   guest\n"
+"                   [-O output.xml]\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:19
+msgid ""
+"Virt-v2v-in-place converts a single guest from a foreign hypervisor to run "
+"on KVM.  It does this conversion in place, modifying the original disk."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:23
+msgid ""
+"This manual page only documents the differences between this tool and "
+"virt-v2v.  You should read L<virt-v2v(1)> first."
+msgstr ""
+
+#. type: =head2
+#: in-place/virt-v2v-in-place.pod:26
+msgid "Selecting the input disk"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:28
+msgid ""
+"You normally run virt-v2v with one or more I<-i*> options controlling the "
+"input mode.  Virt-v2v-in-place can only convert guests stored in local "
+"files."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:32
+msgid "This command will do an in-place conversion of F<filename.img>:"
+msgstr ""
+
+#. type: verbatim
+#: in-place/virt-v2v-in-place.pod:34
+#, no-wrap
+msgid ""
+" virt-v2v-in-place -i disk filename.img\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:36
+msgid "If the guest has been copied to local libvirt then:"
+msgstr ""
+
+#. type: verbatim
+#: in-place/virt-v2v-in-place.pod:38
+#, no-wrap
+msgid ""
+" virt-v2v-in-place -i libvirt guest\n"
+"\n"
+msgstr ""
+
+#. type: =head2
+#: in-place/virt-v2v-in-place.pod:40
+msgid "Output XML"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:42
+msgid ""
+"Optionally use the I<-O> option to write post-conversion metadata about the "
+"guest to an XML file.  This is in the same format as "
+"L<virt-v2v-inspector(1)>.  This can be used, for example, to find out what "
+"operating system and firmware was found inside the guest during conversion."
+msgstr ""
+
+#. type: =head2
+#: in-place/virt-v2v-in-place.pod:48
+msgid "Exit code"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:50
+msgid ""
+"If virt-v2v-in-place fails it will return a non-zero (error) exit code.  In "
+"this case, the disk image will be in an B<unknown, possibly corrupted "
+"state>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:54
+msgid ""
+"If the image contains important information you should ensure you have a "
+"backup before trying a virt-v2v-in-place conversion.  And you should check "
+"the exit code is zero before using the disk image after a conversion."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:143
+msgid "Only local libvirt connections to locally stored disks can be used."
+msgstr ""
+
+#. type: verbatim
+#: in-place/virt-v2v-in-place.pod:156
+#, no-wrap
+msgid ""
+" virt-v2v-in-place -it disk -io \"?\"\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:160
+msgid ""
+"Supply a file containing a password to be used when connecting to the "
+"source.  If this is omitted then the input hypervisor may ask for the "
+"password interactively.  Note the file should contain the whole password, "
+"B<without any trailing newline>, and for security the file should have mode "
+"C<0600> so that others cannot read it."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:180 in-place/virt-v2v-in-place.pod:236
+msgid "See L<virt-v2v(1)/Networks and bridges>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:187
+msgid ""
+"The fields in the parameter are: C<ipaddr> is the IP address.  C<gw> is the "
+"optional gateway IP address.  C<len> is the subnet mask length (an "
+"integer).  The final parameters are zero or more nameserver IP addresses."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:204
+msgid ""
+"This option is used to make the output more machine friendly when being "
+"parsed by other programs.  See L<virt-v2v(1)/Machine readable output>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:212
+msgid ""
+"Change the amount of memory allocated when doing the conversion.  "
+"Virt-v2v-in-place will usually choose a suitable default.  Increase this if "
+"you see that the conversion step is running out of memory."
+msgstr ""
+
+#. type: =item
+#: in-place/virt-v2v-in-place.pod:238
+msgid "B<-O> output.xml"
+msgstr ""
+
+#. type: =item
+#: in-place/virt-v2v-in-place.pod:240 inspector/virt-v2v-inspector.pod:141
+msgid "B<-O ->"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:242
+msgid ""
+"If this option is present, write post-conversion metadata about the guest to "
+"the named XML file, or to stdout if I<-O -> is used.  This is in the same "
+"format as L<virt-v2v-inspector(1)>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:248
+msgid ""
+"Print information about the source guest and stop.  This option is useful "
+"when you are setting up network and bridge maps.  See L<virt-v2v(1)/Networks "
+"and bridges>."
+msgstr ""
+
+#. type: =item
+#: in-place/virt-v2v-in-place.pod:258 inspector/virt-v2v-inspector.pod:209
+msgid "B<--root> ..."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:260
+msgid ""
+"Choose the root filesystem to be converted.  See the documentation of this "
+"option in L<virt-v2v(1)>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:265
+msgid ""
+"Change the number of virtual CPUs used when doing the conversion.  "
+"Virt-v2v-in-place will usually choose a suitable default."
+msgstr ""
+
+#. type: =head2
+#: in-place/virt-v2v-in-place.pod:334
+msgid "Disk checksum"
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:336
+msgid ""
+"The optional E<lt>checksumE<gt> field specifies the expected hash of the "
+"corresponding disk.  It can be specified by management tools in order to do "
+"end-to-end data integrity checks."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:340
+msgid ""
+"Note this is the checksum of the raw format content of the disk.  If the "
+"disk is in a container format (eg. qcow2) it is the checksum of the content, "
+"I<not> of the container."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:344
+msgid "The checksum method attribute can be C<md5>, C<sha256> or C<sha512>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:346
+msgid ""
+"The fail attribute can be C<error> to fail the conversion if the checksum "
+"does not match; C<warn> to print a warning but continue; C<ignore> to ignore "
+"the checksum and not even compute it; or C<print> to print the actual "
+"checksum and continue.  The default is C<fail=warn>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:352
+msgid ""
+"Computing the checksum of a remote (eg HTTP) source can be slow and "
+"expensive."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:357 inspector/virt-v2v-inspector.pod:221
+#: open/virt-v2v-open.pod:134
+msgid "Files used are the same as for virt-v2v.  See L<virt-v2v(1)/FILES>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:361 inspector/virt-v2v-inspector.pod:225
+#: open/virt-v2v-open.pod:138
+msgid ""
+"Environment variables used are the same as for virt-v2v.  See "
+"L<virt-v2v(1)/ENVIRONMENT VARIABLES>."
+msgstr ""
+
+#. type: textblock
+#: in-place/virt-v2v-in-place.pod:366
+msgid ""
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, "
+"L<qemu-img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:3
+msgid "virt-v2v-inspector - Estimate disk space needed before virt-v2v conversion"
+msgstr ""
+
+#. type: verbatim
+#: inspector/virt-v2v-inspector.pod:7
+#, no-wrap
+msgid ""
+" virt-v2v-inspector [-i* options]\n"
+"                    [virt-customize options]\n"
+"                    guest\n"
+"                    [-O output.xml]\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:14
+msgid ""
+"Virt-v2v-inspector is a companion tool for L<virt-v2v(1)> which can be used "
+"before conversion to estimate the number of output disks and disk space that "
+"will be required to complete the virt-v2v conversion.  The common use for "
+"this is to preallocate target disks on management systems that need this "
+"(like Kubevirt)."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:20
+msgid ""
+"This manual page only documents the estimation feature, not all of the "
+"I<-i*> options which are the same as virt-v2v.  You should read "
+"L<virt-v2v(1)> first."
+msgstr ""
+
+#. type: =head2
+#: inspector/virt-v2v-inspector.pod:24 open/virt-v2v-open.pod:46
+msgid "Selecting the input guest"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:26
+msgid ""
+"You can run virt-v2v-inspector with the same I<-i*> options as virt-v2v.  "
+"(Don't use any I<-o*> options).  This will select the guest that you want to "
+"estimate."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:30
+msgid ""
+"For example to estimate the space required for a guest in a stored local "
+"disk called F<filename.img> you could do:"
+msgstr ""
+
+#. type: verbatim
+#: inspector/virt-v2v-inspector.pod:33
+#, no-wrap
+msgid ""
+" virt-v2v-inspector -i disk filename.img\n"
+"\n"
+msgstr ""
+
+#. type: =head2
+#: inspector/virt-v2v-inspector.pod:35
+msgid "Output"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:37
+msgid "The output from this tool is an XML document."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:43
+msgid ""
+"Fields which are annotated with an C<estimated='true'> attribute are "
+"estimated.  Virt-v2v cannot always know exactly the final size of some "
+"things, such as the exact real size of the output disk, since there might be "
+"small perturbations between runs.  Estimates are usually very close to the "
+"final values."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:51
+msgid "Numbers representing sizes are always given in bytes."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:55
+msgid ""
+"By default the output is written to stdout.  This is useful when using the "
+"program interactively.  However if you want to use this tool from another "
+"program it is better to send the output to a specific file using I<-O "
+"output.xml>"
+msgstr ""
+
+#. type: verbatim
+#: inspector/virt-v2v-inspector.pod:62
+#, no-wrap
+msgid ""
+" <?xml version='1.0' encoding='utf-8'?>\n"
+" <v2v-inspection>\n"
+"   <program>virt-v2v-inspector</program>\n"
+"   <package>virt-v2v</package>\n"
+"   <version>2.1.9</version>\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:68
+msgid ""
+"The E<lt>programE<gt>, E<lt>packageE<gt> and E<lt>versionE<gt> elements "
+"refer to the current version of virt-v2v-inspector and are useful for "
+"debugging.  Make sure you use the same version of virt-v2v-inspector and "
+"virt-v2v."
+msgstr ""
+
+#. type: verbatim
+#: inspector/virt-v2v-inspector.pod:73
+#, no-wrap
+msgid ""
+"   <disks>\n"
+"     <disk index='0'>\n"
+"       <virtual-size>6442450944</virtual-size>\n"
+"       <allocated estimated='true'>1400897536</allocated>\n"
+"     </disk>\n"
+"     <disk index='1'>\n"
+"       <virtual-size>6442450944</virtual-size>\n"
+"       <allocated estimated='true'>45131520</allocated>\n"
+"     </disk>\n"
+"   </disks>\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:84
+msgid ""
+"The E<lt>disksE<gt> element lists information about each guest disk.  The "
+"example virtual machine above has two disks.  E<lt>virtual-sizeE<gt> "
+"describes the size of the disk as seen from inside the guest, while "
+"E<lt>allocatedE<gt> is an estimate of how much storage will be needed on the "
+"host after conversion.  This is assuming you use S<I<-oa sparse>> - see the "
+"notes below."
+msgstr ""
+
+#. type: verbatim
+#: inspector/virt-v2v-inspector.pod:91
+#, no-wrap
+msgid ""
+"   <operatingsystem>\n"
+"     <name>linux</name>\n"
+"     <distro>fedora</distro>\n"
+"     <osinfo>fedora32</osinfo>\n"
+"     <arch>x86_64</arch>\n"
+"     [...]\n"
+"   </operatingsystem>\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:99
+msgid ""
+"The E<lt>operatingsystemE<gt> element lists information about the guest "
+"operating system gleaned during conversion, in a manner similar to the "
+"L<virt-inspector(1)> tool from guestfs-tools."
+msgstr ""
+
+#. type: =head2
+#: inspector/virt-v2v-inspector.pod:103
+msgid "Output allocation mode and output format"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:105
+msgid ""
+"Virt-v2v supports selecting the output allocation mode (I<-oa> option)  and "
+"output format (I<-of> option, eg. S<I<-of qcow2>>).  Since it is difficult "
+"to predict the effect of these options on the actual space occupied by the "
+"final image this tool does not account for them."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:110
+msgid "As a rule of thumb:"
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:114
+msgid "S<virt-v2v -oa preallocated>"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:116
+msgid ""
+"causes the disk images on the target to consume their full virtual size "
+"(excluding the effect of zero allocations will depends so much on the "
+"underlying storage that it is often hard even for experts to predict)."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:121
+msgid "S<virt-v2v -of qcow2>"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:123
+msgid ""
+"uses the QCOW2 format where supported which means that the apparent size of "
+"the file will be equal to its sparse size, but otherwise should not affect "
+"estimates very much."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:137
+msgid "B<-O> F<output.xml>"
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:139
+msgid "Write the output to a file called F<output.xml>."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:143
+msgid ""
+"Write the output to stdout.  This is also the default if the I<-O> option is "
+"omitted."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:162 open/virt-v2v-open.pod:93
+msgid "B<-i> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:164 open/virt-v2v-open.pod:95
+msgid "B<-ic> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:166 open/virt-v2v-open.pod:97
+msgid "B<-if> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:168 open/virt-v2v-open.pod:99
+msgid "B<-io> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:170 open/virt-v2v-open.pod:101
+msgid "B<-ip> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:172 open/virt-v2v-open.pod:103
+msgid "B<-it> ..."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:174
+msgid ""
+"All of the I<-i*> options supported by virt-v2v and also supported by "
+"virt-v2v-inspector."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:187
+msgid "B<--key> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:191
+msgid "B<--mac> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:201
+msgid "B<-n> ..."
+msgstr ""
+
+#. type: =item
+#: inspector/virt-v2v-inspector.pod:203
+msgid "B<--network> ..."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:215 open/virt-v2v-open.pod:122
+msgid "These options work in the same way as the equivalent virt-v2v options."
+msgstr ""
+
+#. type: textblock
+#: inspector/virt-v2v-inspector.pod:230
+msgid ""
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, L<guestfs(3)>, "
+"L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:3
+msgid "virt-v2v-open - Open the virt-v2v input and run a program on it"
+msgstr ""
+
+#. type: verbatim
+#: open/virt-v2v-open.pod:7
+#, no-wrap
+msgid ""
+" virt-v2v-open [-i* options] guest --run 'program [--options] @@'\n"
+"\n"
+msgstr ""
+
+#. type: verbatim
+#: open/virt-v2v-open.pod:9
+#, no-wrap
+msgid ""
+" virt-v2v-open -i disk guest.img --run 'virt-inspector --format=raw @@'\n"
+"\n"
+msgstr ""
+
+#. type: verbatim
+#: open/virt-v2v-open.pod:11
+#, no-wrap
+msgid ""
+" virt-v2v-open -i disk guest.img --run 'guestfish --ro --format=raw @@ -i'\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:15
+msgid ""
+"Virt-v2v-open is a companion tool for L<virt-v2v(1)> and "
+"L<virt-v2v-inspector(1)> which can be used before conversion to open the "
+"input side of virt-v2v and run a program."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:19
+msgid ""
+"Some uses for this include running L<virt-inspector(1)> directly on the "
+"source guest to find source operating systems (to use with the virt-v2v "
+"I<--root> option).  Or running guestfish to take a look inside the source "
+"guest before conversion.  You can follow that by running "
+"L<virt-v2v-inspector(1)> to estimate how much space would be needed to "
+"convert that guest, and if conversion of the guest is possible."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:27
+msgid ""
+"This manual page only documents the program options, not all of the I<-i*> "
+"options which are the same as virt-v2v.  You should read L<virt-v2v(1)> "
+"first."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:31
+msgid "Notes:"
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:37
+msgid ""
+"The source guest is always opened read-only.  You will not be able to make "
+"persistent changes."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:42
+msgid "L<virt-inspector(1)> can be used directly on local disk images."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:48
+msgid ""
+"You can run virt-v2v-open with the same I<-i*> options as virt-v2v.  (Don't "
+"use any I<-o*> options).  This will select the guest that you want to open."
+msgstr ""
+
+#. type: =head2
+#: open/virt-v2v-open.pod:52
+msgid "Running the program"
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:54
+msgid ""
+"On the command line, put the program that you want to run on the source "
+"guest and any other parameters that program needs into the I<--run> "
+"parameter.  C<@@> in the parameter is substituted with I<-a DISK ...> for "
+"each source disk, in a way which is compatible with L<virt-inspector(1)> and "
+"L<guestfish(1)>."
+msgstr ""
+
+#. type: verbatim
+#: open/virt-v2v-open.pod:60
+#, no-wrap
+msgid ""
+" virt-v2v-open [-i ...] guest \\\n"
+"               --run 'virt-inspector --format=raw @@ > output.xml'\n"
+"\n"
+msgstr ""
+
+#. type: verbatim
+#: open/virt-v2v-open.pod:63
+#, no-wrap
+msgid ""
+" virt-v2v-open [-i ...] guest \\\n"
+"               --run 'guestfish --ro --format=raw @@ -i'\n"
+"\n"
+msgstr ""
+
+#. type: verbatim
+#: open/virt-v2v-open.pod:66
+#, no-wrap
+msgid ""
+" virt-v2v-open [-i ...] guest \\\n"
+"               --run 'guestfish --ro --format=raw @@ run : "
+"list-filesystems'\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:105
+msgid ""
+"All of the I<-i*> options supported by virt-v2v are also supported by "
+"virt-v2v-open."
+msgstr ""
+
+#. type: =item
+#: open/virt-v2v-open.pod:124
+msgid "B<--run> COMMAND"
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:126
+msgid ""
+"The command that you want to run on the source guest.  C<@@> in the command "
+"is substituted with a list of I<-a DISK> options that is compatible with "
+"virt-inspector and guestfish."
+msgstr ""
+
+#. type: textblock
+#: open/virt-v2v-open.pod:143
+msgid ""
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, "
+"L<virt-v2v-inspector(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, "
+"L<nbdkit(1)>, L<http://libguestfs.org/>."
 msgstr ""

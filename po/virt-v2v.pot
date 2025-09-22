@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.9.7\n"
+"Project-Id-Version: virt-v2v 2.9.8\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-09-20 17:17+0100\n"
+"POT-Creation-Date: 2025-09-22 15:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: input/input_ova.ml:136 common/mltools/tools_utils.ml:235
+#: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgid ""
 "%!"
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:409
+#: common/mlcustomize/inject_virtio_win.ml:414
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 msgid "--parallel parameter must be >= 1"
 msgstr ""
 
-#: input/input_disk.ml:43
+#: input/input_disk.ml:42
 msgid "-i disk: expecting a disk image (filename) on the command line"
 msgstr ""
 
@@ -241,17 +241,17 @@ msgstr ""
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr ""
 
-#: input/input_ova.ml:244
+#: input/input_ova.ml:243
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
 
-#: input/input_ova.ml:79
+#: input/input_ova.ml:78
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
 msgstr ""
 
-#: input/input_ova.ml:53
+#: input/input_ova.ml:52
 msgid "-i ova: expecting an OVA file name on the command line"
 msgstr ""
 
@@ -756,10 +756,10 @@ msgid "Moving: %s -> %s"
 msgstr ""
 
 #. input/input_vcenter_https.ml:45
-#. input/input_ova.ml:36
+#. input/input_ova.ml:35
 #. input/input_libvirt.ml:233
 #. input/input_libvirt.ml:221
-#. input/input_disk.ml:36
+#. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
 msgstr ""
@@ -1406,7 +1406,7 @@ msgstr ""
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 
-#: input/input_ova.ml:99
+#: input/input_ova.ml:98
 msgid "could not parse ovf:Name from OVF document"
 msgstr ""
 
@@ -1447,7 +1447,7 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: input/input_disk.ml:151
+#: input/input_disk.ml:150
 msgid "disks on the command line have mixed formats"
 msgstr ""
 
@@ -1499,7 +1499,7 @@ msgstr ""
 msgid "error parsing disk fileRef"
 msgstr ""
 
-#: input/input_ova.ml:125
+#: input/input_ova.ml:124
 msgid "error uncompressing %s, see earlier error messages"
 msgstr ""
 
@@ -1519,7 +1519,7 @@ msgstr ""
 msgid "exited with non-zero error code %d"
 msgstr ""
 
-#: input/input_disk.ml:148
+#: input/input_disk.ml:147
 msgid "expected >= 1 disk name on the command line"
 msgstr ""
 
@@ -1565,7 +1565,7 @@ msgstr ""
 msgid "failure: %s"
 msgstr ""
 
-#: input/input_ova.ml:135
+#: input/input_ova.ml:134
 msgid "file ‘%s’ not found in the ova"
 msgstr ""
 
@@ -1712,7 +1712,7 @@ msgstr ""
 msgid "invalid -n/--network parameter"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:403
+#: input/parse_domain_from_vmx.ml:402
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
@@ -1726,7 +1726,7 @@ msgstr ""
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
-#: input/name_from_disk.ml:40
+#: lib/utils.ml:290
 msgid "invalid input filename (%s)"
 msgstr ""
 
@@ -1803,7 +1803,7 @@ msgid ""
 "bugzilla.redhat.com/1045069"
 msgstr ""
 
-#: input/input_ova.ml:87
+#: input/input_ova.ml:86
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 
@@ -1881,7 +1881,7 @@ msgstr ""
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
-#: input/input_disk.ml:93
+#: input/input_disk.ml:92
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
@@ -1924,7 +1924,7 @@ msgid ""
 msgstr ""
 
 #. input/input_libvirt.ml:76
-#. input/input_disk.ml:99
+#. input/input_disk.ml:98
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:259
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
@@ -1933,7 +1933,7 @@ msgstr ""
 msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
-#. input/input_disk.ml:97
+#. input/input_disk.ml:96
 #: output/output.ml:177 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
@@ -1959,9 +1959,9 @@ msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
 #. input/input_vcenter_https.ml:49
-#. input/input_ova.ml:47
+#. input/input_ova.ml:46
 #. input/input_libvirt.ml:35
-#. input/input_disk.ml:40
+#. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
 msgid "no -io (input options) are allowed here"
 msgstr ""
@@ -1979,7 +1979,7 @@ msgstr ""
 msgid "no bootloader detected"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:360
+#: input/parse_domain_from_vmx.ml:359
 msgid "no displayName key found in VMX file"
 msgstr ""
 
@@ -2123,13 +2123,13 @@ msgstr ""
 msgid "random seed could not be set for this type of guest"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:45
+#: input/parse_domain_from_vmx.ml:44
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr ""
 
+#. common/mlcustomize/inject_virtio_win.ml:360
 #. common/mlcustomize/inject_virtio_win.ml:355
-#. common/mlcustomize/inject_virtio_win.ml:350
-#: common/mlcustomize/inject_virtio_win.ml:360
+#: common/mlcustomize/inject_virtio_win.ml:365
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2423,7 +2423,7 @@ msgstr ""
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:416
+#: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
 
@@ -2435,7 +2435,7 @@ msgstr ""
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:429
+#: input/parse_domain_from_vmx.ml:428
 msgid "unknown sound device '%s' ignored"
 msgstr ""
 
@@ -2521,23 +2521,23 @@ msgstr ""
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:51
+#: input/parse_domain_from_vmx.ml:50
 msgid "vmx URI path component looks incorrect"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:49
+#: input/parse_domain_from_vmx.ml:48
 msgid "vmx URI remote server name omitted"
 msgstr ""
 
-#: input/parse_domain_from_vmx.ml:47
+#: input/parse_domain_from_vmx.ml:46
 msgid "vmx URI start with ‘ssh://...’"
 msgstr ""
 
-#: input/parse_vmx.ml:313
+#: input/VMX.ml:313
 msgid "vmx parser: cannot parse this line, ignoring: %s"
 msgstr ""
 
-#: input/parse_vmx.ml:346
+#: input/VMX.ml:346
 msgid "vmx parser: duplicate key '%s' ignored"
 msgstr ""
 

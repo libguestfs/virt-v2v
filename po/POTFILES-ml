@@ -54,15 +54,14 @@ input/input_vcenter_https.ml
 input/input_vddk.ml
 input/input_vmx.ml
 input/input_xen_ssh.ml
-input/name_from_disk.ml
 input/nbdkit_curl.ml
 input/nbdkit_ssh.ml
 input/parse_domain_from_vmx.ml
 input/parse_libvirt_xml.ml
-input/parse_vmx.ml
 input/select_input.ml
 input/ssh.ml
 input/vCenter.ml
+input/VMX.ml
 inspector/create_inspector_xml.ml
 inspector/inspector.ml
 lib/NBD_URI.ml
