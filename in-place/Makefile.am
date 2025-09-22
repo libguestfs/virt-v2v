@@ -144,6 +144,15 @@ virttoolsdatadir = $(datadir)/virt-tools
 man_MANS = virt-v2v-in-place.1
 noinst_DATA = $(top_builddir)/website/virt-v2v-in-place.1.html
 
+# Man page is preprocessed with m4 for conditional sections.
+PP_M4 = \
+	m4 \
+	-D ENABLE_BLOCK_DRIVER=$(ENABLE_BLOCK_DRIVER) \
+	-D ENABLE_XEN=$(ENABLE_XEN) \
+	-D ENABLE_GLANCE=$(ENABLE_GLANCE) \
+	-D ENABLE_OVIRT=$(ENABLE_OVIRT) \
+	$(NULL)
+
 virt-v2v-in-place.1 $(top_builddir)/website/virt-v2v-in-place.1.html: stamp-virt-v2v-in-place.pod
 
 stamp-virt-v2v-in-place.pod: virt-v2v-in-place.pod
