@@ -989,6 +989,11 @@ if errorlevel 3010 exit /b 0
 let post_convert (g : G.guestfs) inspect =
   (* Lock down firstboot dir permissions for windows guests *)
   message (f_"Fixing NTFS permissions");
+  (* XXX It would be more correct to use g#case_sensitive_path
+   * here, but we cannot do that since the guest filesystem is
+   * not mounted.  As fixing permissions is best-effort, let's
+   * not worry about it.
+   *)
   let path = "/Program Files/Guestfs" in
   debug "info: fixing NTFS permissions on %s" path;
   try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
