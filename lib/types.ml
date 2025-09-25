@@ -481,7 +481,7 @@ let string_of_target_bus_slots bus_name slots =
         sprintf "%s slot %d:\n" bus_name slot_nr ^
           (match slot with
            | BusSlotEmpty -> "\t(slot empty)\n"
-           | BusSlotDisk d -> string_of_source_disk d
+           | BusSlotDisk d -> string_of_source_disk d ^ "\n"
            | BusSlotRemovable r -> string_of_source_removable r ^ "\n"
           )
     ) slots in
