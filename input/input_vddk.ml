@@ -35,6 +35,53 @@ open Input
  *)
 let libNN = sprintf "lib%d" Sys.word_size
 
+(* Calculate the nbdkit vddk plugin 'export' parameter.  This is a
+ * wildcard that must match all filenames given.  nbdkit uses
+ * 'fnmatch (export, filename, FNM_PATHNAME)' when checking this,
+ * which means:
+ *  - We have to escape any fnmatch-special chars such as '[' and '*'
+ *  - '*' does not match '/' characters in the filename
+ *)
+let get_vddk_export_wildcard = function
+  | [] -> assert false (* can't happen, checked by the caller *)
+  | [f] -> fnmatch_escape f (* single file, just escape the whole thing *)
+  | files ->
+     (* We implicitly assume all files end in *.vmdk, check that. *)
+     List.iter (fun f -> assert (String.ends_with ".vmdk" f)) files;
+
+     (* Calculate the longest common prefix of all the filenames.
+      * Remove the prefix from each filename, leaving the remainder strings.
+      * eg.
+      *   "foobar", "foobazs" => prefix = "fooba", remainders = ["r", "zs"]
+      *)
+     let prefix = String.longest_common_prefix files in
+     let prefix_len = String.length prefix in
+     let remainders = List.map (
+       fun f ->
+         let n = String.length f in
+         assert (prefix_len <= n);
+         String.sub f prefix_len (n - prefix_len)
+     ) files in
+
+     (* The number of '/' (slash) characters in the remainders must be
+      * the same, otherwise there's something weird with subdirectories
+      * going on that we can't handle yet.  (XXX If this happens, then
+      * we'd need to change nbdkit because it cannot possibly handle
+      * a wildcard that matches different directory depths).
+      *)
+     let count_slashes = List.map (String.count_chars '/') remainders in
+     let nr_slashes = List.hd count_slashes in
+     List.iter (fun nr -> assert (nr_slashes = nr)) count_slashes;
+
+     (* Now we need to generate "*/*/*" for this number of slashes. *)
+     let stars = List.make (nr_slashes+1) "*" in
+     let stars_n_slashes = String.concat "/" stars in
+
+     (* Construct the final wildcard.  Note we only need to
+      * escape the prefix (the only part which is user content).
+      *)
+     fnmatch_escape prefix ^ stars_n_slashes ^ ".vmdk"
+
 module VDDK = struct
   let to_string options args =
     let xs = "-it vddk" :: args in
@@ -433,24 +480,14 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
        * instance of nbdkit.
        *)
       if Nbdkit.probe_plugin_parameter "vddk" "export=" then (
-        let wildcard =
-          match files with
-          | [] -> assert false (* can't happen, see assert above *)
-          | [f] -> fnmatch_escape f
-          | files ->
-             (* Calculate the longest common prefix across all the files,
-              * then set the wildcard to this.
-              * XXX May not work if there are subdirectories?
-              * XXX Is every file we want to read called *.vmdk?
-              *)
-             let prefix = String.longest_common_prefix files in
-             fnmatch_escape prefix ^ "*.vmdk" in
-
         let socket = sprintf "%s/in0" dir in
         On_exit.unlink socket;
 
         let nbdkit = create_nbdkit_vddk ~name:"in" () in
+
+        let wildcard = get_vddk_export_wildcard files in
         Nbdkit.add_arg nbdkit "export" wildcard;
+
         let _, pid = Nbdkit.run_unix socket nbdkit in
         On_exit.kill pid;
 
