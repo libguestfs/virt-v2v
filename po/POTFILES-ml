@@ -11,7 +11,6 @@ common/mlcustomize/password.ml
 common/mlcustomize/perl_edit.ml
 common/mlcustomize/random_seed.ml
 common/mlcustomize/ssh_key.ml
-common/mlcustomize/subscription_manager.ml
 common/mlcustomize/timezone.ml
 common/mldrivers/firmware.ml
 common/mldrivers/linux.ml
@@ -46,6 +45,7 @@ common/mlxml/xml.ml
 in-place/in_place.ml
 input/OVA.ml
 input/OVF.ml
+input/VMX.ml
 input/input.ml
 input/input_disk.ml
 input/input_libvirt.ml
@@ -61,7 +61,6 @@ input/parse_libvirt_xml.ml
 input/select_input.ml
 input/ssh.ml
 input/vCenter.ml
-input/VMX.ml
 inspector/create_inspector_xml.ml
 inspector/inspector.ml
 lib/NBD_URI.ml

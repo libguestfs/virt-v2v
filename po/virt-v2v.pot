@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.9.8\n"
+"Project-Id-Version: virt-v2v 2.9.9\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-09-22 15:38+0100\n"
+"POT-Creation-Date: 2025-10-16 17:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:427
+#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgid ""
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
-#: input/input_vddk.ml:179
+#: input/input_vddk.ml:226
 msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
@@ -171,8 +171,8 @@ msgstr ""
 msgid "%s: warning: %s"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:270
-#: common/mlcustomize/customize_cmdline.ml:379
+#. common/mlcustomize/customize_cmdline.ml:258
+#: common/mlcustomize/customize_cmdline.ml:367
 msgid "'CMD+ARGS'"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr ""
 
-#: input/input_vddk.ml:114 input/input_vcenter_https.ml:88
+#: input/input_vddk.ml:161 input/input_vcenter_https.ml:88
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
 
@@ -233,7 +233,7 @@ msgstr ""
 
 #. input/input_vcenter_https.ml:70
 #. input/input_libvirt.ml:41
-#: input/input_xen_ssh.ml:57 input/input_vddk.ml:104
+#: input/input_xen_ssh.ml:57 input/input_vddk.ml:151
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
 msgstr ""
 
@@ -273,7 +273,7 @@ msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
 
-#: input/input_vddk.ml:91
+#: input/input_vddk.ml:138
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgstr ""
 
@@ -441,22 +441,22 @@ msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
 
-#: input/input_vddk.ml:148
+#: input/input_vddk.ml:195
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
 "3.7."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:317
+#: common/mlcustomize/customize_cmdline.ml:305
 msgid "Add package(s) to install"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:282
+#: common/mlcustomize/customize_cmdline.ml:270
 msgid "Add package(s) to install at first boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:187
+#: common/mlcustomize/customize_cmdline.ml:175
 msgid "Append line(s) to the file"
 msgstr ""
 
@@ -464,23 +464,11 @@ msgstr ""
 msgid "Appending line to %s"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:397
-msgid "Attach to a subscription-manager pool"
-msgstr ""
-
-#: common/mlcustomize/customize_run.ml:285
-msgid "Attaching to compatible subscriptions"
-msgstr ""
-
-#: common/mlcustomize/customize_run.ml:289
-msgid "Attaching to the pool %s"
-msgstr ""
-
-#: common/mlcustomize/customize_cmdline.ml:209
+#: common/mlcustomize/customize_cmdline.ml:197
 msgid "Change the owner user and group ID of a file or directory"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:198
+#: common/mlcustomize/customize_cmdline.ml:186
 msgid "Change the permissions of a file"
 msgstr ""
 
@@ -496,19 +484,19 @@ msgstr ""
 msgid "Checking %s checksum of disk %d/%d"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:529
+#: common/mlcustomize/customize_cmdline.ml:488
 msgid "Compatibility option doing nothing"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:231
+#: common/mlcustomize/customize_cmdline.ml:219
 msgid "Copy files in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:438
+#: common/mlcustomize/customize_cmdline.ml:397
 msgid "Copy local files or directories from a tarball into image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:242
+#: common/mlcustomize/customize_cmdline.ml:230
 msgid "Copy local files or directories into image"
 msgstr ""
 
@@ -524,11 +512,11 @@ msgstr ""
 msgid "Copying: %s to %s"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:334
+#: common/mlcustomize/customize_cmdline.ml:322
 msgid "Create a directory"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:328
+#: common/mlcustomize/customize_cmdline.ml:316
 msgid "Create symbolic links"
 msgstr ""
 
@@ -536,15 +524,11 @@ msgstr ""
 msgid "Creating output metadata"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:539
-msgid "Credentials for subscription-manager"
-msgstr ""
-
-#: common/mlcustomize/customize_cmdline.ml:333
+#: common/mlcustomize/customize_cmdline.ml:321
 msgid "DIR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:248
+#: common/mlcustomize/customize_cmdline.ml:236
 msgid "Delete a file or directory"
 msgstr ""
 
@@ -560,7 +544,7 @@ msgstr ""
 msgid "Display version and exit"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:523
+#: common/mlcustomize/customize_cmdline.ml:482
 msgid "Do not relabel files with correct SELinux labels"
 msgstr ""
 
@@ -572,7 +556,7 @@ msgstr ""
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:259
+#: common/mlcustomize/customize_cmdline.ml:247
 msgid "Edit file using Perl expression"
 msgstr ""
 
@@ -596,29 +580,29 @@ msgstr ""
 msgid "External command to run"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:449
-#. common/mlcustomize/customize_cmdline.ml:385
-#: common/mlcustomize/customize_cmdline.ml:455
+#. common/mlcustomize/customize_cmdline.ml:408
+#. common/mlcustomize/customize_cmdline.ml:373
+#: common/mlcustomize/customize_cmdline.ml:414
 msgid "FILE"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:496
+#: common/mlcustomize/customize_cmdline.ml:455
 msgid "FILE:CONTENT"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:485
+#: common/mlcustomize/customize_cmdline.ml:444
 msgid "FILE:DEST"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:254
+#: common/mlcustomize/customize_cmdline.ml:242
 msgid "FILE:EXPR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:182
+#: common/mlcustomize/customize_cmdline.ml:170
 msgid "FILE:LINE"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:215
+#: common/mlcustomize/customize_cmdline.ml:203
 msgid "FILENAME"
 msgstr ""
 
@@ -627,7 +611,7 @@ msgstr ""
 msgid "Finishing off"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:287
+#: common/mlcustomize/customize_cmdline.ml:275
 msgid "HOSTNAME"
 msgstr ""
 
@@ -643,19 +627,19 @@ msgid ""
 "  %s -v -x [...]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:427
+#: common/mlcustomize/customize_cmdline.ml:386
 msgid "Inject a public key into the guest"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:294
+#: common/mlcustomize/customize_cmdline.ml:282
 msgid "Inject the Balloon Server into a Windows guest"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:300
+#: common/mlcustomize/customize_cmdline.ml:288
 msgid "Inject the QEMU Guest Agent into a Windows guest"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:306
+#: common/mlcustomize/customize_cmdline.ml:294
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
@@ -664,7 +648,7 @@ msgstr ""
 msgid "Input format"
 msgstr ""
 
-#: input/input_vddk.ml:49
+#: input/input_vddk.ml:96
 msgid ""
 "Input options (-io) which can be used with -it vddk\n"
 "(all settings are optional):\n"
@@ -708,7 +692,7 @@ msgstr ""
 msgid "Installing packages: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:237
+#: common/mlcustomize/customize_cmdline.ml:225
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
@@ -721,9 +705,9 @@ msgstr ""
 msgid "Linking: %s -> %s"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:299
-#. common/mlcustomize/customize_cmdline.ml:293
-#: common/mlcustomize/customize_cmdline.ml:305
+#. common/mlcustomize/customize_cmdline.ml:287
+#. common/mlcustomize/customize_cmdline.ml:281
+#: common/mlcustomize/customize_cmdline.ml:293
 msgid "METHOD"
 msgstr ""
 
@@ -747,7 +731,7 @@ msgstr ""
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:345
+#: common/mlcustomize/customize_cmdline.ml:333
 msgid "Move files in disk image"
 msgstr ""
 
@@ -852,18 +836,18 @@ msgid ""
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:247
-#: common/mlcustomize/customize_cmdline.ml:461
+#. common/mlcustomize/customize_cmdline.ml:235
+#: common/mlcustomize/customize_cmdline.ml:420
 msgid "PATH"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:193
+#: common/mlcustomize/customize_cmdline.ml:181
 msgid "PERMISSIONS:FILE"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:312
-#. common/mlcustomize/customize_cmdline.ml:277
-#: common/mlcustomize/customize_cmdline.ml:468
+#. common/mlcustomize/customize_cmdline.ml:300
+#. common/mlcustomize/customize_cmdline.ml:265
+#: common/mlcustomize/customize_cmdline.ml:427
 msgid "PKG,PKG.."
 msgstr ""
 
@@ -875,7 +859,7 @@ msgstr ""
 msgid "Print source and stop"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:220
+#: common/mlcustomize/customize_cmdline.ml:208
 msgid "Read customize commands from file"
 msgstr ""
 
@@ -883,51 +867,35 @@ msgstr ""
 msgid "Read passphrases from stdin"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:462
+#: common/mlcustomize/customize_cmdline.ml:421
 msgid "Recursively truncate all files in directory"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:335
+#: common/mlcustomize/customize_run.ml:298
 msgid "Recursively truncating: %s"
-msgstr ""
-
-#: common/mlcustomize/customize_cmdline.ml:403
-msgid "Register using subscription-manager"
-msgstr ""
-
-#: common/mlcustomize/customize_run.ml:295
-msgid "Registering with subscription-manager"
-msgstr ""
-
-#: common/mlcustomize/customize_cmdline.ml:409
-msgid "Remove all the subscriptions"
-msgstr ""
-
-#: common/mlcustomize/customize_run.ml:310
-msgid "Removing all the subscriptions"
 msgstr ""
 
 #: v2v/v2v.ml:238
 msgid "Rename guest when converting"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:271
+#: common/mlcustomize/customize_cmdline.ml:259
 msgid "Run command at first guest boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:380
+#: common/mlcustomize/customize_cmdline.ml:368
 msgid "Run command in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:265
+#: common/mlcustomize/customize_cmdline.ml:253
 msgid "Run script at first guest boot"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:374
+#: common/mlcustomize/customize_cmdline.ml:362
 msgid "Run script in disk image"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:450
+#: common/mlcustomize/customize_cmdline.ml:409
 msgid "Run touch on a file"
 msgstr ""
 
@@ -939,7 +907,7 @@ msgstr ""
 msgid "Running external command"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:344
+#: common/mlcustomize/customize_run.ml:307
 msgid "Running touch: %s"
 msgstr ""
 
@@ -948,44 +916,42 @@ msgstr ""
 msgid "Running: %s"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:264
-#: common/mlcustomize/customize_cmdline.ml:373
+#. common/mlcustomize/customize_cmdline.ml:252
+#: common/mlcustomize/customize_cmdline.ml:361
 msgid "SCRIPT"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:392
-#. common/mlcustomize/customize_cmdline.ml:363
 #: common/mltools/tools_utils.ml:422
-#: common/mlcustomize/customize_cmdline.ml:535
+#: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:400
+#: common/mlcustomize/customize_run.ml:363
 msgid "SELinux relabelling"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:226
-#: common/mlcustomize/customize_cmdline.ml:340
+#. common/mlcustomize/customize_cmdline.ml:214
+#: common/mlcustomize/customize_cmdline.ml:328
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:324
+#: common/mlcustomize/customize_run.ml:287
 msgid "SSH key could not be injected for this type of guest"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:321
+#: common/mlcustomize/customize_run.ml:284
 msgid "SSH key inject: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:386
+#: common/mlcustomize/customize_cmdline.ml:374
 msgid "Scrub a file"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:507
+#: common/mlcustomize/customize_cmdline.ml:466
 msgid "Scrub build log file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:411
+#: common/mlcustomize/customize_run.ml:374
 msgid "Scrubbing the log file"
 msgstr ""
 
@@ -1039,7 +1005,7 @@ msgstr ""
 msgid "Set output storage location"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:517
+#: common/mlcustomize/customize_cmdline.ml:476
 msgid "Set password crypto"
 msgstr ""
 
@@ -1047,15 +1013,15 @@ msgstr ""
 msgid "Set program name"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:368
+#: common/mlcustomize/customize_cmdline.ml:356
 msgid "Set root password"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:444
+#: common/mlcustomize/customize_cmdline.ml:403
 msgid "Set the default timezone"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:288
+#: common/mlcustomize/customize_cmdline.ml:276
 msgid "Set the hostname"
 msgstr ""
 
@@ -1063,7 +1029,7 @@ msgstr ""
 msgid "Set the output filename"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:357
+#: common/mlcustomize/customize_cmdline.ml:345
 msgid "Set user password"
 msgstr ""
 
@@ -1071,7 +1037,7 @@ msgstr ""
 msgid "Setting a random seed"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:391
+#: common/mlcustomize/customize_run.ml:354
 msgid "Setting passwords"
 msgstr ""
 
@@ -1087,7 +1053,7 @@ msgstr ""
 msgid "Setting the machine ID in %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:339
+#: common/mlcustomize/customize_run.ml:302
 msgid "Setting the timezone: %s"
 msgstr ""
 
@@ -1108,15 +1074,15 @@ msgstr ""
 msgid "Specify a LUKS key"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:433
+#: common/mlcustomize/customize_cmdline.ml:392
 msgid "TARFILE:REMOTEDIR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:323
+#: common/mlcustomize/customize_cmdline.ml:311
 msgid "TARGET:LINK[:LINK..]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:443
+#: common/mlcustomize/customize_cmdline.ml:402
 msgid "TIMEZONE"
 msgstr ""
 
@@ -1152,59 +1118,51 @@ msgid ""
 "\"NOTES\"."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:456
+#: common/mlcustomize/customize_cmdline.ml:415
 msgid "Truncate a file to zero size"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:331
+#: common/mlcustomize/customize_run.ml:294
 msgid "Truncating: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:204
+#: common/mlcustomize/customize_cmdline.ml:192
 msgid "UID:GID:PATH"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:351
+#: common/mlcustomize/customize_cmdline.ml:339
 msgid "USER:SELECTOR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:421
+#: common/mlcustomize/customize_cmdline.ml:380
 msgid "USER[:SELECTOR]"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:473
+#: common/mlcustomize/customize_cmdline.ml:432
 msgid "Uninstall package(s)"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:348
+#: common/mlcustomize/customize_run.ml:311
 msgid "Uninstalling packages: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:327
+#: common/mlcustomize/customize_run.ml:290
 msgid "Unpack tar file: %s to %s"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:415
-msgid "Unregister using subscription-manager"
-msgstr ""
-
-#: common/mlcustomize/customize_run.ml:315
-msgid "Unregistering with subscription-manager"
-msgstr ""
-
-#: common/mlcustomize/customize_cmdline.ml:479
+#: common/mlcustomize/customize_cmdline.ml:438
 msgid "Update packages"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:353
+#: common/mlcustomize/customize_run.ml:316
 msgid "Updating packages"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:490
+#: common/mlcustomize/customize_cmdline.ml:449
 msgid "Upload local file to destination"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:358
+#: common/mlcustomize/customize_run.ml:321
 msgid "Uploading: %s to %s"
 msgstr ""
 
@@ -1229,11 +1187,11 @@ msgstr ""
 msgid "Wrap log messages even if not tty"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:501
+#: common/mlcustomize/customize_cmdline.ml:460
 msgid "Write file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:383
+#: common/mlcustomize/customize_run.ml:346
 msgid "Writing: %s"
 msgstr ""
 
@@ -1340,11 +1298,11 @@ msgid ""
 "v2v (^C) and rerun it as root."
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:559
+#: common/mlcustomize/customize_cmdline.ml:508
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:576
+#: common/mlcustomize/customize_cmdline.ml:525
 msgid "command '%s' not valid, see the man page"
 msgstr ""
 
@@ -1369,7 +1327,7 @@ msgstr ""
 msgid "could not determine a way to update the configuration of Grub2"
 msgstr ""
 
-#: input/input_vddk.ml:215
+#: input/input_vddk.ml:262
 msgid ""
 "could not fetch thumbprint from the server, you mus use ‘-io vddk-"
 "thumbprint=XX:XX...’"
@@ -1394,7 +1352,7 @@ msgid ""
 msgstr ""
 
 #. input/input_vcenter_https.ml:94
-#: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:123
+#: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:170
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
@@ -1633,7 +1591,7 @@ msgstr ""
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
-#: input/input_vddk.ml:118
+#: input/input_vddk.ml:165
 msgid "in-place mode does not work with VDDK source"
 msgstr ""
 
@@ -1716,9 +1674,9 @@ msgstr ""
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 
-#. common/mlcustomize/customize_cmdline.ml:165
-#. common/mlcustomize/customize_cmdline.ml:157
-#: common/mlcustomize/customize_cmdline.ml:173
+#. common/mlcustomize/customize_cmdline.ml:153
+#. common/mlcustomize/customize_cmdline.ml:145
+#: common/mlcustomize/customize_cmdline.ml:161
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
@@ -1752,14 +1710,6 @@ msgstr ""
 
 #: input/OVA.ml:450
 msgid "invalid size returned by tar: %S"
-msgstr ""
-
-#: common/mlcustomize/subscription_manager.ml:54
-msgid "invalid sm-attach selector ‘%s’; see the man page"
-msgstr ""
-
-#: common/mlcustomize/subscription_manager.ml:41
-msgid "invalid sm-credentials selector ‘%s’; see the man page"
 msgstr ""
 
 #: common/mlcustomize/ssh_key.ml:45
@@ -1807,7 +1757,7 @@ msgstr ""
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:513
+#: common/mlcustomize/customize_cmdline.ml:472
 msgid "md5|sha256|sha512"
 msgstr ""
 
@@ -1841,7 +1791,7 @@ msgid ""
 "twice"
 msgstr ""
 
-#: input/input_vddk.ml:289
+#: input/input_vddk.ml:336
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1853,7 +1803,7 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: input/input_vddk.ml:283
+#: input/input_vddk.ml:330
 msgid ""
 "nbdkit VDDK plugin is not installed or not working.  It is required if you "
 "want to use VDDK.\n"
@@ -1877,7 +1827,7 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
-#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:255
+#: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:302
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
@@ -1925,7 +1875,7 @@ msgstr ""
 
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:98
-#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:259
+#: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:306
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
 
@@ -1950,7 +1900,7 @@ msgstr ""
 msgid "nbdkit-ssh-plugin is not installed"
 msgstr ""
 
-#: input/input_vddk.ml:257
+#: input/input_vddk.ml:304
 msgid "nbdkit-vddk-plugin is not installed"
 msgstr ""
 
@@ -2098,7 +2048,7 @@ msgid ""
 "If this is incorrect, use --password-crypto option and file a bug."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:396
+#: common/mlcustomize/customize_run.ml:359
 msgid "passwords could not be set for this type of guest"
 msgstr ""
 
@@ -2217,10 +2167,6 @@ msgstr ""
 
 #: output/changeuid.ml:60
 msgid "subprocess signalled or stopped by signal %d"
-msgstr ""
-
-#: common/mlcustomize/customize_run.ml:299
-msgid "subscription-manager credentials required for --sm-register"
 msgstr ""
 
 #: lib/utils.ml:33
@@ -2371,7 +2317,7 @@ msgstr ""
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:341
+#: common/mlcustomize/customize_run.ml:304
 msgid "timezone could not be set for this type of guest"
 msgstr ""
 
@@ -2553,15 +2499,15 @@ msgstr ""
 msgid "you must supply the --run parameter"
 msgstr ""
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:161
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:208
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr ""
 
-#: input/input_vddk.ml:245
+#: input/input_vddk.ml:292
 msgid "‘-io vddk-file=’ must be used exactly %d times"
 msgstr ""
 
-#: input/input_vddk.ml:267
+#: input/input_vddk.ml:314
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
@@ -2573,7 +2519,7 @@ msgid ""
 "format file, i.e. ‘-of qcow2’"
 msgstr ""
 
-#: input/input_vddk.ml:204
+#: input/input_vddk.ml:251
 msgid ""
 "‘openssl’ command not found: automatically detecting thumbprint is not "
 "possible, so you must use ‘-io vddk-thumbprint=XX:XX...’"
