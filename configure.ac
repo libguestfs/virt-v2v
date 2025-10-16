@@ -268,6 +268,9 @@ feature ()
     printf "$term_restore"
 }
 
+feature "OCaml gettext (for translations)" \
+        test "x$HAVE_OCAML_PKG_GETTEXT_TRUE" = "x"
+
 feature "--block-driver feature"  test "x$ENABLE_BLOCK_DRIVER" = "xyes"
 feature "Xen input mode"          test "x$ENABLE_XEN" = "xyes"
 feature "-o glance output mode"   test "x$ENABLE_GLANCE" = "xyes"
