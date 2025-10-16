@@ -61,7 +61,8 @@ AC_PATH_PROGS([UNZIP],[unzip],[no])
 AC_DEFINE_UNQUOTED([UNZIP],["$UNZIP"],[Name of unzip program.])
 
 dnl Detect nbdkit also under /usr/sbin or /sbin in case they're not on $PATH
-AC_PATH_PROG(NBDKIT,[nbdkit], [no], [/usr/sbin$PATH_SEPARATOR/sbin$PATH_SEPARATOR$PATH])
+AC_PATH_PROG([NBDKIT], [nbdkit], [no],
+                       [$PATH$PATH_SEPARATOR/usr/sbin$PATH_SEPARATOR/sbin])
 AS_IF([test "x$NBDKIT" = "xno"],
       [AC_MSG_WARN([nbdkit binary (from nbdkit) not found, some runtime functionality will be missing])])
 
