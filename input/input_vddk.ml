@@ -36,11 +36,15 @@ open Input
 let libNN = sprintf "lib%d" Sys.word_size
 
 (* Calculate the nbdkit vddk plugin 'export' parameter.  This is a
- * wildcard that must match all filenames given.  nbdkit uses
- * 'fnmatch (export, filename, FNM_PATHNAME)' when checking this,
- * which means:
- *  - We have to escape any fnmatch-special chars such as '[' and '*'
- *  - '*' does not match '/' characters in the filename
+ * wildcard that must match all filenames given.
+ *
+ * nbdkit 1.44 used 'fnmatch (export, filename, FNM_PATHNAME)'
+ * which means '*' does not match '/' characters in the filename.
+ * Unfortunately this made it impossible to match certain paths,
+ * in particular if the guest has some files in a subdirectory.
+ *
+ * nbdkit 1.46 relaxes this to 'fnmatch (export, filename, 0)',
+ * so a simple longest prefix works.
  *)
 let get_vddk_export_wildcard = function
   | [] -> assert false (* can't happen, checked by the caller *)
@@ -50,37 +54,14 @@ let get_vddk_export_wildcard = function
      List.iter (fun f -> assert (String.ends_with ".vmdk" f)) files;
 
      (* Calculate the longest common prefix of all the filenames.
-      * Remove the prefix from each filename, leaving the remainder strings.
-      * eg.
-      *   "foobar", "foobazs" => prefix = "fooba", remainders = ["r", "zs"]
+      * eg. "foobar", "foobazs" => prefix = "fooba"
       *)
      let prefix = String.longest_common_prefix files in
-     let prefix_len = String.length prefix in
-     let remainders = List.map (
-       fun f ->
-         let n = String.length f in
-         assert (prefix_len <= n);
-         String.sub f prefix_len (n - prefix_len)
-     ) files in
-
-     (* The number of '/' (slash) characters in the remainders must be
-      * the same, otherwise there's something weird with subdirectories
-      * going on that we can't handle yet.  (XXX If this happens, then
-      * we'd need to change nbdkit because it cannot possibly handle
-      * a wildcard that matches different directory depths).
-      *)
-     let count_slashes = List.map (String.count_chars '/') remainders in
-     let nr_slashes = List.hd count_slashes in
-     List.iter (fun nr -> assert (nr_slashes = nr)) count_slashes;
-
-     (* Now we need to generate "*/*/*" for this number of slashes. *)
-     let stars = List.make (nr_slashes+1) "*" in
-     let stars_n_slashes = String.concat "/" stars in
 
      (* Construct the final wildcard.  Note we only need to
       * escape the prefix (the only part which is user content).
       *)
-     fnmatch_escape prefix ^ stars_n_slashes ^ ".vmdk"
+     fnmatch_escape prefix ^ "*.vmdk"
 
 module VDDK = struct
   let to_string options args =
@@ -300,6 +281,8 @@ sed 's/.*Fingerprint=\([A-F0-9:]\+\)/\1/' |}
     (* Check we have nbdkit and the vddk plugin and the cow filter. *)
     if not (Nbdkit.is_installed ()) then
       error (f_"nbdkit is not installed or not working");
+    if not (Nbdkit.version () >= (1, 45, 11)) then
+      error (f_"nbdkit must be >= 1.45.11 for input from VDDK");
     if not (Nbdkit.probe_plugin "vddk") then
       error (f_"nbdkit-vddk-plugin is not installed");
     if not (Nbdkit.probe_filter "cow") then
