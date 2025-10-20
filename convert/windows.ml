@@ -29,6 +29,7 @@ let rex_kaspersky = PCRE.compile ~caseless:true "kaspersky"
 let rex_mcafee    = PCRE.compile ~caseless:true "mcafee"
 let rex_norton    = PCRE.compile ~caseless:true "norton"
 let rex_sophos    = PCRE.compile ~caseless:true "sophos"
+let rex_trend     = PCRE.compile ~caseless:true "ApexOneNT"
 let rex_avg_tech  = PCRE.compile ~caseless:true "avg technologies" (* RHBZ#1261436 *)
 
 let rec detect_antivirus { Types.i_type = t; i_apps = apps } =
@@ -42,6 +43,7 @@ and check_app { Guestfs.app2_name = name;
   name      =~ rex_mcafee    ||
   name      =~ rex_norton    ||
   name      =~ rex_sophos    ||
+  name      =~ rex_trend     ||
   publisher =~ rex_avg_tech
 
 and (=~) str rex = PCRE.matches rex str
