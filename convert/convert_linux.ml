@@ -1165,6 +1165,7 @@ fi
     let paths = [
       (* /etc/fstab *)
       "/files/etc/fstab/*/spec";
+      "/files/etc/crypttab/*/device";
     ] in
     (* Bootloader config *)
     let paths = paths @ bootloader#augeas_device_patterns in
@@ -1199,7 +1200,32 @@ fi
          PCRE.matches rex_device value then (
         let device = PCRE.sub 1
         and part = try PCRE.sub 2 with Not_found -> "" in
-        "/dev/" ^ replace device ^ part
+        let adjusted_dev = "/dev/" ^ replace device ^ part in
+
+        (* On sles12sp5, the installer puts a non-stable path into
+           /etc/crypttab, like /dev/sda2. If we replace it with eg. /dev/vda2,
+           and then regenerate dracut initrd, systemd cryptab integration
+           doesn't happen correctly, because it all expects /dev/vda2 to
+           exist at initrd creation time..
+
+           We can avoid this by filling in a stable `UUID=<luks UUID>` value.
+           This depends on /dev/sdXX in the guest having the same /dev/sdXX
+           name in the appliance.
+         *)
+        if String.starts_with "/etc/crypttab" path &&
+           String.starts_with "/dev/sd" value then (
+          try
+            let uuid = g#vfs_uuid value in
+            "UUID=" ^ uuid
+          with ex ->
+            warning (f_"failed to translate encrypted device name %s to a UUID \
+                in /etc/crypttab.  This may prevent the guest from booting \
+                after conversion. You may have to manually change the file and \
+                reconvert. The original error was: %s")
+              value (Printexc.to_string ex);
+            adjusted_dev
+        ) else
+          adjusted_dev
       )
       else (* doesn't look like a known device name *)
         value
