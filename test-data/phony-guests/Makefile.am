@@ -45,6 +45,8 @@ EXTRA_DIST = \
 	windows-software-all.reg \
 	windows-system.reg \
 	windows-system.reg.bin \
+	windows-bcd.reg \
+	windows-bcd.reg.bin \
 	minimal-hive \
 	make-guests-all-good.pl \
 	guests.xml.in
@@ -68,6 +70,7 @@ disk_images = \
 	win10.img \
 	win11.img \
 	win2k22.img \
+	win2k22-uefi.img \
 	win2k25.img \
 	win7-32.img \
 	winxp-32.img \
@@ -153,6 +156,13 @@ win%.img: make-windows-img.sh \
 		windows-system.reg.bin
 	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$< $@
 
+# Make a (dummy) Windows UEFI image.
+win2k22-uefi.img: make-windows-img.sh \
+		win2k22-software.reg.bin \
+		windows-system.reg.bin \
+		windows-bcd.reg.bin
+	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$< $@
+
 # This is the 'latest` windows image used by most test cases
 windows.img: win2k22.img
 	ln -f $< $@
@@ -191,10 +201,17 @@ windows-system.reg.bin: windows-system.reg
 	hivexregedit --merge $@-t --prefix 'HKEY_LOCAL_MACHINE\SYSTEM' $<
 	mv $@-t $@
 
+windows-bcd.reg.bin: windows-bcd.reg
+	rm -f $@ $@-t
+	cp $(srcdir)/minimal-hive $@-t
+	hivexregedit --merge $@-t $<
+	mv $@-t $@
+
 DISTCLEANFILES += \
 	fedora.db \
 	windows-software.reg.bin \
-	windows-system.reg.bin
+	windows-system.reg.bin \
+	windows-bcd.reg.bin
 
 # Don't construct the guests in parallel.  In automake 1.13, check_DATA
 # was changed so it can now run in parallel, but this causes everything
