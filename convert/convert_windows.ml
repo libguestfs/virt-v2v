@@ -961,21 +961,25 @@ let convert (g : G.guestfs) source inspect i_firmware
     match i_firmware with
     | Firmware.I_BIOS -> ()
     | I_UEFI esp_list ->
-      let esp_temp_path = g#mkdtemp "/Windows/Temp/ESP_XXXXXX" in
-      let uefi_arch = get_uefi_arch_suffix inspect.i_arch in
+       let esp_temp_path =
+         let temp = inspect.i_windows_systemroot ^ "/Temp" in
+         let mp = g#case_sensitive_path temp in
+         let template = mp ^ "/ESP_XXXXXX" in
+         g#mkdtemp template in
+       let uefi_arch = get_uefi_arch_suffix inspect.i_arch in
 
-      List.iter (
-        fun dev_path ->
-        g#mount dev_path esp_temp_path;
-        fix_win_uefi_bcd esp_temp_path;
-        (match uefi_arch with
-         | Some uefi_arch -> fix_win_uefi_fallback esp_temp_path uefi_arch
-         | None -> ()
-        );
-        g#umount esp_temp_path;
-      ) esp_list;
+       List.iter (
+         fun dev_path ->
+           g#mount dev_path esp_temp_path;
+           fix_win_uefi_bcd esp_temp_path;
+           (match uefi_arch with
+            | Some uefi_arch -> fix_win_uefi_fallback esp_temp_path uefi_arch
+            | None -> ()
+           );
+           g#umount esp_temp_path;
+       ) esp_list;
 
-      g#rmdir esp_temp_path
+       g#rmdir esp_temp_path
   in
 
   do_convert ()
