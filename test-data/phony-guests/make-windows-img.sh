@@ -27,10 +27,10 @@ OSNAME=${IMAGENAME%".img"}
 SOFTWARE_REG="$SRCDIR/$OSNAME-software.reg.bin"
 SYSTEM_REG="$SRCDIR/windows-system.reg.bin"
 
-if echo "$IMAGENAME" | grep -q "\-32"; then
-  CMD_EXE="$SRCDIR/../binaries/bin-win32.exe"
+if [[ "$IMAGENAME" =~ -32 ]]; then
+    CMD_EXE="$SRCDIR/../binaries/bin-win32.exe"
 else
-  CMD_EXE="$SRCDIR/../binaries/bin-win64.exe"
+    CMD_EXE="$SRCDIR/../binaries/bin-win64.exe"
 fi
 
 # If the currently compiled libguestfs doesn't support
@@ -38,13 +38,13 @@ fi
 # Nothing actually uses these images in the standard build so we can
 # just 'touch' it and emit a warning.
 if ! guestfish -a /dev/null run : available "ntfs3g ntfsprogs"; then
-  echo "***"
-  echo "Warning: cannot create $IMAGENAME because there is no NTFS"
-  echo "support in this build of libguestfs.  Just touching the output"
-  echo "file instead."
-  echo "***"
-  touch $IMAGENAME
-  exit 0
+    echo "***"
+    echo "Warning: cannot create $IMAGENAME because there is no NTFS"
+    echo "support in this build of libguestfs.  Just touching the output"
+    echo "file instead."
+    echo "***"
+    touch $IMAGENAME
+    exit 0
 fi
 
 # Create a disk image.
