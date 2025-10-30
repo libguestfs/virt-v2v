@@ -1068,9 +1068,6 @@ conversion at all unless at least 1GB is available there.  You can
 change the directory that virt-v2v uses by setting
 C<$VIRT_V2V_TMPDIR>.
 
-See also L</Resource requirements> above and L</ENVIRONMENT VARIABLES>
-below.
-
 =head2 Running virt-v2v as root or non-root
 
 Nothing in virt-v2v inherently needs root access, and it will run just
