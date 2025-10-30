@@ -1374,9 +1374,7 @@ You can use the L<chattr(1)> command before converting the guest:
 
 and then restore it (I<+i>) after conversion.
 
-=head2 Debian and Ubuntu
-
-=head3 "warning: could not determine a way to update the configuration of Grub2"
+=head2 Debian/Ubuntu: "warning: could not determine a way to update the configuration of Grub2"
 
 Currently, virt-v2v has no way to set the default kernel in Debian
 and Ubuntu guests using GRUB 2 as bootloader.  This means that
@@ -1386,7 +1384,7 @@ A recommended procedure is, before using virt-v2v, to check that the
 boot kernel is the best kernel available in the guest (for example
 by making sure the guest is up-to-date).
 
-=head3 "vsyscall attempted with vsyscall=none"
+=head2 Debian: "vsyscall attempted with vsyscall=none"
 
 When run on a recent Debian host virt-v2v may fail to convert guests
 which were created before 2013.  In the debugging output you will see
@@ -1405,9 +1403,7 @@ running virt-v2v:
 
 For more information, see L<https://bugzilla.redhat.com/1592061>
 
-=head2 Windows
-
-=head3 System disk on a Dynamic Disk is not supported
+=head2 Windows: System disk on a Dynamic Disk is not supported
 
 If the Windows system disk (the drive containing C<\windows>) is
 located on a Dynamic Disk then it cannot be converted.  Data disks —
@@ -1416,7 +1412,7 @@ the Windows operating system — may be Dynamic Disks.
 
 See L<https://bugzilla.redhat.com/2140548>.
 
-=head3 Windows E<ge> 8 Fast Startup is incompatible with virt-v2v
+=head2 Windows E<ge> 8 Fast Startup is incompatible with virt-v2v
 
 Guests which use the Windows E<ge> 8 "Fast Startup" feature (or guests
 which are hibernated) cannot be converted with virt-v2v.  You will see
@@ -1436,7 +1432,7 @@ able to convert it.
 For more information, see:
 L<guestfs(3)/WINDOWS HIBERNATION AND WINDOWS 8 FAST STARTUP>.
 
-=head3 Boot failure: 0x0000007B
+=head2 Windows: Boot failure: 0x0000007B
 
 This boot failure is caused by Windows being unable to find or load
 the right disk driver (eg. F<viostor.sys>).  If you experience this
@@ -1490,7 +1486,7 @@ loaded.
 
 =back
 
-=head3 OpenStack and Windows reactivation
+=head2 OpenStack and Windows reactivation
 
 OpenStack does not offer stable device / PCI addresses to guests.
 Every time it creates or starts a guest, it regenerates the libvirt
@@ -1518,7 +1514,7 @@ This can also prevent booting with a 7B error [see previous section]
 if the guest has group policy containing
 C<Device Installation Restrictions>.
 
-=head3 Support for SHA-2 certificates in Windows 7 and Windows Server 2008 R2
+=head2 Support for SHA-2 certificates in Windows 7 and Windows Server 2008 R2
 
 Later versions of the Windows virtio drivers are signed using SHA-2
 certificates (instead of SHA-1).  The original shipping Windows 7 and
@@ -1532,7 +1528,7 @@ before converting the guest.
 For further information see:
 L<https://bugzilla.redhat.com/show_bug.cgi?id=1624878>
 
-=head3 After conversion, Windows guest cannot be upgraded
+=head2 After conversion, Windows guest cannot be upgraded
 
 After successful conversion, the Windows guest cannot be upgraded to a
 later release of Windows (eg. from Windows Server 2016 to 2019).
@@ -1568,7 +1564,7 @@ entries.
 For further information see:
 L<https://issues.redhat.com/browse/MTV-2256>
 
-=head3 "Activation of partially decrypted BITLK device is not supported"
+=head2 Windows: "Activation of partially decrypted BITLK device is not supported"
 
 This error from L<cryptsetup(8)> may occur for Windows 11 guests that
 have a virtual TPM.  Even if Bitlocker is not activated, the disk is
