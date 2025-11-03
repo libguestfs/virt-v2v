@@ -306,6 +306,7 @@ type inspect = {
   i_windows_software_hive : string;
   i_windows_system_hive : string;
   i_windows_current_control_set : string;
+  i_windows_group_policy : bool;
   i_drive_mappings : (string * string) list;
 }
 
@@ -326,6 +327,7 @@ i_windows_systemroot = %s
 i_windows_software_hive = %s
 i_windows_system_hive = %s
 i_windows_current_control_set = %s
+i_windows_group_policy = %b
 i_drive_mappings = %s
 " inspect.i_root
   inspect.i_type
@@ -342,6 +344,7 @@ i_drive_mappings = %s
   inspect.i_windows_software_hive
   inspect.i_windows_system_hive
   inspect.i_windows_current_control_set
+  inspect.i_windows_group_policy
   (String.concat "; "
      (List.map (fun (d, dev) -> sprintf "%s => %s" d dev)
         inspect.i_drive_mappings))

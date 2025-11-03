@@ -216,6 +216,7 @@ type inspect = {
   i_windows_software_hive : string;
   i_windows_system_hive : string;
   i_windows_current_control_set : string;
+  i_windows_group_policy : bool;
   i_drive_mappings : (string * string) list;
 }
 

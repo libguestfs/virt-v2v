@@ -97,15 +97,16 @@ let rec mount_filesystems g root =
    * data, else (for simplicity when accessing) use empty strings.
    *)
   let typ = g#inspect_get_type root in
-  let systemroot, software_hive, system_hive, current_cs =
+  let systemroot, software_hive, system_hive, current_cs, group_policy =
     match typ with
     | "windows" ->
        g#inspect_get_windows_systemroot root,
        g#inspect_get_windows_software_hive root,
        g#inspect_get_windows_system_hive root,
-       g#inspect_get_windows_current_control_set root
+       g#inspect_get_windows_current_control_set root,
+       g#inspect_get_windows_group_policy root
     | _ ->
-       "", "", "", "" in
+       "", "", "", "", false in
 
   let inspect = {
     i_root = root;
@@ -126,6 +127,7 @@ let rec mount_filesystems g root =
     i_windows_software_hive = software_hive;
     i_windows_system_hive = system_hive;
     i_windows_current_control_set = current_cs;
+    i_windows_group_policy = group_policy;
     i_drive_mappings = drive_mappings;
   } in
   debug "%s" (string_of_inspect inspect);

@@ -57,52 +57,10 @@ let convert (g : G.guestfs) source inspect i_firmware
    | IDE -> assert false (* not possible - but maybe ...? *)
   );
 
-  (* If the Windows guest appears to be using group policy.
-   *
-   * Since this was written, it has been noted that it may be possible
-   * to remove this restriction:
-   *
-   * 12:35 < StenaviN> here is the article from MS: https://support.microsoft.com/uk-ua/help/2773300/stop-0x0000007b-error-after-you-use-a-group-policy-setting-to-prevent
-   * 12:35 < StenaviN> aside of that the following registry hive should be deleted as well: [-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall]
-   * 12:36 < StenaviN> more precisely, [-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions]
-   *)
-  let has_group_policy =
-    Registry.with_hive_readonly g inspect.i_windows_software_hive
-      (fun reg ->
-       try
-         let path = ["Microsoft"; "Windows"; "CurrentVersion";
-                     "Group Policy"; "History"]  in
-         let node =
-           match Registry.get_node reg path with
-           | None -> raise Not_found
-           | Some node -> node in
-         let children = g#hivex_node_children node in
-         let children = Array.to_list children in
-         let children =
-           List.map (fun { G.hivex_node_h = h } -> g#hivex_node_name h)
-                    children in
-         (* Just assume any children looking like "{<GUID>}" mean that
-          * some GPOs were installed.
-          *
-          * In future we might want to look for nodes which match:
-          * History\{<GUID>}\<N> where <N> is a small integer (the order
-          * in which policy objects were applied.
-          *
-          * For an example registry containing GPOs, see RHBZ#1219651.
-          * See also: https://support.microsoft.com/en-us/kb/201453
-          *)
-         let is_gpo_guid name =
-           let len = String.length name in
-           len > 3 && name.[0] = '{' &&
-             Char.isxdigit name.[1] && name.[len-1] = '}'
-         in
-         List.exists is_gpo_guid children
-       with
-         Not_found -> false
-      ) in
-
   (* If the Windows guest has AV installed. *)
-  let has_antivirus = Windows.detect_antivirus inspect in
+  let has_antivirus =
+    List.exists (fun { G.app2_class } -> app2_class = "antivirus")
+      inspect.i_apps in
 
   (* Does the guest expect the RTC to be set to UTC or localtime?
    * See https://wiki.archlinux.org/title/System_time#UTC_in_Microsoft_Windows
@@ -285,7 +243,7 @@ let convert (g : G.guestfs) source inspect i_firmware
      * group policy or AV software causing a boot 0x7B error (RHBZ#1260689).
      *)
     if block_driver = Virtio_blk then (
-      if has_group_policy then
+      if inspect.i_windows_group_policy then
         warning (f_"this guest has Windows Group Policy Objects (GPO) and a \
                     new virtio block device driver was installed.  In some \
                     circumstances, Group Policy may prevent new drivers from \
