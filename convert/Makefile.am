@@ -31,12 +31,10 @@ SOURCES_MLI = \
 	convert_windows.mli \
 	mount_filesystems.mli \
 	target_bus_assignment.mli \
-	windows.mli \
 	$(NULL)
 
 SOURCES_ML = \
 	convert_types.ml \
-	windows.ml \
 	convert_linux.ml \
 	convert_windows.ml \
 	choose_root.ml \

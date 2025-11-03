@@ -41,7 +41,7 @@ let inspect_defaults = {
   i_apps = []; i_apps_map = StringMap.empty;
   i_windows_systemroot = "";
   i_windows_software_hive = ""; i_windows_system_hive = "";
-  i_windows_current_control_set = "";
+  i_windows_current_control_set = ""; i_windows_group_policy = false;
   i_drive_mappings = [];
 }
 
