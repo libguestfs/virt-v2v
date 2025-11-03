@@ -109,6 +109,14 @@ let rec create_inspector_xml input_disks inspect target_meta =
   if inspect.i_windows_current_control_set <> "" then
     List.push_back os (e "windows_current_control_set" []
                          [PCData inspect.i_windows_current_control_set]);
+  if inspect.i_windows_group_policy then
+    List.push_back os (e "windows_group_policy" [] []);
+
+  let has_antivirus =
+    List.exists (fun { Guestfs.app2_class } -> app2_class = "antivirus")
+      inspect.i_apps in
+  if has_antivirus then
+    List.push_back os (e "windows_antivirus" [] []);
 
   List.push_back os (e "root" [] [PCData inspect.i_root]);
   let mps = ref [] in
