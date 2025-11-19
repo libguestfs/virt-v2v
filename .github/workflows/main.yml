@@ -58,7 +58,7 @@ jobs:
   #     - name: Compile the code
   #       run: |
   #         autoreconf -fiv
-  #         ./configure
+  #         ./configure --enable-werror
   #         make -j
 
   #     - name: Run the full tests
@@ -115,7 +115,7 @@ jobs:
         run: |
           su -c '
             autoreconf -fiv &&
-            ./configure CFLAGS="-fPIC -g -O2" &&
+            ./configure CFLAGS="-fPIC -g -O2" --enable-werror &&
             make -j
           ' guestfs
 
