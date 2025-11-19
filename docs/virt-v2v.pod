@@ -84,6 +84,8 @@ L<virt-v2v-release-notes-2.6(1)> — Release notes for 2.6 release.
 
 L<virt-v2v-release-notes-2.8(1)> — Release notes for 2.8 release.
 
+L<virt-v2v-release-notes-2.10(1)> — Release notes for 2.10 release.
+
 =head1 EXAMPLES
 
 =head2 Convert from VMware vCenter server to local libvirt

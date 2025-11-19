@@ -1,0 +1,301 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v release notes for 2.10
+
+=head1 DESCRIPTION
+
+These are the release notes for S<B<virt-v2v 2.10>>.
+This describes the major changes since 2.8.
+
+Virt-v2v 2.10.0 was released on S<B<XXX December 2025>>.
+
+=begin comment
+
+=head2 Security
+
+=end comment
+
+=head2 New features
+
+In I<-o kubevirt> output mode, new I<-oo disk> and I<-oo create>
+options let you respectively override the output disk names, and avoid
+disk creation, letting you pre-create disks before running virt-v2v.
+
+For VDDK sources:
+
+=over
+
+=item *
+
+A new I<-io vddk-compression> option lets you enable compression for
+data read over the network.
+
+=item *
+
+I<-io vddk-thumbprint> is now optional.  If omitted, virt-v2v will
+automatically work it out from the VMware server.
+
+=back
+
+New I<--memsize> and I<--smp> options which let you override the
+default amount of memory and number of vCPUs assigned to the
+appliance.  For certain complex guests it is occasionally necessary to
+adjust these, although usually virt-v2v should do the right thing
+automatically.
+
+L<virt-v2v-inspector(1)> now detects Windows Antivirus and Group
+policy, and if found adds C<E<lt>windows_antivirus/E<gt>> and
+C<E<lt>windows_group_policy/E<gt>> elements respectively.
+
+=head2 Features removed
+
+The following virt-v2v options have been removed:
+
+=over 4
+
+=item I<-io vddk-noextents>
+
+This was an undocumented troubleshooting option.  Any uses of it can
+simply be removed.
+
+=item I<--sm*> options
+
+The Red Hat Subscription Manager customization options did not work
+and have been removed (Cole Robinson).
+
+=back
+
+=head2 Other fixes
+
+When checking ext4 filesystems before conversion, replay the dirty log
+to avoid e2fsck failing (thanks Ming Xie).
+
+When checking XFS filesystems before and after conversion, cap the
+amount of memory used by the L<xfs_repair(8)> utility (thanks Ming
+Xie, Eric Sandeen).
+
+For output modes that write to local disk, in debugging output we now
+report the amount of space on the local (host) disk, in order to make
+it easier to debug certain out of space problems (thanks Martin Necas,
+Alex Kalenyuk).
+
+Use L<nbdkit-count-filter(1)> (if installed).  In debugging mode this
+will print a summary of the number of bytes read, written, trimmed and
+zeroed when copying the guest, which can be useful when you want to
+know how much data was sent over the wire by virt-v2v.
+
+For Windows virtio driver installation:
+
+=over 4
+
+=item *
+
+Fix this when there is a pending Windows Update (Vadim Rozenfeld).
+
+=item *
+
+Fix this when Windows changes the timezone during firstboot (Vadim
+Rozenfeld).
+
+=item *
+
+Skip driver installation when a newer/better virtio driver is already
+installed (Vadim Rozenfeld).
+
+=item *
+
+Slightly modify how we patch the regsitry so that we don't break both
+Windows Update and C<pnputil /e> driver enumeration.
+
+=back
+
+Display the versions of libnbd and nbdcopy in debugging output.
+
+Fix SELinux relabelling for guests which use a separate F</usr>
+partition (thanks Germano Veit Michel, Ming Xie).
+
+We now attempt to generate correct boot order for Linux BIOS guests.
+This is necessary with current SeaBIOS so that it initializes the
+correct boot disk, allowing the guest to boot if the bootloader is not
+on the first disk.
+
+Name nbdkit subprocesses using the new I<--name> option in
+S<nbdkit E<ge> 1.46>.  This allows debugging and error messages from
+different nbdkit instances to be distinguished in log files.
+
+A virtual floppy disk is no longer added to the output guest if qemu
+does not support it, even if the input guest has a floppy disk (Cole
+Robinson).
+
+During conversion of Windows guests, if we have to create
+S<F<C:\Program Files\Guestfs>>, it is now created read-only for
+non-Administrator accounts (Cole Robinson).
+
+For RHEL 7.2 conversions, ignore archived LVM VG configuration files,
+which previously caused a crash in Augeas during conversion (thanks
+Sean Haselden, Alasdair Kergon).
+
+Handle .vmdk files in subdirectories on the ESXi server (thanks Ming
+Xie).
+
+Fix UEFI conversions of Windows guests if F<C:\Windows\Temp> exists
+but has a different upper/lowercase from the directory that Windows
+normally creates.
+
+
+=head2 Documentation
+
+Refactored and improved documentation (thanks Ming Xie).
+
+Link from L<virt-v2v(1)> directly to official VMware documentation for
+removing VMware Tools.
+
+
+
+=head2 Build changes
+
+libguestfs E<ge> 1.58 is required.
+
+nbdkit E<ge> 1.46 is required.
+
+Update C<make check-slow> ("slow tests") so we test more recent guest
+types.
+
+We now test Windows UEFI conversions in the test suite.
+
+C<./configure> output has been colourized.
+
+New configure I<--disable-block-driver>, I<--disable-glance>,
+I<--disable-ovirt> and I<--disable-xen> options allowing you to
+disable those features at compile time.
+
+Basic github CI has been implemented.  Pull requests now do the
+equivalent of C<./configure && make && make check> on a few common
+platforms.
+
+=head2 Internals
+
+The internal podwrapper tool used to process the documentation now has
+a new I<--pp> to allow a preprocessor to be used.  In particular we
+now use L<m4(1)> to preprocess some documentation.
+
+In F<Makefile.am>, C<$(NULL)> can be used as a list terminator.  This
+improves patch application.
+
+=head2 Bugs fixed
+
+=begin comment
+
+./bugs-in-changelog.sh v2.8.0..
+
+=end comment
+
+=over 4
+
+=item L<https://issues.redhat.com/browse/RHEL-100682>
+
+Installing drivers on firstboot sometimes fail with PnP service not
+available [rhel-9.7]
+
+=item L<https://issues.redhat.com/browse/RHEL-101599>
+
+RFE: Allow -o kubevirt disks to be specified
+
+=item L<https://issues.redhat.com/browse/RHEL-102734>
+
+virt-v2v can't convert guest with multiple disks from VMware since
+nbdkit-1.44.0-1
+
+=item L<https://issues.redhat.com/browse/RHEL-104352>
+
+Change permission of guestfs folder created
+
+=item L<https://issues.redhat.com/browse/RHEL-108174>
+
+selinux-relabel doesn't work across filesystem boundaries (because
+setfiles doesn't) [rhel-9.7]
+
+=item L<https://issues.redhat.com/browse/RHEL-108991>
+
+RFE: Set boot order for Linux BIOS guests based on grub location
+[rhel-10.1]
+
+=item L<https://issues.redhat.com/browse/RHEL-110742>
+
+RFE: Set boot order for guests in -o kubevirt output mode [rhel-10.1]
+
+=item L<https://issues.redhat.com/browse/RHEL-113820>
+
+guestfs crashed when running aug-init during a conversion
+
+=item L<https://issues.redhat.com/browse/RHEL-121728>
+
+v2v can't convert guest with multiple windows OS on rhel10
+
+=item L<https://issues.redhat.com/browse/RHEL-124569>
+
+Windows migration failed: mkdtemp: /Windows/Temp/ESP_XXXXXX: No such
+file or directory [rhel-10.2]
+
+=item L<https://issues.redhat.com/browse/RHEL-125116>
+
+setfiles runs out of memory in glibc fts_read [rhel-10.2 doc fix]
+
+=item L<https://issues.redhat.com/browse/RHEL-125956>
+
+virt-inspector detect if AV/GPOs are present in a VM [virt-v2v]
+
+=item L<https://issues.redhat.com/browse/RHEL-90175>
+
+Should remove floppy device for the guest after v2v conversion
+[rhel-10.2]
+
+=item L<https://issues.redhat.com/browse/RHEL-97600>
+
+Virt-v2v fails to convert some guests with libguestfs error: e2fsck
+
+=item L<https://issues.redhat.com/browse/RHEL-99313>
+
+Improve the error info when converting a guest with less than 100
+inodes by virt-v2v
+
+=item L<https://issues.redhat.com/browse/RHEL-99745>
+
+Improve info about guest must not be running or must be shut down in
+virt-v2v related man page [rhel-10.1]
+
+=item L<https://github.com/libguestfs/virt-v2v/issues/100>
+
+Please implement nbdkit-vddk-plugin's compression parameter in virt-v2v
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>.
+
+=head1 AUTHORS
+
+Authors of virt-v2v 2.10:
+
+=begin comment
+
+git shortlog -s v2.8.0..
+
+=end comment
+
+=over 4
+
+=item Alan Alberghini
+
+=item Cole Robinson
+
+=item Richard W.M. Jones
+
+=item Vadim Rozenfeld
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2025 Red Hat Inc.
