@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2023-08-05 11:21+0000\n"
-"Last-Translator: Emilio Herrera <ehespinosa57@gmail.com>\n"
+"PO-Revision-Date: 2025-11-30 11:58+0000\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/es/>\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -52,7 +52,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:188
 #: docs/virt-v2v-release-notes-2.6.pod:192
 msgid "comment"
-msgstr ""
+msgstr "comentar"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:3
@@ -66,6 +66,12 @@ msgid ""
 " ANY CHANGES YOU MAKE TO THIS FILE WILL BE LOST.\n"
 "\n"
 msgstr ""
+"archivo generado de libguestfs\n"
+" AVISO: ESTE ARCHIVO ESTÁ GENERADO DESDE LOS ARCHIVOS SIGUIENTES:\n"
+"                  generator/customize.ml\n"
+"                  y desde el código en el subdirectorio generador/\n"
+" SE PERDERÁ CUALQUIER CAMBIO HECHO A ESTE ARCHIVO\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:9
@@ -75,6 +81,8 @@ msgid ""
 " Copyright (C) 2009-2025 Red Hat Inc.\n"
 "\n"
 msgstr ""
+" © 2009-2025 Red Hat Inc.\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:11
@@ -87,6 +95,12 @@ msgid ""
 " (at your option) any later version.\n"
 "\n"
 msgstr ""
+" Este programa es software libre; puede redistribuirlo y/o modificarlo\n"
+"bajo los términos de la Licencia Pública General GNU publicada por la\n"
+"Free Software Foundation; ya sea la versión 2 de la Licencia o "
+"(a su elección)\n"
+"cualquier versión posterior.\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:16
@@ -99,6 +113,11 @@ msgid ""
 " GNU General Public License for more details.\n"
 "\n"
 msgstr ""
+" Este programa se distribuye con la esperanza de que sea útil,\n"
+"pero SIN GARANTÍA ALGUNA; ni siquiera la garantía implícita de\n"
+"COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR.\n"
+"Consulte la Licencia Pública General de GNU para obtener más detalles.\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:21
@@ -110,12 +129,17 @@ msgid ""
 " 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
 "\n"
 msgstr ""
+" Debería haber recibido una copia de la Licencia Pública General de GNU\n"
+" junto con este programa; de no ser así, escriba a la Free Software "
+"Foundation, Inc.,\n"
+" 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE. UU.\n"
+"\n"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:29
 #: common/mlcustomize/v2v-customize-options.pod:29
 msgid "B<--append-line> FILE:LINE"
-msgstr ""
+msgstr "B<--append-line> FILE:LINE"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:31
@@ -125,12 +149,17 @@ msgid ""
 "end with a newline, then one is added before the appended line.  Also a "
 "newline is added to the end of the C<LINE> string automatically."
 msgstr ""
+"Adjunta una sola línea de texto a C<FILE>. Si el archivo no termina con un "
+"salto de línea, se añade uno antes de la línea añadida. Además, se añade "
+"automáticamente un salto de línea al final de la cadena C<LINE>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:36
 #: common/mlcustomize/v2v-customize-options.pod:36
 msgid "For example (assuming ordinary shell quoting) this command:"
 msgstr ""
+"Por ejemplo (asumiendo entrecomillado de intérprete ordinario) esta "
+"instrucción:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:38
@@ -140,6 +169,8 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.1 foo'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:10.0.0.1 algo'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:40
@@ -148,6 +179,8 @@ msgid ""
 "will add either C<10.0.0.1 foo⏎> or C<⏎10.0.0.1 foo⏎> to the file, the "
 "latter only if the existing file does not already end with a newline."
 msgstr ""
+"añadirá o bien C<10.0.0.1 foo⏎> o bien C<⏎10.0.0.1 foo⏎> al archivo, el más "
+"último solo si el archivo saliente no termina ya con una línea nueva."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:44
@@ -158,12 +191,16 @@ msgid ""
 "using Unix or Windows line endings.  It also works for empty or non-existent "
 "files."
 msgstr ""
+"C<⏎> representa un carácter de línea nueva, que se deduce al observar el "
+"contenido del archivo. Por lo tanto, esta instrucción funciona correctamente "
+"con archivos que usan finales de línea de Unix o Windows. También funciona "
+"con archivos vacíos o inexistentes."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:49
 #: common/mlcustomize/v2v-customize-options.pod:49
 msgid "To insert several lines, use the same option several times:"
-msgstr ""
+msgstr "Para insertar varias lineas, utilice la misma opción varias veces:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:51
@@ -174,12 +211,15 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.2 bar'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:10.0.0.1 tal'\n"
+" --append-line '/etc/hosts:10.0.0.2 cual'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:54
 #: common/mlcustomize/v2v-customize-options.pod:54
 msgid "To insert a blank line before the appended line, do:"
-msgstr ""
+msgstr "Para insertar una línea en blanco antes de línea adjuntada, haga:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:56
@@ -190,18 +230,21 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.1 foo'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:'\n"
+" --append-line '/etc/hosts:10.0.0.1 tal cual'\n"
+"\n"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:59
 #: common/mlcustomize/v2v-customize-options.pod:59
 msgid "B<--chmod> PERMISSIONS:FILE"
-msgstr ""
+msgstr "B<--chmod> PERMISSIONS:FILE"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:61
 #: common/mlcustomize/v2v-customize-options.pod:61
 msgid "Change the permissions of C<FILE> to C<PERMISSIONS>."
-msgstr ""
+msgstr "Cambia los permisos de C<FILE> a C<PERMISSIONS>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:63
@@ -210,12 +253,14 @@ msgid ""
 "I<Note>: C<PERMISSIONS> by default would be decimal, unless you prefix it "
 "with C<0> to get octal, ie. use C<0700> not C<700>."
 msgstr ""
+"I<Note>: C<PERMISIONS> por defecto serían decimales, a no ser que lo prefija "
+"con C<0> para obtener octal, p.e. utilice C<0700> no C<700>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:66
 #: common/mlcustomize/v2v-customize-options.pod:66
 msgid "B<--chown> UID:GID:PATH"
-msgstr ""
+msgstr "B<--chown> UID:GID:PATH"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:68
@@ -224,6 +269,8 @@ msgid ""
 "Change the owner user and group ID of a file or directory in the guest.  "
 "Note:"
 msgstr ""
+"Cambia el propietario del ID de usuario y grupo a un archivo o directorio en "
+"el invitado.  Nota:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:73
@@ -258,12 +305,14 @@ msgid ""
 "Only numeric UIDs and GIDs will work, and these may not be the same inside "
 "the guest as on the host."
 msgstr ""
+"Solo UID y GID numérico y funcionará, y esos puede no ser el mismo interno "
+"al invitado como en el host."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:80
 #: common/mlcustomize/v2v-customize-options.pod:80
 msgid "This will not work with Windows guests."
-msgstr ""
+msgstr "Esto no funcionará con invitado de Windows."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:84
@@ -280,18 +329,20 @@ msgid ""
 " virt-customize --chown '0:0:/var/log/audit.log'\n"
 "\n"
 msgstr ""
+" virt-customize --chown '0:0:/var/log/audit.log'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:88
 #: common/mlcustomize/v2v-customize-options.pod:88
 msgid "See also: I<--upload>."
-msgstr ""
+msgstr "Consulte además: I<--upload>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:90
 #: common/mlcustomize/v2v-customize-options.pod:90
 msgid "B<--commands-from-file> FILENAME"
-msgstr ""
+msgstr "B<--commands-from-file> NOMBREARCHIVO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:92
@@ -299,6 +350,8 @@ msgstr ""
 msgid ""
 "Read the customize commands from a file, one (and its arguments)  each line."
 msgstr ""
+"Lee las instrucciones personalizadas desde un archivo, una (y sus argumentos)"
+" cada línea."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:95
@@ -307,6 +360,8 @@ msgid ""
 "Each line contains a single customization command and its arguments, for "
 "example:"
 msgstr ""
+"Cada línea contiene una instrucción única de personalización y sus "
+"argumentos, por ejemplo:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:98
@@ -318,6 +373,10 @@ msgid ""
 " password some-user:password:its-new-password\n"
 "\n"
 msgstr ""
+" delete /algún/archivo\n"
+" install algún-paquete\n"
+" password algún-usuario:contraseña:su-contraseña-nueva\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:102
@@ -328,6 +387,10 @@ msgid ""
 "lines, by adding a C<\\> (continuation character) at the of a line, for "
 "example"
 msgstr ""
+"Se ignoran las líneas vacías, y las líneas comenzando con C<#> son "
+"comentarios y se hacen caso omiso.  Además, los argumentos pueden estar "
+"repartidos a través de múltiples líneas, añadiendo un C<\\> "
+"(carácter de continuación) al final de una línea, por ejemplo"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:107
@@ -338,6 +401,9 @@ msgid ""
 "   s/^OPT=.*/OPT=ok/\n"
 "\n"
 msgstr ""
+" edit /algún/archivo:\\\n"
+"   s/^OPT=.*/OPT=ok/\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:110
@@ -346,18 +412,21 @@ msgid ""
 "The commands are handled in the same order as they are in the file, as if "
 "they were specified as I<--delete /some/file> on the command line."
 msgstr ""
+"Las instrucciones son manipuladas en el mismo orden que el que está en el "
+"archivo, por tanto si fueron especificados como I<--delete /algún/archivo> "
+"en la línea de instrucciones."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:114
 #: common/mlcustomize/v2v-customize-options.pod:114
 msgid "B<--copy> SOURCE:DEST"
-msgstr ""
+msgstr "B<--copy> ORIGEN:DESTINO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:116
 #: common/mlcustomize/v2v-customize-options.pod:116
 msgid "Copy files or directories recursively inside the guest."
-msgstr ""
+msgstr "Copia archivos o directorios recursivamente dentro del invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:118
@@ -367,13 +436,13 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:125
 #: common/mlcustomize/v2v-customize-options.pod:223
 msgid "Wildcards cannot be used."
-msgstr ""
+msgstr "Los comodines no pueden ser utilizados."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:120
 #: common/mlcustomize/v2v-customize-options.pod:120
 msgid "B<--copy-in> LOCALPATH:REMOTEDIR"
-msgstr ""
+msgstr "B<--copy-in> RUTALOCAL:DIRREMOTO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:122
@@ -382,12 +451,14 @@ msgid ""
 "Copy local files or directories recursively into the disk image, placing "
 "them in the directory C<REMOTEDIR> (which must exist)."
 msgstr ""
+"Copia archivos o directorios locales recursivamente en la imagen de disco, "
+"colocándolos en el directorio C<REMOTEDIR> (el cual debe existir)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:127
 #: common/mlcustomize/v2v-customize-options.pod:127
 msgid "B<--delete> PATH"
-msgstr ""
+msgstr "B<--delete> RUTA"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:129
@@ -396,6 +467,8 @@ msgid ""
 "Delete a file from the guest.  Or delete a directory (and all its contents, "
 "recursively)."
 msgstr ""
+"Borra un archivo desde el invitado. O borra un directorio "
+"(y todos sus contenidos, recursivamente)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:132
@@ -405,6 +478,9 @@ msgid ""
 "escape glob characters from the host shell, if that is required.  For "
 "example:"
 msgstr ""
+"Puede utilizar caracteres glob del intérprete en la ruta especificada. Sea "
+"cuidadoso para los caracteres glob de escape desde el intérprete del "
+"huésped, si eso es requerido.  Por ejemplo:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:136
@@ -414,24 +490,26 @@ msgid ""
 " virt-customize --delete '/var/log/*.log'.\n"
 "\n"
 msgstr ""
+" virt-customize --delete '/var/log/*.log'.\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:138
 #: common/mlcustomize/v2v-customize-options.pod:138
 msgid "See also: I<--upload>, I<--scrub>."
-msgstr ""
+msgstr "Consulte además: I<--upload>, I<--scrub>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:140
 #: common/mlcustomize/v2v-customize-options.pod:140
 msgid "B<--edit> FILE:EXPR"
-msgstr ""
+msgstr "B<--edit> ARCHIVO:EXPR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:142
 #: common/mlcustomize/v2v-customize-options.pod:142
 msgid "Edit C<FILE> using the Perl expression C<EXPR>."
-msgstr ""
+msgstr "Edita el C<ARCHIVO> utilizando la expresión Perl C<EXPR>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:144
@@ -440,24 +518,26 @@ msgid ""
 "Be careful to properly quote the expression to prevent it from being altered "
 "by the shell."
 msgstr ""
+"Sea cuidadoso para entrecomillas apropiadamente la expresión para prevenirla "
+"desde ser alterada por el intérprete."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:147
 #: common/mlcustomize/v2v-customize-options.pod:147
 msgid "Note that this option is only available when Perl 5 is installed."
-msgstr ""
+msgstr "Note que esta opción solo está disponible cunado esté instalado Perl 5."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:149
 #: common/mlcustomize/v2v-customize-options.pod:149
 msgid "See L<virt-edit(1)/NON-INTERACTIVE EDITING>."
-msgstr ""
+msgstr "Consulte L<VIRT-EDIT(1)/NON-INTERACTIVE EDITING>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:151
 #: common/mlcustomize/v2v-customize-options.pod:151
 msgid "B<--firstboot> SCRIPT"
-msgstr ""
+msgstr "B<--firstboot> SCRIPT"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:153
@@ -466,12 +546,16 @@ msgid ""
 "Install C<SCRIPT> inside the guest, so that when the guest first boots up, "
 "the script runs (as root, late in the boot process)."
 msgstr ""
+"Instala C<SCRIPT> interno al invitado, tal que cuando el primer invitado se "
+"arranque, el script ejecute (como root, deja en el proceso de arranque)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:156
 #: common/mlcustomize/v2v-customize-options.pod:156
 msgid "The script is automatically chmod +x after installation in the guest."
 msgstr ""
+"El script automáticamente realiza chmod +x tras la instalación en el "
+"invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:158
@@ -480,6 +564,8 @@ msgid ""
 "The alternative version I<--firstboot-command> is the same, but it "
 "conveniently wraps the command up in a single line script for you."
 msgstr ""
+"La versión alternativa I<--firstboot-command> es la misma, pero "
+"convenientemente cubre la instrucción en una solo línea de script por usted."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:161
@@ -490,6 +576,8 @@ msgid ""
 "You can have multiple I<--firstboot> options.  They run in the same order "
 "that they appear on the command line."
 msgstr ""
+"Puedes tener múltiples opciones I<--firstboot>. Ejecutan en el mismo orden "
+"que aparezcan en la línea de instrucción."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:164
@@ -500,6 +588,8 @@ msgid ""
 "Please take a look at L<virt-builder(1)/FIRST BOOT SCRIPTS> for more "
 "information and caveats about the first boot scripts."
 msgstr ""
+"Tome un vistazo a L<virt-builder(1)/FIRST BOOT SCRIPTS> para más información "
+"y advertencias sobre los guiones del primer arranque."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:167
@@ -507,13 +597,13 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:167
 #: common/mlcustomize/v2v-customize-options.pod:180
 msgid "See also I<--run>."
-msgstr ""
+msgstr "Además consulte I<--run>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:169
 #: common/mlcustomize/v2v-customize-options.pod:169
 msgid "B<--firstboot-command> 'CMD+ARGS'"
-msgstr ""
+msgstr "B<--firstboot-command> 'CMD+ARGS'"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:171
@@ -522,12 +612,14 @@ msgid ""
 "Run command (and arguments) inside the guest when the guest first boots up "
 "(as root, late in the boot process)."
 msgstr ""
+"Ejecute instrucción (y argumentos) dentro del invitado cuando el primer "
+"arranque del invitado (como root, tarde en el proceso de arranque)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:182
 #: common/mlcustomize/v2v-customize-options.pod:182
 msgid "B<--firstboot-install> PKG,PKG.."
-msgstr ""
+msgstr "B<--firstboot-install> PKG,PKG.."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:184
@@ -537,6 +629,9 @@ msgid ""
 "when the guest first boots using the guest’s package manager (eg. apt, yum, "
 "etc.) and the guest’s network connection."
 msgstr ""
+"Instala los paquetes nombrados (un listado separado por comas).  Estos son "
+"instalados cuando el invitado arranca primero utilizando el gestor del "
+"paquete del invitados (p.ej. apt, yum, etc) y la conexión de red invitada."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:188
@@ -547,12 +642,14 @@ msgid ""
 "For an overview on the different ways to install packages, see L<virt-"
 "builder(1)/INSTALLING PACKAGES>."
 msgstr ""
+"Para una vista resumida en las maneras diferentes de instalar los paquetes, "
+"consulte L<virt-builder(1)/INSTALLING PACKAGES>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:191
 #: common/mlcustomize/v2v-customize-options.pod:191
 msgid "B<--hostname> HOSTNAME"
-msgstr ""
+msgstr "B<--hostname> NOMBRE-HOST"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:193
@@ -561,11 +658,13 @@ msgid ""
 "Set the hostname of the guest to C<HOSTNAME>.  You can use a dotted hostname."
 "domainname (FQDN) if you want."
 msgstr ""
+"Establece el nombre del host en el invitado a C<HOSTNAME>.  Puedes utilizar "
+"un punteado de nombre-host.nombre-dominio (FQDN) si lo deseas."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:196
 msgid "B<--inject-blnsvr> METHOD"
-msgstr ""
+msgstr "B<--inject-blnsvr> MÉTODO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:198
@@ -581,6 +680,8 @@ msgstr ""
 msgid ""
 "The parameter is the same as used by the I<--inject-virtio-win> operation."
 msgstr ""
+"El parámetro es el miso que el utilizado por la operación I<--inject-virtio-"
+"win>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:204
@@ -591,11 +692,15 @@ msgid ""
 "hypervisor like VMware (which involves many other operations)  you should "
 "use the L<virt-v2v(1)> tool instead of this."
 msgstr ""
+"Tenga en cuenta que para realizar una conversión completa de un invitado de "
+"Windows desde un hipervisor externo como VMware "
+"(que implica muchas otras operaciones) debe utilizar la herramienta L<virt-"
+"v2v(1)> en lugar de esta."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:208
 msgid "B<--inject-qemu-ga> METHOD"
-msgstr ""
+msgstr "B<--inject-qemu-ga> MÉTODO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:210
@@ -605,11 +710,15 @@ msgid ""
 "features (see L<qemu-ga(8)>).  This operation also injects a firstboot "
 "script so that the Guest Agent is installed when the guest boots."
 msgstr ""
+"Inyectar el agente invitado de QEMU en un invitado de Windows. El agente "
+"invitado se comunica con qemu a través de un zócalo para ofrecer funciones "
+"mejoradas (véase L<qemu-ga(8)>). Esta operación también inyecta un script de "
+"firstboot para que el agente invitado se instale al arrancar el invitado."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:222
 msgid "B<--inject-virtio-win> METHOD"
-msgstr ""
+msgstr "B<--inject-virtio-win> MÉTODO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:224
@@ -619,6 +728,11 @@ msgid ""
 "supports virtio (such as qemu/KVM).  The operation also adjusts the Windows "
 "Registry so that the drivers are installed when the guest boots."
 msgstr ""
+"Inyectar controladores virtio-win en un invitado de Windows. Estos "
+"controladores añaden controladores acelerados por Virtio, ideales para "
+"ejecutarse sobre un hipervisor compatible con Virtio (como qemu/KVM). Esta "
+"operación también ajusta el Registro de Windows para que los controladores "
+"se instalen al arrancar el invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:230
@@ -665,7 +779,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:256
 #: common/mlcustomize/v2v-customize-options.pod:196
 msgid "B<--install> PKG,PKG.."
-msgstr ""
+msgstr "B<--install> PKG,PKG.."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:258
@@ -675,18 +789,21 @@ msgid ""
 "during the image build using the guest’s package manager (eg. apt, yum, "
 "etc.) and the host’s network connection."
 msgstr ""
+"Instala los paquetes indicados (una lista separada por comas). Estos se "
+"instalan durante la compilación de la imagen mediante el gestor de paquetes "
+"del huésped (p. ej., apt, yum, etc.) y la conexión de red del host."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:265
 #: common/mlcustomize/v2v-customize-options.pod:205
 msgid "See also I<--update>, I<--uninstall>."
-msgstr ""
+msgstr "Consulte además I<--update>, I<--uninstall>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:267
 #: common/mlcustomize/v2v-customize-options.pod:207
 msgid "B<--link> TARGET:LINK[:LINK..]"
-msgstr ""
+msgstr "B<--link> DESTINO:ENLACE[:ENLACE..]"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:269
@@ -695,18 +812,20 @@ msgid ""
 "Create symbolic link(s) in the guest, starting at C<LINK> and pointing at "
 "C<TARGET>."
 msgstr ""
+"Cree enlaces simbólicos en el invitado, comenzando en C<LINK> y apuntando a "
+"C<TARGET>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:272
 #: common/mlcustomize/v2v-customize-options.pod:212
 msgid "B<--mkdir> DIR"
-msgstr ""
+msgstr "B<--mkdir> DIR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:274
 #: common/mlcustomize/v2v-customize-options.pod:214
 msgid "Create a directory in the guest."
-msgstr ""
+msgstr "Crea un directorio en el invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:276
@@ -715,24 +834,26 @@ msgid ""
 "This uses S<C<mkdir -p>> so any intermediate directories are created, and it "
 "also works if the directory already exists."
 msgstr ""
+"Esto utiliza S<C<mkdir -p>>, por lo que se crean todos los directorios "
+"intermedios y también funciona si el directorio ya existe."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:279
 #: common/mlcustomize/v2v-customize-options.pod:219
 msgid "B<--move> SOURCE:DEST"
-msgstr ""
+msgstr "B<--move> ORIGEN:DEST"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:281
 #: common/mlcustomize/v2v-customize-options.pod:221
 msgid "Move files or directories inside the guest."
-msgstr ""
+msgstr "Mueve archivos o directorios dentro del invitado."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:285
 #: common/mlcustomize/v2v-customize-options.pod:225
 msgid "B<--no-logfile>"
-msgstr ""
+msgstr "B<--no-logfile>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:287
@@ -742,12 +863,15 @@ msgid ""
 "building is complete.  If you don't want to reveal precisely how the image "
 "was built, use this option."
 msgstr ""
+"Borre C<builder.log> (archivo de registro de los comandos de compilación) de "
+"la imagen una vez finalizada la compilación. Si no desea revelar con "
+"precisión cómo se compiló la imagen, utilice esta opción."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:291
 #: common/mlcustomize/v2v-customize-options.pod:231
 msgid "See also: L</LOG FILE>."
-msgstr ""
+msgstr "Consulte además: L</LOG FILE>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:293
@@ -760,6 +884,7 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:235
 msgid "Do not attempt to correct the SELinux labels of files in the guest."
 msgstr ""
+"No intente corregir las etiquetas SELinux de los archivos en el invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:297
@@ -772,6 +897,12 @@ msgid ""
 "for the next time the image boots.)  This option disables the automatic "
 "relabeling."
 msgstr ""
+"En los huéspedes compatibles con SELinux, la personalización reetiqueta "
+"automáticamente los archivos para que tengan la etiqueta SELinux correcta. ("
+"El reetiquetado se realiza inmediatamente, pero si falla, la personalización "
+"tocará F</.autorelabel> en la imagen para programar una operación de "
+"reetiquetado la próxima vez que se inicie). Esta opción desactiva el "
+"reetiquetado automático."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:304
@@ -783,7 +914,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:306
 #: common/mlcustomize/v2v-customize-options.pod:246
 msgid "B<--password> USER:SELECTOR"
-msgstr ""
+msgstr "B<--password> USUARIO:SELECTOR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:308
@@ -792,6 +923,8 @@ msgid ""
 "Set the password for C<USER>.  (Note this option does I<not> create the user "
 "account)."
 msgstr ""
+"Establece la contraseña para C<USUARIO>.  "
+"(Note esta opción I<no> crea la cuenta del usuario)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:311
@@ -802,12 +935,14 @@ msgid ""
 "See L<virt-builder(1)/USERS AND PASSWORDS> for the format of the C<SELECTOR> "
 "field, and also how to set up user accounts."
 msgstr ""
+"Emplee L<virt-builder(1)/USERS AND PASSWORDS> para el formato del campo "
+"C<SELECTOR>, y además como configurar cuantas de usuario."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:314
 #: common/mlcustomize/v2v-customize-options.pod:254
 msgid "B<--password-crypto> md5|sha256|sha512"
-msgstr ""
+msgstr "B<--password-crypto> md5|sha256|sha512"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:316
@@ -816,6 +951,9 @@ msgid ""
 "When the virt tools change or set a password in the guest, this option sets "
 "the password encryption of that password to C<md5>, C<sha256> or C<sha512>."
 msgstr ""
+"Cuando cambia las herramientas virt o establezca una contraseña en el "
+"invitado, esta opción establece la contraseña cifrada de esa contraseña a "
+"C<md5>, C<sha256> o C<sha512>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:320
@@ -824,6 +962,8 @@ msgid ""
 "C<sha256> and C<sha512> require glibc E<ge> 2.7 (check crypt(3) inside the "
 "guest)."
 msgstr ""
+"C<sha256> y C<sha512> requieren glibc E<ge> 2.7 (compruebe crypt(3) interno "
+"al invitado)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:323
@@ -832,6 +972,8 @@ msgid ""
 "C<md5> will work with relatively old Linux guests (eg. RHEL 3), but is not "
 "secure against modern attacks."
 msgstr ""
+"C<md5> funcionará con invitados de Linux relativamente antiguos (p.e. RHEL 3)"
+", pero no es seguro frente a ataques modernos."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:326
@@ -841,6 +983,9 @@ msgid ""
 "have support for SHA-512, in which case it will use C<md5>.  You can "
 "override libguestfs by specifying this option."
 msgstr ""
+"El valor predeterminado es C<sha512>, a menos que libguestfs detecte un "
+"huésped antiguo que no fuera compatible con SHA-512; en ese caso, usará "
+"C<md5>. Puede anular libguestfs especificando esta opción."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:330
@@ -851,18 +996,22 @@ msgid ""
 "then you should use the I<--edit> option to modify C</etc/sysconfig/"
 "authconfig> (Fedora, RHEL) or C</etc/pam.d/common-password> (Debian, Ubuntu)."
 msgstr ""
+"Tenga en cuenta que esto no modifica el cifrado de contraseña predeterminado "
+"que utiliza el invitado al crear nuevas cuentas de usuario. Si desea "
+"hacerlo, utilice la opción I<--edit> para modificar C</etc/sysconfig/"
+"authconfig> (Fedora, RHEL) o C</etc/pam.d/common-password> (Debian, Ubuntu)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:336
 #: common/mlcustomize/v2v-customize-options.pod:276
 msgid "B<--root-password> SELECTOR"
-msgstr ""
+msgstr "B<--root-password> SELECTOR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:338
 #: common/mlcustomize/v2v-customize-options.pod:278
 msgid "Set the root password."
-msgstr ""
+msgstr "Establece la contraseña de root."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:343
@@ -871,12 +1020,14 @@ msgid ""
 "Note: In virt-builder, if you I<don't> set I<--root-password> then the guest "
 "is given a I<random> root password."
 msgstr ""
+"Nota: en el compilador virt-builder, si I<no> establece I<--root-password> "
+"entonces al invitado se le proporciona una contraseña raíz I<aleatoria>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:346
 #: common/mlcustomize/v2v-customize-options.pod:286
 msgid "B<--run> SCRIPT"
-msgstr ""
+msgstr "B<--run> GUION"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:348
@@ -886,12 +1037,15 @@ msgid ""
 "The script runs virtualized inside a small appliance, chrooted into the "
 "guest filesystem."
 msgstr ""
+"Ejecute el script de shell (o cualquier programa) llamado C<SCRIPT> en la "
+"imagen de disco. El script se ejecuta virtualizado dentro de un pequeño "
+"dispositivo, conectado al sistema de archivos invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:352
 #: common/mlcustomize/v2v-customize-options.pod:292
 msgid "The script is automatically chmod +x."
-msgstr ""
+msgstr "Es guion es automáticamente chmod +x."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:354
@@ -905,6 +1059,11 @@ msgid ""
 "the script without needing a network connection (I<--attach>).  You can also "
 "upload data files (I<--upload>)."
 msgstr ""
+"Si libguestfs lo admite, la conexión de red es limitada, pero solo permite "
+"conexiones de red salientes. También puede adjuntar discos de datos "
+"(p. ej., archivos ISO) para proporcionar datos (p. ej., paquetes de software)"
+" al script sin necesidad de una conexión de red (I<--attach>). También puede "
+"cargar archivos de datos (I<--upload>)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:360
@@ -913,6 +1072,8 @@ msgid ""
 "You can have multiple I<--run> options.  They run in the same order that "
 "they appear on the command line."
 msgstr ""
+"Puedes tener múltiples opciones I<--run>.  Ejecutan en el mismo orden que "
+"aparecen en la línea de instrucción."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:363
@@ -920,13 +1081,13 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:303
 #: common/mlcustomize/v2v-customize-options.pod:319
 msgid "See also: I<--firstboot>, I<--attach>, I<--upload>."
-msgstr ""
+msgstr "Consulte además: I<--firstboot>, I<--attach>, I<--upload>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:365
 #: common/mlcustomize/v2v-customize-options.pod:305
 msgid "B<--run-command> 'CMD+ARGS'"
-msgstr ""
+msgstr "B<--run-command> 'CMD+ARGS'"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:367
@@ -935,6 +1096,9 @@ msgid ""
 "Run the command and arguments on the disk image.  The command runs "
 "virtualized inside a small appliance, chrooted into the guest filesystem."
 msgstr ""
+"Ejecute la instrucción y los argumentos en la imagen de disco. La "
+"instrucción se ejecuta virtualizada dentro de un pequeño dispositivo, con "
+"chroot en el sistema de archivos invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:376
@@ -943,36 +1107,38 @@ msgid ""
 "You can have multiple I<--run-command> options.  They run in the same order "
 "that they appear on the command line."
 msgstr ""
+"Puedes tener múltiples opciones I<--run-command>. Ejecutan en el mismo orden "
+"que aparecen en la línea de instrucción."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:381
 #: common/mlcustomize/v2v-customize-options.pod:321
 msgid "B<--scrub> FILE"
-msgstr ""
+msgstr "B<--scrub> ARCHIVO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:383
 #: common/mlcustomize/v2v-customize-options.pod:323
 msgid "Scrub a file from the guest.  This is like I<--delete> except that:"
-msgstr ""
+msgstr "Recorta un archivo desde el invitado. Es como I<--delete>, excepto que:"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:389
 #: common/mlcustomize/v2v-customize-options.pod:329
 msgid "It scrubs the data so a guest could not recover it."
-msgstr ""
+msgstr "Recorta los datos tal que un invitado no pueda recuperarlo."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:393
 #: common/mlcustomize/v2v-customize-options.pod:333
 msgid "It cannot delete directories, only regular files."
-msgstr ""
+msgstr "No puede borrar directorios, solo archivos usuales."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:397
 #: common/mlcustomize/v2v-customize-options.pod:337
 msgid "B<--selinux-relabel>"
-msgstr ""
+msgstr "B<--selinux-relabel>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:399
@@ -1061,7 +1227,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:430
 #: common/mlcustomize/v2v-customize-options.pod:370
 msgid "B<--ssh-inject> USER[:SELECTOR]"
-msgstr ""
+msgstr "B<--ssh-inject> USUARIO[:SELECTOR]"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:432
@@ -1070,6 +1236,9 @@ msgid ""
 "Inject an ssh key so the given C<USER> will be able to log in over ssh "
 "without supplying a password.  The C<USER> must exist already in the guest."
 msgstr ""
+"Inyectar una clave SSH para que el C<USUARIO> pueda iniciar sesión por SSH "
+"sin necesidad de proporcionar una contraseña. El C<USUARIO> debe existir "
+"previamente en el invitado."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:436
@@ -1077,6 +1246,8 @@ msgstr ""
 msgid ""
 "See L<virt-builder(1)/SSH KEYS> for the format of the C<SELECTOR> field."
 msgstr ""
+"Consulte L<virt-builder(1)/SSH KEYS> para conocer el formato del campo "
+"C<SELECTOR>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:439
@@ -1085,6 +1256,8 @@ msgid ""
 "You can have multiple I<--ssh-inject> options, for different users and also "
 "for more keys for each user."
 msgstr ""
+"Puede tener múltiples opciones I<--ssh-inject> para diferentes usuarios y "
+"también para más claves por cada usuario."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:442
@@ -1106,7 +1279,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:450
 #: common/mlcustomize/v2v-customize-options.pod:390
 msgid "B<--timezone> TIMEZONE"
-msgstr ""
+msgstr "B<--timezone> ZONA-HORARIA"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:452
@@ -1115,24 +1288,27 @@ msgid ""
 "Set the default timezone of the guest to C<TIMEZONE>.  Use a location string "
 "like C<Europe/London>"
 msgstr ""
+"Establezca la zona horaria predeterminada del huésped en C<TIMEZONE>. Emplee "
+"una cadena de lugar como C<Europe/London>"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:455
 #: common/mlcustomize/v2v-customize-options.pod:395
 msgid "B<--touch> FILE"
-msgstr ""
+msgstr "B<--touch> ARCHIVO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:457
 #: common/mlcustomize/v2v-customize-options.pod:397
 msgid "This command performs a L<touch(1)>-like operation on C<FILE>."
 msgstr ""
+"Esta instrucción realiza una operación similar a L<touch(1)> en C<ARCHIVO>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:459
 #: common/mlcustomize/v2v-customize-options.pod:399
 msgid "B<--truncate> FILE"
-msgstr ""
+msgstr "B<--truncate> ARCHIVO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:461
@@ -1141,12 +1317,14 @@ msgid ""
 "This command truncates C<FILE> to a zero-length file. The file must exist "
 "already."
 msgstr ""
+"Esta instrucción trunca C<ARCHIVO> a un archivo de longitud cero. El archivo "
+"ya debe existir."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:464
 #: common/mlcustomize/v2v-customize-options.pod:404
 msgid "B<--truncate-recursive> PATH"
-msgstr ""
+msgstr "B<--truncate-recursive> RUTA"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:466
@@ -1154,12 +1332,14 @@ msgstr ""
 msgid ""
 "This command recursively truncates all files under C<PATH> to zero-length."
 msgstr ""
+"Este comando trunca recursivamente todos los archivos bajo C<PATH> a "
+"longitud cero."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:468
 #: common/mlcustomize/v2v-customize-options.pod:408
 msgid "B<--uninstall> PKG,PKG.."
-msgstr ""
+msgstr "B<--uninstall> PKG,PKG.."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:470
@@ -1170,18 +1350,22 @@ msgid ""
 "etc.).  Dependent packages may also need to be uninstalled to satisfy the "
 "request."
 msgstr ""
+"Desinstale los paquetes indicados (una lista separada por comas). Estos se "
+"eliminan durante la compilación de la imagen mediante el gestor de paquetes "
+"del invitado (p. ej., apt, yum, etc.). Es posible que también sea necesario "
+"desinstalar los paquetes dependientes para satisfacer la solicitud."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:475
 #: common/mlcustomize/v2v-customize-options.pod:415
 msgid "See also I<--install>, I<--update>."
-msgstr ""
+msgstr "Consulte además I<--install>, I<--update>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:477
 #: common/mlcustomize/v2v-customize-options.pod:417
 msgid "B<--update>"
-msgstr ""
+msgstr "B<--update>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:479
@@ -1191,18 +1375,21 @@ msgid ""
 "is required to update the packages already installed in the template to "
 "their latest versions."
 msgstr ""
+"Realice el equivalente a C<yum update>, C<apt-get upgrade> o cualquier "
+"comando que sea necesario para actualizar los paquetes ya instalados en la "
+"plantilla a sus últimas versiones."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:483
 #: common/mlcustomize/v2v-customize-options.pod:423
 msgid "See also I<--install>, I<--uninstall>."
-msgstr ""
+msgstr "Consulte además I<--install>, I<--uninstall>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:485
 #: common/mlcustomize/v2v-customize-options.pod:425
 msgid "B<--upload> FILE:DEST"
-msgstr ""
+msgstr "B<--upload> ARCHIVO:DEST"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:487
@@ -1212,6 +1399,9 @@ msgid ""
 "owner and permissions from the original are preserved, so you should set "
 "them to what you want them to be in the disk image."
 msgstr ""
+"Sube el archivo local C<FILE> al destino C<DEST> en la imagen de disco. El "
+"propietario y los permisos del archivo original se conservan, por lo que "
+"debes configurarlos como desees en la imagen de disco."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:491
@@ -1220,6 +1410,8 @@ msgid ""
 "C<DEST> could be the final filename.  This can be used to rename the file on "
 "upload."
 msgstr ""
+"C<DEST> podría ser el nombre final del archivo. Esto permite renombrarlo al "
+"subirlo."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:494
@@ -1229,39 +1421,42 @@ msgid ""
 "the file is uploaded into that directory, and it keeps the same name as on "
 "the local filesystem."
 msgstr ""
+"Si C<DEST> es un nombre de directorio (que ya debe existir en el invitado), "
+"entonces el archivo se carga en ese directorio y conserva el mismo nombre "
+"que en el sistema de archivos local."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:498
 #: common/mlcustomize/v2v-customize-options.pod:438
 msgid "See also: I<--mkdir>, I<--delete>, I<--scrub>."
-msgstr ""
+msgstr "Consulte además: I<--mkdir>, I<--delete>, I<--scrub>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:500
 #: common/mlcustomize/v2v-customize-options.pod:440
 msgid "B<--write> FILE:CONTENT"
-msgstr ""
+msgstr "B<--write> FILE:CONTENT"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:502
 #: common/mlcustomize/v2v-customize-options.pod:442
 msgid "Write C<CONTENT> to C<FILE>."
-msgstr ""
+msgstr "Escribe C<CONTENT> al C<FILE>."
 
 #. type: =item
 #: common/options/blocksize-option.pod:1
 msgid "B<--blocksize=512>"
-msgstr ""
+msgstr "B<--blocksize=512>"
 
 #. type: =item
 #: common/options/blocksize-option.pod:3
 msgid "B<--blocksize=4096>"
-msgstr ""
+msgstr "B<--blocksize=4096>"
 
 #. type: =item
 #: common/options/blocksize-option.pod:5
 msgid "B<--blocksize>"
-msgstr ""
+msgstr "B<--blocksize>"
 
 #. type: textblock
 #: common/options/blocksize-option.pod:7
@@ -1272,11 +1467,16 @@ msgid ""
 "value which is usually 512 bytes.  See also L<guestfs(3)/"
 "guestfs_add_drive_opts>."
 msgstr ""
+"Este parámetro establece el tamaño del sector de la imagen de disco. Afecta "
+"a todos los discos añadidos explícitamente después de este parámetro. Al "
+"usar I<--blocksize> sin argumentos, el tamaño del sector del disco se cambia "
+"al valor predeterminado, que suele ser de 512 bytes. Véase también L<guestfs"
+"(3)/guestfs_add_drive_opts>."
 
 #. type: =item
 #: common/options/key-option.pod:1
 msgid "B<--key> SELECTOR"
-msgstr ""
+msgstr "B<--key> SELECTOR"
 
 #. type: textblock
 #: common/options/key-option.pod:3
@@ -1310,7 +1510,7 @@ msgstr ""
 #. type: textblock
 #: common/options/key-option.pod:18
 msgid "Use the specified C<KEY_STRING> as passphrase."
-msgstr ""
+msgstr "Utilice el C<KEY_STRING> especificado como frase de contraseña."
 
 #. type: =item
 #: common/options/key-option.pod:20
@@ -1330,7 +1530,7 @@ msgstr ""
 #. type: textblock
 #: common/options/key-option.pod:26
 msgid "Read the passphrase from F<FILENAME>."
-msgstr ""
+msgstr "Lea la frase de contraseña de F<NOMBRE-ARCHIVO>."
 
 #. type: =item
 #: common/options/key-option.pod:28
@@ -1365,7 +1565,7 @@ msgstr ""
 #. type: =item
 #: common/options/keys-from-stdin-option.pod:1 docs/virt-v2v-inspector.pod:189
 msgid "B<--keys-from-stdin>"
-msgstr ""
+msgstr "B<--keys-from-stdin>"
 
 #. type: textblock
 #: common/options/keys-from-stdin-option.pod:3
@@ -1482,7 +1682,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:180 docs/virt-v2v-support.pod:137
 #: docs/virt-v2v.pod:1727
 msgid "SEE ALSO"
-msgstr "VEA TAMBIÉN"
+msgstr "CONSULTE TAMBIÉN"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:50
@@ -1497,7 +1697,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.4.pod:157
 #: docs/virt-v2v-release-notes-2.6.pod:184 docs/virt-v2v.pod:1746
 msgid "AUTHORS"
-msgstr ""
+msgstr "AUTORES"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:55 docs/virt-v2v-in-place.pod:405
@@ -1525,7 +1725,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:218 docs/virt-v2v-support.pod:146
 #: docs/virt-v2v.pod:1774
 msgid "COPYRIGHT"
-msgstr ""
+msgstr "DERECHO DE COPIA"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:59 docs/virt-v2v-in-place.pod:423
@@ -1750,7 +1950,7 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:94 docs/virt-v2v-inspector.pod:185
 #: docs/virt-v2v.pod:246
 msgid "B<--echo-keys>"
-msgstr ""
+msgstr "B<--echo-keys>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:96 docs/virt-v2v.pod:248
@@ -1901,7 +2101,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:164 docs/virt-v2v.pod:386
 msgid "__INCLUDE:key-option.pod__"
-msgstr ""
+msgstr "__INCLUDE:key-option.pod__"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:166 docs/virt-v2v.pod:388
@@ -2077,7 +2277,7 @@ msgstr "B<-q>"
 #: docs/virt-v2v-in-place.pod:244 docs/virt-v2v-inspector.pod:203
 #: docs/virt-v2v.pod:815
 msgid "B<--quiet>"
-msgstr ""
+msgstr "B<--quiet>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:246 docs/virt-v2v.pod:817
@@ -2172,37 +2372,37 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:291 docs/virt-v2v-inspector.pod:146
 #: docs/virt-v2v.pod:862
 msgid "B<-v>"
-msgstr ""
+msgstr "B<-v>"
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:293 docs/virt-v2v-inspector.pod:148
 #: docs/virt-v2v.pod:864
 msgid "B<--verbose>"
-msgstr ""
+msgstr "B<--verbose>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:295 docs/virt-v2v-inspector.pod:150
 #: docs/virt-v2v.pod:866
 msgid "Enable verbose messages for debugging."
-msgstr ""
+msgstr "Habilita mensajes verbosos para depuración."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:297 docs/virt-v2v-inspector.pod:152
 #: docs/virt-v2v.pod:868
 msgid "B<-V>"
-msgstr ""
+msgstr "B<-V>"
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:299 docs/virt-v2v-inspector.pod:154
 #: docs/virt-v2v.pod:870
 msgid "B<--version>"
-msgstr ""
+msgstr "B<--version>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:301 docs/virt-v2v-inspector.pod:156
 #: docs/virt-v2v.pod:872
 msgid "Display version number and exit."
-msgstr "Imprimir número de versión y salir."
+msgstr "Exhibe el número de la versión y sale."
 
 #. type: =item
 #: docs/virt-v2v-in-place.pod:303 docs/virt-v2v-inspector.pod:207
@@ -2224,13 +2424,13 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:309 docs/virt-v2v-inspector.pod:158
 #: docs/virt-v2v.pod:880
 msgid "B<-x>"
-msgstr ""
+msgstr "B<-x>"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:311 docs/virt-v2v-inspector.pod:160
 #: docs/virt-v2v.pod:882
 msgid "Enable tracing of libguestfs API calls."
-msgstr ""
+msgstr "Habilita trazado de invocaciones API de libguestfs."
 
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:315 docs/virt-v2v.pod:1484
@@ -2298,6 +2498,9 @@ msgid ""
 "corresponding disk.  It can be specified by management tools in order to do "
 "end-to-end data integrity checks."
 msgstr ""
+"El campo opcional E<lt>checksumE<gt> especifica el hash esperado del disco "
+"correspondiente.  Puede ser especificado por herramientas de gestión con el "
+"fin de hacer la comprobación de integridad de datos de extremo a extremo."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:359
@@ -2919,7 +3122,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:235 docs/virt-v2v-output-local.pod:135
 msgid "4."
-msgstr ""
+msgstr "4."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:237
@@ -3039,6 +3242,8 @@ msgid ""
 "Construct the correct C<vpx://> (for vCenter) or C<esx://> (for ESXi)  URL.  "
 "It will look something like these:"
 msgstr ""
+"Construya la URL correcta C<vpx://> (para vCenter) o C<esx://> (para ESXi). "
+"Se verá similar a esto:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:289
@@ -3062,6 +3267,8 @@ msgid ""
 "To verify that you have the correct URL, use the L<virsh(1)> command to list "
 "the guests on the server:"
 msgstr ""
+"Para verificar que tiene la URL correcta, utilice la instrucción L<virsh(1)> "
+"para enumerar los invitados en el servidor:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:296 docs/virt-v2v-input-vmware.pod:524
@@ -4086,6 +4293,9 @@ msgid ""
 "disks uses the ssh sftp protocol, and this protocol cannot correctly detect "
 "the size of host block devices."
 msgstr ""
+"Esto sucede porque el controlador de bloque ssh qemu que usamos para acceder "
+"a discos remotos usa el protocolo ssh sftp, y este protocolo no puede "
+"detectar correctamente el tamaño de los dispositivos de bloque del host."
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:139
@@ -5080,6 +5290,9 @@ msgid ""
 "reason, using qcow2 will be faster and use less space on the Glance server.  "
 "Use the virt-v2v S<I<-of qcow2>> option."
 msgstr ""
+"La carga de imágenes de Glance no parece gestionar correctamente la escasez. "
+"Por este motivo, usar qcow2 será más rápido y ocupará menos espacio en el "
+"servidor de Glance. Emplee la opción virt-v2v S<I<-of qcow2>>."
 
 #. type: =head2
 #: docs/virt-v2v-output-openstack.pod:202
@@ -5640,6 +5853,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:55
 msgid "Label nbdkit sockets correctly for SELinux/sVirt (Martin Kletzander)."
 msgstr ""
+"Etiquete correctamente los zócalos nbdkit para SELinux/sVirt "
+"(Martin Kletzander)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:58
@@ -5654,6 +5869,11 @@ msgid ""
 "in error messages, and log script parameters, to help with debugging.  "
 "Multiple code cleanups.  (Nir Soffer)."
 msgstr ""
+"Varias correcciones a las cargas de RHV: Se ha configurado correctamente el "
+"campo C<DISKTYPE> al convertir a RHV y VDSM. Se ha realizado una limpieza "
+"adecuada en caso de fallo. Se muestra el ID del disco en los mensajes de "
+"error y se registran los parámetros del script para facilitar la depuración. "
+"Se han realizado varias limpiezas de código. (Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:65
@@ -5876,6 +6096,8 @@ msgstr ""
 msgid ""
 "update-crypto-policies command example is incorrect in virt-v2v-input-xen"
 msgstr ""
+"El ejemplo del comando update-crypto-policies es incorrecto en virt-v2v-"
+"input-xen"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:157
@@ -6256,6 +6478,10 @@ msgid ""
 "correctly.  Note an exact mapping is not always possible and oVirt may "
 "ignore our recommendations (incorrectly) sometimes."
 msgstr ""
+"La salida de Virt-v2v a oVirt ahora intenta configurar correctamente la "
+"máquina y el tipo de firmware. Tenga en cuenta que no siempre es posible "
+"obtener una asignación exacta y, en ocasiones, oVirt puede ignorar nuestras "
+"recomendaciones (incorrectamente)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:91
@@ -6428,6 +6654,8 @@ msgid ""
 "virt-v2v hangs for several minutes when using -ic vpx://... -it vddk with "
 "incorrect IP address"
 msgstr ""
+"virt-v2v se bloquea durante varios minutos al usar -ic vpx://... -it vddk "
+"con una dirección IP incorrecta"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:166
@@ -6855,6 +7083,8 @@ msgstr ""
 msgid ""
 "Should correct info about 'UEFI on OpenStack' in virt-v2v-support man page"
 msgstr ""
+"Corregiría el informe sobre 'UEFI en OpenStack' dentro de la página man de "
+"virt-v2v-support"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:278
@@ -6887,6 +7117,9 @@ msgid ""
 "RFE: Should clarify which file is correct authentication file for openstack/"
 "glance conversion in virt-v2v-output-openstack man page"
 msgstr ""
+"RFE: Se aclararía cual archivo es el archivo de autenticación correcto para "
+"la conversión de OpenStack/Glance en la página man de virt-v2v-output-"
+"openstack"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:286
@@ -6920,12 +7153,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:294
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1858765>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1858765>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:296
@@ -6938,12 +7167,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.0.pod:298
 #: docs/virt-v2v-release-notes-2.2.pod:259
 #: docs/virt-v2v-release-notes-2.6.pod:100
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1854275>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1854275>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:300
@@ -6955,12 +7180,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:302
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1842440>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1842440>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:304
@@ -6970,12 +7191,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:306
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1841096>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1841096>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:308
@@ -6986,12 +7203,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:310
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1839917>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1839917>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:312
@@ -7002,12 +7215,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:314
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1838425>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1838425>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:316
@@ -7018,12 +7227,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:318
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1837453>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1837453>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:320
@@ -7032,12 +7237,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:322
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1837328>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1837328>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:324
@@ -7046,12 +7247,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:326
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1832805>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1832805>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:328
@@ -7063,12 +7260,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:330
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1789279>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1789279>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:332
@@ -7079,12 +7272,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:334
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1788823>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1788823>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:336
@@ -7095,12 +7284,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:338
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1764569>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1764569>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:340
@@ -7109,12 +7294,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:342
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1658126>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1658126>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:344
@@ -7123,12 +7304,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:346
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1637857>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1637857>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:348
@@ -7139,12 +7316,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:350
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1581428>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1581428>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:352
@@ -7153,12 +7326,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:354
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1534644>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1534644>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:356
@@ -7171,41 +7340,43 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
 "notes-1.40(1)>."
 msgstr ""
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
+"notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:368
 msgid "Authors of virt-v2v 2.0:"
-msgstr ""
+msgstr "Autores de virt-v2v 2.0:"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:372
 msgid "git shortlog -s v1.42.0.."
-msgstr ""
+msgstr "git shortlog -s v1.42.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:378
 msgid "Denis Plotnikov"
-msgstr ""
+msgstr "Denis Plotnikov"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:380
 msgid "Kevin Locke"
-msgstr ""
+msgstr "Kevin Locke"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:386
 msgid "Mikhail Gordeev"
-msgstr ""
+msgstr "Mikhail Gordeev"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:394
 msgid "Valeriy Vdovin"
-msgstr ""
+msgstr "Valeriy Vdovin"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.2"
-msgstr ""
+msgstr "virt-v2v-release-notes - notas de lanzamiento de virt-v2v para 2.2"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:7
@@ -7217,7 +7388,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:10
 msgid "Virt-v2v 2.2.0 was released on S<B<Tuesday 10 January 2023>>."
-msgstr ""
+msgstr "Virt-v2v 2.2.0 fue lanzado el S<B<martes 10 de enero de 2023>>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:14
@@ -7243,6 +7414,8 @@ msgid ""
 "Add support for NVMe devices and SATA hard disks when importing from VMware "
 "VMX files (Laszlo Ersek)."
 msgstr ""
+"Añadir mantenimiento para dispositivos NVMe y discos duros SATA cuando "
+"importen desde archivos VMX de VMware (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:29
@@ -7250,23 +7423,25 @@ msgid ""
 "Add support for importing to KubeVirt using the new B<experimental> I<-o "
 "kubevirt> mode."
 msgstr ""
+"Añade mantenimiento para importar a KubeVirt utilizando el modo I<-o "
+"kubevirt B<experimental>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:32
 msgid "Windows 11 guests are now supported."
-msgstr ""
+msgstr "Los invitados de Windows 11 ahora tienen mantenimiento."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:34
 msgid "Rocky Linux guest support has been added (Andrey Drobyshev)."
-msgstr ""
+msgstr "Se ha añadido soporte para invitados de Rocky Linux (Andrey Drobyshev)."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-2.2.pod:36
 #: docs/virt-v2v-release-notes-2.4.pod:29
 #: docs/virt-v2v-release-notes-2.6.pod:44
 msgid "Feature removed"
-msgstr ""
+msgstr "Característica retirada"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:38
@@ -7274,6 +7449,8 @@ msgid ""
 "The I<-o json> mode was removed.  It was intended to be used with KubeVirt "
 "but was never actually used there.  Use I<-o kubevirt> instead."
 msgstr ""
+"El modo I<-o json> fue retirado. Estaba previsto utilizarlo con KubeVirt, "
+"pero en realidad nunca se utilizó allí.  Utilice I<-o kubevirt> en su lugar."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:44
@@ -7282,6 +7459,9 @@ msgid ""
 "addition, a semi-random guest CID is chosen in I<-o qemu> mode, avoiding an "
 "error."
 msgstr ""
+"Se corrigió la detección de compatibilidad con virtio-socket en huéspedes "
+"Linux (Laszlo Ersek). Además, se elige un CID de huésped semialeatorio en el "
+"modo I<-o qemu>, lo que evita errores."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:48
@@ -7289,11 +7469,14 @@ msgid ""
 "Allow importing OVAs where the user or group name inside the tarball "
 "contains a space (Jiří Sléžka)."
 msgstr ""
+"Concede la importación de OVAs donde el nombre de usuario o grupo dentro del "
+"archivo tar contiene un espacio (Jiří Sléžka)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:51
 msgid "Reject guests with snapshots when using -i vmx -it ssh (Laszlo Ersek)."
 msgstr ""
+"Rechazar invitados con instantáneas cuando use -i vmx -it ssh (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:53
@@ -7301,6 +7484,9 @@ msgid ""
 "Improve documentation for the need to enable PasswordAuthentication on the "
 "server side when importing over SSH (Laszlo Ersek)."
 msgstr ""
+"Mejorar la documentación sobre la necesidad de habilitar la autenticación de "
+"contraseña en el lado del servidor al importar a través de SSH (Laszlo Ersek)"
+"."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:56
@@ -7308,6 +7494,8 @@ msgid ""
 "Don't use the deprecated qemu I<-balloon> option.  This caused deprecation "
 "warnings with I<-o qemu> mode.  Use I<-device> instead."
 msgstr ""
+"No use la opción obsoleta qemu I<-balloon>. Esto generó advertencias de "
+"obsolescencia con el modo I<-o qemu>. Use I<-device> en su lugar."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:59
@@ -7316,12 +7504,18 @@ msgid ""
 "existent cases like SCSI floppies.  This should result in more consistent "
 "device layout when using this mode (Laszlo Ersek)."
 msgstr ""
+"Reescriba la asignación de dispositivos en modo E<-o qemu>, eliminando "
+"algunos casos extraños o inexistentes, como los disquetes SCSI. Esto debería "
+"resultar en una distribución de dispositivos más consistente al usar este "
+"modo (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:63
 msgid ""
 "Remove more left over open-vm-tools packages from Linux guests (Tim Kent)."
 msgstr ""
+"Eliminar más paquetes open-vm-tools sobrantes de los invitados Linux "
+"(Tim Kent)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:66
@@ -7333,7 +7527,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:69
 msgid "Greatly improved vCPU model handling (Laszlo Ersek)."
-msgstr ""
+msgstr "Manejo de modelos vCPU muy mejorado (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:71
@@ -7369,16 +7563,22 @@ msgid ""
 "The documentation no longer advises you to use the dangerous global \"LEGACY "
 "crypto\" option, but provides more targeted advice (Laszlo Ersek)."
 msgstr ""
+"La documentación ya no aconseja utilizar la peligrosa opción global "
+"\"LEGACY crypto\", sino que ofrece consejos más específicos (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:88
 msgid "Remove the LVM2 devices file during conversion (Laszlo Ersek)."
 msgstr ""
+"Eliminar el archivo de dispositivos LVM2 durante la conversión (Laszlo Ersek)"
+"."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:90
 msgid "Add support for guests using Zstandard compressed kernel modules."
 msgstr ""
+"Agregue soporte para invitados que utilizan módulos de kernel comprimidos "
+"Zstandard."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:92
@@ -7386,6 +7586,9 @@ msgid ""
 "Add the BOCHS DRM display driver in Linux guest initrd, to avoid a crash "
 "with some guests with graphical boot displays (Laszlo Ersek)."
 msgstr ""
+"Agregue el controlador de pantalla BOCHS DRM en el invitado initrd de Linux, "
+"para evitar un bloqueo con algunos invitados con pantallas de arranque "
+"gráficas (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:95
@@ -7393,6 +7596,8 @@ msgid ""
 "The UEFI fallback boot loader is now fixed up if we detect that it was "
 "broken (Laszlo Ersek)."
 msgstr ""
+"El cargador de arranque alternativo UEFI ahora está reparado si detectamos "
+"que estaba dañado (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:98
@@ -7400,22 +7605,28 @@ msgid ""
 "Improve detection of guests using BIOS boot with GPT partitions so that we "
 "no longer confuse them with UEFI guests (Andrey Drobyshev)."
 msgstr ""
+"Mejorar la detección de invitados que utilizan el arranque BIOS con "
+"particiones GPT para que ya no los confundamos con invitados UEFI "
+"(Andrey Drobyshev)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:101
 msgid ""
 "Fix conflict between fwcfg and qemufwcfg Windows drivers (Laszlo Ersek)."
 msgstr ""
+"Solucionar el conflicto entre los controladores de Windows fwcfg y qemufwcfg "
+"(Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:104
 msgid "Fix Windows 11 support for RHV outputs (Laszlo Ersek)."
 msgstr ""
+"Corregir la compatibilidad de Windows 11 con salidas RHV (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:108
 msgid "Enable malloc debugging in tests with glibc E<ge> 2.34."
-msgstr ""
+msgstr "Habilitar la depuración de malloc en pruebas con glibc E<ge> 2.34."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:110
@@ -7424,6 +7635,9 @@ msgid ""
 "separate files under F<tmp/>.  Instead it is written to the normal test log "
 "file."
 msgstr ""
+"Al usar C<make check-valgrind>, la salida de valgrind ya no se escribe en "
+"archivos separados bajo F<tmp/>. En su lugar, se escribe en el archivo de "
+"registro de pruebas normal."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:114
@@ -7431,6 +7645,8 @@ msgid ""
 "We now require ocamldep I<-one-line> and I<-all> options (added to ocamldep "
 "in Jan 2012)."
 msgstr ""
+"Ahora requerimos las opciones I<-one-line> y I<-all> de ocamldep "
+"(agregadas a ocamldep en enero de 2012)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:117
@@ -7438,46 +7654,48 @@ msgid ""
 "The OCaml libvirt bindings are no longer bundled.  They must be available at "
 "build time."
 msgstr ""
+"Los enlaces de OCaml libvirt ya no se incluyen. Deben estar disponibles en "
+"el momento de la compilación."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:120
 msgid "Updated the phony test images.  The tests should all pass."
 msgstr ""
+"Se actualizaron las imágenes falsas de las pruebas. Todas las pruebas "
+"deberían pasar."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:122
 msgid "Add compatibility with OCaml 4.14."
-msgstr ""
+msgstr "Toda la compatibilidad con OCaml 4.14."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:124
 msgid "We now require PCRE2 instead of PCRE."
-msgstr ""
+msgstr "Ahora necesitamos PCRE2 en lugar de PCRE."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:128
 msgid "New LUKS-on-LVM test added (Laszlo Ersek)."
-msgstr ""
+msgstr "Pruebas LUKS-on-LVM nuevas añadidas (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:130
 msgid ""
 "Added F<scripts/git.orderfile> which orders files when we prepare patches."
 msgstr ""
+"Se agregó F<scripts/git.orderfile> que ordena los archivos cuando preparamos "
+"parches."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:137
 msgid "https_proxy= ./bugs-in-changelog.sh v2.0.0.."
-msgstr ""
+msgstr "https_proxy= ./bugs-in-changelog.sh v2.0.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:143
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2152465>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2152465>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:145
@@ -7485,15 +7703,13 @@ msgid ""
 "v2v should set ovirt:id correctly after coverting windows11/2019/2022 guests "
 "to rhv via -o rhv-upload"
 msgstr ""
+"v2v debería configurar ovirt:id correctamente después de convertir los "
+"invitados de Windows 11/2019/2022 a rhv mediante -o rhv-upload"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:147
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2151752>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2151752>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:149
@@ -7501,15 +7717,13 @@ msgid ""
 "qemufwcfg device cannot start or has no driver after v2v converting windows "
 "guests"
 msgstr ""
+"El dispositivo qemufwcfg no puede iniciarse o no tiene controlador después "
+"de convertir v2v a invitados de Windows"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:151
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2149863>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2149863>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:153
@@ -7520,12 +7734,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:155
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2149811>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2149811>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:157
@@ -7536,12 +7746,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:159
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2149629>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2149629>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:161
@@ -7552,12 +7758,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:163
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2131123>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2131123>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:165
@@ -7566,12 +7768,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:167
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2116811>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2116811>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:169
@@ -7582,12 +7780,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:171
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2112801>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2112801>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:173
@@ -7596,12 +7790,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:175
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2107503>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2107503>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:177
@@ -7613,12 +7803,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:179
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2101665>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2101665>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:181
@@ -7629,12 +7815,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:183
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2089623>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2089623>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:185
@@ -7643,12 +7825,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:187
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2082603>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2082603>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:189
@@ -7659,12 +7837,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:191
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2076013>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2076013>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:193
@@ -7673,12 +7847,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:195
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2074805>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2074805>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:197
@@ -7689,12 +7859,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:199
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2074801>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2074801>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:201
@@ -7705,12 +7871,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:203
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2070530>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2070530>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:205
@@ -7720,12 +7882,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:207
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2070186>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2070186>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:209
@@ -7734,12 +7892,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:211
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2069768>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2069768>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:213
@@ -7748,12 +7902,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:215
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2066773>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2066773>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:217
@@ -7762,12 +7912,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:219
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2062360>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2062360>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:221
@@ -7778,12 +7924,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:223
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2059287>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2059287>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:225
@@ -7792,12 +7934,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:227
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2051564>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2051564>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:229
@@ -7806,12 +7944,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:231
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2047660>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2047660>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:233
@@ -7820,12 +7954,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:235
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2028764>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2028764>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:237
@@ -7834,12 +7964,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:239
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/2003503>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/2003503>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:241
@@ -7850,12 +7976,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:243
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1985827>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1985827>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:245
@@ -7864,12 +7986,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:247
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1953286>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1953286>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:249
@@ -7879,12 +7997,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:251
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1938954>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1938954>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:253
@@ -7893,26 +8007,18 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:255
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1883802>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1883802>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:257
 msgid "-i vmx: SATA disks are not parsed"
-msgstr ""
+msgstr "-i vmx: los discos SATA no son interpretados"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:263
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1817050>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1817050>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:265
@@ -7923,12 +8029,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:267
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://bugzilla.redhat.com/1774386>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://bugzilla.redhat.com/1774386>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:269
@@ -7945,85 +8047,85 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
 msgid "Authors of virt-v2v 2.2:"
-msgstr ""
+msgstr "Autores de virt-v2v 2.2:"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:286
 msgid "git shortlog -s v2.0.0.."
-msgstr ""
+msgstr "git shortlog -s v2.0.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:292
 #: docs/virt-v2v-release-notes-2.4.pod:169
 msgid "Andrey Drobyshev"
-msgstr ""
+msgstr "Andrey Drobyshev"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:294
 #: docs/virt-v2v-release-notes-2.4.pod:171
 msgid "Emilio Herrera"
-msgstr ""
+msgstr "Emilio Herrera"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:296
 msgid "Ettore Atalan"
-msgstr ""
+msgstr "Ettore Atalan"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:298
 msgid "Hela Basa"
-msgstr ""
+msgstr "Hela Basa"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:300
 #: docs/virt-v2v-release-notes-2.4.pod:177
 msgid "Jan Kuparinen"
-msgstr ""
+msgstr "Jan Kuparinen"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:304
 msgid "Marcin Stanclik"
-msgstr ""
+msgstr "Marcin Stanclik"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:308
 #: docs/virt-v2v-release-notes-2.4.pod:183
 msgid "Pavel Borecki"
-msgstr ""
+msgstr "Pavel Borecki"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:310
 #: docs/virt-v2v-release-notes-2.4.pod:185
 msgid "Piotr Drąg"
-msgstr ""
+msgstr "Piotr Drąg"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:314
 msgid "Ricky Tigg"
-msgstr ""
+msgstr "Ricky Tigg"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:316
 #: docs/virt-v2v-release-notes-2.4.pod:191
 msgid "Temuri Doghonadze"
-msgstr ""
+msgstr "Temuri Doghonadze"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:318
 msgid "Tim Kent"
-msgstr ""
+msgstr "Tim Kent"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:322
 #: docs/virt-v2v-release-notes-2.4.pod:193
 #: docs/virt-v2v-release-notes-2.6.pod:214
 msgid "Yuri Chornoivan"
-msgstr ""
+msgstr "Yuri Chornoivan"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.4"
-msgstr ""
+msgstr "virt-v2v-release-notes - notas de lanzamiento de virt-v2v 2.4"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:7
@@ -8339,27 +8441,27 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:159
 msgid "Authors of virt-v2v 2.4:"
-msgstr ""
+msgstr "Autores de virt-v2v 2.4:"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:163
 msgid "git shortlog -s v2.2.0.."
-msgstr ""
+msgstr "git shortlog -s v2.2.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:173
 msgid "grimst"
-msgstr ""
+msgstr "grimst"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:175
 msgid "HATAYAMA Daisuke"
-msgstr ""
+msgstr "HATAYAMA Daisuke"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:179
 msgid "Jürgen Hötzel"
-msgstr ""
+msgstr "Jürgen Hötzel"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:3
@@ -8496,16 +8598,12 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:94
 msgid "./bugs-in-changelog.sh v2.4.0.."
-msgstr ""
+msgstr "./bugs-in-changelog.sh v2.4.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:104
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-21365>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-21365>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:106
@@ -8516,12 +8614,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:109
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-28197>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-28197>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:111
@@ -8530,12 +8624,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:113
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-33699>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-33699>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:115
@@ -8544,12 +8634,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:117
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-36591>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-36591>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:119
@@ -8560,12 +8646,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:122
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-45527>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-45527>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:124
@@ -8576,12 +8658,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:127
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-45992>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-45992>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:129
@@ -8590,12 +8668,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:131
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-49761>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-49761>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:133
@@ -8605,12 +8679,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:135
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-50731>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-50731>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:137
@@ -8619,12 +8689,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:139
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-51169>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-51169>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:141
@@ -8635,12 +8701,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:144
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-53990>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-53990>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:146
@@ -8649,12 +8711,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:148
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-55763>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-55763>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:150
@@ -8663,26 +8721,18 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:152
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-55837>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-55837>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:154
 msgid "Re-enable Windows disks post-live migration [rhel-9.4.z]"
-msgstr ""
+msgstr "Re-habilitar discos de Windows tras la migración post-live [rhel-9.4.z]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:156
-#, fuzzy
-#| msgid ""
-#| "For more details see L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
 msgid "L<https://issues.redhat.com/browse/RHEL-56784>"
-msgstr ""
-"Para más detalle vea L<https://bugzilla.redhat.com/show_bug.cgi?id=599503>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-56784>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:158
@@ -8708,7 +8758,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:165
 msgid "L<https://github.com/libguestfs/virt-v2v/issues/42>"
-msgstr ""
+msgstr "L<https://github.com/libguestfs/virt-v2v/issues/42>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:167
@@ -8718,7 +8768,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:169
 msgid "L<https://github.com/libguestfs/virt-v2v/issues/45>"
-msgstr ""
+msgstr "L<https://github.com/libguestfs/virt-v2v/issues/45>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:171
@@ -8728,7 +8778,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:173
 msgid "L<https://github.com/libguestfs/virt-v2v/issues/46>"
-msgstr ""
+msgstr "L<https://github.com/libguestfs/virt-v2v/issues/46>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:175
@@ -8740,47 +8790,47 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:186
 msgid "Authors of virt-v2v 2.6:"
-msgstr ""
+msgstr "Autores de virt-v2v 2.6:"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:190
 msgid "git shortlog -s v2.4.0.."
-msgstr ""
+msgstr "git shortlog -s v2.4.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:196
 msgid "Andi Chandler"
-msgstr ""
+msgstr "Andi Chandler"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:198
 msgid "Bella Khizgiyaev"
-msgstr ""
+msgstr "Bella Khizgiyaev"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:200
 msgid "Bella Zhang"
-msgstr ""
+msgstr "Bella Zhang"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:202
 msgid "Jerry James"
-msgstr ""
+msgstr "Jerry James"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:204
 msgid "liuxiang"
-msgstr ""
+msgstr "liuxiang"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:210
 msgid "Schamane187"
-msgstr ""
+msgstr "Schamane187"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:212
 msgid "Thorsten Bolten"
-msgstr ""
+msgstr "Thorsten Bolten"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:3
@@ -8807,12 +8857,12 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-support.pod:16
 msgid "Hypervisors (Input)"
-msgstr ""
+msgstr "Hipervisores (Entrada)"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:20
 msgid "VMware ESXi"
-msgstr ""
+msgstr "VMware ESXi"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:22
@@ -8822,47 +8872,47 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-support.pod:24
 msgid "OVA exported from VMware"
-msgstr ""
+msgstr "OVA exportada desde VMware"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:26
 msgid "OVAs from other hypervisors will not work."
-msgstr ""
+msgstr "OVAs desde hipervisores no funcionarán."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:28
 msgid "VMX from VMware"
-msgstr ""
+msgstr "VMX desde VMware"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:30
 msgid "VMX files generated by other hypervisors will not work."
-msgstr ""
+msgstr "Archivos VMS generados por otros hipervisores no funcionarán."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:32
 msgid "RHEL 5 Xen"
-msgstr ""
+msgstr "RHEL 5 Xen"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:34
 msgid "SUSE Xen"
-msgstr ""
+msgstr "SUSE Xen"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:36
 msgid "Citrix Xen"
-msgstr ""
+msgstr "Citrix Xen"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:38
 msgid "Citrix Xen has not been recently tested."
-msgstr ""
+msgstr "Citrix Xen no ha sido probado recientemente."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:40
 msgid "Hyper-V"
-msgstr ""
+msgstr "Hyper-V"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:42
@@ -8870,11 +8920,13 @@ msgid ""
 "Not recently tested.  Requires that you export the disk or use L<virt-"
 "p2v(1)> on Hyper-V."
 msgstr ""
+"No probado recientemente. Requiere que exporte el disco o utilizar L<virt-p2v"
+"(1)> en Hyper-V."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:45
 msgid "Direct from disk images"
-msgstr ""
+msgstr "Directo desde imágenes de disco"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:47
@@ -8886,67 +8938,67 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-support.pod:50
 msgid "Physical machines"
-msgstr ""
+msgstr "Máquinas físicas"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:52
 msgid "Using the L<virt-p2v(1)> tool."
-msgstr ""
+msgstr "Utilizando la herramienta L<virt-p2v(1)>."
 
 #. type: =head2
 #: docs/virt-v2v-support.pod:56
 msgid "Hypervisors (Output)"
-msgstr ""
+msgstr "Hipervisores (Salida)"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:58
 msgid "QEMU and KVM only."
-msgstr ""
+msgstr "Solo QEMU y KVM."
 
 #. type: =head2
 #: docs/virt-v2v-support.pod:60
 msgid "Virtualization management systems (Output)"
-msgstr ""
+msgstr "Sistemas de gestión de virtualización (Salida)"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:64
 msgid "OpenStack"
-msgstr ""
+msgstr "OpenStack"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:66
 msgid "Red Hat Virtualization (RHV) 4.1 and up"
-msgstr ""
+msgstr "Red Hat Virtualization (RHV) 4.1 y posterior"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:68
 msgid "Local libvirt"
-msgstr ""
+msgstr "Local libvirt"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:70
 msgid "And hence L<virsh(1)>, L<virt-manager(1)>, and similar tools."
-msgstr ""
+msgstr "Y por tanto L<virsh(1)>, L<virt-manager(1)>, y herramientas similares."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:72
 msgid "Local disk"
-msgstr ""
+msgstr "Discos locales"
 
 #. type: =head2
 #: docs/virt-v2v-support.pod:76
 msgid "Guests"
-msgstr ""
+msgstr "Huésped"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:80
 msgid "Red Hat Enterprise Linux 4, 5, 6, 7, 8, 9, 10"
-msgstr ""
+msgstr "Red Hat Enterprise Linux 4, 5, 6, 7, 8, 9, 10"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:82
 msgid "CentOS 4, 5, 6, 7, 8, 9, 10"
-msgstr ""
+msgstr "CentOS 4, 5, 6, 7, 8, 9, 10"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:84
@@ -8956,12 +9008,12 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-support.pod:86
 msgid "Oracle Linux"
-msgstr ""
+msgstr "Linux Oracle"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:88
 msgid "Fedora"
-msgstr ""
+msgstr "Fedora"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:90
@@ -9042,7 +9094,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-support.pod:127
 msgid "UEFI on OpenStack"
-msgstr ""
+msgstr "UEFI en OpenStack"
 
 #. type: textblock
 #: docs/virt-v2v-support.pod:129
@@ -9253,12 +9305,12 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:95
 msgid "For more information see L<virt-v2v-input-vmware(1)>."
-msgstr ""
+msgstr "Para más información consulte L<virt-v2v-input-vmware(1)>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:97
 msgid "Convert from VMware to RHV/oVirt"
-msgstr ""
+msgstr "Convertir desde VMware a RHV/oVirt"
 
 #. type: textblock
 #: docs/virt-v2v.pod:99
@@ -9267,6 +9319,10 @@ msgid ""
 "to a RHV Data Domain using the RHV REST API.  Guest network interface(s) are "
 "connected to the target network called C<ovirtmgmt>."
 msgstr ""
+"Este es el mismo ejemplo que el anterior, excepto que se desea enviar al "
+"invitado a un Dominio de Datos RHV mediante la API REST de RHV. Las "
+"interfaces de red del invitado están conectadas a la red de destino "
+"denominada C<ovirtmgmt>."
 
 #. type: verbatim
 #: docs/virt-v2v.pod:103
@@ -9278,21 +9334,28 @@ msgid ""
 "   -oo rhv-cafile=/tmp/ca.pem --bridge ovirtmgmt\n"
 "\n"
 msgstr ""
+" virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest \\\n"
+"   -o rhv-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \\\n"
+"   -os ovirt-data -op /tmp/ovirt-admin-password -of raw \\\n"
+"   -oo rhv-cafile=/tmp/ca.pem --bridge ovirtmgmt\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:108
 msgid "In this case the host running virt-v2v acts as a B<conversion server>."
 msgstr ""
+"En este caso, el host que ejecuta virt-v2v actúa como un B<servidor de "
+"conversión>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:110
 msgid "For more information see L<virt-v2v-output-rhv(1)>."
-msgstr ""
+msgstr "Para obtener más información, consulte L<virt-v2v-output-rhv(1)>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:112
 msgid "Convert from ESXi hypervisor over SSH to local libvirt"
-msgstr ""
+msgstr "Convertir desde hipervisor ESXi a través de SSH a libvirt local"
 
 #. type: textblock
 #: docs/virt-v2v.pod:114
@@ -9301,6 +9364,9 @@ msgid ""
 "enabled.  You want to convert from VMFS storage on that server to a local "
 "file."
 msgstr ""
+"Tiene un hipervisor ESXi llamado C<esxi.example.com> con acceso SSH "
+"habilitado. Quiere convertir el almacenamiento VMFS de ese servidor a un "
+"archivo local."
 
 #. type: verbatim
 #: docs/virt-v2v.pod:118
@@ -9312,6 +9378,12 @@ msgid ""
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
+" virt-v2v \\\n"
+"   -i vmx -it ssh \\\n"
+"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\"
+"\n"
+"   -o local -os /var/tmp\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:123
@@ -9319,6 +9391,8 @@ msgid ""
 "The guest must not be running.  Virt-v2v would I<not> need to be run as root "
 "in this case."
 msgstr ""
+"El invitado no debe estar en ejecución. En este caso, Virt-v2v debería "
+"ejecutarse como root."
 
 #. type: textblock
 #: docs/virt-v2v.pod:126
@@ -9326,11 +9400,13 @@ msgid ""
 "For more information about converting from VMX files see L<virt-v2v-input-"
 "vmware(1)>."
 msgstr ""
+"Para obtener más información sobre la conversión de archivos VMX, consulte L"
+"<virt-v2v-input-vmware(1)>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:129
 msgid "Convert disk image to OpenStack"
-msgstr ""
+msgstr "Convertir imagen de disco a OpenStack"
 
 #. type: textblock
 #: docs/virt-v2v.pod:131
@@ -11330,7 +11406,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:1308
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1310
@@ -11340,7 +11416,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:1312
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1314
@@ -12066,3 +12142,9 @@ msgid ""
 "ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
 ">."
 msgstr ""
+"L<virt-p2v(1)>, L<virt-v2v-inspector(1)>, L<virt-v2v-in-place(1)>, L<virt-"
+"customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, L<virt-sparsify(1)>, L"
+"<virt-sysprep(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-"
+"image-uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-"
+"ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
+">."
