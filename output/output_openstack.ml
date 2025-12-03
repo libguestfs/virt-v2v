@@ -30,7 +30,7 @@ open Utils
 open Output
 
 module Openstack = struct
-  type poptions = string option * string * string *
+  type poptions = string option * string * string option * string *
                   string option * string option *
                   (string list -> int) * (string list -> JSON.json_t option)
 
@@ -88,6 +88,7 @@ The os-* parameters and environment variables are optional.
       error (f_"-o openstack mode only supports -oa sparse -of raw");
 
     let server_id = ref None in
+    let availability_zone = ref None in
     let dev_disk_by_id = ref None in
     let verify_server_certificate = ref true in
     let guest_id = ref None in
@@ -96,6 +97,8 @@ The os-* parameters and environment variables are optional.
       function
       | "server-id", v ->
          server_id := Some v
+      | "availability-zone", v ->
+         availability_zone := Some v
       | "dev-disk-by-id", v ->
          dev_disk_by_id := Some v
       | "verify-server-certificate", "" ->
@@ -201,14 +204,14 @@ The os-* parameters and environment variables are optional.
 
     let output_name = Option.value ~default:source.s_name options.output_name in
 
-    (options.output_storage, output_name,
+    (options.output_storage, output_name, availability_zone,
      server_id, guest_id, dev_disk_by_id,
      run_openstack_command,
      run_openstack_command_capture_json)
 
   let setup dir options source input_disks =
     let input_sizes = get_disk_sizes input_disks in
-    let output_storage, output_name,
+    let output_storage, output_name, availability_zone
         server_id, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
 
@@ -283,6 +286,11 @@ The os-* parameters and environment variables are optional.
       Option.iter (
         fun os -> List.push_back_list args [ "--type"; os ]
       ) output_storage;
+
+      Option.iter (
+        fun az -> List.push_back_list args [ "--availability-zone"; az ]
+      ) availability_zone;
+
       List.push_back args name;
 
       let json =
@@ -397,7 +405,7 @@ The os-* parameters and environment variables are optional.
 
   let rec finalize dir options volume_ids output_disks
             source inspect target_meta =
-    let output_storage, output_name,
+    let output_storage, output_name, availability_zone,
         server_id, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
     let nr_disks = List.length volume_ids in
