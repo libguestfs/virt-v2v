@@ -235,7 +235,7 @@ The os-* parameters and environment variables are optional.
      * some kind of garbage collection for unfinished conversions
      * in the case that virt-v2v crashes.
      *)
-    let description = sprintf "virt-v2v temporary volume for %s" output_name in
+    let description = sprintf "'virt-v2v temporary volume for %s'" output_name in
 
     (* The list of volume IDs that we create as we go along. *)
     let volume_ids = ref [] in
@@ -437,7 +437,7 @@ The os-* parameters and environment variables are optional.
       let image_properties =
         List.flatten (
             List.map (
-                fun (k, v) -> [ "--image-property"; sprintf "%s=%s" k v ]
+                fun (k, v) -> [ "--image-property"; sprintf "%s='%s'" k v ]
               ) image_properties
         ) in
       List.push_back_list args image_properties;
@@ -445,7 +445,7 @@ The os-* parameters and environment variables are optional.
       let volume_properties =
         List.flatten (
             List.map (
-                fun (k, v) -> [ "--property"; sprintf "%s=%s" k v ]
+                fun (k, v) -> [ "--property"; sprintf "%s='%s'" k v ]
             ) volume_properties
         ) in
       List.push_back_list args volume_properties;
@@ -473,7 +473,7 @@ The os-* parameters and environment variables are optional.
     List.iteri (
       fun i id ->
         let description =
-          sprintf "%s disk %d/%d converted by virt-v2v"
+          sprintf "'%s disk %d/%d converted by virt-v2v'"
             output_name (i+1) nr_disks in
 
         let volume_properties = ref [
