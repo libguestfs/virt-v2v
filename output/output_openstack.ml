@@ -30,7 +30,7 @@ open Utils
 open Output
 
 module Openstack = struct
-  type poptions = string option * string * string option * string *
+  type poptions = string option * string * string * string option *
                   string option * string option *
                   (string list -> int) * (string list -> JSON.json_t option)
 
@@ -53,7 +53,7 @@ module Openstack = struct
        | Some id -> sprintf " -oo server-id=%s" id)
 
   let query_output_options () =
-    printf (f_"virt-v2v -oo server-id=<NAME|UUID> [os-*=...]
+    printf (f_"virt-v2v -oo server-id=<NAME|UUID> [availability_zone=<NAME>] [os-*=...]
 
 Specify the name or UUID of the conversion appliance using
 
@@ -62,6 +62,11 @@ Specify the name or UUID of the conversion appliance using
 When virt-v2v runs it will attach the Cinder volumes to the
 conversion appliance, so this name or UUID must be the name
 of the virtual machine on OpenStack where virt-v2v is running.
+
+If an availability zone should be passed to Cinder when creating volumes,
+this can be done with ”-oo availability-zone=<NAME>”. If the OpenStack cloud
+does not support cross-zone volume attachments, this must be the same AZ
+as the conversion appliance Nova instance.
 
 In addition, all usual OpenStack “os-*” parameters or “OS_*”
 environment variables can be used.
@@ -122,6 +127,7 @@ The os-* parameters and environment variables are optional.
       | None ->
          error (f_"openstack: -oo server-id=<NAME|UUID> not present");
       | Some server_id -> server_id in
+    let availability_zone = !availability_zone in
     let authentication = List.rev !authentication in
     let verify_server_certificate = !verify_server_certificate in
     let guest_id = !guest_id in
@@ -204,15 +210,15 @@ The os-* parameters and environment variables are optional.
 
     let output_name = Option.value ~default:source.s_name options.output_name in
 
-    (options.output_storage, output_name, availability_zone,
-     server_id, guest_id, dev_disk_by_id,
+    (options.output_storage, output_name,
+     server_id, availability_zone, guest_id, dev_disk_by_id,
      run_openstack_command,
      run_openstack_command_capture_json)
 
   let setup dir options source input_disks =
     let input_sizes = get_disk_sizes input_disks in
-    let output_storage, output_name, availability_zone
-        server_id, guest_id, dev_disk_by_id,
+    let output_storage, output_name,
+        server_id, availability_zone, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
 
     (* Timeout waiting for Cinder volumes to attach to the appliance. *)
@@ -405,8 +411,8 @@ The os-* parameters and environment variables are optional.
 
   let rec finalize dir options volume_ids output_disks
             source inspect target_meta =
-    let output_storage, output_name, availability_zone,
-        server_id, guest_id, dev_disk_by_id,
+    let output_storage, output_name,
+        server_id, availability_zone, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
     let nr_disks = List.length volume_ids in
 
