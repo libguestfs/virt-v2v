@@ -239,6 +239,10 @@ are mapped to C<out>.
 
 See L<virt-v2v(1)/Networks and bridges>.
 
+=item B<--no-fstrim>
+
+Do not trim the filesystem.  See L<virt-v2v(1)/Trimming>.
+
 =item B<-O> output.xml
 
 =item B<-O ->

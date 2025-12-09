@@ -468,6 +468,10 @@ are mapped to C<out>.
 
 See L</Networks and bridges> below.
 
+=item B<--no-fstrim>
+
+Do not trim the filesystem.  See L</Trimming> below.
+
 =item B<-o> B<disk>
 
 This is the same as I<-o local>.
@@ -1025,6 +1029,8 @@ all.
 fstrim support in the Linux kernel is improving gradually, so over
 time some of these restrictions will be lifted and virt-v2v will work
 faster.
+
+Use I<--no-fstrim> to disable trimming.
 
 =head2 Free space for conversion
 

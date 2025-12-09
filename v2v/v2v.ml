@@ -80,6 +80,8 @@ let rec main () =
   let smp = ref None in
   let set_smp arg = smp := Some arg in
 
+  let no_fstrim = ref false in
+
   let network_map = Networks.create () in
   let static_ips = ref [] in
   let rec add_network str =
@@ -242,6 +244,8 @@ let rec main () =
                                     s_"Use password from file to connect to output hypervisor";
     [ M"os" ],       Getopt.String ("storage", set_string_option_once "-os" output_storage),
                                     s_"Set output storage location";
+    [ L"no-fstrim" ],  Getopt.Set no_fstrim,
+                                    s_"Don't trim filesystems before conversion";
     [ L"parallel" ], Getopt.Set_int ("N", parallel),
       s_"Run up to N instances of nbdcopy in parallel";
     [ L"print-source" ], Getopt.Set print_source,
@@ -324,6 +328,7 @@ read the man page virt-v2v(1).
     | Some transport ->
        error (f_"unknown input transport ‘-it %s’") transport in
   let memsize = !memsize in
+  let no_fstrim = !no_fstrim in
   let output_alloc =
     match !output_alloc with
     | `Not_set | `Sparse -> Types.Sparse
@@ -440,6 +445,7 @@ read the man page virt-v2v(1).
     smp;
     static_ips;
     customize_ops;
+    no_fstrim;
   } in
 
   (* Before starting the input module, check there is sufficient
