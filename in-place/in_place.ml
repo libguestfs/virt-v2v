@@ -151,6 +151,7 @@ let rec main () =
   let set_root_choice = Types.set_root_choice root_choice in
 
   (* Other options that we handle here. *)
+  let no_fstrim = ref false in
   let print_source = ref false in
 
   let input_modes =
@@ -185,6 +186,8 @@ let rec main () =
                                     s_"Map network ‘in’ to ‘out’";
     [ S 'O' ],       Getopt.String ("output.xml", set_output_xml_option),
                                     s_"Set the output filename";
+    [ L"no-fstrim" ],  Getopt.Set no_fstrim,
+                                    s_"Don't trim filesystems before conversion";
     [ L"print-source" ], Getopt.Set print_source,
                                     s_"Print source and stop";
     [ L"root" ],     Getopt.String ("ask|... ", set_root_choice),
@@ -254,6 +257,7 @@ read the man page virt-v2v-in-place(1).
   let customize_ops = get_customize_ops () in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
+  let no_fstrim = !no_fstrim in
   let memsize = !memsize in
   let output_xml = !output_xml in
   let print_source = !print_source in
@@ -326,6 +330,7 @@ read the man page virt-v2v-in-place(1).
     smp;
     static_ips;
     customize_ops;
+    no_fstrim;
   } in
 
   (* Before starting the input module, check there is sufficient

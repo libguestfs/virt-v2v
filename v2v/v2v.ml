@@ -440,6 +440,7 @@ read the man page virt-v2v(1).
     smp;
     static_ips;
     customize_ops;
+    no_fstrim = false;
   } in
 
   (* Before starting the input module, check there is sufficient
