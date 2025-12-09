@@ -91,6 +91,7 @@ TESTS = \
 	test-mac.sh \
 	test-machine-readable.sh \
 	test-networks-and-bridges.sh \
+	test-no-fstrim.sh \
 	test-o-glance.sh \
 	test-o-kubevirt-fedora.sh \
 	test-o-kubevirt-oo-disk.sh \
@@ -279,6 +280,7 @@ EXTRA_DIST += \
 	test-machine-readable.sh \
 	test-networks-and-bridges-expected.xml \
 	test-networks-and-bridges.sh \
+	test-no-fstrim.sh \
 	test-o-glance.sh \
 	test-o-kubevirt-fedora.sh \
 	test-o-kubevirt-fedora.yaml.expected \
