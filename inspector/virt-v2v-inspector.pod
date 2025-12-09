@@ -202,6 +202,8 @@ virt-v2v-inspector.
 
 =item B<--network> ...
 
+=item B<--no-fstrim>
+
 =item B<-q>
 
 =item B<--quiet>
