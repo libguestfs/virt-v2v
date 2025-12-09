@@ -26,6 +26,7 @@ type options = {
   smp : int option;                (** [--smp] option *)
   static_ips : Types.static_ip list; (** [--mac :ip:] option *)
   customize_ops : Customize_cmdline.ops; (** virt-customize options *)
+  no_fstrim : bool;                (** [--no-fstrim] option *)
 }
 (** Command line options that get passed through to the conversion code. *)
 

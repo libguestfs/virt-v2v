@@ -70,6 +70,8 @@ let rec main () =
   let smp = ref None in
   let set_smp arg = smp := Some arg in
 
+  let no_fstrim = ref false in
+
   let network_map = Networks.create () in
   let static_ips = ref [] in
   let rec add_network str =
@@ -171,6 +173,8 @@ let rec main () =
                                     s_"Map NIC to network or bridge or assign static IP";
     [ S 'm'; L"memsize" ], Getopt.Int ("mb", set_memsize),
                                     s_"Set memory size";
+    [ L"no-fstrim" ],  Getopt.Set no_fstrim,
+                                    s_"Don't trim filesystems before conversion";
     [ S 'n'; L"network" ], Getopt.String ("in:out", add_network),
                                     s_"Map network ‘in’ to ‘out’";
     [ S 'O' ],       Getopt.String ("output.xml", set_output_file_option),
@@ -233,6 +237,7 @@ read the man page virt-v2v-inspector(1).
     | Some transport ->
        error (f_"unknown input transport ‘-it %s’") transport in
   let memsize = !memsize in
+  let no_fstrim = !no_fstrim in
   let root_choice = !root_choice in
   let smp = !smp in
   let static_ips = !static_ips in
@@ -293,6 +298,7 @@ read the man page virt-v2v-inspector(1).
     smp;
     static_ips;
     customize_ops;
+    no_fstrim;
   } in
 
   (* Before starting the input module, check there is sufficient
