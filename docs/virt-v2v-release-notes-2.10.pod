@@ -7,7 +7,7 @@ virt-v2v-release-notes - virt-v2v release notes for 2.10
 These are the release notes for S<B<virt-v2v 2.10>>.
 This describes the major changes since 2.8.
 
-Virt-v2v 2.10.0 was released on S<B<XXX December 2025>>.
+Virt-v2v 2.10.0 was released on S<B<6th January 2026>>.
 
 =begin comment
 
@@ -142,15 +142,12 @@ Fix UEFI conversions of Windows guests if F<C:\Windows\Temp> exists
 but has a different upper/lowercase from the directory that Windows
 normally creates.
 
-
 =head2 Documentation
 
 Refactored and improved documentation (thanks Ming Xie).
 
 Link from L<virt-v2v(1)> directly to official VMware documentation for
 removing VMware Tools.
-
-
 
 =head2 Build changes
 
@@ -170,8 +167,8 @@ I<--disable-ovirt> and I<--disable-xen> options allowing you to
 disable those features at compile time.
 
 Basic github CI has been implemented.  Pull requests now do the
-equivalent of C<./configure && make && make check> on a few common
-platforms.
+equivalent of C<./configure --enable-werror && make && make check> on
+a few common platforms.
 
 =head2 Internals
 
@@ -290,12 +287,18 @@ git shortlog -s v2.8.0..
 
 =item Cole Robinson
 
+=item Fco. Javier F. Serrador
+
 =item Richard W.M. Jones
 
+=item Ricky Tigg
+
 =item Vadim Rozenfeld
+
+=item Yuri Chornoivan
 
 =back
 
 =head1 COPYRIGHT
 
-Copyright (C) 2009-2025 Red Hat Inc.
+Copyright (C) 2009-2026 Red Hat Inc.
