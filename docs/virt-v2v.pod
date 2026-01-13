@@ -1600,6 +1600,29 @@ L<https://issues.redhat.com/browse/RHEL-70840>
 and
 L<https://windowstechpro.com/how-to-enable-bitlocker-on-windows-11/>
 
+=head2 Windows: "Enter the recovery key for this drive"
+
+After conversion, you may be presented with a Windows boot screen showing:
+
+ BitLocker recovery
+ Enter the recovery key for this drive
+ [|___________________]
+
+(See screenshot on L<https://issues.redhat.com/browse/RHEL-103915>)
+
+This happens when the Windows BitLocker disk encryption key is
+contained in the VMware Virtual Trusted Platform Module (vTPM).  The
+vTPM is working I<exactly as designed>.  It is preventing the
+encrypted disk from being moved from one machine to another by storing
+the encryption key in trusted storage on the source.  By design, we
+cannot access or move this key to the target.
+
+To start the VM you will need to enter the BitLocker recovery key.
+This will also register the disk against the new vTPM on the target,
+so it should only be necessary to do this once.
+
+For help finding the recovery key: L<https://aka.ms/recoverykeyfaq>
+
 =head2 Networks and bridges
 
 Guests are usually connected to one or more networks, and when
