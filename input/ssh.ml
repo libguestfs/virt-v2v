@@ -60,4 +60,6 @@ let remote_file_exists ~server ?port ?user ?password path =
    * prove the remote file exists.
    *)
   let cmd = [ Config.nbdinfo; "--can"; "connect"; uri ] in
-  run_command cmd = 0
+  let r = run_command cmd = 0 in
+  debug "ssh: remote_file_exists: testing %s -> %b" path r;
+  r
