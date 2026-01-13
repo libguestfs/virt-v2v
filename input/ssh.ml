@@ -56,10 +56,13 @@ let download_file ~server ?port ?user ?password path output =
 let remote_file_exists ~server ?port ?user ?password path =
   let uri = start_nbdkit ~server ?port ?user ?password path in
 
-  (* Testing that we can connect to the nbdkit server is enough to
+  (* Testing that the nbdkit server can get the size is enough to
    * prove the remote file exists.
    *)
-  let cmd = [ Config.nbdinfo; "--can"; "connect"; uri ] in
-  let r = run_command cmd = 0 in
+  let cmd = sprintf "%s --size %s >/dev/null %s"
+              Config.nbdinfo (quote uri)
+              (* If verbose then allow stderr to go to the log, else hide it *)
+              (if verbose () then "" else "2>&1") in
+  let r = shell_command cmd = 0 in
   debug "ssh: remote_file_exists: testing %s -> %b" path r;
   r
