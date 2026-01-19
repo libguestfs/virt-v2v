@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: 2026-01-19 10:45+0000\n"
+"PO-Revision-Date: 2026-01-19 11:45+0000\n"
 "Last-Translator: Nathan <nathan95@live.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/it/>\n"
@@ -1295,7 +1295,7 @@ msgid ""
 "like C<Europe/London>"
 msgstr ""
 "Imposta il fuso orario predefinito del guest su C<TIMEZONE>. Utilizza una "
-"stringa di località, ad esempio C<Europe/London>."
+"stringa di località, ad esempio C<Europe/London>"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:455
@@ -1307,7 +1307,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:457
 #: common/mlcustomize/v2v-customize-options.pod:397
 msgid "This command performs a L<touch(1)>-like operation on C<FILE>."
-msgstr ""
+msgstr "Questo comando esegue un’operazione simile a L<touch(1)> su C<FILE>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:459
@@ -1322,6 +1322,8 @@ msgid ""
 "This command truncates C<FILE> to a zero-length file. The file must exist "
 "already."
 msgstr ""
+"Questo comando tronca C<FILE> portandolo a una lunghezza pari a zero. Il "
+"file deve già esistere."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:464
@@ -1334,6 +1336,8 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:406
 msgid "This command recursively truncates all files under C<PATH> to zero-length."
 msgstr ""
+"Questo comando tronca ricorsivamente tutti i file sotto C<PATH> portandoli a "
+"lunghezza zero."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:468
@@ -1350,12 +1354,16 @@ msgid ""
 "etc.).  Dependent packages may also need to be uninstalled to satisfy the "
 "request."
 msgstr ""
+"Disinstalla i pacchetti indicati (elenco separato da virgole). Vengono "
+"rimossi durante la creazione dell’immagine utilizzando il gestore pacchetti "
+"del guest (ad es. apt, yum, ecc.). Potrebbe essere necessario disinstallare "
+"anche i pacchetti dipendenti per soddisfare la richiesta."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:475
 #: common/mlcustomize/v2v-customize-options.pod:415
 msgid "See also I<--install>, I<--update>."
-msgstr ""
+msgstr "Vedi altro"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:477
@@ -1371,6 +1379,9 @@ msgid ""
 "is required to update the packages already installed in the template to "
 "their latest versions."
 msgstr ""
+"Esegue l’equivalente di C<yum update>, C<apt-get upgrade> o qualsiasi altro "
+"comando necessario per aggiornare i pacchetti già installati nel template "
+"alle loro versioni più recenti."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:483
@@ -1392,6 +1403,10 @@ msgid ""
 "owner and permissions from the original are preserved, so you should set "
 "them to what you want them to be in the disk image."
 msgstr ""
+"Carica il file locale C<FILE> nella destinazione C<DEST> all’interno "
+"dell’immagine del disco. Proprietario e permessi del file originale vengono "
+"preservati, quindi dovresti impostarli come desideri che siano nell’immagine "
+"del disco."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:491
@@ -1400,6 +1415,8 @@ msgid ""
 "C<DEST> could be the final filename.  This can be used to rename the file on "
 "upload."
 msgstr ""
+"C<DEST> può essere il nome finale del file. Questo permette di rinominare il "
+"file durante il caricamento."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:494
@@ -1409,12 +1426,15 @@ msgid ""
 "the file is uploaded into that directory, and it keeps the same name as on "
 "the local filesystem."
 msgstr ""
+"Se C<DEST> è il nome di una directory (che deve già esistere nel guest), il "
+"file viene caricato all’interno di quella directory mantenendo lo stesso "
+"nome presente nel filesystem locale."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:498
 #: common/mlcustomize/v2v-customize-options.pod:438
 msgid "See also: I<--mkdir>, I<--delete>, I<--scrub>."
-msgstr ""
+msgstr "Vedi altro:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:500
@@ -1452,6 +1472,11 @@ msgid ""
 "value which is usually 512 bytes.  See also "
 "L<guestfs(3)/guestfs_add_drive_opts>."
 msgstr ""
+"Questo parametro imposta la dimensione del settore dell’immagine del disco. "
+"Influisce su tutti i dischi aggiunti esplicitamente dopo questo parametro. "
+"Usare I<--blocksize> senza argomento ripristina la dimensione del settore "
+"predefinita, solitamente 512 byte. Vedi anche L<guestfs(3)/"
+"guestfs_add_drive_opts>."
 
 #. type: =item
 #: common/options/key-option.pod:1
@@ -1464,6 +1489,8 @@ msgid ""
 "Specify a key for LUKS, to automatically open a LUKS device when using the "
 "inspection."
 msgstr ""
+"Specifica una chiave per LUKS, per aprire automaticamente un dispositivo "
+"LUKS durante l’ispezione."
 
 #. type: =item
 #: common/options/key-option.pod:8
@@ -1486,11 +1513,14 @@ msgid ""
 "C<NAME> is the libguestfs device name (eg. C</dev/sda1>).  C<UUID> is the "
 "device UUID.  C<all> means try the key against any encrypted device."
 msgstr ""
+"C<NAME> è il nome del dispositivo in libguestfs (ad es. C</dev/sda1>). "
+"C<UUID> è l’UUID del dispositivo. C<all> significa provare la chiave su "
+"qualsiasi dispositivo criptato."
 
 #. type: textblock
 #: common/options/key-option.pod:18
 msgid "Use the specified C<KEY_STRING> as passphrase."
-msgstr ""
+msgstr "Usa la C<KEY_STRING> specificata come passphrase."
 
 #. type: =item
 #: common/options/key-option.pod:20
@@ -1510,7 +1540,7 @@ msgstr ""
 #. type: textblock
 #: common/options/key-option.pod:26
 msgid "Read the passphrase from F<FILENAME>."
-msgstr ""
+msgstr "Legge la passphrase dal file F<FILENAME>."
 
 #. type: =item
 #: common/options/key-option.pod:28
@@ -1534,6 +1564,9 @@ msgid ""
 "network.  Please refer to L<guestfs(3)/ENCRYPTED DISKS> for more information "
 "on network-bound disk encryption (NBDE)."
 msgstr ""
+"Tenta lo sblocco del dispositivo senza passphrase tramite Clevis, tramite la "
+"rete. Per ulteriori informazioni sulla crittografia dei dischi vincolata "
+"alla rete (NBDE), fare riferimento a L<guestfs(3)/ENCRYPTED DISKS>."
 
 #. type: textblock
 #: common/options/key-option.pod:38
@@ -1541,6 +1574,9 @@ msgid ""
 "Note that if any such option is present on the command line, QEMU user "
 "networking will be automatically enabled for the libguestfs appliance."
 msgstr ""
+"Nota che, se una qualsiasi di queste opzioni è presente sulla riga di "
+"comando, il networking utente di QEMU verrà automaticamente abilitato per "
+"l’appliance libguestfs."
 
 #. type: =item
 #: common/options/keys-from-stdin-option.pod:1 docs/virt-v2v-inspector.pod:189
@@ -1553,6 +1589,8 @@ msgid ""
 "Read key or passphrase parameters from stdin.  The default is to try to read "
 "passphrases from the user by opening F</dev/tty>."
 msgstr ""
+"Legge i parametri di chiave o passphrase da stdin. Per impostazione "
+"predefinita, le passphrase vengono richieste all’utente aprendo F</dev/tty>."
 
 #. type: textblock
 #: common/options/keys-from-stdin-option.pod:6
@@ -1560,6 +1598,8 @@ msgid ""
 "If there are multiple encrypted devices then you may need to supply multiple "
 "keys on stdin, one per line."
 msgstr ""
+"Se sono presenti più dispositivi cifrati, potrebbe essere necessario fornire "
+"più chiavi tramite stdin, una per riga."
 
 #. type: =head1
 #: docs/virt-v2v-hacking.pod:1 docs/virt-v2v-in-place.pod:1
@@ -1571,7 +1611,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:1 docs/virt-v2v-support.pod:1
 #: docs/virt-v2v.pod:1
 msgid "NAME"
-msgstr ""
+msgstr "NOME"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:3
@@ -1588,7 +1628,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:5 docs/virt-v2v-support.pod:6
 #: docs/virt-v2v.pod:12
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "DESCRIZIONE"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:7
@@ -1598,6 +1638,10 @@ msgid ""
 "to rewrite it again).  The previous version was written in Perl and can be "
 "found here: L<https://git.fedorahosted.org/git/virt-v2v.git>"
 msgstr ""
+"Prima, un po’ di storia. Virt-v2v ha subito almeno due riscritture complete, "
+"quindi questa è probabilmente la terza versione (ma non abbiamo intenzione "
+"di riscriverla di nuovo). La versione precedente era scritta in Perl e può "
+"essere trovata qui: L<https://git.fedorahosted.org/git/virt-v2v.git"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:13
@@ -1608,11 +1652,16 @@ msgid ""
 "(especially in the details of guest conversion), checking the Perl code may "
 "help."
 msgstr ""
+"La versione attuale è iniziata quasi come una riscrittura riga per riga del "
+"codice Perl in OCaml + C, e conserva ancora una struttura abbastanza simile. "
+"Pertanto, se ci sono dettagli di questo codice che non comprendi "
+"(soprattutto nei dettagli della conversione del guest), consultare il codice "
+"Perl potrebbe essere utile."
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:19
 msgid "The files to start with when reading this code are:"
-msgstr ""
+msgstr "I file da cui iniziare quando si legge questo codice sono:"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:25
@@ -1631,6 +1680,9 @@ msgid ""
 "communicating between different bits of the program.  F<v2v.ml> controls how "
 "the program runs in stages."
 msgstr ""
+"F<types.mli> definisce tutte le strutture utilizzate e scambiate durante la "
+"comunicazione tra le diverse parti del programma. F<v2v.ml> gestisce il modo "
+"in cui il programma viene eseguito a fasi."
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:37
@@ -1641,6 +1693,12 @@ msgid ""
 "options (see the manual).  The conversion modules define what guest types we "
 "can handle and the detailed steps involved in converting them."
 msgstr ""
+"Dopo aver studiato quei file, potresti voler esplorare i moduli di input "
+"(F<input_*>), i moduli di output (F<output_*>) o i moduli di conversione "
+"(F<convert_*>). I moduli di input e output definiscono le opzioni I<-i> e I<-"
+"o> (vedi il manuale). I moduli di conversione definiscono quali tipi di "
+"guest possiamo gestire e i passaggi dettagliati coinvolti nella loro "
+"conversione."
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:44
@@ -1649,6 +1707,9 @@ msgid ""
 "sort.  Some code is written in C, especially where we want to use an "
 "external C library such as libxml2."
 msgstr ""
+"Tutti gli altri file in questa directory sono moduli di supporto o librerie "
+"di vario tipo. Parte del codice è scritta in C, specialmente dove è "
+"necessario utilizzare una libreria C esterna, come libxml2."
 
 #. type: =head1
 #: docs/virt-v2v-hacking.pod:48 docs/virt-v2v-in-place.pod:383
@@ -1662,7 +1723,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:180 docs/virt-v2v-support.pod:137
 #: docs/virt-v2v.pod:1727
 msgid "SEE ALSO"
-msgstr ""
+msgstr "VEDI ALTRO"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:50
@@ -1677,7 +1738,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.4.pod:157
 #: docs/virt-v2v-release-notes-2.6.pod:184 docs/virt-v2v.pod:1746
 msgid "AUTHORS"
-msgstr ""
+msgstr "AUTORI"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:55 docs/virt-v2v-in-place.pod:405
@@ -1725,6 +1786,8 @@ msgstr ""
 #: docs/virt-v2v-in-place.pod:3
 msgid "virt-v2v-in-place - Convert a guest to use KVM in-place"
 msgstr ""
+"virt-v2v-in-place – Converte un guest per utilizzare KVM direttamente sulla "
+"macchina esistente (in-place)"
 
 #. type: =head1
 #: docs/virt-v2v-in-place.pod:5 docs/virt-v2v-input-vmware.pod:5
@@ -1744,6 +1807,11 @@ msgid ""
 "                   [-O output.xml]\n"
 "\n"
 msgstr ""
+" virt-v2v-in-place -i disk [other -i* options]\n"
+"                   [virt-customize options]\n"
+"                   filename\n"
+"                   [-O output.xml]\n"
+"\n"
 
 #. type: verbatim
 #: docs/virt-v2v-in-place.pod:12
@@ -1755,6 +1823,11 @@ msgid ""
 "                   [-O output.xml]\n"
 "\n"
 msgstr ""
+" virt-v2v-in-place -i libvirt|libvirtxml [other -i* options]\n"
+"                   [virt-customize options]\n"
+"                   guest\n"
+"                   [-O output.xml]\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:19
@@ -1762,6 +1835,9 @@ msgid ""
 "Virt-v2v-in-place converts a single guest from a foreign hypervisor to run "
 "on KVM.  It does this conversion in place, modifying the original disk."
 msgstr ""
+"Virt-v2v-in-place converte un singolo guest da un hypervisor esterno per "
+"eseguirlo su KVM. La conversione avviene in-place, modificando il disco "
+"originale."
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:23
@@ -1769,11 +1845,13 @@ msgid ""
 "This manual page only documents the differences between this tool and "
 "virt-v2v.  You should read L<virt-v2v(1)> first."
 msgstr ""
+"Questa pagina del manuale documenta solo le differenze tra questo strumento "
+"e virt-v2v. È consigliato leggere prima L<virt-v2v(1)>."
 
 #. type: =head2
 #: docs/virt-v2v-in-place.pod:26
 msgid "Selecting the input disk"
-msgstr ""
+msgstr "Selezione del disco di input"
 
 #. type: textblock
 #: docs/virt-v2v-in-place.pod:28
