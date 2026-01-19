@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2025-02-27 18:15+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-01-19 10:45+0000\n"
+"Last-Translator: Nathan <nathan95@live.it>\n"
+"Language-Team: Italian <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-docs-master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -47,7 +49,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:188
 #: docs/virt-v2v-release-notes-2.6.pod:192
 msgid "comment"
-msgstr ""
+msgstr "Commento"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:3
@@ -70,6 +72,8 @@ msgid ""
 " Copyright (C) 2009-2025 Red Hat Inc.\n"
 "\n"
 msgstr ""
+" Copyright (C) 2009-2025 Red Hat Inc.\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:11
@@ -82,6 +86,11 @@ msgid ""
 " (at your option) any later version.\n"
 "\n"
 msgstr ""
+" Questo programma è software libero; puoi ridistribuirlo e/o modificarlo\n"
+"secondo i termini della GNU General Public License come pubblicata dalla\n"
+"Free Software Foundation; sia la versione 2 della Licenza, sia\n"
+"(a tua scelta) qualsiasi versione successiva.\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:16
@@ -94,6 +103,11 @@ msgid ""
 " GNU General Public License for more details.\n"
 "\n"
 msgstr ""
+" Questo programma è distribuito con la speranza che possa essere utile,\n"
+"ma SENZA ALCUNA GARANZIA; senza neanche la garanzia implicita di\n"
+"COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Vedi la\n"
+"GNU General Public License per maggiori dettagli.\n"
+"\n"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:21
@@ -105,12 +119,17 @@ msgid ""
 " 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.\n"
 "\n"
 msgstr ""
+" Dovresti aver ricevuto una copia della GNU General Public License insieme\n"
+"a questo programma; in caso contrario, scrivi alla Free Software Foundation, "
+"Inc.,\n"
+"51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA\n"
+"\n"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:29
 #: common/mlcustomize/v2v-customize-options.pod:29
 msgid "B<--append-line> FILE:LINE"
-msgstr ""
+msgstr "B<--append-line> FILE:LINE"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:31
@@ -120,21 +139,28 @@ msgid ""
 "end with a newline, then one is added before the appended line.  Also a "
 "newline is added to the end of the C<LINE> string automatically."
 msgstr ""
+"Aggiungi una singola riga di testo al file C<FILE>. Se il file non termina "
+"già con una nuova riga, verrà aggiunta prima della riga aggiunta. Inoltre, "
+"una nuova riga verrà automaticamente aggiunta alla fine della stringa C<LINE>"
+"."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:36
 #: common/mlcustomize/v2v-customize-options.pod:36
 msgid "For example (assuming ordinary shell quoting) this command:"
 msgstr ""
+"Ad esempio (supponendo una normale citazione della shell), questo comando:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:38
 #: common/mlcustomize/v2v-customize-options.pod:38
-#, no-wrap
+#, fuzzy, no-wrap
 msgid ""
 " --append-line '/etc/hosts:10.0.0.1 foo'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:10.0.0.1 foo'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:40
@@ -143,6 +169,8 @@ msgid ""
 "will add either C<10.0.0.1 foo⏎> or C<⏎10.0.0.1 foo⏎> to the file, the "
 "latter only if the existing file does not already end with a newline."
 msgstr ""
+"aggiungerà al file o C<10.0.0.1 foo⏎> o C<⏎10.0.0.1 foo⏎>, quest'ultima solo "
+"se il file esistente non termina già con una nuova riga."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:44
@@ -153,12 +181,16 @@ msgid ""
 "using Unix or Windows line endings.  It also works for empty or non-existent "
 "files."
 msgstr ""
+"C<⏎> rappresenta un carattere di nuova riga, che viene determinato "
+"esaminando il contenuto esistente del file, quindi questo comando funziona "
+"correttamente sia per i file con terminazioni di riga Unix che Windows. "
+"Funziona anche per file vuoti o inesistenti."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:49
 #: common/mlcustomize/v2v-customize-options.pod:49
 msgid "To insert several lines, use the same option several times:"
-msgstr ""
+msgstr "Per inserire più righe, usa la stessa opzione più volte:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:51
@@ -169,12 +201,15 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.2 bar'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:10.0.0.1 foo'\n"
+" --append-line '/etc/hosts:10.0.0.2 bar'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:54
 #: common/mlcustomize/v2v-customize-options.pod:54
 msgid "To insert a blank line before the appended line, do:"
-msgstr ""
+msgstr "Per inserire una riga vuota prima della riga aggiunta, fai:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:56
@@ -185,18 +220,21 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.1 foo'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:'\n"
+" --append-line '/etc/hosts:10.0.0.1 foo'\n"
+"\n"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:59
 #: common/mlcustomize/v2v-customize-options.pod:59
 msgid "B<--chmod> PERMISSIONS:FILE"
-msgstr ""
+msgstr "B<--chmod> PERMISSIONS:FILE"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:61
 #: common/mlcustomize/v2v-customize-options.pod:61
 msgid "Change the permissions of C<FILE> to C<PERMISSIONS>."
-msgstr ""
+msgstr "Cambia i permessi di C<FILE> to C<PERMISSIONS>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:63
@@ -210,7 +248,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:66
 #: common/mlcustomize/v2v-customize-options.pod:66
 msgid "B<--chown> UID:GID:PATH"
-msgstr ""
+msgstr "B<--chown> UID:GID:PATH"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:68
@@ -219,6 +257,8 @@ msgid ""
 "Change the owner user and group ID of a file or directory in the guest.  "
 "Note:"
 msgstr ""
+"Cambia l'utente proprietario e l'ID del gruppo di un file o una directory "
+"nel sistema guest.  Nota:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:73
@@ -244,7 +284,7 @@ msgstr ""
 #: docs/virt-v2v.pod:1076 docs/virt-v2v.pod:1088 docs/virt-v2v.pod:1094
 #: docs/virt-v2v.pod:1099 docs/virt-v2v.pod:1117 docs/virt-v2v.pod:1121
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:75
@@ -253,19 +293,21 @@ msgid ""
 "Only numeric UIDs and GIDs will work, and these may not be the same inside "
 "the guest as on the host."
 msgstr ""
+"Funzioneranno solo gli UID e GID numerici, e questi potrebbero non essere "
+"gli stessi all'interno del guest rispetto al sistema host."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:80
 #: common/mlcustomize/v2v-customize-options.pod:80
 msgid "This will not work with Windows guests."
-msgstr ""
+msgstr "Questo non funzionerà con i sistemi guest Windows."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:84
 #: common/mlcustomize/v2v-customize-options.pod:84
 #: docs/virt-v2v-output-openstack.pod:92
 msgid "For example:"
-msgstr ""
+msgstr "Per esempio:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:86
@@ -275,24 +317,28 @@ msgid ""
 " virt-customize --chown '0:0:/var/log/audit.log'\n"
 "\n"
 msgstr ""
+" virt-customize --chown '0:0:/var/log/audit.log'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:88
 #: common/mlcustomize/v2v-customize-options.pod:88
 msgid "See also: I<--upload>."
-msgstr ""
+msgstr "Vedi anche I<--upload>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:90
 #: common/mlcustomize/v2v-customize-options.pod:90
 msgid "B<--commands-from-file> FILENAME"
-msgstr ""
+msgstr "B<--commands-from-file> FILENAME"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:92
 #: common/mlcustomize/v2v-customize-options.pod:92
 msgid "Read the customize commands from a file, one (and its arguments)  each line."
 msgstr ""
+"Leggi i comandi di personalizzazione da un file, uno (e i suoi argomenti)  "
+"per ogni riga."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:95
@@ -301,6 +347,8 @@ msgid ""
 "Each line contains a single customization command and its arguments, for "
 "example:"
 msgstr ""
+"Ogni riga contiene un singolo comando di personalizzazione e i suoi "
+"argomenti, ad esempio:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:98
@@ -312,6 +360,10 @@ msgid ""
 " password some-user:password:its-new-password\n"
 "\n"
 msgstr ""
+" delete /some/file\n"
+" install some-package\n"
+" password some-user:password:its-new-password\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:102
@@ -322,6 +374,10 @@ msgid ""
 "lines, by adding a C<\\> (continuation character) at the of a line, for "
 "example"
 msgstr ""
+"Le righe vuote vengono ignorate, e le righe che iniziano con C<#> sono "
+"commenti e vengono anch'esse ignorate. Inoltre, gli argomenti possono essere "
+"suddivisi su più righe, aggiungendo un C<> (carattere di continuazione) alla "
+"fine di una riga, ad esempio"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:107
@@ -332,6 +388,9 @@ msgid ""
 "   s/^OPT=.*/OPT=ok/\n"
 "\n"
 msgstr ""
+" edit /some/file:\\\n"
+"   s/^OPT=.*/OPT=ok/\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:110
@@ -340,18 +399,20 @@ msgid ""
 "The commands are handled in the same order as they are in the file, as if "
 "they were specified as I<--delete /some/file> on the command line."
 msgstr ""
+"I comandi vengono gestiti nell'ordine in cui sono presenti nel file, come se "
+"fossero specificati come I<--delete /some/file> sulla riga di comando."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:114
 #: common/mlcustomize/v2v-customize-options.pod:114
 msgid "B<--copy> SOURCE:DEST"
-msgstr ""
+msgstr "B<--copy> SOURCE:DEST"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:116
 #: common/mlcustomize/v2v-customize-options.pod:116
 msgid "Copy files or directories recursively inside the guest."
-msgstr ""
+msgstr "Copia file o directory ricorsivamente all'interno del guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:118
@@ -361,13 +422,13 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:125
 #: common/mlcustomize/v2v-customize-options.pod:223
 msgid "Wildcards cannot be used."
-msgstr ""
+msgstr "I caratteri jolly (wildcard) non possono essere utilizzati."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:120
 #: common/mlcustomize/v2v-customize-options.pod:120
 msgid "B<--copy-in> LOCALPATH:REMOTEDIR"
-msgstr ""
+msgstr "B<--copy-in> LOCALPATH:REMOTEDIR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:122
@@ -376,12 +437,14 @@ msgid ""
 "Copy local files or directories recursively into the disk image, placing "
 "them in the directory C<REMOTEDIR> (which must exist)."
 msgstr ""
+"Copia file o directory locali ricorsivamente nell'immagine del disco, "
+"posizionandoli nella directory C<REMOTEDIR> (che deve esistere)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:127
 #: common/mlcustomize/v2v-customize-options.pod:127
 msgid "B<--delete> PATH"
-msgstr ""
+msgstr "B<--delete> PATH"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:129
@@ -390,6 +453,8 @@ msgid ""
 "Delete a file from the guest.  Or delete a directory (and all its contents, "
 "recursively)."
 msgstr ""
+"Elimina un file dal guest. Oppure elimina una directory (e tutto il suo "
+"contenuto, in modo ricorsivo)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:132
@@ -399,6 +464,9 @@ msgid ""
 "escape glob characters from the host shell, if that is required.  For "
 "example:"
 msgstr ""
+"Puoi usare caratteri jolly (glob) della shell nel percorso specificato. Fai "
+"attenzione a sfuggire i caratteri jolly dalla shell dell'host, se "
+"necessario. Ad esempio:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:136
@@ -408,24 +476,26 @@ msgid ""
 " virt-customize --delete '/var/log/*.log'.\n"
 "\n"
 msgstr ""
+" virt-customize --delete '/var/log/*.log'.\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:138
 #: common/mlcustomize/v2v-customize-options.pod:138
 msgid "See also: I<--upload>, I<--scrub>."
-msgstr ""
+msgstr "Vedi anche I<--upload>, I<--scrub>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:140
 #: common/mlcustomize/v2v-customize-options.pod:140
 msgid "B<--edit> FILE:EXPR"
-msgstr ""
+msgstr "B<--edit> FILE:EXPR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:142
 #: common/mlcustomize/v2v-customize-options.pod:142
 msgid "Edit C<FILE> using the Perl expression C<EXPR>."
-msgstr ""
+msgstr "Modifica C<FILE> utilizzando l'espressione Perl C<EXPR>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:144
@@ -434,18 +504,20 @@ msgid ""
 "Be careful to properly quote the expression to prevent it from being altered "
 "by the shell."
 msgstr ""
+"Fai attenzione a citare correttamente l'espressione per evitare che venga "
+"alterata dalla shell."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:147
 #: common/mlcustomize/v2v-customize-options.pod:147
 msgid "Note that this option is only available when Perl 5 is installed."
-msgstr ""
+msgstr "Nota che questa opzione è disponibile solo quando Perl 5 è installato."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:149
 #: common/mlcustomize/v2v-customize-options.pod:149
 msgid "See L<virt-edit(1)/NON-INTERACTIVE EDITING>."
-msgstr ""
+msgstr "Vedi L<virt-edit(1)/NON-INTERACTIVE EDITING>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:151
@@ -460,12 +532,17 @@ msgid ""
 "Install C<SCRIPT> inside the guest, so that when the guest first boots up, "
 "the script runs (as root, late in the boot process)."
 msgstr ""
+"Installa C<SCRIPT> all'interno del guest, in modo che quando il guest si "
+"avvia per la prima volta, lo script venga eseguito (come root, durante le "
+"fasi finali del processo di avvio)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:156
 #: common/mlcustomize/v2v-customize-options.pod:156
 msgid "The script is automatically chmod +x after installation in the guest."
 msgstr ""
+"Lo script viene automaticamente reso eseguibile con chmod +x dopo "
+"l'installazione nel guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:158
@@ -474,6 +551,8 @@ msgid ""
 "The alternative version I<--firstboot-command> is the same, but it "
 "conveniently wraps the command up in a single line script for you."
 msgstr ""
+"La versione alternativa I<--firstboot-command> è la stessa, ma incapsula "
+"comodamente il comando in uno script su una sola riga per te."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:161
@@ -484,6 +563,8 @@ msgid ""
 "You can have multiple I<--firstboot> options.  They run in the same order "
 "that they appear on the command line."
 msgstr ""
+"Puoi avere più opzioni I<--firstboot>. Vengono eseguite nell'ordine in cui "
+"appaiono sulla riga di comando."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:164
@@ -494,6 +575,8 @@ msgid ""
 "Please take a look at L<virt-builder(1)/FIRST BOOT SCRIPTS> for more "
 "information and caveats about the first boot scripts."
 msgstr ""
+"Per maggiori informazioni e avvertenze sugli script di primo avvio, dai "
+"un'occhiata a first boot scripts."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:167
@@ -501,7 +584,7 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:167
 #: common/mlcustomize/v2v-customize-options.pod:180
 msgid "See also I<--run>."
-msgstr ""
+msgstr "Vedi altro"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:169
@@ -516,6 +599,9 @@ msgid ""
 "Run command (and arguments) inside the guest when the guest first boots up "
 "(as root, late in the boot process)."
 msgstr ""
+"Esegui il comando (e gli argomenti) all'interno del guest quando il guest si "
+"avvia per la prima volta (come root, durante le fasi finali del processo di "
+"avvio)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:182
@@ -531,6 +617,10 @@ msgid ""
 "when the guest first boots using the guest’s package manager (eg. apt, yum, "
 "etc.) and the guest’s network connection."
 msgstr ""
+"nstalla i pacchetti nominati (una lista separata da virgole). Questi vengono "
+"installati quando il guest si avvia per la prima volta utilizzando il "
+"gestore di pacchetti del guest (ad esempio, apt, yum, ecc.) e la connessione "
+"di rete del guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:188
@@ -541,6 +631,8 @@ msgid ""
 "For an overview on the different ways to install packages, see "
 "L<virt-builder(1)/INSTALLING PACKAGES>."
 msgstr ""
+"Per una panoramica sui diversi metodi per installare pacchetti, consulta "
+"L<virt-builder(1)/INSTALLING PACKAGES>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:191
@@ -555,6 +647,8 @@ msgid ""
 "Set the hostname of the guest to C<HOSTNAME>.  You can use a dotted "
 "hostname.domainname (FQDN) if you want."
 msgstr ""
+"Imposta il nome host del guest su C<HOSTNAME>. Puoi usare un nome host "
+"completo (FQDN) se lo desideri, ad esempio hostname.domainname."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:196
@@ -568,12 +662,16 @@ msgid ""
 "operation also injects a firstboot script so that the Balloon Server is "
 "installed when the guest boots."
 msgstr ""
+"Inietta il Balloon Server (F<blnsvr.exe>) in un guest Windows. Questa "
+"operazione inietta anche uno script di primo avvio in modo che il Balloon "
+"Server venga installato quando il guest si avvia."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:202
 #: common/mlcustomize/customize-options.pod:216
 msgid "The parameter is the same as used by the I<--inject-virtio-win> operation."
 msgstr ""
+"Il parametro è lo stesso utilizzato dall'operazione I<--inject-virtio-win>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:204
@@ -584,6 +682,9 @@ msgid ""
 "hypervisor like VMware (which involves many other operations)  you should "
 "use the L<virt-v2v(1)> tool instead of this."
 msgstr ""
+"Nota che per effettuare una conversione completa di un guest Windows da un "
+"hypervisor esterno come VMware (che implica molte altre operazioni), "
+"dovresti usare lo strumento L<virt-v2v(1)> invece di questo."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:208
@@ -598,6 +699,10 @@ msgid ""
 "features (see L<qemu-ga(8)>).  This operation also injects a firstboot "
 "script so that the Guest Agent is installed when the guest boots."
 msgstr ""
+"Inietta il QEMU Guest Agent in un guest Windows. L'agente guest comunica con "
+"qemu tramite un socket per fornire funzionalità avanzate (vedi L<qemu-ga(8)>)"
+". Questa operazione inietta anche uno script di primo avvio affinché il "
+"Guest Agent venga installato quando il guest si avvia."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:222
@@ -612,16 +717,20 @@ msgid ""
 "supports virtio (such as qemu/KVM).  The operation also adjusts the Windows "
 "Registry so that the drivers are installed when the guest boots."
 msgstr ""
+"Inject virtio-win drivers into a Windows guest.  These drivers add virtio "
+"accelerated drivers suitable when running on top of a hypervisor that "
+"supports virtio (such as qemu/KVM).  The operation also adjusts the Windows "
+"Registry so that the drivers are installed when the guest boots."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:230
 msgid "The parameter can be one of:"
-msgstr ""
+msgstr "Il parametro può essere uno dei seguenti:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:234
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:236
@@ -629,11 +738,13 @@ msgid ""
 "The path to the ISO image containing the virtio-win drivers "
 "(eg. F</usr/share/virtio-win/virtio-win.iso>)."
 msgstr ""
+"Il percorso dell'immagine ISO contenente i driver virtio-win (ad esempio, F</"
+"usr/share/virtio-win/virtio-win.iso>)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:239
 msgid "DIR"
-msgstr ""
+msgstr "DIR"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:241
@@ -641,11 +752,13 @@ msgid ""
 "The directory containing the unpacked virtio-win drivers "
 "(eg. F</usr/share/virtio-win>)."
 msgstr ""
+"La directory contenente i driver virtio-win decompattati (ad esempio, F</usr/"
+"share/virtio-win>)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:244
 msgid "B<\"osinfo\">"
-msgstr ""
+msgstr "B<\"osinfo\">"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:246
@@ -653,12 +766,14 @@ msgid ""
 "The literal string C<\"osinfo\"> means to use the libosinfo database to "
 "locate the drivers.  (See L<osinfo-query(1)>."
 msgstr ""
+"La stringa letterale C<\"osinfo\"> significa usare il database libosinfo per "
+"localizzare i driver. (Vedi L<osinfo-query(1)>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:256
 #: common/mlcustomize/v2v-customize-options.pod:196
 msgid "B<--install> PKG,PKG.."
-msgstr ""
+msgstr "B<--install> PKG,PKG.."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:258
@@ -668,12 +783,16 @@ msgid ""
 "during the image build using the guest’s package manager (eg. apt, yum, "
 "etc.) and the host’s network connection."
 msgstr ""
+"Installa i pacchetti nominati (una lista separata da virgole). Questi "
+"vengono installati durante la costruzione dell'immagine utilizzando il "
+"gestore di pacchetti del guest (ad esempio, apt, yum, ecc.) e la connessione "
+"di rete dell'host."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:265
 #: common/mlcustomize/v2v-customize-options.pod:205
 msgid "See also I<--update>, I<--uninstall>."
-msgstr ""
+msgstr "Vedi altro"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:267
@@ -688,6 +807,8 @@ msgid ""
 "Create symbolic link(s) in the guest, starting at C<LINK> and pointing at "
 "C<TARGET>."
 msgstr ""
+"Crea uno o più collegamenti simbolici nel guest, partendo da C<LINK> e "
+"puntando a C<TARGET>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:272
@@ -699,7 +820,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:274
 #: common/mlcustomize/v2v-customize-options.pod:214
 msgid "Create a directory in the guest."
-msgstr ""
+msgstr "Crea una directory nel guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:276
@@ -708,6 +829,8 @@ msgid ""
 "This uses S<C<mkdir -p>> so any intermediate directories are created, and it "
 "also works if the directory already exists."
 msgstr ""
+"Questo utilizza S<C<mkdir -p>>, quindi eventuali directory intermedie "
+"vengono create, e funziona anche se la directory esiste già."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:279
@@ -719,7 +842,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:281
 #: common/mlcustomize/v2v-customize-options.pod:221
 msgid "Move files or directories inside the guest."
-msgstr ""
+msgstr "Sposta file o directory all’interno del guest."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:285
@@ -735,12 +858,15 @@ msgid ""
 "building is complete.  If you don't want to reveal precisely how the image "
 "was built, use this option."
 msgstr ""
+"Rimuove (scrub) C<builder.log> (file di log dei comandi di build) "
+"dall’immagine una volta completata la compilazione. Se non vuoi rivelare "
+"esattamente come è stata costruita l’immagine, utilizza questa opzione."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:291
 #: common/mlcustomize/v2v-customize-options.pod:231
 msgid "See also: L</LOG FILE>."
-msgstr ""
+msgstr "Vedi altro:  L</LOG FILE>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:293
@@ -752,7 +878,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:295
 #: common/mlcustomize/v2v-customize-options.pod:235
 msgid "Do not attempt to correct the SELinux labels of files in the guest."
-msgstr ""
+msgstr "Non tentare di correggere le etichette SELinux dei file nel guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:297
@@ -765,12 +891,19 @@ msgid ""
 "for the next time the image boots.)  This option disables the automatic "
 "relabeling."
 msgstr ""
+"In tali guest che supportano SELinux, la personalizzazione rietichetta "
+"automaticamente i file affinché abbiano l’etichetta SELinux corretta. (La "
+"rietichettatura viene eseguita immediatamente, ma se l’operazione fallisce, "
+"la personalizzazione creerà il file F</.autorelabel> sull’immagine per "
+"pianificare una rietichettatura al successivo avvio dell’immagine.) Questa "
+"opzione disabilita la rietichettatura automatica."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:304
 #: common/mlcustomize/v2v-customize-options.pod:244
 msgid "The option is a no-op for guests that do not support SELinux."
 msgstr ""
+"Questa opzione non ha alcun effetto sui guest che non supportano SELinux."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:306
@@ -785,6 +918,8 @@ msgid ""
 "Set the password for C<USER>.  (Note this option does I<not> create the user "
 "account)."
 msgstr ""
+"Imposta la password per C<USER>. (Nota: questa opzione non crea l’account "
+"utente)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:311
@@ -795,6 +930,8 @@ msgid ""
 "See L<virt-builder(1)/USERS AND PASSWORDS> for the format of the C<SELECTOR> "
 "field, and also how to set up user accounts."
 msgstr ""
+"Vedi L<virt-builder(1)/USERS AND PASSWORDS> per il formato del campo "
+"C<SELECTOR> e per informazioni su come configurare gli account utente."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:314
@@ -809,6 +946,9 @@ msgid ""
 "When the virt tools change or set a password in the guest, this option sets "
 "the password encryption of that password to C<md5>, C<sha256> or C<sha512>."
 msgstr ""
+"Quando gli strumenti virt modificano o impostano una password nel guest, "
+"questa opzione imposta il tipo di cifratura della password su C<md5>, "
+"C<sha256> o C<sha512>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:320
@@ -817,6 +957,8 @@ msgid ""
 "C<sha256> and C<sha512> require glibc E<ge> 2.7 (check crypt(3) inside the "
 "guest)."
 msgstr ""
+"C<sha256> e C<sha512> richiedono glibc E<ge> 2.7 (verificare crypt(3) "
+"all’interno del guest)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:323
@@ -825,6 +967,8 @@ msgid ""
 "C<md5> will work with relatively old Linux guests (eg. RHEL 3), but is not "
 "secure against modern attacks."
 msgstr ""
+"C<md5> funziona con guest Linux relativamente datati (ad esempio RHEL 3), ma "
+"non è sicuro contro gli attacchi moderni."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:326
@@ -834,6 +978,10 @@ msgid ""
 "have support for SHA-512, in which case it will use C<md5>.  You can "
 "override libguestfs by specifying this option."
 msgstr ""
+"Il valore predefinito è C<sha512>, a meno che libguestfs non rilevi un guest "
+"vecchio senza supporto per SHA-512; in tal caso verrà utilizzato C<md5>. È "
+"possibile sovrascrivere questa scelta di libguestfs specificando questa "
+"opzione."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:330
@@ -845,6 +993,11 @@ msgid ""
 "C</etc/sysconfig/authconfig> (Fedora, RHEL) or C</etc/pam.d/common-password> "
 "(Debian, Ubuntu)."
 msgstr ""
+"Nota che questo non cambia il tipo di cifratura predefinito utilizzato dal "
+"guest quando si creano nuovi account utente all’interno del guest. Se "
+"desideri farlo, dovresti usare l’opzione I<--edit> per modificare C</etc/"
+"sysconfig/authconfig> (Fedora, RHEL) o C</etc/pam.d/common-password> "
+"(Debian, Ubuntu"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:336
@@ -856,7 +1009,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:338
 #: common/mlcustomize/v2v-customize-options.pod:278
 msgid "Set the root password."
-msgstr ""
+msgstr "Imposta una password di root."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:343
@@ -865,6 +1018,8 @@ msgid ""
 "Note: In virt-builder, if you I<don't> set I<--root-password> then the guest "
 "is given a I<random> root password."
 msgstr ""
+"Nota: in virt-builder, se non imposti I<--root-password>, al guest viene "
+"assegnata una password casuale per l’utente root."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:346
@@ -880,12 +1035,15 @@ msgid ""
 "The script runs virtualized inside a small appliance, chrooted into the "
 "guest filesystem."
 msgstr ""
+"Esegui lo script shell (o qualsiasi programma) chiamato C<SCRIPT> "
+"sull’immagine del disco. Lo script viene eseguito in modalità virtualizzata "
+"all’interno di un piccolo appliance, con chroot nel filesystem del guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:352
 #: common/mlcustomize/v2v-customize-options.pod:292
 msgid "The script is automatically chmod +x."
-msgstr ""
+msgstr "Lo script viene automaticamente impostato con chmod +x."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:354
@@ -899,6 +1057,11 @@ msgid ""
 "the script without needing a network connection (I<--attach>).  You can also "
 "upload data files (I<--upload>)."
 msgstr ""
+"Se libguestfs lo supporta, è disponibile una connessione di rete limitata "
+"che consente solo connessioni in uscita. È anche possibile collegare dischi "
+"dati (ad esempio file ISO) come metodo alternativo per fornire dati (ad "
+"esempio pacchetti software) allo script senza usare la rete (I<--attach>). È "
+"inoltre possibile caricare file di dati (I<--upload>)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:360
@@ -907,6 +1070,8 @@ msgid ""
 "You can have multiple I<--run> options.  They run in the same order that "
 "they appear on the command line."
 msgstr ""
+"È possibile utilizzare più opzioni I<--run>. Vengono eseguite nell’ordine in "
+"cui appaiono sulla riga di comando."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:363
@@ -914,7 +1079,7 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:303
 #: common/mlcustomize/v2v-customize-options.pod:319
 msgid "See also: I<--firstboot>, I<--attach>, I<--upload>."
-msgstr ""
+msgstr "Vedi altro:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:365
@@ -929,6 +1094,9 @@ msgid ""
 "Run the command and arguments on the disk image.  The command runs "
 "virtualized inside a small appliance, chrooted into the guest filesystem."
 msgstr ""
+"Esegui il comando e i relativi argomenti sull’immagine del disco. Il comando "
+"viene eseguito in modalità virtualizzata all’interno di un piccolo "
+"appliance, con **chroot** nel filesystem del guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:376
@@ -937,6 +1105,8 @@ msgid ""
 "You can have multiple I<--run-command> options.  They run in the same order "
 "that they appear on the command line."
 msgstr ""
+"È possibile utilizzare più opzioni I<--run-command>. Vengono eseguite "
+"nell’ordine in cui appaiono sulla riga di comando."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:381
@@ -949,18 +1119,20 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:323
 msgid "Scrub a file from the guest.  This is like I<--delete> except that:"
 msgstr ""
+"Rimuove (scrub) un file dal guest. È simile a I<--delete>, ma con le "
+"seguenti differenze:"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:389
 #: common/mlcustomize/v2v-customize-options.pod:329
 msgid "It scrubs the data so a guest could not recover it."
-msgstr ""
+msgstr "Esegue lo scrub dei dati in modo che il guest non possa recuperarli."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:393
 #: common/mlcustomize/v2v-customize-options.pod:333
 msgid "It cannot delete directories, only regular files."
-msgstr ""
+msgstr "Non può eliminare directory, solo file normali."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:397
@@ -972,7 +1144,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:399
 #: common/mlcustomize/v2v-customize-options.pod:339
 msgid "This is a compatibility option that does nothing."
-msgstr ""
+msgstr "Questa è un’opzione di compatibilità che non ha alcun effetto."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:401
@@ -984,7 +1156,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:403
 #: common/mlcustomize/v2v-customize-options.pod:343
 msgid "Attach to a pool using C<subscription-manager>."
-msgstr ""
+msgstr "Collegati a un pool utilizzando C<subscription-manager>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:405
@@ -995,6 +1167,8 @@ msgid ""
 "See L<virt-builder(1)/SUBSCRIPTION-MANAGER> for the format of the "
 "C<SELECTOR> field."
 msgstr ""
+"Vedi L<virt-builder(1)/SUBSCRIPTION-MANAGER> per il formato del campo "
+"C<SELECTOR>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:408
@@ -1006,7 +1180,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:410
 #: common/mlcustomize/v2v-customize-options.pod:350
 msgid "Set the credentials for C<subscription-manager>."
-msgstr ""
+msgstr "Imposta le credenziali per C<subscription-manager>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:415
@@ -1018,13 +1192,15 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:417
 #: common/mlcustomize/v2v-customize-options.pod:357
 msgid "Register the guest using C<subscription-manager>."
-msgstr ""
+msgstr "Registra il guest utilizzando C<subscription-manager>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:419
 #: common/mlcustomize/v2v-customize-options.pod:359
 msgid "This requires credentials being set using I<--sm-credentials>."
 msgstr ""
+"Questo richiede che le credenziali siano impostate usando I<--sm-credentials>"
+"."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:421
@@ -1037,6 +1213,8 @@ msgstr ""
 #: common/mlcustomize/v2v-customize-options.pod:363
 msgid "Remove all the subscriptions from the guest using C<subscription-manager>."
 msgstr ""
+"Rimuove tutte le sottoscrizioni dal guest utilizzando C<subscription-manager>"
+"."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:426
@@ -1048,7 +1226,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:428
 #: common/mlcustomize/v2v-customize-options.pod:368
 msgid "Unregister the guest using C<subscription-manager>."
-msgstr ""
+msgstr "Annulla la registrazione del guest utilizzando C<subscription-manager>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:430
@@ -1063,6 +1241,9 @@ msgid ""
 "Inject an ssh key so the given C<USER> will be able to log in over ssh "
 "without supplying a password.  The C<USER> must exist already in the guest."
 msgstr ""
+"Inserisci una chiave SSH in modo che l’utente C<USER> possa effettuare "
+"l’accesso via SSH senza fornire una password. L’utente C<USER> deve già "
+"esistere nel guest."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:436
@@ -1077,6 +1258,8 @@ msgid ""
 "You can have multiple I<--ssh-inject> options, for different users and also "
 "for more keys for each user."
 msgstr ""
+"È possibile utilizzare più opzioni I<--ssh-inject>, per utenti diversi e "
+"anche per inserire più chiavi per ciascun utente."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:442
@@ -1093,6 +1276,10 @@ msgid ""
 "exist).  Note that the tar file must be uncompressed (F<.tar.gz> files will "
 "not work here)"
 msgstr ""
+"Copia file o directory locali da un archivio tar chiamato C<TARFILE> "
+"nell’immagine del disco, collocandoli nella directory C<REMOTEDIR> (che deve "
+"esistere). Nota che l’archivio tar deve essere non compresso (i file "
+"F<.tar.gz> non funzionano)"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:450
@@ -1107,6 +1294,8 @@ msgid ""
 "Set the default timezone of the guest to C<TIMEZONE>.  Use a location string "
 "like C<Europe/London>"
 msgstr ""
+"Imposta il fuso orario predefinito del guest su C<TIMEZONE>. Utilizza una "
+"stringa di località, ad esempio C<Europe/London>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:455
