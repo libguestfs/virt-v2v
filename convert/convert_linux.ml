@@ -1165,6 +1165,7 @@ fi
     let paths = [
       (* /etc/fstab *)
       "/files/etc/fstab/*/spec";
+      "/files/etc/crypttab/*/device";
     ] in
     (* Bootloader config *)
     let paths = paths @ bootloader#augeas_device_patterns in
@@ -1194,20 +1195,39 @@ fi
           device
       in
 
-      if PCRE.matches rex_device_cciss value then (
+      if PCRE.matches rex_device_cciss value ||
+         PCRE.matches rex_device_nvme value ||
+         PCRE.matches rex_device value then (
         let device = PCRE.sub 1
         and part = try PCRE.sub 2 with Not_found -> "" in
-        "/dev/" ^ replace device ^ part
-      )
-      else if PCRE.matches rex_device_nvme value then (
-        let device = PCRE.sub 1
-        and part = try PCRE.sub 2 with Not_found -> "" in
-        "/dev/" ^ replace device ^ part
-      )
-      else if PCRE.matches rex_device value then (
-        let device = PCRE.sub 1
-        and part = try PCRE.sub 2 with Not_found -> "" in
-        "/dev/" ^ replace device ^ part
+        let adjusted_dev = "/dev/" ^ replace device ^ part in
+
+        (* On sles12sp5, the installer puts a non-stable path into
+           /etc/crypttab, like /dev/sda2. If we replace it with eg. /dev/vda2,
+           and then regenerate dracut initrd, systemd cryptab integration
+           doesn't happen correctly, because /dev/vda2 doesn't exist yet.
+
+           Try to avoid this by filling in stable `UUID=<luks UUID>` value.
+           This implementation only works for the /dev/sdaX case, where we can
+           grab the UUID from the appliance with vfs_uuid("/dev/sdaX") since
+           disk ordering should match.
+         *)
+        if String.find path "/etc/crypttab" >= 0 &&
+           String.starts_with "/dev/sd" value then (
+          let uuid =
+            try
+              g#vfs_uuid value
+            with _ ->
+              ""
+          in
+          if uuid <> "" then
+            "UUID=" ^ uuid
+          else (
+            warning (f_"failed to find UUID for luks device %s") value;
+            adjusted_dev
+          )
+        ) else
+          adjusted_dev
       )
       else (* doesn't look like a known device name *)
         value
