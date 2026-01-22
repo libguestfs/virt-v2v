@@ -189,7 +189,7 @@ module Libvirt_ = struct
     let doc =
       create_libvirt_xml ~pool:pool_name source inspect target_meta
         target_features domcaps_features
-        (fun i -> output_name ^ "-sd" ^ (drive_name i))
+        (disk_name output_name)
         output_format output_name in
 
     let tmpfile, chan = Filename.open_temp_file "v2vlibvirt" ".xml" in
