@@ -121,6 +121,10 @@ val output_to_local_file : ?name:string ->
     (such as unmounting a host filesystem or removing a host device)
     depends on the NBD server releasing resources. *)
 
+val disk_name : string -> int -> string
+(** Return the sanitized disk name for the i'th disk,
+    eg. 0 => name-sda. *)
+
 val disk_path : string -> string -> int -> string
 (** For [-o disk|qemu], return the output disk name of the i'th disk,
     eg. 0 => /path/to/name-sda. *)
