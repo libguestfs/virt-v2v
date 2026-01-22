@@ -203,6 +203,29 @@ let create_libvirt_xml ?pool source inspect
 
   (* Fixed and removable disks. *)
   let () =
+    (* Track per-prefix dev indices (sd, vd, hd, fd, ...) so that we never
+     * re-use the same target dev string for multiple <disk> elements.
+     *
+     * This avoids collisions when multiple buses share a prefix, e.g.:
+     *   - Q35: SATA and SCSI both using "sd".
+     *)
+    let dev_counters : (string, int ref) Hashtbl.t = Hashtbl.create 7 in
+
+    let next_dev drive_prefix =
+      let idx =
+        try
+          let r = Hashtbl.find dev_counters drive_prefix in
+          let i = !r in
+          incr r;
+          i
+        with Not_found ->
+          (* First allocation for this prefix. *)
+          Hashtbl.add dev_counters drive_prefix (ref 1);
+          0
+      in
+      drive_prefix ^ drive_name idx
+    in
+
     let make_disk bus_name ?(viotrans = false) drive_prefix i = function
     | BusSlotEmpty -> Comment (sprintf "%s slot %d is empty" bus_name i)
 
@@ -220,6 +243,8 @@ let create_libvirt_xml ?pool source inspect
          | Some _ ->
             (* For the others number them sequentially starting at 2. *)
             i+2 in
+
+        let dev = next_dev drive_prefix in
 
         e "disk" (
           [
@@ -243,26 +268,28 @@ let create_libvirt_xml ?pool source inspect
             ] []
           );
           e "target" [
-            "dev", drive_prefix ^ drive_name i;
+            "dev", dev;
             "bus", bus_name;
           ] [];
           e "boot" [ "order", string_of_int boot_order ] [];
         ]
 
     | BusSlotRemovable { s_removable_type = CDROM } ->
+        let dev = next_dev drive_prefix in
         e "disk" [ "device", "cdrom"; "type", "file" ] [
           e "driver" [ "name", "qemu"; "type", "raw" ] [];
           e "target" [
-            "dev", drive_prefix ^ drive_name i;
+            "dev", dev;
             "bus", bus_name
           ] []
         ]
 
     | BusSlotRemovable { s_removable_type = Floppy } ->
+        let dev = next_dev drive_prefix in
         e "disk" [ "device", "floppy"; "type", "file" ] [
           e "driver" [ "name", "qemu"; "type", "raw" ] [];
           e "target" [
-            "dev", drive_prefix ^ drive_name i;
+            "dev", dev;
           ] []
         ]
     in
