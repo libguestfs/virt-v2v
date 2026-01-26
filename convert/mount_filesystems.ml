@@ -30,6 +30,42 @@ let rec mount_filesystems g root =
   reject_if_not_installed_image g root;
   reject_if_unknown_fields g root;
 
+  (* Get the list of filesystems.  This is not actually used by
+   * virt-v2v (only used by virt-v2v-inspector) so try hard not
+   * to fail here.
+   *)
+  let fses = g#inspect_get_filesystems root in
+  let fses = Array.to_list fses in
+  let fses = List.sort compare fses in
+  let fses =
+    List.map (
+      fun dev ->
+        let dev = g#canonical_device_name dev
+        and fs_type = ref None
+        and fs_version = ref None
+        and fs_label = ref None
+        and fs_uuid = ref None in
+
+        (try
+           let v = g#vfs_type dev in
+           if v <> "" then (
+             fs_type := Some v;
+             fs_version := get_filesystem_version g dev v;
+           )
+         with G.Error msg -> debug "vfs_type: %s: %s (ignored)" dev msg);
+        (try
+           let v = g#vfs_label dev in
+           if v <> "" then fs_label := Some v
+         with G.Error msg -> debug "vfs_label: %s: %s (ignored)" dev msg);
+        (try
+           let v = g#vfs_uuid dev in
+           if v <> "" then fs_uuid := Some v
+         with G.Error msg -> debug "vfs_uuid: %s: %s (ignored)" dev msg);
+
+        { fs_dev = dev; fs_type = !fs_type; fs_version = !fs_version;
+          fs_label = !fs_label; fs_uuid = !fs_uuid }
+    ) fses in
+
   (* Mount up the filesystems. *)
   let mps = g#inspect_get_mountpoints root in
   let cmp (a,_) (b,_) = compare (String.length a) (String.length b) in
@@ -121,6 +157,7 @@ let rec mount_filesystems g root =
     i_product_name = g#inspect_get_product_name root;
     i_product_variant = g#inspect_get_product_variant root;
     i_mountpoints = mps;
+    i_filesystems = fses;
     i_apps = apps;
     i_apps_map = apps_map;
     i_windows_systemroot = systemroot;
@@ -163,6 +200,18 @@ and error_if_unknown fieldname value =
               a blank disk), then this should not happen.\n\n\
               Inspection field ‘%s’ was ‘unknown’.")
           fieldname
+
+(* See equivalent function in guestfs-tools.git:inspector/inspector.c *)
+and get_filesystem_version g dev = function
+  | "xfs" ->
+     let hash = g#xfs_info2 dev in
+     (match List.assoc_opt "meta-data.crc" hash with
+      | None -> None
+      | Some "0" -> (* XFS version *) Some "4"
+      | Some "1" -> (* XFS version *) Some "5"
+      | Some _ -> None
+     )
+  | _ -> None
 
 (* Wrapper around g#inspect_list_applications2 which, for RPM
  * guests, on failure tries to rebuild the RPM database before
