@@ -126,6 +126,28 @@ let rec create_inspector_xml input_disks inspect target_meta =
   ) inspect.i_mountpoints;
   List.push_back os (e "mountpoints" [] !mps);
 
+  let fses = ref [] in
+  List.iter (
+    fun { fs_dev; fs_type; fs_version; fs_label; fs_uuid } ->
+      let fs = ref [] in
+      (match fs_type, fs_version with
+       | None, _ -> ()
+       | Some typ, None -> List.push_back fs (e "type" [] [PCData typ])
+       | Some typ, Some ver ->
+          List.push_back fs (e "type" [ "version", ver] [PCData typ])
+      );
+      (match fs_label with
+       | None -> ()
+       | Some label -> List.push_back fs (e "label" [] [PCData label])
+      );
+      (match fs_uuid with
+       | None -> ()
+       | Some uuid -> List.push_back fs (e "uuid" [] [PCData uuid])
+      );
+      List.push_back fses (e "filesystem" [ "dev", fs_dev] !fs)
+  ) inspect.i_filesystems;
+  List.push_back os (e "filesystems" [] !fses);
+
   List.push_back body (e "operatingsystem" [] !os);
 
   (* Construct the final document. *)
