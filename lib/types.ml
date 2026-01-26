@@ -300,6 +300,7 @@ type inspect = {
   i_product_name : string;
   i_product_variant : string;
   i_mountpoints : (string * string) list;
+  i_filesystems : filesystem list;
   i_apps : Guestfs.application2 list;
   i_apps_map : Guestfs.application2 list StringMap.t;
   i_windows_systemroot : string;
@@ -308,6 +309,14 @@ type inspect = {
   i_windows_current_control_set : string;
   i_windows_group_policy : bool;
   i_drive_mappings : (string * string) list;
+}
+
+and filesystem = {
+  fs_dev : string;
+  fs_type : string option;
+  fs_version : string option;
+  fs_label : string option;
+  fs_uuid : string option;
 }
 
 let string_of_inspect inspect =
