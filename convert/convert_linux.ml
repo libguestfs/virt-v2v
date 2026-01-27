@@ -1320,12 +1320,14 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
                   g inspect.i_root "fix uefi boot" fix_script)
               else
                 cant_fix_uefi ()
-            | "ubuntu", 14 ->
+            | ("ubuntu", 14) | ("debian", 12)->
               (* to make a bootable uefi ubuntu 14 we need to
                * copy shim<arch>.efi to UEFI fallback path
                * and rename it to BOOT<arch>.efi, also we copy
                * grub.efi and grub.cfg to UEFI fallback path without renaming *)
               let arch_suffix = String.lowercase_ascii suffix in
+
+              let distro = inspect.i_distro in
 
               let shim =
                 String.concat "" [grub_path; "/shim"; arch_suffix; ".efi"] in
@@ -1342,14 +1344,14 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
                  * if not, then just don't clean up and leave the temp loader
                  * at UEFI fallback path for simplicity
                  *)
-                if String.find shim "/boot/efi/EFI/ubuntu/shim" >= 0 then
+                if String.find shim (sprintf "/boot/efi/EFI/%s/shim" distro) >= 0 then
                   let fix_script =
                     sprintf
                       "#!/bin/bash\n\
-                       sudo efibootmgr -c -L ubuntu \
-                         -l \\\\EFI\\\\ubuntu\\\\shim%s.efi\n\
+                       sudo efibootmgr -c -L %s \
+                         -l \\\\EFI\\\\%s\\\\shim%s.efi\n\
                        rm -rf %s"
-                      arch_suffix uefi_fallback_path in
+                      distro distro arch_suffix uefi_fallback_path in
                   Firstboot.add_firstboot_script
                     g inspect.i_root "fix uefi boot" fix_script
                 else
