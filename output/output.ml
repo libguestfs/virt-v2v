@@ -102,7 +102,7 @@ let output_to_local_file ?name
     | "raw" ->
        let cmd = Nbdkit.create ?name "file" in
        Nbdkit.add_arg cmd "file" filename;
-       Nbdkit.add_arg cmd "cache" "none";
+       Nbdkit.reduce_memory_pressure cmd;
        if verbose () then Nbdkit.add_filter_if_available cmd "count";
        let _, pid = Nbdkit.run_unix socket cmd in
        pid
@@ -205,7 +205,7 @@ let create_local_output_disks dir
     (* Create the single nbdkit-file-plugin instance. *)
     let cmd = Nbdkit.create ~name:"out" "file" in
     Nbdkit.add_arg cmd "dir" output_storage;
-    Nbdkit.add_arg cmd "cache" "none";
+    Nbdkit.reduce_memory_pressure cmd;
     if verbose () then Nbdkit.add_filter_if_available cmd "count";
     let _, pid = Nbdkit.run_unix socket cmd in
     On_exit.kill pid;
