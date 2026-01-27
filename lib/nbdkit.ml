@@ -134,6 +134,15 @@ let add_env cmd name value = cmd.env <- (name, value) :: cmd.env
 let add_filter_if_available cmd filter =
   if probe_filter filter then add_filter cmd filter
 
+let reduce_memory_pressure cmd =
+  assert (cmd.plugin = "file");
+  if probe_plugin_parameter cmd.plugin "reduce-memory-pressure=" then
+    add_arg cmd "reduce-memory-pressure" "on"
+  else if probe_plugin_parameter cmd.plugin "cache=" then
+    add_arg cmd "cache" "none"
+  else
+    assert false
+
 let run_unix socket cmd =
   (* Create a temporary directory where we place the PID file. *)
   let piddir = Mkdtemp.temp_dir "v2vnbdkit." in

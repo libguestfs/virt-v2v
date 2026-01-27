@@ -109,6 +109,14 @@ val add_args : cmd -> (string * string) list -> unit
 
     The arguments are added left to right. *)
 
+val reduce_memory_pressure : cmd -> unit
+(** This is short-hand for detecting if the file plugin supports the
+    [reduce-memory-pressure=on] option, and adding it to the nbdkit
+    command line.  Otherwise it adds the old, confusing [cache=none]
+    option instead.
+
+    Only use this with the file plugin. *)
+
 val add_env : cmd -> string -> string -> unit
 (** Add name=value environment variable. *)
 
