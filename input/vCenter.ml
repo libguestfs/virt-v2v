@@ -137,9 +137,14 @@ and get_https_url dcPath uri server path =
     (* XXX Need to handle templates.  The file is called "-delta.vmdk" in
      * place of "-flat.vmdk".
      *)
+    (* dcPath and dsName need to be double quoted:
+     * https://gitlab.com/libvirt/libvirt/-/commit/6c9d2591c6
+     *)
     sprintf "https://%s%s/folder/%s-flat.vmdk?dcPath=%s&dsName=%s"
             server port
-            (uri_quote path) (uri_quote dcPath) (uri_quote datastore)
+            (uri_quote path)
+            (uri_quote (uri_quote dcPath))
+            (uri_quote (uri_quote datastore))
   )
 
 (* Fetch the status from a URL. *)
