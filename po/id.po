@@ -1,0 +1,236 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Red Hat Inc.
+# This file is distributed under the same license as the virt-v2v package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: virt-v2v 2.7.7\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2025-02-27 18:15+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: common/mltools/getopt-c.c:68
+#, c-format
+msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
+msgstr ""
+
+#: common/mltools/getopt-c.c:187
+#, c-format
+msgid "%s: ‘%s’ is not a numeric value.\n"
+msgstr ""
+
+#: common/mltools/getopt-c.c:193
+#, c-format
+msgid "%s: %s: integer out of range\n"
+msgstr ""
+
+#: common/mltools/getopt-c.c:383
+#, c-format
+msgid "%s: ‘%s’ is not allowed for -%c; allowed values are:\n"
+msgstr ""
+
+#: common/mltools/getopt-c.c:386
+#, c-format
+msgid "%s: ‘%s’ is not allowed for %s%s; allowed values are:\n"
+msgstr ""
+
+#: common/mltools/getopt-c.c:421
+#, c-format
+msgid "Extra parameter on the command line: ‘%s’.\n"
+msgstr ""
+
+#: common/options/config.c:72
+#, c-format
+msgid "%s: line %d: error parsing configuration file: %s"
+msgstr ""
+
+#: common/options/decrypt.c:52
+#, c-format
+msgid "string size overflow"
+msgstr ""
+
+#: common/options/decrypt.c:170
+#, c-format
+msgid ""
+"'clevis_luks_unlock', needed for decrypting %s, is unavailable in this "
+"libguestfs version"
+msgstr ""
+
+#: common/options/decrypt.c:184
+#, c-format
+msgid ""
+"could not find key to open LUKS encrypted %s.\n"
+"\n"
+"Try using --key on the command line.\n"
+"\n"
+"Original error: %s (%d)"
+msgstr ""
+
+#: common/options/inspect.c:78
+#, c-format
+msgid ""
+"%s: no operating system was found on this disk\n"
+"\n"
+"If using guestfish ‘-i’ option, remove this option and instead\n"
+"use the commands ‘run’ followed by ‘list-filesystems’.\n"
+"You can then mount filesystems you want by hand using the\n"
+"‘mount’ or ‘mount-ro’ command.\n"
+"\n"
+"If using guestmount ‘-i’, remove this option and choose the\n"
+"filesystem(s) you want to see by manually adding ‘-m’ option(s).\n"
+"Use ‘virt-filesystems’ to see what filesystems are available.\n"
+"\n"
+"If using other virt tools, this disk image won’t work\n"
+"with these tools.  Use the guestfish equivalent commands\n"
+"(see the virt tool manual page).\n"
+msgstr ""
+
+#: common/options/inspect.c:99
+#, c-format
+msgid ""
+"%s: multi-boot operating systems are not supported\n"
+"\n"
+"If using guestfish ‘-i’ option, remove this option and instead\n"
+"use the commands ‘run’ followed by ‘list-filesystems’.\n"
+"You can then mount filesystems you want by hand using the\n"
+"‘mount’ or ‘mount-ro’ command.\n"
+"\n"
+"If using guestmount ‘-i’, remove this option and choose the\n"
+"filesystem(s) you want to see by manually adding ‘-m’ option(s).\n"
+"Use ‘virt-filesystems’ to see what filesystems are available.\n"
+"\n"
+"If using other virt tools, multi-boot operating systems won’t work\n"
+"with these tools.  Use the guestfish equivalent commands\n"
+"(see the virt tool manual page).\n"
+msgstr ""
+
+#: common/options/inspect.c:161
+#, c-format
+msgid "%s: some filesystems could not be mounted (ignored)\n"
+msgstr ""
+
+#: common/options/inspect.c:178
+#, c-format
+msgid "Operating system: %s\n"
+msgstr ""
+
+#: common/options/inspect.c:196
+#, c-format
+msgid "%s mounted on %s\n"
+msgstr ""
+
+#: common/options/keys.c:63
+#, c-format
+msgid "Enter key or passphrase (\"%s\"): "
+msgstr ""
+
+#: common/options/keys.c:145
+#, c-format
+msgid "size_t overflow"
+msgstr ""
+
+#: common/options/keys.c:192
+#, c-format
+msgid "could not read key from user"
+msgstr ""
+
+#: common/options/keys.c:231
+#, c-format
+msgid "selector '%s': missing ID"
+msgstr ""
+
+#: common/options/keys.c:238
+#, c-format
+msgid "selector '%s': missing TYPE"
+msgstr ""
+
+#: common/options/keys.c:244
+#, c-format
+msgid "selector '%s': missing KEY_STRING, or too many fields"
+msgstr ""
+
+#: common/options/keys.c:253
+#, c-format
+msgid "selector '%s': missing FILENAME, or too many fields"
+msgstr ""
+
+#: common/options/keys.c:261
+#, c-format
+msgid "selector '%s': too many fields"
+msgstr ""
+
+#: common/options/keys.c:263
+#, c-format
+msgid "selector '%s': invalid TYPE"
+msgstr ""
+
+#: common/options/options.c:283
+#, c-format
+msgid "%s: ‘%s’ could not be mounted.\n"
+msgstr ""
+
+#: common/options/options.c:287
+#, c-format
+msgid ""
+"%s: Check mount(8) man page to ensure options ‘%s’\n"
+"%s: are supported by the filesystem that is being mounted.\n"
+msgstr ""
+
+#: common/options/options.c:291
+#, c-format
+msgid "%s: Did you mean to mount one of these filesystems?\n"
+msgstr ""
+
+#: common/options/options.c:304
+#, c-format
+msgid "cannot determine the subvolume for %s: %s (%d)"
+msgstr ""
+
+#: common/options/uri.c:119
+#, c-format
+msgid "%s: --add: could not parse URI ‘%s’\n"
+msgstr ""
+
+#: common/options/uri.c:130
+#, c-format
+msgid "%s: %s: scheme of URI is NULL or empty\n"
+msgstr ""
+
+#: common/options/uri.c:138
+#, c-format
+msgid "%s: %s: cannot have both a server name and a socket query parameter\n"
+msgstr ""
+
+#: common/utils/utils.c:107
+#, c-format
+msgid "%s exited successfully"
+msgstr ""
+
+#: common/utils/utils.c:110
+#, c-format
+msgid "%s exited with error status %d"
+msgstr ""
+
+#: common/utils/utils.c:114
+#, c-format
+msgid "%s killed by signal %d (%s)"
+msgstr ""
+
+#: common/utils/utils.c:118
+#, c-format
+msgid "%s stopped by signal %d (%s)"
+msgstr ""
+
+#: common/utils/utils.c:122
+#, c-format
+msgid "%s exited for an unknown reason (status %d)"
+msgstr ""
