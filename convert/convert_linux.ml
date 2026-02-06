@@ -1194,17 +1194,9 @@ fi
           device
       in
 
-      if PCRE.matches rex_device_cciss value then (
-        let device = PCRE.sub 1
-        and part = try PCRE.sub 2 with Not_found -> "" in
-        "/dev/" ^ replace device ^ part
-      )
-      else if PCRE.matches rex_device_nvme value then (
-        let device = PCRE.sub 1
-        and part = try PCRE.sub 2 with Not_found -> "" in
-        "/dev/" ^ replace device ^ part
-      )
-      else if PCRE.matches rex_device value then (
+      if PCRE.matches rex_device_cciss value ||
+         PCRE.matches rex_device_nvme value ||
+         PCRE.matches rex_device value then (
         let device = PCRE.sub 1
         and part = try PCRE.sub 2 with Not_found -> "" in
         "/dev/" ^ replace device ^ part
