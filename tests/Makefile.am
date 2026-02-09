@@ -97,6 +97,7 @@ TESTS = \
 	test-o-kubevirt-fedora.sh \
 	test-o-kubevirt-oo-disk.sh \
 	test-o-kubevirt-windows.sh \
+	test-o-kubevirt-windows-uefi.sh \
 	test-o-libvirt.sh \
 	test-o-local-qcow2-compressed.sh \
 	test-o-null.sh \
@@ -298,6 +299,8 @@ EXTRA_DIST += \
 	test-o-kubevirt-oo-disk.sh \
 	test-o-kubevirt-windows.sh \
 	test-o-kubevirt-windows.yaml.expected \
+	test-o-kubevirt-windows-uefi.sh \
+	test-o-kubevirt-windows-uefi.yaml.expected \
 	test-o-libvirt.sh \
 	test-o-local-qcow2-compressed.sh \
 	test-o-null.sh \
