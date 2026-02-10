@@ -146,7 +146,7 @@ module Kubevirt = struct
     let doc = create_kubevirt_yaml source inspect target_meta disk_path
                 output_format output_name in
 
-    let file = output_storage // output_name ^ ".yaml" in
+    let file = output_storage // (sanitize_slash output_name) ^ ".yaml" in
     with_open_out file (fun chan -> YAML.doc_to_chan chan doc);
 
     if verbose () then (

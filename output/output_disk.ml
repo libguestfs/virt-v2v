@@ -105,7 +105,7 @@ module Disk = struct
                 (disk_path output_storage output_name)
                 output_format output_name in
 
-    let file = output_storage // output_name ^ ".xml" in
+    let file = output_storage // (sanitize_slash output_name) ^ ".xml" in
     with_open_out file (fun chan -> DOM.doc_to_chan chan doc);
 
     if verbose () then (
