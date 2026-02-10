@@ -66,7 +66,6 @@ EXTRA_DIST = \
 	.github/workflows/main.yml \
 	.gitignore \
 	bugs-in-changelog.sh \
-	build-aux/config.rpath \
 	check-mli.sh \
 	common/.gitignore \
 	common/README \
