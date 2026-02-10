@@ -41,18 +41,26 @@ while true ; do
   esac
 done
 
+# Without this, if we use `libguestfs/run` while `ocaml-libguestfs-*`
+# host packages are installed, we get mismatched search path warnings
+# like these, and then linking fails:
+#
+#  findlib: [WARNING] Package guestfs has multiple definitions in /tmp/libguestfs.git/ocaml/guestfs/META, /usr/lib64/ocaml/guestfs/META
+#  findlib: [WARNING] Interface guestfs.cmi occurs in several directories: /usr/lib64/ocaml/guestfs, /tmp/libguestfs.git/ocaml/guestfs
+guestfs_path=$(@OCAMLFIND@ query guestfs 2>/dev/null)
+
 # Integration with silent rules of automake: print the full command
 # line option in verbose mode.
 if [ x"${V:-@AM_DEFAULT_VERBOSITY@}" = x1 ]; then
   echo "$@" \
      @OCAML_RUNTIME_VARIANT_PIC_OPTION@ \
-     -I +guestfs \
+     -I "$guestfs_path" \
      -linkpkg \
      -cclib "'@LDFLAGS@ $cclib'"
 fi
 # NB -cclib must come last.
 exec "$@" \
      @OCAML_RUNTIME_VARIANT_PIC_OPTION@ \
-     -I +guestfs \
+     -I "$guestfs_path" \
      -linkpkg \
      -cclib "@LDFLAGS@ $cclib"
