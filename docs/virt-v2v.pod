@@ -1344,9 +1344,9 @@ below.
  Windows        Drivers are installed from the ISO or directory pointed
                 to by the "VIRTIO_WIN" environment variable if present.
                 If the "VIRTIO_WIN" environment variable is absent
-                (which is the recommended setting), then libosinfo is
-                consulted first, for driver files that are locally
-                available on the conversion host.
+                (which is the recommended setting), then drivers are
+                searched for in /usr/share/virtio-win, as installed
+                by the virtio-win RPM.
 
 
 =head2 RHEL 4: SELinux relabel appears to hang forever
@@ -1876,11 +1876,6 @@ If unset, then we look for drivers via whichever of these methods
 succeeds first:
 
 =over 4
-
-=item C<osinfo-db>
-
-Load osinfo data from the default paths, and attempt to find drivers via
-libosinfo lookup.  This is the preferred method.
 
 =item F</usr/share/virtio-win/virtio-win.iso>
 
