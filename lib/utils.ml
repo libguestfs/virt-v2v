@@ -289,3 +289,8 @@ let name_from_disk disk =
   if name = "" then
     error (f_"invalid input filename (%s)") disk;
   name
+
+(* Replace '/' with '_' in guest names for filesystem paths and
+ * libvirt domain names. *)
+let sanitize_slash s =
+  String.map (fun c -> if c = '/' then '_' else c) s
