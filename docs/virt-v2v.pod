@@ -1883,8 +1883,7 @@ The ISO containing virtio drivers for Windows.
 
 =item F</usr/share/virtio-win>
 
-The exploded tree of virtio drivers for Windows.  This is
-usually incomplete, hence the least preferred method.
+The exploded tree of virtio drivers for Windows.
 
 =back
 
