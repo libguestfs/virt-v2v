@@ -88,7 +88,9 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          dnf builddep -y virt-v2v
+          dnf builddep -y virt-v2v libguestfs
+          # Need to remove these to build against libguestfs.git
+          dnf remove -y ocaml-libguestfs\*
 
       - name: Install extra dependencies
         run: |
@@ -107,6 +109,18 @@ jobs:
         run: |
           chown -R guestfs:wheel ${GITHUB_WORKSPACE}
 
+      - name: Checkout and build libguestfs
+        run: |
+          su -c '
+            git clone --depth=1 https://github.com/libguestfs/libguestfs &&
+            cd libguestfs &&
+            git submodule update --init &&
+            autoreconf -fiv &&
+            ./configure CFLAGS="-fPIC -g -O2" --disable-gobject --enable-werror &&
+            make -j &&
+            cd ..
+          ' guestfs
+
       - name: Checkout submodule
         run: |
           su -c 'git submodule update --init' guestfs
@@ -115,8 +129,8 @@ jobs:
         run: |
           su -c '
             autoreconf -fiv &&
-            ./configure CFLAGS="-fPIC -g -O2" --enable-werror &&
-            make -j
+            ./libguestfs/run ./configure CFLAGS="-fPIC -g -O2" --enable-werror &&
+            ./libguestfs/run make -j
           ' guestfs
 
       # - name: Run the full tests
