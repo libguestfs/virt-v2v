@@ -150,8 +150,11 @@ let output_to_local_file ?name
          ignore (waitpid [] pid)
      )
 
+let disk_name name i =
+  sprintf "%s-sd%s" name (drive_name i)
+
 let disk_path os name i =
-  let outdisk = sprintf "%s/%s-sd%s" os name (drive_name i) in
+  let outdisk = sprintf "%s/%s" os (disk_name name i) in
   absolute_path outdisk
 
 let create_local_output_disks dir
@@ -214,7 +217,7 @@ let create_local_output_disks dir
     let uris =
       List.mapi (
         fun i _ ->
-          let export = sprintf "%s-sd%s" output_name (drive_name i) in
+          let export = disk_name output_name i in
           NBD_URI.Unix (socket, Some export)
       ) input_disks in
 

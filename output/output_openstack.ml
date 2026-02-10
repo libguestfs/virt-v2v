@@ -322,7 +322,7 @@ The os-* parameters and environment variables are optional.
          * something related to the guest name.  Cinder volume
          * names do not need to be unique.
          *)
-        let name = sprintf "%s-sd%s" output_name (drive_name i) in
+        let name = disk_name output_name i in
 
         (* Create the cinder volume. *)
         let id = create_cinder_volume name description size in
