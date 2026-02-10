@@ -151,6 +151,7 @@ let output_to_local_file ?name
      )
 
 let disk_name name i =
+  let name = Utils.sanitize_slash name in
   sprintf "%s-sd%s" name (drive_name i)
 
 let disk_path os name i =
