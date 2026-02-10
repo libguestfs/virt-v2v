@@ -51,7 +51,7 @@ let create_libvirt_xml ?pool source inspect
 
   List.push_back_list body [
     Comment generated_by;
-    e "name" [] [PCData output_name];
+    e "name" [] [PCData (Utils.sanitize_slash output_name)];
   ];
 
   (match source.s_genid with
