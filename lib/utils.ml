@@ -289,3 +289,6 @@ let name_from_disk disk =
   if name = "" then
     error (f_"invalid input filename (%s)") disk;
   name
+
+let sanitize_slash =
+  String.map (fun c -> if c = '/' then '_' else c)

@@ -122,7 +122,7 @@ val output_to_local_file : ?name:string ->
     depends on the NBD server releasing resources. *)
 
 val disk_name : string -> int -> string
-(** Return the disk name for the i'th disk,
+(** Return the sanitized disk name for the i'th disk,
     eg. 0 => name-sda. *)
 
 val disk_path : string -> string -> int -> string

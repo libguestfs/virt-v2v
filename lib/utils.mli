@@ -108,3 +108,7 @@ val name_from_disk : string -> string
 (** Take a disk name and derive from it a suitable source name.
 
     Used in particular by [-i disk], [-i ova] and [-i vmx] modes. *)
+
+val sanitize_slash : string -> string
+(** Replace '/' with '_' in guest names for filesystem paths and
+    libvirt domain names. *)
