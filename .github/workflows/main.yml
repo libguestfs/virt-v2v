@@ -116,7 +116,7 @@ jobs:
             cd libguestfs &&
             git submodule update --init &&
             autoreconf -fiv &&
-            ./configure CFLAGS="-fPIC -g -O2" --disable-gobject --enable-werror &&
+            ./configure CFLAGS="-fPIC -g -O2" --enable-werror &&
             make -j &&
             cd ..
           ' guestfs
