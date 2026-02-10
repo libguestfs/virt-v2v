@@ -111,7 +111,7 @@ module QEMU = struct
     (* Start the shell script.  Write it to a temporary file
      * which we rename at the end.
      *)
-    let file = output_storage // output_name ^ ".sh" in
+    let file = output_storage // (sanitize_slash output_name) ^ ".sh" in
     let tmpfile = file ^ ".tmp" in
     On_exit.unlink tmpfile;
 
