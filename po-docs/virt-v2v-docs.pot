@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.11.1\n"
+"Project-Id-Version: virt-v2v 2.11.2\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
-"POT-Creation-Date: 2026-01-27 12:08+0000\n"
+"POT-Creation-Date: 2026-02-11 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1406,7 +1406,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.4.pod:153
 #: docs/virt-v2v-release-notes-2.6.pod:180
 #: docs/virt-v2v-release-notes-2.8.pod:315 docs/virt-v2v-support.pod:137
-#: docs/virt-v2v.pod:1923 in-place/virt-v2v-in-place.pod:364
+#: docs/virt-v2v.pod:1917 in-place/virt-v2v-in-place.pod:364
 #: inspector/virt-v2v-inspector.pod:228 open/virt-v2v-open.pod:141
 msgid "SEE ALSO"
 msgstr ""
@@ -1423,7 +1423,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.2.pod:280
 #: docs/virt-v2v-release-notes-2.4.pod:157
 #: docs/virt-v2v-release-notes-2.6.pod:184
-#: docs/virt-v2v-release-notes-2.8.pod:319 docs/virt-v2v.pod:1945
+#: docs/virt-v2v-release-notes-2.8.pod:319 docs/virt-v2v.pod:1939
 #: in-place/virt-v2v-in-place.pod:374 inspector/virt-v2v-inspector.pod:239
 #: open/virt-v2v-open.pod:153
 msgid "AUTHORS"
@@ -1440,7 +1440,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.4.pod:187
 #: docs/virt-v2v-release-notes-2.6.pod:208
 #: docs/virt-v2v-release-notes-2.8.pod:335 docs/virt-v2v-support.pod:144
-#: docs/virt-v2v.pod:1957 in-place/virt-v2v-in-place.pod:386
+#: docs/virt-v2v.pod:1951 in-place/virt-v2v-in-place.pod:386
 #: inspector/virt-v2v-inspector.pod:251 open/virt-v2v-open.pod:165
 msgid "Richard W.M. Jones"
 msgstr ""
@@ -1456,7 +1456,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.4.pod:197
 #: docs/virt-v2v-release-notes-2.6.pod:218
 #: docs/virt-v2v-release-notes-2.8.pod:343 docs/virt-v2v-support.pod:146
-#: docs/virt-v2v.pod:1973 in-place/virt-v2v-in-place.pod:402
+#: docs/virt-v2v.pod:1967 in-place/virt-v2v-in-place.pod:402
 #: inspector/virt-v2v-inspector.pod:267 open/virt-v2v-open.pod:181
 msgid "COPYRIGHT"
 msgstr ""
@@ -1471,7 +1471,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.4.pod:199
 #: docs/virt-v2v-release-notes-2.6.pod:220
 #: docs/virt-v2v-release-notes-2.8.pod:345 docs/virt-v2v-support.pod:148
-#: docs/virt-v2v.pod:1975 in-place/virt-v2v-in-place.pod:404
+#: docs/virt-v2v.pod:1969 in-place/virt-v2v-in-place.pod:404
 #: inspector/virt-v2v-inspector.pod:269 open/virt-v2v-open.pod:183
 msgid "Copyright (C) 2009-2025 Red Hat Inc."
 msgstr ""
@@ -4789,7 +4789,7 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:224
-#: docs/virt-v2v-release-notes-2.2.pod:320 docs/virt-v2v.pod:1953
+#: docs/virt-v2v-release-notes-2.2.pod:320 docs/virt-v2v.pod:1947
 #: in-place/virt-v2v-in-place.pod:382 inspector/virt-v2v-inspector.pod:247
 #: open/virt-v2v-open.pod:161
 msgid "Tomáš Golembiovský"
@@ -4802,7 +4802,7 @@ msgid "Martin Kletzander"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-1.42.pod:228 docs/virt-v2v.pod:1961
+#: docs/virt-v2v-release-notes-1.42.pod:228 docs/virt-v2v.pod:1955
 #: in-place/virt-v2v-in-place.pod:390 inspector/virt-v2v-inspector.pod:255
 #: open/virt-v2v-open.pod:169
 msgid "Mike Latimer"
@@ -4811,7 +4811,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:230
 #: docs/virt-v2v-release-notes-2.0.pod:388
-#: docs/virt-v2v-release-notes-2.6.pod:206 docs/virt-v2v.pod:1963
+#: docs/virt-v2v-release-notes-2.6.pod:206 docs/virt-v2v.pod:1957
 #: in-place/virt-v2v-in-place.pod:392 inspector/virt-v2v-inspector.pod:257
 #: open/virt-v2v-open.pod:171
 msgid "Nir Soffer"
@@ -4819,7 +4819,7 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:232
-#: docs/virt-v2v-release-notes-2.0.pod:390 docs/virt-v2v.pod:1965
+#: docs/virt-v2v-release-notes-2.0.pod:390 docs/virt-v2v.pod:1959
 #: in-place/virt-v2v-in-place.pod:394 inspector/virt-v2v-inspector.pod:259
 #: open/virt-v2v-open.pod:173
 msgid "Pino Toscano"
@@ -4827,7 +4827,7 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:234
-#: docs/virt-v2v-release-notes-2.2.pod:306 docs/virt-v2v.pod:1969
+#: docs/virt-v2v-release-notes-2.2.pod:306 docs/virt-v2v.pod:1963
 #: in-place/virt-v2v-in-place.pod:398 inspector/virt-v2v-inspector.pod:263
 #: open/virt-v2v-open.pod:177
 msgid "Ming Xie"
@@ -5717,7 +5717,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:382
 #: docs/virt-v2v-release-notes-2.2.pod:302
-#: docs/virt-v2v-release-notes-2.4.pod:181 docs/virt-v2v.pod:1951
+#: docs/virt-v2v-release-notes-2.4.pod:181 docs/virt-v2v.pod:1945
 #: in-place/virt-v2v-in-place.pod:380 inspector/virt-v2v-inspector.pod:245
 #: open/virt-v2v-open.pod:159
 msgid "Laszlo Ersek"
@@ -7248,7 +7248,7 @@ msgid "Jürgen Hötzel"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.4.pod:189 docs/virt-v2v.pod:1959
+#: docs/virt-v2v-release-notes-2.4.pod:189 docs/virt-v2v.pod:1953
 #: in-place/virt-v2v-in-place.pod:388 inspector/virt-v2v-inspector.pod:253
 #: open/virt-v2v-open.pod:167
 msgid "Roman Kagan"
@@ -11337,9 +11337,9 @@ msgid ""
 " Windows        Drivers are installed from the ISO or directory pointed\n"
 "                to by the \"VIRTIO_WIN\" environment variable if present.\n"
 "                If the \"VIRTIO_WIN\" environment variable is absent\n"
-"                (which is the recommended setting), then libosinfo is\n"
-"                consulted first, for driver files that are locally\n"
-"                available on the conversion host.\n"
+"                (which is the recommended setting), then drivers are\n"
+"                searched for in /usr/share/virtio-win, as installed\n"
+"                by the virtio-win RPM.\n"
 "\n"
 msgstr ""
 
@@ -12228,7 +12228,7 @@ msgid "FILES"
 msgstr ""
 
 #. type: =item
-#: docs/virt-v2v.pod:1803 docs/virt-v2v.pod:1889
+#: docs/virt-v2v.pod:1803 docs/virt-v2v.pod:1884
 msgid "F</usr/share/virtio-win>"
 msgstr ""
 
@@ -12380,55 +12380,41 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v.pod:1880
-msgid "C<osinfo-db>"
-msgstr ""
-
-#. type: textblock
-#: docs/virt-v2v.pod:1882
-msgid ""
-"Load osinfo data from the default paths, and attempt to find drivers via "
-"libosinfo lookup.  This is the preferred method."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v.pod:1885
 msgid "F</usr/share/virtio-win/virtio-win.iso>"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1887
+#: docs/virt-v2v.pod:1882
 msgid "The ISO containing virtio drivers for Windows."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1891
-msgid ""
-"The exploded tree of virtio drivers for Windows.  This is usually "
-"incomplete, hence the least preferred method."
+#: docs/virt-v2v.pod:1886
+msgid "The exploded tree of virtio drivers for Windows."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1896
+#: docs/virt-v2v.pod:1890
 msgid "See L</Enabling virtio>."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1900
+#: docs/virt-v2v.pod:1894
 msgid "For other environment variables, see L<guestfs(3)/ENVIRONMENT VARIABLES>."
 msgstr ""
 
 #. type: =head1
-#: docs/virt-v2v.pod:1902
+#: docs/virt-v2v.pod:1896
 msgid "OTHER TOOLS"
 msgstr ""
 
 #. type: =item
-#: docs/virt-v2v.pod:1906
+#: docs/virt-v2v.pod:1900
 msgid "L<engine-image-uploader(8)>"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1908
+#: docs/virt-v2v.pod:1902
 msgid ""
 "Variously called C<engine-image-uploader>, C<ovirt-image-uploader> or "
 "C<rhevm-image-uploader>, this tool allows you to copy a guest from one oVirt "
@@ -12437,24 +12423,24 @@ msgid ""
 msgstr ""
 
 #. type: =item
-#: docs/virt-v2v.pod:1913
+#: docs/virt-v2v.pod:1907
 msgid "L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-ovirt.git>"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1915
+#: docs/virt-v2v.pod:1909
 msgid ""
 "This script can be used to import guests that already run on KVM to oVirt.  "
 "For more information, see this blog posting by the author of virt-v2v:"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1919
+#: docs/virt-v2v.pod:1913
 msgid "L<https://rwmj.wordpress.com/2015/09/18/importing-kvm-guests-to-ovirt-or-rhev/#content>"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1925
+#: docs/virt-v2v.pod:1919
 msgid ""
 "L<virt-p2v(1)>, L<virt-v2v-inspector(1)>, L<virt-v2v-in-place(1)>, "
 "L<virt-v2v-open(1)>, L<virt-customize(1)>, L<virt-df(1)>, "
@@ -12466,31 +12452,31 @@ msgid ""
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1947 in-place/virt-v2v-in-place.pod:376
+#: docs/virt-v2v.pod:1941 in-place/virt-v2v-in-place.pod:376
 #: inspector/virt-v2v-inspector.pod:241 open/virt-v2v-open.pod:155
 msgid "Matthew Booth"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1949 in-place/virt-v2v-in-place.pod:378
+#: docs/virt-v2v.pod:1943 in-place/virt-v2v-in-place.pod:378
 #: inspector/virt-v2v-inspector.pod:243 open/virt-v2v-open.pod:157
 msgid "Cédric Bosdonnat"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1955 in-place/virt-v2v-in-place.pod:384
+#: docs/virt-v2v.pod:1949 in-place/virt-v2v-in-place.pod:384
 #: inspector/virt-v2v-inspector.pod:249 open/virt-v2v-open.pod:163
 msgid "Shahar Havivi"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1967 in-place/virt-v2v-in-place.pod:396
+#: docs/virt-v2v.pod:1961 in-place/virt-v2v-in-place.pod:396
 #: inspector/virt-v2v-inspector.pod:261 open/virt-v2v-open.pod:175
 msgid "Xiaodai Wang"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v.pod:1971 in-place/virt-v2v-in-place.pod:400
+#: docs/virt-v2v.pod:1965 in-place/virt-v2v-in-place.pod:400
 #: inspector/virt-v2v-inspector.pod:265 open/virt-v2v-open.pod:179
 msgid "Tingting Zheng"
 msgstr ""

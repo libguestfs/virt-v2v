@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.11.1\n"
+"Project-Id-Version: virt-v2v 2.11.2\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
@@ -268,7 +268,7 @@ msgstr ""
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr ""
 
-#: input/vCenter.ml:154
+#: input/vCenter.ml:159
 msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
@@ -1842,7 +1842,7 @@ msgid ""
 "libvirtxml’."
 msgstr ""
 
-#: output/output.ml:174 output/output.ml:77
+#: output/output.ml:178 output/output.ml:77
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
@@ -1888,7 +1888,7 @@ msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
 #. input/input_disk.ml:96
-#: output/output.ml:177 output/output.ml:80 input/input_libvirt.ml:72
+#: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
@@ -2421,7 +2421,7 @@ msgstr ""
 msgid "vcenter: invalid response from server: %s"
 msgstr ""
 
-#: input/vCenter.ml:189
+#: input/vCenter.ml:194
 msgid "vcenter: no status code in output of ‘curl’ command."
 msgstr ""
 
