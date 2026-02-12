@@ -79,7 +79,7 @@ jobs:
 
     container:
       image: quay.io/fedora/fedora:${{ matrix.release }}
-      options: --security-opt seccomp=unconfined
+      options: --privileged
 
     steps:
       - name: Identify the system
@@ -89,55 +89,48 @@ jobs:
       - name: Install build dependencies
         run: |
           dnf builddep -y virt-v2v libguestfs
-          # Need to remove these to build against libguestfs.git
-          dnf remove -y ocaml-libguestfs\*
-
-      - name: Install extra dependencies
-        run: |
-          # Git is needed to run git submodule command.
-          dnf install -y git
+          # Install a bunch of bits to enable more tests
+          dnf install -y \
+            git kernel sqlite perl-hivex \
+            mingw-srvany-redistributable nbdkit-\* virt-v2v \
+            guestfs-tools\*
 
       - name: Checkout sources
         uses: actions/checkout@v5
 
-      - name: Create user
-        run: |
-          useradd -m -s /bin/bash -G wheel guestfs
-          tail /etc/passwd
-
-      - name: Make checkout directory editable by the sscg user
-        run: |
-          chown -R guestfs:wheel ${GITHUB_WORKSPACE}
-
       - name: Checkout and build libguestfs
         run: |
-          su -c '
-            git clone --depth=1 https://github.com/libguestfs/libguestfs &&
-            cd libguestfs &&
-            git submodule update --init &&
-            autoreconf -fiv &&
-            ./configure CFLAGS="-fPIC -g -O2" --enable-werror &&
-            make -j &&
+            git clone --depth=1 https://github.com/libguestfs/libguestfs
+            cd libguestfs
+            git submodule update --init
+            autoreconf -fiv
+            ./configure CFLAGS="-fPIC -g -O2" --enable-werror
+            make -j
             cd ..
-          ' guestfs
-
-      - name: Checkout submodule
-        run: |
-          su -c 'git submodule update --init' guestfs
 
       - name: Compile the code
         run: |
-          su -c '
-            autoreconf -fiv &&
-            ./libguestfs/run ./configure CFLAGS="-fPIC -g -O2" --enable-werror &&
+            git config --global --add safe.directory $PWD
+            git submodule update --init
+            autoreconf -fiv
+            ./libguestfs/run ./configure CFLAGS="-fPIC -g -O2" --enable-werror
             ./libguestfs/run make -j
-          ' guestfs
 
+      # feb2026: tests mostly run but random bits fail with
+      #   part_to_partnum_stub: /dev/sda2: No such file or directory
+      # Possibly this is systemd udev issue which is fixed in v260.
+      # Let's try enabling again when fedora-44 is out
+      # Some discussion: https://github.com/libguestfs/virt-v2v/pull/135
+      #
       # - name: Run the full tests
       #   run: |
-      #     # We have to set $HOME since su -p won't set it below.
-      #     export HOME=/home/guestfs
-      #     if ! su -p -c 'make check' guestfs; then
-      #         find -name test-suite.log -exec cat {} \;
-      #         exit 1
-      #     fi
+      #       ./libguestfs/run libguestfs-test-tool
+      #
+      #       # Busted on root:
+      #       # virt-v2v: changeuid: test-o-ovirt.d/12345678-1234-1234-1234-123456789abc/x8gdeog2: Sys_error("test-o-ovirt.d/12345678-1234-1234-1234-123456789abc/x8gdeog2: Permission denied")
+      #       export SKIP_TEST_O_OVIRT_SH=1
+      #
+      #       if ! ./libguestfs/run make check; then
+      #           find -name test-suite.log -exec cat {} \;
+      #           exit 1
+      #       fi
