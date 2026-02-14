@@ -39,7 +39,7 @@ if [ ! -f windows.vmdk -o ! -s windows.vmdk ]; then
     exit 77
 fi
 
-export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+export VIRT_TOOLS_DATA_DIR="$abs_srcdir/../test-data/fake-virt-tools"
 
 d=test-i-ova-as-root.d
 rm -rf $d
