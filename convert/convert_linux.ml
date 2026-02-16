@@ -1212,7 +1212,7 @@ fi
            This depends on /dev/sdXX in the guest having the same /dev/sdXX
            name in the appliance.
          *)
-        if String.starts_with "/etc/crypttab" path &&
+        if String.starts_with "/files/etc/crypttab" path &&
            String.starts_with "/dev/sd" value then (
           try
             let uuid = g#vfs_uuid value in
