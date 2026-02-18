@@ -632,6 +632,47 @@ fi
                         install command for package ‘%s’ could not be created: \
                         %s.") qga_pkg msg
 
+  and add_initramfs_option_to_crypttab () =
+    (* For debian based distros that use update-initramfs, an initrd
+     * rebuilt under libguestfs likely won't populate configure
+     * boot time crypttab correctly. We work around it by adding
+     * `initramfs` option to every /etc/crypttab entry.
+     *)
+    (* Get all crypttab entries *)
+    let entries = g#aug_match "/files/etc/crypttab/*" in
+    let entries = Array.to_list entries in
+
+    let changed = ref false in
+
+    List.iter (
+      fun entry_path ->
+        (* Check if this entry already has the initramfs option *)
+        let opts = g#aug_match (sprintf "%s/opt" entry_path) in
+        let opts = Array.to_list opts in
+
+        let has_initramfs = List.exists (
+          fun opt_path ->
+            let opt_name = g#aug_get opt_path in
+            opt_name = "initramfs"
+        ) opts in
+
+        if not has_initramfs then (
+          (* Add the initramfs option *)
+          let new_opt_path = sprintf "%s/opt[last()+1]" entry_path in
+          g#aug_set new_opt_path "initramfs";
+          changed := true;
+
+          let target = g#aug_get (sprintf "%s/target" entry_path) in
+          debug "convert_linux: added 'initramfs' option to crypttab entry '%s'" target
+        )
+    ) entries;
+
+    (* Save changes if any were made *)
+    if !changed then (
+      g#aug_save ();
+      Linux.augeas_reload g
+    )
+
   and configure_kernel () =
     (* Previously this function would try to install kernels, but we
      * don't do that any longer.
@@ -798,6 +839,9 @@ fi
           ) modules;
           g#aug_save ();
         );
+
+        (* Add initramfs option to crypttab entries *)
+        add_initramfs_option_to_crypttab ();
 
         run_update_initramfs_command ()
       )
