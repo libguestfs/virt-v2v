@@ -26,14 +26,20 @@ CLEANFILES += *.pl *.pod
 
 MANPAGES = \
 	virt-v2v.1 \
-	virt-v2v-copy-to-local.1 \
+	virt-v2v-hacking.1 \
 	virt-v2v-input-vmware.1 \
 	virt-v2v-input-xen.1 \
 	virt-v2v-output-local.1 \
 	virt-v2v-output-openstack.1 \
-	virt-v2v-output-rhv.1 \
-	virt-v2v-support.1 \
-	virt-v2v-test-harness.1
+	virt-v2v-output-ovirt.1 \
+	virt-v2v-release-notes-1.42.1 \
+	virt-v2v-release-notes-2.0.1 \
+	virt-v2v-release-notes-2.2.1 \
+	virt-v2v-release-notes-2.4.1 \
+	virt-v2v-release-notes-2.6.1 \
+	virt-v2v-release-notes-2.8.1 \
+	virt-v2v-release-notes-2.10.1 \
+	virt-v2v-support.1
 
 podfiles := $(shell for f in `cat $(top_srcdir)/po-docs/podfiles`; do echo `basename $$f .pod`.pod; done)
 
