@@ -62,6 +62,8 @@ virt-v2v.1: key-option.pod keys-from-stdin-option.pod
 # XXX Fix po4a so it doesn't do this.
 %.pod: $(srcdir)/../$(LINGUA).po
 	$(guestfs_am_v_po4a_translate)$(PO4A_TRANSLATE) \
+	  --no-deprecation \
+	  -o no-warn-simple \
 	  -f pod \
 	  -M utf-8 -L utf-8 \
 	  -k 0 \
