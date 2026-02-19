@@ -34,6 +34,7 @@ This is the modern method for uploading to OpenStack via the REST API.
 Guests can be directly converted into Cinder volumes.
 
 ifelse(ENABLE_GLANCE, yes, `
+
 =item B<-o glance>
 
 Full description: L</OUTPUT TO GLANCE>
@@ -185,6 +186,7 @@ The following options are B<not> supported with OpenStack: I<-oa>,
 I<-of>.
 
 ifelse(ENABLE_GLANCE, yes, `
+
 =head1 OUTPUT TO GLANCE
 
 Note this is a legacy option.  In most cases you should use

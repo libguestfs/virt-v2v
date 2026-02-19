@@ -104,6 +104,7 @@ disks to F</var/lib/libvirt/images>.
 For more information see L<virt-v2v-input-vmware(1)>.
 
 ifelse(ENABLE_OVIRT, yes, `
+
 =head2 Convert from VMware to oVirt
 
 This is the same as the previous example, except you want to send the
@@ -202,6 +203,7 @@ This is only supported for:
 =over 4
 
 ifelse(ENABLE_XEN, yes, `
+
 =item *
 
 L<input from Xen|virt-v2v-input-xen(1)>
@@ -235,6 +237,7 @@ The options are silently ignored for other input methods.
 See I<--network> below.
 
 ifelse(ENABLE_BLOCK_DRIVER, yes, `
+
 =item B<--block-driver> B<virtio-blk>
 
 =item B<--block-driver> B<virtio-scsi>
@@ -478,6 +481,7 @@ See L</Networks and bridges> below.
 This is the same as I<-o local>.
 
 ifelse(ENABLE_GLANCE, yes, `
+
 =item B<-o> B<glance>
 
 This is a legacy option.  You should probably use I<-o openstack>
@@ -549,6 +553,7 @@ no metadata is written.
 Set the output method to OpenStack.  See L<virt-v2v-output-openstack(1)>.
 
 ifelse(ENABLE_OVIRT, yes, `
+
 =item B<-o> B<ovirt>
 
 Set the output method to I<ovirt>.
@@ -582,6 +587,7 @@ When using this output mode, you can also specify the I<-oo qemu-boot>
 option which boots the guest under qemu immediately.
 
 ifelse(ENABLE_OVIRT, yes, `
+
 =item B<-o> B<vdsm>
 
 Set the output method to I<vdsm>.
@@ -665,6 +671,7 @@ OpenStack authentication.  For example I<-oo os-username=>NAME is
 equivalent to C<openstack --os-username=NAME>.
 
 ifelse(ENABLE_OVIRT, yes, `
+
 =item B<-oo ovirt-cafile=>F<ca.pem>
 
 For I<-o ovirt-upload> (L<virt-v2v-output-ovirt(1)>) only, the
@@ -696,6 +703,7 @@ For I<-o openstack> (L<virt-v2v-output-openstack(1)>) only, set the name
 of the conversion appliance where virt-v2v is running.
 
 ifelse(ENABLE_OVIRT, yes, `
+
 =item B<-oo vdsm-compat=0.10>
 
 =item B<-oo vdsm-compat=1.1>
@@ -965,6 +973,7 @@ This temporarily places a full copy of the uncompressed source disks
 in C<$VIRT_V2V_TMPDIR> (or F</var/tmp>).
 
 ifelse(ENABLE_GLANCE, yes, `
+
 =item I<-o glance>
 
 This temporarily places a full copy of the output disks in
@@ -1097,6 +1106,7 @@ require either root or a special user:
 =over 4
 
 ifelse(ENABLE_OVIRT, yes, `
+
 =item Mounting the Export Storage Domain
 
 When using I<-o ovirt -os server:/esd> virt-v2v has to have sufficient
@@ -1138,6 +1148,7 @@ Because of how Cinder volumes are presented as F</dev> block devices,
 using I<-o openstack> normally requires that virt-v2v is run as root.
 
 ifelse(ENABLE_GLANCE, yes, `
+
 =item Writing to Glance
 
 This does I<not> need root (in fact it probably won’t work), but may
@@ -1267,6 +1278,7 @@ changes to the Windows Registry and filesystem.
 =head1 NOTES
 
 ifelse(ENABLE_XEN, yes, `
+
 =head2 Xen paravirtualized guests
 
 Older versions of virt-v2v could turn a Xen paravirtualized (PV) guest
