@@ -104,7 +104,8 @@ virt-v2v-in-place.1: virt-v2v-in-place.pod
 	  -k 0 \
 	  -m $(top_srcdir)/$(shell grep '/$(notdir $@)$$' $(top_srcdir)/po-docs/podfiles) \
 	  -p $< \
-	  | $(SED) '0,/^=encoding/d' > $@
+	  -l $@
+	  $(AM_V_at) $(SED) -i -e '0,/^=encoding/d' $@
 
 # XXX Can automake do this properly?
 install-data-hook:
