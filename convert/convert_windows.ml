@@ -215,6 +215,34 @@ let convert (g : G.guestfs) source inspect i_firmware
     let msifn s = if PCRE.matches re1 s then PCRE.replace re2 "/x" s else s in
     uninstallation_commands "VMware Tools" matchfn msifn "" in
 
+  (* Locate the correct devcon binary for this architecture.  If
+   * not present, devcon is set to None and we will skip disabling
+   * VMware drivers below.
+   *)
+  let devcon =
+    let data_dir = virt_tools_data_dir () in
+    let windows_arch =
+      match inspect.i_arch with
+      | "i386" | "i486" | "i586" | "i686" -> Some "x86"
+      | "x86_64" -> Some "x64"
+      | _ -> None in
+    let filename =
+      match windows_arch with
+      | None -> None
+      | Some dir -> Some (data_dir // dir // "devcon.exe") in
+    let filename =
+      match filename with
+      | None -> None
+      | Some path -> if Sys.file_exists path then Some path else None in
+    (match filename with
+     | None ->
+        warning (f_"devcon.exe was not found in %s/{x86,x64}/. \
+                    We may not be able to disable VMware tools.") data_dir
+     | Some filename ->
+        debug "picked %s as devcon utility" filename
+    );
+    filename in
+
   (*----------------------------------------------------------------------*)
   (* Perform the conversion of the Windows guest. *)
 
@@ -326,7 +354,8 @@ let convert (g : G.guestfs) source inspect i_firmware
 
     unconfigure_xenpv ();
     unconfigure_prltools ();
-    unconfigure_vmwaretools ()
+    unconfigure_vmwaretools ();
+    disable_vmware_drivers ()
 
   (* [set_reg_val_dword_1 path name] creates a registry key
    * called [name = dword:1] in the registry [path].
@@ -532,6 +561,89 @@ if errorlevel 3010 exit /b 0
         Firstboot.add_firstboot_script g inspect.i_root
           "uninstall VMware Tools" fb_script
     ) vmwaretools_uninst
+
+  and disable_vmware_drivers () =
+    (* Essentially the previous step (unconfigure_vmwaretools) is
+     * expected to fail, so as a back-up do the next best thing and
+     * disable any VMware drivers.
+     *)
+    match devcon with
+    | None -> ()
+    | Some devcon ->
+       (* Copy devcon into the guest. *)
+       let devcon_path = "/Program Files/Guestfs/Firstboot/devcon.exe" in
+       let devcon_win_path = String.replace_char devcon_path '/' '\\' in
+       g#upload devcon (g#case_sensitive_path devcon_path);
+
+       let fb_script = sprintf
+                         {|@echo off
+
+echo disabling VMware Tools
+
+setlocal enabledelayedexpansion
+
+REM Check for admin privileges
+net session >nul 2>&1
+if %%errorlevel%% neq 0 (
+    echo ERROR: This script must be run as Administrator
+    exit /b 1
+)
+
+set "DEVCON=%s"
+echo Using devcon: %%DEVCON%%
+echo.
+
+:: --- Enumerate VMware devices ---
+echo Searching for VMware devices...
+"%%DEVCON%%" findall * | findstr /I "VMware" > "%%temp%%\vmware_devices.txt"
+
+if %%errorlevel%% neq 0 (
+    echo No VMware devices found.
+    del "%%temp%%\vmware_devices.txt" >nul 2>&1
+    goto :EOF
+)
+
+echo.
+echo VMware devices found:
+type "%%temp%%\vmware_devices.txt"
+echo.
+
+:: --- Process each device safely ---
+for /f "usebackq delims=" %%%%L in ("%%temp%%\vmware_devices.txt") do (
+    set "LINE=%%%%L"
+    for /f "tokens=1,* delims=:" %%%%A in ("!LINE!") do (
+        set "DEVID=%%%%A"
+        set "DEVDESC=%%%%B"
+        call :DisableDevice
+    )
+)
+
+del "%%temp%%\vmware_devices.txt" >nul 2>&1
+echo.
+echo ===============================================================
+echo All VMware devices processed.
+echo ===============================================================
+goto :EOF
+
+:: --- Subroutine: confirm and disable one device ---
+:DisableDevice
+setlocal enabledelayedexpansion
+set "DEVID=!DEVID:~0!"
+set "DEVDESC=!DEVDESC:~1!"
+set "ATDEVID=@!DEVID!"
+echo.
+echo ---------------------------------------------------------------
+echo Device: !DEVDESC!
+echo ID: !ATDEVID!
+echo ---------------------------------------------------------------
+echo Disabling device: !DEVDESC!
+"%%DEVCON%%" disable !ATDEVID!
+endlocal
+goto :eof
+|}
+                         devcon_win_path in
+       Firstboot.add_firstboot_script g inspect.i_root
+         "disable VMware drivers" fb_script
 
   and update_system_hive reg =
     (* Update the SYSTEM hive.  When this function is called the hive has

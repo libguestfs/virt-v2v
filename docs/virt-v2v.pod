@@ -1853,6 +1853,17 @@ This directory may contain the following files:
 
 =over 4
 
+=item F<x86/devcon.exe>
+
+=item F<x64/devcon.exe>
+
+(Optional, but suggested for conversions of Windows guests)
+
+This is a Microsoft tool used for disabling any left over VMware
+drivers after conversion.
+
+See also: C<https://github.com/microsoft/Windows-driver-samples/tree/main/setup/devcon>
+
 =item F<rhsrvany.exe>
 
 (Required when doing conversions of Windows guests)
