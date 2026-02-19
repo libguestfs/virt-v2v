@@ -97,6 +97,9 @@ jobs:
             mingw-srvany-redistributable nbdkit-\* virt-v2v \
             guestfs-tools\*
 
+          # Hides 'multiple definition' warnings
+          dnf remove -y ocaml-libguestfs\*
+
       - name: Checkout sources
         uses: actions/checkout@v5
 
