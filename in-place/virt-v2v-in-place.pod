@@ -73,6 +73,7 @@ Display help.
 See I<--network> below.
 
 ifelse(ENABLE_BLOCK_DRIVER, yes, `
+
 =item B<--block-driver> B<virtio-blk>
 
 =item B<--block-driver> B<virtio-scsi>

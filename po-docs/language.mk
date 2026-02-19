@@ -52,8 +52,37 @@ EXTRA_DIST = \
 
 all-local: $(MANPAGES)
 
-virt-v2v.1: key-option.pod keys-from-stdin-option.pod
+# Some man pages are preprocessed with m4 for conditional sections.
+PP_M4 = \
+	m4 \
+	-D ENABLE_BLOCK_DRIVER=$(ENABLE_BLOCK_DRIVER) \
+	-D ENABLE_XEN=$(ENABLE_XEN) \
+	-D ENABLE_GLANCE=$(ENABLE_GLANCE) \
+	-D ENABLE_OVIRT=$(ENABLE_OVIRT) \
+	$(NULL)
 
+virt-v2v.1: virt-v2v.pod key-option.pod keys-from-stdin-option.pod
+	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
+	  --no-strict-checks \
+	  --man $@ \
+	  $<
+
+virt-v2v-output-openstack.1: virt-v2v-output-openstack.pod
+	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
+	  --no-strict-checks \
+	  --man $@ \
+	  $<
+
+virt-v2v-in-place.1: virt-v2v-in-place.pod
+	$(PODWRAPPER) \
+	  --pp "$(PP_M4)" \
+	  --no-strict-checks \
+	  --man $@ \
+	  $<
+
+# Default rule for files that don't need preprocessing
 %.1: %.pod
 	$(PODWRAPPER) \
 	  --no-strict-checks \
