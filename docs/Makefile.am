@@ -102,7 +102,7 @@ stamp-virt-v2v.pod: virt-v2v.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-hacking.1 $(top_builddir)/website/virt-v2v-hacking.1.html: stamp-virt-v2v-hacking.pod
 
@@ -113,7 +113,7 @@ stamp-virt-v2v-hacking.pod: virt-v2v-hacking.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-input-vmware.1 $(top_builddir)/website/virt-v2v-input-vmware.1.html: stamp-virt-v2v-input-vmware.pod
 
@@ -124,7 +124,7 @@ stamp-virt-v2v-input-vmware.pod: virt-v2v-input-vmware.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 if ENABLE_XEN
 virt-v2v-input-xen.1 $(top_builddir)/website/virt-v2v-input-xen.1.html: stamp-virt-v2v-input-xen.pod
@@ -136,7 +136,7 @@ stamp-virt-v2v-input-xen.pod: virt-v2v-input-xen.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 endif
 
 virt-v2v-output-local.1 $(top_builddir)/website/virt-v2v-output-local.1.html: stamp-virt-v2v-output-local.pod
@@ -148,7 +148,7 @@ stamp-virt-v2v-output-local.pod: virt-v2v-output-local.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-output-openstack.1 $(top_builddir)/website/virt-v2v-output-openstack.1.html: stamp-virt-v2v-output-openstack.pod
 
@@ -160,7 +160,7 @@ stamp-virt-v2v-output-openstack.pod: virt-v2v-output-openstack.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 if ENABLE_OVIRT
 virt-v2v-output-ovirt.1 $(top_builddir)/website/virt-v2v-output-ovirt.1.html: stamp-virt-v2v-output-ovirt.pod
@@ -172,7 +172,7 @@ stamp-virt-v2v-output-ovirt.pod: virt-v2v-output-ovirt.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 endif
 
 virt-v2v-release-notes-1.42.1 $(top_builddir)/website/virt-v2v-release-notes-1.42.1.html: stamp-virt-v2v-release-notes-1.42.pod
@@ -184,7 +184,7 @@ stamp-virt-v2v-release-notes-1.42.pod: virt-v2v-release-notes-1.42.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-release-notes-2.0.1 $(top_builddir)/website/virt-v2v-release-notes-2.0.1.html: stamp-virt-v2v-release-notes-2.0.pod
 
@@ -195,7 +195,7 @@ stamp-virt-v2v-release-notes-2.0.pod: virt-v2v-release-notes-2.0.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-release-notes-2.2.1 $(top_builddir)/website/virt-v2v-release-notes-2.2.1.html: stamp-virt-v2v-release-notes-2.2.pod
 
@@ -206,7 +206,7 @@ stamp-virt-v2v-release-notes-2.2.pod: virt-v2v-release-notes-2.2.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-release-notes-2.4.1 $(top_builddir)/website/virt-v2v-release-notes-2.4.1.html: stamp-virt-v2v-release-notes-2.4.pod
 
@@ -217,7 +217,7 @@ stamp-virt-v2v-release-notes-2.4.pod: virt-v2v-release-notes-2.4.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-release-notes-2.6.1 $(top_builddir)/website/virt-v2v-release-notes-2.6.1.html: stamp-virt-v2v-release-notes-2.6.pod
 
@@ -228,7 +228,7 @@ stamp-virt-v2v-release-notes-2.6.pod: virt-v2v-release-notes-2.6.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-release-notes-2.8.1 $(top_builddir)/website/virt-v2v-release-notes-2.8.1.html: stamp-virt-v2v-release-notes-2.8.pod
 
@@ -239,7 +239,7 @@ stamp-virt-v2v-release-notes-2.8.pod: virt-v2v-release-notes-2.8.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-release-notes-2.10.1 $(top_builddir)/website/virt-v2v-release-notes-2.10.1.html: stamp-virt-v2v-release-notes-2.10.pod
 
@@ -250,7 +250,7 @@ stamp-virt-v2v-release-notes-2.10.pod: virt-v2v-release-notes-2.10.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 virt-v2v-support.1 $(top_builddir)/website/virt-v2v-support.1.html: stamp-virt-v2v-support.pod
 
@@ -261,7 +261,7 @@ stamp-virt-v2v-support.pod: virt-v2v-support.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 TESTS_ENVIRONMENT = $(top_builddir)/run --test
 TESTS = test-docs.sh

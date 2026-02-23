@@ -111,7 +111,7 @@ endif
 libmlv2vlib_a_DEPENDENCIES = $(OBJECTS)
 
 $(MLV2VLIB_CMA): $(OBJECTS) libmlv2vlib.a
-	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	$(AM_V_GEN) $(OCAMLFIND) mklib $(OCAMLPACKAGES) \
 	    $(OBJECTS) $(libmlv2vlib_a_OBJECTS) -o mlv2vlib
 
 # OCaml dependencies.

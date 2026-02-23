@@ -149,7 +149,7 @@ stamp-virt-v2v-open.pod: virt-v2v-open.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 TESTS_ENVIRONMENT = $(top_builddir)/run --test
 TESTS = test-docs.sh

@@ -132,7 +132,7 @@ windows.vmdk: ../test-data/phony-guests/windows.img
 	    qemu-img convert -f raw $< -O vmdk $@-t; \
 	    mv $@-t $@; \
 	else \
-	    touch $@; \
+	    $(AM_V_at)touch $@; \
 	fi
 
 DISTCLEANFILES += \

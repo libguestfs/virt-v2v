@@ -129,7 +129,7 @@ libmlconvert_a_DEPENDENCIES = \
 	$(OBJECTS)
 
 $(MLCONVERT_CMA): $(OBJECTS) libmlconvert.a
-	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	$(AM_V_GEN) $(OCAMLFIND) mklib $(OCAMLPACKAGES) \
 	    $(OBJECTS) $(libmlconvert_a_OBJECTS) -o mlconvert
 
 # Dependencies.

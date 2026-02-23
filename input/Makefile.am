@@ -144,7 +144,7 @@ libmlinput_a_DEPENDENCIES = \
 	$(OBJECTS)
 
 $(MLINPUT_CMA): $(OBJECTS) libmlinput.a
-	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	$(AM_V_GEN) $(OCAMLFIND) mklib $(OCAMLPACKAGES) \
 	    $(OBJECTS) $(libmlinput_a_OBJECTS) -o mlinput
 
 # Dependencies.
