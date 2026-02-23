@@ -28,8 +28,6 @@ $(generator_built): $(top_builddir)/generator/stamp-generator
 $(top_builddir)/generator/stamp-generator: $(top_builddir)/generator/generator
 	@if test -f $(top_builddir)/generator/Makefile; then \
 	  $(MAKE) -C $(top_builddir)/generator stamp-generator; \
-	else \
-	  echo "warning: Run 'make' at the top level to build $(generator_built)"; \
 	fi
 
 # If this file doesn't exist, just print a warning and continue.
@@ -37,8 +35,6 @@ $(top_builddir)/generator/stamp-generator: $(top_builddir)/generator/generator
 $(top_builddir)/generator/generator:
 	@if test -f $(top_builddir)/generator/Makefile; then \
 	  $(MAKE) -C $(top_builddir)/generator generator; \
-	else \
-	  echo "warning: Run 'make' at the top level to build $@"; \
 	fi
 
 # Rules for building OCaml objects.
