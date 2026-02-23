@@ -18,7 +18,6 @@
 include $(top_srcdir)/subdir-rules.mk
 
 SUBDIRS  = binaries
-SUBDIRS += blank-disks
 SUBDIRS += phony-guests
 SUBDIRS += fake-virtio-win fake-virt-tools
 SUBDIRS += .

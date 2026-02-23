@@ -100,7 +100,6 @@ Makefile.in
 /po/*.gmo
 /run
 /stamp-h1
-/test-data/blank-disks/blank-disk-*
 /test-data/fake-virtio-win/cd
 /test-data/fake-virtio-win/drivers
 /test-data/fake-virtio-win/fake-virtio-win.iso
