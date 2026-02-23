@@ -131,13 +131,13 @@ po/POTFILES-ml: configure.ac
 # It should be noinst_MANS but that doesn't work.
 noinst_DATA = podwrapper.1
 podwrapper.1: podwrapper.pl
-	$(PODWRAPPER) \
+	$(AM_V_GEN) $(PODWRAPPER) \
 	  --section 1 \
 	  --man $@-t \
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	mv $@-t $@
+	$(AM_V_at) mv $@-t $@
 
 # Make clean.
 

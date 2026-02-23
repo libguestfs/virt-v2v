@@ -155,7 +155,7 @@ stamp-virt-v2v-inspector.pod: virt-v2v-inspector.pod
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<
-	touch $@
+	$(AM_V_at)touch $@
 
 TESTS_ENVIRONMENT = $(top_builddir)/run --test
 TESTS = test-docs.sh

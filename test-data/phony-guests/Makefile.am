@@ -110,7 +110,7 @@ stamp-fedora-md.img: make-fedora-img.pl \
 		fedora-static-bin
 	rm -f $@
 	SRCDIR=$(srcdir) LAYOUT=partitions-md $(top_builddir)/run --test ./$<
-	touch $@
+	$(AM_V_at)touch $@
 
 # Make a (dummy) Fedora image using a single btrfs with two subvolumes
 # for root and home.

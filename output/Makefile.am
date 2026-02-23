@@ -196,7 +196,7 @@ libmloutput_a_DEPENDENCIES = \
 	$(OBJECTS)
 
 $(MLOUTPUT_CMA): $(OBJECTS) libmloutput.a
-	$(OCAMLFIND) mklib $(OCAMLPACKAGES) \
+	$(AM_V_GEN) $(OCAMLFIND) mklib $(OCAMLPACKAGES) \
 	    $(OBJECTS) $(libmloutput_a_OBJECTS) -o mloutput
 
 # Unit tests.
