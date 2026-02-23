@@ -221,7 +221,6 @@ AC_CONFIG_FILES([Makefile
                  po/Makefile
                  test-data/Makefile
                  test-data/binaries/Makefile
-                 test-data/blank-disks/Makefile
                  test-data/fake-virtio-win/Makefile
                  test-data/fake-virt-tools/Makefile
                  test-data/phony-guests/Makefile
