@@ -27,4 +27,7 @@ include $(top_srcdir)/subdir-rules.mk
 EXTRA_DIST = \
 	pnp_wait.exe \
 	rhsrvany.exe \
-	vmdp.exe
+	vmdp.exe \
+	x86/devcon.exe \
+	x64/devcon.exe \
+	$(NULL)
