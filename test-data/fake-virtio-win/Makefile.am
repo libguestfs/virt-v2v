@@ -44,13 +44,13 @@ clean-local:
 drivers: virtio-win-drivers-list.txt
 	while read line; do			\
 		mkdir -p `dirname $$line`;	\
-		$(AM_V_at)touch "$$line";			\
+		touch "$$line";			\
 	done < $<
 
 cd: virtio-win-iso-list.txt
 	while read line; do			\
 		mkdir -p `dirname $$line`;	\
-		$(AM_V_at)touch "$$line";			\
+		touch "$$line";			\
 	done < $<
 
 fake-virtio-win.iso: cd
