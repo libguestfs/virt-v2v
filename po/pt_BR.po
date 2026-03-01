@@ -9,8 +9,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-02-20 21:01+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2026-02-22 23:58+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1642,7 +1643,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr ""
+msgstr "Baixando"
 
 #: lib/networks.ml:84
 msgid ""
@@ -1945,7 +1946,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
 msgid "killed by signal %d"
-msgstr ""
+msgstr "%s morto pelo sinal %d (%s)"
 
 #: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
@@ -2378,7 +2379,7 @@ msgstr ""
 #. common/mltools/tools_utils.ml:461
 #: lib/utils.ml:36 common/mltools/tools_utils.ml:542
 msgid "stopped by signal %d"
-msgstr ""
+msgstr "%s parado pelo sinal %d (%s)"
 
 #: output/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
@@ -2390,7 +2391,7 @@ msgstr ""
 
 #: lib/utils.ml:33
 msgid "success"
-msgstr ""
+msgstr "sucesso"
 
 #: output/create_libvirt_xml.ml:297
 msgid ""
