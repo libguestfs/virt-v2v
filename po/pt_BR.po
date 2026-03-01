@@ -9,8 +9,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-02-19 19:39+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2026-02-20 20:58+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -798,7 +799,7 @@ msgstr ""
 #. in-place/in_place.ml:173
 #: v2v/v2v.ml:212 open/open.ml:78 inspector/inspector.ml:161
 msgid "Libvirt URI"
-msgstr ""
+msgstr "URI do libvirt:"
 
 #: common/mlcustomize/customize_run.ml:255
 msgid "Linking: %s -> %s"
@@ -832,7 +833,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:333
 msgid "Move files in disk image"
-msgstr ""
+msgstr "Copia arquivos em uma imagem de disco"
 
 #: common/mlcustomize/customize_run.ml:264
 msgid "Moving: %s -> %s"
@@ -1013,12 +1014,12 @@ msgstr ""
 #. common/mlcustomize/customize_run.ml:159
 #: common/mlcustomize/customize_run.ml:274
 msgid "Running: %s"
-msgstr ""
+msgstr "executando %s"
 
 #. common/mlcustomize/customize_cmdline.ml:252
 #: common/mlcustomize/customize_cmdline.ml:361
 msgid "SCRIPT"
-msgstr ""
+msgstr "SCRIPT"
 
 #: common/mltools/tools_utils.ml:422
 #: common/mlcustomize/customize_cmdline.ml:351
@@ -1094,7 +1095,7 @@ msgstr ""
 
 #: v2v/v2v.ml:236
 msgid "Set output format"
-msgstr ""
+msgstr "Seleciona o formato da saída"
 
 #: v2v/v2v.ml:230
 msgid "Set output mode (default: libvirt)"
@@ -1122,7 +1123,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:276
 msgid "Set the hostname"
-msgstr ""
+msgstr "Definir nome de máquina"
 
 #: inspector/inspector.ml:177 in-place/in_place.ml:187
 msgid "Set the output filename"
@@ -1263,7 +1264,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:321
 msgid "Uploading: %s to %s"
-msgstr ""
+msgstr "Download de %s em %s"
 
 #: common/mltools/tools_utils.ml:391
 msgid "Use ANSI colour sequences even if not tty"
