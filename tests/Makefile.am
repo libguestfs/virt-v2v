@@ -101,6 +101,7 @@ TESTS = \
 	test-o-local-qcow2-compressed.sh \
 	test-o-null.sh \
 	test-o-openstack.sh \
+	test-o-openstack-oo-az.sh \
 	test-o-ovirt-upload-oo-query.sh \
 	test-o-ovirt-upload.sh \
 	test-o-ovirt.sh \
