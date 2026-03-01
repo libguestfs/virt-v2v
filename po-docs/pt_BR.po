@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-02-11 13:40+0000\n"
-"PO-Revision-Date: 2026-02-20 20:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-02-22 23:58+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-docs-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -3091,6 +3090,9 @@ msgid ""
 "conversion will fail.  See L</Xen or ssh conversions from block devices> "
 "below for a workaround."
 msgstr ""
+"B<Se os discos do convidado estão localizados em um dispositivo de bloco do "
+"host>, a conversão vai falhar. Veja L</Conversões de Xen ou SSH de "
+"dispositivos de bloco> abaixo para uma solução de contorno."
 
 #. type: =head2
 #: docs/virt-v2v-input-xen.pod:104
@@ -3121,7 +3123,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-input-xen.pod:119
 msgid "Xen or ssh conversions from block devices"
-msgstr ""
+msgstr "Conversões de Xen ou SSH de dispositivos de bloco"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:121
@@ -4001,10 +4003,8 @@ msgstr ""
 
 #. type: =head1
 #: docs/virt-v2v-output-ovirt.pod:60
-#, fuzzy
-#| msgid "OUTPUT"
 msgid "OUTPUT TO OVIRT"
-msgstr "SAÍDA"
+msgstr "SAÍDA PARA OVIRT"
 
 #. type: textblock
 #: docs/virt-v2v-output-ovirt.pod:62
@@ -10658,7 +10658,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:983
 msgid "See also L</Minimum free space check in the host> below."
-msgstr ""
+msgstr "Veja também L</ Verificação de espaço livre mínimo no host> abaixo."
 
 #. type: =head2
 #: docs/virt-v2v.pod:985
@@ -10842,7 +10842,7 @@ msgstr ""
 #. type: =head3
 #: docs/virt-v2v.pod:1077
 msgid "Minimum free space check in the host"
-msgstr ""
+msgstr "Verificação de espaço livre mínimo no host"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1079
