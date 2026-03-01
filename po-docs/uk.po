@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-02-11 13:40+0000\n"
-"PO-Revision-Date: 2025-04-08 13:53+0000\n"
+"PO-Revision-Date: 2026-02-19 19:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/uk/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.16\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -94,15 +94,12 @@ msgstr ""
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:9
 #: common/mlcustomize/v2v-customize-options.pod:9
-#, fuzzy, no-wrap
-#| msgid ""
-#| " Copyright (C) 2009-2023 Red Hat Inc.\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " Copyright (C) 2009-2025 Red Hat Inc.\n"
 "\n"
 msgstr ""
-" © Red Hat Inc., 2009–2023\n"
+" © Red Hat Inc., 2009–2025\n"
 "\n"
 
 #. type: verbatim
