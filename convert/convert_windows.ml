@@ -27,6 +27,18 @@ open Types
 
 module G = Guestfs
 
+(* Standard location of [pnputil.exe].
+ *
+ * This is a virtual path created by Windows at runtime.  Because the
+ * firstboot service is 32 bit, when the service runs on a 64 bit
+ * Windows system, WOW64 filesystem redirection happens.  In this
+ * case it would mean that [%systemroot%\system32] would be redirected
+ * to [...\SysWOW64].  However we need to always run 64 bit pnputil
+ * which we have to do using the [sysnative] alias which bypasses
+ * redirection.
+ *)
+let pnputil = {|%systemroot%\sysnative\pnputil|}
+
 (* Convert Windows guests.
  *
  * This only does a "pre-conversion", the steps needed to get the
@@ -386,7 +398,7 @@ echo No pending reboot detected.
 
 for %%f in ("%inf_dir%*.inf") do (
 echo Installing: %%~nxf.
-%systemroot%\Sysnative\PnPutil -i -a "%%f"
+|} ^ pnputil ^ {| -i -a "%%f"
 if !errorlevel! neq 0 if !errorlevel! neq 259 (
 echo Failed to install %%~nxf.
 exit /b 249
@@ -632,7 +644,7 @@ if errorlevel 3010 exit /b 0
      * the way I build them).  In any case I had to add a firstboot
      * batch file which did this single command:
      *
-     * %systemroot%\Sysnative\PnPutil -i -a %systemroot%\Drivers\Virtio\*.inf
+     * pnputil -i -a %systemroot%\Drivers\Virtio\*.inf
      *)
     let node =
       Registry.get_node reg ["Microsoft"; "Windows"; "CurrentVersion"] in
