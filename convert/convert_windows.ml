@@ -555,6 +555,8 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+set "PNPUTIL=|} ^ pnputil ^ {|"
+
 :: --- Get script directory ---
 set "SCRIPT_DIR=%~dp0"
 set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
@@ -566,7 +568,7 @@ echo ===============================================================
 echo.
 
 echo  Searching for VMware drivers and packages
-pnputil /enum-drivers > "%temp%\all_drivers.txt"
+%pnputil% /enum-drivers > "%temp%\all_drivers.txt"
 
 echo Filtering lines with Published Name and VMware...
 findstr /i /c:"Published Name" /c:"Provider Name" "%temp%\all_drivers.txt" > "%temp%\vmware_drivers.txt"
@@ -616,7 +618,7 @@ for /l %%I in (0,1,%COUNT%-1) do (
     set INF=!INF_LIST[%%I]!
     if not "!INF!"=="" (
         echo Removing !INF! ...
-        pnputil /delete-driver "!INF!" /uninstall /force > "%temp%\pnputil_output.txt" 2>&1
+        %pnputil% /delete-driver "!INF!" /uninstall /force > "%temp%\pnputil_output.txt" 2>&1
         type "%temp%\pnputil_output.txt" >> "%LOG_FILE%"
         type "%temp%\pnputil_output.txt" | findstr /i "reboot restart" >nul
         if !errorlevel! == 0 (
