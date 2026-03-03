@@ -608,17 +608,11 @@ if %COUNT% EQU 0 (
 )
 
 echo Remove each VMware driver package
-set "REBOOT_REQUIRED=0"
 for /l %%I in (0,1,%COUNT%-1) do (
     set INF=!INF_LIST[%%I]!
     if not "!INF!"=="" (
         echo Removing !INF! ...
-        %pnputil% /delete-driver "!INF!" /uninstall /force > "%temp%\pnputil_output.txt" 2>&1
-        type "%temp%\pnputil_output.txt"
-        type "%temp%\pnputil_output.txt" | findstr /i "reboot restart" >nul
-        if !errorlevel! == 0 (
-            set REBOOT_REQUIRED=1
-        )
+        %pnputil% /delete-driver "!INF!" /uninstall /force
         echo Done.
     )
 )
@@ -630,10 +624,6 @@ del "%temp%\vmware_drivers.txt" >nul 2>&1
 
 echo.
 echo VMware driver removal process finished
-if %REBOOT_REQUIRED% EQU 1 (
-    echo A system reboot is required to complete the removal.
-    REM nothing needs to be done here, as firstboot will reboot now
-)
 exit /b 0
 |} in
        Firstboot.add_firstboot_script g inspect.i_root
