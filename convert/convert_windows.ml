@@ -331,7 +331,8 @@ let convert (g : G.guestfs) source inspect i_firmware
 
     unconfigure_xenpv ();
     unconfigure_prltools ();
-    unconfigure_vmwaretools ()
+    unconfigure_vmwaretools ();
+    remove_vmware_drivers ()
 
   (* [set_reg_val_dword_1 path name] creates a registry key
    * called [name = dword:1] in the registry [path].
@@ -537,6 +538,110 @@ if errorlevel 3010 exit /b 0
         Firstboot.add_firstboot_script g inspect.i_root
           "uninstall VMware Tools" fb_script
     ) vmwaretools_uninst
+
+  and remove_vmware_drivers () =
+    (* Essentially the previous step (unconfigure_vmwaretools) is
+     * expected to fail, so as a back-up do the next best thing and
+     * disable any VMware drivers.
+     *)
+    let fb_script = {|@echo off
+
+setlocal enabledelayedexpansion
+
+REM Check for admin privileges
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ERROR: This script must be run as Administrator!
+    exit /b 1
+)
+
+:: --- Get script directory ---
+set "SCRIPT_DIR=%~dp0"
+set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
+
+echo.
+echo ===============================================================
+echo   Remove VMware Driver Packages Script
+echo ===============================================================
+echo.
+
+echo  Searching for VMware drivers and packages
+pnputil /enum-drivers > "%temp%\all_drivers.txt"
+
+echo Filtering lines with Published Name and VMware...
+findstr /i /c:"Published Name" /c:"Provider Name" "%temp%\all_drivers.txt" > "%temp%\vmware_drivers.txt"
+
+echo.
+echo ===== VMware Drivers Found =====
+
+set COUNT=0
+set LAST_PUBLISHED=
+
+for /f "tokens=1,* delims=:" %%A in (%temp%\vmware_drivers.txt) do (
+    set LINE=%%A
+    set VALUE=%%B
+    set VALUE=!VALUE: =!
+
+    if /i "!LINE!"=="Published Name" (
+        set LAST_PUBLISHED=!VALUE!
+    )
+
+    if /i "!LINE!"=="Provider Name" (
+        echo !VALUE! | findstr /i "VMware" >nul
+        if !errorlevel! == 0 (
+            REM This Published Name belongs to VMware
+            if not "!LAST_PUBLISHED!"=="" (
+                echo Found VMware INF: !LAST_PUBLISHED!
+                set INF_LIST[!COUNT!]=!LAST_PUBLISHED!
+                set /a COUNT+=1
+            )
+        )
+        set LAST_PUBLISHED=
+    )
+)
+
+:: --- Check if any drivers were found ---
+if %COUNT% EQU 0 (
+    echo.
+    echo ===============================================================
+    echo No VMware driver packages found.
+    echo ===============================================================
+    exit /b 0
+)
+
+echo Remove each VMware driver package
+set "LOG_FILE=%SCRIPT_DIR%\removal_log.txt"
+set "REBOOT_REQUIRED=0"
+for /l %%I in (0,1,%COUNT%-1) do (
+    set INF=!INF_LIST[%%I]!
+    if not "!INF!"=="" (
+        echo Removing !INF! ...
+        pnputil /delete-driver "!INF!" /uninstall /force > "%temp%\pnputil_output.txt" 2>&1
+        type "%temp%\pnputil_output.txt" >> "%LOG_FILE%"
+        type "%temp%\pnputil_output.txt" | findstr /i "reboot restart" >nul
+        if !errorlevel! == 0 (
+            set REBOOT_REQUIRED=1
+        )
+        echo Done.
+    )
+)
+del "%temp%\pnputil_output.txt" >nul 2>&1
+
+echo Clean up temporary files
+del "%temp%\all_drivers.txt" >nul 2>&1
+del "%temp%\vmware_drivers.txt" >nul 2>&1
+
+echo.
+echo  VMware driver removal process finished
+echo  Log saved to: %LOG_FILE%
+if %REBOOT_REQUIRED% EQU 1 (
+    echo A system reboot is required to complete the removal.
+    REM nothing needs to be done here, as firstboot will reboot now
+)
+exit /b 0
+|} in
+       Firstboot.add_firstboot_script g inspect.i_root
+         "remove VMware drivers" fb_script
 
   and update_system_hive reg =
     (* Update the SYSTEM hive.  When this function is called the hive has
