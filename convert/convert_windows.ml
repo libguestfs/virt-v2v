@@ -558,12 +558,12 @@ if %errorlevel% neq 0 (
 set "PNPUTIL=|} ^ pnputil ^ {|"
 
 echo.
-echo ===============================================================
-echo   Remove VMware Driver Packages Script
-echo ===============================================================
+echo ====================================
+echo Remove VMware Driver Packages Script
+echo ====================================
 echo.
 
-echo  Searching for VMware drivers and packages
+echo Searching for VMware drivers and packages
 %pnputil% /enum-drivers > "%temp%\all_drivers.txt"
 
 echo Filtering lines with Published Name and VMware...
@@ -601,9 +601,9 @@ for /f "tokens=1,* delims=:" %%A in (%temp%\vmware_drivers.txt) do (
 :: --- Check if any drivers were found ---
 if %COUNT% EQU 0 (
     echo.
-    echo ===============================================================
+    echo ================================
     echo No VMware driver packages found.
-    echo ===============================================================
+    echo ================================
     exit /b 0
 )
 
@@ -629,7 +629,7 @@ del "%temp%\all_drivers.txt" >nul 2>&1
 del "%temp%\vmware_drivers.txt" >nul 2>&1
 
 echo.
-echo  VMware driver removal process finished
+echo VMware driver removal process finished
 if %REBOOT_REQUIRED% EQU 1 (
     echo A system reboot is required to complete the removal.
     REM nothing needs to be done here, as firstboot will reboot now
