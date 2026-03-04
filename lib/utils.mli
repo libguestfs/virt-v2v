@@ -69,8 +69,6 @@ val chown_for_libvirt_rhbz_1045069 : string -> unit
     qemu can access them.  Note that root normally ignores
     permissions so can still access the resource. *)
 
-val error_if_no_ssh_agent : unit -> unit
-
 val nbdcopy_supports_blkhash : unit -> bool
 (** Return true if [nbdcopy] supports the [--blkhash] flag. *)
 

@@ -186,17 +186,6 @@ and libvirt_qemu_user =
     ) in
   fun () -> Lazy.force user
 
-(* When using the SSH driver in qemu (currently) this requires
- * ssh-agent authentication.  Give a clear error if this hasn't been
- * set up (RHBZ#1139973).  This might improve if we switch to libssh1.
- *)
-let error_if_no_ssh_agent () =
-  try ignore (Sys.getenv "SSH_AUTH_SOCK")
-  with Not_found ->
-    error (f_"ssh-agent authentication has not been set up ($SSH_AUTH_SOCK \
-              is not set).  This is required by qemu to do passwordless \
-              ssh access.  See the virt-v2v(1) man page for more information.")
-
 let nbdcopy_supports_blkhash =
   let check =
     lazy (
