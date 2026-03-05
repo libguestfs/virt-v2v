@@ -50,7 +50,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
     match inspect.i_distro with
     | "fedora"
     | "rhel" | "centos" | "circle" | "scientificlinux" | "redhat-based"
-    | "oraclelinux" | "rocky" -> `RHEL_family
+    | "oraclelinux" | "rocky" | "kylin" | "neokylin" | "anolis" -> `RHEL_family
     | "altlinux" -> `ALT_family
     | "sles" | "suse-based" | "opensuse" -> `SUSE_family
     | "debian" | "ubuntu" | "linuxmint" | "kalilinux" -> `Debian_family

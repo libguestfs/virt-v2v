@@ -129,7 +129,8 @@ let rec convert input_disks options source =
                     | "redhat-based" | "oraclelinux" | "rocky"
                     | "sles" | "suse-based" | "opensuse"
                     | "altlinux"
-                    | "debian" | "ubuntu" | "linuxmint" | "kalilinux") } ->
+                    | "debian" | "ubuntu" | "linuxmint" | "kalilinux"
+                    | "kylin" | "neokylin" | "anolis" | "rocky") } ->
        (module Convert_linux.Convert_linux : Convert_types.CONVERT)
     | { i_type = "windows" } ->
        (module Convert_windows.Convert_windows : Convert_types.CONVERT)
