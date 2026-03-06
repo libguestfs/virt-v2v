@@ -5,9 +5,8 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-02-11 13:40+0000\n"
-"PO-Revision-Date: 2026-03-02 09:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-06 12:58+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-docs-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -184,6 +183,9 @@ msgid ""
 "will add either C<10.0.0.1 foo⏎> or C<⏎10.0.0.1 foo⏎> to the file, the "
 "latter only if the existing file does not already end with a newline."
 msgstr ""
+"vai adicionar C<10.0.0.1 foo⏎> ou C<⏎10.0.0.1 foo⏎> para o arquivo, sendo "
+"que o último somente se o arquivo existente não já terminar com uma nova "
+"linha."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:44
@@ -194,12 +196,16 @@ msgid ""
 "using Unix or Windows line endings.  It also works for empty or non-existent "
 "files."
 msgstr ""
+"C<⏎> representa um caractere de nova linha, que é inferido observando o "
+"conteúdo existente do arquivo; portanto, este comando funciona corretamente "
+"para arquivos que usam finais de linha Unix ou Windows. Ele também funciona "
+"para arquivos vazios ou inexistentes."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:49
 #: common/mlcustomize/v2v-customize-options.pod:49
 msgid "To insert several lines, use the same option several times:"
-msgstr ""
+msgstr "Para inserir várias linhas, use a mesma opção várias vezes:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:51
@@ -210,12 +216,15 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.2 bar'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:10.0.0.1 foo'\n"
+" --append-line '/etc/hosts:10.0.0.2 bar'\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:54
 #: common/mlcustomize/v2v-customize-options.pod:54
 msgid "To insert a blank line before the appended line, do:"
-msgstr ""
+msgstr "Para inserir uma linha em branco antes da linha anexada, faça:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:56
@@ -226,18 +235,21 @@ msgid ""
 " --append-line '/etc/hosts:10.0.0.1 foo'\n"
 "\n"
 msgstr ""
+" --append-line '/etc/hosts:'\n"
+" --append-line '/etc/hosts:10.0.0.1 foo'\n"
+"\n"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:59
 #: common/mlcustomize/v2v-customize-options.pod:59
 msgid "B<--chmod> PERMISSIONS:FILE"
-msgstr ""
+msgstr "B<--chmod> PERMISSÕES:ARQUIVO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:61
 #: common/mlcustomize/v2v-customize-options.pod:61
 msgid "Change the permissions of C<FILE> to C<PERMISSIONS>."
-msgstr ""
+msgstr "Altera as permissões de C<ARQUIVO> para C<PERMISSÕES>."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:63
@@ -246,12 +258,14 @@ msgid ""
 "I<Note>: C<PERMISSIONS> by default would be decimal, unless you prefix it "
 "with C<0> to get octal, ie. use C<0700> not C<700>."
 msgstr ""
+"I<Note>: C<PERMISSÕES> por padrão seriam um decimal, a menos que você o "
+"prefixe com C<0> para obter um octal (isto é usar C<0700>, não C<700>)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:66
 #: common/mlcustomize/v2v-customize-options.pod:66
 msgid "B<--chown> UID:GID:PATH"
-msgstr ""
+msgstr "B<--chown> UID:GID:CAMINHO"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:68
@@ -259,7 +273,9 @@ msgstr ""
 msgid ""
 "Change the owner user and group ID of a file or directory in the guest.  "
 "Note:"
-msgstr "Altera o ID de usuário e de dono de um arquivo ou diretório"
+msgstr ""
+"Altera o ID de usuário e de dono de um arquivo ou diretório no convidado. "
+"Note:"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:73
@@ -292,7 +308,7 @@ msgstr "Altera o ID de usuário e de dono de um arquivo ou diretório"
 #: inspector/virt-v2v-inspector.pod:53 open/virt-v2v-open.pod:35
 #: open/virt-v2v-open.pod:40
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:75
@@ -301,6 +317,8 @@ msgid ""
 "Only numeric UIDs and GIDs will work, and these may not be the same inside "
 "the guest as on the host."
 msgstr ""
+"Somente UIDs e GIDs numéricos funcionarão, e estes podem não ser os mesmos "
+"dentro do convidado e no sistema operacional do host."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:80
