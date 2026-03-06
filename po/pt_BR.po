@@ -9,9 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-02-20 20:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-02-20 21:01+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -678,46 +677,46 @@ msgstr ""
 
 #: open/open.ml:88
 msgid "External command to run"
-msgstr ""
+msgstr "Comando externo para executar"
 
 #. common/mlcustomize/customize_cmdline.ml:408
 #. common/mlcustomize/customize_cmdline.ml:373
 #: common/mlcustomize/customize_cmdline.ml:414
 msgid "FILE"
-msgstr ""
+msgstr "ARQUIVO"
 
 #: common/mlcustomize/customize_cmdline.ml:455
 msgid "FILE:CONTENT"
-msgstr ""
+msgstr "ARQUIVO:CONTEÚDO"
 
 #: common/mlcustomize/customize_cmdline.ml:444
 msgid "FILE:DEST"
-msgstr ""
+msgstr "ARQUIVO:DESTINO"
 
 #: common/mlcustomize/customize_cmdline.ml:242
 msgid "FILE:EXPR"
-msgstr ""
+msgstr "ARQUIVO:EXPR"
 
 #: common/mlcustomize/customize_cmdline.ml:170
 msgid "FILE:LINE"
-msgstr ""
+msgstr "ARQUIVO:LINHA"
 
 #: common/mlcustomize/customize_cmdline.ml:203
 msgid "FILENAME"
-msgstr ""
+msgstr "NOME-DE-ARQUIVO"
 
 #. in-place/in_place.ml:373
 #: v2v/v2v.ml:565 open/open.ml:220 inspector/inspector.ml:328
 msgid "Finishing off"
-msgstr ""
+msgstr "Finalizando"
 
 #: common/mlcustomize/customize_cmdline.ml:275
 msgid "HOSTNAME"
-msgstr ""
+msgstr "NOME-DO-HOST"
 
 #: v2v/v2v.ml:250 inspector/inspector.ml:179 in-place/in_place.ml:191
 msgid "How to choose root filesystem"
-msgstr ""
+msgstr "Como escolher o sistema de arquivos raiz"
 
 #: common/mltools/tools_utils.ml:177
 msgid ""
@@ -726,27 +725,31 @@ msgid ""
 "\n"
 "  %s -v -x [...]"
 msgstr ""
+"Se estiver relatando bugs, execute %s com depuração habilitada e inclua a "
+"saída completa:\n"
+"\n"
+"  %s -v -x [...]"
 
 #: common/mlcustomize/customize_cmdline.ml:386
 msgid "Inject a public key into the guest"
-msgstr ""
+msgstr "Injeta uma chave pública em um convidado"
 
 #: common/mlcustomize/customize_cmdline.ml:282
 msgid "Inject the Balloon Server into a Windows guest"
-msgstr ""
+msgstr "Injeta o Balloon Server em um convidado Windows"
 
 #: common/mlcustomize/customize_cmdline.ml:288
 msgid "Inject the QEMU Guest Agent into a Windows guest"
-msgstr ""
+msgstr "Injeta o QEMU Guest Agent em um convidado Windows"
 
 #: common/mlcustomize/customize_cmdline.ml:294
 msgid "Inject virtio-win drivers into a Windows guest"
-msgstr ""
+msgstr "Injeta drivers virtio-win em um convidado Windows"
 
 #. in-place/in_place.ml:175
 #: v2v/v2v.ml:214 open/open.ml:80 inspector/inspector.ml:163
 msgid "Input format"
-msgstr ""
+msgstr "Formato de entrada"
 
 #: input/input_vddk.ml:77
 msgid ""
@@ -771,73 +774,94 @@ msgid ""
 "Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further\n"
 "information on these settings.\n"
 msgstr ""
+"Opções de entrada (-io) que podem ser usadas com -it vddk\n"
+"(todas as configurações são opcionais):\n"
+"\n"
+"  -io vddk-compression=COMPR   Define o modo de compressão VDDK (veja\n"
+"                                 a documentação de nbdkit-vddk-plugin)\n"
+"  -io vddk-config=ARQUIVO      Arquivo de configuração VDDK\n"
+"  -io vddk-cookie=COOKIE       Cookie VDDK\n"
+"  -io vddk-file=ARQUIVO        Substitui o parâm. file= de nbdkit-vddk-"
+"plugin\n"
+"  -io vddk-libdir=LIBDIR       Diretório pai da biblioteca VDDK\n"
+"  -io vddk-nfchostport=PORTA   nfchostport VDDK\n"
+"  -io vddk-port=PORTA          porta VDDK\n"
+"  -io vddk-snapshot=SNAPSHOT-MOREF\n"
+"                               moref de snapshot VDDK\n"
+"  -io vddk-thumbprint=xx:xx:xx:...\n"
+"                               Impressão digital do servidor VDDK\n"
+"  -io vddk-transports=MODE:MODE:..\n"
+"                               Transporte VDDK\n"
+"\n"
+"Consulte nbdkit-vddk-plugin(1) e a documentação VDDK para mais informações\n"
+"sobre essas configurações.\n"
 
 #: v2v/v2v.ml:220 open/open.ml:86 inspector/inspector.ml:169
 msgid "Input transport"
-msgstr ""
+msgstr "Transporte de entrada"
 
 #: common/mlcustomize/customize_run.ml:191
 msgid "Installing firstboot command: %s"
-msgstr ""
+msgstr "Instalando comando de primeira inicialização: %s"
 
 #: common/mlcustomize/customize_run.ml:195
 msgid "Installing firstboot packages: %s"
-msgstr ""
+msgstr "Instalando pacotes de primeira inicialização: %s"
 
 #: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
-msgstr ""
+msgstr "Instalando script de primeira inicialização: %s"
 
 #: common/mlcustomize/customize_run.ml:248
 msgid "Installing packages: %s"
-msgstr ""
+msgstr "Instalando pacotes: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:225
 msgid "LOCALPATH:REMOTEDIR"
-msgstr ""
+msgstr "CAMINHOLOCAL:DIRREMOTO"
 
 #. in-place/in_place.ml:173
 #: v2v/v2v.ml:212 open/open.ml:78 inspector/inspector.ml:161
 msgid "Libvirt URI"
-msgstr "URI do libvirt:"
+msgstr "URI do Libvirt"
 
 #: common/mlcustomize/customize_run.ml:255
 msgid "Linking: %s -> %s"
-msgstr ""
+msgstr "Vinculando: %s -> %s"
 
 #. common/mlcustomize/customize_cmdline.ml:287
 #. common/mlcustomize/customize_cmdline.ml:281
 #: common/mlcustomize/customize_cmdline.ml:293
 msgid "METHOD"
-msgstr ""
+msgstr "MÉTODO"
 
 #: common/mltools/tools_utils.ml:426
 msgid "Make output machine readable"
-msgstr ""
+msgstr "Torna a saída legível por máquina"
 
 #: common/mlcustomize/customize_run.ml:260
 msgid "Making directory: %s"
-msgstr ""
+msgstr "Criando diretório: %s"
 
 #: v2v/v2v.ml:224 inspector/inspector.ml:171 in-place/in_place.ml:181
 msgid "Map NIC to network or bridge or assign static IP"
-msgstr ""
+msgstr "Mapeia a placa de rede à rede ou ponte ou atribui IP estático"
 
 #: v2v/v2v.ml:208 inspector/inspector.ml:157 in-place/in_place.ml:169
 msgid "Map bridge ‘in’ to ‘out’"
-msgstr ""
+msgstr "Mapeia ponte ‘in’ para ‘out’"
 
 #: v2v/v2v.ml:228 inspector/inspector.ml:175 in-place/in_place.ml:185
 msgid "Map network ‘in’ to ‘out’"
-msgstr ""
+msgstr "Mapeia rede ‘in’ para ‘out’"
 
 #: common/mlcustomize/customize_cmdline.ml:333
 msgid "Move files in disk image"
-msgstr "Copia arquivos em uma imagem de disco"
+msgstr "Move arquivos em uma imagem de disco"
 
 #: common/mlcustomize/customize_run.ml:264
 msgid "Moving: %s -> %s"
-msgstr ""
+msgstr "Movendo: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
@@ -846,16 +870,16 @@ msgstr ""
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
-msgstr ""
+msgstr "Nenhuma opção de entrada pode ser usada neste modo.\n"
 
 #: output/output_ovirt.ml:40 output/output_null.ml:38
 #: output/output_glance.ml:40
 msgid "No output options can be used in this mode.\n"
-msgstr ""
+msgstr "Nenhuma opção de saída pode ser usada neste modo.\n"
 
 #: output/output_vdsm.ml:166
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
-msgstr ""
+msgstr "O diretório de OVF (metadados) (%s) não existe ou não é um diretório"
 
 #: common/mlcustomize/firstboot.ml:268
 msgid ""
@@ -863,10 +887,13 @@ msgid ""
 "required in order to install Windows firstboot scripts.  You can get one by "
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
+"Um dos arquivos rhsrvany.exe ou pvvxsvc.exe está faltando em %s. Um deles é "
+"necessário para instalar os scripts de inicialização do Windows. Você pode "
+"obter um compilando o rhsrvany (https://github.com/rwmjones/rhsrvany)"
 
 #: v2v/v2v.ml:234
 msgid "Output hypervisor connection"
-msgstr ""
+msgstr "Emite a conexão do hipervisor"
 
 #: output/output_ovirt_upload.ml:51
 msgid ""
@@ -885,6 +912,21 @@ msgid ""
 "\n"
 "  -oo ovirt-disk-uuid=UUID      Disk UUID\n"
 msgstr ""
+"Opções de saída (-oo) que podem ser usadas com -o ovirt-upload:\n"
+"\n"
+"  -oo ovirt-cafile=CA.PEM       Define o nome do arquivo do pacote de "
+"certificados ‘ca.pem’.\n"
+"  -oo ovirt-cluster=NOMECLUSTER Define o nome do cluster oVirt.\n"
+"  -oo ovirt-proxy               Conecta via proxy do oVirt Engine (padrão: "
+"false).\n"
+"  -oo ovirt-verifypeer[=true|false] Verifica a identidade do servidor "
+"(padrão: false).\n"
+"\n"
+"Você pode substituir os UUIDs dos discos, em vez de usar os UUIDs gerados\n"
+"automaticamente após o upload (se fizer isso, você deve fornecer um para\n"
+"cada disco):\n"
+"\n"
+"  -oo ovirt-disk-uuid=UUID      UUID do disco\n"
 
 #: output/output_qemu.ml:44
 msgid ""
@@ -893,6 +935,11 @@ msgid ""
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 "  -oo qemu-boot       Boot the guest in qemu after conversion\n"
 msgstr ""
+"Opções de saída (-oo) que podem ser usadas com -o qemu:\n"
+"\n"
+"  -oo compressed      Compacta o arquivo de saída (usado apenas com -of "
+"qcow2)\n"
+"  -oo qemu-boot       Inicializa o convidado no qemu após conversão\n"
 
 #: output/output_vdsm.ml:43
 msgid ""
@@ -911,6 +958,20 @@ msgid ""
 "  -oo vdsm-image-uuid=UUID     Image directory UUID\n"
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
+"Opções de saída (-oo) que podem ser usadas com -o vdsm:\n"
+"\n"
+"  -oo vdsm-compat=0.10|1.1     Escreve qcow2 com compat=0.10|1.1\n"
+"                                   (padrão: 0.10)\n"
+"  -oo vdsm-vm-uuid=UUID        UUID da VM (obrigatório)\n"
+"  -oo vdsm-ovf-output=DIR      Diretório de metadados de OVF (obrigatório)\n"
+"  -oo vdsm-ovf-flavour=%s\n"
+"                               Define o tipo de OVF gerado (padrão: ovirtexp)"
+"\n"
+"\n"
+"Para cada disco, você deve fornecer um para cada uma dessas opções:\n"
+"\n"
+"  -oo vdsm-image-uuid=UUID     UUID do diretório de imagem\n"
+"  -oo vdsm-vol-uuid=UUID       UUID do volume de disco\n"
 
 #: output/output_disk.ml:44
 msgid ""
@@ -918,6 +979,10 @@ msgid ""
 "\n"
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
+"Opções de saída que podem ser usadas com -o disk:\n"
+"\n"
+"  -oo compressed      Compacta o arquivo de saída (usado apenas com -of "
+"qcow2)\n"
 
 #: output/output_kubevirt.ml:51
 msgid ""
@@ -928,6 +993,15 @@ msgid ""
 "  -oo disk=disk1      Specify filename of output disk (if used, must be\n"
 "                          given once for each disk, else -os path is used)\n"
 msgstr ""
+"Opções de saída que podem ser usadas com -o kubevirt:\n"
+"\n"
+"  -oo compressed      Compacta o arquivo de saída (usado apenas com -of "
+"qcow2)\n"
+"  -oo create=false    Não cria os discos de saída\n"
+"  -oo disk=disk1      Especifica nome de arquivo do disco de saída (se "
+"usado,\n"
+"                           deve ser dado uma vez para cada disco,\n"
+"                          do contrário -os path é usado)\n"
 
 #: output/output_libvirt.ml:47
 msgid ""
@@ -935,86 +1009,90 @@ msgid ""
 "\n"
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
+"Opções de saída que podem ser usadas com -o libvirt:\n"
+"\n"
+"  -oo compressed      Compacta o arquivo de saída (usado apenas com -of "
+"qcow2)\n"
 
 #. common/mlcustomize/customize_cmdline.ml:235
 #: common/mlcustomize/customize_cmdline.ml:420
 msgid "PATH"
-msgstr ""
+msgstr "CAMINHO"
 
 #: common/mlcustomize/customize_cmdline.ml:181
 msgid "PERMISSIONS:FILE"
-msgstr ""
+msgstr "PERMISSÕES:ARQUIVO"
 
 #. common/mlcustomize/customize_cmdline.ml:300
 #. common/mlcustomize/customize_cmdline.ml:265
 #: common/mlcustomize/customize_cmdline.ml:427
 msgid "PKG,PKG.."
-msgstr ""
+msgstr "PKG,PKG.."
 
 #: v2v/v2v.ml:259 in-place/in_place.ml:200
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
-msgstr ""
+msgstr "Prefira 'virtio-blk' ou 'virtio-scsi'"
 
 #: v2v/v2v.ml:248 in-place/in_place.ml:189
 msgid "Print source and stop"
-msgstr ""
+msgstr "Exibe a fonte e para"
 
 #: common/mlcustomize/customize_cmdline.ml:208
 msgid "Read customize commands from file"
-msgstr ""
+msgstr "Lê comandos personalizados do arquivo"
 
 #: common/mltools/tools_utils.ml:421
 msgid "Read passphrases from stdin"
-msgstr ""
+msgstr "Lê senhas da entrada padrão (stdin)"
 
 #: common/mlcustomize/customize_cmdline.ml:421
 msgid "Recursively truncate all files in directory"
-msgstr ""
+msgstr "Trunca recursivamente todos os arquivos no diretório"
 
 #: common/mlcustomize/customize_run.ml:298
 msgid "Recursively truncating: %s"
-msgstr ""
+msgstr "Truncando recursivamente: %s"
 
 #: v2v/v2v.ml:238
 msgid "Rename guest when converting"
-msgstr ""
+msgstr "Renomeia o convidado ao converter"
 
 #: common/mlcustomize/customize_cmdline.ml:259
 msgid "Run command at first guest boot"
-msgstr ""
+msgstr "Executa o comando na primeira inicialização do convidado"
 
 #: common/mlcustomize/customize_cmdline.ml:368
 msgid "Run command in disk image"
-msgstr ""
+msgstr "Executa comando na imagem de disco"
 
 #: common/mlcustomize/customize_cmdline.ml:253
 msgid "Run script at first guest boot"
-msgstr ""
+msgstr "Executa script na primeira inicialização do convidado"
 
 #: common/mlcustomize/customize_cmdline.ml:362
 msgid "Run script in disk image"
-msgstr ""
+msgstr "Executa script na imagem de disco"
 
 #: common/mlcustomize/customize_cmdline.ml:409
 msgid "Run touch on a file"
-msgstr ""
+msgstr "Executa touch em um arquivo"
 
 #: v2v/v2v.ml:246
 msgid "Run up to N instances of nbdcopy in parallel"
-msgstr ""
+msgstr "Executa até N instâncias de nbdcopy em paralelo"
 
 #: open/open.ml:188
 msgid "Running external command"
-msgstr ""
+msgstr "Executando comando externo"
 
 #: common/mlcustomize/customize_run.ml:307
 msgid "Running touch: %s"
-msgstr ""
+msgstr "Executando touch: %s"
 
 #. common/mlcustomize/customize_run.ml:159
 #: common/mlcustomize/customize_run.ml:274
 msgid "Running: %s"
-msgstr "executando %s"
+msgstr "Executando: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:252
 #: common/mlcustomize/customize_cmdline.ml:361
@@ -1024,184 +1102,188 @@ msgstr "SCRIPT"
 #: common/mltools/tools_utils.ml:422
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
-msgstr ""
+msgstr "SELETOR"
 
 #: common/mlcustomize/customize_run.ml:363
 msgid "SELinux relabelling"
-msgstr ""
+msgstr "Re-rotulação SELinux"
 
 #. common/mlcustomize/customize_cmdline.ml:214
 #: common/mlcustomize/customize_cmdline.ml:328
 msgid "SOURCE:DEST"
-msgstr ""
+msgstr "FONTE:DESTINO"
 
 #: common/mlcustomize/customize_run.ml:287
 msgid "SSH key could not be injected for this type of guest"
-msgstr ""
+msgstr "A chave SSH não pôde ser injetada para este tipo de convidado"
 
 #: common/mlcustomize/customize_run.ml:284
 msgid "SSH key inject: %s"
-msgstr ""
+msgstr "Injeção de chave SSH: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:374
 msgid "Scrub a file"
-msgstr ""
+msgstr "Exclui permanentemente um arquivo"
 
 #: common/mlcustomize/customize_cmdline.ml:466
 msgid "Scrub build log file"
-msgstr ""
+msgstr "Exclui permanentemente o arquivo de log de compilação"
 
 #: common/mlcustomize/customize_run.ml:374
 msgid "Scrubbing the log file"
-msgstr ""
+msgstr "Excluindo permanentemente o arquivo de log"
 
 #: common/mlcustomize/customize_run.ml:279
 msgid "Scrubbing: %s"
-msgstr ""
+msgstr "Excluindo permanentemente: %s"
 
 #: v2v/v2v.ml:206
 msgid "Set bandwidth dynamically from file"
-msgstr ""
+msgstr "Defina a largura de banda dinamicamente a partir de um arquivo"
 
 #: v2v/v2v.ml:204
 msgid "Set bandwidth to bits per sec"
-msgstr ""
+msgstr "Defina a largura de banda para bits por segundo"
 
 #. in-place/in_place.ml:171
 #: v2v/v2v.ml:210 open/open.ml:76 inspector/inspector.ml:159
 msgid "Set input mode (default: libvirt)"
-msgstr ""
+msgstr "Define o modo de entrada (padrão: libvirt)"
 
 #: v2v/v2v.ml:226 inspector/inspector.ml:173 in-place/in_place.ml:183
 msgid "Set memory size"
-msgstr ""
+msgstr "Define o tamanho da memória"
 
 #: v2v/v2v.ml:252 inspector/inspector.ml:181 in-place/in_place.ml:193
 msgid "Set number of vCPUs"
-msgstr ""
+msgstr "Define o número de vCPUs"
 
 #. in-place/in_place.ml:177
 #: v2v/v2v.ml:216 open/open.ml:82 inspector/inspector.ml:165
 msgid "Set option for input mode"
-msgstr ""
+msgstr "Define opção para o modo de entrada"
 
 #: v2v/v2v.ml:240
 msgid "Set option for output mode"
-msgstr ""
+msgstr "Define opção para o modo de saída"
 
 #: v2v/v2v.ml:232
 msgid "Set output allocation mode"
-msgstr ""
+msgstr "Define o modo de alocação da saída"
 
 #: v2v/v2v.ml:236
 msgid "Set output format"
-msgstr "Seleciona o formato da saída"
+msgstr "Define o formato da saída"
 
 #: v2v/v2v.ml:230
 msgid "Set output mode (default: libvirt)"
-msgstr ""
+msgstr "Define o modo de saída (padrão: libvirt)"
 
 #: v2v/v2v.ml:244
 msgid "Set output storage location"
-msgstr ""
+msgstr "Define o local de armazenamento da saída"
 
 #: common/mlcustomize/customize_cmdline.ml:476
 msgid "Set password crypto"
-msgstr ""
+msgstr "Define crypto da senha"
 
 #: common/mltools/tools_utils.ml:430
 msgid "Set program name"
-msgstr ""
+msgstr "Define o nome do programa"
 
 #: common/mlcustomize/customize_cmdline.ml:356
 msgid "Set root password"
-msgstr ""
+msgstr "Define a senha do root"
 
 #: common/mlcustomize/customize_cmdline.ml:403
 msgid "Set the default timezone"
-msgstr ""
+msgstr "Define o fuso horário padrão"
 
 #: common/mlcustomize/customize_cmdline.ml:276
 msgid "Set the hostname"
-msgstr "Definir nome de máquina"
+msgstr "Define nome de host"
 
 #: inspector/inspector.ml:177 in-place/in_place.ml:187
 msgid "Set the output filename"
-msgstr ""
+msgstr "Define o nome de arquivo da saída"
 
 #: common/mlcustomize/customize_cmdline.ml:345
 msgid "Set user password"
-msgstr ""
+msgstr "Define a senha do usuário"
 
 #: common/mlcustomize/customize_run.ml:75
 msgid "Setting a random seed"
-msgstr ""
+msgstr "Definindo uma semente aleatória"
 
 #: common/mlcustomize/customize_run.ml:354
 msgid "Setting passwords"
-msgstr ""
+msgstr "Definindo senhas"
 
 #: common/mlcustomize/password.ml:113
 msgid "Setting random password of %s to %s"
-msgstr ""
+msgstr "Definindo uma senha aleatória de %s para %s"
 
 #: common/mlcustomize/customize_run.ml:207
 msgid "Setting the hostname: %s"
-msgstr ""
+msgstr "Definindo o nome de host: %s"
 
 #: common/mlcustomize/customize_run.ml:90
 msgid "Setting the machine ID in %s"
-msgstr ""
+msgstr "Definindo o ID de máquina em %s"
 
 #: common/mlcustomize/customize_run.ml:302
 msgid "Setting the timezone: %s"
-msgstr ""
+msgstr "Definindo o fuso horário: %s"
 
 #: v2v/v2v.ml:475
 msgid "Setting up the destination: %s"
-msgstr ""
+msgstr "Configurando o destino: %s"
 
 #. in-place/in_place.ml:337
 #: v2v/v2v.ml:451 open/open.ml:184 inspector/inspector.ml:304
 msgid "Setting up the source: %s"
-msgstr ""
+msgstr "Configurando a fonte: %s"
 
 #: v2v/v2v.ml:457 in-place/in_place.ml:343
 msgid "Source guest information (--print-source option):\n"
-msgstr ""
+msgstr "Informações de fonte do convidado (a opção --print-source):\n"
 
 #: common/mltools/tools_utils.ml:422
 msgid "Specify a LUKS key"
-msgstr ""
+msgstr "Especifica uma chave LUKS"
 
 #: common/mlcustomize/customize_cmdline.ml:392
 msgid "TARFILE:REMOTEDIR"
-msgstr ""
+msgstr "ARQUIVOTAR:DIRREMOTO"
 
 #: common/mlcustomize/customize_cmdline.ml:311
 msgid "TARGET:LINK[:LINK..]"
-msgstr ""
+msgstr "ALVO:LINK[:LINK..]"
 
 #: common/mlcustomize/customize_cmdline.ml:402
 msgid "TIMEZONE"
-msgstr ""
+msgstr "FUSO-HORÁRIO"
 
 #: v2v/v2v.ml:198
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
-msgstr ""
+msgstr "A opção --in-place foi substituída pelo programa 'virt-v2v-in-place'"
 
 #: output/output_qemu.ml:251
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
+"A máquina Virt não oferece suporte para IDE. Relate um bug para irt-v2v -- "
+"consulte a seção \"BUGS\" de virt-v2v(1)."
 
 #: output/output_qemu.ml:272
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
+"A máquina Virt não oferece suporte para disquetes. Relate um bug para irt-"
+"v2v -- consulte a seção \"BUGS\" de virt-v2v(1)."
 
 #: lib/create_ovf.ml:785
 msgid ""
@@ -1209,6 +1291,9 @@ msgid ""
 "not supported by oVirt.  Therefore the converted guest’s display will not "
 "require a separate password to connect."
 msgstr ""
+"Este convidado exigiu uma senha para a conexão com sua tela, mas isso não é "
+"suportado pelo oVirt. Portanto, a tela do convidado convertido não vai "
+"exigir uma senha separada para se conectar a ele."
 
 #: input/input_vmx.ml:111
 msgid ""
@@ -1217,89 +1302,95 @@ msgid ""
 "alternate conversion methods described in virt-v2v-input-vmware(1) section "
 "\"NOTES\"."
 msgstr ""
+"Este transporte não suporta convidados com snapshots. Ou desfaça os "
+"snapshots para este convidado e tente a conversão novamente, ou use um dos "
+"métodos de conversão alternativos descritos na seção \"NOTES\" de virt-v2v-"
+"input-vmware(1)."
 
 #: common/mlcustomize/customize_cmdline.ml:415
 msgid "Truncate a file to zero size"
-msgstr ""
+msgstr "Trunca um arquivo para tamanho zero"
 
 #: common/mlcustomize/customize_run.ml:294
 msgid "Truncating: %s"
-msgstr ""
+msgstr "Truncando: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:192
 msgid "UID:GID:PATH"
-msgstr ""
+msgstr "UID:GID:CAMINHO"
 
 #: common/mlcustomize/customize_cmdline.ml:339
 msgid "USER:SELECTOR"
-msgstr ""
+msgstr "USUÁRIO:SELETOR"
 
 #: common/mlcustomize/customize_cmdline.ml:380
 msgid "USER[:SELECTOR]"
-msgstr ""
+msgstr "USUÁRIO[:SELETOR]"
 
 #: common/mlcustomize/customize_cmdline.ml:432
 msgid "Uninstall package(s)"
-msgstr ""
+msgstr "Desinstala pacote(s)"
 
 #: common/mlcustomize/customize_run.ml:311
 msgid "Uninstalling packages: %s"
-msgstr ""
+msgstr "Desinstalando pacotes: %s"
 
 #: common/mlcustomize/customize_run.ml:290
 msgid "Unpack tar file: %s to %s"
-msgstr ""
+msgstr "Desempacotamento de arquivo tar: %s para %s"
 
 #: common/mlcustomize/customize_cmdline.ml:438
 msgid "Update packages"
-msgstr ""
+msgstr "Atualiza pacotes"
 
 #: common/mlcustomize/customize_run.ml:316
 msgid "Updating packages"
-msgstr ""
+msgstr "Atualizando pacotes"
 
 #: common/mlcustomize/customize_cmdline.ml:449
 msgid "Upload local file to destination"
-msgstr ""
+msgstr "Atualiza arquivo local para destino"
 
 #: common/mlcustomize/customize_run.ml:321
 msgid "Uploading: %s to %s"
-msgstr "Download de %s em %s"
+msgstr "Enviando: %s para %s"
 
 #: common/mltools/tools_utils.ml:391
 msgid "Use ANSI colour sequences even if not tty"
-msgstr ""
+msgstr "Usa sequências de cores ANSI mesmo se não estiver em um terminal (tty)"
 
 #. in-place/in_place.ml:179
 #: v2v/v2v.ml:218 open/open.ml:84 inspector/inspector.ml:167
 msgid "Use password from file to connect to input hypervisor"
-msgstr ""
+msgstr "Usa a senha de um arquivo para conectar ao hipervisor de entrada"
 
 #: v2v/v2v.ml:242
 msgid "Use password from file to connect to output hypervisor"
-msgstr ""
+msgstr "Usa a senha de um arquivo para conectar ao hipervisor de saída"
 
 #: v2v/v2v.ml:222
 msgid "Use virt-v2v-in-place instead"
-msgstr ""
+msgstr "Usa virt-v2v-in-place em vez disso"
 
 #: common/mltools/tools_utils.ml:392
 msgid "Wrap log messages even if not tty"
-msgstr ""
+msgstr "Quebra linha de mensagens de log mesmo se não estiver no terminal (tty)"
 
 #: common/mlcustomize/customize_cmdline.ml:460
 msgid "Write file"
-msgstr ""
+msgstr "Escreve o arquivo"
 
 #: common/mlcustomize/customize_run.ml:346
 msgid "Writing: %s"
-msgstr ""
+msgstr "Escrevendo: %s"
 
 #: lib/YAML.ml:167
 msgid ""
 "YAML block contains newline character.  This should not happen, please "
 "report a bug against virt-v2v."
 msgstr ""
+"O bloco YAML contém um caractere de nova linha. Isso não deveria acontecer. "
+"Relate um bug para o virt-v2v."
 
 #: output/output_libvirt.ml:96
 msgid ""
@@ -1312,10 +1403,19 @@ msgid ""
 "If using virt-p2v, select a different ‘Name’ in the ‘Target properties’. Or "
 "delete the existing domain on the target using the ‘virsh undefine’ command."
 msgstr ""
+"Um domínio libvirt chamado ‘%s’ já existe no alvo.\n"
+"\n"
+"Se estiver usando o virt-v2v diretamente, use a opção ‘-on’ para selecionar "
+"um nome diferente. Ou exclua o domínio existente no destino usando o comando "
+"‘virsh undefine’.\n"
+"\n"
+"Se estiver usando o virt-p2v, selecione um ‘Name’ diferente em ‘Target "
+"properties’. Ou exclua o domínio existente no destino usando o comando ‘"
+"virsh undefine’."
 
 #: common/mlcustomize/append_line.ml:44
 msgid "append_line: %s is not a file"
-msgstr ""
+msgstr "append_line: %s não é um arquivo"
 
 #: input/input_libvirt.ml:206
 msgid ""
@@ -1323,10 +1423,13 @@ msgid ""
 "Expected checksum: %s\n"
 "Actual checksum: %s"
 msgstr ""
+"checksum inválido para o disco %d/%d\n"
+"Checksum esperado: %s\n"
+"Checksum encontrado: %s"
 
 #: lib/libvirt_utils.ml:59
 msgid "cannot find libvirt domain ‘%s’: %s"
-msgstr ""
+msgstr "não foi possível encontrar o domínio libvirt ‘%s’: %s"
 
 #: lib/libvirt_utils.ml:96
 msgid ""
@@ -1337,10 +1440,16 @@ msgid ""
 "\n"
 "To set the pool which virt-v2v uses, add the ‘-os <pool>’ option."
 msgstr ""
+"não foi possível encontrar o pool libvirt ‘%s’: %s\n"
+"\n"
+"Use ‘virsh pool-list --all’ para listar todos os pools disponíveis e ‘virsh "
+"pool-dumpxml <pool>’ para exibir detalhes sobre um pool específico.\n"
+"\n"
+"Para definir o pool que o virt-v2v utiliza, adicione a opção ‘-os <pool>’."
 
 #: lib/libvirt_utils.ml:110
 msgid "cannot find libvirt volume ‘%s’: %s"
-msgstr ""
+msgstr "não foi possível encontrar o volume libvirt ‘%s’: %s"
 
 #: common/mlcustomize/firstboot.ml:235
 msgid ""
@@ -1348,22 +1457,28 @@ msgid ""
 "and guest arch (%s) are not compatible.  The firstboot service may not run "
 "at boot."
 msgstr ""
+"não foi possível concluir a instalação de primeira inicialização executando "
+"‘%s’ porque a CPU do host (%s) e a arquitetura do convidado (%s) não são "
+"compatíveis. O serviço de primeira inicialização pode não ser executado na "
+"inicialização."
 
 #: output/output_libvirt.ml:180
 msgid "cannot get libvirt domain capabilities: %s"
-msgstr ""
+msgstr "não foi possível obter recursos de domínio libvirt: %s"
 
 #: output/output_libvirt.ml:85
 msgid "cannot get libvirt hypervisor capabilities: %s"
-msgstr ""
+msgstr "não foi possível obter os recursos do hipervisor libvirt: %s"
 
 #: v2v/v2v.ml:103 inspector/inspector.ml:93 in-place/in_place.ml:102
 msgid "cannot parse --mac \"%s\" parameter"
-msgstr ""
+msgstr "não foi possível analisar o parâmetro --mac \"%s\""
 
 #: v2v/v2v.ml:127 inspector/inspector.ml:117 in-place/in_place.ml:126
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
+"não foi possível analisar o ip de --mac %s: parece que “%s” não é um "
+"endereço IP"
 
 #: v2v/v2v.ml:141 inspector/inspector.ml:131 in-place/in_place.ml:140
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
