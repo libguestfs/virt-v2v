@@ -39,7 +39,7 @@ let vmx_source_of_arg input_password input_transport arg =
   | None, arg -> VMXSourceFile arg
   | Some `SSH, arg ->
      let uri =
-       try Xml.parse_uri arg
+       try Xml.parse_uri_raw arg true
        with Invalid_argument _ ->
          error (f_"remote vmx ‘%s’ could not be parsed as a URI") arg in
      if uri.Xml.uri_scheme <> None && uri.Xml.uri_scheme <> Some "ssh" then
