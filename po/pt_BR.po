@@ -9,9 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-02-22 23:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-01 09:36+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -19,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16\n"
+"X-Generator: Weblate 5.16.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -1497,6 +1496,16 @@ msgid ""
 "possible.  Try using one of the ‘--firstboot*’ flags instead (described in "
 "the virt-customize(1) manual)."
 msgstr ""
+"não foi possível usar ‘%s’ porque nenhum gerenciador de pacotes foi "
+"detectado para este sistema operacional convidado.\n"
+"\n"
+"Se este sistema operacional convidado for comum e possuir gerenciamento de "
+"pacotes padrão, isso pode ter sido causado por uma falha na inspeção da "
+"libguestfs.\n"
+"\n"
+"Para sistemas operacionais como o Windows, que não possuem gerenciamento de "
+"pacotes, isso não é possível. Tente usar uma das opções ‘--firstboot*’ "
+"(descritas no manual do virt-customize(1))."
 
 #: output/output_ovirt.ml:91
 msgid ""
@@ -1507,30 +1516,43 @@ msgid ""
 "You will have to chown the files that virt-v2v creates after the run, "
 "otherwise oVirt will not be able to import the VM."
 msgstr ""
+"não foi possível gravar arquivos no servidor NFS como %d:%d, mesmo que "
+"pareça que estamos executando como root. Isso provavelmente significa que o "
+"cliente NFS ou o idmapd não estão configurados corretamente.\n"
+"\n"
+"Você precisará alterar o proprietário dos arquivos criados pelo virt-v2v "
+"após a execução; caso contrário, o oVirt não conseguirá importar a máquina "
+"virtual."
 
 #: output/output_ovirt.ml:99
 msgid ""
 "cannot write files to the NFS server as %d:%d. You might want to stop virt-"
 "v2v (^C) and rerun it as root."
 msgstr ""
+"não foi possível gravar arquivos no servidor NFS como %d:%d. Você pode "
+"tentar interromper o virt-v2v (^C) e executá-lo novamente como root."
 
 #: common/mlcustomize/customize_cmdline.ml:508
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
+"O comando '%s' não pode ser usado em arquivos de comando; consulte a página "
+"man"
 
 #: common/mlcustomize/customize_cmdline.ml:525
 msgid "command '%s' not valid, see the man page"
-msgstr ""
+msgstr "o comando '%s' não é válido, consulte a página man"
 
 #: common/mldrivers/linux_bootloaders.ml:318
 msgid "could not add grub2 serial console (ignored)"
-msgstr ""
+msgstr "não foi possível adicionar o console serial do grub2 (ignorado)"
 
 #: input/ssh.ml:52
 msgid ""
 "could not copy the VMX file from the remote server, see earlier error "
 "messages"
 msgstr ""
+"não foi possível copiar o arquivo VMX do servidor remoto, consulte as "
+"mensagens de erro anteriores"
 
 #: output/output_libvirt.ml:211
 msgid ""
@@ -1538,20 +1560,28 @@ msgid ""
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
 "%s’ yourself instead."
 msgstr ""
+"não foi possível definir o domínio libvirt: %s.\n"
+"O XML do libvirt ainda está disponível em ‘%s’. Tente executar ‘virsh -c %s "
+"define %s’ manualmente."
 
 #: common/mldrivers/linux_bootloaders.ml:221
 msgid "could not determine a way to update the configuration of Grub2"
 msgstr ""
+"não foi possível determinar uma maneira de atualizar a configuração do Grub2"
 
 #: input/input_vddk.ml:243
 msgid ""
 "could not fetch thumbprint from the server, you mus use ‘-io vddk-"
 "thumbprint=XX:XX...’"
 msgstr ""
+"não foi possível obter a impressão digital do servidor. Você deve usar '-io "
+"vddk-thumbprint=XX:XX...'"
 
 #: common/mldrivers/linux_bootloaders.ml:376
 msgid "could not find bootloader mount point (%s): %s"
 msgstr ""
+"não foi possível encontrar o ponto de montagem do carregador de "
+"inicialização (%s): %s"
 
 #: common/mldrivers/windows_drivers.ml:91
 msgid ""
@@ -1560,35 +1590,46 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
+"não foi possível encontrar a entrada de registro HKEY_LOCAL_MACHINE\\S"
+"YSTEM\\DriverDatabase\\DeviceIds nesta máquina virtual Windows. Pode ser uma "
+"versão muito antiga ou muito recente do Windows que não podemos processar."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
 "could not finish firstboot installation by running ‘%s’ because the command "
 "failed: %s"
 msgstr ""
+"não foi possível concluir a instalação de primeira inicialização executando "
+"‘%s’ porque o comando falhou: %s"
 
 #. input/input_vcenter_https.ml:94
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
-msgstr ""
+msgstr "não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
 
 #: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
+"não foi possível analisar o nome do dispositivo '%s' do XML de origem do "
+"libvirt"
 
 #: input/OVF.ml:168
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
+"não foi possível analisar o recurso de disco rasd:HostResource do documento "
+"OVF"
 
 #: input/input_ova.ml:98
 msgid "could not parse ovf:Name from OVF document"
-msgstr ""
+msgstr "não foi possível analisar ovf:Name do documento OVF"
 
 #: output/output_ovirt.ml:247
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt %s?  The original error is: %s"
 msgstr ""
+"não foi possível ler o %s especificado pelo parâmetro '-os %s' na linha de "
+"comando. É realmente um %s do OVirt? O erro original é: %s"
 
 #: common/mldrivers/linux_bootloaders.ml:336
 msgid ""
@@ -1596,166 +1637,188 @@ msgid ""
 "output will not be sent to the serial port, but otherwise should be "
 "harmless.  Original error message: %s"
 msgstr ""
+"não foi possível reconstruir o arquivo de configuração do grub2 (%s). Isso "
+"pode significar que a saída do grub não será enviada para a porta serial, "
+"mas, fora isso, não deve causar problemas. Mensagem de erro original: %s"
 
 #: output/output_libvirt.ml:156
 msgid "could not refresh libvirt pool ‘%s’: %s"
-msgstr ""
+msgstr "não foi possível atualizar o pool libvirt ‘%s’: %s"
 
 #: common/mldrivers/linux_bootloaders.ml:320
 msgid "could not remove grub2 serial console (ignored)"
-msgstr ""
+msgstr "não foi possível remover o console serial do grub2 (ignorado)"
 
 #: common/mltools/registry.ml:93
 msgid ""
 "decode_utf16le: Windows UTF16-LE string contains non-7-bit characters.  This "
 "is a bug in %s, please report it."
 msgstr ""
+"decode_utf16le: A string UTF16-LE do Windows contém caracteres que não são "
+"de 7 bits. Isso é um bug em %s, por favor, reporte-o."
 
 #: common/mltools/registry.ml:87
 msgid ""
 "decode_utf16le: Windows string does not appear to be in UTF16-LE encoding.  "
 "This could be a bug in %s."
 msgstr ""
+"decode_utf16le: A string do Windows não parece estar codificada em UTF16-LE. "
+"Isso pode ser um bug em %s."
 
 #: common/mldrivers/linux_bootloaders.ml:126
 msgid "didn't find grub entry for kernel %s"
-msgstr ""
+msgstr "não foi encontrada entrada do grub para o kernel %s"
 
 #: input/input_disk.ml:150
 msgid "disks on the command line have mixed formats"
-msgstr ""
+msgstr "discos na linha de comando têm formatos mistos"
 
 #: input/parse_libvirt_xml.ml:194
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
 msgstr ""
+"a exibição de <graphics type='%s'> no XML de entrada do libvirt foi ignorada"
 
 #: output/output_qemu.ml:147
 msgid "don’t know how to convert UEFI guests for architecture %s"
-msgstr ""
+msgstr "não sei como converter convidados UEFI para a arquitetura %s"
 
 #: common/mldrivers/linux.ml:158
 msgid "don’t know how to find file owner using %s"
-msgstr ""
+msgstr "não sei como encontrar o proprietário do arquivo usando %s"
 
 #: common/mldrivers/linux.ml:89
 msgid "don’t know how to get list of files from package using %s"
-msgstr ""
+msgstr "não sei como obter a lista de arquivos de um pacote usando %s"
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr "Baixando"
+msgstr "baixando %s"
 
 #: lib/networks.ml:84
 msgid ""
 "duplicate --mac parameter.  Duplicate mappings specified for MAC address %s."
 msgstr ""
+"parâmetro --mac duplicado. Mapeamentos duplicados especificados para o "
+"endereço MAC %s."
 
 #: lib/networks.ml:102
 msgid ""
 "duplicate -b/--bridge parameter.  Duplicate mappings specified for bridge %s."
 msgstr ""
+"parâmetro -b/--bridge duplicado. Mapeamentos duplicados especificados para a "
+"ponte %s."
 
 #: lib/networks.ml:108
 msgid "duplicate -b/--bridge parameter.  Only one default mapping is allowed."
 msgstr ""
+"parâmetro -b/--bridge duplicado. Apenas um mapeamento padrão é permitido."
 
 #: lib/networks.ml:90
 msgid ""
 "duplicate -n/--network parameter.  Duplicate mappings specified for network "
 "%s."
 msgstr ""
+"parâmetro -n/--network duplicado. Mapeamentos duplicados especificados para "
+"a rede %s."
 
 #: lib/networks.ml:96
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
+"parâmetro -n/--network duplicado. Apenas um mapeamento padrão é permitido."
 
 #: input/OVF.ml:143
 msgid "error parsing disk fileRef"
-msgstr ""
+msgstr "erro ao analisar fileRef do disco"
 
 #: input/input_ova.ml:124
 msgid "error uncompressing %s, see earlier error messages"
-msgstr ""
+msgstr "erro ao descompactar %s, veja as mensagens de erro anteriores"
 
 #: input/OVA.ml:210 input/OVA.ml:112
 msgid "error unpacking %s, see earlier error messages"
-msgstr ""
+msgstr "erro ao desempacotar %s, veja as mensagens de erro anteriores"
 
 #: common/mltools/tools_utils.ml:248
 msgid "exception: %s"
-msgstr ""
+msgstr "exceção: %s"
 
 #: common/mltools/tools_utils.ml:455
 msgid "exited with error %d"
-msgstr ""
+msgstr "saiu com erro %d"
 
 #: lib/utils.ml:34
 msgid "exited with non-zero error code %d"
-msgstr ""
+msgstr "saiu com código de erro não-zero %d"
 
 #: input/input_disk.ml:147
 msgid "expected >= 1 disk name on the command line"
-msgstr ""
+msgstr "esperava nome de disco >= 1 na linha de comando"
 
 #: common/mltools/xpath_helpers.ml:36
 msgid ""
 "expecting XML expression to return an integer (expression: %s, matching "
 "string: %s)"
 msgstr ""
+"espera-se que a expressão XML retorne um número inteiro (expressão: %s, "
+"string correspondente: %s)"
 
 #: common/mltools/tools_utils.ml:440
 msgid "external command"
-msgstr ""
+msgstr "comando externo"
 
 #: output/output_ovirt_upload.ml:265
 msgid "failed server prechecks, see earlier errors"
-msgstr ""
+msgstr "falha nas prechecks do servidor; consulte os erros anteriores"
 
 #: output/output_ovirt_upload.ml:507
 msgid "failed to create virtual machine, see earlier errors"
-msgstr ""
+msgstr "falha ao criar a máquina virtual; consulte os erros anteriores"
 
 #: output/output_ovirt_upload.ml:479
 msgid "failed to finalize the transfers, see earlier errors"
-msgstr ""
+msgstr "falha ao finalizar as transferências; consulte os erros anteriores"
 
 #: common/mldrivers/linux_bootloaders.ml:208
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
+"falha ao encontrar o binário grub2-mkconfig (mas o Grub2 foi detectado no "
+"convidado)"
 
 #: input/OVA.ml:461
 msgid "failed to parse line returned by tar: %S"
-msgstr ""
+msgstr "falha ao analisar a linha retornada por tar: %S"
 
 #: output/output_ovirt_upload.ml:394
 msgid "failed to start transfer, see earlier errors"
-msgstr ""
+msgstr "falha ao iniciar a transferência; consulte os erros anteriores"
 
 #: output/output_ovirt_upload.ml:311
 msgid "failed vmchecks, see earlier errors"
-msgstr ""
+msgstr "falha nas vmchecks; consulte os erros anteriores"
 
 #: common/mltools/tools_utils.ml:239
 msgid "failure: %s"
-msgstr ""
+msgstr "falha: %s"
 
 #: input/input_ova.ml:134
 msgid "file ‘%s’ not found in the ova"
-msgstr ""
+msgstr "arquivo ‘%s’ não encontrado no ova"
 
 #: common/mlcustomize/firstboot.ml:143
 msgid ""
 "firstboot: unknown version for old firstboot.service file %s (md5=%s), it "
 "will not be removed"
 msgstr ""
+"firstboot: versão desconhecida para o arquivo antigo firstboot.service %s "
+"(md5=%s), ele não será removido"
 
 #: common/mltools/tools_utils.ml:258
 msgid "generated by %s %s"
-msgstr ""
+msgstr "gerada por %s %s"
 
 #: output/create_libvirt_xml.ml:39
 msgid "get_osinfo_id: unknown guest operating system: %s"
-msgstr ""
+msgstr "get_osinfo_id: sistema operacional convidado desconhecido: %s"
 
 #: output/output_glance.ml:66
 msgid ""
@@ -1763,18 +1826,23 @@ msgid ""
 "set environment variables or source a script to enable authentication.  See "
 "preceding messages for details."
 msgstr ""
+"glance: o cliente glance não está instalado ou configurado corretamente. "
+"Pode ser necessário definir variáveis de ambiente ou executar um script para "
+"habilitar a autenticação. Consulte as mensagens anteriores para obter "
+"detalhes."
 
 #: output/output_glance.ml:139
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
+"glance: falha ao carregar a imagem para o glance, veja os erros anteriores"
 
 #: common/mlcustomize/firstboot.ml:379 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
-msgstr ""
+msgstr "O tipo de convidado %s não é suportado"
 
 #: common/mlcustomize/firstboot.ml:406
 msgid "guest type %s/%s is not supported"
-msgstr ""
+msgstr "O tipo de convidado %s/%s não é suportado"
 
 #: common/mltools/tools_utils.ml:749
 msgid ""
@@ -1782,48 +1850,55 @@ msgid ""
 "line options that involve running commands in the guest.  Use --firstboot "
 "scripts instead."
 msgstr ""
+"O host (%s/%s) e o convidado (%s/%s) não são compatíveis, portanto, você não "
+"pode usar opções de linha de comando que envolvam a execução de comandos no "
+"convidado. Use scripts --firstboot em vez disso."
 
 #: common/mlcustomize/customize_run.ml:209
 msgid "hostname could not be set for this type of guest"
-msgstr ""
+msgstr "nome do host não pôde ser definido para este tipo de convidado"
 
 #: common/mldrivers/linux_kernels.ml:342
 msgid "ignoring kernel %s in bootloader, as it does not exist."
 msgstr ""
+"ignorando o kernet %s no carregador de inicialização, pois ele não existe."
 
 #: output/output_vdsm.ml:160
 msgid "image directory (%s) does not exist or is not a directory"
-msgstr ""
+msgstr "o diretório de imagem (%s) não existe ou não é um diretório"
 
 #: input/parse_libvirt_xml.ml:81
 msgid "in the libvirt XML metadata, <domain type='...'> is missing or empty"
 msgstr ""
+"nos metadados do XML do libvirt, <domain type='...'> está em falta ou vazio"
 
 #: input/parse_libvirt_xml.ml:87
 msgid "in the libvirt XML metadata, <name> is missing or empty"
-msgstr ""
+msgstr "nos metadados do XML do libvirt, <name> está em falta ou vazio"
 
 #: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
 msgid "in-place mode does not work with HTTP source"
-msgstr ""
+msgstr "o modo in-place não funciona com a fonte HTTP"
 
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
-msgstr ""
+msgstr "o modo in-place não funciona com a fonte VDDK"
 
 #: input/input_vmx.ml:43
 msgid "in-place mode does not work with VMX source"
-msgstr ""
+msgstr "o modo in-place não funciona com a fonte VMX"
 
 #: input/input_xen_ssh.ml:50
 msgid "in-place mode does not work with Xen over SSH source"
-msgstr ""
+msgstr "o modo in-place não funciona com a fonte Xen por SSH"
 
 #: output/output_kubevirt.ml:116
 msgid ""
 "incorrect number of '-oo disk' parameters.  This guest has %d disks, but the "
 "parameter was used %d times."
 msgstr ""
+"número incorreto de parâmetros de '-oo disk'. Este convidado tem %d discos, "
+"mas o parâmetro foi usado %d vezes."
 
 #: input/input_xen_ssh.ml:119
 msgid ""
@@ -1831,6 +1906,9 @@ msgid ""
 "devices.  See virt-v2v-input-xen(1) section \"Xen or ssh conversions from "
 "block devices\"."
 msgstr ""
+"a entrada de xen por ssh não suporta discos armazenados em dispositivos de "
+"bloco remotos. Consulte a seção \"Conversões de Xen ou SSH de dispositivos "
+"de bloco\" em virt-v2v-input-xen(1)."
 
 #. in-place/in_place.ml:392
 #: v2v/v2v.ml:584 open/open.ml:238 inspector/inspector.ml:347
@@ -1845,112 +1923,122 @@ msgid ""
 "See also the virt-v2v(1) manual, section \"Minimum free space check in the "
 "host\"."
 msgstr ""
+"espaço livre insuficiente no diretório temporário do servidor de conversão "
+"%s (%s).\n"
+"\n"
+"Libere espaço nesse diretório ou defina a variável de ambiente "
+"IBGUESTFS_CACHEDIR para apontar para outro diretório com mais de 1 GB de "
+"espaço livre.\n"
+"\n"
+"Consulte também o manual virt-v2v(1), seção \"Verificação de espaço livre "
+"mínimo no host\"."
 
 #: common/mltools/tools_utils.ml:246
 msgid "internal error: Not_found exception was thrown"
-msgstr ""
+msgstr "erro interno: exceção Not_found foi lançada"
 
 #: common/mltools/tools_utils.ml:243
 msgid "internal error: assertion failed at %s, line %d, char %d"
-msgstr ""
+msgstr "erro interno: asserção falhou em %s, linha %d, caractere %d"
 
 #: common/mltools/tools_utils.ml:241
 msgid "internal error: invalid argument: %s"
-msgstr ""
+msgstr "erro interno: argumento inválido: %s"
 
 #: common/mldrivers/linux.ml:128
 msgid "internal error: is_file_owned: dpkg command returned no output"
-msgstr ""
+msgstr "erro interno: is_file_owned: o comando dpkg retornou nenhuma saída"
 
 #: common/mldrivers/linux.ml:133
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
-msgstr ""
+msgstr "erro interno: is_file_owned: saída inesperada do comando dpkg: %s"
 
 #: common/mldrivers/linux_bootloaders.ml:130
 msgid "internal error: regular expression did not match ‘%s’"
-msgstr ""
+msgstr "erro interno: a expressão regular não correspondeu a ‘%s’"
 
 #: v2v/v2v.ml:542
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
+"erro interno: wait retornou ID de processo inesperado %d com status \"%s\""
 
 #: v2v/v2v.ml:112 inspector/inspector.ml:102 in-place/in_place.ml:111
 msgid "invalid --mac ip option"
-msgstr ""
+msgstr "opção --mac ip inválido"
 
 #: v2v/v2v.ml:96 inspector/inspector.ml:86 in-place/in_place.ml:95
 msgid "invalid -b/--bridge parameter"
-msgstr ""
+msgstr "parâmetro de -b/--bridge inválido"
 
 #: v2v/v2v.ml:88 inspector/inspector.ml:78 in-place/in_place.ml:87
 msgid "invalid -n/--network parameter"
-msgstr ""
+msgstr "parâmetro de -n/--network inválido"
 
 #: input/parse_domain_from_vmx.ml:402
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
-msgstr ""
+msgstr "cpuid.coresPerSocket inválido < número de vCPUs"
 
 #. common/mlcustomize/customize_cmdline.ml:153
 #. common/mlcustomize/customize_cmdline.ml:145
 #: common/mlcustomize/customize_cmdline.ml:161
 msgid "invalid format for '--%s' parameter, see the man page"
-msgstr ""
+msgstr "formato inválido para o parâmetro de '--%s'; consulte a página man"
 
 #: common/mltools/tools_utils.ml:359
 msgid "invalid format string for --machine-readable: %s"
-msgstr ""
+msgstr "string de formato inválida para --machine-readable: %s"
 
 #: lib/utils.ml:290
 msgid "invalid input filename (%s)"
-msgstr ""
+msgstr "nome de arquivo de entrada inválido (%s)"
 
 #: input/OVA.ml:445
 msgid "invalid offset returned by tar: %S"
-msgstr ""
+msgstr "deslocamento inválido retornado por tar: %S"
 
 #: common/mltools/tools_utils.ml:374
 msgid "invalid output fd for --machine-readable: %s"
-msgstr ""
+msgstr "descritor de arquivo de saída inválido para --machine-readable: %s"
 
 #: common/mltools/tools_utils.ml:376
 msgid "invalid output for --machine-readable: %s"
-msgstr ""
+msgstr "saída inválida para --machine-readable: %s"
 
 #: common/mltools/tools_utils.ml:368
 msgid "invalid output stream for --machine-readable: %s"
-msgstr ""
+msgstr "fluxo de saída inválido para --machine-readable: %s"
 
 #: common/mlcustomize/password.ml:73
 msgid "invalid password selector ‘%s’; see the man page"
-msgstr ""
+msgstr "seletor de senhas inválido ‘%s’; consulte a página man"
 
 #: input/OVA.ml:450
 msgid "invalid size returned by tar: %S"
-msgstr ""
+msgstr "tamanho inválido retornado por tar: %S"
 
 #: common/mlcustomize/ssh_key.ml:45
 msgid "invalid ssh-inject selector ‘%s’; see the man page"
-msgstr ""
+msgstr "seletor de ssh-inject inválido ‘%s’; consulte a página man"
 
 #: input/OVF.ml:82
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
-msgstr ""
+msgstr "vmw:CoresPerSocket inválido (%d) ignorado"
 
 #: input/OVF.ml:88
 msgid "invalid vmw:CoresPerSocket < number of cores"
-msgstr ""
+msgstr "vmw:CoresPerSocket inválido < número de núcleos"
 
 #: common/mldrivers/linux_bootloaders.ml:114
 msgid "kernel %s is not under grub tree %s"
-msgstr ""
+msgstr "o kernel %s não está na árvore de grub %s"
 
 #: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
 msgid "killed by signal %d"
-msgstr "%s morto pelo sinal %d (%s)"
+msgstr "morto pelo sinal %d"
 
 #: common/mltools/tools_utils.ml:237
 msgid "libguestfs error: %s"
-msgstr ""
+msgstr "erro do libguestfs: %s"
 
 #: lib/libvirt_utils.ml:72
 msgid ""
@@ -1958,20 +2046,27 @@ msgid ""
 "result in corrupted output. However this is safe if you're converting from a "
 "snapshot"
 msgstr ""
+"o domínio libvirt '%s' está em execução ou pausado. Converter uma máquina "
+"virtual em execução resultará em saída corrompida. No entanto, isso é seguro "
+"se você estiver convertendo a partir de um snapshot"
 
 #: common/mlcustomize/customize_run.ml:47
 msgid "log file %s: %s (ignored)"
-msgstr ""
+msgstr "arquivo log %s: %s (ignorado)"
 
 #: input/OVA.ml:147
 msgid ""
 "making OVA directory public readable to work around libvirt bug https://"
 "bugzilla.redhat.com/1045069"
 msgstr ""
+"tornando o diretório OVA público e legível para contornar o bug do libvirt "
+"https://bugzilla.redhat.com/1045069"
 
 #: input/input_ova.ml:86
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
+"o manifesto tem uma soma de verificação para um arquivo não existente %s "
+"(ignorado)"
 
 #: common/mlcustomize/customize_cmdline.ml:472
 msgid "md5|sha256|sha512"
@@ -1979,19 +2074,19 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:119
 msgid "method '%s' is no longer supported"
-msgstr ""
+msgstr "o método '%s' não é mais suportado"
 
 #: common/mltools/JSON_parser.ml:39
 msgid "missing value for the key ‘%s’"
-msgstr ""
+msgstr "faltando um valor para a chave ‘%s’"
 
 #: input/OVA.ml:276
 msgid "more than one .ovf file was found in %s"
-msgstr ""
+msgstr "mais de um arquivo .ovf foi encontrado em %s"
 
 #: common/mltools/JSON_parser.ml:34
 msgid "more than value for the key ‘%s’"
-msgstr ""
+msgstr "mais de um valor para a chave ‘%s’"
 
 #: output/output_ovirt.ml:222
 msgid ""
@@ -2000,12 +2095,18 @@ msgid ""
 "This probably means you didn't specify the right %s path [-os %s], or else "
 "you need to rerun virt-v2v as root."
 msgstr ""
+"o comando mount falhou. Consulte os erros anteriores.\n"
+"\n"
+"Isso provavelmente significa que você não especificou o caminho %s correto [-"
+"os %s], ou então precisa executar o virt-v2v novamente como root."
 
 #: common/mlcustomize/customize_run.ml:103
 msgid ""
 "multiple --root-password/--password options set the password for user ‘%s’ "
 "twice"
 msgstr ""
+"várias opções --root-password/--password definem a senha do usuário ‘%s’ "
+"duas vezes"
 
 #: input/input_vddk.ml:319
 msgid ""
@@ -2018,6 +2119,14 @@ msgid ""
 "\n"
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
+"O plugin VDDK do nbdkit não está instalado ou não está funcionando. Ele é "
+"necessário para usar o VDDK.\n"
+"\n"
+"Parece que você não definiu o caminho correto na opção ‘-io vddk-libdir’, ou "
+"sua cópia do diretório VDDK está incompleta. Deveria haver uma biblioteca "
+"chamada ‘<libdir>/%s/libvixDiskLib.so.?’.\n"
+"\n"
+"Veja também o manual virt-v2v-input-vmware(1)."
 
 #: input/input_vddk.ml:313
 msgid ""
@@ -2030,10 +2139,20 @@ msgid ""
 "\n"
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
+"O plugin VDDK do nbdkit não está instalado ou não está funcionando. Ele é "
+"necessário para usar o VDDK.\n"
+"\n"
+"O plugin VDDK não está habilitado por padrão ao compilar o nbdkit. Você "
+"precisa ler as instruções nos arquivos-fonte do nbdkit em ‘plugins/vddk/"
+"README.VDDK’ para descobrir como habilitar o plugin VDDK.\n"
+"\n"
+"Veja também o manual virt-v2v-input-vmware(1)."
 
 #: lib/nbdkit.ml:223
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
+"o nbdkit não foi iniciado. Consulte as mensagens de depuração anteriores "
+"para obter detalhes sobre o problema."
 
 #: lib/nbdkit.ml:225
 msgid ""
@@ -2042,41 +2161,56 @@ msgid ""
 "If the messages above are not sufficient to diagnose the problem then add "
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
+"o nbdkit não foi iniciado. Podem existir erros exibidos pelo nbdkit acima.\n"
+"\n"
+"Se as mensagens acima não forem suficientes para diagnosticar o problema, "
+"adicione as opções ‘virt-v2v -v -x’ e examine cuidadosamente a saída de "
+"depuração."
 
 #: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:283
 msgid "nbdkit is not installed or not working"
-msgstr ""
+msgstr "o nbdkit não está instalado ou não está funcionando"
 
 #: input/input_disk.ml:92
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
+"o nbdkit não está instalado ou não está funcionando. É necessário usar ‘-i "
+"disk’."
 
 #: input/input_libvirt.ml:68
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i libvirt|"
 "libvirtxml’."
 msgstr ""
+"o nbdkit não está instalado ou não está funcionando. É necessário usar ‘-i "
+"libvirt|libvirtxml’."
 
 #: output/output.ml:178 output/output.ml:77
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
+"o nbdkit não está instalado ou não está funcionando. É necessário usar ‘-o "
+"disk’."
 
 #: output/output_null.ml:57
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o null’."
 msgstr ""
+"o nbdkit não está instalado ou não está funcionando. É necessário usar ‘-o "
+"null’."
 
 #: output/output_ovirt_upload.ml:163
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o ovirt-"
 "upload’.  See the virt-v2v-output-ovirt(1) manual."
 msgstr ""
+"o nbdkit não está instalado ou não está funcionando. É necessário usar ‘-o "
+"ovirt-upload’. Consulte o manual virt-v2v-output-ovirt(1)."
 
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
-msgstr ""
+msgstr "o nbdkit deve ser >= 1.45.11 para entrada de VDDK"
 
 #: output/output_ovirt_upload.ml:176
 msgid ""
@@ -2085,6 +2219,10 @@ msgid ""
 "\n"
 "See also the virt-v2v-output-ovirt(1) manual."
 msgstr ""
+"O plugin Python do nbdkit não está instalado ou não está funcionando. Ele é "
+"necessário para usar ‘-o ovirt-upload’.\n"
+"\n"
+"Veja também o manual do virt-v2v-output-ovirt(1)."
 
 #: output/output_ovirt_upload.ml:190
 msgid ""
@@ -2092,41 +2230,44 @@ msgid ""
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
 "mode while doing the conversion."
 msgstr ""
+"o nbdkit foi compilado sem suporte a SELinux. Você precisará recompilar o "
+"nbdkit com o pacote libselinux-devel instalado ou, então, configurar o "
+"SELinux para o modo Permissive durante a conversão."
 
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:98
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
-msgstr ""
+msgstr "nbdkit-cow-filter não está instalado ou não está funcionando"
 
 #: input/nbdkit_curl.ml:35
 msgid "nbdkit-curl-plugin is not installed"
-msgstr ""
+msgstr "nbdkit-curl-plugin não está instalado"
 
 #. input/input_disk.ml:96
 #: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
-msgstr ""
+msgstr "nbdkit-file-plugin não está instalado ou não está funcionando"
 
 #: input/input_libvirt.ml:74
 msgid "nbdkit-nbd-plugin is not installed or not working"
-msgstr ""
+msgstr "nbdkit-nbd-plugin não está instalado ou não está funcionando"
 
 #: output/output_null.ml:60
 msgid "nbdkit-null-plugin is not installed or not working"
-msgstr ""
+msgstr "nbdkit-null-plugin não está instalado ou não está funcionando"
 
 #: input/nbdkit_ssh.ml:39
 msgid "nbdkit-ssh-plugin is not installed"
-msgstr ""
+msgstr "nbdkit-ssh-plugin não está instalado"
 
 #: input/input_vddk.ml:287
 msgid "nbdkit-vddk-plugin is not installed"
-msgstr ""
+msgstr "nbdkit-vddk-plugin não está instalado"
 
 #: lib/nbdkit.ml:56
 msgid "nbdkit: unexpected version in --dump-config: %s"
-msgstr ""
+msgstr "nbdkit: versão inesperada em --dump-config: %s"
 
 #. input/input_vcenter_https.ml:49
 #. input/input_ova.ml:46
@@ -2134,32 +2275,32 @@ msgstr ""
 #. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
 msgid "no -io (input options) are allowed here"
-msgstr ""
+msgstr "não é permitido -io (opções de entrada) aqui"
 
 #: output/output_ovirt.ml:44 output/output_null.ml:42
 #: output/output_glance.ml:44
 msgid "no -oo (output options) are allowed here"
-msgstr ""
+msgstr "não é permitido -oo (opções de saída) aqui"
 
 #: input/OVA.ml:273
 msgid "no .ovf file was found in %s"
-msgstr ""
+msgstr "nenhum arquivo .ovf foi encontrado em %s"
 
 #: common/mldrivers/linux_bootloaders.ml:402
 msgid "no bootloader detected"
-msgstr ""
+msgstr "nenhum carregador de inicialização detectado"
 
 #: input/parse_domain_from_vmx.ml:359
 msgid "no displayName key found in VMX file"
-msgstr ""
+msgstr "nenhuma chave displayName encontrada no arquivo VMX"
 
 #: input/OVF.ml:148
 msgid "no href in ovf:File (id=%s)"
-msgstr ""
+msgstr "nenhum href em ovf:File (id=%s)"
 
 #: common/mldrivers/linux_kernels.ml:194
 msgid "no initrd was found in /boot matching %s %s."
-msgstr ""
+msgstr "nenhum initrd foi encontrado em /boot correspondendo a %s %s."
 
 #: common/mldrivers/linux_kernels.ml:317
 msgid ""
@@ -2167,6 +2308,10 @@ msgid ""
 "\n"
 "This probably indicates that %s was unable to inspect this guest properly."
 msgstr ""
+"nenhum pacote de kernel instalado foi encontrado.\n"
+"\n"
+"Isso provavelmente indica que %s não conseguiu inspecionar este convidado "
+"corretamente."
 
 #: common/mldrivers/linux_kernels.ml:354
 msgid ""
@@ -2175,78 +2320,103 @@ msgid ""
 "This probably indicates that %s was unable to parse the bootloader "
 "configuration of this guest."
 msgstr ""
+"nenhum kernel foi encontrado na configuração do carregador de "
+"inicialização.\n"
+"\n"
+"Isso provavelmente indica que %s não conseguiu analisar a configuração do "
+"carregador de inicialização deste convidado."
 
 #: output/python_script.ml:55
 msgid "no python binary called ‘%s’ can be found on the $PATH"
-msgstr ""
+msgstr "não foi possível encontrar nenhum binário Python chamado ‘%s’ no $PATH"
 
 #: input/select_input.ml:106
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
 msgstr ""
+"não há suporte para conexões remotas do libvirt com '-ic %s'. A conversão "
+"pode falhar ao tentar ler os discos de origem."
 
 #: lib/create_ovf.ml:1027
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
 msgstr ""
+"o oVirt não consegue emular placas de som ‘%s’. Essa placa de som será "
+"removida da saída."
 
 #: lib/create_ovf.ml:875 lib/create_ovf.ml:512
 msgid "oVirt does not support the output format ‘%s’, only raw or qcow2"
-msgstr ""
+msgstr "oVirt não suporta o formato de saída ‘%s‘, apenas raw ou qcow2"
 
 #: output/output_openstack.ml:120
 msgid "openstack: -oo server-id=<NAME|UUID> not present"
-msgstr ""
+msgstr "openstack: -oo server-id=<NAME|UUID> não presente"
 
 #: output/output_openstack.ml:338
 msgid ""
 "openstack: failed to attach cinder volume to VM, see earlier error messages"
 msgstr ""
+"openstack: falha ao anexar o volume cinder à VM, consulte as mensagens de "
+"erro anteriores"
 
 #: output/output_openstack.ml:291
 msgid "openstack: failed to create a cinder volume, see earlier error messages"
 msgstr ""
+"openstack: falha ao criar um volume cinder, consulte as mensagens de erro "
+"anteriores"
 
 #: output/output_openstack.ml:304
 msgid ""
 "openstack: failed to query cinder volume status, see earlier error messages"
 msgstr ""
+"openstack: falha ao consultar o status do volume cinder, consulte as "
+"mensagens de erro anteriores"
 
 #: output/output_openstack.ml:442
 msgid ""
 "openstack: failed to set image properties on cinder volume, see earlier "
 "error messages"
 msgstr ""
+"openstack: falha ao definir as propriedades de imagem em volume cinder, "
+"consulte as mensagens de erro anteriores"
 
 #: output/output_openstack.ml:199
 msgid ""
 "openstack: precheck failed, there may be a problem with authentication, see "
 "earlier error messages"
 msgstr ""
+"openstack: precheck falhou, pode haver um problema com a autenticação, "
+"consulte as mensagens de erro anteriores"
 
 #: output/output_openstack.ml:311
 msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or "
 "\"available\""
 msgstr ""
+"openstack: status de volume desconhecido \"%s\": esperava \"creating\" ou "
+"\"available\""
 
 #: output/output.ml:133
 msgid "output mode only supports raw or qcow2 format (format: %s)"
-msgstr ""
+msgstr "o modo de saída só suporta os formatos raw ou qcow2 (formato: %s)"
 
 #: input/OVF.ml:263
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
 msgstr ""
+"o disco ova tem um tipo de controlador VMware desconhecido (%d), relate isso "
+"como um bug fornecendo o arquivo *.ovf extraído do ova"
 
 #: input/OVF.ml:259
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
 msgstr ""
+"o disco ova tem nenhum controlador pai, relate isso como um bug fornecendo o "
+"arquivo *.ovf extraído do ova"
 
 #: output/output_ovirt_upload.ml:367
 msgid ""
@@ -2254,12 +2424,17 @@ msgid ""
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
+"ovirt-upload: -of %s: Somente os formatos de saída 'raw' ou 'qcow2' são "
+"suportados. Se a entrada estiver em um formato diferente, force um desses "
+"formatos de saída adicionando '-of raw' ou '-of qcow2' na linha de comando."
 
 #: common/mlcustomize/password.ml:51
 msgid ""
 "password-crypto: unknown algorithm %s, use \"md5\", \"sha256\", \"sha512\" "
 "or \"yescrypt\""
 msgstr ""
+"password-crypto: um algoritmo desconhecido %s, use \"md5\", \"sha256\", "
+"\"sha512\" ou \"yescrypt\""
 
 #: common/mlcustomize/password.ml:196
 msgid ""
@@ -2267,15 +2442,19 @@ msgid ""
 "version %d.%d.\n"
 "If this is incorrect, use --password-crypto option and file a bug."
 msgstr ""
+"password: usando criptografia de senha md5 insegura para convidado do tipo "
+"%s versão %d.%d.\n"
+"Se isso estiver incorreto, use a opção --password-crypto e registre um bug."
 
 #: common/mlcustomize/customize_run.ml:359
 msgid "passwords could not be set for this type of guest"
-msgstr ""
+msgstr "senhas não puderam ser definidas para este tipo de convidado"
 
 #: lib/qemuNBD.ml:125
 msgid ""
 "qemu-nbd did not start up.  See previous debugging messages for problems."
 msgstr ""
+"O qemu-nbd não iniciou. Veja mensagens de depuração anterior por problemas."
 
 #: lib/qemuNBD.ml:127
 msgid ""
@@ -2284,18 +2463,23 @@ msgid ""
 "If the messages above are not sufficient to diagnose the problem then add "
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
+"O qemu-nbd não iniciou. Podem existir erros impressos pelo qemu-nbd acima.\n"
+"\n"
+"Se as mensagens acima não forem suficientes para diagnosticar o problema, "
+"adicione as opções ‘virt-v2v -v -x’ e examine cuidadosamente a saída de "
+"depuração."
 
 #: lib/qemuNBD.ml:47
 msgid "qemu-nbd: unexpected version in --version: %s"
-msgstr ""
+msgstr "qemu-nbd: versão ini=esperada em --version: %s"
 
 #: common/mlcustomize/customize_run.ml:77
 msgid "random seed could not be set for this type of guest"
-msgstr ""
+msgstr "semente aleatória não pôde ser definida para este tipo de convidado"
 
 #: input/parse_domain_from_vmx.ml:44
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
-msgstr ""
+msgstr "vmx remoto ‘%s’ não pôde ser analisado como um URI"
 
 #. common/mlcustomize/inject_virtio_win.ml:360
 #. common/mlcustomize/inject_virtio_win.ml:355
@@ -2306,6 +2490,11 @@ msgid ""
 "This should not happen and may indicate that virtio-win or virt-v2v is "
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
+"diretório raiz ‘/’ está em falta no diretório virtio-win ou ISO.\n"
+"\n"
+"Isso não deveria acontecer e pode indicar que o virtio-win ou o virt-v2v "
+"está com algum problema. Por favor, relate isso como um bug com um log de "
+"depuração completo."
 
 #: common/mltools/tools_utils.ml:417 common/options/keys.c:263
 #, c-format
@@ -2339,7 +2528,7 @@ msgstr "seletor '%s': muitos campos"
 
 #: lib/utils.ml:35
 msgid "signalled by signal %d"
-msgstr ""
+msgstr "sinalizado pelo sinal %d"
 
 #: common/mlcustomize/guest_packages.ml:40
 msgid ""
@@ -2348,6 +2537,11 @@ msgid ""
 "You can work around this by using one of the ‘--run*’ or ‘--firstboot*’ "
 "options instead (described in the virt-customize(1) manual)."
 msgstr ""
+"Desculpe, o uso de ‘%s’ com o gerenciador de pacotes ‘%s’ ainda não foi "
+"implementado.\n"
+"\n"
+"Você pode contornar isso usando uma das opções ‘--run*’ ou ‘--firstboot*’ "
+"(descritas no manual virt-customize(1))."
 
 #: lib/utils.ml:196
 msgid ""
@@ -2355,39 +2549,42 @@ msgid ""
 "This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
 "man page for more information."
 msgstr ""
+"A autenticação do ssh-agent não foi configurada ($SSH_AUTH_SOCK não está "
+"definido). Isso é necessário para que o qemu permita acesso ssh sem senha. "
+"Consulte a página de manual virt-v2v(1) para obter mais informações."
 
 #: common/mlcustomize/ssh_key.ml:57
 msgid "ssh-inject: $HOME environment variable is not set"
-msgstr ""
+msgstr "ssh-inject: variável de ambiente $HOME não definida"
 
 #: common/mlcustomize/ssh_key.ml:93
 msgid "ssh-inject: key is an empty string"
-msgstr ""
+msgstr "ssh-inject: a chave é uma string vazia"
 
 #: common/mlcustomize/ssh_key.ml:66
 msgid "ssh-inject: no public key file found in %s"
-msgstr ""
+msgstr "ssh-inject: nenhum arquivo de chave pública encontrado em %s"
 
 #: common/mlcustomize/ssh_key.ml:83
 msgid "ssh-inject: public key file (%s) is empty"
-msgstr ""
+msgstr "ssh-inject: o arquivo de chave pública (%s) está vazio"
 
 #: common/mlcustomize/ssh_key.ml:112
 msgid "ssh-inject: the user %s does not exist on the guest"
-msgstr ""
+msgstr "ssh-inject: o usuário %s não existe no convidado"
 
 #. common/mltools/tools_utils.ml:461
 #: lib/utils.ml:36 common/mltools/tools_utils.ml:542
 msgid "stopped by signal %d"
-msgstr "%s parado pelo sinal %d (%s)"
+msgstr "parado pelo sinal %d"
 
 #: output/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
-msgstr ""
+msgstr "o subprocesso foi encerrado com código de erro não-zero %d"
 
 #: output/changeuid.ml:60
 msgid "subprocess signalled or stopped by signal %d"
-msgstr ""
+msgstr "subprocesso sinalizado ou parado pelo sinal %d"
 
 #: lib/utils.ml:33
 msgid "success"
@@ -2398,32 +2595,41 @@ msgid ""
 "target hypervisor does not support floppy devices, but floppy devices were "
 "found in the source guest"
 msgstr ""
+"o hipervisor alvo não suporta dispositivos de disquete, mas dispositivos de "
+"disquete foram encontrados no sistema operacional convidado de origem"
 
 #: output/output_ovirt_upload.ml:156
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
 msgstr ""
+"o módulo Python ‘ovirtsdk4’ não pôde ser carregado. Ele está instalado? "
+"Consulte as mensagens anteriores para obter mais detalhes sobre o problema."
 
 #: output/output_ovirt_upload.ml:453
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
-msgstr ""
+msgstr "o cluster ‘%s’ não suporta a arquitetura %s, mas sim a arquitetura %s"
 
 #: common/mlcustomize/customize_run.ml:59
 msgid ""
 "the command may have failed because the network is disabled.  Try either "
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
 msgstr ""
+"o comando pode ter falhado porque a rede está desabilitada. Tente remover ‘--"
+"no-network’ ou adicionar ‘--network’ na linha de comando."
 
 #: common/mltools/JSON_parser.ml:84
 msgid "the key ‘%s’ was not found in a list of objects"
-msgstr ""
+msgstr "a chave ‘%s’ não foi encontrada na lista de objetos"
 
 #: output/output_ovirt_upload.ml:288
 msgid ""
 "the number of ‘-oo ovirt-disk-uuid’ parameters passed on the command line "
 "has to match the number of guest disk images (for this guest: %d)"
 msgstr ""
+"oO número de parâmetros ‘-oo ovirt-disk-uuid’ passados na linha de comando "
+"deve corresponder ao número de imagens de disco do convidado (para este "
+"convidado: %d)"
 
 #: output/output_vdsm.ml:133
 msgid ""
@@ -2431,38 +2637,41 @@ msgid ""
 "passed on the command line has to match the number of guest disk images (for "
 "this guest: %d)"
 msgstr ""
+"o número de parâmetros ‘-oo vdsm-image-uuid’ e ‘-oo vdsm-vol-uuid’ passados "
+"na linha de comando deve corresponder ao número de imagens de disco do "
+"convidado (para este convidado: %d)"
 
 #: output/output_libvirt.ml:239
 msgid "the target hypervisor does not support a %s KVM guest"
-msgstr ""
+msgstr "o hipervisor de destino não suporta um convidado KVM %s"
 
 #: common/mltools/JSON_parser.ml:78
 msgid "the value for key ‘%s’ is not a string as expected"
-msgstr ""
+msgstr "o valor da chave ‘%s’ não é uma string como esperado"
 
 #: common/mltools/JSON_parser.ml:50
 msgid "the value for the key ‘%s’ is not a bool"
-msgstr ""
+msgstr "o valor da chave ‘%s’ não é um booleano"
 
 #: common/mltools/JSON_parser.ml:45
 msgid "the value for the key ‘%s’ is not a string"
-msgstr ""
+msgstr "o valor da chave ‘%s’ não é uma string"
 
 #: common/mltools/JSON_parser.ml:70
 msgid "the value for the key ‘%s’ is not an integer"
-msgstr ""
+msgstr "o valor da chave ‘%s’ não é um inteiro"
 
 #: common/mltools/JSON_parser.ml:55
 msgid "the value for the key ‘%s’ is not an object"
-msgstr ""
+msgstr "o valor da chave ‘%s’ não é um objeto"
 
 #: common/mltools/JSON_parser.ml:59
 msgid "the value is not an object"
-msgstr ""
+msgstr "o valor não é um objeto"
 
 #: common/mltools/JSON_parser.ml:35
 msgid "the value of the key ‘%s’ is not an object"
-msgstr ""
+msgstr "o valor da chave ‘%s’ não é um objeto"
 
 #: lib/create_ovf.ml:519
 msgid ""
@@ -2472,22 +2681,31 @@ msgid ""
 "This probably means something unexpected is going on, so please file a bug "
 "about this issue."
 msgstr ""
+"O tamanho virtual do disco de entrada %d não é um múltiplo exato de 512 "
+"bytes. O tamanho virtual é: %Ld.\n"
+"\n"
+"Isso provavelmente significa que algo inesperado está acontecendo, então, "
+"por favor, relate um bug sobre esse problema."
 
 #: output/output_openstack.ml:144
 msgid ""
 "the ‘%s’ program is not available.  It is needed to communicate with "
 "OpenStack."
 msgstr ""
+"o programa ‘%s’ não está disponível. Ele é necessário para a comunicação com "
+"o OpenStack."
 
 #: output/output_ovirt.ml:265
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
 msgstr ""
+"existem vários UUIDs em %s (%s). Isso é inesperado e pode ser um bug no virt-"
+"v2v ou no OVirt."
 
 #: output/output_ovirt.ml:262
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt %s?"
-msgstr ""
+msgstr "não há UUIDs em %s (%s). É realmente um %s do OVirt?"
 
 #: common/mlcustomize/inject_virtio_win.ml:153
 msgid ""
@@ -2496,6 +2714,11 @@ msgid ""
 "\n"
 "The guest will be configured to use slower emulated devices."
 msgstr ""
+"não há drivers virtio disponíveis para esta versão do Windows (%d.%d %s %s "
+"%s). O virt-v2v procura drivers em %s.\n"
+"\n"
+"O sistema convidado será configurado para usar dispositivos emulados mais "
+"lentos."
 
 #: common/mlcustomize/inject_virtio_win.ml:175
 msgid ""
@@ -2504,6 +2727,11 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
+"não existe um driver de dispositivo de bloco virtio para esta versão do "
+"Windows (%d.%d %s). O virt-v2v procura este driver em %s\n"
+"\n"
+"O sistema convidado será configurado para usar um dispositivo emulado mais "
+"lento."
 
 #: common/mlcustomize/inject_virtio_win.ml:206
 msgid ""
@@ -2512,138 +2740,150 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
+"não existe um driver de rede virtio para esta versão do Windows (%d.%d %s). "
+"O virt-v2v procura este driver em %s\n"
+"\n"
+"O sistema convidado será configurado para usar um dispositivo emulado mais "
+"lento."
 
 #: input/parse_libvirt_xml.ml:545
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "este convidado tem uma interface de rede direta que será ignorada"
+msgstr[1] "este convidado tem interfaces de rede diretas que serão ignoradas"
 
 #: input/parse_libvirt_xml.ml:527
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
+"este convidado tem um dispositivo de host em passthrough que será ignorado"
 msgstr[1] ""
+"este convidado tem dispositivos de host em passthrough que serão ignorados"
 
 #: input/parse_libvirt_xml.ml:248
 msgid "this guest has no non-removable disks"
-msgstr ""
+msgstr "este convidado não tem discos não-removíveis"
 
 #: output/output.ml:65
 msgid "this output module doesn't support copying more than %d disks"
-msgstr ""
+msgstr "este módulo de saída não suporta copiar mais de %d discos"
 
 #: common/mlcustomize/timezone.ml:35
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
-msgstr ""
+msgstr "o fuso horário '%s' não existe, use um local como 'Europa/Londres'"
 
 #: common/mlcustomize/customize_run.ml:304
 msgid "timezone could not be set for this type of guest"
-msgstr ""
+msgstr "o fuso horário não pôde ser definido para este tipo de convidado"
 
 #: input/OVA.ml:318
 msgid "unable to parse line from manifest file: %S"
-msgstr ""
+msgstr "não foi possível analisar a linha do arquivo de manifesto: %S"
 
 #: common/mltools/urandom.ml:37
 msgid "unexpected end of file while reading /dev/urandom"
-msgstr ""
+msgstr "fim de arquivo inesperado ao ler /dev/urandom"
 
 #: input/input_libvirt.ml:196
 msgid "unexpected output from the %s command"
-msgstr ""
+msgstr "saída inesperada do comando %s"
 
 #: common/mltools/checksums.ml:58
 msgid "unhandled checksum type ‘%s’"
-msgstr ""
+msgstr "tipo de some de verificação não tratada ‘%s’"
 
 #: lib/types.ml:524
 msgid "unknown --root option: %s"
-msgstr ""
+msgstr "opção --root desconhecida: %s"
 
 #: input/select_input.ml:51
 msgid "unknown -i option: %s"
-msgstr ""
+msgstr "opção -i desconhecida: %s"
 
 #: output/select_output.ml:74
 msgid "unknown -o option: %s"
-msgstr ""
+msgstr "opção -o desconhecida: %s"
 
 #: v2v/v2v.ml:162
 msgid "unknown -oa option: %s"
-msgstr ""
+msgstr "opção -oa desconhecida: %s"
 
 #: input/input_libvirt.ml:189
 msgid "unknown <checksum> method='%s'"
-msgstr ""
+msgstr "method=‘%s’ de <checksum> desconhecido"
 
 #: input/OVF.ml:103
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
-msgstr ""
+msgstr "valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
 
 #: lib/create_ovf.ml:446 lib/create_ovf.ml:247
 msgid "unknown Windows 10 variant: %s (%s)"
-msgstr ""
+msgstr "variante de Windows 10 desconhecida: %s (%s)"
 
 #: v2v/v2v.ml:315 in-place/in_place.ml:253
 msgid "unknown block driver ‘--block-driver %s’"
-msgstr ""
+msgstr "driver de bloco desconhecido ‘--block-driver %s’"
 
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
-msgstr ""
+msgstr "valor de firmware desconhecido '%s', presumindo BIOS"
 
 #: lib/create_ovf.ml:454 lib/create_ovf.ml:255
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
-msgstr ""
+msgstr "sistema operacional convidado desconhecido: %s %s %d.%d %s (%s)"
 
 #: v2v/v2v.ml:325 open/open.ml:132 inspector/inspector.ml:234
 msgid "unknown input transport ‘-it %s’"
-msgstr ""
+msgstr "transporte de entrada desconhecido ‘-it %s’"
 
 #: input/parse_domain_from_vmx.ml:428
 msgid "unknown sound device '%s' ignored"
-msgstr ""
+msgstr "desconhecido de som desconhecido '%s' ignorado"
 
 #: input/parse_libvirt_xml.ml:215
 msgid "unknown sound model %s ignored"
-msgstr ""
+msgstr "modelo de som desconhecido %s ignorado"
 
 #: input/OVF.ml:156
 msgid "unsupported compression in OVF: %s"
-msgstr ""
+msgstr "compactação não suportada por OVF: %s"
 
 #: input/input_vcenter_https.ml:123
 msgid ""
 "vcenter: <vmware:datacenterpath> was not found in the XML.  You need to "
 "upgrade to libvirt ≥ 1.2.20."
 msgstr ""
+"vcenter: <vmware:datacenterpath> não foi encontrado no XML.  Você precisa "
+"atualizar para libvirt ≥ 1.2.20."
 
 #: input/vCenter.ml:79
 msgid "vcenter: URL not found: %s"
-msgstr ""
+msgstr "vcenter: URL não encontrado: %s"
 
 #: input/vCenter.ml:70
 msgid "vcenter: incorrect username or password"
-msgstr ""
+msgstr "vcenter: nome de usuário e senha incorretos"
 
 #: input/vCenter.ml:72
 msgid ""
 "vcenter: incorrect username or password.  You might need to specify the "
 "username in the URI like this: [vpx|esx|..]://USERNAME@[etc]"
 msgstr ""
+"vcenter: nome de usuário ou senha incorretos. Você pode precisar especificar "
+"o nome de usuário na URI como este: [vpx|esx|..]://USERNAME@[etc]"
 
 #: input/vCenter.ml:84
 msgid "vcenter: invalid response from server: %s"
-msgstr ""
+msgstr "vcenter: resposta inválida do servidor: %s"
 
 #: input/vCenter.ml:194
 msgid "vcenter: no status code in output of ‘curl’ command."
-msgstr ""
+msgstr "vcenter: nenhum código de status na saída do comando ‘curl’."
 
 #: output/output_vdsm.ml:148
 msgid "vdsm: invalid -os parameter does not contain a valid UUID: %s"
 msgstr ""
+"vdsm: um parâmetro -os inválido não contém não contém um UUID válido: %s"
 
 #: output/output_openstack.ml:56
 msgid ""
@@ -2676,74 +2916,114 @@ msgid ""
 "\n"
 "The os-* parameters and environment variables are optional.\n"
 msgstr ""
+"virt-v2v -oo server-id=<NAME|UUID> [os-*=...]\n"
+"\n"
+"Especifique o nome ou UUID do appliance de conversão usando\n"
+"\n"
+"  virt-v2v ... -o openstack -oo server-id=<NAME|UUID>\n"
+"\n"
+"Quando virt-v2v é executado, ele irá conectar os volumes Cinder\n"
+"ao dispositivo de conversão, portanto, esse nome ou UUID deve\n"
+"ser o nome da máquina virtual no OpenStack onde o virt-v2v está\n"
+"em execução.\n"
+"\n"
+"Além disso, todos os usuais parâmetros “os-*” do OpenStack ou\n"
+"as variáveis de ambiente “OS_*” podem ser usados.\n"
+"\n"
+"Os parâmetros “--os-*” do Openstack devem ser escritos como\n"
+"“virt-v2v -oo os-*”.\n"
+"\n"
+"Por exemplo:\n"
+"\n"
+"  virt-v2v -oo os-username=<NAME>\n"
+"\n"
+"                equiavalente a openstack: --os-username=<NAME>\n"
+"            ou a variável de ambiente: OS_USERNAME=<NAME>\n"
+"\n"
+"  virt-v2v -oo os-project-name=<NAME>\n"
+"\n"
+"                equiavalente a openstack: --os-project-name=<NAME>\n"
+"            ou a variável de ambiente: OS_PROJECT_NAME=<NAME>\n"
+"\n"
+"Os parâmetros os-* e variáveis de ambiente são opcionais.\n"
 
 #: input/parse_libvirt_xml.ml:189
 msgid ""
 "virt-v2v does not support local displays, so <graphics type='%s'> in the "
 "input libvirt XML was ignored"
 msgstr ""
+"o virt-v2v não suporta displays locais, então <graphics type='%s'> no XML "
+"libvirt de entrada foi ignorado"
 
 #: input/select_input.ml:83
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
-msgstr ""
+msgstr "o virt-v2v-in-place não suporta URIs libvirt remotos"
 
 #: input/parse_domain_from_vmx.ml:50
 msgid "vmx URI path component looks incorrect"
-msgstr ""
+msgstr "o componente de caminho URI vmx parece incorreto"
 
 #: input/parse_domain_from_vmx.ml:48
 msgid "vmx URI remote server name omitted"
-msgstr ""
+msgstr "nome de servidor remoto de URI em vmx omitido"
 
 #: input/parse_domain_from_vmx.ml:46
 msgid "vmx URI start with ‘ssh://...’"
-msgstr ""
+msgstr "URI em vmx começa com ‘ssh://...’"
 
 #: input/VMX.ml:313
 msgid "vmx parser: cannot parse this line, ignoring: %s"
-msgstr ""
+msgstr "analisador de vmx: não é possível analisar esta linha, ignorando: %s"
 
 #: input/VMX.ml:346
 msgid "vmx parser: duplicate key '%s' ignored"
-msgstr ""
+msgstr "analisador de vmx: chave duplicada '%s' ignorada"
 
 #: output/output_openstack.ml:299
 msgid "wait for cinder volume status to change to \"available\""
 msgstr ""
+"aguardando o status do volume cinder ser alterado para \"available\" "
+"(disponível)"
 
 #: output/output_openstack.ml:360
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
-msgstr ""
+msgstr "aguardando pelo volume cinder %s ser anexado ao appliance de conversão"
 
 #: open/open.ml:136
 msgid "you must supply the --run parameter"
-msgstr ""
+msgstr "você deve fornecer o parâmetro --run"
 
 #: input/input_xen_ssh.ml:87 input/input_vddk.ml:189
 msgid "‘-ic %s’ URL does not contain a host name field"
-msgstr ""
+msgstr "a URL ‘-ic %s’ não contém o campo de nome do host"
 
 #: input/input_vddk.ml:273
 msgid "‘-io vddk-file=’ must be used exactly %d times"
-msgstr ""
+msgstr "‘-io vddk-file=’ deve ser usado exatamente %d vezes"
 
 #: input/input_vddk.ml:297
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
 msgstr ""
+"‘-io vddk-libdir=%s’ não aponta para um diretório. Veja o manual virt-v2v-"
+"input-vmware(1)."
 
 #: output/output.ml:85
 msgid ""
 "‘-oo compressed’ is only allowed when the output format is a local qcow2-"
 "format file, i.e. ‘-of qcow2’"
 msgstr ""
+"‘-oo compressed’ só é permitido quando o formato de saída é um arquivo qcow2-"
+"format local, isto é, ‘-of qcow2’"
 
 #: input/input_vddk.ml:232
 msgid ""
 "‘openssl’ command not found: automatically detecting thumbprint is not "
 "possible, so you must use ‘-io vddk-thumbprint=XX:XX...’"
 msgstr ""
+"comando ‘openssl’ não encontrado: não é possível detectar automaticamente "
+"impressões digitais, então você deve usar ‘-io vddk-thumbprint=XX:XX...’"
 
 #: common/mltools/getopt-c.c:68
 #, c-format
