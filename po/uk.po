@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
 "PO-Revision-Date: 2026-02-19 19:39+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
@@ -108,7 +108,7 @@ msgstr ""
 "%s: вихід за сигналом %s\n"
 "%!"
 
-#: common/mlcustomize/inject_virtio_win.ml:414
+#: common/mlcustomize/inject_virtio_win.ml:411
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: не вдалося відкрити файл ISO virtio-win: %s"
 
@@ -2595,9 +2595,9 @@ msgstr ""
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr "«%s» для віддаленого vmx не вдалося обробити як адресу"
 
-#. common/mlcustomize/inject_virtio_win.ml:360
-#. common/mlcustomize/inject_virtio_win.ml:355
-#: common/mlcustomize/inject_virtio_win.ml:365
+#. common/mlcustomize/inject_virtio_win.ml:357
+#. common/mlcustomize/inject_virtio_win.ml:352
+#: common/mlcustomize/inject_virtio_win.ml:362
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
