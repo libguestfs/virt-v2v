@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-03-03 18:46+0000\n"
-"PO-Revision-Date: 2025-11-30 11:58+0000\n"
+"PO-Revision-Date: 2026-03-09 14:58+0000\n"
 "Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/es/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.3\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -1503,6 +1503,9 @@ msgid ""
 "Read key or passphrase parameters from stdin.  The default is to try to read "
 "passphrases from the user by opening F</dev/tty>."
 msgstr ""
+"Lee los parámetros de clave o frase secreta desde entrada estándar.  Lo "
+"predeterminado es intentar leer las frases secretas desde el usuario "
+"abriendo F</dev/tty>."
 
 #. type: textblock
 #: common/options/keys-from-stdin-option.pod:6
@@ -13017,7 +13020,7 @@ msgstr ""
 #: docs/virt-v2v.pod:1811 in-place/virt-v2v-in-place.pod:356
 #: inspector/virt-v2v-inspector.pod:219 open/virt-v2v-open.pod:132
 msgid "FILES"
-msgstr ""
+msgstr "ARCHIVOS"
 
 #. type: =item
 #: docs/virt-v2v.pod:1815 docs/virt-v2v.pod:1896
