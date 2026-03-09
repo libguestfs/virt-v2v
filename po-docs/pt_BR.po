@@ -6,7 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-02-11 13:40+0000\n"
 "PO-Revision-Date: 2026-02-20 20:58+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-docs-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -5997,7 +5998,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-release-notes-2.10.pod:145
 msgid "Documentation"
-msgstr ""
+msgstr "Documentação"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.10.pod:147
