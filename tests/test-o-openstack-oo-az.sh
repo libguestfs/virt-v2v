@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# Test -o openstack.
+# Test -o openstack with -oo availability-zone and -os volume type
 
 source ./functions.sh
 set -e
@@ -30,7 +30,7 @@ windows=../test-data/phony-guests/windows.img
 
 export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
 
-d=test-o-openstack.d
+d=test-o-openstack-oo-az.d
 rm -rf $d
 cleanup_fn rm -r $d
 mkdir $d
@@ -40,7 +40,7 @@ mkdir $d
 # JSON output where required.
 cat > $d/openstack <<'EOF'
 #!/bin/bash -
-echo "$@" >> test-o-openstack.d/log
+echo "$@" >> test-o-openstack-oo-az.d/log
 echo "$@" | grep -sq -- "-f json" && \
   echo '{ "id": "dummy-vol-id", "status": "available" }'
 exit 0
@@ -57,14 +57,17 @@ $VG virt-v2v --debug-gc \
     -o openstack -on test \
     -oo server-id=test \
     -oo guest-id=guestid \
+    -oo availability-zone=zone1 \
     -oo verify-server-certificate=false \
-    -oo dev-disk-by-id=$d
+    -oo dev-disk-by-id=$d \
+    -os my-volume-type
 
 cat $d/log
 
 # Check the log of openstack commands to make sure they look reasonable.
 grep 'token issue' $d/log
 grep 'volume create.*size 1.*temporary volume.*test-sda' $d/log
+grep 'volume create.*type my-volume-type.*availability-zone zone1.*test-sda' $d/log
 grep 'server add volume' $d/log
 grep 'volume set.*--bootable.*dummy-vol-id' $d/log
 grep 'volume set.*--property.*virt_v2v_guest_id.*guestid' $d/log
