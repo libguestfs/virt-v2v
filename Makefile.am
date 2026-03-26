@@ -69,6 +69,7 @@ EXTRA_DIST = \
 	check-mli.sh \
 	common/.gitignore \
 	common/README \
+	common/update-submodule.sh \
 	contrib/remove-guestor.reg \
 	COPYING \
 	ocaml-link.sh \
