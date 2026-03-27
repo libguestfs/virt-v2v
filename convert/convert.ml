@@ -394,11 +394,25 @@ and get_target_firmware i_firmware guestcaps source output =
 
 and get_target_boot_device g inspect =
   with_return (fun {return} ->
-    (* We only do it for Linux, as most likely Windows never(?) boots
-     * from any drive other than C:.  We can revisit this decision
-     * if someone reports a bug.
+    (* For non-Linux (eg. Windows) guests, use the root filesystem
+     * device to determine which disk is the boot device.
+     * This handles multi-OS guests where the selected OS may not
+     * be on the first disk.
      *)
-    if inspect.i_type <> "linux" then return None;
+    if inspect.i_type <> "linux" then (
+      let boot_device =
+        try
+          let dev = g#part_to_dev inspect.i_root in
+          debug "get_target_boot_device: root %s is on device %s"
+            inspect.i_root dev;
+          Some (g#device_index dev)
+        with
+        | G.Error msg
+             when String.find msg "device name is not a partition" >= 0
+               || String.find msg "device not found" >= 0 ->
+           None in
+      return boot_device
+    );
 
     (* Look for "GRUB" signature in the boot sector of each disk.
      * If we find it, choose that disk.
