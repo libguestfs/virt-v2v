@@ -30,6 +30,7 @@ EXTRA_DIST = \
 	archlinux-package \
 	make-coreos-img.sh \
 	make-windows-img.sh \
+	make-windows-multi-disk-img.sh \
 	win10-software.reg \
 	win10-software.reg.bin \
 	win11-software.reg \
@@ -74,7 +75,9 @@ disk_images = \
 	win2k25.img \
 	win7-32.img \
 	winxp-32.img \
-	windows.img
+	windows.img \
+	windows-multi-disk-sda.img \
+	windows-multi-disk-sdb.img
 
 # This is 'check_DATA' because we don't need it until 'make check'
 # time and we need the tools we have built in order to make it.
@@ -162,6 +165,12 @@ win2k22-uefi.img: make-windows-img.sh \
 		windows-system.reg.bin \
 		windows-bcd.reg.bin
 	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$< $@
+
+# Make (dummy) multi-disk Windows images (for boot order testing).
+windows-multi-disk-sda.img windows-multi-disk-sdb.img: make-windows-multi-disk-img.sh \
+		win2k22-software.reg.bin \
+		windows-system.reg.bin
+	SRCDIR=$(srcdir) $(top_builddir)/run --test ./$<
 
 # This is the 'latest` windows image used by most test cases
 windows.img: win2k22.img

@@ -119,6 +119,7 @@ TESTS = \
 	test-sound.sh \
 	test-virtio-win-iso.sh \
 	test-windows-conversion.sh \
+	test-windows-multi-disk-boot-order.sh \
 	test-windows-uefi-conversion.sh \
 	$(phony_windows_scripts) \
 	$(SLOW_TESTS) \
@@ -334,5 +335,6 @@ EXTRA_DIST += \
 	test-virtio-win-iso.sh \
 	test-windows-conversion.sh \
 	test-windows-conversion-ls.txt \
+	test-windows-multi-disk-boot-order.sh \
 	test-windows-uefi-conversion.sh \
 	test-windows-phony.sh
