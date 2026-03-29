@@ -322,4 +322,30 @@
     </devices>
   </domain>
 
+  <!-- Multi-disk Windows guest: blank data disk on sda,
+       Windows OS on sdb.  Used to test boot order detection. -->
+  <domain type='test'>
+    <name>windows-multi-disk</name>
+    <memory>1048576</memory>
+    <os>
+      <type>hvm</type>
+      <boot dev='hd'/>
+    </os>
+    <devices>
+      <disk type='file' device='disk'>
+        <driver name='qemu' type='raw'/>
+        <source file='@abs_builddir@/windows-multi-disk-sda.img'/>
+        <target dev='vda' bus='virtio'/>
+      </disk>
+      <disk type='file' device='disk'>
+        <driver name='qemu' type='raw'/>
+        <source file='@abs_builddir@/windows-multi-disk-sdb.img'/>
+        <target dev='vdb' bus='virtio'/>
+      </disk>
+      <video>
+        <model type='vga' vram='16384' heads='1'/>
+      </video>
+    </devices>
+  </domain>
+
 </node>
