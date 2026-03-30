@@ -67,6 +67,12 @@ let rec convert input_disks options source =
   let smp =
     match options.smp with
     | None ->
+       (* Default (if [--smp] option is not used) is to set the number
+        * according to the number of physical CPUs available (on the
+        * host or in the current cgroup).  But limit it because each
+        * vCPU consumes guest RAM.  This is necessary to allow parallel
+        * mkinitrd which greatly improves performance.
+        *)
        min 8 (Cgroup.nr_cpus_available ())
     | Some smp -> smp in
   g#set_smp smp;
