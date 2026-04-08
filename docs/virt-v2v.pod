@@ -1641,6 +1641,59 @@ so it should only be necessary to do this once.
 
 For help finding the recovery key: L<https://aka.ms/recoverykeyfaq>
 
+=head2 Linux: Guests with LUKS encryption and TPM fail to boot after conversion
+
+Linux guests (such as Ubuntu) that use LUKS-encrypted disks with keys
+sealed to a Trusted Platform Module (TPM) will fail to boot after
+virt-v2v conversion.  This is because the TPM is working I<exactly as
+designed>: it prevents the encrypted disk from being used on a
+different machine.  After conversion, the guest runs on a new KVM host
+with a different vTPM, so the TPM-sealed key is no longer valid.
+
+To convert such a guest, a passphrase-based LUKS keyslot must exist
+so that virt-v2v can unlock the disk using the I<--key> option.  If
+the guest only has a TPM-sealed key, you must add a passphrase keyslot
+before conversion.  Do not remove the TPM binding on the source VM as
+it must remain bootable in case the conversion fails.
+
+The following commands should be run inside the source guest while it
+is still running on the source hypervisor (where the TPM is valid).
+In these examples C</dev/sda3> is the LUKS partition; substitute the
+appropriate device for your guest.
+
+If the guest uses B<clevis> for TPM2 binding (e.g. Ubuntu 22.04),
+first recover the sealed passphrase, then add a new keyslot:
+
+ clevis luks list -d /dev/sda3
+ clevis luks pass -d /dev/sda3 -s SLOT > /tmp/recovered-key
+ cryptsetup luksAddKey /dev/sda3 --key-file /tmp/recovered-key
+
+If the guest uses B<systemd-cryptenroll> (e.g. Ubuntu 24.04+),
+C<systemd-cryptenroll> does not expose the sealed passphrase, so you
+must supply the original installation passphrase when adding a new
+keyslot:
+
+ cryptsetup luksDump /dev/sda3    # verify tpm2 token is present
+ cryptsetup luksAddKey /dev/sda3
+
+Then convert with virt-v2v, passing the passphrase you enrolled above:
+
+ virt-v2v [...] --key all:key:PASSPHRASE
+
+After conversion, the old TPM binding will no longer be valid.  Boot
+the converted guest and remove the stale binding:
+
+ clevis luks unbind -d /dev/sda3 -s SLOT -f       # clevis
+ systemd-cryptenroll --wipe-slot=tpm2 /dev/sda3   # systemd-cryptenroll
+
+If you want to re-seal LUKS against the new KVM vTPM, you can then
+run C<clevis luks bind -d /dev/sda3 tpm2 '{}'> or
+C<systemd-cryptenroll --tpm2-device=auto /dev/sda3> inside the
+converted guest.
+
+For further information see:
+L<https://issues.redhat.com/browse/RHEL-85154>
+
 =head2 Networks and bridges
 
 Guests are usually connected to one or more networks, and when
