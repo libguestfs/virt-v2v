@@ -1,5 +1,5 @@
 # virt-v2v
-# Copyright (C) 2009-2025 Red Hat Inc.
+# Copyright (C) 2009-2026 Red Hat Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # freeform string.
 m4_define([v2v_major],   [2])
 m4_define([v2v_minor],   [11])
-m4_define([v2v_release], [4])
+m4_define([v2v_release], [5])
 
 AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 
