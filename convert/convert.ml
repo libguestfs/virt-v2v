@@ -51,6 +51,8 @@ type mpstat = {
   mp_vfs : string;                      (* VFS type (eg. "ext4") *)
 }
 
+let maxmem_re = PCRE.compile {|maxmem.*\b(\d+)\b.*\b(\d+)\b|}
+
 let rec convert input_disks options source =
   let target_nics = List.map (Networks.map options.network_map) source.s_nics in
 
@@ -341,8 +343,32 @@ and do_fsck ?(before=false) g =
          let memsize = g#get_memsize () |> Int64.of_int in
          let maxmem = memsize /^ 2L in
 
-         if g#xfs_repair ~maxmem ~noprefetch ~nomodify dev <> 0 then
-           error (f_"detected errors on the XFS filesystem on %s") dev
+         (try
+            if g#xfs_repair ~maxmem ~noprefetch ~nomodify dev <> 0 then
+              error (f_"detected errors on the XFS filesystem on %s") dev
+          with
+            (G.Error msg) as exn ->
+             (* Try to detect the case where -m (maxmem) is too low
+              * and produce a nicer error.
+              *)
+             let errno = G.last_errno g#ocaml_handle in
+             if errno = G.Errno.errno_EINVAL &&
+                  PCRE.matches maxmem_re msg then (
+               let old_maxmem = Int64.of_string (PCRE.sub 1)
+               and new_maxmem = Int64.of_string (PCRE.sub 2) in
+               (* multiply by 2 here because of divide by 2 above *)
+               let incr_memsize = (new_maxmem -^ old_maxmem) *^ 2L in
+               (* round up for good luck *)
+               let new_memsize = roundup64 (memsize +^ incr_memsize) 1024L in
+               error (f_"XFS filesystem is too large, you must increase \
+                         the memory using --memsize %Ld (or larger).\n\
+                         Original error from libguestfs: %s")
+                 new_memsize msg
+             )
+             else ( (* don't know, re-raise it *)
+               raise exn
+             )
+         )
 
       | _, _ ->
          (* Ignore other filesystem types. *)
