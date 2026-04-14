@@ -341,7 +341,7 @@ and do_fsck ?(before=false) g =
           *)
          let noprefetch = true in
          let memsize = g#get_memsize () |> Int64.of_int in
-         let maxmem = memsize /^ 2L in
+         let maxmem = memsize -^ 1000L in
 
          (try
             if g#xfs_repair ~maxmem ~noprefetch ~nomodify dev <> 0 then
@@ -356,8 +356,7 @@ and do_fsck ?(before=false) g =
                   PCRE.matches maxmem_re msg then (
                let old_maxmem = Int64.of_string (PCRE.sub 1)
                and new_maxmem = Int64.of_string (PCRE.sub 2) in
-               (* multiply by 2 here because of divide by 2 above *)
-               let incr_memsize = (new_maxmem -^ old_maxmem) *^ 2L in
+               let incr_memsize = new_maxmem -^ old_maxmem in
                (* round up for good luck *)
                let new_memsize = roundup64 (memsize +^ incr_memsize) 1024L in
                error (f_"XFS filesystem is too large, you must increase \
