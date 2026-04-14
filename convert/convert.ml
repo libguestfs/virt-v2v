@@ -332,13 +332,14 @@ and do_fsck ?(before=false) g =
          (* Must specify the -n flag because we are not attempting to
           * fix the filesystem here.
           *)
-         let nomodify = true
+         let nomodify = true in
          (* xfs_repair runs out of memory in the low memory environment
           * of the appliance unless we limit the amount of memory it will
           * use here.
           *)
-         and noprefetch = true
-         and maxmem = Int64.of_int (g#get_memsize () / 2) in
+         let noprefetch = true in
+         let memsize = g#get_memsize () |> Int64.of_int in
+         let maxmem = memsize /^ 2L in
 
          if g#xfs_repair ~maxmem ~noprefetch ~nomodify dev <> 0 then
            error (f_"detected errors on the XFS filesystem on %s") dev
