@@ -269,7 +269,7 @@ Note this options only applies to keys and passphrases for encrypted
 devices and partitions, not for passwords used to connect to remote
 servers.
 
-=item B<-i> B<disk>
+=item B<-i> B<disk> disk [disk ...]
 
 Set the input method to I<disk>.
 
@@ -279,7 +279,7 @@ usually adequate but you can get finer control (eg. of memory and
 vCPUs) by using I<-i libvirtxml> instead.  Only guests that use a single
 disk can be imported this way.
 
-=item B<-i> B<libvirt>
+=item B<-i> B<libvirt> name|UUID
 
 Set the input method to I<libvirt>.  This is the default.
 
@@ -289,7 +289,7 @@ I<-ic>).
 
 See L</Starting the libvirt system instance> below.
 
-=item B<-i> B<libvirtxml>
+=item B<-i> B<libvirtxml> guestB<.xml>
 
 Set the input method to I<libvirtxml>.
 
@@ -298,11 +298,11 @@ This file is read in order to get metadata about the source guest
 (such as its name, amount of memory), and also to locate the input
 disks.  See L</Minimal XML for -i libvirtxml option> below.
 
-=item B<-i> B<local>
+=item B<-i> B<local> disk [disk ...]
 
 This is the same as I<-i disk>.
 
-=item B<-i> B<ova>
+=item B<-i> B<ova> guestB<.ova>
 
 Set the input method to I<ova>.
 
@@ -311,7 +311,7 @@ ova manifest file and check the vmdk volumes for validity (checksums)
 as well as analyzing the ovf file, and then convert the guest.  See
 L<virt-v2v-input-vmware(1)>.
 
-=item B<-i> B<vmx>
+=item B<-i> B<vmx> guestB<.vmx>|B<ssh://>...
 
 Set the input method to I<vmx>.
 
