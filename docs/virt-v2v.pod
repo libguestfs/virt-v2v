@@ -278,6 +278,10 @@ metadata.  virt-v2v tries to guess the best default metadata.  This is
 usually adequate but you can get finer control (eg. of memory and
 vCPUs) by using I<-i libvirtxml> instead.
 
+Each disk can be a local file or an C<nbd://> URI if you want to pull
+the guest disk from an NBD server (see L<nbd_connect_uri(3)> for the
+supported URI formats).
+
 =item B<-i> B<libvirt> name|UUID
 
 Set the input method to I<libvirt>.  This is the default.
