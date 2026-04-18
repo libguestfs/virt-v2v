@@ -38,23 +38,134 @@ module Disk = struct
     if options.input_options <> [] then
       error (f_"no -io (input options) are allowed here");
 
-    if args = [] then
+    let nr_disks = List.length args in
+    if nr_disks = 0 then
       error (f_"-i disk: expecting a disk image (filename) \
                 on the command line");
 
-    (* Check the input files exist and are readable. *)
-    List.iter (fun disk -> access disk [R_OK]) args;
+    (* Check nbdkit is installed. *)
+    if not (Nbdkit.is_installed ()) then
+      error (f_"nbdkit is not installed or not working.  It is required to \
+                use ‘-i disk’.");
+    if not (Nbdkit.probe_plugin "file") then
+      error (f_"nbdkit-file-plugin is not installed or not working");
+    if options.read_only && not (Nbdkit.probe_filter "cow") then
+      error (f_"nbdkit-cow-filter is not installed or not working");
+
+    (* Each disk on the command line can be a local file or an NBD URI. *)
+    let is_nbd_uri =
+      let h = lazy (NBD.create ()) in
+      fun str -> NBD.is_uri (Lazy.force h) str
+    in
+
+    (* Function for detecting input format, using guestfs_disk_format. *)
+    let detect_input_format =
+      let g = lazy (open_guestfs ()) in
+      fun disk -> (Lazy.force g)#disk_format disk
+    in
+
+    (* If there are any NBD URIs on the command line, nbdkit-nbd-plugin
+     * must be available too.
+     *)
+    if List.exists is_nbd_uri args && not (Nbdkit.probe_plugin "nbd") then
+      error (f_"nbdkit-nbd-plugin is not installed or not working");
 
     (* What name should we use for the guest?  We try to derive it from
-     * the first filename passed in.  Users can override this using the
-     * `-on name' option.
+     * the first filename passed in.  If there are no filenames then
+     * we use "unknown".
+     *
+     * Users can override this using the '-on name' option.
      *)
-    let name = name_from_disk (List.hd args) in
+    let name =
+      let rec loop = function
+        | [] ->
+(* XXX can't print this because we don't know if the user set '-on'
+           warning (f_"-i disk: no local filenames given so we set \
+                       the guest name to \"unknown\".  Use ‘-on name’ to \
+                       override the guest name.");
+*)
+           "unknown"
+        | x :: xs when is_nbd_uri x ->
+           loop xs
+        | x :: _ ->
+           name_from_disk x
+      in
+      loop args in
+
+    (* Convert the command line disks to NBD URIs. *)
+    let uris =
+      List.mapi (
+        fun i disk ->
+          let sockname = sprintf "in%d" i in
+          let socket = sprintf "%s/%s" dir sockname in
+          On_exit.unlink socket;
+
+          if is_nbd_uri disk then (
+            (* For nbd:// on the command line, proxy through
+             * nbdkit-nbd-plugin.  This is not ideal.  We could
+             * catch special cases here, such as nbd+unix://
+             * and convert them directly to NBD_URI objects.
+             * That would require parsing NBD URIs ourselves
+             * but would avoid needing an extra nbdkit proxy.
+             * XXX
+             *)
+            let cmd = Nbdkit.create ~name:sockname "nbd" in
+            if options.read_only then
+              Nbdkit.add_filter cmd "cow";
+            Nbdkit.add_arg cmd "uri" disk;
+            let _, pid = Nbdkit.run_unix socket cmd in
+
+            (* --exit-with-parent should ensure nbdkit is cleaned
+             * up when we exit, but it's not supported everywhere.
+             *)
+            On_exit.kill pid
+          )
+          else (
+            (* Local filename.  Use nbdkit-file-plugin for raw,
+             * or qemu-nbd for other formats.
+             *
+             * virt-v2v < 2.12 used to enforce that all disks
+             * had the same format, but that seems unnecessary.
+             *)
+
+            (* Check the input file exists and is readable. *)
+            access disk [R_OK];
+
+            let format =
+              match options.input_format with
+              | Some fmt -> fmt (* -if option overrides everything *)
+              | None -> detect_input_format disk in
+
+            match format with
+            | "raw" ->
+               let cmd = Nbdkit.create ~name:sockname "file" in
+               if options.read_only then
+                 Nbdkit.add_filter cmd "cow";
+               Nbdkit.add_arg cmd "file" disk;
+               Nbdkit.reduce_memory_pressure cmd;
+               let _, pid = Nbdkit.run_unix socket cmd in
+
+               (* --exit-with-parent should ensure nbdkit is cleaned
+                * up when we exit, but it's not supported everywhere.
+                *)
+               On_exit.kill pid
+
+            | format ->
+               let cmd = QemuNBD.create disk in
+               QemuNBD.set_snapshot cmd options.read_only;
+               QemuNBD.set_format cmd (Some format);
+               let _, pid = QemuNBD.run_unix socket cmd in
+               On_exit.kill pid
+          );
+
+          NBD_URI.Unix (socket, None)
+        ) args in
 
     let s_disks =
+      List.make nr_disks () |>
       List.mapi (
-        fun i _ -> { s_disk_id = i; s_controller = None }
-      ) args in
+        fun i () -> { s_disk_id = i; s_controller = None }
+      ) in
 
     (* Give the guest a simple generic network interface. *)
     let s_nic = {
@@ -85,70 +196,5 @@ module Disk = struct
       s_nics = [s_nic];
     } in
 
-    let input_format = detect_local_input_format options args in
-
-    (* Check nbdkit is installed. *)
-    if not (Nbdkit.is_installed ()) then
-      error (f_"nbdkit is not installed or not working.  It is required to \
-                use ‘-i disk’.");
-
-    if not (Nbdkit.probe_plugin "file") then
-      error (f_"nbdkit-file-plugin is not installed or not working");
-    if options.read_only && not (Nbdkit.probe_filter "cow") then
-      error (f_"nbdkit-cow-filter is not installed or not working");
-
-    let uris =
-      List.mapi (
-        fun i disk ->
-          let sockname = sprintf "in%d" i in
-          let socket = sprintf "%s/%s" dir sockname in
-          On_exit.unlink socket;
-
-          (match input_format with
-           | "raw" ->
-              let cmd = Nbdkit.create ~name:sockname "file" in
-              if options.read_only then
-                Nbdkit.add_filter cmd "cow";
-              Nbdkit.add_arg cmd "file" disk;
-              Nbdkit.reduce_memory_pressure cmd;
-              let _, pid = Nbdkit.run_unix socket cmd in
-
-              (* --exit-with-parent should ensure nbdkit is cleaned
-               * up when we exit, but it's not supported everywhere.
-               *)
-              On_exit.kill pid
-
-           | format ->
-              let cmd = QemuNBD.create disk in
-              QemuNBD.set_snapshot cmd options.read_only;
-              QemuNBD.set_format cmd (Some format);
-              let _, pid = QemuNBD.run_unix socket cmd in
-              On_exit.kill pid
-          );
-
-          NBD_URI.Unix (socket, None)
-      ) args in
-
     source, uris
-
-  (* For a list of local disks, try to detect the input format if
-   * the [-if] option was not used on the command line.  If the
-   * formats of the disks are different, that is an error.
-   *)
-  and detect_local_input_format { input_format } filenames =
-    match input_format with
-    | Some fmt -> fmt
-    | None ->
-       let formats =
-         let g = open_guestfs () in
-         List.map g#disk_format filenames in
-
-       let rec get_format = function
-         | [] -> error (f_"expected >= 1 disk name on the command line")
-         | [x] -> x
-         | x :: y :: xs when compare x y = 0 -> get_format (y :: xs)
-         | _ -> error (f_"disks on the command line have mixed formats")
-       in
-
-       get_format formats
 end
