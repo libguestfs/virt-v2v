@@ -70,8 +70,9 @@ TESTS = \
 	test-fedora-lvm-on-luks-conversion.sh \
 	test-fedora-md-conversion.sh \
 	test-floppy.sh \
-	test-i-disk-parallel.sh \
 	test-i-disk.sh \
+	test-i-disk-nbd.sh \
+	test-i-disk-parallel.sh \
 	test-i-ova-bad-sha1.sh \
 	test-i-ova-bad-sha256.sh \
 	test-i-ova-directory.sh \
@@ -233,8 +234,9 @@ EXTRA_DIST += \
 	test-fedora-md-conversion.sh \
 	test-floppy.expected \
 	test-floppy.sh \
-	test-i-disk-parallel.sh \
 	test-i-disk.sh \
+	test-i-disk-nbd.sh \
+	test-i-disk-parallel.sh \
 	test-i-ova-as-root.ovf \
 	test-i-ova-as-root.sh \
 	test-i-ova-bad-sha1.sh \
