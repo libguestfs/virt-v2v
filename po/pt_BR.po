@@ -1839,11 +1839,11 @@ msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 "glance: falha ao carregar a imagem para o glance, veja os erros anteriores"
 
-#: common/mlcustomize/firstboot.ml:379 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:386 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "O tipo de convidado %s não é suportado"
 
-#: common/mlcustomize/firstboot.ml:406
+#: common/mlcustomize/firstboot.ml:413
 msgid "guest type %s/%s is not supported"
 msgstr "O tipo de convidado %s/%s não é suportado"
 
@@ -1991,7 +1991,7 @@ msgstr "formato inválido para o parâmetro de '--%s'; consulte a página man"
 msgid "invalid format string for --machine-readable: %s"
 msgstr "string de formato inválida para --machine-readable: %s"
 
-#: lib/utils.ml:290
+#: lib/utils.ml:279
 msgid "invalid input filename (%s)"
 msgstr "nome de arquivo de entrada inválido (%s)"
 
@@ -2439,7 +2439,7 @@ msgstr ""
 "password-crypto: um algoritmo desconhecido %s, use \"md5\", \"sha256\", "
 "\"sha512\" ou \"yescrypt\""
 
-#: common/mlcustomize/password.ml:196
+#: common/mlcustomize/password.ml:197
 msgid ""
 "password: using insecure md5 password encryption for guest of type %s "
 "version %d.%d.\n"
@@ -2499,32 +2499,32 @@ msgstr ""
 "está com algum problema. Por favor, relate isso como um bug com um log de "
 "depuração completo."
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:263
+#: common/mltools/tools_utils.ml:417 common/options/keys.c:264
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr "seletor '%s': TYPE inválido"
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:253
+#: common/mltools/tools_utils.ml:409 common/options/keys.c:254
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr "seletor '%s': FILENAME em falta ou muitos campos"
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:231
+#: common/mltools/tools_utils.ml:399 common/options/keys.c:232
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr "seletor '%s': ID em falta"
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:244
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:245
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr "seletor '%s': KEY_STRING em falta ou muitos campos"
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:238
+#: common/mltools/tools_utils.ml:401 common/options/keys.c:239
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr "seletor '%s': TYPE em falta"
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:261
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:262
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr "seletor '%s': muitos campos"
@@ -2545,16 +2545,6 @@ msgstr ""
 "\n"
 "Você pode contornar isso usando uma das opções ‘--run*’ ou ‘--firstboot*’ "
 "(descritas no manual virt-customize(1))."
-
-#: lib/utils.ml:196
-msgid ""
-"ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
-"This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
-"man page for more information."
-msgstr ""
-"A autenticação do ssh-agent não foi configurada ($SSH_AUTH_SOCK não está "
-"definido). Isso é necessário para que o qemu permita acesso ssh sem senha. "
-"Consulte a página de manual virt-v2v(1) para obter mais informações."
 
 #: common/mlcustomize/ssh_key.ml:57
 msgid "ssh-inject: $HOME environment variable is not set"
@@ -3183,12 +3173,12 @@ msgstr "%s montado em %s\n"
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Insira a chave ou senha (\"%s\"): "
 
-#: common/options/keys.c:145
+#: common/options/keys.c:146
 #, c-format
 msgid "size_t overflow"
 msgstr "estouro de size_t"
 
-#: common/options/keys.c:192
+#: common/options/keys.c:193
 #, c-format
 msgid "could not read key from user"
 msgstr "não foi possível ler a chave do usuário"
@@ -3258,3 +3248,13 @@ msgstr "%s parado pelo sinal %d (%s)"
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "%s saiu por um motivo desconhecido (status %d)"
+
+#~ msgid ""
+#~ "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not "
+#~ "set).  This is required by qemu to do passwordless ssh access.  See the "
+#~ "virt-v2v(1) man page for more information."
+#~ msgstr ""
+#~ "A autenticação do ssh-agent não foi configurada ($SSH_AUTH_SOCK não está "
+#~ "definido). Isso é necessário para que o qemu permita acesso ssh sem "
+#~ "senha. Consulte a página de manual virt-v2v(1) para obter mais "
+#~ "informações."
