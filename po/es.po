@@ -14,8 +14,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
 "PO-Revision-Date: 2026-03-16 19:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/es/>\n"
 "Language: es\n"
@@ -39,15 +38,15 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
-msgstr ""
+msgstr "%s (descartado)"
 
 #: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
-msgstr ""
+msgstr "%s no devolvió ninguna salida"
 
 #: common/mlcustomize/customize_run.ml:183
 msgid "%s does not exist in the guest"
-msgstr ""
+msgstr "%s no existe en el invitado"
 
 #: output/output_ovirt.ml:275
 msgid ""
@@ -62,6 +61,16 @@ msgid ""
 "If you don’t know what the %s mount point should be then you can also find "
 "this out through the oVirt user interface."
 msgstr ""
+"%s no existe o no es un directorio.\n"
+"\n"
+"Causa más probable: %s (%s) no se ha conectado a ningún centro de datos, o "
+"la ruta %s no es un directorio %s.\n"
+"\n"
+"Primero debe conectar %s a un centro de datos mediante la interfaz de "
+"usuario de oVirt.\n"
+"\n"
+"Si desconoce cuál debería ser el punto de montaje de %s, también puede "
+"averiguarlo a través de la interfaz de usuario de oVirt."
 
 #: common/mlcustomize/customize_run.ml:113
 msgid "%s ignored for non-Windows guest"
@@ -100,7 +109,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:64
 msgid "%s: command exited with an error"
-msgstr ""
+msgstr "%s: comando terminado con un error"
 
 #: v2v/v2v.ml:273
 msgid ""
@@ -182,7 +191,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:258
 #: common/mlcustomize/customize_cmdline.ml:367
 msgid "'CMD+ARGS'"
-msgstr ""
+msgstr "'CMD+ARGS'"
 
 #: common/mlcustomize/customize_run.ml:133
 msgid ""
@@ -372,11 +381,12 @@ msgstr ""
 
 #: output/output_ovirt.ml:51
 msgid "-o ovirt: -os option was not specified"
-msgstr ""
+msgstr "-o ovirt: no fue especificada la opción -os"
 
 #: output/output_qemu.ml:72
 msgid "-o qemu: output directory was not specified, use '-os /dir'"
 msgstr ""
+"-o qemu: no fue especificada el directorio de salida, utilice '-os /dir'"
 
 #: output/output_qemu.ml:63
 msgid "-o qemu: unknown output option ‘-oo %s’"
@@ -534,39 +544,39 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:321
 msgid "DIR"
-msgstr ""
+msgstr "DIR"
 
 #: common/mlcustomize/customize_cmdline.ml:236
 msgid "Delete a file or directory"
-msgstr ""
+msgstr "Elimina un archivo o directorio"
 
 #: common/mlcustomize/customize_run.ml:176
 msgid "Deleting: %s"
-msgstr ""
+msgstr "Eliminando: %s"
 
 #: common/mltools/getopt.ml:225
 msgid "Display brief help"
-msgstr ""
+msgstr "Exhibe una breve ayuda"
 
 #: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
-msgstr "Muestra la versión y sale"
+msgstr "Exhibe la versión y sale"
 
 #: common/mlcustomize/customize_cmdline.ml:482
 msgid "Do not relabel files with correct SELinux labels"
-msgstr ""
+msgstr "No vuelva a etiquetar archivos con etiquetas correctas de SELinux"
 
 #: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
-msgstr ""
+msgstr "No declara mensajes de progreso"
 
 #: common/mltools/tools_utils.ml:420
 msgid "Don’t turn off echo for passphrases"
-msgstr ""
+msgstr "No apaga el eco para frases de contraseña"
 
 #: common/mlcustomize/customize_cmdline.ml:247
 msgid "Edit file using Perl expression"
-msgstr ""
+msgstr "Edita el archivo utilizando expresión de Perl"
 
 #: common/mlcustomize/customize_run.ml:180
 msgid "Editing: %s"
@@ -847,17 +857,17 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:235
 #: common/mlcustomize/customize_cmdline.ml:420
 msgid "PATH"
-msgstr ""
+msgstr "PATH"
 
 #: common/mlcustomize/customize_cmdline.ml:181
 msgid "PERMISSIONS:FILE"
-msgstr ""
+msgstr "PERMISSIONS:FILE"
 
 #. common/mlcustomize/customize_cmdline.ml:300
 #. common/mlcustomize/customize_cmdline.ml:265
 #: common/mlcustomize/customize_cmdline.ml:427
 msgid "PKG,PKG.."
-msgstr ""
+msgstr "PKG,PKG."
 
 #: v2v/v2v.ml:259 in-place/in_place.ml:200
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
