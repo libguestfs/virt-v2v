@@ -13,8 +13,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-04-09 15:33+0000\n"
-"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
+"PO-Revision-Date: 2026-04-10 17:58+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/es/>\n"
 "Language: es\n"
@@ -232,7 +233,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
-msgstr "%s: aviso: %s"
+msgstr "%s: advertencia: %s%c"
 
 #. common/mlcustomize/customize_cmdline.ml:258
 #: common/mlcustomize/customize_cmdline.ml:367
@@ -2539,12 +2540,12 @@ msgstr "selector '%s': falta de KEY_STRING, o demasiados campos"
 #: common/mltools/tools_utils.ml:401 common/options/keys.c:239
 #, c-format
 msgid "selector '%s': missing TYPE"
-msgstr "selector '%s': falta TIPO"
+msgstr "Selector '%s': TIPO desaparecido"
 
 #: common/mltools/tools_utils.ml:413 common/options/keys.c:262
 #, c-format
 msgid "selector '%s': too many fields"
-msgstr "selector '%s': demasiados campos"
+msgstr "selector '%s': campos excesivos"
 
 #: lib/utils.ml:35
 msgid "signalled by signal %d"
