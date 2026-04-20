@@ -8,14 +8,17 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-03-03 18:46+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-03-31 11:58+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
+"Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-docs-master/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -59,7 +62,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.8.pod:323
 #: docs/virt-v2v-release-notes-2.8.pod:327
 msgid "comment"
-msgstr ""
+msgstr "კომენტარი"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:3
@@ -1318,7 +1321,7 @@ msgstr ""
 #: docs/virt-v2v.pod:1 in-place/virt-v2v-in-place.pod:1
 #: inspector/virt-v2v-inspector.pod:1 open/virt-v2v-open.pod:1
 msgid "NAME"
-msgstr ""
+msgstr "სახელი"
 
 #. type: textblock
 #: docs/virt-v2v-hacking.pod:3
