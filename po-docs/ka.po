@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-03-03 18:46+0000\n"
 "PO-Revision-Date: 2026-03-31 11:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
 "Language: ka\n"
@@ -657,7 +656,7 @@ msgstr ""
 #. type: =item
 #: common/mlcustomize/customize-options.pod:239
 msgid "DIR"
-msgstr ""
+msgstr "საქ"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:241
@@ -1494,7 +1493,7 @@ msgstr ""
 #: in-place/virt-v2v-in-place.pod:5 inspector/virt-v2v-inspector.pod:5
 #: open/virt-v2v-open.pod:5
 msgid "SYNOPSIS"
-msgstr ""
+msgstr "მოკლე აღწერა"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:7
