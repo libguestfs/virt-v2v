@@ -6,12 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2025-01-09 09:27+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-31 11:58+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
 "Language: ka\n"
@@ -19,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -93,10 +92,8 @@ msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:64
-#, fuzzy
-#| msgid "exited with error %d"
 msgid "%s: command exited with an error"
-msgstr "დასრულდა შეცდომით %d"
+msgstr "%s: ბრძანება დასრულდა შეცდომით"
 
 #: v2v/v2v.ml:273
 msgid ""
@@ -136,10 +133,8 @@ msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
 #: common/mltools/tools_utils.ml:172
-#, fuzzy
-#| msgid "%s: %s: %s"
 msgid "%s: error: %s"
-msgstr "%s: %s: %s"
+msgstr "%s: შეცდომა: %s"
 
 #: inspector/inspector.ml:194
 msgid ""
@@ -174,10 +169,8 @@ msgid ""
 msgstr ""
 
 #: common/mltools/tools_utils.ml:191
-#, fuzzy
-#| msgid "%s: %s: %s"
 msgid "%s: warning: %s"
-msgstr "%s: %s: %s"
+msgstr "%s: გაფრთხილება: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:258
 #: common/mlcustomize/customize_cmdline.ml:367
@@ -469,10 +462,8 @@ msgid "Append line(s) to the file"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:137
-#, fuzzy
-#| msgid "downloading %s"
 msgid "Appending line to %s"
-msgstr "%1-ის გადმოწერა"
+msgstr "ხაზის %s-ის ბოლოსი მიწერა"
 
 #: common/mlcustomize/customize_cmdline.ml:197
 msgid "Change the owner user and group ID of a file or directory"
@@ -538,7 +529,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:321
 msgid "DIR"
-msgstr "საქაღალდე"
+msgstr "საქ"
 
 #: common/mlcustomize/customize_cmdline.ml:236
 msgid "Delete a file or directory"
@@ -599,28 +590,20 @@ msgid "FILE"
 msgstr "ფაილი"
 
 #: common/mlcustomize/customize_cmdline.ml:455
-#, fuzzy
-#| msgid "FILENAME"
 msgid "FILE:CONTENT"
-msgstr "ფაილის სახელი"
+msgstr "ფილი:შემცველობა"
 
 #: common/mlcustomize/customize_cmdline.ml:444
-#, fuzzy
-#| msgid "FILE"
 msgid "FILE:DEST"
-msgstr "ფაილი"
+msgstr "ფაილი:სამიზნე"
 
 #: common/mlcustomize/customize_cmdline.ml:242
-#, fuzzy
-#| msgid "FILE"
 msgid "FILE:EXPR"
-msgstr "ფაილი"
+msgstr "ფაილი:გამოს"
 
 #: common/mlcustomize/customize_cmdline.ml:170
-#, fuzzy
-#| msgid "FILENAME"
 msgid "FILE:LINE"
-msgstr "ფაილის სახელი"
+msgstr "ფაილი:ხაზი"
 
 #: common/mlcustomize/customize_cmdline.ml:203
 msgid "FILENAME"
@@ -697,26 +680,20 @@ msgid "Input transport"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:191
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Installing firstboot command: %s"
-msgstr "პაკეტების წაშლა"
+msgstr "პირველი ჩატვირთვის პროგრამის დაყენება: %s"
 
 #: common/mlcustomize/customize_run.ml:195
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Installing firstboot packages: %s"
-msgstr "პაკეტების წაშლა"
+msgstr "პირველი ჩატვირთვის პაკეტების დაყენება: %s"
 
 #: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:248
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Installing packages: %s"
-msgstr "პაკეტების წაშლა"
+msgstr "პაკეტების დაყენება: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:225
 msgid "LOCALPATH:REMOTEDIR"
@@ -728,10 +705,8 @@ msgid "Libvirt URI"
 msgstr "Libvirt-ის URI"
 
 #: common/mlcustomize/customize_run.ml:255
-#, fuzzy
-#| msgid "downloading %s"
 msgid "Linking: %s -> %s"
-msgstr "%1-ის გადმოწერა"
+msgstr "ბმულის შექმნა: %s -> %s"
 
 #. common/mlcustomize/customize_cmdline.ml:287
 #. common/mlcustomize/customize_cmdline.ml:281
@@ -764,10 +739,8 @@ msgid "Move files in disk image"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:264
-#, fuzzy
-#| msgid "downloading %s"
 msgid "Moving: %s -> %s"
-msgstr "%1-ის გადმოწერა"
+msgstr "გადატანა: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
@@ -1173,38 +1146,28 @@ msgid "Uninstall package(s)"
 msgstr "პაკეტების წაშლა"
 
 #: common/mlcustomize/customize_run.ml:311
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Uninstalling packages: %s"
-msgstr "პაკეტების წაშლა"
+msgstr "პაკეტების წაშლა: %s"
 
 #: common/mlcustomize/customize_run.ml:290
-#, fuzzy
-#| msgid "downloading %s"
 msgid "Unpack tar file: %s to %s"
-msgstr "%1-ის გადმოწერა"
+msgstr "tar ფაილის გაშლა: %s %s-ში"
 
 #: common/mlcustomize/customize_cmdline.ml:438
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Update packages"
-msgstr "პაკეტების წაშლა"
+msgstr "პაკეტების განახლება"
 
 #: common/mlcustomize/customize_run.ml:316
-#, fuzzy
-#| msgid "Uninstall package(s)"
 msgid "Updating packages"
-msgstr "პაკეტების წაშლა"
+msgstr "მიმდინარეობს პაკეტების განახლება"
 
 #: common/mlcustomize/customize_cmdline.ml:449
 msgid "Upload local file to destination"
 msgstr ""
 
 #: common/mlcustomize/customize_run.ml:321
-#, fuzzy
-#| msgid "downloading %s"
 msgid "Uploading: %s to %s"
-msgstr "%1-ის გადმოწერა"
+msgstr "ატვირთვა: %s %s-ში"
 
 #: common/mltools/tools_utils.ml:391
 msgid "Use ANSI colour sequences even if not tty"
@@ -1405,10 +1368,8 @@ msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 
 #: input/input_ova.ml:98
-#, fuzzy
-#| msgid "could not read key from user"
 msgid "could not parse ovf:Name from OVF document"
-msgstr "მომხმარებლიდან გასაღების წაკითხვის შეცდომა"
+msgstr "ovf-ის დამუშავება შეუძლებელია (ovf:Name): სახელი OVF დოკუმენტიდან"
 
 #: output/output_ovirt.ml:247
 msgid ""
@@ -1469,7 +1430,7 @@ msgstr ""
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr "%1-ის გადმოწერა"
+msgstr "%s-ის გადმოწერა"
 
 #: lib/networks.ml:84
 msgid ""
@@ -1516,10 +1477,8 @@ msgid "exited with error %d"
 msgstr "დასრულდა შეცდომით %d"
 
 #: lib/utils.ml:34
-#, fuzzy
-#| msgid "exited with error %d"
 msgid "exited with non-zero error code %d"
-msgstr "დასრულდა შეცდომით %d"
+msgstr "დასრულდა არანულოვანი შეცდომის კოდით %d"
 
 #: input/input_disk.ml:147
 msgid "expected >= 1 disk name on the command line"
@@ -1578,10 +1537,8 @@ msgid ""
 msgstr ""
 
 #: common/mltools/tools_utils.ml:258
-#, fuzzy
-#| msgid "killed by signal %d"
 msgid "generated by %s %s"
-msgstr "მოკვდა სიგნალით %d"
+msgstr "შექმნილია პროგრამით %s %s"
 
 #: output/create_libvirt_xml.ml:39
 msgid "get_osinfo_id: unknown guest operating system: %s"
@@ -2124,10 +2081,8 @@ msgid "random seed could not be set for this type of guest"
 msgstr ""
 
 #: input/parse_domain_from_vmx.ml:44
-#, fuzzy
-#| msgid "%s: ‘%s’ could not be mounted.\n"
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
-msgstr "%s: ‘%s’ მიმაგრების შეცდომა.\n"
+msgstr "დაშორებული vmx-ის '%s' URI-ის სახით დამუშავება შეუძლებელია"
 
 #. common/mlcustomize/inject_virtio_win.ml:357
 #. common/mlcustomize/inject_virtio_win.ml:352
@@ -2170,10 +2125,8 @@ msgid "selector '%s': too many fields"
 msgstr "სელექტორი '%s': მეტისმეტად ბევრი ველი"
 
 #: lib/utils.ml:35
-#, fuzzy
-#| msgid "killed by signal %d"
 msgid "signalled by signal %d"
-msgstr "მოკვდა სიგნალით %d"
+msgstr "მიიღო სიგნალი %d"
 
 #: common/mlcustomize/guest_packages.ml:40
 msgid ""
@@ -2216,16 +2169,12 @@ msgid "stopped by signal %d"
 msgstr "გაჩერდა სიგნალით %d"
 
 #: output/changeuid.ml:58
-#, fuzzy
-#| msgid "exited with error %d"
 msgid "subprocess exited with non-zero error code %d"
-msgstr "დასრულდა შეცდომით %d"
+msgstr "ქვეპროცესი დასრულდა არანულოვანი შეცდომის კოდით %d"
 
 #: output/changeuid.ml:60
-#, fuzzy
-#| msgid "killed by signal %d"
 msgid "subprocess signalled or stopped by signal %d"
-msgstr "მოკვდა სიგნალით %d"
+msgstr "ქვეპროცესმა მიიღო სიგნალი %d"
 
 #: lib/utils.ml:33
 msgid "success"
