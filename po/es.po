@@ -14,8 +14,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
 "PO-Revision-Date: 2026-04-10 17:58+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/es/>\n"
 "Language: es\n"
@@ -2520,12 +2519,12 @@ msgstr ""
 #: common/mltools/tools_utils.ml:417 common/options/keys.c:264
 #, c-format
 msgid "selector '%s': invalid TYPE"
-msgstr "selector '%s': TIPO no válido"
+msgstr "selector '%s': TYPE no válido"
 
 #: common/mltools/tools_utils.ml:409 common/options/keys.c:254
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
-msgstr "selector '%s': ausencia de FILENAME, o demasiados campos"
+msgstr "selector '%s': ausencia de FILENAME, o campos excesivos"
 
 #: common/mltools/tools_utils.ml:399 common/options/keys.c:232
 #, c-format
@@ -2535,7 +2534,7 @@ msgstr "selector '%s': falta ID"
 #: common/mltools/tools_utils.ml:404 common/options/keys.c:245
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
-msgstr "selector '%s': falta de KEY_STRING, o demasiados campos"
+msgstr "selector '%s': KEY_STRING ausente, o demasiados campos"
 
 #: common/mltools/tools_utils.ml:401 common/options/keys.c:239
 #, c-format
@@ -3216,7 +3215,7 @@ msgstr ""
 #: common/options/options.c:291
 #, c-format
 msgid "%s: Did you mean to mount one of these filesystems?\n"
-msgstr "%s: ¿significaba montar uno de estos sistemas de archivos?\n"
+msgstr "%s: ¿quiso decir montar uno de estos sistemas de archivos?\n"
 
 #: common/options/options.c:304
 #, c-format
@@ -3226,19 +3225,19 @@ msgstr "no se puede determinar el sub‐volumen para %s: %s (%d)"
 #: common/options/uri.c:119
 #, c-format
 msgid "%s: --add: could not parse URI ‘%s’\n"
-msgstr "%s: --add: no pudo interpretar la URI ‘%s'\n"
+msgstr "%s: --add: no se pudo interpretar la URI ‘%s'\n"
 
 #: common/options/uri.c:130
 #, c-format
 msgid "%s: %s: scheme of URI is NULL or empty\n"
-msgstr "%s: %s: esquema de URI es NULL o vacío\n"
+msgstr "%s: %s: esquema de URI es NULL o está vacío\n"
 
 #: common/options/uri.c:138
 #, c-format
 msgid "%s: %s: cannot have both a server name and a socket query parameter\n"
 msgstr ""
 "%s: %s: no se puede tener ambos un nombre de servidor y un parámetro de "
-"consulta del zócalo\n"
+"consulta de zócalo\n"
 
 #: common/utils/utils.c:107
 #, c-format
@@ -3253,7 +3252,7 @@ msgstr "%s ha salido con estado de error %d"
 #: common/utils/utils.c:114
 #, c-format
 msgid "%s killed by signal %d (%s)"
-msgstr "%s matado por señal %d (%s)"
+msgstr "%d muerto por señal %d (%s)"
 
 #: common/utils/utils.c:118
 #, c-format

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-03-26 09:13+0000\n"
-"PO-Revision-Date: 2026-04-06 08:58+0000\n"
+"PO-Revision-Date: 2026-04-13 16:58+0000\n"
 "Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/es/>\n"
@@ -3869,7 +3869,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-output-openstack.pod:82 docs/virt-v2v-output-openstack.pod:105
 msgid "or:"
-msgstr ""
+msgstr "o:"
 
 #. type: verbatim
 #: docs/virt-v2v-output-openstack.pod:84
