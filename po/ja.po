@@ -90,7 +90,7 @@ msgid ""
 "%!"
 msgstr ""
 
-#: common/mlcustomize/inject_virtio_win.ml:414
+#: common/mlcustomize/inject_virtio_win.ml:411
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr ""
 
@@ -2103,9 +2103,9 @@ msgstr ""
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr ""
 
-#. common/mlcustomize/inject_virtio_win.ml:360
-#. common/mlcustomize/inject_virtio_win.ml:355
-#: common/mlcustomize/inject_virtio_win.ml:365
+#. common/mlcustomize/inject_virtio_win.ml:357
+#. common/mlcustomize/inject_virtio_win.ml:352
+#: common/mlcustomize/inject_virtio_win.ml:362
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
