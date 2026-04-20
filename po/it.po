@@ -1551,11 +1551,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:379 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:386 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:406
+#: common/mlcustomize/firstboot.ml:413
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
@@ -1683,7 +1683,7 @@ msgstr ""
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
-#: lib/utils.ml:290
+#: lib/utils.ml:279
 msgid "invalid input filename (%s)"
 msgstr ""
 
@@ -2044,7 +2044,7 @@ msgid ""
 "or \"yescrypt\""
 msgstr ""
 
-#: common/mlcustomize/password.ml:196
+#: common/mlcustomize/password.ml:197
 msgid ""
 "password: using insecure md5 password encryption for guest of type %s "
 "version %d.%d.\n"
@@ -2090,32 +2090,32 @@ msgid ""
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:263
+#: common/mltools/tools_utils.ml:417 common/options/keys.c:264
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:253
+#: common/mltools/tools_utils.ml:409 common/options/keys.c:254
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:231
+#: common/mltools/tools_utils.ml:399 common/options/keys.c:232
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:244
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:245
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:238
+#: common/mltools/tools_utils.ml:401 common/options/keys.c:239
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:261
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:262
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr ""
@@ -2130,13 +2130,6 @@ msgid ""
 "\n"
 "You can work around this by using one of the ‘--run*’ or ‘--firstboot*’ "
 "options instead (described in the virt-customize(1) manual)."
-msgstr ""
-
-#: lib/utils.ml:196
-msgid ""
-"ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not set).  "
-"This is required by qemu to do passwordless ssh access.  See the virt-v2v(1) "
-"man page for more information."
 msgstr ""
 
 #: common/mlcustomize/ssh_key.ml:57
@@ -2643,12 +2636,12 @@ msgstr ""
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr ""
 
-#: common/options/keys.c:145
+#: common/options/keys.c:146
 #, c-format
 msgid "size_t overflow"
 msgstr ""
 
-#: common/options/keys.c:192
+#: common/options/keys.c:193
 #, c-format
 msgid "could not read key from user"
 msgstr ""
