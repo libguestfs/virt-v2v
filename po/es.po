@@ -10,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-04-10 17:58+0000\n"
+"PO-Revision-Date: 2026-04-20 10:59+0000\n"
 "Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/es/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.16.2\n"
+"X-Generator: Weblate 5.17\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -232,7 +232,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
-msgstr "%s: advertencia: %s%c"
+msgstr "%s: advertencia: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:258
 #: common/mlcustomize/customize_cmdline.ml:367
@@ -663,7 +663,7 @@ msgstr "No vuelva a etiquetar archivos con etiquetas correctas de SELinux"
 
 #: v2v/v2v.ml:248 inspector/inspector.ml:177 in-place/in_place.ml:190
 msgid "Don't trim filesystems before conversion"
-msgstr ""
+msgstr "No recortar sistemas de archivo antes de conversión"
 
 #: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
@@ -3158,7 +3158,7 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
-"%s: los sistemas operativos multi-arranque no están mantenidos\n"
+"%s: los sistemas operativos multi‐arranque no están mantenidos\n"
 "\n"
 "Si emplea la opción ‘guestfish -i’, retire esta opción y utilice en\n"
 "su lugar las instrucciones ‘run’ seguido por ‘list-filesystems'.\n"
@@ -3167,10 +3167,10 @@ msgstr ""
 "\n"
 "Si utiliza guestmount ‘-i’, retire esta opción y elija el sistema de\n"
 "archivo deseado para verlo manualmente añadiendo la opción\n"
-"‘-m’. Utilice ‘virt-filesystems' para ver qué sistema de archivos\n"
+"‘-m’. Utilice ‘virt‐filesystems' para ver qué sistema de archivos\n"
 "está disponible.\n"
 "\n"
-"Si utilizando otras herramientas de virt, los S.O. de multi-arranque\n"
+"Si utilizando otras herramientas de virt, los S.O. de multi‐arranque\n"
 "no funcionarían con estas herramientas. Utilice las instrucciones\n"
 "equivalentes de guestfish (consulte la página del manual de virt).\n"
 
@@ -3260,7 +3260,7 @@ msgstr "%s ha salido con estado de error %d"
 #: common/utils/utils.c:114
 #, c-format
 msgid "%s killed by signal %d (%s)"
-msgstr "%d muerto por señal %d (%s)"
+msgstr "%s muerto por señal %d (%s)"
 
 #: common/utils/utils.c:118
 #, c-format
