@@ -89,11 +89,11 @@ msgid "%s is not a regular file in the guest"
 msgstr "%s ei ole tavallinen tiedosto vieraassa"
 
 #. open/open.ml:39
-#. inspector/inspector.ml:151
+#. inspector/inspector.ml:153
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:163
+#. in-place/in_place.ml:164
 #. in-place/in_place.ml:45
-#: v2v/v2v.ml:192 v2v/v2v.ml:181 v2v/v2v.ml:157 v2v/v2v.ml:44 open/open.ml:68
+#: v2v/v2v.ml:194 v2v/v2v.ml:183 v2v/v2v.ml:159 v2v/v2v.ml:44 open/open.ml:68
 msgid "%s option used more than once on the command line"
 msgstr "%s-vaihtoehtoa käytetään useammin kuin kerran komentorivillä"
 
@@ -121,7 +121,7 @@ msgstr "%s: ei voi avata virtio-win ISO -tiedostoa: %s"
 msgid "%s: command exited with an error"
 msgstr "%s: komento poistui virheellä"
 
-#: v2v/v2v.ml:273
+#: v2v/v2v.ml:277
 #, fuzzy
 #| msgid ""
 #| "%s: convert a guest to use KVM\n"
@@ -180,7 +180,7 @@ msgstr ""
 "lukemalla\n"
 "man-sivu virt-v2v(1).\n"
 
-#: in-place/in_place.ml:214
+#: in-place/in_place.ml:217
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -215,7 +215,7 @@ msgstr ""
 msgid "%s: error: %s"
 msgstr "%s: virhe: %s"
 
-#: inspector/inspector.ml:194
+#: inspector/inspector.ml:198
 msgid ""
 "%s: estimate disk space needed before virt-v2v conversion\n"
 "\n"
@@ -317,11 +317,11 @@ msgstr ""
 "--inject-virtio-win: virtio-ohjaimia ei löytynyt tälle Windows-versiolle "
 "määrittämästäsi virtio-win-lähteestä"
 
-#: v2v/v2v.ml:144 inspector/inspector.ml:134 in-place/in_place.ml:143
+#: v2v/v2v.ml:146 inspector/inspector.ml:136 in-place/in_place.ml:143
 msgid "--mac ip prefix length field is out of range"
 msgstr "--mac IP-etuliitepituuskenttä on alueen ulkopuolella"
 
-#: v2v/v2v.ml:335
+#: v2v/v2v.ml:340
 msgid "--parallel parameter must be >= 1"
 msgstr "--parallel-parametrin on oltava >= 1"
 
@@ -683,7 +683,7 @@ msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 msgid "Copying (in image): %s to %s"
 msgstr "Kopioidaan (kuvassa): %s %s:een"
 
-#: v2v/v2v.ml:512
+#: v2v/v2v.ml:518
 #, fuzzy
 #| msgid "Copying: %s to %s"
 msgid "Copying disk %d/%d"
@@ -701,7 +701,7 @@ msgstr "Luo hakemisto"
 msgid "Create symbolic links"
 msgstr "Luo symbolisia linkkejä"
 
-#: v2v/v2v.ml:561
+#: v2v/v2v.ml:567
 msgid "Creating output metadata"
 msgstr "Tulosteen metatietojen luominen"
 
@@ -728,6 +728,10 @@ msgstr "Näytä versio ja poistu"
 #: common/mlcustomize/customize_cmdline.ml:482
 msgid "Do not relabel files with correct SELinux labels"
 msgstr "Älä nimeä tiedostoja uudelleen oikeilla SELinux-nimiöillä"
+
+#: v2v/v2v.ml:248 inspector/inspector.ml:177 in-place/in_place.ml:190
+msgid "Don't trim filesystems before conversion"
+msgstr ""
 
 #: common/mltools/tools_utils.ml:389
 msgid "Don’t print progress messages"
@@ -795,8 +799,8 @@ msgstr "TIEDOSTO"
 msgid "FILENAME"
 msgstr "TIEDOSTO"
 
-#. in-place/in_place.ml:373
-#: v2v/v2v.ml:565 open/open.ml:220 inspector/inspector.ml:328
+#. in-place/in_place.ml:378
+#: v2v/v2v.ml:571 open/open.ml:220 inspector/inspector.ml:334
 msgid "Finishing off"
 msgstr "Viimeistellään"
 
@@ -804,7 +808,7 @@ msgstr "Viimeistellään"
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:250 inspector/inspector.ml:179 in-place/in_place.ml:191
+#: v2v/v2v.ml:254 inspector/inspector.ml:183 in-place/in_place.ml:194
 msgid "How to choose root filesystem"
 msgstr "Kuinka valita juuritiedostojärjestelmä"
 
@@ -836,8 +840,8 @@ msgstr "Sisällytä QEMU-vierasagentti Windows-vieraaseen"
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr "Sisällytä virtio-win-ajurit Windows-vieraaseen"
 
-#. in-place/in_place.ml:175
-#: v2v/v2v.ml:214 open/open.ml:80 inspector/inspector.ml:163
+#. in-place/in_place.ml:176
+#: v2v/v2v.ml:216 open/open.ml:80 inspector/inspector.ml:165
 msgid "Input format"
 msgstr "Syöttömuoto"
 
@@ -865,7 +869,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:220 open/open.ml:86 inspector/inspector.ml:169
+#: v2v/v2v.ml:222 open/open.ml:86 inspector/inspector.ml:171
 msgid "Input transport"
 msgstr "Syöttökuljetus"
 
@@ -889,8 +893,8 @@ msgstr "Asennetaan paketteja: %s"
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#. in-place/in_place.ml:173
-#: v2v/v2v.ml:212 open/open.ml:78 inspector/inspector.ml:161
+#. in-place/in_place.ml:174
+#: v2v/v2v.ml:214 open/open.ml:78 inspector/inspector.ml:163
 msgid "Libvirt URI"
 msgstr "Libvirt:n URI"
 
@@ -912,15 +916,15 @@ msgstr "Tee tulosteesta koneella luettava"
 msgid "Making directory: %s"
 msgstr "Luodaan hakemistoa: %s"
 
-#: v2v/v2v.ml:224 inspector/inspector.ml:171 in-place/in_place.ml:181
+#: v2v/v2v.ml:226 inspector/inspector.ml:173 in-place/in_place.ml:182
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr "Yhdistä NIC verkkoon tai siltaan tai määritä staattinen IP"
 
-#: v2v/v2v.ml:208 inspector/inspector.ml:157 in-place/in_place.ml:169
+#: v2v/v2v.ml:210 inspector/inspector.ml:159 in-place/in_place.ml:170
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:228 inspector/inspector.ml:175 in-place/in_place.ml:185
+#: v2v/v2v.ml:230 inspector/inspector.ml:179 in-place/in_place.ml:186
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -961,7 +965,7 @@ msgstr ""
 "tarvitaan Windowsin firstboot-komentosarjojen asentamiseen. Voit hankkia "
 "sellaisen rakentamalla rhsrvany (https://github.com/rwmjones/rhsrvany)"
 
-#: v2v/v2v.ml:234
+#: v2v/v2v.ml:236
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -1048,11 +1052,11 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:259 in-place/in_place.ml:200
+#: v2v/v2v.ml:263 in-place/in_place.ml:203
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
 msgstr ""
 
-#: v2v/v2v.ml:248 in-place/in_place.ml:189
+#: v2v/v2v.ml:252 in-place/in_place.ml:192
 msgid "Print source and stop"
 msgstr ""
 
@@ -1075,7 +1079,7 @@ msgstr "Poista tiedosto tai hakemisto"
 msgid "Recursively truncating: %s"
 msgstr "%s: varoitus: %s"
 
-#: v2v/v2v.ml:238
+#: v2v/v2v.ml:240
 msgid "Rename guest when converting"
 msgstr "Nimeä vieras uudelleen muunnettaessa"
 
@@ -1099,7 +1103,7 @@ msgstr "Suorita skripti levykuvassa"
 msgid "Run touch on a file"
 msgstr ""
 
-#: v2v/v2v.ml:246
+#: v2v/v2v.ml:250
 msgid "Run up to N instances of nbdcopy in parallel"
 msgstr ""
 
@@ -1163,57 +1167,57 @@ msgstr ""
 msgid "Scrubbing: %s"
 msgstr "Suoritetaan: %s"
 
-#: v2v/v2v.ml:206
+#: v2v/v2v.ml:208
 msgid "Set bandwidth dynamically from file"
 msgstr ""
 
-#: v2v/v2v.ml:204
+#: v2v/v2v.ml:206
 msgid "Set bandwidth to bits per sec"
 msgstr ""
 
-#. in-place/in_place.ml:171
-#: v2v/v2v.ml:210 open/open.ml:76 inspector/inspector.ml:159
+#. in-place/in_place.ml:172
+#: v2v/v2v.ml:212 open/open.ml:76 inspector/inspector.ml:161
 #, fuzzy
 #| msgid "Set output mode (default: libvirt)"
 msgid "Set input mode (default: libvirt)"
 msgstr "Aseta lähtötila (oletus: libvirt)"
 
-#: v2v/v2v.ml:226 inspector/inspector.ml:173 in-place/in_place.ml:183
+#: v2v/v2v.ml:228 inspector/inspector.ml:175 in-place/in_place.ml:184
 msgid "Set memory size"
 msgstr ""
 
-#: v2v/v2v.ml:252 inspector/inspector.ml:181 in-place/in_place.ml:193
+#: v2v/v2v.ml:256 inspector/inspector.ml:185 in-place/in_place.ml:196
 msgid "Set number of vCPUs"
 msgstr ""
 
-#. in-place/in_place.ml:177
-#: v2v/v2v.ml:216 open/open.ml:82 inspector/inspector.ml:165
+#. in-place/in_place.ml:178
+#: v2v/v2v.ml:218 open/open.ml:82 inspector/inspector.ml:167
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:240
+#: v2v/v2v.ml:242
 #, fuzzy
 #| msgid "Set the output filename"
 msgid "Set option for output mode"
 msgstr "Aseta tulostetiedoston nimi"
 
-#: v2v/v2v.ml:232
+#: v2v/v2v.ml:234
 #, fuzzy
 #| msgid "Set output storage location"
 msgid "Set output allocation mode"
 msgstr "Aseta tulosteiden tallennustilan paikka"
 
-#: v2v/v2v.ml:236
+#: v2v/v2v.ml:238
 #, fuzzy
 #| msgid "Input format"
 msgid "Set output format"
 msgstr "Syöttömuoto"
 
-#: v2v/v2v.ml:230
+#: v2v/v2v.ml:232
 msgid "Set output mode (default: libvirt)"
 msgstr "Aseta lähtötila (oletus: libvirt)"
 
-#: v2v/v2v.ml:244
+#: v2v/v2v.ml:246
 msgid "Set output storage location"
 msgstr "Aseta tulosteiden tallennustilan paikka"
 
@@ -1237,7 +1241,7 @@ msgstr "Aseta oletusaikavyöhyke"
 msgid "Set the hostname"
 msgstr "Aseta isäntänimi"
 
-#: inspector/inspector.ml:177 in-place/in_place.ml:187
+#: inspector/inspector.ml:181 in-place/in_place.ml:188
 msgid "Set the output filename"
 msgstr "Aseta tulostetiedoston nimi"
 
@@ -1269,16 +1273,16 @@ msgstr "Konetunnuksen asettaminen %s:ssa"
 msgid "Setting the timezone: %s"
 msgstr "Aikavyöhykkeen asettaminen: %s"
 
-#: v2v/v2v.ml:475
+#: v2v/v2v.ml:481
 msgid "Setting up the destination: %s"
 msgstr "Asetetaan määränpäätä: %s"
 
-#. in-place/in_place.ml:337
-#: v2v/v2v.ml:451 open/open.ml:184 inspector/inspector.ml:304
+#. in-place/in_place.ml:342
+#: v2v/v2v.ml:457 open/open.ml:184 inspector/inspector.ml:310
 msgid "Setting up the source: %s"
 msgstr "Asetetaan lähdettä: %s"
 
-#: v2v/v2v.ml:457 in-place/in_place.ml:343
+#: v2v/v2v.ml:463 in-place/in_place.ml:348
 msgid "Source guest information (--print-source option):\n"
 msgstr "Vieraan lähdetiedot (--print-source option):\n"
 
@@ -1298,7 +1302,7 @@ msgstr ""
 msgid "TIMEZONE"
 msgstr ""
 
-#: v2v/v2v.ml:198
+#: v2v/v2v.ml:200
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr "Vaihtoehto --in-place on korvattu \"virt-v2v-in-place\" -ohjelmalla"
@@ -1404,16 +1408,16 @@ msgstr "Kopioidaan: %s %s:een"
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#. in-place/in_place.ml:179
-#: v2v/v2v.ml:218 open/open.ml:84 inspector/inspector.ml:167
+#. in-place/in_place.ml:180
+#: v2v/v2v.ml:220 open/open.ml:84 inspector/inspector.ml:169
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:242
+#: v2v/v2v.ml:244
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:222
+#: v2v/v2v.ml:224
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
@@ -1499,15 +1503,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: v2v/v2v.ml:103 inspector/inspector.ml:93 in-place/in_place.ml:102
+#: v2v/v2v.ml:105 inspector/inspector.ml:95 in-place/in_place.ml:102
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:127 inspector/inspector.ml:117 in-place/in_place.ml:126
+#: v2v/v2v.ml:129 inspector/inspector.ml:119 in-place/in_place.ml:126
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:141 inspector/inspector.ml:131 in-place/in_place.ml:140
+#: v2v/v2v.ml:143 inspector/inspector.ml:133 in-place/in_place.ml:140
 #, fuzzy
 #| msgid "--mac ip prefix length field is out of range"
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
@@ -1874,8 +1878,8 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#. in-place/in_place.ml:392
-#: v2v/v2v.ml:584 open/open.ml:238 inspector/inspector.ml:347
+#. in-place/in_place.ml:397
+#: v2v/v2v.ml:590 open/open.ml:238 inspector/inspector.ml:353
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1912,19 +1916,19 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:542
+#: v2v/v2v.ml:548
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 
-#: v2v/v2v.ml:112 inspector/inspector.ml:102 in-place/in_place.ml:111
+#: v2v/v2v.ml:114 inspector/inspector.ml:104 in-place/in_place.ml:111
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:96 inspector/inspector.ml:86 in-place/in_place.ml:95
+#: v2v/v2v.ml:98 inspector/inspector.ml:88 in-place/in_place.ml:95
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:88 inspector/inspector.ml:78 in-place/in_place.ml:87
+#: v2v/v2v.ml:90 inspector/inspector.ml:80 in-place/in_place.ml:87
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -2633,7 +2637,7 @@ msgstr "tuntematon -i vaihtoehto: %s"
 msgid "unknown -o option: %s"
 msgstr "tuntematon -o vaihtoehto: %s"
 
-#: v2v/v2v.ml:162
+#: v2v/v2v.ml:164
 msgid "unknown -oa option: %s"
 msgstr "tuntematon -oa vaihtoehto: %s"
 
@@ -2649,7 +2653,7 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:315 in-place/in_place.ml:253
+#: v2v/v2v.ml:319 in-place/in_place.ml:256
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
@@ -2661,7 +2665,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:325 open/open.ml:132 inspector/inspector.ml:234
+#: v2v/v2v.ml:329 open/open.ml:132 inspector/inspector.ml:238
 #, fuzzy
 #| msgid "-o disk: unknown output option ‘-oo %s’"
 msgid "unknown input transport ‘-it %s’"
