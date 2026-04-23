@@ -6,17 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-02-19 19:39+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
+"Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
+"projects/libguestfs/virt-v2v-master/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.16\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -509,7 +512,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:172
 msgid "Copying: %s to %s"
-msgstr ""
+msgstr "Copiando [%s] para [%s/%s]"
 
 #: common/mlcustomize/customize_cmdline.ml:322
 msgid "Create a directory"
@@ -537,11 +540,11 @@ msgstr ""
 
 #: common/mltools/getopt.ml:225
 msgid "Display brief help"
-msgstr ""
+msgstr "Exibir ajuda breve."
 
 #: common/mltools/tools_utils.ml:385
 msgid "Display version and exit"
-msgstr ""
+msgstr "Exibe a versão e sai"
 
 #: common/mlcustomize/customize_cmdline.ml:482
 msgid "Do not relabel files with correct SELinux labels"
@@ -2541,7 +2544,7 @@ msgstr ""
 #: common/mltools/getopt-c.c:193
 #, c-format
 msgid "%s: %s: integer out of range\n"
-msgstr ""
+msgstr "%s: %s: inteiro fora do limite\n"
 
 #: common/mltools/getopt-c.c:383
 #, c-format
