@@ -10,29 +10,31 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2015-03-16 07:04+0000\n"
-"Last-Translator: Alex Puchades <alex94puchades@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/libguestfs/"
-"language/es/)\n"
+"PO-Revision-Date: 2026-03-09 14:58+0000\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
+"Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
+"libguestfs/virt-v2v-master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: common/mltools/getopt.ml:73
 msgid ""
 "%s\n"
 "Options:\n"
 msgstr ""
+"%s\n"
+"Opciones:\n"
 
 #: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
@@ -2103,32 +2105,32 @@ msgstr ""
 #: common/mltools/tools_utils.ml:417 common/options/keys.c:263
 #, c-format
 msgid "selector '%s': invalid TYPE"
-msgstr ""
+msgstr "selector '%s': TIPO no válido"
 
 #: common/mltools/tools_utils.ml:409 common/options/keys.c:253
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
-msgstr ""
+msgstr "selector '%s': ausencia de FILENAME, o demasiados campos"
 
 #: common/mltools/tools_utils.ml:399 common/options/keys.c:231
 #, c-format
 msgid "selector '%s': missing ID"
-msgstr ""
+msgstr "selector '%s': falta ID"
 
 #: common/mltools/tools_utils.ml:404 common/options/keys.c:244
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
-msgstr ""
+msgstr "selector '%s': falta de KEY_STRING, o demasiados campos"
 
 #: common/mltools/tools_utils.ml:401 common/options/keys.c:238
 #, c-format
 msgid "selector '%s': missing TYPE"
-msgstr ""
+msgstr "selector '%s': falta TIPO"
 
 #: common/mltools/tools_utils.ml:413 common/options/keys.c:261
 #, c-format
 msgid "selector '%s': too many fields"
-msgstr ""
+msgstr "selector '%s': demasiados campos"
 
 #: lib/utils.ml:35
 msgid "signalled by signal %d"
@@ -2571,12 +2573,12 @@ msgstr ""
 #: common/options/config.c:72
 #, c-format
 msgid "%s: line %d: error parsing configuration file: %s"
-msgstr ""
+msgstr "%s: línea %d: error al interpretar archivo de configuración: %s"
 
 #: common/options/decrypt.c:52
 #, c-format
 msgid "string size overflow"
-msgstr ""
+msgstr "tamaño de cadena desbordada"
 
 #: common/options/decrypt.c:170
 #, c-format
@@ -2584,6 +2586,8 @@ msgid ""
 "'clevis_luks_unlock', needed for decrypting %s, is unavailable in this "
 "libguestfs version"
 msgstr ""
+"'clevis_luks_unlock', necesario para descifrar %s, no está disponible en "
+"esta versión de libguestfs"
 
 #: common/options/decrypt.c:184
 #, c-format
@@ -2594,6 +2598,11 @@ msgid ""
 "\n"
 "Original error: %s (%d)"
 msgstr ""
+"no se pudo encontrar clave para abrir LUKS %s cifrado.\n"
+"\n"
+"Intente utilizar --key en la línea de comando.\n"
+"\n"
+"Error original: %s (%d)"
 
 #: common/options/inspect.c:78
 #, c-format
@@ -2613,6 +2622,22 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
+"%s: ningún sistema operativo estuvo encontrado en este disco\n"
+"\n"
+"Si utilizando la opción guestfish ‘-i', retire esta opción y en su lugar\n"
+"utiliza las instrucciones ‘run’ seguidos por ‘list-filesystems'.\n"
+"Entonces puedes montar sistemas de archivos deseados a\n"
+"mano utilizando las instrucciones ‘mount’ o ‘mount-ro'.\n"
+"\n"
+"Si utiliza guestmount ‘-i', retire esta opción y escoja el sistema de\n"
+"archivos que desee ver manualmente añadiendo la opción '-m' .\n"
+"Emplee ‘virt-filesystems' para ver lo que sistema de archivos está\n"
+"disponible.\n"
+"\n"
+"Si utiliza otro de las herramientas virt, esta imagen de disco\n"
+"no funcionaría con estas herramientas.  Emplee las instrucciones\n"
+"guestfish equivalentes (consulte la página del manual de la\n"
+"herramienta virt).\n"
 
 #: common/options/inspect.c:99
 #, c-format
@@ -2632,13 +2657,29 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
+"%s: los sistemas operativos multi-arranque no están mantenidos\n"
+"\n"
+"Si emplea la opción ‘guestfish -i’, retire esta opción y utilice en\n"
+"su lugar las instrucciones ‘run’ seguido por ‘list-filesystems'.\n"
+"Entonces puedes montar sistemas de archivos deseados a mano\n"
+"utilizando las instrucciones ‘mount’ o ‘mount-ro'.\n"
+"\n"
+"Si utiliza ‘guestmount -i’, retire esta opción y elija el sistema de\n"
+"archivo deseado para verlo manualmente añadiendo la opción\n"
+"‘-m'. Utilice ‘virt-filesystems' para ver qué sistema de archivos\n"
+"está disponible.\n"
+"\n"
+"Si utilizando otras herramientas de virt, los sistemas operativos\n"
+"de multi-arranque no funcionarían con estas herramientas.\n"
+"Utilice las instrucciones equivalentes de guestfish (consulte\n"
+"la página del manual de virt).\n"
 
 #: common/options/inspect.c:161
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
 msgstr ""
-"%s: algunos sistemas de archivos no han podido ser montados (se han "
-"ignorado)\n"
+"%s: algunos sistemas de archivos no han podido ser montados (se descartaron)"
+"\n"
 
 #: common/options/inspect.c:178
 #, c-format
@@ -2658,18 +2699,17 @@ msgstr "Ingrese la llave o la frase de acceso (\"%s\"): "
 #: common/options/keys.c:145
 #, c-format
 msgid "size_t overflow"
-msgstr ""
+msgstr "size_t desbordado"
 
 #: common/options/keys.c:192
-#, fuzzy, c-format
-#| msgid "could not parse boot size"
+#, c-format
 msgid "could not read key from user"
-msgstr "no se pudo analizar el tamaño de arranque"
+msgstr "no se pudo leer tecla desde usuario"
 
 #: common/options/options.c:283
 #, c-format
 msgid "%s: ‘%s’ could not be mounted.\n"
-msgstr ""
+msgstr "%s: ‘%s’ no pudo ser montado.\n"
 
 #: common/options/options.c:287
 #, c-format
@@ -2677,53 +2717,57 @@ msgid ""
 "%s: Check mount(8) man page to ensure options ‘%s’\n"
 "%s: are supported by the filesystem that is being mounted.\n"
 msgstr ""
+"%s: Compruebe la página man de mount(8) para asegurar las opciones ‘%s'\n"
+"%s: se mantiene con el sistema de archivos que esté siendo montando.\n"
 
 #: common/options/options.c:291
 #, c-format
 msgid "%s: Did you mean to mount one of these filesystems?\n"
-msgstr ""
+msgstr "%s: ¿significaba montar uno de estos sistemas de archivos?\n"
 
 #: common/options/options.c:304
 #, c-format
 msgid "cannot determine the subvolume for %s: %s (%d)"
-msgstr ""
+msgstr "no se puede determinar el sub‐volumen para %s: %s (%d)"
 
 #: common/options/uri.c:119
 #, c-format
 msgid "%s: --add: could not parse URI ‘%s’\n"
-msgstr ""
+msgstr "%s: --add: no pudo interpretar la URI ‘%s'\n"
 
 #: common/options/uri.c:130
 #, c-format
 msgid "%s: %s: scheme of URI is NULL or empty\n"
-msgstr ""
+msgstr "%s: %s: esquema de URI es NULL o vacío\n"
 
 #: common/options/uri.c:138
 #, c-format
 msgid "%s: %s: cannot have both a server name and a socket query parameter\n"
 msgstr ""
+"%s: %s: no se puede tener ambos un nombre de servidor y un parámetro de "
+"consulta del zócalo\n"
 
 #: common/utils/utils.c:107
 #, c-format
 msgid "%s exited successfully"
-msgstr ""
+msgstr "%s ha salido correctamente"
 
 #: common/utils/utils.c:110
 #, c-format
 msgid "%s exited with error status %d"
-msgstr ""
+msgstr "%s ha salido con estado de error %d"
 
 #: common/utils/utils.c:114
 #, c-format
 msgid "%s killed by signal %d (%s)"
-msgstr ""
+msgstr "%s matado por señal %d (%s)"
 
 #: common/utils/utils.c:118
 #, c-format
 msgid "%s stopped by signal %d (%s)"
-msgstr ""
+msgstr "%s detenido por señal %d (%s)"
 
 #: common/utils/utils.c:122
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
-msgstr ""
+msgstr "%s salió por una razón desconocida (estado %d)"
