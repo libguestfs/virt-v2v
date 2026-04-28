@@ -20,7 +20,8 @@ dnl Any C libraries required by virt-v2v.
 dnl Of course we need libguestfs.
 dnl
 dnl We need libguestfs 1.59.2 for guestfs_xfs_info2.
-PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.59.2])
+dnl We need libguestfs 1.59.7 for text: and base64: prefix in LUKS funcs.
+PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.59.7])
 printf "libguestfs version is "; $PKG_CONFIG --modversion libguestfs
 
 dnl And libnbd.
