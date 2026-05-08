@@ -1210,6 +1210,26 @@ the kind of driver installation and other changes that we may make to
 Windows guests.  It is recommended that you disable or remove this
 before conversion.  It may be enabled again after conversion.
 
+=head2 Relax Windows PowerShell ExecutionPolicy
+
+Virt-v2v runs unsigned firstboot PowerShell scripts.  Certain Windows
+PowerShell C<ExecutionPolicy> settings such as C<AllSigned> may cause
+the scripts to fail to run.
+
+To find the current policy use the
+L<Get-ExecutionPolicy|https://learn.microsoft.com/en-gb/powershell/module/microsoft.powershell.security/set-executionpolicy>
+command:
+
+ Get-ExecutionPolicy -List
+
+To relax the policy use
+L<Set-ExecutionPolicy|https://learn.microsoft.com/en-gb/powershell/module/microsoft.powershell.security/set-executionpolicy>.
+You can set the policy back after conversion.
+
+See also:
+L<https:/go.microsoft.com/fwlink/?LinkID=135170>
+L<https://redhat.atlassian.net/browse/MTV-4424>
+
 =head2 The guest should not be running
 
 The guest must be cleanly shut down before conversion begins, and must
