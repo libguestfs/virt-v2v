@@ -638,8 +638,8 @@ fi
      * boot time crypttab correctly. We work around it by adding
      * `initramfs` option to every /etc/crypttab entry.
      *)
-    (* Get all crypttab entries *)
-    let entries = g#aug_match "/files/etc/crypttab/*" in
+    (* Get all crypttab entries that have a target node *)
+    let entries = g#aug_match "/files/etc/crypttab/*[target]" in
     let entries = Array.to_list entries in
 
     let changed = ref false in
