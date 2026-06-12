@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-02-16 17:05+0000\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-06-04 00:41+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
 "memory@weblate.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
+#: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
 msgstr "%s"
 
@@ -33,7 +33,7 @@ msgstr ""
 "%s\n"
 "Opções:\n"
 
-#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:390
+#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
 msgstr "%s (ignorado)"
 
@@ -86,11 +86,11 @@ msgstr "%s não é um arquivo regular no convidado"
 msgid "%s option used more than once on the command line"
 msgstr "Opção %s usada mais de uma vez na linha de comando"
 
-#: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
+#: common/mltools/tools_utils.ml:234 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: common/mltools/tools_utils.ml:233
+#: common/mltools/tools_utils.ml:236
 msgid "%s: %s: %s"
 msgstr "%s: %s: %s"
 
@@ -209,7 +209,7 @@ msgstr ""
 "Um breve resumo das opções é fornecido abaixo. Para uma ajuda detalhada,\n"
 "consulte a página man virt-v2v-open(1).\n"
 
-#: common/mltools/tools_utils.ml:726
+#: common/mltools/tools_utils.ml:729
 msgid "%s: operation timed out"
 msgstr "%s: a operação expirou"
 
@@ -239,8 +239,8 @@ msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
 msgstr ""
-"--append-line: a linha não deve conter caracteres de nova linha. Use a "
-"opção --append-line várias vezes para adicionar várias linhas."
+"--append-line: a linha não deve conter caracteres de nova linha. Use a opção "
+"--append-line várias vezes para adicionar várias linhas."
 
 #: common/mlcustomize/customize_run.ml:152
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
@@ -278,7 +278,7 @@ msgstr ""
 msgid "--parallel parameter must be >= 1"
 msgstr "o parâmetro --parallel deve ser >= 1"
 
-#: input/input_disk.ml:42
+#: input/input_disk.ml:43
 msgid "-i disk: expecting a disk image (filename) on the command line"
 msgstr ""
 "-i disk: esperava uma imagem de disco (nome de arquivo) na linha de comando"
@@ -640,7 +640,7 @@ msgstr "Excluindo: %s"
 msgid "Display brief help"
 msgstr "Exibe ajuda breve"
 
-#: common/mltools/tools_utils.ml:385
+#: common/mltools/tools_utils.ml:388
 msgid "Display version and exit"
 msgstr "Exibe a versão e sai"
 
@@ -652,11 +652,11 @@ msgstr "Não rerotula arquivos com rótulos SELinux corretos"
 msgid "Don't trim filesystems before conversion"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:389
+#: common/mltools/tools_utils.ml:392
 msgid "Don’t print progress messages"
 msgstr "Não exibe mensagens de progresso"
 
-#: common/mltools/tools_utils.ml:420
+#: common/mltools/tools_utils.ml:423
 msgid "Don’t turn off echo for passphrases"
 msgstr "Não desativa o exibição para senhas"
 
@@ -668,11 +668,11 @@ msgstr "Edita arquivo usando expressão Perl"
 msgid "Editing: %s"
 msgstr "Editando: %s"
 
-#: common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:389
 msgid "Enable libguestfs debugging messages"
 msgstr "Habilita mensagens de depuração do libguestfs"
 
-#: common/mltools/tools_utils.ml:387
+#: common/mltools/tools_utils.ml:390
 msgid "Enable tracing of libguestfs calls"
 msgstr "Habilita rastreamento de chamadas do libguestfs"
 
@@ -840,7 +840,7 @@ msgstr "Vinculando: %s -> %s"
 msgid "METHOD"
 msgstr "MÉTODO"
 
-#: common/mltools/tools_utils.ml:426
+#: common/mltools/tools_utils.ml:429
 msgid "Make output machine readable"
 msgstr "Torna a saída legível por máquina"
 
@@ -970,8 +970,8 @@ msgstr ""
 "  -oo vdsm-vm-uuid=UUID        UUID da VM (obrigatório)\n"
 "  -oo vdsm-ovf-output=DIR      Diretório de metadados de OVF (obrigatório)\n"
 "  -oo vdsm-ovf-flavour=%s\n"
-"                               Define o tipo de OVF gerado (padrão: ovirtexp)"
-"\n"
+"                               Define o tipo de OVF gerado (padrão: "
+"ovirtexp)\n"
 "\n"
 "Para cada disco, você deve fornecer um para cada uma dessas opções:\n"
 "\n"
@@ -1046,7 +1046,7 @@ msgstr "Exibe a fonte e para"
 msgid "Read customize commands from file"
 msgstr "Lê comandos personalizados do arquivo"
 
-#: common/mltools/tools_utils.ml:421
+#: common/mltools/tools_utils.ml:424
 msgid "Read passphrases from stdin"
 msgstr "Lê senhas da entrada padrão (stdin)"
 
@@ -1104,7 +1104,7 @@ msgstr "Executando: %s"
 msgid "SCRIPT"
 msgstr "SCRIPT"
 
-#: common/mltools/tools_utils.ml:422
+#: common/mltools/tools_utils.ml:425
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
 msgstr "SELETOR"
@@ -1192,7 +1192,7 @@ msgstr "Define o local de armazenamento da saída"
 msgid "Set password crypto"
 msgstr "Define crypto da senha"
 
-#: common/mltools/tools_utils.ml:430
+#: common/mltools/tools_utils.ml:433
 msgid "Set program name"
 msgstr "Define o nome do programa"
 
@@ -1253,7 +1253,7 @@ msgstr "Configurando a fonte: %s"
 msgid "Source guest information (--print-source option):\n"
 msgstr "Informações de fonte do convidado (a opção --print-source):\n"
 
-#: common/mltools/tools_utils.ml:422
+#: common/mltools/tools_utils.ml:425
 msgid "Specify a LUKS key"
 msgstr "Especifica uma chave LUKS"
 
@@ -1360,7 +1360,7 @@ msgstr "Atualiza arquivo local para destino"
 msgid "Uploading: %s to %s"
 msgstr "Enviando: %s para %s"
 
-#: common/mltools/tools_utils.ml:391
+#: common/mltools/tools_utils.ml:394
 msgid "Use ANSI colour sequences even if not tty"
 msgstr "Usa sequências de cores ANSI mesmo se não estiver em um terminal (tty)"
 
@@ -1377,9 +1377,10 @@ msgstr "Usa a senha de um arquivo para conectar ao hipervisor de saída"
 msgid "Use virt-v2v-in-place instead"
 msgstr "Usa virt-v2v-in-place em vez disso"
 
-#: common/mltools/tools_utils.ml:392
+#: common/mltools/tools_utils.ml:395
 msgid "Wrap log messages even if not tty"
-msgstr "Quebra linha de mensagens de log mesmo se não estiver no terminal (tty)"
+msgstr ""
+"Quebra linha de mensagens de log mesmo se não estiver no terminal (tty)"
 
 #: common/mlcustomize/customize_cmdline.ml:460
 msgid "Write file"
@@ -1415,8 +1416,8 @@ msgstr ""
 "‘virsh undefine’.\n"
 "\n"
 "Se estiver usando o virt-p2v, selecione um ‘Name’ diferente em ‘Target "
-"properties’. Ou exclua o domínio existente no destino usando o comando ‘"
-"virsh undefine’."
+"properties’. Ou exclua o domínio existente no destino usando o comando "
+"‘virsh undefine’."
 
 #: common/mlcustomize/append_line.ml:44
 msgid "append_line: %s is not a file"
@@ -1595,9 +1596,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"não foi possível encontrar a entrada de registro HKEY_LOCAL_MACHINE\\S"
-"YSTEM\\DriverDatabase\\DeviceIds nesta máquina virtual Windows. Pode ser uma "
-"versão muito antiga ou muito recente do Windows que não podemos processar."
+"não foi possível encontrar a entrada de registro "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds nesta máquina virtual "
+"Windows. Pode ser uma versão muito antiga ou muito recente do Windows que "
+"não podemos processar."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1610,7 +1612,8 @@ msgstr ""
 #. input/input_vcenter_https.ml:94
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
-msgstr "não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
+msgstr ""
+"não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
 
 #: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
@@ -1673,10 +1676,6 @@ msgstr ""
 #: common/mldrivers/linux_bootloaders.ml:126
 msgid "didn't find grub entry for kernel %s"
 msgstr "não foi encontrada entrada do grub para o kernel %s"
-
-#: input/input_disk.ml:150
-msgid "disks on the command line have mixed formats"
-msgstr "discos na linha de comando têm formatos mistos"
 
 #: input/parse_libvirt_xml.ml:194
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
@@ -1743,21 +1742,17 @@ msgstr "erro ao descompactar %s, veja as mensagens de erro anteriores"
 msgid "error unpacking %s, see earlier error messages"
 msgstr "erro ao desempacotar %s, veja as mensagens de erro anteriores"
 
-#: common/mltools/tools_utils.ml:248
+#: common/mltools/tools_utils.ml:251
 msgid "exception: %s"
 msgstr "exceção: %s"
 
-#: common/mltools/tools_utils.ml:455
+#: common/mltools/tools_utils.ml:458
 msgid "exited with error %d"
 msgstr "saiu com erro %d"
 
 #: lib/utils.ml:34
 msgid "exited with non-zero error code %d"
 msgstr "saiu com código de erro não-zero %d"
-
-#: input/input_disk.ml:147
-msgid "expected >= 1 disk name on the command line"
-msgstr "esperava nome de disco >= 1 na linha de comando"
 
 #: common/mltools/xpath_helpers.ml:36
 msgid ""
@@ -1767,7 +1762,7 @@ msgstr ""
 "espera-se que a expressão XML retorne um número inteiro (expressão: %s, "
 "string correspondente: %s)"
 
-#: common/mltools/tools_utils.ml:440
+#: common/mltools/tools_utils.ml:443
 msgid "external command"
 msgstr "comando externo"
 
@@ -1801,7 +1796,7 @@ msgstr "falha ao iniciar a transferência; consulte os erros anteriores"
 msgid "failed vmchecks, see earlier errors"
 msgstr "falha nas vmchecks; consulte os erros anteriores"
 
-#: common/mltools/tools_utils.ml:239
+#: common/mltools/tools_utils.ml:242
 msgid "failure: %s"
 msgstr "falha: %s"
 
@@ -1817,7 +1812,7 @@ msgstr ""
 "firstboot: versão desconhecida para o arquivo antigo firstboot.service %s "
 "(md5=%s), ele não será removido"
 
-#: common/mltools/tools_utils.ml:258
+#: common/mltools/tools_utils.ml:261
 msgid "generated by %s %s"
 msgstr "gerada por %s %s"
 
@@ -1841,15 +1836,15 @@ msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 "glance: falha ao carregar a imagem para o glance, veja os erros anteriores"
 
-#: common/mlcustomize/firstboot.ml:386 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "O tipo de convidado %s não é suportado"
 
-#: common/mlcustomize/firstboot.ml:413
+#: common/mlcustomize/firstboot.ml:418
 msgid "guest type %s/%s is not supported"
 msgstr "O tipo de convidado %s/%s não é suportado"
 
-#: common/mltools/tools_utils.ml:749
+#: common/mltools/tools_utils.ml:752
 msgid ""
 "host (%s/%s) and guest (%s/%s) are not compatible, so you cannot use command "
 "line options that involve running commands in the guest.  Use --firstboot "
@@ -1938,15 +1933,15 @@ msgstr ""
 "Consulte também o manual virt-v2v(1), seção \"Verificação de espaço livre "
 "mínimo no host\"."
 
-#: common/mltools/tools_utils.ml:246
+#: common/mltools/tools_utils.ml:249
 msgid "internal error: Not_found exception was thrown"
 msgstr "erro interno: exceção Not_found foi lançada"
 
-#: common/mltools/tools_utils.ml:243
+#: common/mltools/tools_utils.ml:246
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr "erro interno: asserção falhou em %s, linha %d, caractere %d"
 
-#: common/mltools/tools_utils.ml:241
+#: common/mltools/tools_utils.ml:244
 msgid "internal error: invalid argument: %s"
 msgstr "erro interno: argumento inválido: %s"
 
@@ -1989,7 +1984,7 @@ msgstr "cpuid.coresPerSocket inválido < número de vCPUs"
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "formato inválido para o parâmetro de '--%s'; consulte a página man"
 
-#: common/mltools/tools_utils.ml:359
+#: common/mltools/tools_utils.ml:362
 msgid "invalid format string for --machine-readable: %s"
 msgstr "string de formato inválida para --machine-readable: %s"
 
@@ -2001,15 +1996,15 @@ msgstr "nome de arquivo de entrada inválido (%s)"
 msgid "invalid offset returned by tar: %S"
 msgstr "deslocamento inválido retornado por tar: %S"
 
-#: common/mltools/tools_utils.ml:374
+#: common/mltools/tools_utils.ml:377
 msgid "invalid output fd for --machine-readable: %s"
 msgstr "descritor de arquivo de saída inválido para --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:376
+#: common/mltools/tools_utils.ml:379
 msgid "invalid output for --machine-readable: %s"
 msgstr "saída inválida para --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:368
+#: common/mltools/tools_utils.ml:371
 msgid "invalid output stream for --machine-readable: %s"
 msgstr "fluxo de saída inválido para --machine-readable: %s"
 
@@ -2037,11 +2032,11 @@ msgstr "vmw:CoresPerSocket inválido < número de núcleos"
 msgid "kernel %s is not under grub tree %s"
 msgstr "o kernel %s não está na árvore de grub %s"
 
-#: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
+#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
 msgid "killed by signal %d"
 msgstr "morto pelo sinal %d"
 
-#: common/mltools/tools_utils.ml:237
+#: common/mltools/tools_utils.ml:240
 msgid "libguestfs error: %s"
 msgstr "erro do libguestfs: %s"
 
@@ -2176,7 +2171,7 @@ msgstr ""
 msgid "nbdkit is not installed or not working"
 msgstr "o nbdkit não está instalado ou não está funcionando"
 
-#: input/input_disk.ml:92
+#: input/input_disk.ml:48
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
@@ -2240,7 +2235,7 @@ msgstr ""
 "SELinux para o modo Permissive durante a conversão."
 
 #. input/input_libvirt.ml:76
-#. input/input_disk.ml:98
+#. input/input_disk.ml:53
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr "nbdkit-cow-filter não está instalado ou não está funcionando"
@@ -2249,12 +2244,12 @@ msgstr "nbdkit-cow-filter não está instalado ou não está funcionando"
 msgid "nbdkit-curl-plugin is not installed"
 msgstr "nbdkit-curl-plugin não está instalado"
 
-#. input/input_disk.ml:96
+#. input/input_disk.ml:51
 #: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr "nbdkit-file-plugin não está instalado ou não está funcionando"
 
-#: input/input_libvirt.ml:74
+#: input/input_libvirt.ml:74 input/input_disk.ml:71
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin não está instalado ou não está funcionando"
 
@@ -2501,32 +2496,32 @@ msgstr ""
 "está com algum problema. Por favor, relate isso como um bug com um log de "
 "depuração completo."
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:264
+#: common/mltools/tools_utils.ml:420 common/options/keys.c:306
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr "seletor '%s': TYPE inválido"
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:254
+#: common/mltools/tools_utils.ml:412 common/options/keys.c:296
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr "seletor '%s': FILENAME em falta ou muitos campos"
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:232
+#: common/mltools/tools_utils.ml:402 common/options/keys.c:274
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr "seletor '%s': ID em falta"
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:245
+#: common/mltools/tools_utils.ml:407 common/options/keys.c:287
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr "seletor '%s': KEY_STRING em falta ou muitos campos"
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:239
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:281
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr "seletor '%s': TYPE em falta"
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:262
+#: common/mltools/tools_utils.ml:416 common/options/keys.c:304
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr "seletor '%s': muitos campos"
@@ -2568,8 +2563,8 @@ msgstr "ssh-inject: o arquivo de chave pública (%s) está vazio"
 msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr "ssh-inject: o usuário %s não existe no convidado"
 
-#. common/mltools/tools_utils.ml:461
-#: lib/utils.ml:36 common/mltools/tools_utils.ml:542
+#. common/mltools/tools_utils.ml:464
+#: lib/utils.ml:36 common/mltools/tools_utils.ml:545
 msgid "stopped by signal %d"
 msgstr "parado pelo sinal %d"
 
@@ -2809,7 +2804,8 @@ msgstr "method=‘%s’ de <checksum> desconhecido"
 
 #: input/OVF.ml:103
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
-msgstr "valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
+msgstr ""
+"valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
 
 #: lib/create_ovf.ml:446 lib/create_ovf.ml:247
 msgid "unknown Windows 10 variant: %s (%s)"
@@ -3169,17 +3165,17 @@ msgstr "Sistema operacional: %s\n"
 msgid "%s mounted on %s\n"
 msgstr "%s montado em %s\n"
 
-#: common/options/keys.c:63
+#: common/options/keys.c:69
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Insira a chave ou senha (\"%s\"): "
 
-#: common/options/keys.c:146
+#: common/options/keys.c:189
 #, c-format
 msgid "size_t overflow"
 msgstr "estouro de size_t"
 
-#: common/options/keys.c:193
+#: common/options/keys.c:235
 #, c-format
 msgid "could not read key from user"
 msgstr "não foi possível ler a chave do usuário"
@@ -3249,6 +3245,12 @@ msgstr "%s parado pelo sinal %d (%s)"
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "%s saiu por um motivo desconhecido (status %d)"
+
+#~ msgid "disks on the command line have mixed formats"
+#~ msgstr "discos na linha de comando têm formatos mistos"
+
+#~ msgid "expected >= 1 disk name on the command line"
+#~ msgstr "esperava nome de disco >= 1 na linha de comando"
 
 #~ msgid ""
 #~ "ssh-agent authentication has not been set up ($SSH_AUTH_SOCK is not "
