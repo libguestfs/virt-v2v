@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-03-01 09:36+0000\n"
+"PO-Revision-Date: 2026-06-04 00:41+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/pt_BR/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16.1\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -238,8 +238,8 @@ msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
 msgstr ""
-"--append-line: a linha não deve conter caracteres de nova linha. Use a opção "
-"--append-line várias vezes para adicionar várias linhas."
+"--append-line: a linha não deve conter caracteres de nova linha. Use a "
+"opção --append-line várias vezes para adicionar várias linhas."
 
 #: common/mlcustomize/customize_run.ml:152
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
@@ -969,8 +969,8 @@ msgstr ""
 "  -oo vdsm-vm-uuid=UUID        UUID da VM (obrigatório)\n"
 "  -oo vdsm-ovf-output=DIR      Diretório de metadados de OVF (obrigatório)\n"
 "  -oo vdsm-ovf-flavour=%s\n"
-"                               Define o tipo de OVF gerado (padrão: "
-"ovirtexp)\n"
+"                               Define o tipo de OVF gerado (padrão: ovirtexp)"
+"\n"
 "\n"
 "Para cada disco, você deve fornecer um para cada uma dessas opções:\n"
 "\n"
@@ -1378,8 +1378,7 @@ msgstr "Usa virt-v2v-in-place em vez disso"
 
 #: common/mltools/tools_utils.ml:392
 msgid "Wrap log messages even if not tty"
-msgstr ""
-"Quebra linha de mensagens de log mesmo se não estiver no terminal (tty)"
+msgstr "Quebra linha de mensagens de log mesmo se não estiver no terminal (tty)"
 
 #: common/mlcustomize/customize_cmdline.ml:460
 msgid "Write file"
@@ -1415,8 +1414,8 @@ msgstr ""
 "‘virsh undefine’.\n"
 "\n"
 "Se estiver usando o virt-p2v, selecione um ‘Name’ diferente em ‘Target "
-"properties’. Ou exclua o domínio existente no destino usando o comando "
-"‘virsh undefine’."
+"properties’. Ou exclua o domínio existente no destino usando o comando ‘"
+"virsh undefine’."
 
 #: common/mlcustomize/append_line.ml:44
 msgid "append_line: %s is not a file"
@@ -1595,10 +1594,9 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"não foi possível encontrar a entrada de registro "
-"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds nesta máquina virtual "
-"Windows. Pode ser uma versão muito antiga ou muito recente do Windows que "
-"não podemos processar."
+"não foi possível encontrar a entrada de registro HKEY_LOCAL_MACHINE\\S"
+"YSTEM\\DriverDatabase\\DeviceIds nesta máquina virtual Windows. Pode ser uma "
+"versão muito antiga ou muito recente do Windows que não podemos processar."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1611,8 +1609,7 @@ msgstr ""
 #. input/input_vcenter_https.ml:94
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
-msgstr ""
-"não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
+msgstr "não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
 
 #: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
@@ -2811,8 +2808,7 @@ msgstr "method=‘%s’ de <checksum> desconhecido"
 
 #: input/OVF.ml:103
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
-msgstr ""
-"valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
+msgstr "valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
 
 #: lib/create_ovf.ml:446 lib/create_ovf.ml:247
 msgid "unknown Windows 10 variant: %s (%s)"
