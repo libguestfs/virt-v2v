@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2025-02-16 17:05+0000\n"
-"PO-Revision-Date: 2026-04-20 10:59+0000\n"
+"PO-Revision-Date: 2026-06-04 00:33+0000\n"
 "Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/es/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
 msgid "%s"
@@ -452,8 +452,7 @@ msgstr ""
 
 #: output/output_ovirt_upload.ml:83
 msgid "-o ovirt-upload: output storage was not specified, use ‘-os’"
-msgstr ""
-"-o ovirt-upload: no fue especificada la salida de almacén, utilce ‘-os’"
+msgstr "-o ovirt-upload: no fue especificada la salida de almacén, utilce ‘-os’"
 
 #: output/output_ovirt_upload.ml:116
 msgid "-o ovirt-upload: unknown output option ‘-oo %s’"
@@ -1590,8 +1589,7 @@ msgstr ""
 
 #: common/mldrivers/linux_bootloaders.ml:221
 msgid "could not determine a way to update the configuration of Grub2"
-msgstr ""
-"no se pudo determinar una forma de actualizar la configuración de Grub2"
+msgstr "no se pudo determinar una forma de actualizar la configuración de Grub2"
 
 #: input/input_vddk.ml:243
 msgid ""
@@ -1613,10 +1611,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"no se pudo encontrar la entrada de registro "
-"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds en este sistema "
-"operativo Windows. Es posible que se trate de una versión muy antigua o muy "
-"reciente de Windows que no podemos procesar."
+"no se pudo encontrar la entrada de registro HKEY_LOCAL_MACHINE\\SYSTEM\\D"
+"riverDatabase\\DeviceIds en este sistema operativo Windows. Es posible que "
+"se trate de una versión muy antigua o muy reciente de Windows que no podemos "
+"procesar."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1802,8 +1800,7 @@ msgstr "ha fallado al crear máquina virtual, consulte errores anteriores"
 
 #: output/output_ovirt_upload.ml:479
 msgid "failed to finalize the transfers, see earlier errors"
-msgstr ""
-"incorrecto al finalizar las transferencias, consulte errores anteriores"
+msgstr "incorrecto al finalizar las transferencias, consulte errores anteriores"
 
 #: common/mldrivers/linux_bootloaders.ml:208
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
@@ -2420,8 +2417,8 @@ msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or "
 "\"available\""
 msgstr ""
-"openstack: estado de volumen «%s» desconocido: se esperaba «creating» o "
-"«available»"
+"openstack: estado de volumen «%s» desconocido: se esperaba «creating» o «"
+"available»"
 
 #: output/output.ml:133
 msgid "output mode only supports raw or qcow2 format (format: %s)"
@@ -2502,8 +2499,7 @@ msgstr "qemu-nbd: versión inesperada en --version: %s"
 
 #: common/mlcustomize/customize_run.ml:77
 msgid "random seed could not be set for this type of guest"
-msgstr ""
-"la semilla aleatoria no pudo ser establecida para este tipo de invitado"
+msgstr "la semilla aleatoria no pudo ser establecida para este tipo de invitado"
 
 #: input/parse_domain_from_vmx.ml:44
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
@@ -2755,8 +2751,8 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
-"no hay ninguna unidad de red virtio para esta versión de Windows (%d.%d "
-"%s).  virt-v2v busca esta unidad en %s\n"
+"no hay ninguna unidad de red virtio para esta versión de Windows (%d.%d %s)"
+".  virt-v2v busca esta unidad en %s\n"
 "\n"
 "El invitado será configurado para utilizar una unidad emulada más lenta."
 
@@ -3178,8 +3174,8 @@ msgstr ""
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
 msgstr ""
-"%s: algunos sistemas de archivos no han podido ser montados (se "
-"descartaron)\n"
+"%s: algunos sistemas de archivos no han podido ser montados (se descartaron)"
+"\n"
 
 #: common/options/inspect.c:178
 #, c-format

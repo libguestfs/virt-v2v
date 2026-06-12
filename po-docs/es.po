@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-04-13 15:16+0100\n"
-"PO-Revision-Date: 2026-04-20 10:59+0000\n"
+"PO-Revision-Date: 2026-06-04 01:02+0000\n"
 "Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/es/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -63,8 +63,9 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.8.pod:214
 #: docs/virt-v2v-release-notes-2.8.pod:323
 #: docs/virt-v2v-release-notes-2.8.pod:327
+#, fuzzy
 msgid "comment"
-msgstr "comentar"
+msgstr "efectuar"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:3
@@ -109,7 +110,8 @@ msgid ""
 msgstr ""
 " Este programa es software libre; puede redistribuirlo y/o modificarlo\n"
 "bajo los términos de la Licencia Pública General GNU publicada por la\n"
-"Free Software Foundation; ya sea la versión 2 de la Licencia o (a su elección)\n"
+"Free Software Foundation; ya sea la versión 2 de la Licencia o (a su "
+"elección)\n"
 "cualquier versión posterior.\n"
 "\n"
 
@@ -141,7 +143,8 @@ msgid ""
 "\n"
 msgstr ""
 " Debería haber recibido una copia de la Licencia Pública General de GNU\n"
-" junto con este programa; de no ser así, escriba a la Free Software Foundation, Inc.,\n"
+" junto con este programa; de no ser así, escriba a la Free Software "
+"Foundation, Inc.,\n"
 " 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE. UU.\n"
 "\n"
 
@@ -149,7 +152,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:29
 #: common/mlcustomize/v2v-customize-options.pod:29
 msgid "B<--append-line> FILE:LINE"
-msgstr "B<--append-line> FILE:LINE"
+msgstr "B<--append-line> ARCHIVO:LÍNEA"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:31
@@ -542,8 +545,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:147
 #: common/mlcustomize/v2v-customize-options.pod:147
 msgid "Note that this option is only available when Perl 5 is installed."
-msgstr ""
-"Note que esta opción solo está disponible cunado esté instalado Perl 5."
+msgstr "Note que esta opción solo está disponible cunado esté instalado Perl 5."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:149
@@ -984,8 +986,8 @@ msgid ""
 "C<md5> will work with relatively old Linux guests (eg. RHEL 3), but is not "
 "secure against modern attacks."
 msgstr ""
-"C<md5> funcionará con invitados de Linux relativamente antiguos (p.e. RHEL "
-"3), pero no es seguro frente a ataques modernos."
+"C<md5> funcionará con invitados de Linux relativamente antiguos (p.e. RHEL 3)"
+", pero no es seguro frente a ataques modernos."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:320
@@ -1132,8 +1134,7 @@ msgstr "B<--scrub> ARCHIVO"
 #: common/mlcustomize/customize-options.pod:377
 #: common/mlcustomize/v2v-customize-options.pod:323
 msgid "Scrub a file from the guest.  This is like I<--delete> except that:"
-msgstr ""
-"Recorta un archivo desde el invitado. Es como I<--delete>, excepto que:"
+msgstr "Recorta un archivo desde el invitado. Es como I<--delete>, excepto que:"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:383
@@ -1410,8 +1411,8 @@ msgstr ""
 "Este parámetro establece el tamaño del sector de la imagen de disco. Afecta "
 "a todos los discos añadidos explícitamente después de este parámetro. Al "
 "usar I<--blocksize> sin argumentos, el tamaño del sector del disco se cambia "
-"al valor predeterminado, que suele ser de 512 bytes. Véase también "
-"L<guestfs(3)/guestfs_add_drive_opts>."
+"al valor predeterminado, que suele ser de 512 bytes. Véase también L<guestfs"
+"(3)/guestfs_add_drive_opts>."
 
 #. type: =item
 #: common/options/key-option.pod:1
@@ -1772,7 +1773,8 @@ msgstr ""
 " virt-v2v -i vmx\n"
 "    -lt ssh\n"
 "    -ip passwordfile\n"
-"     'ssh://root@esxi.example.com/vmfs/volúmenes/datastore1/invitado/invitado.vmx'\n"
+"     'ssh://root@esxi.example.com/vmfs/volúmenes/datastore1/invitado/"
+"invitado.vmx'\n"
 "    [-o* opciones]\n"
 "\n"
 
@@ -5636,7 +5638,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:14
 #: docs/virt-v2v-release-notes-2.8.pod:14
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:101
@@ -5673,6 +5675,10 @@ msgid ""
 "the OCaml bindings to libvirt (L<https://libvirt.org/ocaml/>), although a "
 "copy is bundled for now (it will be removed later).  (Pino Toscano)."
 msgstr ""
+"Ahora se requiere libvirt para compilar virt-v2v. Adicionalmente requerirá "
+"los vínculos de OCaml para libvirt (L<https://libvirt.org/ocaml/>), aunque "
+"una copia está vinculada por ahora (será retirada posteriormente). (Pino "
+"Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:114
@@ -5680,6 +5686,8 @@ msgid ""
 "Libosinfo is required to build virt-v2v.  It is used to query information "
 "about guest drivers.  (Pino Toscano)."
 msgstr ""
+"Se requiere libosinfo para construir virt‐v2v. Es utilizado para información "
+"de solicitudes sobre las unidades invitadas.  (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:117
@@ -5687,21 +5695,23 @@ msgid ""
 "Fixes for OCaml E<ge> 4.10.  The minimum version of OCaml required is still "
 "4.01, but may be increased to 4.05 in future."
 msgstr ""
+"Correcciones para OCaml E<ge> 4.10. La versión mínima de OCaml requerida "
+"sigue siendo la 4.01, pero podría aumentarse a la 4.05 en el futuro."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:120
 msgid "Test conversions of Debian 9 and Fedora 29 (Pino Toscano)."
-msgstr ""
+msgstr "Conversiones de las pruebas de Debian 9 y Fedora 29 (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:122
 msgid "Various fixes to srcdir != builddir (Pino Toscano)."
-msgstr ""
+msgstr "Varias correcciones a srcdir != builddir (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:124
 msgid "Remove gnulib modules not used by virt-v2v (Pino Toscano)."
-msgstr ""
+msgstr "Retirada de módulos gnulib no utilizados por virt-v2v (Pino Toscano)."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:126
@@ -5712,13 +5722,15 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:86
 #: docs/virt-v2v-release-notes-2.8.pod:171
 msgid "Internals"
-msgstr ""
+msgstr "Internas"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:128
 msgid ""
 "When converting SUSE guests, always try to install QXL driver (Mike Latimer)."
 msgstr ""
+"Al convertir invitados SUSE, intenta siempre instalar la unidad QXL (Mike "
+"Latimer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:131
@@ -5726,11 +5738,15 @@ msgid ""
 "Two new modules (Nbdkit and Nbdkit_sources) factor out generic nbdkit "
 "operations and nbdkit source operations respectively."
 msgstr ""
+"Dos módulos nuevos (Nbdkit y Nbdkit_sources) extraen, respectivamente, las "
+"operaciones genéricas de nbdkit y las operaciones de código fuente de nbdkit."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:134
 msgid "Format Python code to comply with PEP 8 / pycodestyle (Pino Toscano)."
 msgstr ""
+"Formatear el código Python para que cumpla con PEP 8 / pycodestyle (Pino "
+"Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:136
@@ -5738,6 +5754,8 @@ msgid ""
 "Tests have been moved to the F<tests/> subdirectory, and manuals to the "
 "F<docs/> subdirectory."
 msgstr ""
+"Las pruebas han sido movidas al subdirectorio F<tests/> y los manuales al "
+"subdirectorio F<docs/>."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:139
@@ -5748,12 +5766,12 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.6.pod:90
 #: docs/virt-v2v-release-notes-2.8.pod:206
 msgid "Bugs fixed"
-msgstr ""
+msgstr "Fallos corregidos"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:143
 msgid "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
-msgstr ""
+msgstr "https_proxy= ./bugs-in-changelog.sh v1.40.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:149
@@ -5763,7 +5781,7 @@ msgstr "L<https://bugzilla.redhat.com/1791802>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:151
 msgid "virt-v2v does not install qemu-ga on EL8 guest"
-msgstr ""
+msgstr "virt-v2v no instala qemu-ga en EL8 invitado"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:153
@@ -5786,7 +5804,7 @@ msgstr "L<https://bugzilla.redhat.com/1791240>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:159
 msgid "[RFE] Make the rhv-cafile optional"
-msgstr ""
+msgstr "[RFE] Hace rhv-cafile opcional"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:161
@@ -5799,6 +5817,8 @@ msgid ""
 "Should remove info about \"Remove VMware tools from Windows guests\" in virt-"
 "v2v-input-vmware man page"
 msgstr ""
+"Retiraría informe sobre «Retirar herramientas VMware desde invitados de "
+"Windows» en la página man de virt-v2v-input-vmware"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:165
@@ -5811,6 +5831,8 @@ msgid ""
 "Can't import guest from export domain to data domain on rhv4.3 due to error "
 "\"Invalid parameter: 'DiskType=1'\""
 msgstr ""
+"No puede importar invitado desde dominio de exportación a dominio de datos "
+"en rhv4.3 debido a un error en \"Parámetro no válido: 'DiskTipe=1'\""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:169
@@ -5820,7 +5842,7 @@ msgstr "L<https://bugzilla.redhat.com/1733168>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:171
 msgid "virt-v2v: Use scp -T in -i vmx -it ssh mode"
-msgstr ""
+msgstr "virt-v2v: Utilice scp -T en modo -i vmx -it ssh"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:173
@@ -5833,6 +5855,8 @@ msgid ""
 "Delete info \"export PATH=/path/to/nbdkit-1.1.x:$PATH\" in virt-v2v-input-"
 "vmware manual page"
 msgstr ""
+"Borra info \"export PATH=/ruta/a/nbdkit-1.1.x:$PATH\" en la página del "
+"manual virt-v2v-input-vmware"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:177
@@ -5845,6 +5869,8 @@ msgid ""
 "virt-v2v should show a message when qemu-guest-agent is installed in guest "
 "successfully during conversion"
 msgstr ""
+"virt-v2v mostraría un mensaje cuando qemu-guest-agent esté instalado "
+"correctamente en el invitado durante la conversión"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:181
@@ -5857,6 +5883,8 @@ msgid ""
 "virt-v2v fails to import a guest while cannot find `file_architecture` for a "
 "file"
 msgstr ""
+"virt-v2v falla al importar un invitado mientras no se puede encontrar "
+"`file_architecture` para un archivo"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:185
@@ -5869,6 +5897,8 @@ msgid ""
 "[v2v][RHV][Scale] v2v Migration to RHV failed on timed out waiting for "
 "transfer to finalize"
 msgstr ""
+"[v2v][RHV][Scale] Migración v2v a RHV incorrecta en el tiempo de espera para "
+"que la transferencia finalice"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:189
@@ -5879,6 +5909,8 @@ msgstr "L<https://bugzilla.redhat.com/1626503>"
 #: docs/virt-v2v-release-notes-1.42.pod:191
 msgid "Unable to maintain static IP address configuration post VM migration"
 msgstr ""
+"No es posible mantener configuración de dirección IP estática posterior a la "
+"migración de la MV"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:193
@@ -5891,6 +5923,8 @@ msgid ""
 "Guest has no disk after rhv-upload converting if target data domain has "
 "similar name with other data domain on rhv4.2"
 msgstr ""
+"Invitado no tiene disco tras que se convierta rhv-upload si el destino del "
+"dominio de los datos tiene nombre similar con otro dominio de datos en rhv4.2"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:197
@@ -5900,7 +5934,7 @@ msgstr "L<https://bugzilla.redhat.com/1605242>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:199
 msgid "Update nbdkit info for vddk in v2v man page"
-msgstr ""
+msgstr "Actualiza informe de nbdkit para vddk en la página de man v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:201
@@ -5913,6 +5947,8 @@ msgid ""
 "On W2K12r2 rhev-apt does not run non-interactively, causing race when "
 "starting rhev-apt service from the command line"
 msgstr ""
+"En W2K12r2 rhev-qpt no ejecuta en modo no interactivo, causando carreras "
+"cuando inicia el servicio rhev-apt desde la línea de comando"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:205
@@ -5922,7 +5958,7 @@ msgstr "L<https://bugzilla.redhat.com/1518539>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:207
 msgid "Macvtap network will be lost during v2v conversion"
-msgstr ""
+msgstr "La red macvtab será desconectada durante la conversión v2v"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:215
@@ -5930,11 +5966,13 @@ msgid ""
 "Previous release notes covering virt-v2v can be found in the libguestfs "
 "project: L<guestfs-release-notes-1.40(1)>."
 msgstr ""
+"Las notas de versiones anteriores cubriendo virt-v2v pueden encontrarse "
+"dentro del proyecto libguestfs: L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:220
 msgid "Daniel Erez"
-msgstr ""
+msgstr "Daniel Erez"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:224
@@ -5942,20 +5980,20 @@ msgstr ""
 #: in-place/virt-v2v-in-place.pod:387 inspector/virt-v2v-inspector.pod:249
 #: open/virt-v2v-open.pod:161
 msgid "Tomáš Golembiovský"
-msgstr ""
+msgstr "Tomáš Golembiovský"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:226
 #: docs/virt-v2v-release-notes-2.0.pod:384
 msgid "Martin Kletzander"
-msgstr ""
+msgstr "Martin Kletzander"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:228 docs/virt-v2v.pod:1973
 #: in-place/virt-v2v-in-place.pod:395 inspector/virt-v2v-inspector.pod:257
 #: open/virt-v2v-open.pod:169
 msgid "Mike Latimer"
-msgstr ""
+msgstr "Mike Latimer"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:230
@@ -5964,7 +6002,7 @@ msgstr ""
 #: in-place/virt-v2v-in-place.pod:397 inspector/virt-v2v-inspector.pod:259
 #: open/virt-v2v-open.pod:171
 msgid "Nir Soffer"
-msgstr ""
+msgstr "Nir Soffer"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:232
@@ -5972,7 +6010,7 @@ msgstr ""
 #: in-place/virt-v2v-in-place.pod:399 inspector/virt-v2v-inspector.pod:261
 #: open/virt-v2v-open.pod:173
 msgid "Pino Toscano"
-msgstr ""
+msgstr "Pino Toscano"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:234
@@ -5980,12 +6018,12 @@ msgstr ""
 #: in-place/virt-v2v-in-place.pod:403 inspector/virt-v2v-inspector.pod:265
 #: open/virt-v2v-open.pod:177
 msgid "Ming Xie"
-msgstr ""
+msgstr "Ming Xie"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.0"
-msgstr ""
+msgstr "virt-v2v-release-notes – virt-v2v notas de lanzamiento para 2.0"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:7
@@ -5993,17 +6031,21 @@ msgid ""
 "These are the release notes for S<B<virt-v2v 2.0>>.  This describes the "
 "major changes since 1.42."
 msgstr ""
+"Estas son las notas de la versión de S<B<virt-v2v 2.0>>.  Aquí se describen "
+"los cambios principales desde la versión 1.42."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:10
 msgid ""
 "No release notes were published for 1.44, so that release is covered here."
 msgstr ""
+"No se publicaron notas de la versión 1.44, por lo que esa versión se trata "
+"aquí."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:13
 msgid "Virt-v2v 2.0.0 was released on S<B<14 March 2022>>."
-msgstr ""
+msgstr "Virt-v2v 2.0.0 fue lanzado el S<B<14 de marzo de 2022>>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:21
@@ -6012,6 +6054,9 @@ msgid ""
 "state of the conversion and inject their own copying step.  Further "
 "enhancements will be made to this new architecture in forthcoming releases."
 msgstr ""
+"Virt-v2v se ha modularizado, lo que permite que programas externos examinen "
+"el estado de la conversión e inserten su propio paso de copia. En futuras "
+"versiones se implementarán mejoras adicionales a esta nueva arquitectura."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:26
@@ -6022,6 +6067,12 @@ msgid ""
 "input format, whereas previous versions of virt-v2v would use the same "
 "output format as input format automatically."
 msgstr ""
+"La línea de comandos es prácticamente idéntica, salvo por algunas funciones "
+"de depuración que se eliminaron (consulte más abajo). La única diferencia "
+"significativa es que ahora hay que especificar el formato de salida (I<-of>) "
+"si difiere del formato de entrada, mientras que las versiones anteriores de "
+"virt-v2v utilizaban automáticamente el mismo formato de salida que el de "
+"entrada."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:33
@@ -6029,11 +6080,13 @@ msgid ""
 "A lot of time was spent improving the performance of virt-v2v in common "
 "cases."
 msgstr ""
+"Se dedicó mucho tiempo a mejorar el rendimiento de virt-v2v en los casos más "
+"comunes."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:36
 msgid "Implement conversion of ALT Linux guests (Mikhail Gordeev)."
-msgstr ""
+msgstr "Implementar la conversión de invitados en ALT Linux (Mikhail Gordeev)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:38
@@ -6041,6 +6094,8 @@ msgid ""
 "Many bug fixes and performance enhancements were made to oVirt imageio "
 "output (Nir Soffer)."
 msgstr ""
+"Se realizaron numerosas correcciones de fallos y mejoras de rendimiento en "
+"la salida de imagen de oVirt (Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:41
@@ -6048,6 +6103,8 @@ msgid ""
 "There is a new L<virt-v2v-in-place(1)> tool which replaces the existing virt-"
 "v2v I<--in-place> option."
 msgstr ""
+"Hay una nueva herramienta L<virt-v2v-in-place(1)> que reemplaza la opción "
+"existente virt-v2v I<--in-place>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:44
@@ -6055,6 +6112,8 @@ msgid ""
 "Virt-v2v can now convert guests which use LUKS encrypted logical volumes "
 "(Laszlo Ersek)."
 msgstr ""
+"Virt-v2v ahora puede convertir invitados los cuales cifraron volúmenes "
+"lógicos con LUKS (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:47
@@ -6064,6 +6123,10 @@ msgid ""
 "proxy mode available for restricted network configurations (thanks: Nir "
 "Soffer)."
 msgstr ""
+"La opción I<-oo rhv-direct> ha sido sustituida por I<-oo rhv-proxy>, y en "
+"modo directo (el cual es más rápido) ahora es el predeterminado cuando "
+"escriba a oVirt, con modo proxy disponible para configuraciones de red "
+"restringidas (gracias: Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:52
@@ -6071,6 +6134,8 @@ msgid ""
 "The following command line options were removed: I<--print-estimate>, I<--"
 "debug-overlays>, I<--no-copy>."
 msgstr ""
+"Se eliminaron las siguientes opciones de línea de comandos: I<--print-"
+"estimate>, I<--debug-overlays>, I<--no-copy>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:55
@@ -6078,6 +6143,8 @@ msgid ""
 "Virt-v2v no longer installs the RHEV-APT tool in Windows guests.  This tool "
 "was deprecated and then removed in oVirt 4.3."
 msgstr ""
+"Virt-v2v no instala más la herramienta RHEV-APT en invitados de Windows. "
+"Esta herramienta fue obsoleta y retirada en oVirt 4.3."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:58
@@ -6085,6 +6152,8 @@ msgid ""
 "Deprecated tool virt-v2v-copy-to-local has been removed.  This was "
 "deprecated in November 2018."
 msgstr ""
+"Herramienta virt-v2v-copy-to-local obsoleta ha sido retirada. Esta fue "
+"obsoleta en noviembre de 2018."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:63
@@ -6092,6 +6161,8 @@ msgid ""
 "Remove reference to prl_strg driver in Windows guests to avoid BSOD (Denis "
 "Plotnikov)."
 msgstr ""
+"Retira referencia para unidad prl_strg en invitados de Windows para evitar "
+"BSOD (Denis Plotnikov)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:66
@@ -6099,6 +6170,8 @@ msgid ""
 "Fix conversions of UEFI Linux guests that don't provide their own fallback "
 "bootloader (Denis Plotnikov)."
 msgstr ""
+"Soluciona conversaciones de invitados de Linux UEFI que no proporcionen sus "
+"propio cargador de arranque de recuperación (Denis Plotnikov)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:69
@@ -6106,6 +6179,8 @@ msgid ""
 "Remove use of L<nbdkit-readahead-filter(1)>.  This filter uses a naive "
 "strategy and it had several negative effects on conversions."
 msgstr ""
+"Se retira el uso de L<nbdkit-readahead-filter(1)>. Este filtro utiliza una "
+"estrategia ingenua y tuvo varios efectos negativos en conversiones."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:72
@@ -6113,6 +6188,9 @@ msgid ""
 "Remove prompts for interactive passwords.  Normally you should try to use "
 "the I<-ip> and/or I<-op> options to supply passwords."
 msgstr ""
+"Se retiran las indicaciones para contraseñas interactivas. Normalmente "
+"intentaría utilizar las opciones I<-ip> y/o I<-op> para proporcionar "
+"contraseñas."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:75
@@ -6122,6 +6200,10 @@ msgid ""
 "timezones.  (Thanks: Dinesh Herath, Tomáš Golembiovský, Bryan Kinney, Mark "
 "Zealey, Xiaodai Wang)"
 msgstr ""
+"Para los invitados de Windows, insertamos un comando schtasks. Sin embaro "
+"los parámetros de este comando son dependientes de la zona horaria y por "
+"tanto falla en zonas horarias distintas de la europea. (Gracias: Dinesh "
+"Herath, Tomáš Golembiovský, Bryan Kinney, Mark Zealey, Xiaodai Wang)"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:80
@@ -6130,6 +6212,9 @@ msgid ""
 "guests over HTTPS which stops large guests and/or slow copies taking longer "
 "than about 30 minutes from failing."
 msgstr ""
+"Virt-v2v re‐autenticará con servidores vCenter periodicamente cuando copie "
+"invitados sobre HTTPS la cual detiene invitados grandes y/o las copilas "
+"lentas más largas que alrededor de 30 minutos desde que se cuelgue."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:84
@@ -6137,6 +6222,9 @@ msgid ""
 "Virt-v2v now sets libguestfs SMP to match number of physical host CPUs, "
 "which helps performance of certain conversion steps."
 msgstr ""
+"Ahora virt-v2v establece libguestfs SMP para coincidir número de hospedaje "
+"físico de las CPU, las cueles ayudan en rendimiento de ciertos pasos de "
+"conversión."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:87
@@ -6156,6 +6244,8 @@ msgid ""
 "Virt-v2v now generates a virtio-vsock device for guests which support it "
 "(Valeriy Vdovin)."
 msgstr ""
+"Ahora virt-v2v genera un dispositivo virtio-vsock para invitados los cuales "
+"lo admiten (Valeriy Vdovin)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:94
@@ -6163,6 +6253,8 @@ msgid ""
 "All guests now need at least 100 MB of free space for conversion to succeed "
 "(Ming Xie)."
 msgstr ""
+"Ahora todos los invitados necesitan al menos 100 MB de espacio libre para "
+"lograr la conversión (Ming Xie)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:97
@@ -6170,6 +6262,8 @@ msgid ""
 "Standard VGA instead of QXL is now used as the video type for converted "
 "guests (Laszlo Ersek)."
 msgstr ""
+"Ahora es utilizado VGA estándar en vez de QXL como el tipo de vídeo para "
+"invitados convertidos (Laszlo Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:100
@@ -6206,21 +6300,23 @@ msgid ""
 "L<nbdcopy(1)> and OCaml NBD bindings, both from libnbd E<ge> 1.10, are now "
 "required."
 msgstr ""
+"L<nbdcopy(1)> y vínculos OCaml NBC, ambos desde libnbd E<ge> 1.10, ahora es "
+"requerido."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:120
 msgid "nbdkit E<ge> 1.22 is now required (Nir Soffer)."
-msgstr ""
+msgstr "Ahora nbdkit E<ge> 1.22 es requerido (Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:122
 msgid "pcre2 (instead of pcre) is now required."
-msgstr ""
+msgstr "pcre2 (en vez de pcre) ahora es requerido."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:124
 msgid "gnulib is no longer bundled or used by virt-v2v."
-msgstr ""
+msgstr "gnulib no es más vinculado o utilizado por virt-v2v."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:126
@@ -6228,6 +6324,8 @@ msgid ""
 "OCaml E<ge> 4.04 is now required.  OCaml 4.13 support has been added in this "
 "release."
 msgstr ""
+"OCaml E<ge> 4.04 ahora es requerido.  El mantenimiento de OCaml 4.13 ha sido "
+"agregado en esta versión."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:129
@@ -6235,16 +6333,19 @@ msgid ""
 "OpenSSH scp E<ge> 8.8 is now required.  Earlier versions will fail because "
 "the command line syntax was changed incompatibly."
 msgstr ""
+"OpenSSH scp E<ge> 8.8 ahora se requiere. Las versiones más anteriores "
+"fallarán porque la sintaxis de línea de comando fue declarada incompatible."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:134
 msgid "Weblate instead of Zanata is now used for translations (Pino Toscano)."
 msgstr ""
+"Weblate en vez de Zanara ahora se utiliza para traducciones (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:140
 msgid "https_proxy= ./bugs-in-changelog.sh v1.42.0.."
-msgstr ""
+msgstr "https_proxy= ./bugs-in-changelog.sh 1.42.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:146
@@ -6257,6 +6358,8 @@ msgid ""
 "Missing error message of 'insufficient free space in the conversion server "
 "temporary directory'"
 msgstr ""
+"Ausencia de mensaje de error de 'espacio libre insuficiente en la conversión "
+"del directorio temporal del servidor'"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:150
@@ -6267,6 +6370,8 @@ msgstr "L<https://bugzilla.redhat.com/2044922>"
 #: docs/virt-v2v-release-notes-2.0.pod:152
 msgid "nbdinfo output to stdout instead of stderr during virt-v2v conversion"
 msgstr ""
+"salida de nbdinfo por salida estándar en lugar de stderr durante conversión "
+"de virt-v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:154
@@ -6276,7 +6381,7 @@ msgstr "L<https://bugzilla.redhat.com/2044911>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:156
 msgid "virt-p2v conversion hangs with RHEL9 virt-v2v"
-msgstr ""
+msgstr "cuelgue en conversión de virt-p2v con el virt-v2v de RHEL9"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:158
@@ -6289,6 +6394,8 @@ msgid ""
 "'model='virtio-transitional' is wrongly added when converting windows guest "
 "to local by rhel9 v2v"
 msgstr ""
+"'model='virtio-transitional' es agregado incorrectamente cuando convierte "
+"ventanas de invitado a local por v2v de rhel9"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:162
@@ -6312,7 +6419,7 @@ msgstr "L<https://bugzilla.redhat.com/2041852>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:168
 msgid "Improve the unclear assertion failure at input_xen_ssh.ml"
-msgstr ""
+msgstr "Mejora el fallo de aserción no claro en input_xen_ssh.ml"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:170
@@ -6322,7 +6429,7 @@ msgstr "L<https://bugzilla.redhat.com/2041850>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:172
 msgid "Can not specify '-oo json-disks-pattern' in '-o json' mode"
-msgstr ""
+msgstr "No puede especificar '-oo json-disks-pattern' en modo '-o json'"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:174
@@ -6333,6 +6440,8 @@ msgstr "L<https://bugzilla.redhat.com/2039597>"
 #: docs/virt-v2v-release-notes-2.0.pod:176
 msgid "Failed to import VM when selecting OVA as a source on RHV webadmin"
 msgstr ""
+"Incorrecto al importar MV cuando selecciona OVA como un origen en la "
+"webadmin de RHV"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:178
@@ -6344,6 +6453,8 @@ msgstr "L<https://bugzilla.redhat.com/2039255>"
 msgid ""
 "Conversion performance is not good when convert guest by modular virt-v2v"
 msgstr ""
+"No es buena el rendimiento de conversión cuando convierte invitado por virt-"
+"v2v modular"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:182
@@ -6356,6 +6467,8 @@ msgid ""
 "calling \"get_disk_allocated\" in \"create_ovf\" breaks the rhv-upload "
 "output plugin"
 msgstr ""
+"invocando a \"get_disk_allocated\" en \"create_ovf\" interrumpe la subida "
+"del complemento rhv-upload"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:186
@@ -6500,7 +6613,7 @@ msgstr "L<https://bugzilla.redhat.com/1961107>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:236
 msgid "Change video type from qxl to vga after v2v conversion"
-msgstr ""
+msgstr "Cambia el tipo de vídeo desde qxl a vga tras conversión v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:238
@@ -6513,6 +6626,8 @@ msgid ""
 "v2v import from vCenter fails when using interactive password because cookie-"
 "script tries to be interactive"
 msgstr ""
+"v2v falla cuando importa desde vCenter utilizando contraseña interactiva "
+"porque el cookie-script intente ser interactivo"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:242
@@ -6525,6 +6640,9 @@ msgid ""
 "Should improve the minimum free space for windows guest in v2v man page and "
 "better to improve v2v error message about no space left for windows guest"
 msgstr ""
+"Mejoraría el espacio libre mínimo para ventanas invitadas en página man v2v "
+"y mejor para mejorar el mensaje de error v2v acerca de falta de espacio para "
+"ventanas de invitado"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:246
@@ -6859,8 +6977,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
 "notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
-"notes-1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-notes-"
+"1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:368
@@ -7503,8 +7621,7 @@ msgstr "Los invitados de Windows 11 ahora tienen mantenimiento."
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:34
 msgid "Rocky Linux guest support has been added (Andrey Drobyshev)."
-msgstr ""
-"Se ha añadido soporte para invitados de Rocky Linux (Andrey Drobyshev)."
+msgstr "Se ha añadido soporte para invitados de Rocky Linux (Andrey Drobyshev)."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-2.2.pod:36
@@ -7555,8 +7672,8 @@ msgid ""
 "server side when importing over SSH (Laszlo Ersek)."
 msgstr ""
 "Mejorar la documentación sobre la necesidad de habilitar la autenticación de "
-"contraseña en el lado del servidor al importar a través de SSH (Laszlo "
-"Ersek)."
+"contraseña en el lado del servidor al importar a través de SSH (Laszlo Ersek)"
+"."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:56
@@ -7640,8 +7757,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.2.pod:88
 msgid "Remove the LVM2 devices file during conversion (Laszlo Ersek)."
 msgstr ""
-"Eliminar el archivo de dispositivos LVM2 durante la conversión (Laszlo "
-"Ersek)."
+"Eliminar el archivo de dispositivos LVM2 durante la conversión (Laszlo Ersek)"
+"."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:90
@@ -8752,8 +8869,7 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-55837>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:154
 msgid "Re-enable Windows disks post-live migration [rhel-9.4.z]"
-msgstr ""
-"Re-habilitar discos de Windows tras la migración post-live [rhel-9.4.z]"
+msgstr "Re-habilitar discos de Windows tras la migración post-live [rhel-9.4.z]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:156
@@ -9574,8 +9690,8 @@ msgid ""
 "Not recently tested.  Requires that you export the disk or use L<virt-"
 "p2v(1)> on Hyper-V."
 msgstr ""
-"No probado recientemente. Requiere que exporte el disco o utilizar L<virt-"
-"p2v(1)> en Hyper-V."
+"No probado recientemente. Requiere que exporte el disco o utilizar L<virt-p2v"
+"(1)> en Hyper-V."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:45
