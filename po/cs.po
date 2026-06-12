@@ -2,9 +2,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-02-16 17:05+0000\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-06-04 00:12+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
+#: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
 msgstr "%s"
 
@@ -26,7 +26,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:390
+#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
 msgstr ""
 
@@ -73,11 +73,11 @@ msgstr "Vpravit do hosta veřejný klíč"
 msgid "%s option used more than once on the command line"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
+#: common/mltools/tools_utils.ml:234 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: common/mltools/tools_utils.ml:233
+#: common/mltools/tools_utils.ml:236
 msgid "%s: %s: %s"
 msgstr "%s: %s: %s"
 
@@ -158,7 +158,7 @@ msgid ""
 "read the man page virt-v2v-open(1).\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:726
+#: common/mltools/tools_utils.ml:729
 msgid "%s: operation timed out"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "--parallel parameter must be >= 1"
 msgstr ""
 
-#: input/input_disk.ml:42
+#: input/input_disk.ml:43
 msgid "-i disk: expecting a disk image (filename) on the command line"
 msgstr ""
 
@@ -545,7 +545,7 @@ msgstr "%s: varování: %s%c"
 msgid "Display brief help"
 msgstr "Zobrazit stručnou nápovědu"
 
-#: common/mltools/tools_utils.ml:385
+#: common/mltools/tools_utils.ml:388
 msgid "Display version and exit"
 msgstr "Zobrazit verzi a skončit"
 
@@ -557,11 +557,11 @@ msgstr ""
 msgid "Don't trim filesystems before conversion"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:389
+#: common/mltools/tools_utils.ml:392
 msgid "Don’t print progress messages"
 msgstr "Nevypisovat zprávy o míře postupu"
 
-#: common/mltools/tools_utils.ml:420
+#: common/mltools/tools_utils.ml:423
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
@@ -575,11 +575,11 @@ msgstr "Upravit soubor pomocí výrazu v Perl"
 msgid "Editing: %s"
 msgstr "%s: varování: %s%c"
 
-#: common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:389
 msgid "Enable libguestfs debugging messages"
 msgstr "Zapnout ladící zprávy z libguestfs"
 
-#: common/mltools/tools_utils.ml:387
+#: common/mltools/tools_utils.ml:390
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
@@ -738,7 +738,7 @@ msgstr ""
 msgid "METHOD"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:426
+#: common/mltools/tools_utils.ml:429
 msgid "Make output machine readable"
 msgstr ""
 
@@ -890,7 +890,7 @@ msgstr ""
 msgid "Read customize commands from file"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:421
+#: common/mltools/tools_utils.ml:424
 msgid "Read passphrases from stdin"
 msgstr ""
 
@@ -956,7 +956,7 @@ msgstr "%s: varování: %s%c"
 msgid "SCRIPT"
 msgstr "SKRIPT"
 
-#: common/mltools/tools_utils.ml:422
+#: common/mltools/tools_utils.ml:425
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
 msgstr ""
@@ -1048,7 +1048,7 @@ msgstr ""
 msgid "Set password crypto"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:430
+#: common/mltools/tools_utils.ml:433
 msgid "Set program name"
 msgstr ""
 
@@ -1109,7 +1109,7 @@ msgstr ""
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:422
+#: common/mltools/tools_utils.ml:425
 msgid "Specify a LUKS key"
 msgstr ""
 
@@ -1213,7 +1213,7 @@ msgstr ""
 msgid "Uploading: %s to %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:391
+#: common/mltools/tools_utils.ml:394
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
@@ -1230,7 +1230,7 @@ msgstr ""
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:392
+#: common/mltools/tools_utils.ml:395
 msgid "Wrap log messages even if not tty"
 msgstr ""
 
@@ -1456,10 +1456,6 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
-#: input/input_disk.ml:150
-msgid "disks on the command line have mixed formats"
-msgstr ""
-
 #: input/parse_libvirt_xml.ml:194
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
 msgstr ""
@@ -1516,11 +1512,11 @@ msgstr ""
 msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:248
+#: common/mltools/tools_utils.ml:251
 msgid "exception: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:455
+#: common/mltools/tools_utils.ml:458
 #, fuzzy
 #| msgid "%s exited with error status %d"
 msgid "exited with error %d"
@@ -1532,17 +1528,13 @@ msgstr "%s ukončeno s chybovým stavem %d"
 msgid "exited with non-zero error code %d"
 msgstr "%s ukončeno s chybovým stavem %d"
 
-#: input/input_disk.ml:147
-msgid "expected >= 1 disk name on the command line"
-msgstr ""
-
 #: common/mltools/xpath_helpers.ml:36
 msgid ""
 "expecting XML expression to return an integer (expression: %s, matching "
 "string: %s)"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:440
+#: common/mltools/tools_utils.ml:443
 msgid "external command"
 msgstr ""
 
@@ -1574,7 +1566,7 @@ msgstr ""
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:239
+#: common/mltools/tools_utils.ml:242
 msgid "failure: %s"
 msgstr "nezdar: %s"
 
@@ -1588,7 +1580,7 @@ msgid ""
 "will not be removed"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:258
+#: common/mltools/tools_utils.ml:261
 #, fuzzy
 #| msgid "%s killed by signal %d (%s)"
 msgid "generated by %s %s"
@@ -1609,17 +1601,17 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:386 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "host typu %s není podporován"
 
-#: common/mlcustomize/firstboot.ml:413
+#: common/mlcustomize/firstboot.ml:418
 #, fuzzy
 #| msgid "guest type %s is not supported"
 msgid "guest type %s/%s is not supported"
 msgstr "host typu %s není podporován"
 
-#: common/mltools/tools_utils.ml:749
+#: common/mltools/tools_utils.ml:752
 msgid ""
 "host (%s/%s) and guest (%s/%s) are not compatible, so you cannot use command "
 "line options that involve running commands in the guest.  Use --firstboot "
@@ -1689,15 +1681,15 @@ msgid ""
 "host\"."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:246
+#: common/mltools/tools_utils.ml:249
 msgid "internal error: Not_found exception was thrown"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:243
+#: common/mltools/tools_utils.ml:246
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:241
+#: common/mltools/tools_utils.ml:244
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
@@ -1739,7 +1731,7 @@ msgstr ""
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:359
+#: common/mltools/tools_utils.ml:362
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
@@ -1751,15 +1743,15 @@ msgstr ""
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:374
+#: common/mltools/tools_utils.ml:377
 msgid "invalid output fd for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:376
+#: common/mltools/tools_utils.ml:379
 msgid "invalid output for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:368
+#: common/mltools/tools_utils.ml:371
 msgid "invalid output stream for --machine-readable: %s"
 msgstr ""
 
@@ -1787,13 +1779,13 @@ msgstr ""
 msgid "kernel %s is not under grub tree %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
+#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
 #, fuzzy
 #| msgid "%s killed by signal %d (%s)"
 msgid "killed by signal %d"
 msgstr "%s vynuceně ukončeno signálem %d (%s)"
 
-#: common/mltools/tools_utils.ml:237
+#: common/mltools/tools_utils.ml:240
 #, fuzzy
 #| msgid "%s: error: %s"
 msgid "libguestfs error: %s"
@@ -1896,7 +1888,7 @@ msgstr ""
 msgid "nbdkit is not installed or not working"
 msgstr ""
 
-#: input/input_disk.ml:92
+#: input/input_disk.ml:48
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
@@ -1943,7 +1935,7 @@ msgid ""
 msgstr ""
 
 #. input/input_libvirt.ml:76
-#. input/input_disk.ml:98
+#. input/input_disk.ml:53
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr ""
@@ -1952,12 +1944,12 @@ msgstr ""
 msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
-#. input/input_disk.ml:96
+#. input/input_disk.ml:51
 #: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
-#: input/input_libvirt.ml:74
+#: input/input_libvirt.ml:74 input/input_disk.ml:71
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr ""
 
@@ -2156,32 +2148,32 @@ msgid ""
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:264
+#: common/mltools/tools_utils.ml:420 common/options/keys.c:306
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:254
+#: common/mltools/tools_utils.ml:412 common/options/keys.c:296
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:232
+#: common/mltools/tools_utils.ml:402 common/options/keys.c:274
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr "sektor „%s“: chybí identifikátor"
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:245
+#: common/mltools/tools_utils.ml:407 common/options/keys.c:287
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:239
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:281
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:262
+#: common/mltools/tools_utils.ml:416 common/options/keys.c:304
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr ""
@@ -2224,8 +2216,8 @@ msgstr "Vpravit do hosta veřejný klíč"
 msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr ""
 
-#. common/mltools/tools_utils.ml:461
-#: lib/utils.ml:36 common/mltools/tools_utils.ml:542
+#. common/mltools/tools_utils.ml:464
+#: lib/utils.ml:36 common/mltools/tools_utils.ml:545
 #, fuzzy
 #| msgid "%s stopped by signal %d (%s)"
 msgid "stopped by signal %d"
@@ -2717,17 +2709,17 @@ msgstr "Operační systém: %s\n"
 msgid "%s mounted on %s\n"
 msgstr "%s připojeno na %s\n"
 
-#: common/options/keys.c:63
+#: common/options/keys.c:69
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Zadejte klíč nebo heslovou frázi („%s“): "
 
-#: common/options/keys.c:146
+#: common/options/keys.c:189
 #, c-format
 msgid "size_t overflow"
 msgstr ""
 
-#: common/options/keys.c:193
+#: common/options/keys.c:235
 #, c-format
 msgid "could not read key from user"
 msgstr "nepodařilo se načíst klíč od uživatele"

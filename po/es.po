@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
-"POT-Creation-Date: 2025-02-16 17:05+0000\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
+"POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-06-04 00:33+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
@@ -24,7 +24,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.6.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:235
+#: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
 msgstr "%s"
 
@@ -36,7 +36,7 @@ msgstr ""
 "%s\n"
 "Opciones:\n"
 
-#: common/mltools/tools_utils.ml:695 common/mlcustomize/customize_run.ml:390
+#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
 msgstr "%s (descartado)"
 
@@ -89,11 +89,11 @@ msgstr "%s no es un archivo común dentro del invitado"
 msgid "%s option used more than once on the command line"
 msgstr "%s opción utilizada más de una vez en la línea de comando"
 
-#: common/mltools/tools_utils.ml:231 common/mltools/tools_utils.ml:202
+#: common/mltools/tools_utils.ml:234 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: common/mltools/tools_utils.ml:233
+#: common/mltools/tools_utils.ml:236
 msgid "%s: %s: %s"
 msgstr "%s: %s: %s"
 
@@ -214,7 +214,7 @@ msgstr ""
 "A continuación se ofrece un breve resumen de las opciones.  Para obtener\n"
 "ayuda detallada, consulte la página man de virt-v2v-open(1).\n"
 
-#: common/mltools/tools_utils.ml:726
+#: common/mltools/tools_utils.ml:729
 msgid "%s: operation timed out"
 msgstr "%s: operación vencida"
 
@@ -282,7 +282,7 @@ msgstr "--mac ip prefijo de campo de longitud está fuera del intervalo"
 msgid "--parallel parameter must be >= 1"
 msgstr "el parámetro --parallel debe ser >= 1"
 
-#: input/input_disk.ml:42
+#: input/input_disk.ml:43
 msgid "-i disk: expecting a disk image (filename) on the command line"
 msgstr ""
 "disco -i: esperaba una imagen de disco (nombre de archivo) en la línea de "
@@ -452,7 +452,8 @@ msgstr ""
 
 #: output/output_ovirt_upload.ml:83
 msgid "-o ovirt-upload: output storage was not specified, use ‘-os’"
-msgstr "-o ovirt-upload: no fue especificada la salida de almacén, utilce ‘-os’"
+msgstr ""
+"-o ovirt-upload: no fue especificada la salida de almacén, utilce ‘-os’"
 
 #: output/output_ovirt_upload.ml:116
 msgid "-o ovirt-upload: unknown output option ‘-oo %s’"
@@ -652,7 +653,7 @@ msgstr "Eliminando: %s"
 msgid "Display brief help"
 msgstr "Exhibe una breve ayuda"
 
-#: common/mltools/tools_utils.ml:385
+#: common/mltools/tools_utils.ml:388
 msgid "Display version and exit"
 msgstr "Exhibe la versión y sale"
 
@@ -664,11 +665,11 @@ msgstr "No vuelva a etiquetar archivos con etiquetas correctas de SELinux"
 msgid "Don't trim filesystems before conversion"
 msgstr "No recortar sistemas de archivo antes de conversión"
 
-#: common/mltools/tools_utils.ml:389
+#: common/mltools/tools_utils.ml:392
 msgid "Don’t print progress messages"
 msgstr "No declara mensajes de progreso"
 
-#: common/mltools/tools_utils.ml:420
+#: common/mltools/tools_utils.ml:423
 msgid "Don’t turn off echo for passphrases"
 msgstr "No apaga el eco para frases de contraseña"
 
@@ -680,11 +681,11 @@ msgstr "Edita el archivo utilizando expresión de Perl"
 msgid "Editing: %s"
 msgstr "Editando: %s"
 
-#: common/mltools/tools_utils.ml:386
+#: common/mltools/tools_utils.ml:389
 msgid "Enable libguestfs debugging messages"
 msgstr "Habilita mensajes de depuración en libguestfs"
 
-#: common/mltools/tools_utils.ml:387
+#: common/mltools/tools_utils.ml:390
 msgid "Enable tracing of libguestfs calls"
 msgstr "Habilita traza de invocaciones de libguestfs"
 
@@ -852,7 +853,7 @@ msgstr "Enlazando: %s → %s"
 msgid "METHOD"
 msgstr "MÉTODO"
 
-#: common/mltools/tools_utils.ml:426
+#: common/mltools/tools_utils.ml:429
 msgid "Make output machine readable"
 msgstr "Hacer que la salida de la máquina sea leíble"
 
@@ -1059,7 +1060,7 @@ msgstr "Declara origen y detiene"
 msgid "Read customize commands from file"
 msgstr "Lee comandos de personalización desde archivo"
 
-#: common/mltools/tools_utils.ml:421
+#: common/mltools/tools_utils.ml:424
 msgid "Read passphrases from stdin"
 msgstr "Lee frases de acceso desde stdin"
 
@@ -1117,7 +1118,7 @@ msgstr "Ejecuta: %s"
 msgid "SCRIPT"
 msgstr "SCRIPT"
 
-#: common/mltools/tools_utils.ml:422
+#: common/mltools/tools_utils.ml:425
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
 msgstr "SELECTOR"
@@ -1205,7 +1206,7 @@ msgstr "Establecer lugar de almacén de salida"
 msgid "Set password crypto"
 msgstr "Establecer contraseña cifrada"
 
-#: common/mltools/tools_utils.ml:430
+#: common/mltools/tools_utils.ml:433
 msgid "Set program name"
 msgstr "Establecer nombre del programa"
 
@@ -1266,7 +1267,7 @@ msgstr "Configura el origen: %s"
 msgid "Source guest information (--print-source option):\n"
 msgstr "Información del invitado origen (opción --print-source):\n"
 
-#: common/mltools/tools_utils.ml:422
+#: common/mltools/tools_utils.ml:425
 msgid "Specify a LUKS key"
 msgstr "Especifica una clave LUKS"
 
@@ -1374,7 +1375,7 @@ msgstr "Subir archivo local al destino"
 msgid "Uploading: %s to %s"
 msgstr "Subir: %s a %s"
 
-#: common/mltools/tools_utils.ml:391
+#: common/mltools/tools_utils.ml:394
 msgid "Use ANSI colour sequences even if not tty"
 msgstr "Utilice secuencias de colores ANSI incluso si no es tty"
 
@@ -1393,7 +1394,7 @@ msgstr ""
 msgid "Use virt-v2v-in-place instead"
 msgstr "Utilice en su lugar virt-v2v-in-place"
 
-#: common/mltools/tools_utils.ml:392
+#: common/mltools/tools_utils.ml:395
 msgid "Wrap log messages even if not tty"
 msgstr "Cubre los mensajes de bitácora incluso si no es por tty"
 
@@ -1589,7 +1590,8 @@ msgstr ""
 
 #: common/mldrivers/linux_bootloaders.ml:221
 msgid "could not determine a way to update the configuration of Grub2"
-msgstr "no se pudo determinar una forma de actualizar la configuración de Grub2"
+msgstr ""
+"no se pudo determinar una forma de actualizar la configuración de Grub2"
 
 #: input/input_vddk.ml:243
 msgid ""
@@ -1611,10 +1613,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"no se pudo encontrar la entrada de registro HKEY_LOCAL_MACHINE\\SYSTEM\\D"
-"riverDatabase\\DeviceIds en este sistema operativo Windows. Es posible que "
-"se trate de una versión muy antigua o muy reciente de Windows que no podemos "
-"procesar."
+"no se pudo encontrar la entrada de registro "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds en este sistema "
+"operativo Windows. Es posible que se trate de una versión muy antigua o muy "
+"reciente de Windows que no podemos procesar."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1690,10 +1692,6 @@ msgstr ""
 msgid "didn't find grub entry for kernel %s"
 msgstr "no se encontró apunte de grub para el kernel %s"
 
-#: input/input_disk.ml:150
-msgid "disks on the command line have mixed formats"
-msgstr "los discos en la línea de comandos tienen formatos mezclados"
-
 #: input/parse_libvirt_xml.ml:194
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
 msgstr ""
@@ -1762,21 +1760,17 @@ msgstr "error al descomprimir %s, consulte los mensajes de error anteriores"
 msgid "error unpacking %s, see earlier error messages"
 msgstr "error al desempaquetar %s, consulte los mensajes de error anteriores"
 
-#: common/mltools/tools_utils.ml:248
+#: common/mltools/tools_utils.ml:251
 msgid "exception: %s"
 msgstr "excepción: %s"
 
-#: common/mltools/tools_utils.ml:455
+#: common/mltools/tools_utils.ml:458
 msgid "exited with error %d"
 msgstr "salido con error %d"
 
 #: lib/utils.ml:34
 msgid "exited with non-zero error code %d"
 msgstr "salido con error sin cero con código %d"
-
-#: input/input_disk.ml:147
-msgid "expected >= 1 disk name on the command line"
-msgstr "esperaba nombre del disco >= 1 en la línea de comando"
 
 #: common/mltools/xpath_helpers.ml:36
 msgid ""
@@ -1786,7 +1780,7 @@ msgstr ""
 "esperaba expresión en XML para devolver un entero (expresión: %s, cadena "
 "coincidente: %s)"
 
-#: common/mltools/tools_utils.ml:440
+#: common/mltools/tools_utils.ml:443
 msgid "external command"
 msgstr "comando externo"
 
@@ -1800,7 +1794,8 @@ msgstr "ha fallado al crear máquina virtual, consulte errores anteriores"
 
 #: output/output_ovirt_upload.ml:479
 msgid "failed to finalize the transfers, see earlier errors"
-msgstr "incorrecto al finalizar las transferencias, consulte errores anteriores"
+msgstr ""
+"incorrecto al finalizar las transferencias, consulte errores anteriores"
 
 #: common/mldrivers/linux_bootloaders.ml:208
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
@@ -1820,7 +1815,7 @@ msgstr "incorrecto al iniciar transferencia, consulte errores anteriores"
 msgid "failed vmchecks, see earlier errors"
 msgstr "incorrecto al comprobar vmcheck, consulte errores anteriores"
 
-#: common/mltools/tools_utils.ml:239
+#: common/mltools/tools_utils.ml:242
 msgid "failure: %s"
 msgstr "incorrecto: %s"
 
@@ -1836,7 +1831,7 @@ msgstr ""
 "firstboot: versión desconocida para archivo firsboot.service anterior %s "
 "(md5=%s), no será eliminado"
 
-#: common/mltools/tools_utils.ml:258
+#: common/mltools/tools_utils.ml:261
 msgid "generated by %s %s"
 msgstr "generado por %s %s"
 
@@ -1858,15 +1853,15 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr "glance: imagen subida a glance incorrecta, consulte errores anteriores"
 
-#: common/mlcustomize/firstboot.ml:386 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "tipo de invitado %s no está mantenido"
 
-#: common/mlcustomize/firstboot.ml:413
+#: common/mlcustomize/firstboot.ml:418
 msgid "guest type %s/%s is not supported"
 msgstr "tipo invitado %s/%s no está mantenido"
 
-#: common/mltools/tools_utils.ml:749
+#: common/mltools/tools_utils.ml:752
 msgid ""
 "host (%s/%s) and guest (%s/%s) are not compatible, so you cannot use command "
 "line options that involve running commands in the guest.  Use --firstboot "
@@ -1954,15 +1949,15 @@ msgstr ""
 "Además consulte el manual virt-v2v(1), en la sección \"Minimum free space "
 "check in the host\"."
 
-#: common/mltools/tools_utils.ml:246
+#: common/mltools/tools_utils.ml:249
 msgid "internal error: Not_found exception was thrown"
 msgstr "error interno: fue lanzada la excepción Not_found"
 
-#: common/mltools/tools_utils.ml:243
+#: common/mltools/tools_utils.ml:246
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr "error interno: aserción incorrecta en %s, línea %d, char %d"
 
-#: common/mltools/tools_utils.ml:241
+#: common/mltools/tools_utils.ml:244
 msgid "internal error: invalid argument: %s"
 msgstr "error interno: argumento no válido: %s"
 
@@ -2006,7 +2001,7 @@ msgstr "cpu.coresPerSocket < número de vCPU no válido"
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "formato no válido para parámetro ‘--%s’, consulte la página man"
 
-#: common/mltools/tools_utils.ml:359
+#: common/mltools/tools_utils.ml:362
 msgid "invalid format string for --machine-readable: %s"
 msgstr "cadena con formato no válido para --machine-readable: %s"
 
@@ -2018,15 +2013,15 @@ msgstr "entrada no válida del nombre de archivo (%s)"
 msgid "invalid offset returned by tar: %S"
 msgstr "desplazamiento no válido devuelto por tar: %S"
 
-#: common/mltools/tools_utils.ml:374
+#: common/mltools/tools_utils.ml:377
 msgid "invalid output fd for --machine-readable: %s"
 msgstr "salida fd no válida para --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:376
+#: common/mltools/tools_utils.ml:379
 msgid "invalid output for --machine-readable: %s"
 msgstr "salida no válida para --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:368
+#: common/mltools/tools_utils.ml:371
 msgid "invalid output stream for --machine-readable: %s"
 msgstr "flujo de salida no válido para --machine-readable: %s"
 
@@ -2054,11 +2049,11 @@ msgstr "vmw:CoresPerSocket < número de núcleos no válido"
 msgid "kernel %s is not under grub tree %s"
 msgstr "el kernel %s no está debajo del árbol de grub %s"
 
-#: common/mltools/tools_utils.ml:539 common/mltools/tools_utils.ml:458
+#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
 msgid "killed by signal %d"
 msgstr "matado por señal %d"
 
-#: common/mltools/tools_utils.ml:237
+#: common/mltools/tools_utils.ml:240
 msgid "libguestfs error: %s"
 msgstr "error de libguestfs: %s"
 
@@ -2192,7 +2187,7 @@ msgstr ""
 msgid "nbdkit is not installed or not working"
 msgstr "nbdkit no está instalado o no funciona"
 
-#: input/input_disk.ml:92
+#: input/input_disk.ml:48
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
@@ -2256,7 +2251,7 @@ msgstr ""
 "modo Permissive mientras haga la conversión."
 
 #. input/input_libvirt.ml:76
-#. input/input_disk.ml:98
+#. input/input_disk.ml:53
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
 msgstr "nbdkit-cow-filter no está instalado o no funciona"
@@ -2265,12 +2260,12 @@ msgstr "nbdkit-cow-filter no está instalado o no funciona"
 msgid "nbdkit-curl-plugin is not installed"
 msgstr "nbdkit-curl-plugin no está instalado"
 
-#. input/input_disk.ml:96
+#. input/input_disk.ml:51
 #: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr "nbdkit-file-plugin no está instalado o no funciona"
 
-#: input/input_libvirt.ml:74
+#: input/input_libvirt.ml:74 input/input_disk.ml:71
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin no está instalado o no funciona"
 
@@ -2417,8 +2412,8 @@ msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or "
 "\"available\""
 msgstr ""
-"openstack: estado de volumen «%s» desconocido: se esperaba «creating» o «"
-"available»"
+"openstack: estado de volumen «%s» desconocido: se esperaba «creating» o "
+"«available»"
 
 #: output/output.ml:133
 msgid "output mode only supports raw or qcow2 format (format: %s)"
@@ -2499,7 +2494,8 @@ msgstr "qemu-nbd: versión inesperada en --version: %s"
 
 #: common/mlcustomize/customize_run.ml:77
 msgid "random seed could not be set for this type of guest"
-msgstr "la semilla aleatoria no pudo ser establecida para este tipo de invitado"
+msgstr ""
+"la semilla aleatoria no pudo ser establecida para este tipo de invitado"
 
 #: input/parse_domain_from_vmx.ml:44
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
@@ -2520,32 +2516,32 @@ msgstr ""
 "de alguna manera.  Informe esto como un defecto con una bitácora depurante "
 "completa."
 
-#: common/mltools/tools_utils.ml:417 common/options/keys.c:264
+#: common/mltools/tools_utils.ml:420 common/options/keys.c:306
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr "selector '%s': TYPE no válido"
 
-#: common/mltools/tools_utils.ml:409 common/options/keys.c:254
+#: common/mltools/tools_utils.ml:412 common/options/keys.c:296
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr "selector '%s': ausencia de FILENAME, o campos excesivos"
 
-#: common/mltools/tools_utils.ml:399 common/options/keys.c:232
+#: common/mltools/tools_utils.ml:402 common/options/keys.c:274
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr "selector '%s': falta ID"
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:245
+#: common/mltools/tools_utils.ml:407 common/options/keys.c:287
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr "selector '%s': KEY_STRING ausente, o demasiados campos"
 
-#: common/mltools/tools_utils.ml:401 common/options/keys.c:239
+#: common/mltools/tools_utils.ml:404 common/options/keys.c:281
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr "Selector '%s': TIPO desaparecido"
 
-#: common/mltools/tools_utils.ml:413 common/options/keys.c:262
+#: common/mltools/tools_utils.ml:416 common/options/keys.c:304
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr "selector '%s': campos excesivos"
@@ -2586,8 +2582,8 @@ msgstr "ssh-inject: el archivo de clave pública (%s) está vacío"
 msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr "ssh-inject: el usuario %s no existe en el invitado"
 
-#. common/mltools/tools_utils.ml:461
-#: lib/utils.ml:36 common/mltools/tools_utils.ml:542
+#. common/mltools/tools_utils.ml:464
+#: lib/utils.ml:36 common/mltools/tools_utils.ml:545
 msgid "stopped by signal %d"
 msgstr "detenido por señal %d"
 
@@ -2751,8 +2747,8 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
-"no hay ninguna unidad de red virtio para esta versión de Windows (%d.%d %s)"
-".  virt-v2v busca esta unidad en %s\n"
+"no hay ninguna unidad de red virtio para esta versión de Windows (%d.%d "
+"%s).  virt-v2v busca esta unidad en %s\n"
 "\n"
 "El invitado será configurado para utilizar una unidad emulada más lenta."
 
@@ -3174,8 +3170,8 @@ msgstr ""
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
 msgstr ""
-"%s: algunos sistemas de archivos no han podido ser montados (se descartaron)"
-"\n"
+"%s: algunos sistemas de archivos no han podido ser montados (se "
+"descartaron)\n"
 
 #: common/options/inspect.c:178
 #, c-format
@@ -3187,17 +3183,17 @@ msgstr "Sistema operativo: %s\n"
 msgid "%s mounted on %s\n"
 msgstr "%s montado en %s\n"
 
-#: common/options/keys.c:63
+#: common/options/keys.c:69
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
 msgstr "Ingrese la llave o la frase de acceso (\"%s\"): "
 
-#: common/options/keys.c:146
+#: common/options/keys.c:189
 #, c-format
 msgid "size_t overflow"
 msgstr "size_t desbordado"
 
-#: common/options/keys.c:193
+#: common/options/keys.c:235
 #, c-format
 msgid "could not read key from user"
 msgstr "no se pudo leer tecla desde usuario"
@@ -3267,3 +3263,9 @@ msgstr "%s detenido por señal %d (%s)"
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "%s salió por una razón desconocida (estado %d)"
+
+#~ msgid "disks on the command line have mixed formats"
+#~ msgstr "los discos en la línea de comandos tienen formatos mezclados"
+
+#~ msgid "expected >= 1 disk name on the command line"
+#~ msgstr "esperaba nombre del disco >= 1 en la línea de comando"
