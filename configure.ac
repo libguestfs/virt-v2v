@@ -23,6 +23,8 @@ m4_define([v2v_minor],   [11])
 m4_define([v2v_release], [8])
 
 AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
+AC_CONFIG_AUX_DIR([build-aux])
+AC_USE_SYSTEM_EXTENSIONS
 
 # Headings within the configure script output.
 term_bold=""
@@ -44,10 +46,6 @@ m4_define([HEADING],
 
 HEADING([Checking for C compiler and basic build environment])
 m4_include([m4/guestfs-c.m4])
-
-AC_CONFIG_AUX_DIR([build-aux])
-
-AC_USE_SYSTEM_EXTENSIONS
 
 dnl Initialize automake.
 AM_INIT_AUTOMAKE(foreign subdir-objects tar-pax) dnl NB: Do not [quote] this parameter.
