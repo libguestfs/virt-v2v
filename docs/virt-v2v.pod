@@ -241,6 +241,12 @@ Note this has no effect for Linux guests at the moment.  That may be
 added in future.
 ')
 
+=item B<--collect> GUEST[B<:>LOCAL]
+
+=item B<--collect-output> PATH/TO/OUTPUTB<.tar.xz>
+
+See L</Collecting files for later diagnostics>
+
 =item B<--colors>
 
 =item B<--colours>
@@ -1674,6 +1680,37 @@ remain the same on source and target hypervisors.  Most guests will
 use the MAC address to set up persistent associations between NICs and
 internal names (like C<eth0>), with firewall settings, or even for
 other purposes like software licensing.
+
+=head2 Collecting files for later diagnostics
+
+The virt-v2v I<--collect> and I<--collect-output> options are used to
+collect files and directories from inside the guest, before
+conversion, for later diagnosis in case the conversion goes wrong,
+especially if driver installation at firstboot fails.
+
+Typical usage is:
+
+ virt-v2v [...] \
+     --collect /windows/system32/config/ \
+     --collect /windows/system32/winevt/logs/ \
+     --collect /etc/ \
+     --collect-output output.tar.xz
+
+which would save the Windows registry, Windows event logs, and Linux
+F</etc> directory to F<output.tar.xz>.
+
+Guest files/directories which do not exist are ignored.  The
+information collected may include sensitive data like passwords.  The
+output could be arbitrarily large since it copies everything specified
+from the guest.
+
+You can rename directories in the output tarball by adding C<:dir>
+suffix to the I<--collect> option, eg:
+
+ virt-v2v [...] \
+     --collect /windows/system32/config/:registry
+
+which would create a F<registry/> directory in the tarball.
 
 =head2 Minimal XML for -i libvirtxml option
 

@@ -32,6 +32,8 @@ module G = Guestfs
 
 type options = {
   block_driver : guestcaps_block_type;
+  collect : (string * string) list;
+  collect_file : string option;
   keep_serial_console : bool;
   ks : key_store;
   memsize : int option;
@@ -133,6 +135,18 @@ let rec convert input_disks options source =
        error (f_"virt-v2v is unable to convert this guest type (%s/%s)")
          inspect.i_type inspect.i_distro in
   debug "picked conversion module %s" Conversion_module.name;
+
+  (* Pre-conversion data collection ([--collect] option). *)
+  (match options.collect, options.collect_file with
+   | [], _ -> ()
+   | _::_, None ->
+      error (f_"‘--collect’ options found, \
+                but no ‘--collect-output’ specified")
+   | collect_options, Some collect_output ->
+      message (f_"Collecting pre-conversion information in %s")
+        collect_output;
+      pre_conversion_collection g source inspect collect_options collect_output
+  );
 
   (* Conversion. *)
   let guestcaps =
@@ -348,6 +362,47 @@ and do_fsck ?(before=false) g =
          (* Ignore other filesystem types. *)
          ()
   ) fses
+
+(* Pre-conversion data collection ([--collect] options). *)
+and pre_conversion_collection g source inspect
+                              collect_options collect_output =
+  (* Create temp output directory under large_tmpdir (/var/tmp). *)
+  let tmpdir =
+    let t = Mkdtemp.temp_dir ~base_dir:large_tmpdir "collect." in
+    On_exit.rm_rf t;
+    t in
+
+  (* Copy out directories. *)
+  List.iter (
+    fun (dir, localdir) ->
+      let local_path =
+        match localdir with
+        | "" | "." -> tmpdir
+        | localdir ->
+           if String.starts_with ~prefix:"/" localdir then
+             error (f_"in ‘--collect’ do not use ‘:/dir’, \
+                       drop the ‘/’ character");
+           let p = sprintf "%s/%s" tmpdir localdir in
+           mkdir_p p 0o700;
+           p in
+      try
+        let guest_path = g#case_sensitive_path dir in
+        g#copy_out guest_path local_path
+      with G.Error msg ->
+        debug "--collect: copying out ‘%s’ failed: %s (ignored)"
+          dir msg
+  ) collect_options;
+
+  (* Create final tarball.  We need to ignore the original file
+   * permissions from the guest, otherwise tar might be unable to
+   * read some files (eg [/etc/gshadow]).
+   *)
+  let cmd = sprintf "chmod u+rw -R %s" (quote tmpdir) in
+  ignore (Sys.command cmd);
+  let cmd = sprintf "tar -J -c -f %s -C %s ."
+              (quote collect_output) (quote tmpdir) in
+  if Sys.command cmd <> 0 then
+    error (f_"could not create output tarball for ‘--collect-output’ option")
 
 (* Conversion. *)
 and do_convert g source inspect i_firmware
