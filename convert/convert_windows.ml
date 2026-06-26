@@ -219,13 +219,23 @@ let convert (g : G.guestfs) source inspect i_firmware
   (* Perform the conversion of the Windows guest. *)
 
   let rec do_convert () =
+    (* Batch copy all virtio-win files (drivers, qemu-ga, blnsvr) using a single ISO mount. *)
+    let driverdir = sprintf "%s/Drivers/VirtIO" inspect.i_windows_systemroot in
+    g#mkdir_p driverdir;
+
+    let firstboot_dir, _firstboot_dir_win = Firstboot.firstboot_dir g inspect.i_root in
+    let tempdir = sprintf "%s/Temp" firstboot_dir in
+    g#mkdir_p tempdir;
+
+    let copied = Inject_virtio_win.copy_all_from_virtio_win virtio_win driverdir tempdir in
+
     (* Firstboot configuration. *)
-    configure_firstboot ();
+    configure_firstboot copied;
 
     (* Open the system hive for writes and update it. *)
     let { Inject_virtio_win.block_driver; net_driver} as virtio_win_installed =
       Registry.with_hive_write g inspect.i_windows_system_hive
-                               update_system_hive in
+                               (update_system_hive copied) in
 
     (* Open the software hive for writes and update it. *)
     Registry.with_hive_write g inspect.i_windows_software_hive
@@ -292,7 +302,7 @@ let convert (g : G.guestfs) source inspect i_firmware
     | Q35 -> Q35
     | Virt -> Virt
 
-  and configure_firstboot () =
+  and configure_firstboot copied =
     (* Run the firstboot script with pnputil.exe before the one with
      * pnp_wait.exe as the latter suppresses PnP for all following scripts.
      *)
@@ -313,13 +323,13 @@ let convert (g : G.guestfs) source inspect i_firmware
       configure_vmdp tool_path;
 
     (* Install QEMU Guest Agent unconditionally and warn if missing *)
-    if not (Inject_virtio_win.inject_qemu_ga virtio_win) then
+    if not (Inject_virtio_win.inject_qemu_ga ~copied_files:copied virtio_win) then
       warning (f_"QEMU Guest Agent MSI not found on tools ISO/directory. You \
                   may want to install the guest agent manually after \
                   conversion.");
 
     (* Install Balloon Server unconditionally and warn if missing *)
-    if not (Inject_virtio_win.inject_blnsvr virtio_win) then
+    if not (Inject_virtio_win.inject_blnsvr ~copied_files:copied virtio_win) then
       warning (f_"Balloon Server (blnsvr.exe) not found on tools \
                   ISO/directory. You may want to install this component \
                   manually after conversion.");
@@ -533,14 +543,14 @@ if errorlevel 3010 exit /b 0
           "uninstall VMware Tools" fb_script
     ) vmwaretools_uninst
 
-  and update_system_hive reg =
+  and update_system_hive copied reg =
     (* Update the SYSTEM hive.  When this function is called the hive has
      * already been opened as a hivex handle inside guestfs.
      *)
     disable_xenpv_win_drivers reg;
     disable_prl_drivers reg;
     disable_autoreboot reg;
-    Inject_virtio_win.inject_virtio_win_drivers virtio_win reg
+    Inject_virtio_win.inject_virtio_win_drivers ~copied_files:copied virtio_win reg
 
   and disable_xenpv_win_drivers reg =
     (* Disable xenpv-win service (RHBZ#809273). *)
