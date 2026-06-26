@@ -178,6 +178,10 @@ virt-v2v-inspector.
 
 =item B<--bridge> ...
 
+=item B<--collect> ...
+
+=item B<--collect-output> ...
+
 =item B<--colors>
 
 =item B<--colours>
