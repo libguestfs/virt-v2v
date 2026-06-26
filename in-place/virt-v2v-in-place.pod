@@ -85,6 +85,12 @@ Note this has no effect for Linux guests at the moment.  That may be
 added in future.
 ')
 
+=item B<--collect> GUEST[B<:>LOCAL]
+
+=item B<--collect-output> PATH/TO/OUTPUTB<.tar.xz>
+
+See L<virt-v2v(1)/Collecting files for later diagnostics>
+
 =item B<--colors>
 
 =item B<--colours>
