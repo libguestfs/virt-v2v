@@ -33,6 +33,7 @@ EXTRA_DIST = \
 	virt-v2v-release-notes-2.6.pod \
 	virt-v2v-release-notes-2.8.pod \
 	virt-v2v-release-notes-2.10.pod \
+	virt-v2v-release-notes-2.12.pod \
 	virt-v2v-support.pod \
 	vm-generation-id-across-hypervisors.txt \
 	$(NULL)
@@ -52,6 +53,7 @@ man_MANS = \
 	virt-v2v-release-notes-2.6.1 \
 	virt-v2v-release-notes-2.8.1 \
 	virt-v2v-release-notes-2.10.1 \
+	virt-v2v-release-notes-2.12.1 \
 	virt-v2v-support.1 \
 	$(NULL)
 
@@ -68,6 +70,7 @@ noinst_DATA = \
 	$(top_builddir)/website/virt-v2v-release-notes-2.6.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-2.8.1.html \
 	$(top_builddir)/website/virt-v2v-release-notes-2.10.1.html \
+	$(top_builddir)/website/virt-v2v-release-notes-2.12.1.html \
 	$(top_builddir)/website/virt-v2v-support.1.html \
 	$(NULL)
 
@@ -247,6 +250,17 @@ stamp-virt-v2v-release-notes-2.10.pod: virt-v2v-release-notes-2.10.pod
 	$(PODWRAPPER) \
 	  --man virt-v2v-release-notes-2.10.1 \
 	  --html $(top_builddir)/website/virt-v2v-release-notes-2.10.1.html \
+	  --license GPLv2+ \
+	  --warning safe \
+	  $<
+	$(AM_V_at)touch $@
+
+virt-v2v-release-notes-2.12.1 $(top_builddir)/website/virt-v2v-release-notes-2.12.1.html: stamp-virt-v2v-release-notes-2.12.pod
+
+stamp-virt-v2v-release-notes-2.12.pod: virt-v2v-release-notes-2.12.pod
+	$(PODWRAPPER) \
+	  --man virt-v2v-release-notes-2.12.1 \
+	  --html $(top_builddir)/website/virt-v2v-release-notes-2.12.1.html \
 	  --license GPLv2+ \
 	  --warning safe \
 	  $<

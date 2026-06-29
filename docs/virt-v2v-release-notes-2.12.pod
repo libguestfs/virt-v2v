@@ -1,0 +1,140 @@
+=head1 NAME
+
+virt-v2v-release-notes - virt-v2v release notes for 2.12
+
+=head1 DESCRIPTION
+
+These are the release notes for S<B<virt-v2v 2.12>>.
+This describes the major changes since 2.10.
+
+Virt-v2v 2.12.0 was released on S<B<XXX July 2026>>.
+
+=begin comment
+
+=head2 Security
+
+=end comment
+
+=head2 New features
+
+Enable conversions of Debian 12 guests that use UEFI (Martin Necas).
+
+Enable conversions of SLES 12 SP5 and Ubuntu 24.04 that use LUKS
+encrypted filesystems (Cole Robinson).
+
+Enable conversions of Kylin, NeoKylin and Anolis Linux distributions
+(grass lu).
+
+Add new I<--no-fstrim> option to disable fstrim during conversion
+(sarika at Platform 9).
+
+The I<-i disk> input method now allows C<nbd://...> URIs to be used
+instead of local disks.  This allows more flexible conversions such as
+converting from xz-compressed images.
+
+L<virt-v2v-inspector(1)> now includes information about XFSv4 and
+XFSv5 filesystems.
+
+=begin comment
+
+=head2 Features removed
+
+=end comment
+
+=head2 Other fixes
+
+Fix detection of remote files when using I<-it ssh> mode (Ming Xie).
+
+When injecting virtio-win drivers in Windows guests, install
+F<blnsvr.exe> (the balloon server) (Cole Robinson).
+
+Fix installation of Windows Vista and Windows 2008 Server R1 drivers
+(Cole Robinson).
+
+Stop using xfs_repair I<-m> option (thanks Ming Xie, Eric Sandeen,
+Dave Chinner).
+
+Virt-v2v I<--key> parameter now allows binary keys.
+
+Virt-v2v I<--firstboot> scripts on Windows may now exit with code 250
+to avoid rebooting after the script (Srihari Parimi).
+
+Immutable F</etc/resolv.conf> no longer prevents conversion (Srihari
+Parimi).
+
+Obey cgroup v2 CPU limits (Susant Sahani).
+
+Fix output filenames if guest name contains C</> character (Susant
+Sahani).
+
+=head2 Documentation
+
+Document how to recover the key used by Windows guests that stored the
+Bitlocker disk encryption key in the VMware vTPM (Ming Xie).
+
+Document pre-conversion steps required for certain guests encrypted
+with LUKS using vTPM (Ming Xie, Susant Sahani).
+
+Fix conversion from VMware vCenter where the VMware datastore name
+contains some special characters (Cole Robinson).
+
+Document that the PowerShell execution policy C<AllSigned> will not
+work (thanks Martin Mecas, Ulhas Surse).
+
+=head2 Build changes
+
+Fix Weblate (i18n) web hooks (Rafael Fontenelle).
+
+Fix and enhance github CI checks (Cole Robinson).
+
+Remove C<AM_GNU_GETTEXT> macro and replace it with simpler C<LIBINTL>
+checks (Cole Robinson).
+
+Various build warnings were cleaned up (Cole Robinson).
+
+Fix warnings in configure script related to the order that various
+autoconf macros appear (Olaf Hering).
+
+=head2 Internals
+
+Many memory leaks identified by Claude Code were fixed (shivanayak).
+
+Improve debug output (Srihari Parimi).
+
+=head2 Bugs fixed
+
+=begin comment
+
+./bugs-in-changelog.sh v2.10.0..
+
+=end comment
+
+=over 4
+
+
+
+=back
+
+=head1 SEE ALSO
+
+L<virt-v2v(1)>.
+
+=head1 AUTHORS
+
+Authors of virt-v2v 2.12:
+
+=begin comment
+
+git shortlog -s v2.10.0..
+
+=end comment
+
+=over 4
+
+
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2026 Red Hat Inc.
