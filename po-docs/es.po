@@ -6920,7 +6920,8 @@ msgstr "L<https://bugzilla.redhat.com/1837328>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:324
 msgid "Virt-v2v cannot convert guest from ESXI7.0 server without vddk"
-msgstr "Virt-v2v no se puede convertir invitado desde servidor ESXI7.0 sin vddk"
+msgstr ""
+"Virt-v2v no se puede convertir invitado desde servidor ESXI7.0 sin vddk"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:326
@@ -7327,8 +7328,8 @@ msgid ""
 "Files\\Guestfs>>, it is now created read-only for non-Administrator accounts "
 "(Cole Robinson)."
 msgstr ""
-"Durante la conversión de invitados de Windows, si tenemos que crear S<F<C:\\P"
-"rogram Files\\Guestfs>>, ahora se crea en solo-lectura para cuentas no "
+"Durante la conversión de invitados de Windows, si tenemos que crear S<F<C:"
+"\\Program Files\\Guestfs>>, ahora se crea en solo-lectura para cuentas no "
 "administrador (Cole Robinson)."
 
 #. type: textblock
@@ -8168,7 +8169,8 @@ msgstr "L<https://bugzilla.redhat.com/2089623>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:185
 msgid "Virt-v2v can't convert rhel8.6 guest from VMware on rhel8.6"
-msgstr "Virt-v2v no puede convertir invitado de rhel8.6 desde VMware en rhel8.6"
+msgstr ""
+"Virt-v2v no puede convertir invitado de rhel8.6 desde VMware en rhel8.6"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:187
@@ -8416,8 +8418,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
 "notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-notes-"
-"1.42(1)>, L<guestfs-release-notes-1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
+"notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
@@ -8734,8 +8736,8 @@ msgid ""
 "RFE: Virt-v2v should recognize partition names like '/dev/mapper/rhel "
 "boot--73--75--123-root' in related keys option"
 msgstr ""
-"RFE: Virt-v2v reconocería nombres de partición como '/dev/mapper/rhel boot--"
-"73--75--123-root' en opción de teclas relacionadas"
+"RFE: Virt-v2v reconocería nombres de partición como '/dev/mapper/rhel "
+"boot--73--75--123-root' en opción de teclas relacionadas"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:120
