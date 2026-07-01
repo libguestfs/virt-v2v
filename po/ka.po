@@ -1,17 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-06-04 00:18+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-07-01 08:17+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
 "Language: ka\n"
@@ -30,10 +28,12 @@ msgid ""
 "%s\n"
 "Options:\n"
 msgstr ""
+"%s\n"
+"პარამეტრები:\n"
 
 #: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
-msgstr ""
+msgstr "%s (იგნორირებულია)"
 
 #: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
@@ -176,7 +176,7 @@ msgstr "%s: გაფრთხილება: %s"
 #. common/mlcustomize/customize_cmdline.ml:258
 #: common/mlcustomize/customize_cmdline.ml:367
 msgid "'CMD+ARGS'"
-msgstr ""
+msgstr "'ბრძნბ+არგ-ები'"
 
 #: common/mlcustomize/customize_run.ml:133
 msgid ""
@@ -516,7 +516,7 @@ msgstr "[%s]-ის კოპირება [%s]-ში"
 
 #: common/mlcustomize/customize_cmdline.ml:322
 msgid "Create a directory"
-msgstr ""
+msgstr "საქაღალდის შექმნა"
 
 #: common/mlcustomize/customize_cmdline.ml:316
 msgid "Create symbolic links"
@@ -528,7 +528,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:321
 msgid "DIR"
-msgstr "საქ"
+msgstr "საქაღალდე"
 
 #: common/mlcustomize/customize_cmdline.ml:236
 msgid "Delete a file or directory"
@@ -536,7 +536,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:176
 msgid "Deleting: %s"
-msgstr ""
+msgstr "იშლება: %s"
 
 #: common/mltools/getopt.ml:225
 msgid "Display brief help"
@@ -568,7 +568,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:180
 msgid "Editing: %s"
-msgstr ""
+msgstr "ჩასწორება: %s"
 
 #: common/mltools/tools_utils.ml:389
 msgid "Enable libguestfs debugging messages"
@@ -590,11 +590,11 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:373
 #: common/mlcustomize/customize_cmdline.ml:414
 msgid "FILE"
-msgstr "ფაილი"
+msgstr "FILE"
 
 #: common/mlcustomize/customize_cmdline.ml:455
 msgid "FILE:CONTENT"
-msgstr "ფილი:შემცველობა"
+msgstr "ფაილი:შემცველობა"
 
 #: common/mlcustomize/customize_cmdline.ml:444
 msgid "FILE:DEST"
@@ -700,7 +700,7 @@ msgstr "პაკეტების დაყენება: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:225
 msgid "LOCALPATH:REMOTEDIR"
-msgstr ""
+msgstr "ლოკალურიბილიკი:დაშორებულისაქაღალდე"
 
 #. in-place/in_place.ml:174
 #: v2v/v2v.ml:214 open/open.ml:78 inspector/inspector.ml:163
@@ -715,7 +715,7 @@ msgstr "ბმულის შექმნა: %s -> %s"
 #. common/mlcustomize/customize_cmdline.ml:281
 #: common/mlcustomize/customize_cmdline.ml:293
 msgid "METHOD"
-msgstr ""
+msgstr "მეთოდი"
 
 #: common/mltools/tools_utils.ml:429
 msgid "Make output machine readable"
@@ -849,13 +849,13 @@ msgstr "ბილიკი"
 
 #: common/mlcustomize/customize_cmdline.ml:181
 msgid "PERMISSIONS:FILE"
-msgstr ""
+msgstr "წვდომები:ფაილი"
 
 #. common/mlcustomize/customize_cmdline.ml:300
 #. common/mlcustomize/customize_cmdline.ml:265
 #: common/mlcustomize/customize_cmdline.ml:427
 msgid "PKG,PKG.."
-msgstr ""
+msgstr "პკტ,პკტ.."
 
 #: v2v/v2v.ml:263 in-place/in_place.ml:203
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
@@ -939,7 +939,7 @@ msgstr ""
 #. common/mlcustomize/customize_cmdline.ml:214
 #: common/mlcustomize/customize_cmdline.ml:328
 msgid "SOURCE:DEST"
-msgstr ""
+msgstr "წყარო:სამიზნე"
 
 #: common/mlcustomize/customize_run.ml:287
 msgid "SSH key could not be injected for this type of guest"
@@ -1021,7 +1021,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:356
 msgid "Set root password"
-msgstr ""
+msgstr "Root-ის პაროლის დაყენება"
 
 #: common/mlcustomize/customize_cmdline.ml:403
 msgid "Set the default timezone"
@@ -1037,7 +1037,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:345
 msgid "Set user password"
-msgstr ""
+msgstr "მომხმარებლის პაროლის დაყენება"
 
 #: common/mlcustomize/customize_run.ml:75
 msgid "Setting a random seed"
@@ -1082,15 +1082,15 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:392
 msgid "TARFILE:REMOTEDIR"
-msgstr ""
+msgstr "ტარფაილი:დაშსაქაღალდე"
 
 #: common/mlcustomize/customize_cmdline.ml:311
 msgid "TARGET:LINK[:LINK..]"
-msgstr ""
+msgstr "სამიზნე:ბმული[:ბმული..]"
 
 #: common/mlcustomize/customize_cmdline.ml:402
 msgid "TIMEZONE"
-msgstr ""
+msgstr "დროის სარტყელი"
 
 #: v2v/v2v.ml:200
 msgid ""
@@ -1134,7 +1134,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:192
 msgid "UID:GID:PATH"
-msgstr ""
+msgstr "UID:GID:ბილიკი"
 
 #: common/mlcustomize/customize_cmdline.ml:339
 msgid "USER:SELECTOR"
@@ -1162,7 +1162,7 @@ msgstr "პაკეტების განახლება"
 
 #: common/mlcustomize/customize_run.ml:316
 msgid "Updating packages"
-msgstr "მიმდინარეობს პაკეტების განახლება"
+msgstr "პაკეტების განახლება"
 
 #: common/mlcustomize/customize_cmdline.ml:449
 msgid "Upload local file to destination"
@@ -1195,11 +1195,11 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:460
 msgid "Write file"
-msgstr ""
+msgstr "ფაილში ჩაწერა"
 
 #: common/mlcustomize/customize_run.ml:346
 msgid "Writing: %s"
-msgstr ""
+msgstr "იწერება: %s"
 
 #: lib/YAML.ml:167
 msgid ""
@@ -1221,7 +1221,7 @@ msgstr ""
 
 #: common/mlcustomize/append_line.ml:44
 msgid "append_line: %s is not a file"
-msgstr ""
+msgstr "append_line: %s ფაილი არაა"
 
 #: input/input_libvirt.ml:206
 msgid ""
@@ -1469,7 +1469,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:251
 msgid "exception: %s"
-msgstr ""
+msgstr "გამონაკლისი: %s"
 
 #: common/mltools/tools_utils.ml:458
 msgid "exited with error %d"
@@ -1487,7 +1487,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:443
 msgid "external command"
-msgstr ""
+msgstr "გარე ბრძანება"
 
 #: output/output_ovirt_upload.ml:265
 msgid "failed server prechecks, see earlier errors"
@@ -1732,7 +1732,7 @@ msgstr "მოკვდა სიგნალით %d"
 
 #: common/mltools/tools_utils.ml:240
 msgid "libguestfs error: %s"
-msgstr ""
+msgstr "libguestfs-ის შეცდომა: %s"
 
 #: lib/libvirt_utils.ml:72
 msgid ""
@@ -2233,7 +2233,7 @@ msgstr ""
 
 #: common/mltools/JSON_parser.ml:59
 msgid "the value is not an object"
-msgstr ""
+msgstr "მნიშვნელობა ობიექტი არაა"
 
 #: common/mltools/JSON_parser.ml:35
 msgid "the value of the key ‘%s’ is not an object"
