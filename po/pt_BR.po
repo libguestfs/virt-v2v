@@ -1,17 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-06-04 00:41+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-06-30 03:22+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -39,7 +37,7 @@ msgstr "%s (ignorado)"
 
 #: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
-msgstr "%s não retornou qualquer saída"
+msgstr "%s não retornou nenhuma saída"
 
 #: common/mlcustomize/customize_run.ml:183
 msgid "%s does not exist in the guest"
@@ -71,7 +69,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:113
 msgid "%s ignored for non-Windows guest"
-msgstr "%s ignorado para convidados não-Windows"
+msgstr "%s ignorado para convidados que não sejam Windows"
 
 #: common/mlcustomize/customize_run.ml:186
 msgid "%s is not a regular file in the guest"
@@ -99,16 +97,16 @@ msgid ""
 "%s: Exiting on signal %s\n"
 "%!"
 msgstr ""
-"%s: Saindo com o sinal %s\n"
-"%!"
+"%s: Saindo devido ao sinal %s\n"
+"%s!"
 
 #: common/mlcustomize/inject_virtio_win.ml:411
 msgid "%s: cannot open virtio-win ISO file: %s"
-msgstr "%s: não é possível abrir arquivo ISO virtio-win: %s"
+msgstr "%s: não foi possível abrir o arquivo ISO virtio-win: %s"
 
 #: common/mlcustomize/customize_run.ml:64
 msgid "%s: command exited with an error"
-msgstr "%s: o comando foi encerrado com um erro"
+msgstr "%s: comando encerrado com erro"
 
 #: v2v/v2v.ml:277
 msgid ""
@@ -211,7 +209,7 @@ msgstr ""
 
 #: common/mltools/tools_utils.ml:729
 msgid "%s: operation timed out"
-msgstr "%s: a operação expirou"
+msgstr "%s: tempo limite da operação esgotado"
 
 #: input/OVA.ml:127 input/OVA.ml:121
 msgid ""
@@ -650,7 +648,7 @@ msgstr "Não rerotula arquivos com rótulos SELinux corretos"
 
 #: v2v/v2v.ml:248 inspector/inspector.ml:177 in-place/in_place.ml:190
 msgid "Don't trim filesystems before conversion"
-msgstr ""
+msgstr "Não recorta sistemas de arquivos antes da conversão"
 
 #: common/mltools/tools_utils.ml:392
 msgid "Don’t print progress messages"
@@ -678,7 +676,7 @@ msgstr "Habilita rastreamento de chamadas do libguestfs"
 
 #: output/output_ovirt.ml:77
 msgid "Export Storage Domain"
-msgstr ""
+msgstr "Domínio de Armazenamento de Exportação"
 
 #: open/open.ml:88
 msgid "External command to run"
