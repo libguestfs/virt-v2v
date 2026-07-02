@@ -166,10 +166,19 @@ let rec convert input_disks options source =
     message (f_"Skipping fstrim (--no-fstrim specified)")
   );
 
-  (* Check (fsck) the filesystems after conversion. *)
-  g#umount_all ();
-  message (f_"Checking filesystem integrity after conversion");
-  do_fsck g;
+  (* Check (fsck) the filesystems after conversion.
+   *
+   * Skip this on RHEL 7 because of incompatibility issues with
+   * XFS in later kernels.
+   *)
+  (match inspect.i_distro, inspect.i_major_version with
+   | ("rhel" | "centos"), 7 ->
+      ()
+   | _ ->
+      g#umount_all ();
+      message (f_"Checking filesystem integrity after conversion");
+      do_fsck g;
+  );
 
   message (f_"Closing the overlay");
   g#umount_all ();
