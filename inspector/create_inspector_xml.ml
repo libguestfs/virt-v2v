@@ -31,7 +31,8 @@ open DOM
  *   - The NBD input disks
  *   - The inspection data (Types.inspect)
  *)
-let rec create_inspector_xml input_disks inspect target_meta =
+let rec create_inspector_xml input_disks inspect
+          { target_firmware; target_boot_device } =
   let body = ref [] in
 
   (* Record the version of virt-v2v etc, mainly for debugging. *)
@@ -59,6 +60,13 @@ let rec create_inspector_xml input_disks inspect target_meta =
           List.push_back elems (e "allocated" [ "estimated", "true" ]
                                   [PCData (Int64.to_string real_size)])
       );
+      let boot_order =
+        match target_boot_device with
+        | None -> index + 1
+        | Some disk_index when disk_index = index -> 1
+        | Some _ -> index + 2 in
+      List.push_back elems (e "boot-order" []
+                              [PCData (Int.to_string boot_order)]);
 
       List.push_back disks (e "disk" [ "index", string_of_int index ] !elems)
   ) input_disks;
@@ -71,7 +79,7 @@ let rec create_inspector_xml input_disks inspect target_meta =
   List.push_back body
     (e "firmware"
        ["type",
-        string_of_target_firmware target_meta.target_firmware]
+        string_of_target_firmware target_firmware]
        []);
 
   (* The inspection data. *)

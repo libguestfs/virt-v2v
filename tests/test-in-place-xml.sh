@@ -76,5 +76,6 @@ grep '^<v2v-inspection' $out
 grep '<program>virt-v2v-inspector</program>' $out
 grep '<disks>' $out
 grep "<disk index='0'>" $out
+grep '<boot-order>1' $out
 grep '<distro>windows</distro>' $out
 grep '<osinfo>win2k22</osinfo>' $out
