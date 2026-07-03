@@ -26,6 +26,8 @@ skip_if_skipped
 windows=../test-data/phony-guests/windows.img
 requires test -s $windows
 
+export VIRT_TOOLS_DATA_DIR="$srcdir/../test-data/fake-virt-tools"
+
 d=test-collect.d
 rm -rf $d
 cleanup_fn rm -rf $d
