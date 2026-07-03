@@ -20,7 +20,7 @@
 # freeform string.
 m4_define([v2v_major],   [2])
 m4_define([v2v_minor],   [11])
-m4_define([v2v_release], [8])
+m4_define([v2v_release], [9])
 
 AC_INIT([virt-v2v],v2v_major.v2v_minor.v2v_release)
 AC_CONFIG_AUX_DIR([build-aux])
