@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-01 08:17+0000\n"
+"PO-Revision-Date: 2026-07-03 08:38+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
@@ -512,7 +512,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:172
 msgid "Copying: %s to %s"
-msgstr "[%s]-ის კოპირება [%s]-ში"
+msgstr "კოპირება: %s-ის %s-ში"
 
 #: common/mlcustomize/customize_cmdline.ml:322
 msgid "Create a directory"
@@ -920,7 +920,7 @@ msgstr ""
 #. common/mlcustomize/customize_run.ml:159
 #: common/mlcustomize/customize_run.ml:274
 msgid "Running: %s"
-msgstr ""
+msgstr "შესრულება: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:252
 #: common/mlcustomize/customize_cmdline.ml:361
@@ -1154,7 +1154,7 @@ msgstr "პაკეტების წაშლა: %s"
 
 #: common/mlcustomize/customize_run.ml:290
 msgid "Unpack tar file: %s to %s"
-msgstr "tar ფაილის გაშლა: %s %s-ში"
+msgstr "tar ფაილის გაშლა: %s-ის %s-ში"
 
 #: common/mlcustomize/customize_cmdline.ml:438
 msgid "Update packages"
@@ -1170,7 +1170,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:321
 msgid "Uploading: %s to %s"
-msgstr "ატვირთვა: %s %s-ში"
+msgstr "ატვირთვა: %s-ის %s-ში"
 
 #: common/mltools/tools_utils.ml:394
 msgid "Use ANSI colour sequences even if not tty"
