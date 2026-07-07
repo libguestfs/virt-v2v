@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-03 08:38+0000\n"
+"PO-Revision-Date: 2026-07-07 09:18+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -938,7 +938,7 @@ msgstr "სკრიპტი"
 #: common/mltools/tools_utils.ml:425
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
-msgstr ""
+msgstr "ამრჩევი"
 
 #: common/mlcustomize/customize_run.ml:363
 msgid "SELinux relabelling"
@@ -1146,11 +1146,11 @@ msgstr "UID:GID:ბილიკი"
 
 #: common/mlcustomize/customize_cmdline.ml:339
 msgid "USER:SELECTOR"
-msgstr ""
+msgstr "მომხმარებელი:ამრჩევი"
 
 #: common/mlcustomize/customize_cmdline.ml:380
 msgid "USER[:SELECTOR]"
-msgstr ""
+msgstr "მომხმარებელი[:ამრჩევი]"
 
 #: common/mlcustomize/customize_cmdline.ml:432
 msgid "Uninstall package(s)"
