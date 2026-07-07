@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-03 08:53+0100\n"
 "PO-Revision-Date: 2026-07-07 09:18+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
 "Language: ka\n"
@@ -6406,7 +6405,7 @@ msgstr "იური ჩორნოივანი"
 #: docs/virt-v2v-release-notes-2.10.pod:304
 #: docs/virt-v2v-release-notes-2.12.pod:140
 msgid "Copyright (C) 2009-2026 Red Hat Inc."
-msgstr ""
+msgstr "(C) 2009-2026 Red Hat Inc. ყველა უფლება დაცულია."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:3
@@ -9917,7 +9916,7 @@ msgstr ""
 #: docs/virt-v2v.pod:490 in-place/virt-v2v-in-place.pod:245
 #: inspector/virt-v2v-inspector.pod:209
 msgid "B<--no-fstrim>"
-msgstr ""
+msgstr "B<--no-fstrim>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:492
@@ -10656,6 +10655,8 @@ msgid ""
 " ovirt-storage.example.com:/ovirt/export\n"
 "\n"
 msgstr ""
+" ovirt-storage.example.com:/ovirt/export\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:841
@@ -10876,7 +10877,7 @@ msgstr "B<--version>"
 #: docs/virt-v2v.pod:941 in-place/virt-v2v-in-place.pod:293
 #: inspector/virt-v2v-inspector.pod:156 open/virt-v2v-open.pod:87
 msgid "Display version number and exit."
-msgstr "ვერსიის ჩვენება და გასვლა"
+msgstr "ვერსიის ჩვენება და გასვლა."
 
 #. type: =item
 #: docs/virt-v2v.pod:943 in-place/virt-v2v-in-place.pod:295
@@ -11858,7 +11859,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1430
 msgid "L<https://access.redhat.com/articles/7112814>"
-msgstr ""
+msgstr "L<https://access.redhat.com/articles/7112814>"
 
 #. type: =head2
 #: docs/virt-v2v.pod:1432
@@ -13677,7 +13678,7 @@ msgstr ""
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:164 open/virt-v2v-open.pod:95
 msgid "B<-ic> ..."
-msgstr ""
+msgstr "B<-ic> ..."
 
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:166 open/virt-v2v-open.pod:97
