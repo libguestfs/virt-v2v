@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-03 08:53+0100\n"
-"PO-Revision-Date: 2026-07-05 16:18+0000\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"PO-Revision-Date: 2026-07-07 09:18+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
 "Language: ka\n"
@@ -10875,7 +10876,7 @@ msgstr "B<--version>"
 #: docs/virt-v2v.pod:941 in-place/virt-v2v-in-place.pod:293
 #: inspector/virt-v2v-inspector.pod:156 open/virt-v2v-open.pod:87
 msgid "Display version number and exit."
-msgstr ""
+msgstr "ვერსიის ჩვენება და გასვლა"
 
 #. type: =item
 #: docs/virt-v2v.pod:943 in-place/virt-v2v-in-place.pod:295
