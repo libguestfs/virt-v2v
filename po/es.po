@@ -7,13 +7,14 @@
 # Hugo Jiménez Hernández <hjimenezhdez@gmail.com>, 2011
 # rjones <rjones@redhat.com>, 2011
 # Alex Puchades <alex94puchades@gmail.com>, 2015. #zanata
+# "Fco. Javier F. Serrador" <fserrador@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-06-12 14:10+0000\n"
+"PO-Revision-Date: 2026-07-07 09:17+0000\n"
 "Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/es/>\n"
@@ -22,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
@@ -599,11 +600,11 @@ msgstr "Comprobando el sumatorio %s del disco %d/%d"
 
 #: v2v/v2v.ml:219 inspector/inspector.ml:167 in-place/in_place.ml:179
 msgid "Collect output to .tar.xz file"
-msgstr ""
+msgstr "Recopilar salida al archivo .tar.xz"
 
 #: v2v/v2v.ml:217 inspector/inspector.ml:165 in-place/in_place.ml:177
 msgid "Collect pre-conversion information"
-msgstr ""
+msgstr "Recopila información pre‐conversión"
 
 #: common/mlcustomize/customize_cmdline.ml:488
 msgid "Compatibility option doing nothing"
@@ -2077,7 +2078,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:47
 msgid "log file %s: %s (ignored)"
-msgstr "archivo bitácora %s: %s (se descarta)"
+msgstr "bitácora %s: %s (se descarta)"
 
 #: input/OVA.ml:147
 msgid ""
@@ -2637,7 +2638,7 @@ msgstr ""
 
 #: common/mltools/JSON_parser.ml:84
 msgid "the key ‘%s’ was not found in a list of objects"
-msgstr "la clave '%s' no fue encontrada dentro de un listado de objetos"
+msgstr "la clave ‘%s’ no fue encontrada dentro de un listado de objetos"
 
 #: output/output_ovirt_upload.ml:288
 msgid ""
@@ -2809,7 +2810,7 @@ msgstr "salida inesperada desde el comando %s"
 
 #: common/mltools/checksums.ml:58
 msgid "unhandled checksum type ‘%s’"
-msgstr "comprobante sumatorio no manipulado de tipo '%s'"
+msgstr "comprobante sumatorio no manipulado de tipo ‘%s’"
 
 #: lib/types.ml:524
 msgid "unknown --root option: %s"
@@ -3178,8 +3179,8 @@ msgstr ""
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
 msgstr ""
-"%s: algunos sistemas de archivos no han podido ser montados (se "
-"descartaron)\n"
+"%s: algunos sistemas de archivos no han podido ser montados (se descartaron)"
+"\n"
 
 #: common/options/inspect.c:178
 #, c-format
