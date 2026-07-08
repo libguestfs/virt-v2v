@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-03 08:53+0100\n"
-"PO-Revision-Date: 2026-07-07 09:18+0000\n"
+"PO-Revision-Date: 2026-07-08 11:18+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
@@ -2192,6 +2192,14 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml "
+"\"Windows 2003\"\n"
+" <domain type='vmware'>\n"
+"   <name>Windows 2003</name>\n"
+"   [...]\n"
+"   <vmware:moref>vm-123</vmware:moref>\n"
+" </domain>\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:313
@@ -4077,7 +4085,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-output-ovirt.pod:53
 msgid "B<-o vdsm>"
-msgstr ""
+msgstr "B<-o vdsm>"
 
 #. type: textblock
 #: docs/virt-v2v-output-ovirt.pod:55
@@ -7217,6 +7225,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
 "notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 msgstr ""
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-notes-"
+"1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
@@ -9147,6 +9157,12 @@ msgid ""
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
+" virt-v2v \\\n"
+"   -i vmx -it ssh \\\n"
+"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\"
+"\n"
+"   -o local -os /var/tmp\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:137
@@ -9936,7 +9952,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:500
 msgid "B<-o> B<glance>"
-msgstr ""
+msgstr "B<-o> B<glance>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:502
@@ -13735,7 +13751,7 @@ msgstr ""
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:207
 msgid "B<--network> ..."
-msgstr ""
+msgstr "B<--network> ..."
 
 #. type: textblock
 #: inspector/virt-v2v-inspector.pod:221 open/virt-v2v-open.pod:122
