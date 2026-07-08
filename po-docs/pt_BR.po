@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-03 08:53+0100\n"
 "PO-Revision-Date: 2026-07-08 11:18+0000\n"
-"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-docs-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -6355,7 +6355,7 @@ msgstr "Copyright (C) 2006-2026 Red Hat Inc."
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:3
 msgid "virt-v2v-release-notes - virt-v2v release notes for 2.12"
-msgstr "virt-v2v-release-notes - Notas de lançamento do virt-v2v para 2.2"
+msgstr "virt-v2v-release-notes - Notas de lançamento do virt-v2v para 2.12"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:7
