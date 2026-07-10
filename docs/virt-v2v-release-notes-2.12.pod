@@ -7,7 +7,7 @@ virt-v2v-release-notes - virt-v2v release notes for 2.12
 These are the release notes for S<B<virt-v2v 2.12>>.
 This describes the major changes since 2.10.
 
-Virt-v2v 2.12.0 was released on S<B<XXX July 2026>>.
+Virt-v2v 2.12.0 was released on S<B<10 July 2026>>.
 
 =begin comment
 
@@ -28,12 +28,19 @@ Enable conversions of Kylin, NeoKylin and Anolis Linux distributions
 Add new I<--no-fstrim> option to disable fstrim during conversion
 (sarika at Platform 9).
 
+New I<--collect> option which can be used to collect pre-conversion
+information such as the Windows Registry and event log for later
+diagnosis (thanks Vadim Rozenfeld).
+
 The I<-i disk> input method now allows C<nbd://...> URIs to be used
 instead of local disks.  This allows more flexible conversions such as
 converting from xz-compressed images.
 
 L<virt-v2v-inspector(1)> now includes information about XFSv4 and
 XFSv5 filesystems.
+
+L<virt-v2v-in-place(1)> and virt-v2v-inspector XML output now contains
+suggested disk boot order information (thanks Elad Hazan).
 
 =begin comment
 
@@ -53,6 +60,12 @@ Fix installation of Windows Vista and Windows 2008 Server R1 drivers
 
 Stop using xfs_repair I<-m> option (thanks Ming Xie, Eric Sandeen,
 Dave Chinner).
+
+Ignore AGFL inconsistencies in XFS filesystems on RHEL 7 guests
+(thanks Brian Foster, Eric Sandeen).
+
+Retry Windows qemu-guest-agent installer several times to work around
+temporary installation bugs (thanks Martin Necas, Cole Robinson).
 
 Virt-v2v I<--key> parameter now allows binary keys.
 
@@ -111,7 +124,85 @@ Improve debug output (Srihari Parimi).
 
 =over 4
 
+=item L<https://issues.redhat.com/browse/MTV-4424>
 
+[MTV] Migration of windows 2019 VM fails to install qemu-ga and set static IP if ExecutionPolicy is set in souce VM. 
+
+=item L<https://issues.redhat.com/browse/RHEL-85154>
+
+ubuntu guest with encrypted disk and TPM fails boot into OS after v2v conversion
+
+=item L<https://issues.redhat.com/browse/RHEL-93583>
+
+sles12sp5 guest with encrypted brtfs fliesystem fails to boot into OS after v2v conversion
+
+=item L<https://issues.redhat.com/browse/RHEL-103915>
+
+win11 guest with vtpm and bitlocker enabled will power off automatically if the user does not enter the key in 1 minute after v2v conversion [docs only]
+
+=item L<https://issues.redhat.com/browse/RHEL-133729>
+
+virt-v2v migration from vSphere fails when datastore name has characters like '+' [rhel-10.2]
+
+=item L<https://issues.redhat.com/browse/RHEL-136479>
+
+v2v fails to create the disk on target if the source guest contains specific characters like '*+_/'
+
+=item L<https://issues.redhat.com/browse/RHEL-137121>
+
+encrypted ubuntu installation fails to boot after conversion
+
+=item L<https://issues.redhat.com/browse/RHEL-144075>
+
+Expose XFS version in virt-v2v-inspector
+
+=item L<https://issues.redhat.com/browse/RHEL-144467>
+
+[MTV] Debian UEFI VM fails to boot after migrating to Openshift Virtualzation. 
+
+=item L<https://issues.redhat.com/browse/RHEL-148423>
+
+blnsvr.exe running from C:\Program Files\Guestfs\Firstboot\Temp
+
+=item L<https://issues.redhat.com/browse/RHEL-152939>
+
+Create sentinel file after all firstboot scripts have finished running
+
+=item L<https://issues.redhat.com/browse/RHEL-164271>
+
+Add virt-v2v-in-place --no-fstrim option
+
+=item L<https://issues.redhat.com/browse/RHEL-165677>
+
+Stop using xfs_repair -m because memory required scales with filesystem size and has sharp edges
+
+=item L<https://issues.redhat.com/browse/RHEL-170864>
+
+virt-v2v failing with binary LUKS keys [virt-v2v]
+
+=item L<https://issues.redhat.com/browse/RHEL-178287>
+
+virt-v2v fails during migration of RHEL 7 VMs due to XFS filesystem errors, potentially related to RHEL 10.1 xfs_repair running against a RHEL 7 XFS filesystem.
+
+=item L<https://issues.redhat.com/browse/RHEL-178432>
+
+regression converting ubuntu24.04
+
+=item L<https://issues.redhat.com/browse/RHEL-178556>
+
+Use bind mount to overwrite /sysroot/etc/resolv.conf during "sh" operations
+
+=item L<https://issues.redhat.com/browse/RHEL-184508>
+
+Set boot disk index for guests in virt-v2v-in-place / inspection XML output
+
+=item L<https://issues.redhat.com/browse/RHEL-188772>
+
+RFE: virt-v2v option to collect Windows registry and event logs and other useful information
+
+=item L<https://issues.redhat.com/browse/RHEL-191749>
+
+virt-v2v fails during migration of RHEL 7 VMs due to XFS filesystem errors, potentially related to RHEL 10.1 xfs_repair running against a RHEL 7 XFS filesystem [virt-v2v]
 
 =back
 
@@ -131,7 +222,53 @@ git shortlog -s v2.10.0..
 
 =over 4
 
+=item Andi Chandler
 
+=item Arif Budiman
+
+=item Cole Robinson
+
+=item Emilio Herrera
+
+=item Ettore Atalan
+
+=item Fco. Javier F. Serrador
+
+=item grass lu
+
+=item grimst
+
+=item Hela Basa
+
+=item Jan Kuparinen
+
+=item Krascovict Petrov
+
+=item Martin Necas
+
+=item Nathan95
+
+=item Olaf Hering
+
+=item Pavel Borecki
+
+=item Piotr Drąg
+
+=item Rafael Fontenelle
+
+=item Richard W.M. Jones
+
+=item Ricky Tigg
+
+=item sarika
+
+=item Susant Sahani
+
+=item Temuri Doghonadze
+
+=item Tim Wiederhake
+
+=item Yuri Chornoivan
 
 =back
 
