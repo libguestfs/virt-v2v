@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
-"POT-Creation-Date: 2026-07-03 08:53+0100\n"
+"POT-Creation-Date: 2026-07-10 09:50+0100\n"
 "PO-Revision-Date: 2026-06-04 00:52+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Hindi <https://translate.fedoraproject.org/projects/"
@@ -38,12 +38,12 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.10.pod:282
 #: docs/virt-v2v-release-notes-2.12.pod:12
 #: docs/virt-v2v-release-notes-2.12.pod:16
-#: docs/virt-v2v-release-notes-2.12.pod:38
-#: docs/virt-v2v-release-notes-2.12.pod:42
-#: docs/virt-v2v-release-notes-2.12.pod:106
-#: docs/virt-v2v-release-notes-2.12.pod:110
-#: docs/virt-v2v-release-notes-2.12.pod:126
-#: docs/virt-v2v-release-notes-2.12.pod:130
+#: docs/virt-v2v-release-notes-2.12.pod:45
+#: docs/virt-v2v-release-notes-2.12.pod:49
+#: docs/virt-v2v-release-notes-2.12.pod:119
+#: docs/virt-v2v-release-notes-2.12.pod:123
+#: docs/virt-v2v-release-notes-2.12.pod:217
+#: docs/virt-v2v-release-notes-2.12.pod:221
 #: docs/virt-v2v-release-notes-2.2.pod:135
 #: docs/virt-v2v-release-notes-2.2.pod:139
 #: docs/virt-v2v-release-notes-2.2.pod:284
@@ -1407,7 +1407,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:211
 #: docs/virt-v2v-release-notes-2.0.pod:360
 #: docs/virt-v2v-release-notes-2.10.pod:270
-#: docs/virt-v2v-release-notes-2.12.pod:118
+#: docs/virt-v2v-release-notes-2.12.pod:209
 #: docs/virt-v2v-release-notes-2.2.pod:273
 #: docs/virt-v2v-release-notes-2.4.pod:153
 #: docs/virt-v2v-release-notes-2.6.pod:180
@@ -1426,7 +1426,7 @@ msgstr ""
 #: docs/virt-v2v-hacking.pod:53 docs/virt-v2v-release-notes-1.42.pod:218
 #: docs/virt-v2v-release-notes-2.0.pod:366
 #: docs/virt-v2v-release-notes-2.10.pod:274
-#: docs/virt-v2v-release-notes-2.12.pod:122
+#: docs/virt-v2v-release-notes-2.12.pod:213
 #: docs/virt-v2v-release-notes-2.2.pod:280
 #: docs/virt-v2v-release-notes-2.4.pod:157
 #: docs/virt-v2v-release-notes-2.6.pod:184
@@ -1443,6 +1443,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:222
 #: docs/virt-v2v-release-notes-2.0.pod:392
 #: docs/virt-v2v-release-notes-2.10.pod:292
+#: docs/virt-v2v-release-notes-2.12.pod:259
 #: docs/virt-v2v-release-notes-2.2.pod:312
 #: docs/virt-v2v-release-notes-2.4.pod:187
 #: docs/virt-v2v-release-notes-2.6.pod:208
@@ -1459,7 +1460,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:236
 #: docs/virt-v2v-release-notes-2.0.pod:398
 #: docs/virt-v2v-release-notes-2.10.pod:302
-#: docs/virt-v2v-release-notes-2.12.pod:138
+#: docs/virt-v2v-release-notes-2.12.pod:275
 #: docs/virt-v2v-release-notes-2.2.pod:326
 #: docs/virt-v2v-release-notes-2.4.pod:197
 #: docs/virt-v2v-release-notes-2.6.pod:218
@@ -2872,7 +2873,7 @@ msgstr ""
 #: docs/virt-v2v-output-local.pod:145 docs/virt-v2v-output-ovirt.pod:223
 #: docs/virt-v2v-release-notes-1.42.pod:213
 #: docs/virt-v2v-release-notes-2.10.pod:272
-#: docs/virt-v2v-release-notes-2.12.pod:120
+#: docs/virt-v2v-release-notes-2.12.pod:211
 #: docs/virt-v2v-release-notes-2.4.pod:155
 #: docs/virt-v2v-release-notes-2.6.pod:182
 #: docs/virt-v2v-release-notes-2.8.pod:317
@@ -4357,7 +4358,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:36
 #: docs/virt-v2v-release-notes-2.0.pod:61
 #: docs/virt-v2v-release-notes-2.10.pod:68
-#: docs/virt-v2v-release-notes-2.12.pod:44
+#: docs/virt-v2v-release-notes-2.12.pod:51
 #: docs/virt-v2v-release-notes-2.2.pod:42
 #: docs/virt-v2v-release-notes-2.4.pod:33
 #: docs/virt-v2v-release-notes-2.6.pod:48
@@ -4521,7 +4522,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:103
 #: docs/virt-v2v-release-notes-2.0.pod:113
 #: docs/virt-v2v-release-notes-2.10.pod:152
-#: docs/virt-v2v-release-notes-2.12.pod:84
+#: docs/virt-v2v-release-notes-2.12.pod:97
 #: docs/virt-v2v-release-notes-2.2.pod:106
 #: docs/virt-v2v-release-notes-2.4.pod:75
 #: docs/virt-v2v-release-notes-2.6.pod:71
@@ -4578,7 +4579,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:126
 #: docs/virt-v2v-release-notes-2.0.pod:132
 #: docs/virt-v2v-release-notes-2.10.pod:173
-#: docs/virt-v2v-release-notes-2.12.pod:98
+#: docs/virt-v2v-release-notes-2.12.pod:111
 #: docs/virt-v2v-release-notes-2.2.pod:126
 #: docs/virt-v2v-release-notes-2.4.pod:87
 #: docs/virt-v2v-release-notes-2.6.pod:86
@@ -4615,7 +4616,7 @@ msgstr ""
 #: docs/virt-v2v-release-notes-1.42.pod:139
 #: docs/virt-v2v-release-notes-2.0.pod:136
 #: docs/virt-v2v-release-notes-2.10.pod:182
-#: docs/virt-v2v-release-notes-2.12.pod:104
+#: docs/virt-v2v-release-notes-2.12.pod:117
 #: docs/virt-v2v-release-notes-2.2.pod:133
 #: docs/virt-v2v-release-notes-2.4.pod:91
 #: docs/virt-v2v-release-notes-2.6.pod:90
@@ -5822,7 +5823,7 @@ msgstr ""
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-2.10.pod:50
-#: docs/virt-v2v-release-notes-2.12.pod:40
+#: docs/virt-v2v-release-notes-2.12.pod:47
 #: docs/virt-v2v-release-notes-2.8.pod:58
 msgid "Features removed"
 msgstr ""
@@ -5985,7 +5986,7 @@ msgstr ""
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-2.10.pod:145
-#: docs/virt-v2v-release-notes-2.12.pod:70
+#: docs/virt-v2v-release-notes-2.12.pod:83
 msgid "Documentation"
 msgstr ""
 
@@ -6265,17 +6266,20 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:288
+#: docs/virt-v2v-release-notes-2.12.pod:229
 #: docs/virt-v2v-release-notes-2.8.pod:331
 msgid "Cole Robinson"
 msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:290
+#: docs/virt-v2v-release-notes-2.12.pod:235
 msgid "Fco. Javier F. Serrador"
 msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:294
+#: docs/virt-v2v-release-notes-2.12.pod:261
 #: docs/virt-v2v-release-notes-2.2.pod:314
 #: docs/virt-v2v-release-notes-2.8.pod:337
 msgid "Ricky Tigg"
@@ -6288,6 +6292,7 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:298
+#: docs/virt-v2v-release-notes-2.12.pod:271
 #: docs/virt-v2v-release-notes-2.2.pod:322
 #: docs/virt-v2v-release-notes-2.4.pod:193
 #: docs/virt-v2v-release-notes-2.6.pod:214
@@ -6297,7 +6302,7 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.10.pod:304
-#: docs/virt-v2v-release-notes-2.12.pod:140
+#: docs/virt-v2v-release-notes-2.12.pod:277
 msgid "Copyright (C) 2009-2026 Red Hat Inc."
 msgstr ""
 
@@ -6315,7 +6320,7 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:10
-msgid "Virt-v2v 2.12.0 was released on S<B<XXX July 2026>>."
+msgid "Virt-v2v 2.12.0 was released on S<B<10 July 2026>>."
 msgstr ""
 
 #. type: textblock
@@ -6347,153 +6352,518 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:31
 msgid ""
+"New I<--collect> option which can be used to collect pre-conversion "
+"information such as the Windows Registry and event log for later diagnosis "
+"(thanks Vadim Rozenfeld)."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:35
+msgid ""
 "The I<-i disk> input method now allows C<nbd://...> URIs to be used instead "
 "of local disks.  This allows more flexible conversions such as converting "
 "from xz-compressed images."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:35
+#: docs/virt-v2v-release-notes-2.12.pod:39
 msgid ""
 "L<virt-v2v-inspector(1)> now includes information about XFSv4 and XFSv5 "
 "filesystems."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:46
+#: docs/virt-v2v-release-notes-2.12.pod:42
+msgid ""
+"L<virt-v2v-in-place(1)> and virt-v2v-inspector XML output now contains "
+"suggested disk boot order information (thanks Elad Hazan)."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:53
 msgid "Fix detection of remote files when using I<-it ssh> mode (Ming Xie)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:48
+#: docs/virt-v2v-release-notes-2.12.pod:55
 msgid ""
 "When injecting virtio-win drivers in Windows guests, install F<blnsvr.exe> "
 "(the balloon server) (Cole Robinson)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:51
+#: docs/virt-v2v-release-notes-2.12.pod:58
 msgid ""
 "Fix installation of Windows Vista and Windows 2008 Server R1 drivers (Cole "
 "Robinson)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:54
+#: docs/virt-v2v-release-notes-2.12.pod:61
 msgid ""
 "Stop using xfs_repair I<-m> option (thanks Ming Xie, Eric Sandeen, Dave "
 "Chinner)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:57
+#: docs/virt-v2v-release-notes-2.12.pod:64
+msgid ""
+"Ignore AGFL inconsistencies in XFS filesystems on RHEL 7 guests (thanks "
+"Brian Foster, Eric Sandeen)."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:67
+msgid ""
+"Retry Windows qemu-guest-agent installer several times to work around "
+"temporary installation bugs (thanks Martin Necas, Cole Robinson)."
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:70
 msgid "Virt-v2v I<--key> parameter now allows binary keys."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:59
+#: docs/virt-v2v-release-notes-2.12.pod:72
 msgid ""
 "Virt-v2v I<--firstboot> scripts on Windows may now exit with code 250 to "
 "avoid rebooting after the script (Srihari Parimi)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:62
+#: docs/virt-v2v-release-notes-2.12.pod:75
 msgid ""
 "Immutable F</etc/resolv.conf> no longer prevents conversion (Srihari Parimi)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:65
+#: docs/virt-v2v-release-notes-2.12.pod:78
 msgid "Obey cgroup v2 CPU limits (Susant Sahani)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:67
+#: docs/virt-v2v-release-notes-2.12.pod:80
 msgid ""
 "Fix output filenames if guest name contains C</> character (Susant Sahani)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:72
+#: docs/virt-v2v-release-notes-2.12.pod:85
 msgid ""
 "Document how to recover the key used by Windows guests that stored the "
 "Bitlocker disk encryption key in the VMware vTPM (Ming Xie)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:75
+#: docs/virt-v2v-release-notes-2.12.pod:88
 msgid ""
 "Document pre-conversion steps required for certain guests encrypted with "
 "LUKS using vTPM (Ming Xie, Susant Sahani)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:78
+#: docs/virt-v2v-release-notes-2.12.pod:91
 msgid ""
 "Fix conversion from VMware vCenter where the VMware datastore name contains "
 "some special characters (Cole Robinson)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:81
+#: docs/virt-v2v-release-notes-2.12.pod:94
 msgid ""
 "Document that the PowerShell execution policy C<AllSigned> will not work "
 "(thanks Martin Mecas, Ulhas Surse)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:86
+#: docs/virt-v2v-release-notes-2.12.pod:99
 msgid "Fix Weblate (i18n) web hooks (Rafael Fontenelle)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:88
+#: docs/virt-v2v-release-notes-2.12.pod:101
 msgid "Fix and enhance github CI checks (Cole Robinson)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:90
+#: docs/virt-v2v-release-notes-2.12.pod:103
 msgid ""
 "Remove C<AM_GNU_GETTEXT> macro and replace it with simpler C<LIBINTL> checks "
 "(Cole Robinson)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:93
+#: docs/virt-v2v-release-notes-2.12.pod:106
 msgid "Various build warnings were cleaned up (Cole Robinson)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:95
+#: docs/virt-v2v-release-notes-2.12.pod:108
 msgid ""
 "Fix warnings in configure script related to the order that various autoconf "
 "macros appear (Olaf Hering)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:100
+#: docs/virt-v2v-release-notes-2.12.pod:113
 msgid "Many memory leaks identified by Claude Code were fixed (shivanayak)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:102
+#: docs/virt-v2v-release-notes-2.12.pod:115
 msgid "Improve debug output (Srihari Parimi)."
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:108
+#: docs/virt-v2v-release-notes-2.12.pod:121
 msgid "./bugs-in-changelog.sh v2.10.0.."
 msgstr ""
 
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:127
+msgid "L<https://issues.redhat.com/browse/MTV-4424>"
+msgstr ""
+
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:124
+#: docs/virt-v2v-release-notes-2.12.pod:129
+msgid ""
+"[MTV] Migration of windows 2019 VM fails to install qemu-ga and set static "
+"IP if ExecutionPolicy is set in souce VM."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:131
+msgid "L<https://issues.redhat.com/browse/RHEL-85154>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:133
+msgid ""
+"ubuntu guest with encrypted disk and TPM fails boot into OS after v2v "
+"conversion"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:135
+msgid "L<https://issues.redhat.com/browse/RHEL-93583>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:137
+msgid ""
+"sles12sp5 guest with encrypted brtfs fliesystem fails to boot into OS after "
+"v2v conversion"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:139
+msgid "L<https://issues.redhat.com/browse/RHEL-103915>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:141
+msgid ""
+"win11 guest with vtpm and bitlocker enabled will power off automatically if "
+"the user does not enter the key in 1 minute after v2v conversion [docs only]"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:143
+msgid "L<https://issues.redhat.com/browse/RHEL-133729>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:145
+msgid ""
+"virt-v2v migration from vSphere fails when datastore name has characters "
+"like '+' [rhel-10.2]"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:147
+msgid "L<https://issues.redhat.com/browse/RHEL-136479>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:149
+msgid ""
+"v2v fails to create the disk on target if the source guest contains specific "
+"characters like '*+_/'"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:151
+msgid "L<https://issues.redhat.com/browse/RHEL-137121>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:153
+msgid "encrypted ubuntu installation fails to boot after conversion"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:155
+msgid "L<https://issues.redhat.com/browse/RHEL-144075>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:157
+msgid "Expose XFS version in virt-v2v-inspector"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:159
+msgid "L<https://issues.redhat.com/browse/RHEL-144467>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:161
+msgid ""
+"[MTV] Debian UEFI VM fails to boot after migrating to Openshift "
+"Virtualzation."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:163
+msgid "L<https://issues.redhat.com/browse/RHEL-148423>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:165
+msgid "blnsvr.exe running from C:\\Program Files\\Guestfs\\Firstboot\\Temp"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:167
+msgid "L<https://issues.redhat.com/browse/RHEL-152939>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:169
+msgid "Create sentinel file after all firstboot scripts have finished running"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:171
+msgid "L<https://issues.redhat.com/browse/RHEL-164271>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:173
+msgid "Add virt-v2v-in-place --no-fstrim option"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:175
+msgid "L<https://issues.redhat.com/browse/RHEL-165677>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:177
+msgid ""
+"Stop using xfs_repair -m because memory required scales with filesystem size "
+"and has sharp edges"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:179
+msgid "L<https://issues.redhat.com/browse/RHEL-170864>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:181
+msgid "virt-v2v failing with binary LUKS keys [virt-v2v]"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:183
+msgid "L<https://issues.redhat.com/browse/RHEL-178287>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:185
+msgid ""
+"virt-v2v fails during migration of RHEL 7 VMs due to XFS filesystem errors, "
+"potentially related to RHEL 10.1 xfs_repair running against a RHEL 7 XFS "
+"filesystem."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:187
+msgid "L<https://issues.redhat.com/browse/RHEL-178432>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:189
+msgid "regression converting ubuntu24.04"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:191
+msgid "L<https://issues.redhat.com/browse/RHEL-178556>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:193
+msgid ""
+"Use bind mount to overwrite /sysroot/etc/resolv.conf during \"sh\" operations"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:195
+msgid "L<https://issues.redhat.com/browse/RHEL-184508>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:197
+msgid ""
+"Set boot disk index for guests in virt-v2v-in-place / inspection XML output"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:199
+msgid "L<https://issues.redhat.com/browse/RHEL-188772>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:201
+msgid ""
+"RFE: virt-v2v option to collect Windows registry and event logs and other "
+"useful information"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:203
+msgid "L<https://issues.redhat.com/browse/RHEL-191749>"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:205
+msgid ""
+"virt-v2v fails during migration of RHEL 7 VMs due to XFS filesystem errors, "
+"potentially related to RHEL 10.1 xfs_repair running against a RHEL 7 XFS "
+"filesystem [virt-v2v]"
+msgstr ""
+
+#. type: textblock
+#: docs/virt-v2v-release-notes-2.12.pod:215
 msgid "Authors of virt-v2v 2.12:"
 msgstr ""
 
 #. type: textblock
-#: docs/virt-v2v-release-notes-2.12.pod:128
+#: docs/virt-v2v-release-notes-2.12.pod:219
 msgid "git shortlog -s v2.10.0.."
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:225
+#: docs/virt-v2v-release-notes-2.6.pod:196
+msgid "Andi Chandler"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:227
+msgid "Arif Budiman"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:231
+#: docs/virt-v2v-release-notes-2.2.pod:294
+#: docs/virt-v2v-release-notes-2.4.pod:171
+msgid "Emilio Herrera"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:233
+#: docs/virt-v2v-release-notes-2.2.pod:296
+msgid "Ettore Atalan"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:237
+msgid "grass lu"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:239
+#: docs/virt-v2v-release-notes-2.4.pod:173
+msgid "grimst"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:241
+#: docs/virt-v2v-release-notes-2.2.pod:298
+msgid "Hela Basa"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:243
+#: docs/virt-v2v-release-notes-2.2.pod:300
+#: docs/virt-v2v-release-notes-2.4.pod:177
+msgid "Jan Kuparinen"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:245
+#: docs/virt-v2v-release-notes-2.8.pod:333
+msgid "Krascovict Petrov"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:247
+msgid "Martin Necas"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:249
+msgid "Nathan95"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:251
+msgid "Olaf Hering"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:253
+#: docs/virt-v2v-release-notes-2.2.pod:308
+#: docs/virt-v2v-release-notes-2.4.pod:183
+msgid "Pavel Borecki"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:255
+#: docs/virt-v2v-release-notes-2.2.pod:310
+#: docs/virt-v2v-release-notes-2.4.pod:185
+msgid "Piotr Drąg"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:257
+msgid "Rafael Fontenelle"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:263
+msgid "sarika"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:265
+msgid "Susant Sahani"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:267
+#: docs/virt-v2v-release-notes-2.2.pod:316
+#: docs/virt-v2v-release-notes-2.4.pod:191
+msgid "Temuri Doghonadze"
+msgstr ""
+
+#. type: =item
+#: docs/virt-v2v-release-notes-2.12.pod:269
+msgid "Tim Wiederhake"
 msgstr ""
 
 #. type: textblock
@@ -7129,48 +7499,8 @@ msgid "Andrey Drobyshev"
 msgstr ""
 
 #. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:294
-#: docs/virt-v2v-release-notes-2.4.pod:171
-msgid "Emilio Herrera"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:296
-msgid "Ettore Atalan"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:298
-msgid "Hela Basa"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:300
-#: docs/virt-v2v-release-notes-2.4.pod:177
-msgid "Jan Kuparinen"
-msgstr ""
-
-#. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:304
 msgid "Marcin Stanclik"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:308
-#: docs/virt-v2v-release-notes-2.4.pod:183
-msgid "Pavel Borecki"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:310
-#: docs/virt-v2v-release-notes-2.4.pod:185
-msgid "Piotr Drąg"
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.2.pod:316
-#: docs/virt-v2v-release-notes-2.4.pod:191
-msgid "Temuri Doghonadze"
 msgstr ""
 
 #. type: =item
@@ -7462,11 +7792,6 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:163
 msgid "git shortlog -s v2.2.0.."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.4.pod:173
-msgid "grimst"
 msgstr ""
 
 #. type: =item
@@ -7814,11 +8139,6 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:190
 msgid "git shortlog -s v2.4.0.."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.6.pod:196
-msgid "Andi Chandler"
 msgstr ""
 
 #. type: =item
@@ -8476,11 +8796,6 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.8.pod:325
 msgid "git shortlog -s v2.6.0.."
-msgstr ""
-
-#. type: =item
-#: docs/virt-v2v-release-notes-2.8.pod:333
-msgid "Krascovict Petrov"
 msgstr ""
 
 #. type: textblock
