@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-03 08:53+0100\n"
-"PO-Revision-Date: 2026-07-08 11:18+0000\n"
+"PO-Revision-Date: 2026-07-10 09:21+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
@@ -1135,7 +1135,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:442
 #: common/mlcustomize/v2v-customize-options.pod:388
 msgid "See also I<--install>, I<--uninstall>."
-msgstr ""
+msgstr "ასევე იხილეთ I<--install>, I<--uninstall>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:444
