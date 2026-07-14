@@ -717,10 +717,10 @@ if errorlevel 3010 exit /b 0
       add "";
       add "Write-Host \"Online all virtio disks\"";
       add "";
-      add "Get-Disk | Where { $_.FriendlyName -like '*VirtIO*' } | % {";
-      add "    Write-Host ('  - ' + $_.Number + ': ' + $_.FriendlyName + '(' + [math]::Round($_.Size/1GB,2) + 'GB)')";
-      add "    $_ | Set-Disk -IsOffline $false";
-      add "    $_ | Set-Disk -IsReadOnly $false";
+      add "foreach ($d in (Get-Disk | Where-Object -Property FriendlyName -Like '*VirtIO*')) {";
+      add "    Write-Host \"  - disk $($d.Number): $($d.FriendlyName) ($([int]($d.Size / 1GB))GB)\"";
+      add "    Set-Disk -Number $d.Number -IsOffline $false";
+      add "    Set-Disk -Number $d.Number -IsReadOnly $false";
       add "}";
 
       (* Install the Powershell script to run late at firstboot. *)
