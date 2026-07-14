@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-10 09:50+0100\n"
 "PO-Revision-Date: 2026-07-14 04:17+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
 "Language: ka\n"
@@ -703,7 +702,7 @@ msgstr "ასევე იხილეთ I<--update>, I<--uninstall>."
 #: common/mlcustomize/customize-options.pod:255
 #: common/mlcustomize/v2v-customize-options.pod:201
 msgid "B<--link> TARGET:LINK[:LINK..]"
-msgstr "სამიზნე:ბმული[:ბმული..]"
+msgstr "B<--link> სამიზნე:ბმული[:ბმული..]"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:257
@@ -737,7 +736,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:267
 #: common/mlcustomize/v2v-customize-options.pod:213
 msgid "B<--move> SOURCE:DEST"
-msgstr "B<--copy> წყარო:სამიზნე"
+msgstr "B<--move> წყარო:სამიზნე"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:269
@@ -800,7 +799,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:294
 #: common/mlcustomize/v2v-customize-options.pod:240
 msgid "B<--password> USER:SELECTOR"
-msgstr "B<--root-password> ამრჩევი"
+msgstr "B<--password> მომხმარებელი:ამრჩევი"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:296
@@ -1115,7 +1114,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:434
 #: common/mlcustomize/v2v-customize-options.pod:380
 msgid "See also I<--install>, I<--update>."
-msgstr ""
+msgstr "ასევე იხილეთ I<--install>, I<--update>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:436
@@ -1548,6 +1547,13 @@ msgid ""
 "    [-o* options]\n"
 "\n"
 msgstr ""
+" virt-v2v\n"
+"    -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'\n"
+"    -it vddk\n"
+"    -io vddk-libdir=/path/to/vmware-vix-disklib-distrib\n"
+"    \"GUEST NAME\"\n"
+"    [-o* options]\n"
+"\n"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:22
@@ -3001,7 +3007,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v-input-xen.pod:18
 msgid "SSH authentication"
-msgstr ""
+msgstr "SSH ავთენტიკაცია"
 
 #. type: textblock
 #: docs/virt-v2v-input-xen.pod:20
@@ -4150,7 +4156,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-output-ovirt.pod:87
 msgid "I<-op> F<password-file>"
-msgstr ""
+msgstr "I<-op> F<password-file>"
 
 #. type: textblock
 #: docs/virt-v2v-output-ovirt.pod:89
@@ -6632,10 +6638,8 @@ msgstr "./bugs-in-changelog.sh v2.10.0.."
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:127
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/MTV-2256>"
 msgid "L<https://issues.redhat.com/browse/MTV-4424>"
-msgstr "L<https://issues.redhat.com/browse/MTV-2256>"
+msgstr "L<https://issues.redhat.com/browse/MTV-4424>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:129
@@ -6646,10 +6650,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:131
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-85514>"
 msgid "L<https://issues.redhat.com/browse/RHEL-85154>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-85514>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-85154>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:133
@@ -6660,10 +6662,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:135
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-99313>"
 msgid "L<https://issues.redhat.com/browse/RHEL-93583>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-99313>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-93583>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:137
@@ -6674,10 +6674,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:139
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-101599>"
 msgid "L<https://issues.redhat.com/browse/RHEL-103915>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-101599>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-103915>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:141
@@ -6688,10 +6686,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:143
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-33699>"
 msgid "L<https://issues.redhat.com/browse/RHEL-133729>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-33699>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-133729>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:145
@@ -6702,10 +6698,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:147
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-21365>"
 msgid "L<https://issues.redhat.com/browse/RHEL-136479>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-21365>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-136479>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:149
@@ -6716,10 +6710,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:151
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-71522>"
 msgid "L<https://issues.redhat.com/browse/RHEL-137121>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-71522>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-137121>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:153
@@ -6728,10 +6720,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:155
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-90175>"
 msgid "L<https://issues.redhat.com/browse/RHEL-144075>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-90175>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-144075>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:157
@@ -6740,10 +6730,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:159
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-124569>"
 msgid "L<https://issues.redhat.com/browse/RHEL-144467>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-124569>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-144467>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:161
@@ -6754,10 +6742,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:163
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-88543>"
 msgid "L<https://issues.redhat.com/browse/RHEL-148423>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-88543>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-148423>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:165
@@ -6766,10 +6752,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:167
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-101599>"
 msgid "L<https://issues.redhat.com/browse/RHEL-152939>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-101599>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-152939>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:169
@@ -6778,10 +6762,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:171
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-45527>"
 msgid "L<https://issues.redhat.com/browse/RHEL-164271>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-45527>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-164271>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:173
@@ -6790,10 +6772,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:175
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-21365>"
 msgid "L<https://issues.redhat.com/browse/RHEL-165677>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-21365>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-165677>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:177
@@ -6804,10 +6784,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:179
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-70840>"
 msgid "L<https://issues.redhat.com/browse/RHEL-170864>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-70840>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-170864>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:181
@@ -6816,10 +6794,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:183
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-121728>"
 msgid "L<https://issues.redhat.com/browse/RHEL-178287>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-121728>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-178287>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:185
@@ -6831,10 +6807,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:187
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-104352>"
 msgid "L<https://issues.redhat.com/browse/RHEL-178432>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-104352>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-178432>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:189
@@ -6843,10 +6817,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:191
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-125956>"
 msgid "L<https://issues.redhat.com/browse/RHEL-178556>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-125956>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-178556>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:193
@@ -6856,10 +6828,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:195
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-85508>"
 msgid "L<https://issues.redhat.com/browse/RHEL-184508>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-85508>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-184508>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:197
@@ -6869,10 +6839,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:199
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-100682>"
 msgid "L<https://issues.redhat.com/browse/RHEL-188772>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-100682>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-188772>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:201
@@ -6883,10 +6851,8 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:203
-#, fuzzy
-#| msgid "L<https://issues.redhat.com/browse/RHEL-108174>"
 msgid "L<https://issues.redhat.com/browse/RHEL-191749>"
-msgstr "L<https://issues.redhat.com/browse/RHEL-108174>"
+msgstr "L<https://issues.redhat.com/browse/RHEL-191749>"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:205
@@ -6933,7 +6899,7 @@ msgstr "ეტორე ატალანი"
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:237
 msgid "grass lu"
-msgstr ""
+msgstr "grass lu"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:239
@@ -6962,10 +6928,8 @@ msgstr "Krascovict Petrov"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:247
-#, fuzzy
-#| msgid "Martin Kletzander"
 msgid "Martin Necas"
-msgstr "Martin Kletzander"
+msgstr "Martin Necas"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:249
@@ -9232,7 +9196,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-support.pod:139
 msgid "L<virt-v2v(1)>, L<http://libguestfs.org>."
-msgstr ""
+msgstr "L<virt-v2v(1)>, L<http://libguestfs.org>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:3
@@ -9451,7 +9415,7 @@ msgstr ""
 #: docs/virt-v2v.pod:108 docs/virt-v2v.pod:570 docs/virt-v2v.pod:604
 #: docs/virt-v2v.pod:688 docs/virt-v2v.pod:720 docs/virt-v2v.pod:1125
 msgid "ifelse(ENABLE_OVIRT, yes, `"
-msgstr ""
+msgstr "ifelse(ENABLE_OVIRT, yes, `"
 
 #. type: =head2
 #: docs/virt-v2v.pod:110
@@ -9578,6 +9542,8 @@ msgid ""
 " virt-v2v -i disk disk.img -o local -os /var/tmp\n"
 "\n"
 msgstr ""
+" virt-v2v -i disk disk.img -o local -os /var/tmp\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:161
@@ -9602,6 +9568,8 @@ msgid ""
 " virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp\n"
 "\n"
 msgstr ""
+" virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp\n"
+"\n"
 
 #. type: textblock
 #: docs/virt-v2v.pod:171
@@ -9640,7 +9608,7 @@ msgstr "B<--help>"
 #: docs/virt-v2v.pod:186 in-place/virt-v2v-in-place.pod:67
 #: inspector/virt-v2v-inspector.pod:135 open/virt-v2v-open.pod:75
 msgid "Display help."
-msgstr ""
+msgstr "დახმარების ჩვენება."
 
 #. type: =item
 #: docs/virt-v2v.pod:188
@@ -9679,7 +9647,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:207 docs/virt-v2v.pod:1317
 msgid "ifelse(ENABLE_XEN, yes, `"
-msgstr ""
+msgstr "ifelse(ENABLE_XEN, yes, `"
 
 #. type: textblock
 #: docs/virt-v2v.pod:211
@@ -9735,7 +9703,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:241 in-place/virt-v2v-in-place.pod:75
 msgid "ifelse(ENABLE_BLOCK_DRIVER, yes, `"
-msgstr ""
+msgstr "ifelse(ENABLE_BLOCK_DRIVER, yes, `"
 
 #. type: =item
 #: docs/virt-v2v.pod:243 in-place/virt-v2v-in-place.pod:77
@@ -9964,7 +9932,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:347 in-place/virt-v2v-in-place.pod:152
 msgid "B<-if> format"
-msgstr ""
+msgstr "B<-if> ფორმატი"
 
 #. type: textblock
 #: docs/virt-v2v.pod:349 in-place/virt-v2v-in-place.pod:154
@@ -10250,7 +10218,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:474 in-place/virt-v2v-in-place.pod:229
 msgid "B<--network> out"
-msgstr ""
+msgstr "B<--network> გამავალი"
 
 #. type: =item
 #: docs/virt-v2v.pod:476 in-place/virt-v2v-in-place.pod:231
@@ -10322,7 +10290,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:509
 msgid "B<-o> B<kubevirt>"
-msgstr ""
+msgstr "B<-o> B<kubevirt>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:511
@@ -11346,7 +11314,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:992
 msgid "I<-o glance>"
-msgstr ""
+msgstr "I<-o glance>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:994
@@ -11358,7 +11326,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:998
 msgid "I<-o local>"
-msgstr ""
+msgstr "I<-o local>"
 
 #. type: =item
 #: docs/virt-v2v.pod:1000
@@ -11863,7 +11831,7 @@ msgstr ""
 #. type: =head2
 #: docs/virt-v2v.pod:1260
 msgid "Guest network configuration"
-msgstr ""
+msgstr "სტუმრის ქსელის კონფიგურაცია"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1262
@@ -12359,7 +12327,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1485
 msgid "See L<https://bugzilla.redhat.com/2140548>."
-msgstr ""
+msgstr "იხილეთ L<https://bugzilla.redhat.com/2140548>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:1487
@@ -13229,7 +13197,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:1933
 msgid "See also L<https://bugzilla.redhat.com/2182024>."
-msgstr ""
+msgstr "ასევე იხილეთ L<https://bugzilla.redhat.com/2182024>."
 
 #. type: =head1
 #: docs/virt-v2v.pod:1935 in-place/virt-v2v-in-place.pod:366
@@ -13592,7 +13560,7 @@ msgstr ""
 #. type: =head2
 #: in-place/virt-v2v-in-place.pod:48
 msgid "Exit code"
-msgstr "გასვლის კოდი: {}"
+msgstr "გასვლის კოდი"
 
 #. type: textblock
 #: in-place/virt-v2v-in-place.pod:50
@@ -13632,17 +13600,17 @@ msgstr ""
 #. type: =item
 #: in-place/virt-v2v-in-place.pod:124
 msgid "B<-i> B<libvirt>"
-msgstr ""
+msgstr "B<-i> B<libvirt>"
 
 #. type: =item
 #: in-place/virt-v2v-in-place.pod:132
 msgid "B<-i> B<libvirtxml>"
-msgstr ""
+msgstr "B<-i> B<libvirtxml>"
 
 #. type: =item
 #: in-place/virt-v2v-in-place.pod:141
 msgid "B<-i> B<local>"
-msgstr ""
+msgstr "B<-i> B<local>"
 
 #. type: textblock
 #: in-place/virt-v2v-in-place.pod:150
@@ -14041,7 +14009,7 @@ msgstr ""
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:162 open/virt-v2v-open.pod:93
 msgid "B<-i> ..."
-msgstr ""
+msgstr "B<-i> ..."
 
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:164 open/virt-v2v-open.pod:95
@@ -14051,22 +14019,22 @@ msgstr "B<-ic> ..."
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:166 open/virt-v2v-open.pod:97
 msgid "B<-if> ..."
-msgstr ""
+msgstr "B<-if> ..."
 
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:168 open/virt-v2v-open.pod:99
 msgid "B<-io> ..."
-msgstr ""
+msgstr "B<-io> ..."
 
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:170 open/virt-v2v-open.pod:101
 msgid "B<-ip> ..."
-msgstr ""
+msgstr "B<-ip> ..."
 
 #. type: =item
 #: inspector/virt-v2v-inspector.pod:172 open/virt-v2v-open.pod:103
 msgid "B<-it> ..."
-msgstr ""
+msgstr "B<-it> ..."
 
 #. type: textblock
 #: inspector/virt-v2v-inspector.pod:174
