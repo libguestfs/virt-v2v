@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-07-10 09:50+0100\n"
-"PO-Revision-Date: 2026-07-10 09:21+0000\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"PO-Revision-Date: 2026-07-14 04:17+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
 "Language: ka\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.7.1\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -702,7 +703,7 @@ msgstr "ასევე იხილეთ I<--update>, I<--uninstall>."
 #: common/mlcustomize/customize-options.pod:255
 #: common/mlcustomize/v2v-customize-options.pod:201
 msgid "B<--link> TARGET:LINK[:LINK..]"
-msgstr ""
+msgstr "სამიზნე:ბმული[:ბმული..]"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:257
@@ -736,7 +737,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:267
 #: common/mlcustomize/v2v-customize-options.pod:213
 msgid "B<--move> SOURCE:DEST"
-msgstr ""
+msgstr "B<--copy> წყარო:სამიზნე"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:269
@@ -799,7 +800,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:294
 #: common/mlcustomize/v2v-customize-options.pod:240
 msgid "B<--password> USER:SELECTOR"
-msgstr ""
+msgstr "B<--root-password> ამრჩევი"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:296
@@ -6974,7 +6975,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:251
 msgid "Olaf Hering"
-msgstr ""
+msgstr "ოლაფ ჰერინგი"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:253
@@ -7003,7 +7004,7 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:265
 msgid "Susant Sahani"
-msgstr ""
+msgstr "Susant Sahani"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:267
@@ -13591,7 +13592,7 @@ msgstr ""
 #. type: =head2
 #: in-place/virt-v2v-in-place.pod:48
 msgid "Exit code"
-msgstr ""
+msgstr "გასვლის კოდი: {}"
 
 #. type: textblock
 #: in-place/virt-v2v-in-place.pod:50
