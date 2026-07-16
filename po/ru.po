@@ -1,16 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Andrei Stepanov <adem4ik@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-06-04 00:12+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2026-07-16 21:19+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
 "Language: ru\n"
@@ -19,29 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Weblate 2026.7.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #: common/mltools/getopt.ml:73
 msgid ""
 "%s\n"
 "Options:\n"
 msgstr ""
+"%s\n"
+"Параметры:\n"
 
 #: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:390
 msgid "%s (ignored)"
-msgstr ""
+msgstr "%s (игнорируется)"
 
 #: common/mltools/checksums.ml:71
 msgid "%s did not return any output"
-msgstr ""
+msgstr "%s не вернул никакого вывода"
 
 #: common/mlcustomize/customize_run.ml:183
 msgid "%s does not exist in the guest"
-msgstr ""
+msgstr "%s не существует в гостевой системе"
 
 #: output/output_ovirt.ml:275
 msgid ""
@@ -56,14 +57,24 @@ msgid ""
 "If you don’t know what the %s mount point should be then you can also find "
 "this out through the oVirt user interface."
 msgstr ""
+"%s не существует или не является каталогом.\n"
+"\n"
+"Наиболее вероятная причина: либо %s (%s) не подключён к центру обработки "
+"данных, либо путь %s вообще не является %s.\n"
+"\n"
+"Сначала необходимо подключить %s к центру обработки данных через "
+"пользовательский интерфейс oVirt.\n"
+"\n"
+"Если вы не знаете, какой должна быть точка монтирования %s, вы также можете "
+"узнать это через пользовательский интерфейс oVirt."
 
 #: common/mlcustomize/customize_run.ml:113
 msgid "%s ignored for non-Windows guest"
-msgstr ""
+msgstr "%s игнорируется для гостевой системы не Windows"
 
 #: common/mlcustomize/customize_run.ml:186
 msgid "%s is not a regular file in the guest"
-msgstr ""
+msgstr "%s не является обычным файлом в гостевой системе"
 
 #. open/open.ml:39
 #. inspector/inspector.ml:157
@@ -72,29 +83,31 @@ msgstr ""
 #. in-place/in_place.ml:45
 #: v2v/v2v.ml:199 v2v/v2v.ml:188 v2v/v2v.ml:164 v2v/v2v.ml:44 open/open.ml:68
 msgid "%s option used more than once on the command line"
-msgstr ""
+msgstr "Параметр %s использован в командной строке более одного раза"
 
 #: common/mltools/tools_utils.ml:234 common/mltools/tools_utils.ml:202
 msgid "%s: %s"
-msgstr ""
+msgstr "%s: %s"
 
 #: common/mltools/tools_utils.ml:236
 msgid "%s: %s: %s"
-msgstr ""
+msgstr "%s: %s: %s"
 
 #: common/mltools/on_exit.ml:77
 msgid ""
 "%s: Exiting on signal %s\n"
 "%!"
 msgstr ""
+"%s: Выход по сигналу %s\n"
+"%!"
 
 #: common/mlcustomize/inject_virtio_win.ml:411
 msgid "%s: cannot open virtio-win ISO file: %s"
-msgstr ""
+msgstr "%s: не удалось открыть ISO-файл virtio-win: %s"
 
 #: common/mlcustomize/customize_run.ml:64
 msgid "%s: command exited with an error"
-msgstr ""
+msgstr "%s: команда завершилась с ошибкой"
 
 #: v2v/v2v.ml:286
 msgid ""
@@ -113,6 +126,20 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v(1).\n"
 msgstr ""
+"%s: преобразование гостевой системы для использования KVM\n"
+"\n"
+"virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi -os imported "
+"esx_guest\n"
+"\n"
+"virt-v2v -i libvirtxml guest-domain.xml -o local -os /var/tmp\n"
+"\n"
+"virt-v2v -i disk disk.img -o local -os /var/tmp\n"
+"\n"
+"Существует сопутствующая внешняя утилита \"virt-p2v\", которая поставляется\n"
+"в виде ISO- или CD-образа и может загружаться на физических машинах.\n"
+"\n"
+"Краткая сводка параметров приведена ниже. Подробную справку\n"
+"см. в справочной странице virt-v2v(1).\n"
 
 #: in-place/in_place.ml:226
 msgid ""
@@ -128,14 +155,25 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
+"%s: преобразование гостевой системы для использования KVM на месте\n"
+"\n"
+"Обратите внимание: эта программа изменяет гостевую систему на месте\n"
+"без создания резервной копии. Обычно следует использовать virt-v2v.\n"
+"\n"
+"virt-v2v-in-place -i libvirtxml guest-domain.xml\n"
+"\n"
+"virt-v2v-in-place -i disk disk.img\n"
+"\n"
+"Краткая сводка параметров приведена ниже. Подробную справку см.\n"
+"в справочной странице virt-v2v-in-place(1).\n"
 
 #: input/input_vddk.ml:207
 msgid "%s: enter password for ‘%s’: "
-msgstr ""
+msgstr "%s: введите пароль для «%s»: "
 
 #: common/mltools/tools_utils.ml:172
 msgid "%s: error: %s"
-msgstr ""
+msgstr "%s: ошибка: %s"
 
 #: inspector/inspector.ml:206
 msgid ""
@@ -146,6 +184,13 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-inspector(1).\n"
 msgstr ""
+"%s: оценка необходимого дискового пространства перед преобразованием virt-"
+"v2v\n"
+"\n"
+"virt-v2v-inspector -i disk disk.img [-O output.xml]\n"
+"\n"
+"Краткая сводка параметров приведена ниже. Подробную справку\n"
+"см. в справочной странице virt-v2v-inspector(1).\n"
 
 #: open/open.ml:94
 msgid ""
@@ -156,10 +201,16 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-open(1).\n"
 msgstr ""
+"%s: открыть входные данные virt-v2v и запустить программу на них\n"
+"\n"
+"virt-v2v-open -i disk disk.img --run 'virt-inspector --format=raw @@'\n"
+"\n"
+"Краткая сводка параметров приведена ниже. Подробную справку\n"
+"см. в справочной странице virt-v2v-open(1).\n"
 
 #: common/mltools/tools_utils.ml:729
 msgid "%s: operation timed out"
-msgstr ""
+msgstr "%s: время операции истекло"
 
 #: input/OVA.ml:127 input/OVA.ml:121
 msgid ""
@@ -168,132 +219,149 @@ msgid ""
 "Formats which we currently understand for '-i ova' are: tar (uncompressed, "
 "compress with gzip or xz), zip"
 msgstr ""
+"%s: неподдерживаемый формат файла\n"
+"\n"
+"Форматы, которые мы в настоящее время понимаем для «-i ova»: tar (несжатый, "
+"сжатый gzip или xz), zip"
 
 #: common/mltools/tools_utils.ml:191
 msgid "%s: warning: %s"
-msgstr ""
+msgstr "%s: предупреждение: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:258
 #: common/mlcustomize/customize_cmdline.ml:367
 msgid "'CMD+ARGS'"
-msgstr ""
+msgstr "'КОМАНДА+АРГУМЕНТЫ'"
 
 #: common/mlcustomize/customize_run.ml:133
 msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
 msgstr ""
+"--append-line: строка не должна содержать символы новой строки. Используйте "
+"параметр --append-line несколько раз, чтобы добавить несколько строк."
 
 #: common/mlcustomize/customize_run.ml:152
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
-msgstr ""
+msgstr "--chown: не удалось разобрать числовой UID:GID из %s:%s"
 
 #: common/mlcustomize/customize_run.ml:216
 msgid ""
 "--inject-blnsvr: blnsvr.exe not found in virtio-win source that you specified"
-msgstr ""
+msgstr "--inject-blnsvr: blnsvr.exe не найден в указанном источнике virtio-win"
 
 #: common/mlcustomize/customize_run.ml:225
 msgid ""
 "--inject-qemu-ga: QEMU Guest Agent MSI not found in virtio-win source that "
 "you specified"
 msgstr ""
+"--inject-qemu-ga: MSI-файл QEMU Guest Agent не найден в указанном источнике "
+"virtio-win"
 
 #: common/mlcustomize/customize_run.ml:241
 msgid ""
 "--inject-virtio-win: virtio drivers were not found for this Windows version "
 "in the virtio-win source that you specified"
 msgstr ""
+"--inject-virtio-win: драйверы virtio не найдены для этой версии Windows в "
+"указанном источнике virtio-win"
 
 #: v2v/v2v.ml:151 inspector/inspector.ml:140 in-place/in_place.ml:148
 msgid "--mac ip prefix length field is out of range"
-msgstr ""
+msgstr "поле длины префикса --mac ip выходит за допустимый диапазон"
 
 #: v2v/v2v.ml:351
 msgid "--parallel parameter must be >= 1"
-msgstr ""
+msgstr "параметр --parallel должен быть >= 1"
 
 #: input/input_disk.ml:43
 msgid "-i disk: expecting a disk image (filename) on the command line"
-msgstr ""
+msgstr "-i disk: ожидается образ диска (имя файла) в командной строке"
 
 #: input/input_xen_ssh.ml:65
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
-msgstr ""
+msgstr "-i libvirt: ожидается параметр -ic для подключения Xen через SSH"
 
 #: input/input_vddk.ml:142 input/input_vcenter_https.ml:88
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
-msgstr ""
+msgstr "-i libvirt: ожидается параметр -ic для подключения к vCenter"
 
 #: input/input_vcenter_https.ml:101
 msgid "-i libvirt: expecting -ic parameter to contain vcenter server name"
 msgstr ""
+"-i libvirt: ожидается, что параметр -ic будет содержать имя сервера vCenter"
 
 #: input/input_vcenter_https.ml:78
 msgid "-i libvirt: expecting -ip passwordfile parameter for vCenter connection"
 msgstr ""
+"-i libvirt: ожидается параметр -ip с файлом пароля для подключения к vCenter"
 
 #. input/input_vcenter_https.ml:70
 #. input/input_libvirt.ml:41
 #: input/input_xen_ssh.ml:57 input/input_vddk.ml:132
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
-msgstr ""
+msgstr "-i libvirt: ожидается имя гостя libvirt в командной строке"
 
 #: input/input_libvirt.ml:59
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
-msgstr ""
+msgstr "-i libvirtxml: ожидается имя XML-файла libvirt в командной строке"
 
 #: input/input_ova.ml:243
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
-msgstr ""
+msgstr "-i ova: OVF ссылается на файл «%s», который не найден в архиве OVA"
 
 #: input/input_ova.ml:78
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
 msgstr ""
+"-i ova: повреждённый OVA: контрольная сумма диска %s не совпадает с "
+"манифестом (фактическая = %s, ожидаемая = %s)"
 
 #: input/input_ova.ml:52
 msgid "-i ova: expecting an OVA file name on the command line"
-msgstr ""
+msgstr "-i ova: ожидается имя OVA-файла в командной строке"
 
 #: input/OVA.ml:361
 msgid ""
 "-i ova: invalid OVA file: path ‘%s’ references a file outside the archive"
 msgstr ""
+"-i ova: недопустимый OVA-файл: путь «%s» ссылается на файл за пределами "
+"архива"
 
 #: input/input_vmx.ml:57
 msgid "-i vmx: cannot use -it vddk in this input mode"
-msgstr ""
+msgstr "-i vmx: нельзя использовать -it vddk в этом режиме ввода"
 
 #: input/input_vmx.ml:60
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
-msgstr ""
+msgstr "-i vmx: ожидается VMX-файл или URI ssh://"
 
 #: input/vCenter.ml:159
 msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
+"Параметр -ip PASSWORD_FILE игнорируется, так как 'user@' не указан в URL"
 
 #: input/input_vddk.ml:119
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
-msgstr ""
+msgstr "-it vddk: «-io %s» не является допустимым параметром ввода"
 
 #: output/output.ml:54
 msgid "-o %s: %s option cannot be used in this output mode"
-msgstr ""
+msgstr "-o %s: параметр %s нельзя использовать в этом режиме вывода"
 
 #: output/output_disk.ml:66
 msgid "-o disk: output directory was not specified, use '-os /dir'"
-msgstr ""
+msgstr "-o disk: выходной каталог не указан, используйте «-os /dir»"
 
 #: output/output_libvirt.ml:59 output/output_disk.ml:56
 msgid "-o disk: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o disk: неизвестный параметр вывода «-oo %s»"
 
 #: output/output_kubevirt.ml:81
 msgid "-o kubevirt: output directory was not specified, use '-os /dir'"
-msgstr ""
+msgstr "-o kubevirt: выходной каталог не указан, используйте «-os /dir»"
 
 #: output/output_kubevirt.ml:91
 msgid ""
@@ -301,147 +369,163 @@ msgid ""
 "characters, '-' or '.', and must start and end with an alphanumeric "
 "character.  Rerun virt-v2v with the '-on name' option to rename it."
 msgstr ""
+"-o kubevirt: имя гостя должно содержать только строчные буквенно-цифровые "
+"символы, «-» или «.», и должно начинаться и заканчиваться буквенно-цифровым "
+"символом. Запустите virt-v2v повторно с параметром «-on имя», чтобы "
+"переименовать его."
 
 #: output/output_kubevirt.ml:71
 msgid "-o kubevirt: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o kubevirt: неизвестный параметр вывода «-oo %s»"
 
 #: output/output_libvirt.ml:120
 msgid ""
 "-o libvirt: output pool ‘%s’ does not have /pool/target/path element.  See "
 "virt-v2v-output-local(1)"
 msgstr ""
+"-o libvirt: выходной пул «%s» не содержит элемента /pool/target/path. См. "
+"virt-v2v-output-local(1)"
 
 #: output/output_libvirt.ml:124
 msgid ""
 "-o libvirt: output pool ‘%s’ has type='dir' but the /pool/target/path "
 "element is not a local directory.  See virt-v2v-output-local(1)"
 msgstr ""
+"-o libvirt: выходной пул «%s» имеет type='dir', но элемент /pool/target/path "
+"не является локальным каталогом. См. virt-v2v-output-local(1)"
 
 #: output/output_libvirt.ml:116
 msgid ""
 "-o libvirt: output pool ‘%s’ is not a directory (type='dir').  See virt-v2v-"
 "output-local(1)"
 msgstr ""
+"-o libvirt: выходной пул «%s» не является каталогом (type='dir'). См. virt-"
+"v2v-output-local(1)"
 
 #: output/output_openstack.ml:88
 msgid "-o openstack mode only supports -oa sparse -of raw"
-msgstr ""
+msgstr "Режим -o openstack поддерживает только -oa sparse -of raw"
 
 #: output/output_openstack.ml:115
 msgid "-o openstack: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o openstack: неизвестный параметр вывода «-oo %s»"
 
 #: output/output_ovirt_upload.ml:97
 msgid "-o ovirt-upload: -oo ovirt-cafile set more than once"
-msgstr ""
+msgstr "-o ovirt-upload: -oo ovirt-cafile задан более одного раза"
 
 #: output/output_ovirt_upload.ml:101
 msgid "-o ovirt-upload: -oo ovirt-cluster set more than once"
-msgstr ""
+msgstr "-o ovirt-upload: -oo ovirt-cluster задан более одного раза"
 
 #: output/output_ovirt_upload.ml:112
 msgid "-o ovirt-upload: invalid UUID for -oo ovirt-disk-uuid"
-msgstr ""
+msgstr "-o ovirt-upload: недопустимый UUID для -oo ovirt-disk-uuid"
 
 #: output/output_ovirt_upload.ml:76
 msgid ""
 "-o ovirt-upload: output password file was not specified, use ‘-op’ to point "
 "to a file which contains the password used to connect to the oVirt server"
 msgstr ""
+"-o ovirt-upload: файл пароля вывода не указан, используйте «-op», чтобы "
+"указать файл, содержащий пароль для подключения к серверу oVirt"
 
 #: output/output_ovirt_upload.ml:83
 msgid "-o ovirt-upload: output storage was not specified, use ‘-os’"
-msgstr ""
+msgstr "-o ovirt-upload: хранилище вывода не указано, используйте «-os»"
 
 #: output/output_ovirt_upload.ml:116
 msgid "-o ovirt-upload: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o ovirt-upload: неизвестный параметр вывода «-oo %s»"
 
 #: output/output_ovirt_upload.ml:68
 msgid ""
 "-o ovirt-upload: use ‘-oc’ to point to the oVirt server REST API URL, which "
 "is usually https://servername/ovirt-engine/api"
 msgstr ""
+"-o ovirt-upload: используйте «-oc», чтобы указать URL-адрес REST API сервера "
+"oVirt, обычно https://servername/ovirt-engine/api"
 
 #: output/output_ovirt.ml:51
 msgid "-o ovirt: -os option was not specified"
-msgstr ""
+msgstr "-o ovirt: параметр -os не указан"
 
 #: output/output_qemu.ml:72
 msgid "-o qemu: output directory was not specified, use '-os /dir'"
-msgstr ""
+msgstr "-o qemu: выходной каталог не указан, используйте «-os /dir»"
 
 #: output/output_qemu.ml:63
 msgid "-o qemu: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o qemu: неизвестный параметр вывода «-oo %s»"
 
 #: output/output_vdsm.ml:102
 msgid "-o vdsm: -oo vdsm-image-uuid was not specified"
-msgstr ""
+msgstr "-o vdsm: -oo vdsm-image-uuid не указан"
 
 #: output/output_vdsm.ml:81
 msgid "-o vdsm: -oo vdsm-ovf-output set more than once"
-msgstr ""
+msgstr "-o vdsm: -oo vdsm-ovf-output задан более одного раза"
 
 #: output/output_vdsm.ml:77
 msgid "-o vdsm: -oo vdsm-vm-uuid set more than once"
-msgstr ""
+msgstr "-o vdsm: -oo vdsm-vm-uuid задан более одного раза"
 
 #: output/output_vdsm.ml:110
 msgid "-o vdsm: -os option was not specified"
-msgstr ""
+msgstr "-o vdsm: параметр -os не указан"
 
 #: output/output_vdsm.ml:97
 msgid "-o vdsm: either -oo vdsm-vol-uuid or -oo vdsm-vm-uuid was not specified"
-msgstr ""
+msgstr "-o vdsm: не указан ни -oo vdsm-vol-uuid, ни -oo vdsm-vm-uuid"
 
 #: output/output_vdsm.ml:90
 msgid "-o vdsm: unknown output option ‘-oo %s’"
-msgstr ""
+msgstr "-o vdsm: неизвестный параметр вывода «-oo %s»"
 
 #: output/output_vdsm.ml:74
 msgid "-o vdsm: unknown vdsm-compat level ‘%s’"
-msgstr ""
+msgstr "-o vdsm: неизвестный уровень vdsm-compat «%s»"
 
 #. output/output_kubevirt.ml:84
 #. output/output_disk.ml:68
 #: output/output_vdsm.ml:112 output/output_qemu.ml:74
 msgid "-os %s: output directory does not exist or is not a directory"
-msgstr ""
+msgstr "-os %s: выходной каталог не существует или не является каталогом"
 
 #: input/parse_libvirt_xml.ml:279
 msgid "<checksum> missing 'method' attribute, ignoring"
-msgstr ""
+msgstr "У <checksum> отсутствует атрибут 'method', игнорируется"
 
 #: input/parse_libvirt_xml.ml:291
 msgid "<checksum> unknown fail='%s' attribute, ignoring"
-msgstr ""
+msgstr "<checksum> неизвестный атрибут fail='%s', игнорируется"
 
 #: input/parse_libvirt_xml.ml:370 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
-msgstr ""
+msgstr "<disk type='%s'> был проигнорирован"
 
 #: input/parse_libvirt_xml.ml:338
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
-msgstr ""
+msgstr "<disk type='network'> с <source protocol='%s'> был проигнорирован"
 
 #: input/parse_libvirt_xml.ml:365
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
-msgstr ""
+msgstr "<disk type='volume'> с <volume type='%s'> был проигнорирован"
 
 #: input/parse_libvirt_xml.ml:299
 msgid "<disk> element with no type attribute ignored"
-msgstr ""
+msgstr "Элемент <disk> без атрибута type проигнорирован"
 
 #: input/parse_libvirt_xml.ml:167
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
-msgstr ""
+msgstr "<listen type='%s'> во входном XML libvirt был проигнорирован"
 
 #: input/parse_libvirt_xml.ml:414
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
+"<target dev='%s'> был проигнорирован, так как имя устройства не удалось "
+"распознать"
 
 #: input/input_vddk.ml:176
 msgid ""
@@ -449,189 +533,192 @@ msgid ""
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
 "3.7."
 msgstr ""
+"<vmware:moref> не найден в выводе «virsh dumpxml \"%s\"». Наиболее вероятная "
+"причина — слишком старая версия libvirt, попробуйте обновить libvirt до ≥ "
+"3.7."
 
 #: common/mlcustomize/customize_cmdline.ml:305
 msgid "Add package(s) to install"
-msgstr ""
+msgstr "Добавить пакеты для установки"
 
 #: common/mlcustomize/customize_cmdline.ml:270
 msgid "Add package(s) to install at first boot"
-msgstr ""
+msgstr "Добавить пакеты для установки при первой загрузке"
 
 #: common/mlcustomize/customize_cmdline.ml:175
 msgid "Append line(s) to the file"
-msgstr ""
+msgstr "Добавить строки в файл"
 
 #: common/mlcustomize/customize_run.ml:137
 msgid "Appending line to %s"
-msgstr ""
+msgstr "Добавление строки в %s"
 
 #: common/mlcustomize/customize_cmdline.ml:197
 msgid "Change the owner user and group ID of a file or directory"
-msgstr ""
+msgstr "Изменить владельца и идентификатор группы файла или каталога"
 
 #: common/mlcustomize/customize_cmdline.ml:186
 msgid "Change the permissions of a file"
-msgstr ""
+msgstr "Изменить права доступа к файлу"
 
 #: common/mlcustomize/customize_run.ml:155
 msgid "Changing owner of %s to %d:%d"
-msgstr ""
+msgstr "Изменение владельца %s на %d:%d"
 
 #: common/mlcustomize/customize_run.ml:141
 msgid "Changing permissions of %s to %s"
-msgstr ""
+msgstr "Изменение прав доступа %s на %s"
 
 #: input/input_libvirt.ml:174 input/input_libvirt.ml:157
 msgid "Checking %s checksum of disk %d/%d"
-msgstr ""
+msgstr "Проверка контрольной суммы %s диска %d/%d"
 
 #: v2v/v2v.ml:219 inspector/inspector.ml:167 in-place/in_place.ml:179
 msgid "Collect output to .tar.xz file"
-msgstr ""
+msgstr "Собрать вывод в .tar.xz-файл"
 
 #: v2v/v2v.ml:217 inspector/inspector.ml:165 in-place/in_place.ml:177
 msgid "Collect pre-conversion information"
-msgstr ""
+msgstr "Собрать информацию до преобразования"
 
 #: common/mlcustomize/customize_cmdline.ml:488
 msgid "Compatibility option doing nothing"
-msgstr ""
+msgstr "Параметр совместимости, ничего не делающий"
 
 #: common/mlcustomize/customize_cmdline.ml:219
 msgid "Copy files in disk image"
-msgstr ""
+msgstr "Копировать файлы в образе диска"
 
 #: common/mlcustomize/customize_cmdline.ml:397
 msgid "Copy local files or directories from a tarball into image"
-msgstr ""
+msgstr "Копировать локальные файлы или каталоги из tar-архива в образ"
 
 #: common/mlcustomize/customize_cmdline.ml:230
 msgid "Copy local files or directories into image"
-msgstr ""
+msgstr "Копировать локальные файлы или каталоги в образ"
 
 #: common/mlcustomize/customize_run.ml:168
 msgid "Copying (in image): %s to %s"
-msgstr ""
+msgstr "Копирование (в образе): %s в %s"
 
 #: v2v/v2v.ml:532
 msgid "Copying disk %d/%d"
-msgstr ""
+msgstr "Копирование диска %d/%d"
 
 #: common/mlcustomize/customize_run.ml:172
 msgid "Copying: %s to %s"
-msgstr ""
+msgstr "Копирование: %s в %s"
 
 #: common/mlcustomize/customize_cmdline.ml:322
 msgid "Create a directory"
-msgstr ""
+msgstr "Создать каталог"
 
 #: common/mlcustomize/customize_cmdline.ml:316
 msgid "Create symbolic links"
-msgstr ""
+msgstr "Создать символические ссылки"
 
 #: v2v/v2v.ml:581
 msgid "Creating output metadata"
-msgstr ""
+msgstr "Создание метаданных вывода"
 
 #: common/mlcustomize/customize_cmdline.ml:321
 msgid "DIR"
-msgstr ""
+msgstr "КАТАЛОГ"
 
 #: common/mlcustomize/customize_cmdline.ml:236
 msgid "Delete a file or directory"
-msgstr ""
+msgstr "Удалить файл или каталог"
 
 #: common/mlcustomize/customize_run.ml:176
 msgid "Deleting: %s"
-msgstr ""
+msgstr "Удаление: %s"
 
 #: common/mltools/getopt.ml:225
 msgid "Display brief help"
-msgstr ""
+msgstr "Показать краткую справку"
 
 #: common/mltools/tools_utils.ml:388
 msgid "Display version and exit"
-msgstr ""
+msgstr "Показать версию и выйти"
 
 #: common/mlcustomize/customize_cmdline.ml:482
 msgid "Do not relabel files with correct SELinux labels"
-msgstr ""
+msgstr "Не изменять метки SELinux файлов"
 
 #: v2v/v2v.ml:257 inspector/inspector.ml:185 in-place/in_place.ml:199
 msgid "Don't trim filesystems before conversion"
-msgstr ""
+msgstr "Не обрезать файловые системы перед преобразованием"
 
 #: common/mltools/tools_utils.ml:392
 msgid "Don’t print progress messages"
-msgstr ""
+msgstr "Не выводить сообщения о ходе выполнения"
 
 #: common/mltools/tools_utils.ml:423
 msgid "Don’t turn off echo for passphrases"
-msgstr ""
+msgstr "Не отключать эхо для парольных фраз"
 
 #: common/mlcustomize/customize_cmdline.ml:247
 msgid "Edit file using Perl expression"
-msgstr ""
+msgstr "Редактировать файл с помощью Perl-выражения"
 
 #: common/mlcustomize/customize_run.ml:180
 msgid "Editing: %s"
-msgstr ""
+msgstr "Редактирование: %s"
 
 #: common/mltools/tools_utils.ml:389
 msgid "Enable libguestfs debugging messages"
-msgstr ""
+msgstr "Включить отладочные сообщения libguestfs"
 
 #: common/mltools/tools_utils.ml:390
 msgid "Enable tracing of libguestfs calls"
-msgstr ""
+msgstr "Включить трассировку вызовов libguestfs"
 
 #: output/output_ovirt.ml:77
 msgid "Export Storage Domain"
-msgstr ""
+msgstr "Экспортировать домен хранилища"
 
 #: open/open.ml:88
 msgid "External command to run"
-msgstr ""
+msgstr "Внешняя команда для запуска"
 
 #. common/mlcustomize/customize_cmdline.ml:408
 #. common/mlcustomize/customize_cmdline.ml:373
 #: common/mlcustomize/customize_cmdline.ml:414
 msgid "FILE"
-msgstr ""
+msgstr "ФАЙЛ"
 
 #: common/mlcustomize/customize_cmdline.ml:455
 msgid "FILE:CONTENT"
-msgstr ""
+msgstr "ФАЙЛ:СОДЕРЖИМОЕ"
 
 #: common/mlcustomize/customize_cmdline.ml:444
 msgid "FILE:DEST"
-msgstr ""
+msgstr "ФАЙЛ:НАЗНАЧЕНИЕ"
 
 #: common/mlcustomize/customize_cmdline.ml:242
 msgid "FILE:EXPR"
-msgstr ""
+msgstr "ФАЙЛ:ВЫРАЖЕНИЕ"
 
 #: common/mlcustomize/customize_cmdline.ml:170
 msgid "FILE:LINE"
-msgstr ""
+msgstr "ФАЙЛ:СТРОКА"
 
 #: common/mlcustomize/customize_cmdline.ml:203
 msgid "FILENAME"
-msgstr ""
+msgstr "ИМЯ_ФАЙЛА"
 
 #. in-place/in_place.ml:392
 #: v2v/v2v.ml:585 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
-msgstr ""
+msgstr "Завершение"
 
 #: common/mlcustomize/customize_cmdline.ml:275
 msgid "HOSTNAME"
-msgstr ""
+msgstr "ИМЯ_ХОСТА"
 
 #: v2v/v2v.ml:263 inspector/inspector.ml:191 in-place/in_place.ml:203
 msgid "How to choose root filesystem"
-msgstr ""
+msgstr "Как выбрать корневую файловую систему"
 
 #: common/mltools/tools_utils.ml:177
 msgid ""
@@ -640,27 +727,31 @@ msgid ""
 "\n"
 "  %s -v -x [...]"
 msgstr ""
+"При сообщении об ошибках запустите %s с включённой отладкой и приложите "
+"полный вывод:\n"
+"\n"
+"  %s -v -x [...]"
 
 #: common/mlcustomize/customize_cmdline.ml:386
 msgid "Inject a public key into the guest"
-msgstr ""
+msgstr "Внедрить открытый ключ в гостевую систему"
 
 #: common/mlcustomize/customize_cmdline.ml:282
 msgid "Inject the Balloon Server into a Windows guest"
-msgstr ""
+msgstr "Внедрить Balloon Server в гостевую систему Windows"
 
 #: common/mlcustomize/customize_cmdline.ml:288
 msgid "Inject the QEMU Guest Agent into a Windows guest"
-msgstr ""
+msgstr "Внедрить QEMU Guest Agent в гостевую систему Windows"
 
 #: common/mlcustomize/customize_cmdline.ml:294
 msgid "Inject virtio-win drivers into a Windows guest"
-msgstr ""
+msgstr "Внедрить драйверы virtio-win в гостевую систему Windows"
 
 #. in-place/in_place.ml:185
 #: v2v/v2v.ml:225 open/open.ml:80 inspector/inspector.ml:173
 msgid "Input format"
-msgstr ""
+msgstr "Входной формат"
 
 #: input/input_vddk.ml:77
 msgid ""
@@ -685,73 +776,94 @@ msgid ""
 "Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further\n"
 "information on these settings.\n"
 msgstr ""
+"Параметры ввода (-io), которые можно использовать с -it vddk\n"
+"(все настройки необязательны):\n"
+"\n"
+"  -io vddk-compression=СЖАТИЕ   Установить режим сжатия VDDK (см.\n"
+"                                 документацию nbdkit-vddk-plugin)\n"
+"  -io vddk-config=ФАЙЛ         Файл конфигурации VDDK\n"
+"  -io vddk-cookie=COOKIE       Cookie VDDK\n"
+"  -io vddk-file=ФАЙЛ           Переопределить параметр file= nbdkit-vddk-"
+"plugin\n"
+"  -io vddk-libdir=КАТАЛОГ      Родительский каталог библиотеки VDDK\n"
+"  -io vddk-nfchostport=ПОРТ    nfchostport VDDK\n"
+"  -io vddk-port=ПОРТ           Порт VDDK\n"
+"  -io vddk-snapshot=СНАПШОТ-MOREF\n"
+"                               moref снимка VDDK\n"
+"  -io vddk-thumbprint=xx:xx:xx:...\n"
+"                               Отпечаток сервера VDDK\n"
+"  -io vddk-transports=РЕЖИМ:РЕЖИМ:..\n"
+"                               Транспорты VDDK\n"
+"\n"
+"Обратитесь к nbdkit-vddk-plugin(1) и документации VDDK для получения\n"
+"дополнительной информации об этих настройках.\n"
 
 #: v2v/v2v.ml:231 open/open.ml:86 inspector/inspector.ml:179
 msgid "Input transport"
-msgstr ""
+msgstr "Транспорт ввода"
 
 #: common/mlcustomize/customize_run.ml:191
 msgid "Installing firstboot command: %s"
-msgstr ""
+msgstr "Установка команды firstboot: %s"
 
 #: common/mlcustomize/customize_run.ml:195
 msgid "Installing firstboot packages: %s"
-msgstr ""
+msgstr "Установка пакетов firstboot: %s"
 
 #: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
-msgstr ""
+msgstr "Установка скрипта firstboot: %s"
 
 #: common/mlcustomize/customize_run.ml:248
 msgid "Installing packages: %s"
-msgstr ""
+msgstr "Установка пакетов: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:225
 msgid "LOCALPATH:REMOTEDIR"
-msgstr ""
+msgstr "ЛОКАЛЬНЫЙ_ПУТЬ:УДАЛЁННЫЙ_КАТАЛОГ"
 
 #. in-place/in_place.ml:183
 #: v2v/v2v.ml:223 open/open.ml:78 inspector/inspector.ml:171
 msgid "Libvirt URI"
-msgstr ""
+msgstr "URI-адрес Libvirt"
 
 #: common/mlcustomize/customize_run.ml:255
 msgid "Linking: %s -> %s"
-msgstr ""
+msgstr "Создание ссылки: %s -> %s"
 
 #. common/mlcustomize/customize_cmdline.ml:287
 #. common/mlcustomize/customize_cmdline.ml:281
 #: common/mlcustomize/customize_cmdline.ml:293
 msgid "METHOD"
-msgstr ""
+msgstr "МЕТОД"
 
 #: common/mltools/tools_utils.ml:429
 msgid "Make output machine readable"
-msgstr ""
+msgstr "Сделать вывод машиночитаемым"
 
 #: common/mlcustomize/customize_run.ml:260
 msgid "Making directory: %s"
-msgstr ""
+msgstr "Создание каталога: %s"
 
 #: v2v/v2v.ml:235 inspector/inspector.ml:181 in-place/in_place.ml:191
 msgid "Map NIC to network or bridge or assign static IP"
-msgstr ""
+msgstr "Сопоставить NIC с сетью или мостом, или назначить статический IP-адрес"
 
 #: v2v/v2v.ml:215 inspector/inspector.ml:163 in-place/in_place.ml:175
 msgid "Map bridge ‘in’ to ‘out’"
-msgstr ""
+msgstr "Сопоставить мост «вход» с «выходом»"
 
 #: v2v/v2v.ml:239 inspector/inspector.ml:187 in-place/in_place.ml:195
 msgid "Map network ‘in’ to ‘out’"
-msgstr ""
+msgstr "Сопоставить сеть «вход» с «выходом»"
 
 #: common/mlcustomize/customize_cmdline.ml:333
 msgid "Move files in disk image"
-msgstr ""
+msgstr "Переместить файлы в образе диска"
 
 #: common/mlcustomize/customize_run.ml:264
 msgid "Moving: %s -> %s"
-msgstr ""
+msgstr "Перемещение: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
@@ -760,16 +872,16 @@ msgstr ""
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
-msgstr ""
+msgstr "В этом режиме нельзя использовать параметры ввода.\n"
 
 #: output/output_ovirt.ml:40 output/output_null.ml:38
 #: output/output_glance.ml:40
 msgid "No output options can be used in this mode.\n"
-msgstr ""
+msgstr "В этом режиме нельзя использовать параметры вывода.\n"
 
 #: output/output_vdsm.ml:166
 msgid "OVF (metadata) directory (%s) does not exist or is not a directory"
-msgstr ""
+msgstr "Каталог OVF (метаданных) (%s) не существует или не является каталогом"
 
 #: common/mlcustomize/firstboot.ml:268
 msgid ""
@@ -777,10 +889,13 @@ msgid ""
 "required in order to install Windows firstboot scripts.  You can get one by "
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
+"Один из файлов rhsrvany.exe или pvvxsvc.exe отсутствует в %s. Один из них "
+"требуется для установки скриптов firstboot в Windows. Вы можете получить "
+"его, собрав rhsrvany (https://github.com/rwmjones/rhsrvany)"
 
 #: v2v/v2v.ml:245
 msgid "Output hypervisor connection"
-msgstr ""
+msgstr "Подключение к гипервизору вывода"
 
 #: output/output_ovirt_upload.ml:51
 msgid ""
@@ -799,6 +914,22 @@ msgid ""
 "\n"
 "  -oo ovirt-disk-uuid=UUID      Disk UUID\n"
 msgstr ""
+"Параметры вывода (-oo), которые можно использовать с -o ovirt-upload:\n"
+"\n"
+"  -oo ovirt-cafile=CA.PEM       Установить имя файла набора сертификатов «"
+"ca.pem».\n"
+"  -oo ovirt-cluster=ИМЯ_КЛАСТЕРА Установить имя кластера oVirt.\n"
+"  -oo ovirt-proxy               Подключаться через прокси oVirt Engine (по "
+"умолчанию: false).\n"
+"  -oo ovirt-verifypeer[=true|false] Проверять идентификатор сервера (по "
+"умолчанию: false).\n"
+"\n"
+"Вы можете переопределить UUID дисков вместо использования автоматически "
+"генерируемых\n"
+"UUID после их загрузки (если вы это делаете, вы должны указать по одному для "
+"каждого диска):\n"
+"\n"
+"  -oo ovirt-disk-uuid=UUID      UUID диска\n"
 
 #: output/output_qemu.ml:44
 msgid ""
@@ -807,6 +938,10 @@ msgid ""
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 "  -oo qemu-boot       Boot the guest in qemu after conversion\n"
 msgstr ""
+"Параметры вывода (-oo), которые можно использовать с -o qemu:\n"
+"\n"
+"  -oo compressed      Сжать выходной файл (используется только с -of qcow2)\n"
+"  -oo qemu-boot       Загрузить гостя в qemu после преобразования\n"
 
 #: output/output_vdsm.ml:43
 msgid ""
@@ -825,6 +960,20 @@ msgid ""
 "  -oo vdsm-image-uuid=UUID     Image directory UUID\n"
 "  -oo vdsm-vol-uuid=UUID       Disk volume UUID\n"
 msgstr ""
+"Параметры вывода (-oo), которые можно использовать с -o vdsm:\n"
+"\n"
+"  -oo vdsm-compat=0.10|1.1     Записывать qcow2 с compat=0.10|1.1\n"
+"                                   (по умолчанию: 0.10)\n"
+"  -oo vdsm-vm-uuid=UUID        UUID ВМ (обязательно)\n"
+"  -oo vdsm-ovf-output=КАТАЛОГ  Каталог метаданных OVF (обязательно)\n"
+"  -oo vdsm-ovf-flavour=%s\n"
+"                               Установить тип генерируемого OVF (по "
+"умолчанию: ovirtexp)\n"
+"\n"
+"Для каждого диска вы должны указать по одному из этих параметров:\n"
+"\n"
+"  -oo vdsm-image-uuid=UUID     UUID каталога образа\n"
+"  -oo vdsm-vol-uuid=UUID       UUID тома диска\n"
 
 #: output/output_disk.ml:44
 msgid ""
@@ -832,6 +981,9 @@ msgid ""
 "\n"
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
+"Параметры вывода, которые можно использовать с -o disk:\n"
+"\n"
+"  -oo compressed      Сжать выходной файл (используется только с -of qcow2)\n"
 
 #: output/output_kubevirt.ml:51
 msgid ""
@@ -842,6 +994,14 @@ msgid ""
 "  -oo disk=disk1      Specify filename of output disk (if used, must be\n"
 "                          given once for each disk, else -os path is used)\n"
 msgstr ""
+"Параметры вывода, которые можно использовать с -o kubevirt:\n"
+"\n"
+"  -oo compressed      Сжать выходной файл (используется только с -of qcow2)\n"
+"  -oo create=false    Не создавать выходные диски\n"
+"  -oo disk=disk1      Указать имя выходного диска (если используется, должно "
+"быть\n"
+"                           указано один раз для каждого диска, иначе "
+"используется путь -os)\n"
 
 #: output/output_libvirt.ml:47
 msgid ""
@@ -849,273 +1009,280 @@ msgid ""
 "\n"
 "  -oo compressed      Compress the output file (used only with -of qcow2)\n"
 msgstr ""
+"Параметры вывода, которые можно использовать с -o libvirt:\n"
+"\n"
+"  -oo compressed      Сжать выходной файл (используется только с -of qcow2)\n"
 
 #. common/mlcustomize/customize_cmdline.ml:235
 #: common/mlcustomize/customize_cmdline.ml:420
 msgid "PATH"
-msgstr ""
+msgstr "ПУТЬ"
 
 #: common/mlcustomize/customize_cmdline.ml:181
 msgid "PERMISSIONS:FILE"
-msgstr ""
+msgstr "ПРАВА:ФАЙЛ"
 
 #. common/mlcustomize/customize_cmdline.ml:300
 #. common/mlcustomize/customize_cmdline.ml:265
 #: common/mlcustomize/customize_cmdline.ml:427
 msgid "PKG,PKG.."
-msgstr ""
+msgstr "ПАКЕТ,ПАКЕТ.."
 
 #: v2v/v2v.ml:272 in-place/in_place.ml:212
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
-msgstr ""
+msgstr "Предпочитать 'virtio-blk' или 'virtio-scsi'"
 
 #: v2v/v2v.ml:261 in-place/in_place.ml:201
 msgid "Print source and stop"
-msgstr ""
+msgstr "Вывести исходные данные и остановиться"
 
 #: common/mlcustomize/customize_cmdline.ml:208
 msgid "Read customize commands from file"
-msgstr ""
+msgstr "Читать команды настройки из файла"
 
 #: common/mltools/tools_utils.ml:424
 msgid "Read passphrases from stdin"
-msgstr ""
+msgstr "Читать парольные фразы из stdin"
 
 #: common/mlcustomize/customize_cmdline.ml:421
 msgid "Recursively truncate all files in directory"
-msgstr ""
+msgstr "Рекурсивно обрезать все файлы в каталоге"
 
 #: common/mlcustomize/customize_run.ml:298
 msgid "Recursively truncating: %s"
-msgstr ""
+msgstr "Рекурсивное обрезание: %s"
 
 #: v2v/v2v.ml:249
 msgid "Rename guest when converting"
-msgstr ""
+msgstr "Переименовать гостя при преобразовании"
 
 #: common/mlcustomize/customize_cmdline.ml:259
 msgid "Run command at first guest boot"
-msgstr ""
+msgstr "Запустить команду при первой загрузке гостя"
 
 #: common/mlcustomize/customize_cmdline.ml:368
 msgid "Run command in disk image"
-msgstr ""
+msgstr "Запустить команду в образе диска"
 
 #: common/mlcustomize/customize_cmdline.ml:253
 msgid "Run script at first guest boot"
-msgstr ""
+msgstr "Запустить скрипт при первой загрузке гостя"
 
 #: common/mlcustomize/customize_cmdline.ml:362
 msgid "Run script in disk image"
-msgstr ""
+msgstr "Запустить скрипт в образе диска"
 
 #: common/mlcustomize/customize_cmdline.ml:409
 msgid "Run touch on a file"
-msgstr ""
+msgstr "Выполнить touch для файла"
 
 #: v2v/v2v.ml:259
 msgid "Run up to N instances of nbdcopy in parallel"
-msgstr ""
+msgstr "Запустить до N экземпляров nbdcopy параллельно"
 
 #: open/open.ml:188
 msgid "Running external command"
-msgstr ""
+msgstr "Запуск внешней команды"
 
 #: common/mlcustomize/customize_run.ml:307
 msgid "Running touch: %s"
-msgstr ""
+msgstr "Выполнение touch: %s"
 
 #. common/mlcustomize/customize_run.ml:159
 #: common/mlcustomize/customize_run.ml:274
 msgid "Running: %s"
-msgstr ""
+msgstr "Запуск: %s"
 
 #. common/mlcustomize/customize_cmdline.ml:252
 #: common/mlcustomize/customize_cmdline.ml:361
 msgid "SCRIPT"
-msgstr ""
+msgstr "СКРИПТ"
 
 #: common/mltools/tools_utils.ml:425
 #: common/mlcustomize/customize_cmdline.ml:351
 msgid "SELECTOR"
-msgstr ""
+msgstr "СЕЛЕКТОР"
 
 #: common/mlcustomize/customize_run.ml:363
 msgid "SELinux relabelling"
-msgstr ""
+msgstr "Изменение меток SELinux"
 
 #. common/mlcustomize/customize_cmdline.ml:214
 #: common/mlcustomize/customize_cmdline.ml:328
 msgid "SOURCE:DEST"
-msgstr ""
+msgstr "ИСТОЧНИК:НАЗНАЧЕНИЕ"
 
 #: common/mlcustomize/customize_run.ml:287
 msgid "SSH key could not be injected for this type of guest"
-msgstr ""
+msgstr "Невозможно внедрить SSH-ключ для этого типа гостя"
 
 #: common/mlcustomize/customize_run.ml:284
 msgid "SSH key inject: %s"
-msgstr ""
+msgstr "Внедрение SSH-ключа: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:374
 msgid "Scrub a file"
-msgstr ""
+msgstr "Затереть файл"
 
 #: common/mlcustomize/customize_cmdline.ml:466
 msgid "Scrub build log file"
-msgstr ""
+msgstr "Затереть файл журнала сборки"
 
 #: common/mlcustomize/customize_run.ml:374
 msgid "Scrubbing the log file"
-msgstr ""
+msgstr "Затирание файла журнала"
 
 #: common/mlcustomize/customize_run.ml:279
 msgid "Scrubbing: %s"
-msgstr ""
+msgstr "Затирание: %s"
 
 #: v2v/v2v.ml:213
 msgid "Set bandwidth dynamically from file"
-msgstr ""
+msgstr "Установить пропускную способность динамически из файла"
 
 #: v2v/v2v.ml:211
 msgid "Set bandwidth to bits per sec"
-msgstr ""
+msgstr "Установить пропускную способность в бит/с"
 
 #. in-place/in_place.ml:181
 #: v2v/v2v.ml:221 open/open.ml:76 inspector/inspector.ml:169
 msgid "Set input mode (default: libvirt)"
-msgstr ""
+msgstr "Установить режим ввода (по умолчанию: libvirt)"
 
 #: v2v/v2v.ml:237 inspector/inspector.ml:183 in-place/in_place.ml:193
 msgid "Set memory size"
-msgstr ""
+msgstr "Установить размер памяти"
 
 #: v2v/v2v.ml:265 inspector/inspector.ml:193 in-place/in_place.ml:205
 msgid "Set number of vCPUs"
-msgstr ""
+msgstr "Установить количество vCPU"
 
 #. in-place/in_place.ml:187
 #: v2v/v2v.ml:227 open/open.ml:82 inspector/inspector.ml:175
 msgid "Set option for input mode"
-msgstr ""
+msgstr "Установить параметр для режима ввода"
 
 #: v2v/v2v.ml:251
 msgid "Set option for output mode"
-msgstr ""
+msgstr "Установить параметр для режима вывода"
 
 #: v2v/v2v.ml:243
 msgid "Set output allocation mode"
-msgstr ""
+msgstr "Установить режим распределения вывода"
 
 #: v2v/v2v.ml:247
 msgid "Set output format"
-msgstr ""
+msgstr "Установить формат вывода"
 
 #: v2v/v2v.ml:241
 msgid "Set output mode (default: libvirt)"
-msgstr ""
+msgstr "Установить режим вывода (по умолчанию: libvirt)"
 
 #: v2v/v2v.ml:255
 msgid "Set output storage location"
-msgstr ""
+msgstr "Установить расположение хранилища вывода"
 
 #: common/mlcustomize/customize_cmdline.ml:476
 msgid "Set password crypto"
-msgstr ""
+msgstr "Установить шифрование пароля"
 
 #: common/mltools/tools_utils.ml:433
 msgid "Set program name"
-msgstr ""
+msgstr "Установить имя программы"
 
 #: common/mlcustomize/customize_cmdline.ml:356
 msgid "Set root password"
-msgstr ""
+msgstr "Установить пароль root"
 
 #: common/mlcustomize/customize_cmdline.ml:403
 msgid "Set the default timezone"
-msgstr ""
+msgstr "Установить часовой пояс по умолчанию"
 
 #: common/mlcustomize/customize_cmdline.ml:276
 msgid "Set the hostname"
-msgstr ""
+msgstr "Установить имя хоста"
 
 #: inspector/inspector.ml:189 in-place/in_place.ml:197
 msgid "Set the output filename"
-msgstr ""
+msgstr "Установить имя выходного файла"
 
 #: common/mlcustomize/customize_cmdline.ml:345
 msgid "Set user password"
-msgstr ""
+msgstr "Установить пароль пользователя"
 
 #: common/mlcustomize/customize_run.ml:75
 msgid "Setting a random seed"
-msgstr ""
+msgstr "Установка случайного начального числа"
 
 #: common/mlcustomize/customize_run.ml:354
 msgid "Setting passwords"
-msgstr ""
+msgstr "Установка паролей"
 
 #: common/mlcustomize/password.ml:113
 msgid "Setting random password of %s to %s"
-msgstr ""
+msgstr "Установка случайного пароля %s на %s"
 
 #: common/mlcustomize/customize_run.ml:207
 msgid "Setting the hostname: %s"
-msgstr ""
+msgstr "Установка имени хоста: %s"
 
 #: common/mlcustomize/customize_run.ml:90
 msgid "Setting the machine ID in %s"
-msgstr ""
+msgstr "Установка идентификатора машины в %s"
 
 #: common/mlcustomize/customize_run.ml:302
 msgid "Setting the timezone: %s"
-msgstr ""
+msgstr "Установка часового пояса: %s"
 
 #: v2v/v2v.ml:495
 msgid "Setting up the destination: %s"
-msgstr ""
+msgstr "Настройка назначения: %s"
 
 #. in-place/in_place.ml:356
 #: v2v/v2v.ml:471 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
-msgstr ""
+msgstr "Настройка источника: %s"
 
 #: v2v/v2v.ml:477 in-place/in_place.ml:362
 msgid "Source guest information (--print-source option):\n"
-msgstr ""
+msgstr "Информация об исходной гостевой системе (параметр --print-source):\n"
 
 #: common/mltools/tools_utils.ml:425
 msgid "Specify a LUKS key"
-msgstr ""
+msgstr "Указать ключ LUKS"
 
 #: common/mlcustomize/customize_cmdline.ml:392
 msgid "TARFILE:REMOTEDIR"
-msgstr ""
+msgstr "TAR-ФАЙЛ:УДАЛЁННЫЙ_КАТАЛОГ"
 
 #: common/mlcustomize/customize_cmdline.ml:311
 msgid "TARGET:LINK[:LINK..]"
-msgstr ""
+msgstr "ЦЕЛЬ:ССЫЛКА[:ССЫЛКА..]"
 
 #: common/mlcustomize/customize_cmdline.ml:402
 msgid "TIMEZONE"
-msgstr ""
+msgstr "ЧАСОВОЙ_ПОЯС"
 
 #: v2v/v2v.ml:205
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
-msgstr ""
+msgstr "Параметр --in-place заменён программой «virt-v2v-in-place»"
 
 #: output/output_qemu.ml:251
 msgid ""
 "The Virt machine has no support for IDE. Please report a bug for virt-v2v -- "
 "refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
+"Виртуальная машина не поддерживает IDE. Сообщите об ошибке в virt-v2v — "
+"обратитесь к разделу «BUGS» справочной страницы virt-v2v(1)."
 
 #: output/output_qemu.ml:272
 msgid ""
 "The Virt machine has no support for floppies. Please report a bug for virt-"
 "v2v -- refer to virt-v2v(1) section \"BUGS\"."
 msgstr ""
+"Виртуальная машина не поддерживает дисководы. Сообщите об ошибке в virt-v2v "
+"— обратитесь к разделу \"BUGS\" справочной страницы virt-v2v(1)."
 
 #: lib/create_ovf.ml:785
 msgid ""
@@ -1123,6 +1290,9 @@ msgid ""
 "not supported by oVirt.  Therefore the converted guest’s display will not "
 "require a separate password to connect."
 msgstr ""
+"Для подключения к дисплею этой гостевой системы требовался пароль, но oVirt "
+"не поддерживает это. Поэтому для подключения к дисплею преобразованной "
+"гостевой системы не потребуется отдельного пароля."
 
 #: input/input_vmx.ml:111
 msgid ""
@@ -1131,89 +1301,95 @@ msgid ""
 "alternate conversion methods described in virt-v2v-input-vmware(1) section "
 "\"NOTES\"."
 msgstr ""
+"Этот транспорт не поддерживает гостевые системы со снимками. Либо объедините "
+"снимки для этой гостевой системы и повторите попытку преобразования, либо "
+"используйте один из альтернативных методов преобразования, описанных в "
+"разделе \"NOTES\" справочной страницы virt-v2v-input-vmware(1)."
 
 #: common/mlcustomize/customize_cmdline.ml:415
 msgid "Truncate a file to zero size"
-msgstr ""
+msgstr "Обрезать файл до нулевого размера"
 
 #: common/mlcustomize/customize_run.ml:294
 msgid "Truncating: %s"
-msgstr ""
+msgstr "Обрезание: %s"
 
 #: common/mlcustomize/customize_cmdline.ml:192
 msgid "UID:GID:PATH"
-msgstr ""
+msgstr "UID:GID:ПУТЬ"
 
 #: common/mlcustomize/customize_cmdline.ml:339
 msgid "USER:SELECTOR"
-msgstr ""
+msgstr "ПОЛЬЗОВАТЕЛЬ:СЕЛЕКТОР"
 
 #: common/mlcustomize/customize_cmdline.ml:380
 msgid "USER[:SELECTOR]"
-msgstr ""
+msgstr "ПОЛЬЗОВАТЕЛЬ[:СЕЛЕКТОР]"
 
 #: common/mlcustomize/customize_cmdline.ml:432
 msgid "Uninstall package(s)"
-msgstr ""
+msgstr "Удалить пакеты"
 
 #: common/mlcustomize/customize_run.ml:311
 msgid "Uninstalling packages: %s"
-msgstr ""
+msgstr "Удаление пакетов: %s"
 
 #: common/mlcustomize/customize_run.ml:290
 msgid "Unpack tar file: %s to %s"
-msgstr ""
+msgstr "Распаковка tar-файла: %s в %s"
 
 #: common/mlcustomize/customize_cmdline.ml:438
 msgid "Update packages"
-msgstr ""
+msgstr "Обновить пакеты"
 
 #: common/mlcustomize/customize_run.ml:316
 msgid "Updating packages"
-msgstr ""
+msgstr "Обновление пакетов"
 
 #: common/mlcustomize/customize_cmdline.ml:449
 msgid "Upload local file to destination"
-msgstr ""
+msgstr "Отправить локальный файл в назначение"
 
 #: common/mlcustomize/customize_run.ml:321
 msgid "Uploading: %s to %s"
-msgstr ""
+msgstr "Отправка: %s в %s"
 
 #: common/mltools/tools_utils.ml:394
 msgid "Use ANSI colour sequences even if not tty"
-msgstr ""
+msgstr "Использовать ANSI-цвета, даже если не tty"
 
 #. in-place/in_place.ml:189
 #: v2v/v2v.ml:229 open/open.ml:84 inspector/inspector.ml:177
 msgid "Use password from file to connect to input hypervisor"
-msgstr ""
+msgstr "Использовать пароль из файла для подключения к гипервизору ввода"
 
 #: v2v/v2v.ml:253
 msgid "Use password from file to connect to output hypervisor"
-msgstr ""
+msgstr "Использовать пароль из файла для подключения к гипервизору вывода"
 
 #: v2v/v2v.ml:233
 msgid "Use virt-v2v-in-place instead"
-msgstr ""
+msgstr "Использовать virt-v2v-in-place вместо этого"
 
 #: common/mltools/tools_utils.ml:395
 msgid "Wrap log messages even if not tty"
-msgstr ""
+msgstr "Переносить сообщения журнала, даже если не tty"
 
 #: common/mlcustomize/customize_cmdline.ml:460
 msgid "Write file"
-msgstr ""
+msgstr "Записать файл"
 
 #: common/mlcustomize/customize_run.ml:346
 msgid "Writing: %s"
-msgstr ""
+msgstr "Запись: %s"
 
 #: lib/YAML.ml:167
 msgid ""
 "YAML block contains newline character.  This should not happen, please "
 "report a bug against virt-v2v."
 msgstr ""
+"Блок YAML содержит символ новой строки. Это не должно происходить, сообщите "
+"об ошибке в virt-v2v."
 
 #: output/output_libvirt.ml:96
 msgid ""
@@ -1226,10 +1402,19 @@ msgid ""
 "If using virt-p2v, select a different ‘Name’ in the ‘Target properties’. Or "
 "delete the existing domain on the target using the ‘virsh undefine’ command."
 msgstr ""
+"домен libvirt с именем «%s» уже существует на целевом сервере.\n"
+"\n"
+"При использовании virt-v2v напрямую используйте параметр «-on», чтобы "
+"выбрать другое имя. Или удалите существующий домен на целевом сервере с "
+"помощью команды «virsh undefine».\n"
+"\n"
+"При использовании virt-p2v выберите другое «Имя» в «Свойствах цели». Или "
+"удалите существующий домен на целевом сервере с помощью команды «virsh "
+"undefine»."
 
 #: common/mlcustomize/append_line.ml:44
 msgid "append_line: %s is not a file"
-msgstr ""
+msgstr "append_line: %s не является файлом"
 
 #: input/input_libvirt.ml:206
 msgid ""
@@ -1237,10 +1422,13 @@ msgid ""
 "Expected checksum: %s\n"
 "Actual checksum: %s"
 msgstr ""
+"неправильная контрольная сумма для диска %d/%d\n"
+"Ожидаемая контрольная сумма: %s\n"
+"Фактическая контрольная сумма: %s"
 
 #: lib/libvirt_utils.ml:59
 msgid "cannot find libvirt domain ‘%s’: %s"
-msgstr ""
+msgstr "не удаётся найти домен libvirt «%s»: %s"
 
 #: lib/libvirt_utils.ml:96
 msgid ""
@@ -1251,10 +1439,17 @@ msgid ""
 "\n"
 "To set the pool which virt-v2v uses, add the ‘-os <pool>’ option."
 msgstr ""
+"не удаётся найти пул libvirt «%s»: %s\n"
+"\n"
+"Используйте «virsh pool-list --all» для вывода всех доступных пулов и «virsh "
+"pool-dumpxml <пул>» для отображения сведений о конкретном пуле.\n"
+"\n"
+"Чтобы указать пул, который использует virt-v2v, добавьте параметр «-os <пул>"
+"»."
 
 #: lib/libvirt_utils.ml:110
 msgid "cannot find libvirt volume ‘%s’: %s"
-msgstr ""
+msgstr "не удаётся найти том libvirt «%s»: %s"
 
 #: common/mlcustomize/firstboot.ml:235
 msgid ""
@@ -1262,26 +1457,29 @@ msgid ""
 "and guest arch (%s) are not compatible.  The firstboot service may not run "
 "at boot."
 msgstr ""
+"не удаётся завершить установку firstboot путём запуска «%s», так как "
+"архитектура хоста (%s) и гостя (%s) несовместимы. Служба firstboot может не "
+"запуститься при загрузке."
 
 #: output/output_libvirt.ml:180
 msgid "cannot get libvirt domain capabilities: %s"
-msgstr ""
+msgstr "не удаётся получить возможности домена libvirt: %s"
 
 #: output/output_libvirt.ml:85
 msgid "cannot get libvirt hypervisor capabilities: %s"
-msgstr ""
+msgstr "не удаётся получить возможности гипервизора libvirt: %s"
 
 #: v2v/v2v.ml:110 inspector/inspector.ml:99 in-place/in_place.ml:107
 msgid "cannot parse --mac \"%s\" parameter"
-msgstr ""
+msgstr "не удаётся разобрать параметр --mac \"%s\""
 
 #: v2v/v2v.ml:134 inspector/inspector.ml:123 in-place/in_place.ml:131
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
-msgstr ""
+msgstr "не удаётся разобрать --mac ip %s: «%s» не похоже на IP-адрес"
 
 #: v2v/v2v.ml:148 inspector/inspector.ml:137 in-place/in_place.ml:145
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
-msgstr ""
+msgstr "не удаётся разобрать поле длины префикса --mac ip как целое число: %s"
 
 #: common/mlcustomize/guest_packages.ml:29
 msgid ""
@@ -1295,6 +1493,15 @@ msgid ""
 "possible.  Try using one of the ‘--firstboot*’ flags instead (described in "
 "the virt-customize(1) manual)."
 msgstr ""
+"нельзя использовать «%s», так как для этой гостевой ОС не обнаружен менеджер "
+"пакетов.\n"
+"\n"
+"Если эта гостевая ОС является распространённой с обычным управлением "
+"пакетами, это могло быть вызвано сбоем инспектирования libguestfs.\n"
+"\n"
+"Для ОС, таких как Windows, не имеющих управления пакетами, это невозможно. "
+"Попробуйте использовать один из флагов «--firstboot*» (описаны в справочной "
+"странице virt-customize(1))."
 
 #: output/output_ovirt.ml:91
 msgid ""
@@ -1305,30 +1512,41 @@ msgid ""
 "You will have to chown the files that virt-v2v creates after the run, "
 "otherwise oVirt will not be able to import the VM."
 msgstr ""
+"не удаётся записать файлы на NFS-сервер от имени %d:%d, хотя мы, по-"
+"видимому, работаем от root. Вероятно, NFS-клиент или idmapd настроены "
+"неправильно.\n"
+"\n"
+"Вам придётся изменить владельца файлов, созданных virt-v2v после выполнения, "
+"иначе oVirt не сможет импортировать ВМ."
 
 #: output/output_ovirt.ml:99
 msgid ""
 "cannot write files to the NFS server as %d:%d. You might want to stop virt-"
 "v2v (^C) and rerun it as root."
 msgstr ""
+"не удаётся записать файлы на NFS-сервер от имени %d:%d. Возможно, вам стоит "
+"остановить virt-v2v (^C) и запустить его заново от root."
 
 #: common/mlcustomize/customize_cmdline.ml:508
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
+"команду «%s» нельзя использовать в файлах команд, см. справочную страницу"
 
 #: common/mlcustomize/customize_cmdline.ml:525
 msgid "command '%s' not valid, see the man page"
-msgstr ""
+msgstr "команда «%s» недопустима, см. справочную страницу"
 
 #: common/mldrivers/linux_bootloaders.ml:318
 msgid "could not add grub2 serial console (ignored)"
-msgstr ""
+msgstr "не удалось добавить последовательную консоль grub2 (игнорируется)"
 
 #: input/ssh.ml:52
 msgid ""
 "could not copy the VMX file from the remote server, see earlier error "
 "messages"
 msgstr ""
+"не удалось скопировать VMX-файл с удалённого сервера, см. предыдущие "
+"сообщения об ошибках"
 
 #: output/output_libvirt.ml:211
 msgid ""
@@ -1336,20 +1554,25 @@ msgid ""
 "The libvirt XML is still available in ‘%s’.  Try running ‘virsh -c %s define "
 "%s’ yourself instead."
 msgstr ""
+"не удалось определить домен libvirt: %s.\n"
+"XML libvirt по-прежнему доступен в «%s». Попробуйте выполнить «virsh -c %s "
+"define %s» самостоятельно."
 
 #: common/mldrivers/linux_bootloaders.ml:221
 msgid "could not determine a way to update the configuration of Grub2"
-msgstr ""
+msgstr "не удалось определить способ обновления конфигурации Grub2"
 
 #: input/input_vddk.ml:243
 msgid ""
 "could not fetch thumbprint from the server, you mus use ‘-io vddk-"
 "thumbprint=XX:XX...’"
 msgstr ""
+"не удалось получить отпечаток с сервера, вы должны использовать «-io vddk-"
+"thumbprint=XX:XX...»"
 
 #: common/mldrivers/linux_bootloaders.ml:376
 msgid "could not find bootloader mount point (%s): %s"
-msgstr ""
+msgstr "не удалось найти точку монтирования загрузчика (%s): %s"
 
 #: common/mldrivers/windows_drivers.ml:91
 msgid ""
@@ -1358,35 +1581,42 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
+"не удалось найти запись реестра HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\D"
+"eviceIds в этой гостевой системе Windows. Возможно, это очень старая или "
+"очень новая версия Windows, которую мы не можем обработать."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
 "could not finish firstboot installation by running ‘%s’ because the command "
 "failed: %s"
 msgstr ""
+"не удалось завершить установку firstboot путём запуска «%s», так как команда "
+"завершилась с ошибкой: %s"
 
 #. input/input_vcenter_https.ml:94
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
-msgstr ""
+msgstr "не удалось разобрать '-ic %s'. Исходное сообщение об ошибке: %s"
 
 #: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
-msgstr ""
+msgstr "не удалось разобрать имя устройства «%s» из исходного XML libvirt"
 
 #: input/OVF.ml:168
 msgid "could not parse disk rasd:HostResource from OVF document"
-msgstr ""
+msgstr "не удалось разобрать rasd:HostResource диска из документа OVF"
 
 #: input/input_ova.ml:98
 msgid "could not parse ovf:Name from OVF document"
-msgstr ""
+msgstr "не удалось разобрать ovf:Name из документа OVF"
 
 #: output/output_ovirt.ml:247
 msgid ""
 "could not read the %s specified by the '-os %s' parameter on the command "
 "line.  Is it really an OVirt %s?  The original error is: %s"
 msgstr ""
+"не удалось прочитать %s, указанный параметром '-os %s' в командной строке. "
+"Действительно ли это OVirt %s? Исходная ошибка: %s"
 
 #: common/mldrivers/linux_bootloaders.ml:336
 msgid ""
@@ -1394,158 +1624,181 @@ msgid ""
 "output will not be sent to the serial port, but otherwise should be "
 "harmless.  Original error message: %s"
 msgstr ""
+"не удалось перестроить файл конфигурации grub2 (%s). Это может означать, что "
+"вывод grub не будет отправляться на последовательный порт, но в остальном "
+"это должно быть безвредно. Исходное сообщение об ошибке: %s"
 
 #: output/output_libvirt.ml:156
 msgid "could not refresh libvirt pool ‘%s’: %s"
-msgstr ""
+msgstr "не удалось обновить пул libvirt «%s»: %s"
 
 #: common/mldrivers/linux_bootloaders.ml:320
 msgid "could not remove grub2 serial console (ignored)"
-msgstr ""
+msgstr "не удалось удалить последовательную консоль grub2 (игнорируется)"
 
 #: common/mltools/registry.ml:93
 msgid ""
 "decode_utf16le: Windows UTF16-LE string contains non-7-bit characters.  This "
 "is a bug in %s, please report it."
 msgstr ""
+"decode_utf16le: строка Windows UTF16-LE содержит не 7-битные символы. Это "
+"ошибка в %s, сообщите о ней."
 
 #: common/mltools/registry.ml:87
 msgid ""
 "decode_utf16le: Windows string does not appear to be in UTF16-LE encoding.  "
 "This could be a bug in %s."
 msgstr ""
+"decode_utf16le: строка Windows, по-видимому, не в кодировке UTF16-LE. Это "
+"может быть ошибкой в %s."
 
 #: common/mldrivers/linux_bootloaders.ml:126
 msgid "didn't find grub entry for kernel %s"
-msgstr ""
+msgstr "не найдена запись grub для ядра %s"
 
 #: input/parse_libvirt_xml.ml:194
 msgid "display <graphics type='%s'> in the input libvirt XML was ignored"
-msgstr ""
+msgstr "дисплей <graphics type='%s'> во входном XML libvirt был проигнорирован"
 
 #: output/output_qemu.ml:147
 msgid "don’t know how to convert UEFI guests for architecture %s"
-msgstr ""
+msgstr "неизвестно, как преобразовать гостевые системы UEFI для архитектуры %s"
 
 #: common/mldrivers/linux.ml:158
 msgid "don’t know how to find file owner using %s"
-msgstr ""
+msgstr "неизвестно, как найти владельца файла с помощью %s"
 
 #: common/mldrivers/linux.ml:89
 msgid "don’t know how to get list of files from package using %s"
-msgstr ""
+msgstr "неизвестно, как получить список файлов из пакета с помощью %s"
 
 #: common/mltools/curl.ml:82
 msgid "downloading %s"
-msgstr ""
+msgstr "загрузка %s"
 
 #: lib/networks.ml:84
 msgid ""
 "duplicate --mac parameter.  Duplicate mappings specified for MAC address %s."
 msgstr ""
+"повторяющийся параметр --mac. Указаны повторяющиеся сопоставления для MAC-"
+"адреса %s."
 
 #: lib/networks.ml:102
 msgid ""
 "duplicate -b/--bridge parameter.  Duplicate mappings specified for bridge %s."
 msgstr ""
+"повторяющийся параметр -b/--bridge. Указаны повторяющиеся сопоставления для "
+"моста %s."
 
 #: lib/networks.ml:108
 msgid "duplicate -b/--bridge parameter.  Only one default mapping is allowed."
 msgstr ""
+"повторяющийся параметр -b/--bridge. Разрешено только одно сопоставление по "
+"умолчанию."
 
 #: lib/networks.ml:90
 msgid ""
 "duplicate -n/--network parameter.  Duplicate mappings specified for network "
 "%s."
 msgstr ""
+"повторяющийся параметр -n/--network. Указаны повторяющиеся сопоставления для "
+"сети %s."
 
 #: lib/networks.ml:96
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
+"повторяющийся параметр -n/--network. Разрешено только одно сопоставление по "
+"умолчанию."
 
 #: input/OVF.ml:143
 msgid "error parsing disk fileRef"
-msgstr ""
+msgstr "ошибка разбора disk fileRef"
 
 #: input/input_ova.ml:124
 msgid "error uncompressing %s, see earlier error messages"
-msgstr ""
+msgstr "ошибка распаковки %s, см. предыдущие сообщения об ошибках"
 
 #: input/OVA.ml:210 input/OVA.ml:112
 msgid "error unpacking %s, see earlier error messages"
-msgstr ""
+msgstr "ошибка распаковки %s, см. предыдущие сообщения об ошибках"
 
 #: common/mltools/tools_utils.ml:251
 msgid "exception: %s"
-msgstr ""
+msgstr "исключение: %s"
 
 #: common/mltools/tools_utils.ml:458
 msgid "exited with error %d"
-msgstr ""
+msgstr "завершился с ошибкой %d"
 
 #: lib/utils.ml:34
 msgid "exited with non-zero error code %d"
-msgstr ""
+msgstr "завершился с ненулевым кодом ошибки %d"
 
 #: common/mltools/xpath_helpers.ml:36
 msgid ""
 "expecting XML expression to return an integer (expression: %s, matching "
 "string: %s)"
 msgstr ""
+"ожидается, что XML-выражение вернёт целое число (выражение: %s, "
+"соответствующая строка: %s)"
 
 #: common/mltools/tools_utils.ml:443
 msgid "external command"
-msgstr ""
+msgstr "внешняя команда"
 
 #: output/output_ovirt_upload.ml:265
 msgid "failed server prechecks, see earlier errors"
-msgstr ""
+msgstr "не удалась предварительная проверка сервера, см. предыдущие ошибки"
 
 #: output/output_ovirt_upload.ml:507
 msgid "failed to create virtual machine, see earlier errors"
-msgstr ""
+msgstr "не удалось создать виртуальную машину, см. предыдущие ошибки"
 
 #: output/output_ovirt_upload.ml:479
 msgid "failed to finalize the transfers, see earlier errors"
-msgstr ""
+msgstr "не удалось завершить передачу, см. предыдущие ошибки"
 
 #: common/mldrivers/linux_bootloaders.ml:208
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
+"не удалось найти двоичный файл grub2-mkconfig (но Grub2 обнаружен в гостевой "
+"системе)"
 
 #: input/OVA.ml:461
 msgid "failed to parse line returned by tar: %S"
-msgstr ""
+msgstr "не удалось разобрать строку, возвращённую tar: %S"
 
 #: output/output_ovirt_upload.ml:394
 msgid "failed to start transfer, see earlier errors"
-msgstr ""
+msgstr "не удалось начать передачу, см. предыдущие ошибки"
 
 #: output/output_ovirt_upload.ml:311
 msgid "failed vmchecks, see earlier errors"
-msgstr ""
+msgstr "не удалась проверка виртуальной машины, см. предыдущие ошибки"
 
 #: common/mltools/tools_utils.ml:242
 msgid "failure: %s"
-msgstr ""
+msgstr "сбой: %s"
 
 #: input/input_ova.ml:134
 msgid "file ‘%s’ not found in the ova"
-msgstr ""
+msgstr "файл «%s» не найден в ova"
 
 #: common/mlcustomize/firstboot.ml:143
 msgid ""
 "firstboot: unknown version for old firstboot.service file %s (md5=%s), it "
 "will not be removed"
 msgstr ""
+"firstboot: неизвестная версия для старого файла firstboot.service %s (md5=%s)"
+", он не будет удалён"
 
 #: common/mltools/tools_utils.ml:261
 msgid "generated by %s %s"
-msgstr ""
+msgstr "создано %s %s"
 
 #: output/create_libvirt_xml.ml:39
 msgid "get_osinfo_id: unknown guest operating system: %s"
-msgstr ""
+msgstr "get_osinfo_id: неизвестная гостевая операционная система: %s"
 
 #: output/output_glance.ml:66
 msgid ""
@@ -1553,18 +1806,21 @@ msgid ""
 "set environment variables or source a script to enable authentication.  See "
 "preceding messages for details."
 msgstr ""
+"glance: клиент glance не установлен или настроен неправильно. Возможно, вам "
+"нужно установить переменные окружения или выполнить скрипт для включения "
+"аутентификации. Подробности см. в предыдущих сообщениях."
 
 #: output/output_glance.ml:139
 msgid "glance: image upload to glance failed, see earlier errors"
-msgstr ""
+msgstr "glance: не удалось загрузить образ в glance, см. предыдущие ошибки"
 
 #: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
-msgstr ""
+msgstr "тип гостя %s не поддерживается"
 
 #: common/mlcustomize/firstboot.ml:418
 msgid "guest type %s/%s is not supported"
-msgstr ""
+msgstr "тип гостя %s/%s не поддерживается"
 
 #: common/mltools/tools_utils.ml:752
 msgid ""
@@ -1572,48 +1828,53 @@ msgid ""
 "line options that involve running commands in the guest.  Use --firstboot "
 "scripts instead."
 msgstr ""
+"хост (%s/%s) и гость (%s/%s) несовместимы, поэтому вы не можете использовать "
+"параметры командной строки, включающие выполнение команд в гостевой системе. "
+"Используйте скрипты --firstboot."
 
 #: common/mlcustomize/customize_run.ml:209
 msgid "hostname could not be set for this type of guest"
-msgstr ""
+msgstr "не удалось установить имя хоста для этого типа гостя"
 
 #: common/mldrivers/linux_kernels.ml:342
 msgid "ignoring kernel %s in bootloader, as it does not exist."
-msgstr ""
+msgstr "игнорирование ядра %s в загрузчике, так как оно не существует."
 
 #: output/output_vdsm.ml:160
 msgid "image directory (%s) does not exist or is not a directory"
-msgstr ""
+msgstr "каталог образов (%s) не существует или не является каталогом"
 
 #: input/parse_libvirt_xml.ml:81
 msgid "in the libvirt XML metadata, <domain type='...'> is missing or empty"
-msgstr ""
+msgstr "в метаданных XML libvirt отсутствует или пуст <domain type='...'>"
 
 #: input/parse_libvirt_xml.ml:87
 msgid "in the libvirt XML metadata, <name> is missing or empty"
-msgstr ""
+msgstr "в метаданных XML libvirt отсутствует или пуст <name>"
 
 #: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
 msgid "in-place mode does not work with HTTP source"
-msgstr ""
+msgstr "режим in-place не работает с источником HTTP"
 
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
-msgstr ""
+msgstr "режим in-place не работает с источником VDDK"
 
 #: input/input_vmx.ml:43
 msgid "in-place mode does not work with VMX source"
-msgstr ""
+msgstr "режим in-place не работает с источником VMX"
 
 #: input/input_xen_ssh.ml:50
 msgid "in-place mode does not work with Xen over SSH source"
-msgstr ""
+msgstr "режим in-place не работает с источником Xen через SSH"
 
 #: output/output_kubevirt.ml:116
 msgid ""
 "incorrect number of '-oo disk' parameters.  This guest has %d disks, but the "
 "parameter was used %d times."
 msgstr ""
+"неправильное количество параметров «-oo disk». Этот гость имеет %d дисков, "
+"но параметр использован %d раз."
 
 #: input/input_xen_ssh.ml:119
 msgid ""
@@ -1621,6 +1882,9 @@ msgid ""
 "devices.  See virt-v2v-input-xen(1) section \"Xen or ssh conversions from "
 "block devices\"."
 msgstr ""
+"ввод из xen через ssh не поддерживает диски, хранящиеся на удалённых блочных "
+"устройствах. См. раздел «Xen or ssh conversions from block devices» "
+"справочной страницы virt-v2v-input-xen(1)."
 
 #. in-place/in_place.ml:411
 #: v2v/v2v.ml:604 open/open.ml:238 inspector/inspector.ml:366
@@ -1635,112 +1899,123 @@ msgid ""
 "See also the virt-v2v(1) manual, section \"Minimum free space check in the "
 "host\"."
 msgstr ""
+"недостаточно свободного места во временном каталоге сервера преобразования "
+"%s (%s).\n"
+"\n"
+"Либо освободите место в этом каталоге, либо установите переменную окружения "
+"LIBGUESTFS_CACHEDIR, указав другой каталог с более чем 1 ГБ свободного "
+"пространства.\n"
+"\n"
+"См. также раздел «Minimum free space check in the host» справочной страницы "
+"virt-v2v(1)."
 
 #: common/mltools/tools_utils.ml:249
 msgid "internal error: Not_found exception was thrown"
-msgstr ""
+msgstr "внутренняя ошибка: возникло исключение Not_found"
 
 #: common/mltools/tools_utils.ml:246
 msgid "internal error: assertion failed at %s, line %d, char %d"
-msgstr ""
+msgstr "внутренняя ошибка: утверждение не выполнено в %s, строка %d, символ %d"
 
 #: common/mltools/tools_utils.ml:244
 msgid "internal error: invalid argument: %s"
-msgstr ""
+msgstr "внутренняя ошибка: недопустимый аргумент: %s"
 
 #: common/mldrivers/linux.ml:128
 msgid "internal error: is_file_owned: dpkg command returned no output"
-msgstr ""
+msgstr "внутренняя ошибка: is_file_owned: команда dpkg не вернула вывода"
 
 #: common/mldrivers/linux.ml:133
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
-msgstr ""
+msgstr "внутренняя ошибка: is_file_owned: неожиданный вывод команды dpkg: %s"
 
 #: common/mldrivers/linux_bootloaders.ml:130
 msgid "internal error: regular expression did not match ‘%s’"
-msgstr ""
+msgstr "внутренняя ошибка: регулярное выражение не соответствует «%s»"
 
 #: v2v/v2v.ml:562
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
+"внутренняя ошибка: wait вернул неожиданный идентификатор процесса %d со "
+"состоянием «%s»"
 
 #: v2v/v2v.ml:119 inspector/inspector.ml:108 in-place/in_place.ml:116
 msgid "invalid --mac ip option"
-msgstr ""
+msgstr "недопустимый параметр --mac ip"
 
 #: v2v/v2v.ml:103 inspector/inspector.ml:92 in-place/in_place.ml:100
 msgid "invalid -b/--bridge parameter"
-msgstr ""
+msgstr "недопустимый параметр -b/--bridge"
 
 #: v2v/v2v.ml:95 inspector/inspector.ml:84 in-place/in_place.ml:92
 msgid "invalid -n/--network parameter"
-msgstr ""
+msgstr "недопустимый параметр -n/--network"
 
 #: input/parse_domain_from_vmx.ml:402
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
-msgstr ""
+msgstr "недопустимое cpuid.coresPerSocket < количество vCPU"
 
 #. common/mlcustomize/customize_cmdline.ml:153
 #. common/mlcustomize/customize_cmdline.ml:145
 #: common/mlcustomize/customize_cmdline.ml:161
 msgid "invalid format for '--%s' parameter, see the man page"
-msgstr ""
+msgstr "недопустимый формат для параметра «--%s», см. справочную страницу"
 
 #: common/mltools/tools_utils.ml:362
 msgid "invalid format string for --machine-readable: %s"
-msgstr ""
+msgstr "недопустимая строка формата для --machine-readable: %s"
 
 #: lib/utils.ml:279
 msgid "invalid input filename (%s)"
-msgstr ""
+msgstr "недопустимое имя входного файла (%s)"
 
 #: input/OVA.ml:445
 msgid "invalid offset returned by tar: %S"
-msgstr ""
+msgstr "недопустимое смещение, возвращённое tar: %S"
 
 #: common/mltools/tools_utils.ml:377
 msgid "invalid output fd for --machine-readable: %s"
-msgstr ""
+msgstr "недопустимый дескриптор вывода для --machine-readable: %s"
 
 #: common/mltools/tools_utils.ml:379
 msgid "invalid output for --machine-readable: %s"
-msgstr ""
+msgstr "недопустимый вывод для --machine-readable: %s"
 
 #: common/mltools/tools_utils.ml:371
 msgid "invalid output stream for --machine-readable: %s"
-msgstr ""
+msgstr "недопустимый поток вывода для --machine-readable: %s"
 
 #: common/mlcustomize/password.ml:73
 msgid "invalid password selector ‘%s’; see the man page"
-msgstr ""
+msgstr "недопустимый селектор пароля «%s»; см. справочную страницу"
 
 #: input/OVA.ml:450
 msgid "invalid size returned by tar: %S"
-msgstr ""
+msgstr "недопустимый размер, возвращённый tar: %S"
 
 #: common/mlcustomize/ssh_key.ml:45
 msgid "invalid ssh-inject selector ‘%s’; see the man page"
-msgstr ""
+msgstr "недопустимый селектор ssh-inject «%s»; см. справочную страницу"
 
 #: input/OVF.ml:82
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
-msgstr ""
+msgstr "недопустимый vmw:CoresPerSocket (%d) проигнорирован"
 
 #: input/OVF.ml:88
 msgid "invalid vmw:CoresPerSocket < number of cores"
-msgstr ""
+msgstr "недопустимый vmw:CoresPerSocket < количество ядер"
 
 #: common/mldrivers/linux_bootloaders.ml:114
 msgid "kernel %s is not under grub tree %s"
-msgstr ""
+msgstr "ядро %s не находится в дереве grub %s"
 
 #: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
 msgid "killed by signal %d"
-msgstr ""
+msgstr "убит сигналом %d"
 
 #: common/mltools/tools_utils.ml:240
 msgid "libguestfs error: %s"
-msgstr ""
+msgstr "ошибка libguestfs: %s"
 
 #: lib/libvirt_utils.ml:72
 msgid ""
@@ -1748,20 +2023,27 @@ msgid ""
 "result in corrupted output. However this is safe if you're converting from a "
 "snapshot"
 msgstr ""
+"домен libvirt «%s» выполняется или приостановлен. Преобразование работающей "
+"гостевой системы приведёт к повреждению вывода. Однако это безопасно, если "
+"вы выполняете преобразование из снимка"
 
 #: common/mlcustomize/customize_run.ml:47
 msgid "log file %s: %s (ignored)"
-msgstr ""
+msgstr "файл журнала %s: %s (игнорируется)"
 
 #: input/OVA.ml:147
 msgid ""
 "making OVA directory public readable to work around libvirt bug https://"
 "bugzilla.redhat.com/1045069"
 msgstr ""
+"каталог OVA сделан общедоступным для чтения в обход ошибки libvirt https://"
+"bugzilla.redhat.com/1045069"
 
 #: input/input_ova.ml:86
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
+"манифест содержит контрольную сумму для несуществующего файла %s "
+"(игнорируется)"
 
 #: common/mlcustomize/customize_cmdline.ml:472
 msgid "md5|sha256|sha512"
@@ -1769,19 +2051,19 @@ msgstr ""
 
 #: common/mlcustomize/customize_run.ml:119
 msgid "method '%s' is no longer supported"
-msgstr ""
+msgstr "метод «%s» больше не поддерживается"
 
 #: common/mltools/JSON_parser.ml:39
 msgid "missing value for the key ‘%s’"
-msgstr ""
+msgstr "отсутствует значение для ключа «%s»"
 
 #: input/OVA.ml:276
 msgid "more than one .ovf file was found in %s"
-msgstr ""
+msgstr "в %s найдено более одного файла .ovf"
 
 #: common/mltools/JSON_parser.ml:34
 msgid "more than value for the key ‘%s’"
-msgstr ""
+msgstr "более одного значения для ключа «%s»"
 
 #: output/output_ovirt.ml:222
 msgid ""
@@ -1790,12 +2072,18 @@ msgid ""
 "This probably means you didn't specify the right %s path [-os %s], or else "
 "you need to rerun virt-v2v as root."
 msgstr ""
+"команда монтирования не удалась, см. предыдущие ошибки.\n"
+"\n"
+"Вероятно, вы не указали правильный путь %s [-os %s], или вам нужно запустить "
+"virt-v2v от root."
 
 #: common/mlcustomize/customize_run.ml:103
 msgid ""
 "multiple --root-password/--password options set the password for user ‘%s’ "
 "twice"
 msgstr ""
+"несколько параметров --root-password/--password устанавливают пароль для "
+"пользователя «%s» дважды"
 
 #: input/input_vddk.ml:319
 msgid ""
@@ -1808,6 +2096,14 @@ msgid ""
 "\n"
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
+"плагин nbdkit VDDK не установлен или не работает. Он требуется, если вы "
+"хотите использовать VDDK.\n"
+"\n"
+"Похоже, вы не указали правильный путь в параметре «-io vddk-libdir», или "
+"ваша копия каталога VDDK неполна. Должна быть библиотека «<libdir>/%s/"
+"libvixDiskLib.so.?’.\n"
+"\n"
+"См. также справочную страницу virt-v2v-input-vmware(1)."
 
 #: input/input_vddk.ml:313
 msgid ""
@@ -1820,10 +2116,18 @@ msgid ""
 "\n"
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
+"плагин nbdkit VDDK не установлен или не работает. Он требуется, если вы "
+"хотите использовать VDDK.\n"
+"\n"
+"Плагин VDDK по умолчанию не включён при компиляции nbdkit. Вам необходимо "
+"прочитать инструкции в исходных кодах nbdkit в «plugins/vddk/README.VDDK», "
+"чтобы узнать, как включить плагин VDDK.\n"
+"\n"
+"См. также справочную страницу virt-v2v-input-vmware(1)."
 
 #: lib/nbdkit.ml:223
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
-msgstr ""
+msgstr "nbdkit не запустился. См. предыдущие отладочные сообщения о проблемах."
 
 #: lib/nbdkit.ml:225
 msgid ""
@@ -1832,41 +2136,55 @@ msgid ""
 "If the messages above are not sufficient to diagnose the problem then add "
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
+"nbdkit не запустился. Возможно, выше были выведены ошибки nbdkit.\n"
+"\n"
+"Если приведённых выше сообщений недостаточно для диагностики проблемы, "
+"добавьте параметры «virt-v2v -v -x» и внимательно изучите отладочный вывод."
 
 #: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:283
 msgid "nbdkit is not installed or not working"
-msgstr ""
+msgstr "nbdkit не установлен или не работает"
 
 #: input/input_disk.ml:48
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
+"nbdkit не установлен или не работает. Он требуется для использования «-i disk"
+"»."
 
 #: input/input_libvirt.ml:68
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i libvirt|"
 "libvirtxml’."
 msgstr ""
+"nbdkit не установлен или не работает. Он требуется для использования «-i "
+"libvirt|libvirtxml»."
 
 #: output/output.ml:178 output/output.ml:77
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
+"nbdkit не установлен или не работает. Он требуется для использования «-o disk"
+"»."
 
 #: output/output_null.ml:57
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o null’."
 msgstr ""
+"nbdkit не установлен или не работает. Он требуется для использования «-o null"
+"»."
 
 #: output/output_ovirt_upload.ml:163
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o ovirt-"
 "upload’.  See the virt-v2v-output-ovirt(1) manual."
 msgstr ""
+"nbdkit не установлен или не работает. Он требуется для использования «-o "
+"ovirt-upload». См. справочную страницу virt-v2v-output-ovirt(1)."
 
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
-msgstr ""
+msgstr "для ввода из VDDK требуется nbdkit >= 1.45.11"
 
 #: output/output_ovirt_upload.ml:176
 msgid ""
@@ -1875,6 +2193,10 @@ msgid ""
 "\n"
 "See also the virt-v2v-output-ovirt(1) manual."
 msgstr ""
+"плагин python для nbdkit не установлен или не работает. Он требуется, если "
+"вы хотите использовать «-o ovirt-upload».\n"
+"\n"
+"См. также справочную страницу virt-v2v-output-ovirt(1)."
 
 #: output/output_ovirt_upload.ml:190
 msgid ""
@@ -1882,41 +2204,44 @@ msgid ""
 "nbdkit with libselinux-devel installed, or else set SELinux to Permissive "
 "mode while doing the conversion."
 msgstr ""
+"nbdkit был скомпилирован без поддержки SELinux. Вам придётся "
+"перекомпилировать nbdkit с установленным libselinux-devel, либо перевести "
+"SELinux в разрешающий режим во время преобразования."
 
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:53
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
-msgstr ""
+msgstr "nbdkit-cow-filter не установлен или не работает"
 
 #: input/nbdkit_curl.ml:35
 msgid "nbdkit-curl-plugin is not installed"
-msgstr ""
+msgstr "nbdkit-curl-plugin не установлен"
 
 #. input/input_disk.ml:51
 #: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
 msgid "nbdkit-file-plugin is not installed or not working"
-msgstr ""
+msgstr "nbdkit-file-plugin не установлен или не работает"
 
 #: input/input_libvirt.ml:74 input/input_disk.ml:71
 msgid "nbdkit-nbd-plugin is not installed or not working"
-msgstr ""
+msgstr "nbdkit-nbd-plugin не установлен или не работает"
 
 #: output/output_null.ml:60
 msgid "nbdkit-null-plugin is not installed or not working"
-msgstr ""
+msgstr "nbdkit-null-plugin не установлен или не работает"
 
 #: input/nbdkit_ssh.ml:39
 msgid "nbdkit-ssh-plugin is not installed"
-msgstr ""
+msgstr "nbdkit-ssh-plugin не установлен"
 
 #: input/input_vddk.ml:287
 msgid "nbdkit-vddk-plugin is not installed"
-msgstr ""
+msgstr "nbdkit-vddk-plugin не установлен"
 
 #: lib/nbdkit.ml:56
 msgid "nbdkit: unexpected version in --dump-config: %s"
-msgstr ""
+msgstr "nbdkit: неожиданная версия в --dump-config: %s"
 
 #. input/input_vcenter_https.ml:49
 #. input/input_ova.ml:46
@@ -1924,32 +2249,32 @@ msgstr ""
 #. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
 msgid "no -io (input options) are allowed here"
-msgstr ""
+msgstr "здесь не допускаются -io (параметры ввода)"
 
 #: output/output_ovirt.ml:44 output/output_null.ml:42
 #: output/output_glance.ml:44
 msgid "no -oo (output options) are allowed here"
-msgstr ""
+msgstr "здесь не допускаются -oo (параметры вывода)"
 
 #: input/OVA.ml:273
 msgid "no .ovf file was found in %s"
-msgstr ""
+msgstr "в %s не найден файл .ovf"
 
 #: common/mldrivers/linux_bootloaders.ml:402
 msgid "no bootloader detected"
-msgstr ""
+msgstr "загрузчик не обнаружен"
 
 #: input/parse_domain_from_vmx.ml:359
 msgid "no displayName key found in VMX file"
-msgstr ""
+msgstr "в VMX-файле не найден ключ displayName"
 
 #: input/OVF.ml:148
 msgid "no href in ovf:File (id=%s)"
-msgstr ""
+msgstr "нет href в ovf:File (id=%s)"
 
 #: common/mldrivers/linux_kernels.ml:194
 msgid "no initrd was found in /boot matching %s %s."
-msgstr ""
+msgstr "в /boot не найден initrd, соответствующий %s %s."
 
 #: common/mldrivers/linux_kernels.ml:317
 msgid ""
@@ -1957,6 +2282,10 @@ msgid ""
 "\n"
 "This probably indicates that %s was unable to inspect this guest properly."
 msgstr ""
+"не найдено установленных пакетов ядра.\n"
+"\n"
+"Вероятно, это указывает на то, что %s не удалось правильно проинспектировать "
+"эту гостевую систему."
 
 #: common/mldrivers/linux_kernels.ml:354
 msgid ""
@@ -1965,78 +2294,100 @@ msgid ""
 "This probably indicates that %s was unable to parse the bootloader "
 "configuration of this guest."
 msgstr ""
+"в конфигурации загрузчика не найдено ядер.\n"
+"\n"
+"Вероятно, это указывает на то, что %s не удалось разобрать конфигурацию "
+"загрузчика этой гостевой системы."
 
 #: output/python_script.ml:55
 msgid "no python binary called ‘%s’ can be found on the $PATH"
-msgstr ""
+msgstr "в $PATH не найден двоичный файл python с именем «%s»"
 
 #: input/select_input.ml:106
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
 msgstr ""
+"нет поддержки удалённых подключений libvirt к «-ic %s». Преобразование может "
+"завершиться ошибкой при попытке чтения исходных дисков."
 
 #: lib/create_ovf.ml:1027
 msgid ""
 "oVirt cannot emulate ‘%s’ sound cards.  This sound card will be dropped from "
 "the output."
 msgstr ""
+"oVirt не может эмулировать звуковые карты «%s». Эта звуковая карта будет "
+"исключена из вывода."
 
 #: lib/create_ovf.ml:875 lib/create_ovf.ml:512
 msgid "oVirt does not support the output format ‘%s’, only raw or qcow2"
-msgstr ""
+msgstr "oVirt не поддерживает формат вывода «%s», только raw или qcow2"
 
 #: output/output_openstack.ml:120
 msgid "openstack: -oo server-id=<NAME|UUID> not present"
-msgstr ""
+msgstr "openstack: -oo server-id=<ИМЯ|UUID> отсутствует"
 
 #: output/output_openstack.ml:338
 msgid ""
 "openstack: failed to attach cinder volume to VM, see earlier error messages"
 msgstr ""
+"openstack: не удалось подключить том cinder к ВМ, см. предыдущие сообщения "
+"об ошибках"
 
 #: output/output_openstack.ml:291
 msgid "openstack: failed to create a cinder volume, see earlier error messages"
 msgstr ""
+"openstack: не удалось создать том cinder, см. предыдущие сообщения об ошибках"
 
 #: output/output_openstack.ml:304
 msgid ""
 "openstack: failed to query cinder volume status, see earlier error messages"
 msgstr ""
+"openstack: не удалось получить статус тома cinder, см. предыдущие сообщения "
+"об ошибках"
 
 #: output/output_openstack.ml:442
 msgid ""
 "openstack: failed to set image properties on cinder volume, see earlier "
 "error messages"
 msgstr ""
+"openstack: не удалось установить свойства образа на томе cinder, см. "
+"предыдущие сообщения об ошибках"
 
 #: output/output_openstack.ml:199
 msgid ""
 "openstack: precheck failed, there may be a problem with authentication, see "
 "earlier error messages"
 msgstr ""
+"openstack: предварительная проверка не удалась, возможно, проблема с "
+"аутентификацией, см. предыдущие сообщения об ошибках"
 
 #: output/output_openstack.ml:311
 msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or "
 "\"available\""
 msgstr ""
+"openstack: неизвестный статус тома «%s»: ожидался «creating» или «available»"
 
 #: output/output.ml:133
 msgid "output mode only supports raw or qcow2 format (format: %s)"
-msgstr ""
+msgstr "режим вывода поддерживает только форматы raw или qcow2 (формат: %s)"
 
 #: input/OVF.ml:263
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
 msgstr ""
+"диск ova имеет неизвестный тип контроллера VMware (%d), сообщите об этом как "
+"об ошибке, приложив файл *.ovf, извлечённый из ova"
 
 #: input/OVF.ml:259
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
 msgstr ""
+"диск ova не имеет родительского контроллера, сообщите об этом как об ошибке, "
+"приложив файл *.ovf, извлечённый из ova"
 
 #: output/output_ovirt_upload.ml:367
 msgid ""
@@ -2044,12 +2395,17 @@ msgid ""
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
+"ovirt-upload: -of %s: Поддерживается только формат вывода «raw» или «qcow2». "
+"Если входные данные имеют другой формат, укажите один из этих форматов "
+"вывода, добавив «-of raw» или «-of qcow2» в командную строку."
 
 #: common/mlcustomize/password.ml:51
 msgid ""
 "password-crypto: unknown algorithm %s, use \"md5\", \"sha256\", \"sha512\" "
 "or \"yescrypt\""
 msgstr ""
+"password-crypto: неизвестный алгоритм %s, используйте \"md5\", \"sha256\", "
+"\"sha512\" или \"yescrypt\""
 
 #: common/mlcustomize/password.ml:197
 msgid ""
@@ -2057,15 +2413,20 @@ msgid ""
 "version %d.%d.\n"
 "If this is incorrect, use --password-crypto option and file a bug."
 msgstr ""
+"password: используется небезопасное шифрование паролей md5 для гостя типа %s "
+"версии %d.%d.\n"
+"Если это неверно, используйте параметр --password-crypto и сообщите об "
+"ошибке."
 
 #: common/mlcustomize/customize_run.ml:359
 msgid "passwords could not be set for this type of guest"
-msgstr ""
+msgstr "не удалось установить пароли для этого типа гостя"
 
 #: lib/qemuNBD.ml:125
 msgid ""
 "qemu-nbd did not start up.  See previous debugging messages for problems."
 msgstr ""
+"qemu-nbd не запустился. См. предыдущие отладочные сообщения о проблемах."
 
 #: lib/qemuNBD.ml:127
 msgid ""
@@ -2074,18 +2435,22 @@ msgid ""
 "If the messages above are not sufficient to diagnose the problem then add "
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
+"qemu-nbd не запустился. Возможно, выше были выведены ошибки qemu-nbd.\n"
+"\n"
+"Если приведённых выше сообщений недостаточно для диагностики проблемы, "
+"добавьте параметры «virt-v2v -v -x» и внимательно изучите отладочный вывод."
 
 #: lib/qemuNBD.ml:47
 msgid "qemu-nbd: unexpected version in --version: %s"
-msgstr ""
+msgstr "qemu-nbd: неожиданная версия в --version: %s"
 
 #: common/mlcustomize/customize_run.ml:77
 msgid "random seed could not be set for this type of guest"
-msgstr ""
+msgstr "не удалось установить случайное начальное число для этого типа гостя"
 
 #: input/parse_domain_from_vmx.ml:44
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
-msgstr ""
+msgstr "удалённый vmx «%s» не удалось разобрать как URI"
 
 #. common/mlcustomize/inject_virtio_win.ml:357
 #. common/mlcustomize/inject_virtio_win.ml:352
@@ -2096,40 +2461,44 @@ msgid ""
 "This should not happen and may indicate that virtio-win or virt-v2v is "
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
+"корневой каталог «/» отсутствует в каталоге или ISO virtio-win.\n"
+"\n"
+"Это не должно происходить и может указывать на то, что virtio-win или virt-"
+"v2v повреждены. Сообщите об этом как об ошибке с полным отладочным журналом."
 
 #: common/mltools/tools_utils.ml:420 common/options/keys.c:306
 #, c-format
 msgid "selector '%s': invalid TYPE"
-msgstr ""
+msgstr "селектор '%s': недопустимый ТИП"
 
 #: common/mltools/tools_utils.ml:412 common/options/keys.c:296
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
-msgstr ""
+msgstr "селектор «%s»: отсутствует ИМЯ_ФАЙЛА или слишком много полей"
 
 #: common/mltools/tools_utils.ml:402 common/options/keys.c:274
 #, c-format
 msgid "selector '%s': missing ID"
-msgstr ""
+msgstr "селектор «%s»: отсутствует идентификатор"
 
 #: common/mltools/tools_utils.ml:407 common/options/keys.c:287
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
-msgstr ""
+msgstr "селектор «%s»: отсутствует КЛЮЧ_СТРОКА или слишком много полей"
 
 #: common/mltools/tools_utils.ml:404 common/options/keys.c:281
 #, c-format
 msgid "selector '%s': missing TYPE"
-msgstr ""
+msgstr "селектор «%s»: отсутствует ТИП"
 
 #: common/mltools/tools_utils.ml:416 common/options/keys.c:304
 #, c-format
 msgid "selector '%s': too many fields"
-msgstr ""
+msgstr "селектор «%s»: слишком много полей"
 
 #: lib/utils.ml:35
 msgid "signalled by signal %d"
-msgstr ""
+msgstr "получен сигнал %d"
 
 #: common/mlcustomize/guest_packages.ml:40
 msgid ""
@@ -2138,75 +2507,87 @@ msgid ""
 "You can work around this by using one of the ‘--run*’ or ‘--firstboot*’ "
 "options instead (described in the virt-customize(1) manual)."
 msgstr ""
+"извините, «%s» с менеджером пакетов «%s» ещё не реализован.\n"
+"\n"
+"Вы можете обойти это, используя один из параметров «--run*» или «--"
+"firstboot*» (описаны в справочной странице virt-customize(1))."
 
 #: common/mlcustomize/ssh_key.ml:57
 msgid "ssh-inject: $HOME environment variable is not set"
-msgstr ""
+msgstr "ssh-inject: переменная окружения $HOME не установлена"
 
 #: common/mlcustomize/ssh_key.ml:93
 msgid "ssh-inject: key is an empty string"
-msgstr ""
+msgstr "ssh-inject: ключ является пустой строкой"
 
 #: common/mlcustomize/ssh_key.ml:66
 msgid "ssh-inject: no public key file found in %s"
-msgstr ""
+msgstr "ssh-inject: в %s не найден файл открытого ключа"
 
 #: common/mlcustomize/ssh_key.ml:83
 msgid "ssh-inject: public key file (%s) is empty"
-msgstr ""
+msgstr "ssh-inject: файл открытого ключа (%s) пуст"
 
 #: common/mlcustomize/ssh_key.ml:112
 msgid "ssh-inject: the user %s does not exist on the guest"
-msgstr ""
+msgstr "ssh-inject: пользователь %s не существует в гостевой системе"
 
 #. common/mltools/tools_utils.ml:464
 #: lib/utils.ml:36 common/mltools/tools_utils.ml:545
 msgid "stopped by signal %d"
-msgstr ""
+msgstr "остановлен сигналом %d"
 
 #: output/changeuid.ml:58
 msgid "subprocess exited with non-zero error code %d"
-msgstr ""
+msgstr "дочерний процесс завершился с ненулевым кодом ошибки %d"
 
 #: output/changeuid.ml:60
 msgid "subprocess signalled or stopped by signal %d"
-msgstr ""
+msgstr "дочерний процесс получил сигнал или остановлен сигналом %d"
 
 #: lib/utils.ml:33
 msgid "success"
-msgstr ""
+msgstr "успешно"
 
 #: output/create_libvirt_xml.ml:297
 msgid ""
 "target hypervisor does not support floppy devices, but floppy devices were "
 "found in the source guest"
 msgstr ""
+"целевой гипервизор не поддерживает дисководы, но в исходной гостевой системе "
+"обнаружены дисководы"
 
 #: output/output_ovirt_upload.ml:156
 msgid ""
 "the Python module ‘ovirtsdk4’ could not be loaded, is it installed?  See "
 "previous messages for problems."
 msgstr ""
+"не удалось загрузить модуль Python «ovirtsdk4», установлен ли он? См. "
+"предыдущие сообщения о проблемах."
 
 #: output/output_ovirt_upload.ml:453
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
-msgstr ""
+msgstr "кластер «%s» не поддерживает архитектуру %s, а не %s"
 
 #: common/mlcustomize/customize_run.ml:59
 msgid ""
 "the command may have failed because the network is disabled.  Try either "
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
 msgstr ""
+"команда могла завершиться ошибкой из-за отключённой сети. Попробуйте убрать "
+"«--no-network» или добавить «--network» в командную строку."
 
 #: common/mltools/JSON_parser.ml:84
 msgid "the key ‘%s’ was not found in a list of objects"
-msgstr ""
+msgstr "ключ «%s» не найден в списке объектов"
 
 #: output/output_ovirt_upload.ml:288
 msgid ""
 "the number of ‘-oo ovirt-disk-uuid’ parameters passed on the command line "
 "has to match the number of guest disk images (for this guest: %d)"
 msgstr ""
+"количество параметров «-oo ovirt-disk-uuid», переданных в командной строке, "
+"должно совпадать с количеством образов дисков гостя (для этого гостя: %d)"
 
 #: output/output_vdsm.ml:133
 msgid ""
@@ -2214,38 +2595,41 @@ msgid ""
 "passed on the command line has to match the number of guest disk images (for "
 "this guest: %d)"
 msgstr ""
+"количество параметров «-oo vdsm-image-uuid» и «-oo vdsm-vol-uuid», "
+"переданных в командной строке, должно совпадать с количеством образов дисков "
+"гостя (для этого гостя: %d)"
 
 #: output/output_libvirt.ml:239
 msgid "the target hypervisor does not support a %s KVM guest"
-msgstr ""
+msgstr "целевой гипервизор не поддерживает гостя KVM %s"
 
 #: common/mltools/JSON_parser.ml:78
 msgid "the value for key ‘%s’ is not a string as expected"
-msgstr ""
+msgstr "значение для ключа «%s» не является строкой, как ожидалось"
 
 #: common/mltools/JSON_parser.ml:50
 msgid "the value for the key ‘%s’ is not a bool"
-msgstr ""
+msgstr "значение для ключа «%s» не является логическим"
 
 #: common/mltools/JSON_parser.ml:45
 msgid "the value for the key ‘%s’ is not a string"
-msgstr ""
+msgstr "значение для ключа «%s» не является строкой"
 
 #: common/mltools/JSON_parser.ml:70
 msgid "the value for the key ‘%s’ is not an integer"
-msgstr ""
+msgstr "значение для ключа «%s» не является целым числом"
 
 #: common/mltools/JSON_parser.ml:55
 msgid "the value for the key ‘%s’ is not an object"
-msgstr ""
+msgstr "значение для ключа «%s» не является объектом"
 
 #: common/mltools/JSON_parser.ml:59
 msgid "the value is not an object"
-msgstr ""
+msgstr "значение не является объектом"
 
 #: common/mltools/JSON_parser.ml:35
 msgid "the value of the key ‘%s’ is not an object"
-msgstr ""
+msgstr "значение ключа «%s» не является объектом"
 
 #: lib/create_ovf.ml:519
 msgid ""
@@ -2255,22 +2639,28 @@ msgid ""
 "This probably means something unexpected is going on, so please file a bug "
 "about this issue."
 msgstr ""
+"виртуальный размер входного диска %d не является точным кратным 512 байт. "
+"Виртуальный размер: %Ld.\n"
+"\n"
+"Вероятно, происходит что-то неожиданное, поэтому сообщите об этой проблеме."
 
 #: output/output_openstack.ml:144
 msgid ""
 "the ‘%s’ program is not available.  It is needed to communicate with "
 "OpenStack."
-msgstr ""
+msgstr "программа «%s» недоступна. Она необходима для связи с OpenStack."
 
 #: output/output_ovirt.ml:265
 msgid ""
 "there are multiple UUIDs in the %s (%s).  This is unexpected, and may be a "
 "bug in virt-v2v or OVirt."
 msgstr ""
+"в %s (%s) содержится несколько UUID. Это неожиданно и может быть ошибкой в "
+"virt-v2v или OVirt."
 
 #: output/output_ovirt.ml:262
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt %s?"
-msgstr ""
+msgstr "в %s (%s) нет UUID. Действительно ли это OVirt %s?"
 
 #: common/mlcustomize/inject_virtio_win.ml:153
 msgid ""
@@ -2279,6 +2669,11 @@ msgid ""
 "\n"
 "The guest will be configured to use slower emulated devices."
 msgstr ""
+"для этой версии Windows (%d.%d %s %s %s) нет доступных драйверов virtio. "
+"virt-v2v ищет драйверы в %s\n"
+"\n"
+"Гостевая система будет настроена на использование более медленных "
+"эмулируемых устройств."
 
 #: common/mlcustomize/inject_virtio_win.ml:175
 msgid ""
@@ -2287,6 +2682,11 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
+"нет драйвера блочного устройства virtio для этой версии Windows (%d.%d %s). "
+"virt-v2v ищет этот драйвер в %s\n"
+"\n"
+"Гостевая система будет настроена на использование более медленного "
+"эмулируемого устройства."
 
 #: common/mlcustomize/inject_virtio_win.ml:206
 msgid ""
@@ -2295,140 +2695,156 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
+"нет сетевого драйвера virtio для этой версии Windows (%d.%d %s). virt-v2v "
+"ищет этот драйвер в %s\n"
+"\n"
+"Гостевая система будет настроена на использование более медленного "
+"эмулируемого устройства."
 
 #: input/parse_libvirt_xml.ml:545
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
-msgstr[0] ""
+msgstr[0] "этот гость имеет прямой сетевой интерфейс, который будет проигнорирован"
 msgstr[1] ""
+"этот гость имеет прямые сетевые интерфейсы, которые будут проигнорированы"
 msgstr[2] ""
+"этот гость имеет прямых сетевых интерфейсов, которые будут проигнорированы"
 
 #: input/parse_libvirt_xml.ml:527
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
+"этот гость имеет сквозное хост-устройство, которое будет проигнорировано"
 msgstr[1] ""
-msgstr[2] ""
+"этот гость имеет сквозные хост-устройства, которые будут проигнорированы"
+msgstr[2] "этот гость имеет сквозных хост-устройств, которые будут проигнорированы"
 
 #: input/parse_libvirt_xml.ml:248
 msgid "this guest has no non-removable disks"
-msgstr ""
+msgstr "этот гость не имеет несъёмных дисков"
 
 #: output/output.ml:65
 msgid "this output module doesn't support copying more than %d disks"
-msgstr ""
+msgstr "этот модуль вывода не поддерживает копирование более %d дисков"
 
 #: common/mlcustomize/timezone.ml:35
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
 msgstr ""
+"часовой пояс «%s» не существует, используйте местоположение, например, «"
+"Europe/Moscow»"
 
 #: common/mlcustomize/customize_run.ml:304
 msgid "timezone could not be set for this type of guest"
-msgstr ""
+msgstr "не удалось установить часовой пояс для этого типа гостя"
 
 #: input/OVA.ml:318
 msgid "unable to parse line from manifest file: %S"
-msgstr ""
+msgstr "не удалось разобрать строку из файла манифеста: %S"
 
 #: common/mltools/urandom.ml:37
 msgid "unexpected end of file while reading /dev/urandom"
-msgstr ""
+msgstr "неожиданный конец файла при чтении /dev/urandom"
 
 #: input/input_libvirt.ml:196
 msgid "unexpected output from the %s command"
-msgstr ""
+msgstr "неожиданный вывод команды %s"
 
 #: common/mltools/checksums.ml:58
 msgid "unhandled checksum type ‘%s’"
-msgstr ""
+msgstr "необработанный тип контрольной суммы «%s»"
 
 #: lib/types.ml:524
 msgid "unknown --root option: %s"
-msgstr ""
+msgstr "неизвестный параметр --root: %s"
 
 #: input/select_input.ml:51
 msgid "unknown -i option: %s"
-msgstr ""
+msgstr "неизвестный параметр -i: %s"
 
 #: output/select_output.ml:74
 msgid "unknown -o option: %s"
-msgstr ""
+msgstr "неизвестный параметр -o: %s"
 
 #: v2v/v2v.ml:169
 msgid "unknown -oa option: %s"
-msgstr ""
+msgstr "неизвестный параметр -oa: %s"
 
 #: input/input_libvirt.ml:189
 msgid "unknown <checksum> method='%s'"
-msgstr ""
+msgstr "неизвестный метод <checksum>='%s'"
 
 #: input/OVF.ml:103
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
-msgstr ""
+msgstr "неизвестное значение Config:firmware %s (ожидалось «bios» или «efi»)"
 
 #: lib/create_ovf.ml:446 lib/create_ovf.ml:247
 msgid "unknown Windows 10 variant: %s (%s)"
-msgstr ""
+msgstr "неизвестный вариант Windows 10: %s (%s)"
 
 #: v2v/v2v.ml:328 in-place/in_place.ml:265
 msgid "unknown block driver ‘--block-driver %s’"
-msgstr ""
+msgstr "неизвестный драйвер блочных устройств «--block-driver %s»"
 
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
-msgstr ""
+msgstr "неизвестное значение прошивки «%s», предполагается BIOS"
 
 #: lib/create_ovf.ml:454 lib/create_ovf.ml:255
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
-msgstr ""
+msgstr "неизвестная гостевая операционная система: %s %s %d.%d %s (%s)"
 
 #: v2v/v2v.ml:340 open/open.ml:132 inspector/inspector.ml:248
 msgid "unknown input transport ‘-it %s’"
-msgstr ""
+msgstr "неизвестный транспорт ввода «-it %s»"
 
 #: input/parse_domain_from_vmx.ml:428
 msgid "unknown sound device '%s' ignored"
-msgstr ""
+msgstr "неизвестное звуковое устройство «%s» проигнорировано"
 
 #: input/parse_libvirt_xml.ml:215
 msgid "unknown sound model %s ignored"
-msgstr ""
+msgstr "неизвестная модель звукового устройства %s проигнорирована"
 
 #: input/OVF.ml:156
 msgid "unsupported compression in OVF: %s"
-msgstr ""
+msgstr "неподдерживаемое сжатие в OVF: %s"
 
 #: input/input_vcenter_https.ml:123
 msgid ""
 "vcenter: <vmware:datacenterpath> was not found in the XML.  You need to "
 "upgrade to libvirt ≥ 1.2.20."
 msgstr ""
+"vcenter: <vmware:datacenterpath> не найден в XML. Вам необходимо обновить "
+"libvirt до ≥ 1.2.20."
 
 #: input/vCenter.ml:79
 msgid "vcenter: URL not found: %s"
-msgstr ""
+msgstr "vcenter: URL-адрес не найден: %s"
 
 #: input/vCenter.ml:70
 msgid "vcenter: incorrect username or password"
-msgstr ""
+msgstr "vcenter: неверное имя пользователя или пароль"
 
 #: input/vCenter.ml:72
 msgid ""
 "vcenter: incorrect username or password.  You might need to specify the "
 "username in the URI like this: [vpx|esx|..]://USERNAME@[etc]"
 msgstr ""
+"vcenter: неверное имя пользователя или пароль. Возможно, вам нужно указать "
+"имя пользователя в URI следующим образом: [vpx|esx|..]://ИМЯ_ПОЛЬЗОВАТЕЛЯ@[и "
+"т.д.]"
 
 #: input/vCenter.ml:84
 msgid "vcenter: invalid response from server: %s"
-msgstr ""
+msgstr "vcenter: недопустимый ответ от сервера: %s"
 
 #: input/vCenter.ml:194
 msgid "vcenter: no status code in output of ‘curl’ command."
-msgstr ""
+msgstr "vcenter: в выводе команды «curl» нет кода состояния."
 
 #: output/output_vdsm.ml:148
 msgid "vdsm: invalid -os parameter does not contain a valid UUID: %s"
-msgstr ""
+msgstr "vdsm: недопустимый параметр -os не содержит допустимый UUID: %s"
 
 #: output/output_openstack.ml:56
 msgid ""
@@ -2461,114 +2877,152 @@ msgid ""
 "\n"
 "The os-* parameters and environment variables are optional.\n"
 msgstr ""
+"virt-v2v -oo server-id=<ИМЯ|UUID> [os-*=...]\n"
+"\n"
+"Укажите имя или UUID устройства преобразования с помощью\n"
+"\n"
+"  virt-v2v ... -o openstack -oo server-id=<ИМЯ|UUID>\n"
+"\n"
+"При запуске virt-v2v он подключит тома Cinder к\n"
+"устройству преобразования, поэтому это имя или UUID должно быть именем\n"
+"виртуальной машины на OpenStack, где выполняется virt-v2v.\n"
+"\n"
+"Кроме того, можно использовать все обычные параметры OpenStack “os-*”\n"
+"или переменные окружения “OS_*”.\n"
+"\n"
+"Параметры Openstack “--os-*” должны записываться как “virt-v2v -oo os-*”.\n"
+"\n"
+"Например:\n"
+"\n"
+"  virt-v2v -oo os-username=<ИМЯ>\n"
+"\n"
+"                эквивалентно openstack: --os-username=<ИМЯ>\n"
+"            или переменной окружения: OS_USERNAME=<ИМЯ>\n"
+"\n"
+"  virt-v2v -oo os-project-name=<ИМЯ>\n"
+"\n"
+"                эквивалентно openstack: --os-project-name=<ИМЯ>\n"
+"            или переменной окружения: OS_PROJECT_NAME=<ИМЯ>\n"
+"\n"
+"Параметры os-* и переменные окружения необязательны.\n"
 
 #: input/parse_libvirt_xml.ml:189
 msgid ""
 "virt-v2v does not support local displays, so <graphics type='%s'> in the "
 "input libvirt XML was ignored"
 msgstr ""
+"virt-v2v не поддерживает локальные дисплеи, поэтому <graphics type='%s'> во "
+"входном XML libvirt был проигнорирован"
 
 #: input/select_input.ml:83
 msgid "virt-v2v-in-place does not support remote libvirt URIs"
-msgstr ""
+msgstr "virt-v2v-in-place не поддерживает удалённые URI-адреса libvirt"
 
 #: input/parse_domain_from_vmx.ml:50
 msgid "vmx URI path component looks incorrect"
-msgstr ""
+msgstr "компонент пути URI vmx выглядит неверно"
 
 #: input/parse_domain_from_vmx.ml:48
 msgid "vmx URI remote server name omitted"
-msgstr ""
+msgstr "в URI vmx опущено имя удалённого сервера"
 
 #: input/parse_domain_from_vmx.ml:46
 msgid "vmx URI start with ‘ssh://...’"
-msgstr ""
+msgstr "URI vmx начинается с «ssh://...»"
 
 #: input/VMX.ml:313
 msgid "vmx parser: cannot parse this line, ignoring: %s"
-msgstr ""
+msgstr "анализатор vmx: не удаётся разобрать эту строку, игнорируется: %s"
 
 #: input/VMX.ml:346
 msgid "vmx parser: duplicate key '%s' ignored"
-msgstr ""
+msgstr "анализатор vmx: повторяющийся ключ «%s» проигнорирован"
 
 #: output/output_openstack.ml:299
 msgid "wait for cinder volume status to change to \"available\""
-msgstr ""
+msgstr "ожидание изменения состояния тома cinder на «available»"
 
 #: output/output_openstack.ml:360
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
-msgstr ""
+msgstr "ожидание подключения тома cinder %s к устройству преобразования"
 
 #: open/open.ml:136
 msgid "you must supply the --run parameter"
-msgstr ""
+msgstr "вы должны указать параметр --run"
 
 #: input/input_xen_ssh.ml:87 input/input_vddk.ml:189
 msgid "‘-ic %s’ URL does not contain a host name field"
-msgstr ""
+msgstr "URL-адрес «-ic %s» не содержит поля имени хоста"
 
 #: input/input_vddk.ml:273
 msgid "‘-io vddk-file=’ must be used exactly %d times"
-msgstr ""
+msgstr "«-io vddk-file=» должен использоваться ровно %d раз"
 
 #: input/input_vddk.ml:297
 msgid ""
 "‘-io vddk-libdir=%s’ does not point to a directory.  See the virt-v2v-input-"
 "vmware(1) manual."
 msgstr ""
+"«-io vddk-libdir=%s» не указывает на каталог. См. справочную страницу virt-"
+"v2v-input-vmware(1)."
 
 #: output/output.ml:85
 msgid ""
 "‘-oo compressed’ is only allowed when the output format is a local qcow2-"
 "format file, i.e. ‘-of qcow2’"
 msgstr ""
+"«-oo compressed» допускается только тогда, когда форматом вывода является "
+"локальный файл в формате qcow2, т. е. «-of qcow2»"
 
 #: input/input_vddk.ml:232
 msgid ""
 "‘openssl’ command not found: automatically detecting thumbprint is not "
 "possible, so you must use ‘-io vddk-thumbprint=XX:XX...’"
 msgstr ""
+"команда «openssl» не найдена: автоматическое определение отпечатка "
+"невозможно, поэтому вы должны использовать «-io vddk-thumbprint=XX:XX...»"
 
 #: common/mltools/getopt-c.c:68
 #, c-format
 msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
 msgstr ""
+"Попробуйте «%s --help» или обратитесь к %s(1) для получения дополнительной "
+"информации.\n"
 
 #: common/mltools/getopt-c.c:187
 #, c-format
 msgid "%s: ‘%s’ is not a numeric value.\n"
-msgstr ""
+msgstr "%s: «%s» не является числовым значением.\n"
 
 #: common/mltools/getopt-c.c:193
 #, c-format
 msgid "%s: %s: integer out of range\n"
-msgstr ""
+msgstr "%s: %s: целое число вне допустимого диапазона\n"
 
 #: common/mltools/getopt-c.c:383
 #, c-format
 msgid "%s: ‘%s’ is not allowed for -%c; allowed values are:\n"
-msgstr ""
+msgstr "%s: «%s» не допускается для -%c; допустимые значения:\n"
 
 #: common/mltools/getopt-c.c:386
 #, c-format
 msgid "%s: ‘%s’ is not allowed for %s%s; allowed values are:\n"
-msgstr ""
+msgstr "%s: «%s» не допускается для %s%s; допустимые значения:\n"
 
 #: common/mltools/getopt-c.c:421
 #, c-format
 msgid "Extra parameter on the command line: ‘%s’.\n"
-msgstr ""
+msgstr "Лишний параметр в командной строке: «%s».\n"
 
 #: common/options/config.c:72
 #, c-format
 msgid "%s: line %d: error parsing configuration file: %s"
-msgstr ""
+msgstr "%s: строка %d: ошибка разбора файла конфигурации: %s"
 
 #: common/options/decrypt.c:52
 #, c-format
 msgid "string size overflow"
-msgstr ""
+msgstr "переполнение размера строки"
 
 #: common/options/decrypt.c:170
 #, c-format
@@ -2576,6 +3030,8 @@ msgid ""
 "'clevis_luks_unlock', needed for decrypting %s, is unavailable in this "
 "libguestfs version"
 msgstr ""
+"«clevis_luks_unlock», необходимый для расшифровки %s, недоступен в этой "
+"версии libguestfs"
 
 #: common/options/decrypt.c:184
 #, c-format
@@ -2586,6 +3042,11 @@ msgid ""
 "\n"
 "Original error: %s (%d)"
 msgstr ""
+"не удалось найти ключ для открытия зашифрованного LUKS %s.\n"
+"\n"
+"Попробуйте использовать --key в командной строке.\n"
+"\n"
+"Исходная ошибка: %s (%d)"
 
 #: common/options/inspect.c:78
 #, c-format
@@ -2605,6 +3066,21 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
+"%s: на этом диске не найдена операционная система\n"
+"\n"
+"При использовании guestfish с параметром «-i» удалите этот параметр\n"
+"и вместо этого используйте команды «run», а затем «list-filesystems».\n"
+"Затем вы можете вручную смонтировать нужные файловые системы\n"
+"с помощью команд «mount» или «mount-ro».\n"
+"\n"
+"При использовании guestmount с параметром «-i» удалите этот параметр и "
+"выберите\n"
+"файловые системы, которые вы хотите видеть, вручную добавив параметры «-m».\n"
+"Используйте «virt-filesystems» для просмотра доступных файловых систем.\n"
+"\n"
+"При использовании других инструментов virt этот образ диска не будет\n"
+"работать с этими инструментами. Используйте эквивалентные команды\n"
+"guestfish (см. справочную страницу инструмента virt).\n"
 
 #: common/options/inspect.c:99
 #, c-format
@@ -2624,41 +3100,56 @@ msgid ""
 "with these tools.  Use the guestfish equivalent commands\n"
 "(see the virt tool manual page).\n"
 msgstr ""
+"%s: мультизагрузочные операционные системы не поддерживаются\n"
+"\n"
+"При использовании guestfish с параметром «-i» удалите этот параметр\n"
+"и вместо него используйте команды «run», а затем «list-filesystems».\n"
+"Затем вы можете вручную смонтировать нужные файловые\n"
+"системы с помощью команд «mount» или «mount-ro».\n"
+"\n"
+"При использовании guestmount с параметром «-i» удалите этот параметр и "
+"выберите\n"
+"файловые системы, которые вы хотите видеть, вручную добавив параметры «-m».\n"
+"Используйте «virt-filesystems» для просмотра доступных файловых систем.\n"
+"\n"
+"При использовании других инструментов virt мультизагрузочные операционные\n"
+"системы не будут работать с этими инструментами. Используйте эквивалентные\n"
+"команды guestfish (см. справочную страницу инструмента virt).\n"
 
 #: common/options/inspect.c:161
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
-msgstr ""
+msgstr "%s: некоторые файловые системы не удалось смонтировать (игнорируется)\n"
 
 #: common/options/inspect.c:178
 #, c-format
 msgid "Operating system: %s\n"
-msgstr ""
+msgstr "Операционная система: %s\n"
 
 #: common/options/inspect.c:196
 #, c-format
 msgid "%s mounted on %s\n"
-msgstr ""
+msgstr "%s смонтировано в %s\n"
 
 #: common/options/keys.c:69
 #, c-format
 msgid "Enter key or passphrase (\"%s\"): "
-msgstr ""
+msgstr "Введите ключ или парольную фразу («%s»): "
 
 #: common/options/keys.c:189
 #, c-format
 msgid "size_t overflow"
-msgstr ""
+msgstr "переполнение size_t"
 
 #: common/options/keys.c:235
 #, c-format
 msgid "could not read key from user"
-msgstr ""
+msgstr "не удалось прочитать ключ от пользователя"
 
 #: common/options/options.c:283
 #, c-format
 msgid "%s: ‘%s’ could not be mounted.\n"
-msgstr ""
+msgstr "%s: «%s» не удалось смонтировать.\n"
 
 #: common/options/options.c:287
 #, c-format
@@ -2666,53 +3157,58 @@ msgid ""
 "%s: Check mount(8) man page to ensure options ‘%s’\n"
 "%s: are supported by the filesystem that is being mounted.\n"
 msgstr ""
+"%s: Проверьте справочную страницу mount(8), чтобы убедиться, что параметры "
+"«%s»\n"
+"%s: поддерживаются монтируемой файловой системой.\n"
 
 #: common/options/options.c:291
 #, c-format
 msgid "%s: Did you mean to mount one of these filesystems?\n"
-msgstr ""
+msgstr "%s: Возможно, вы хотели смонтировать одну из этих файловых систем?\n"
 
 #: common/options/options.c:304
 #, c-format
 msgid "cannot determine the subvolume for %s: %s (%d)"
-msgstr ""
+msgstr "не удаётся определить подтом для %s: %s (%d)"
 
 #: common/options/uri.c:119
 #, c-format
 msgid "%s: --add: could not parse URI ‘%s’\n"
-msgstr ""
+msgstr "%s: --add: не удалось разобрать URI «%s»\n"
 
 #: common/options/uri.c:130
 #, c-format
 msgid "%s: %s: scheme of URI is NULL or empty\n"
-msgstr ""
+msgstr "%s: %s: схема URI-адреса равна NULL или пуста\n"
 
 #: common/options/uri.c:138
 #, c-format
 msgid "%s: %s: cannot have both a server name and a socket query parameter\n"
 msgstr ""
+"%s: %s: не могут быть одновременно указаны имя сервера и параметр запроса "
+"сокета\n"
 
 #: common/utils/utils.c:107
 #, c-format
 msgid "%s exited successfully"
-msgstr ""
+msgstr "%s успешно завершился"
 
 #: common/utils/utils.c:110
 #, c-format
 msgid "%s exited with error status %d"
-msgstr ""
+msgstr "%s завершился с кодом ошибки %d"
 
 #: common/utils/utils.c:114
 #, c-format
 msgid "%s killed by signal %d (%s)"
-msgstr ""
+msgstr "%s убит сигналом %d (%s)"
 
 #: common/utils/utils.c:118
 #, c-format
 msgid "%s stopped by signal %d (%s)"
-msgstr ""
+msgstr "%s остановлен сигналом %d (%s)"
 
 #: common/utils/utils.c:122
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
-msgstr ""
+msgstr "%s завершился по неизвестной причине (состояние %d)"
