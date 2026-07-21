@@ -47,6 +47,8 @@ module Disk = struct
     if not (Nbdkit.is_installed ()) then
       error (f_"nbdkit is not installed or not working.  It is required to \
                 use ‘-i disk’.");
+    if not (Nbdkit.version () >= (1, 44, 0)) then
+      error (f_"nbdkit must be >= 1.44.0 for input from local files");
     if not (Nbdkit.probe_plugin "file") then
       error (f_"nbdkit-file-plugin is not installed or not working");
     if options.read_only && not (Nbdkit.probe_filter "cow") then
@@ -92,14 +94,34 @@ module Disk = struct
       in
       loop args in
 
+    (* Only create a single instance of nbdkit-file-plugin below.  We will
+     * use the export name to select the disk.
+     *)
+    let nbdkit_file_instance = lazy (
+      let socket = sprintf "%s/infilesock" dir in
+      let cmd = Nbdkit.create ~name:"in" "file" in
+      if options.read_only then
+        Nbdkit.add_filter cmd "cow";
+
+      let exportdir = sprintf "%s/indisks" dir in
+      mkdir exportdir 0o700;
+
+      Nbdkit.add_arg cmd "dir" exportdir;
+      Nbdkit.reduce_memory_pressure cmd;
+      let _, pid = Nbdkit.run_unix socket cmd in
+
+      (* --exit-with-parent should ensure nbdkit is cleaned
+       * up when we exit, but it's not supported everywhere.
+       *)
+      On_exit.kill pid;
+
+      socket, exportdir
+    ) in
+
     (* Convert the command line disks to NBD URIs. *)
     let uris =
       List.mapi (
         fun i disk ->
-          let sockname = sprintf "in%d" i in
-          let socket = sprintf "%s/%s" dir sockname in
-          On_exit.unlink socket;
-
           if is_nbd_uri disk then (
             (* For nbd:// on the command line, proxy through
              * nbdkit-nbd-plugin.  This is not ideal.  We could
@@ -109,6 +131,10 @@ module Disk = struct
              * but would avoid needing an extra nbdkit proxy.
              * XXX
              *)
+            let sockname = sprintf "in%d" i in
+            let socket = sprintf "%s/%s" dir sockname in
+            On_exit.unlink socket;
+
             let cmd = Nbdkit.create ~name:sockname "nbd" in
             if options.read_only then
               Nbdkit.add_filter cmd "cow";
@@ -118,7 +144,9 @@ module Disk = struct
             (* --exit-with-parent should ensure nbdkit is cleaned
              * up when we exit, but it's not supported everywhere.
              *)
-            On_exit.kill pid
+            On_exit.kill pid;
+
+            NBD_URI.Unix (socket, None)
           )
           else (
             (* Local filename.  Use nbdkit-file-plugin for raw,
@@ -138,27 +166,25 @@ module Disk = struct
 
             match format with
             | "raw" ->
-               let cmd = Nbdkit.create ~name:sockname "file" in
-               if options.read_only then
-                 Nbdkit.add_filter cmd "cow";
-               Nbdkit.add_arg cmd "file" disk;
-               Nbdkit.reduce_memory_pressure cmd;
-               let _, pid = Nbdkit.run_unix socket cmd in
+               let socket, exportdir = Lazy.force nbdkit_file_instance in
+               let export = sprintf "disk%d" i in
+               symlink (absolute_path disk) (exportdir // export);
 
-               (* --exit-with-parent should ensure nbdkit is cleaned
-                * up when we exit, but it's not supported everywhere.
-                *)
-               On_exit.kill pid
+               NBD_URI.Unix (socket, Some export)
 
             | format ->
+               let sockname = sprintf "in%d" i in
+               let socket = sprintf "%s/%s" dir sockname in
+               On_exit.unlink socket;
+
                let cmd = QemuNBD.create disk in
                QemuNBD.set_snapshot cmd options.read_only;
                QemuNBD.set_format cmd (Some format);
                let _, pid = QemuNBD.run_unix socket cmd in
-               On_exit.kill pid
-          );
+               On_exit.kill pid;
 
-          NBD_URI.Unix (socket, None)
+               NBD_URI.Unix (socket, None)
+          );
         ) args in
 
     let s_disks =
