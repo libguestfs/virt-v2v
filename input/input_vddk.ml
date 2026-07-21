@@ -458,40 +458,24 @@ See also the virt-v2v-input-vmware(1) manual.") libNN
     assert (files <> []);
 
     let uris =
-      (* If nbdkit-vddk-plugin has the 'export' feature (added in
-       * nbdkit 1.43.8) then we only have to run a single
+      (* nbdkit-vddk-plugin with the export feature is required
+       * (it was added upstream in 1.43.8 and we now require
+       * later nbdkit).  So we only have to run a single
        * instance of nbdkit.
        *)
-      if Nbdkit.probe_plugin_parameter "vddk" "export=" then (
-        let socket = sprintf "%s/in0" dir in
-        On_exit.unlink socket;
+      let socket = sprintf "%s/in0" dir in
+      On_exit.unlink socket;
 
-        let nbdkit = create_nbdkit_vddk ~name:"in" () in
+      let nbdkit = create_nbdkit_vddk ~name:"in" () in
 
-        let wildcard = get_vddk_export_wildcard files in
-        Nbdkit.add_arg nbdkit "export" wildcard;
+      let wildcard = get_vddk_export_wildcard files in
+      Nbdkit.add_arg nbdkit "export" wildcard;
 
-        let _, pid = Nbdkit.run_unix socket nbdkit in
-        On_exit.kill pid;
+      let _, pid = Nbdkit.run_unix socket nbdkit in
+      On_exit.kill pid;
 
-        (* Use NBD export names to select the right disk to read. *)
-        List.map (fun file -> NBD_URI.Unix (socket, Some file)) files
-      ) else (
-        (* Create an nbdkit instance for each disk. *)
-        List.mapi (
-          fun i file ->
-            let sockname = sprintf "in%d" i in
-            let socket = sprintf "%s/%s" dir sockname in
-            On_exit.unlink socket;
-
-            let nbdkit = create_nbdkit_vddk ~name:sockname () in
-            Nbdkit.add_arg nbdkit "file" file;
-            let _, pid = Nbdkit.run_unix socket nbdkit in
-            On_exit.kill pid;
-
-            NBD_URI.Unix (socket, None)
-        ) files
-      ) in
+      (* Use NBD export names to select the right disk to read. *)
+      List.map (fun file -> NBD_URI.Unix (socket, Some file)) files in
 
     source, uris
 end
