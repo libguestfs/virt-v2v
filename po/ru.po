@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-16 21:19+0000\n"
+"PO-Revision-Date: 2026-07-21 09:17+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
@@ -2985,9 +2985,7 @@ msgstr ""
 #: common/mltools/getopt-c.c:68
 #, c-format
 msgid "Try ‘%s --help’ or consult %s(1) for more information.\n"
-msgstr ""
-"Попробуйте «%s --help» или обратитесь к %s(1) для получения дополнительной "
-"информации.\n"
+msgstr "Попробуйте «%s --help» или обратитесь к %s(1) для подробностей.\n"
 
 #: common/mltools/getopt-c.c:187
 #, c-format
