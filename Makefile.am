@@ -70,6 +70,7 @@ EXTRA_DIST = \
 	common/.gitignore \
 	common/README \
 	common/update-submodule.sh \
+	contrib/setfiles_analysis.ml \
 	contrib/remove-guestor.reg \
 	COPYING \
 	ocaml-link.sh \

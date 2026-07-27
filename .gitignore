@@ -43,6 +43,7 @@ Makefile.in
 /config.status
 /config.sub
 /configure
+/contrib/setfiles_analysis
 /convert/.depend
 /depcomp
 /docs/stamp-virt-v2v*.pod
