@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
-"POT-Creation-Date: 2026-07-10 09:50+0100\n"
+"POT-Creation-Date: 2026-08-06 08:29+0100\n"
 "PO-Revision-Date: 2026-07-23 11:28+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
@@ -379,7 +379,8 @@ msgstr ""
 msgid ""
 "Each line contains a single customization command and its arguments, for "
 "example:"
-msgstr "Каждая строка содержит одну команду настройки и её аргументы, например:"
+msgstr ""
+"Каждая строка содержит одну команду настройки и её аргументы, например:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:98
@@ -484,8 +485,8 @@ msgid ""
 "Delete a file from the guest.  Or delete a directory (and all its contents, "
 "recursively)."
 msgstr ""
-"Удалить файл из гостя. Или удалить каталог (и все его содержимое, рекурсивно)"
-"."
+"Удалить файл из гостя. Или удалить каталог (и все его содержимое, "
+"рекурсивно)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:132
@@ -965,8 +966,8 @@ msgid ""
 "C<md5> will work with relatively old Linux guests (eg. RHEL 3), but is not "
 "secure against modern attacks."
 msgstr ""
-"C<md5> будет работать с относительно старыми гостями Linux (например, RHEL 3)"
-", но не является безопасным против современных атак."
+"C<md5> будет работать с относительно старыми гостями Linux (например, RHEL "
+"3), но не является безопасным против современных атак."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:314
@@ -1144,12 +1145,54 @@ msgstr "Это опция совместимости, которая ничег�
 #. type: =item
 #: common/mlcustomize/customize-options.pod:389
 #: common/mlcustomize/v2v-customize-options.pod:335
-msgid "B<--ssh-inject> USER[:SELECTOR]"
-msgstr "B<--ssh-inject> ПОЛЬЗОВАТЕЛЬ[:СЕЛЕКТОР]"
+#, fuzzy
+#| msgid "B<--selinux-relabel>"
+msgid "B<--selinux-relabel-exclude> DIR"
+msgstr "B<--selinux-relabel>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:391
 #: common/mlcustomize/v2v-customize-options.pod:337
+msgid "Exclude directories from being relabelled."
+msgstr ""
+
+#. type: textblock
+#: common/mlcustomize/customize-options.pod:393
+#: common/mlcustomize/v2v-customize-options.pod:339
+msgid ""
+"This advanced option lets you list directories in the guest which should not "
+"be relabelled, even when SELinux relabelling is enabled.  Use this "
+"carefully, as any changes that are made inside these directories during "
+"customization will have incorrect SELinux labels, leading to potential "
+"failures later, so you must be sure that the directories do not need "
+"relabelling."
+msgstr ""
+
+#. type: textblock
+#: common/mlcustomize/customize-options.pod:400
+#: common/mlcustomize/v2v-customize-options.pod:346
+#, fuzzy
+#| msgid "There are two ways to use this option."
+msgid "If in doubt, do not use this option."
+msgstr "Существует два способа использования этой опции."
+
+#. type: textblock
+#: common/mlcustomize/customize-options.pod:402
+#: common/mlcustomize/v2v-customize-options.pod:348
+msgid ""
+"You can pass the option multiple times, eg.  I<--selinux-relabel-exclude=/"
+"foo> I<--selinux-relabel-exclude=/bar>"
+msgstr ""
+
+#. type: =item
+#: common/mlcustomize/customize-options.pod:405
+#: common/mlcustomize/v2v-customize-options.pod:351
+msgid "B<--ssh-inject> USER[:SELECTOR]"
+msgstr "B<--ssh-inject> ПОЛЬЗОВАТЕЛЬ[:СЕЛЕКТОР]"
+
+#. type: textblock
+#: common/mlcustomize/customize-options.pod:407
+#: common/mlcustomize/v2v-customize-options.pod:353
 msgid ""
 "Inject an ssh key so the given C<USER> will be able to log in over ssh "
 "without supplying a password.  The C<USER> must exist already in the guest."
@@ -1158,15 +1201,15 @@ msgstr ""
 "ввода пароля. C<ПОЛЬЗОВАТЕЛЬ> уже должен существовать в гостевой системе."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:395
-#: common/mlcustomize/v2v-customize-options.pod:341
+#: common/mlcustomize/customize-options.pod:411
+#: common/mlcustomize/v2v-customize-options.pod:357
 msgid ""
 "See L<virt-builder(1)/SSH KEYS> for the format of the C<SELECTOR> field."
 msgstr "Формат поля C<СЕЛЕКТОР> см. в L<virt-builder(1)/SSH КЛЮЧИ>."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:398
-#: common/mlcustomize/v2v-customize-options.pod:344
+#: common/mlcustomize/customize-options.pod:414
+#: common/mlcustomize/v2v-customize-options.pod:360
 msgid ""
 "You can have multiple I<--ssh-inject> options, for different users and also "
 "for more keys for each user."
@@ -1176,14 +1219,14 @@ msgstr ""
 "пользователя."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:401
-#: common/mlcustomize/v2v-customize-options.pod:347
+#: common/mlcustomize/customize-options.pod:417
+#: common/mlcustomize/v2v-customize-options.pod:363
 msgid "B<--tar-in> TARFILE:REMOTEDIR"
 msgstr "B<--tar-in> ТАР_ФАЙЛ:УДАЛЕННЫЙ_КАТАЛОГ"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:403
-#: common/mlcustomize/v2v-customize-options.pod:349
+#: common/mlcustomize/customize-options.pod:419
+#: common/mlcustomize/v2v-customize-options.pod:365
 msgid ""
 "Copy local files or directories from a local tar file called C<TARFILE> into "
 "the disk image, placing them in the directory C<REMOTEDIR> (which must "
@@ -1196,14 +1239,14 @@ msgstr ""
 "несжатым (файлы F<.tar.gz> здесь работать не будут)"
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:409
-#: common/mlcustomize/v2v-customize-options.pod:355
+#: common/mlcustomize/customize-options.pod:425
+#: common/mlcustomize/v2v-customize-options.pod:371
 msgid "B<--timezone> TIMEZONE"
 msgstr "B<--timezone> ЧАСОВОЙ_ПОЯС"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:411
-#: common/mlcustomize/v2v-customize-options.pod:357
+#: common/mlcustomize/customize-options.pod:427
+#: common/mlcustomize/v2v-customize-options.pod:373
 msgid ""
 "Set the default timezone of the guest to C<TIMEZONE>.  Use a location string "
 "like C<Europe/London>"
@@ -1212,26 +1255,26 @@ msgstr ""
 "строку местоположения, например C<Europe/London>"
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:414
-#: common/mlcustomize/v2v-customize-options.pod:360
+#: common/mlcustomize/customize-options.pod:430
+#: common/mlcustomize/v2v-customize-options.pod:376
 msgid "B<--touch> FILE"
 msgstr "B<--touch> ФАЙЛ"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:416
-#: common/mlcustomize/v2v-customize-options.pod:362
+#: common/mlcustomize/customize-options.pod:432
+#: common/mlcustomize/v2v-customize-options.pod:378
 msgid "This command performs a L<touch(1)>-like operation on C<FILE>."
 msgstr "Эта команда выполняет операцию, аналогичную L<touch(1)>, над C<ФАЙЛ>."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:418
-#: common/mlcustomize/v2v-customize-options.pod:364
+#: common/mlcustomize/customize-options.pod:434
+#: common/mlcustomize/v2v-customize-options.pod:380
 msgid "B<--truncate> FILE"
 msgstr "B<--truncate> ФАЙЛ"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:420
-#: common/mlcustomize/v2v-customize-options.pod:366
+#: common/mlcustomize/customize-options.pod:436
+#: common/mlcustomize/v2v-customize-options.pod:382
 msgid ""
 "This command truncates C<FILE> to a zero-length file. The file must exist "
 "already."
@@ -1239,28 +1282,28 @@ msgstr ""
 "Эта команда урезает C<ФАЙЛ> до нулевой длины. Файл должен уже существовать."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:423
-#: common/mlcustomize/v2v-customize-options.pod:369
+#: common/mlcustomize/customize-options.pod:439
+#: common/mlcustomize/v2v-customize-options.pod:385
 msgid "B<--truncate-recursive> PATH"
 msgstr "B<--truncate-recursive> ПУТЬ"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:425
-#: common/mlcustomize/v2v-customize-options.pod:371
+#: common/mlcustomize/customize-options.pod:441
+#: common/mlcustomize/v2v-customize-options.pod:387
 msgid ""
 "This command recursively truncates all files under C<PATH> to zero-length."
 msgstr ""
 "Эта команда рекурсивно урезает все файлы внутри C<ПУТЬ> до нулевой длины."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:427
-#: common/mlcustomize/v2v-customize-options.pod:373
+#: common/mlcustomize/customize-options.pod:443
+#: common/mlcustomize/v2v-customize-options.pod:389
 msgid "B<--uninstall> PKG,PKG.."
 msgstr "B<--uninstall> ПАКЕТ,ПАКЕТ.."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:429
-#: common/mlcustomize/v2v-customize-options.pod:375
+#: common/mlcustomize/customize-options.pod:445
+#: common/mlcustomize/v2v-customize-options.pod:391
 msgid ""
 "Uninstall the named packages (a comma-separated list).  These are removed "
 "during the image build using the guest’s package manager (eg. apt, yum, "
@@ -1273,20 +1316,20 @@ msgstr ""
 "зависимых пакетов."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:434
-#: common/mlcustomize/v2v-customize-options.pod:380
+#: common/mlcustomize/customize-options.pod:450
+#: common/mlcustomize/v2v-customize-options.pod:396
 msgid "See also I<--install>, I<--update>."
 msgstr "См. также I<--install>, I<--update>."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:436
-#: common/mlcustomize/v2v-customize-options.pod:382
+#: common/mlcustomize/customize-options.pod:452
+#: common/mlcustomize/v2v-customize-options.pod:398
 msgid "B<--update>"
 msgstr "B<--update>"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:438
-#: common/mlcustomize/v2v-customize-options.pod:384
+#: common/mlcustomize/customize-options.pod:454
+#: common/mlcustomize/v2v-customize-options.pod:400
 msgid ""
 "Do the equivalent of C<yum update>, C<apt-get upgrade>, or whatever command "
 "is required to update the packages already installed in the template to "
@@ -1297,20 +1340,20 @@ msgstr ""
 "их последних версий."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:442
-#: common/mlcustomize/v2v-customize-options.pod:388
+#: common/mlcustomize/customize-options.pod:458
+#: common/mlcustomize/v2v-customize-options.pod:404
 msgid "See also I<--install>, I<--uninstall>."
 msgstr "См. также I<--install>, I<--uninstall>."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:444
-#: common/mlcustomize/v2v-customize-options.pod:390
+#: common/mlcustomize/customize-options.pod:460
+#: common/mlcustomize/v2v-customize-options.pod:406
 msgid "B<--upload> FILE:DEST"
 msgstr "B<--upload> ФАЙЛ:НАЗНАЧЕНИЕ"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:446
-#: common/mlcustomize/v2v-customize-options.pod:392
+#: common/mlcustomize/customize-options.pod:462
+#: common/mlcustomize/v2v-customize-options.pod:408
 msgid ""
 "Upload local file C<FILE> to destination C<DEST> in the disk image.  File "
 "owner and permissions from the original are preserved, so you should set "
@@ -1321,8 +1364,8 @@ msgstr ""
 "поэтому вы должны установить их так, как хотите видеть в образе диска."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:450
-#: common/mlcustomize/v2v-customize-options.pod:396
+#: common/mlcustomize/customize-options.pod:466
+#: common/mlcustomize/v2v-customize-options.pod:412
 msgid ""
 "C<DEST> could be the final filename.  This can be used to rename the file on "
 "upload."
@@ -1331,8 +1374,8 @@ msgstr ""
 "переименования файла при загрузке."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:453
-#: common/mlcustomize/v2v-customize-options.pod:399
+#: common/mlcustomize/customize-options.pod:469
+#: common/mlcustomize/v2v-customize-options.pod:415
 msgid ""
 "If C<DEST> is a directory name (which must already exist in the guest)  then "
 "the file is uploaded into that directory, and it keeps the same name as on "
@@ -1343,20 +1386,20 @@ msgstr ""
 "имя, что и в локальной файловой системе."
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:457
-#: common/mlcustomize/v2v-customize-options.pod:403
+#: common/mlcustomize/customize-options.pod:473
+#: common/mlcustomize/v2v-customize-options.pod:419
 msgid "See also: I<--mkdir>, I<--delete>, I<--scrub>."
 msgstr "См. также: I<--mkdir>, I<--delete>, I<--scrub>."
 
 #. type: =item
-#: common/mlcustomize/customize-options.pod:459
-#: common/mlcustomize/v2v-customize-options.pod:405
+#: common/mlcustomize/customize-options.pod:475
+#: common/mlcustomize/v2v-customize-options.pod:421
 msgid "B<--write> FILE:CONTENT"
 msgstr "B<--write> ФАЙЛ:СОДЕРЖИМОЕ"
 
 #. type: textblock
-#: common/mlcustomize/customize-options.pod:461
-#: common/mlcustomize/v2v-customize-options.pod:407
+#: common/mlcustomize/customize-options.pod:477
+#: common/mlcustomize/v2v-customize-options.pod:423
 msgid "Write C<CONTENT> to C<FILE>."
 msgstr "Записать C<СОДЕРЖИМОЕ> в C<ФАЙЛ>."
 
@@ -1770,8 +1813,7 @@ msgid ""
 "\n"
 msgstr ""
 " virt-v2v\n"
-"    -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/"
-"esxi?no_verify=1'\n"
+"    -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1'\n"
 "    -it vddk\n"
 "    -io vddk-libdir=/путь/к/vmware-vix-disklib-distrib\n"
 "    \"ИМЯ ГОСТЯ\"\n"
@@ -1799,8 +1841,7 @@ msgid ""
 "\n"
 msgstr ""
 " virt-v2v\n"
-"    -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/"
-"esxi?no_verify=1'\n"
+"    -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1'\n"
 "    -ip файл_пароля\n"
 "    \"ИМЯ ГОСТЯ\" [-o* опции]\n"
 "\n"
@@ -2025,9 +2066,9 @@ msgid ""
 "this method.  The SSH transport is not usable if the guest has snapshots; "
 "refer to L</NOTES>."
 msgstr ""
-"Если вы найдете папку с файлами F<I<гость>.vmx>, F<I<гость>.vmxf>, F<I<гость>"
-".nvram> и одним или несколькими образами дисков F<.vmdk>, вы можете "
-"использовать этот метод. SSH-транспорт не работает, если у гостя есть "
+"Если вы найдете папку с файлами F<I<гость>.vmx>, F<I<гость>.vmxf>, "
+"F<I<гость>.nvram> и одним или несколькими образами дисков F<.vmdk>, вы "
+"можете использовать этот метод. SSH-транспорт не работает, если у гостя есть "
 "снимки; обратитесь к L</ПРИМЕЧАНИЯ>."
 
 #. type: =head2
@@ -2143,8 +2184,7 @@ msgid ""
 " ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 msgstr ""
-" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/"
-"my%20guest.vmx\n"
+" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 
 #. type: textblock
@@ -2253,8 +2293,7 @@ msgid ""
 msgstr ""
 " $ virt-v2v \\\n"
 "     -i vmx -it ssh \\\n"
-"     \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/гость/гость.vmx\" "
-"\\\n"
+"     \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/гость/гость.vmx\" \\\n"
 "     -o local -os /var/tmp\n"
 "\n"
 
@@ -2434,8 +2473,7 @@ msgid ""
 " nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.\n"
 "\n"
 msgstr ""
-" nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. "
-"VixError 1 at 1166.\n"
+" nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.\n"
 "\n"
 
 #. type: textblock
@@ -2498,8 +2536,7 @@ msgid ""
 " Enter root's password for vcenter.example.com: ***\n"
 " \n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi' "
-"list --all\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi' list --all\n"
 " Enter root's password for vcenter.example.com: ***\n"
 " \n"
 
@@ -2529,8 +2566,8 @@ msgid ""
 msgstr ""
 "Если вы получили ошибку \"Peer certificate cannot be authenticated with "
 "given CA certificates\" или подобную, вы можете либо импортировать "
-"сертификат хоста vCenter, либо обойти проверку подписи, добавив флаг "
-"C<?no_verify=1>:"
+"сертификат хоста vCenter, либо обойти проверку подписи, добавив флаг C<?"
+"no_verify=1>:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:301 docs/virt-v2v-input-vmware.pod:538
@@ -2539,8 +2576,7 @@ msgid ""
 " $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' list --all\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/"
-"esxi?no_verify=1' list --all\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1' list --all\n"
 "\n"
 
 #. type: textblock
@@ -2565,8 +2601,7 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi' "
-"dumpxml \"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi' dumpxml \"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -2627,8 +2662,7 @@ msgid ""
 "\n"
 msgstr ""
 " $ virt-v2v \\\n"
-"     -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/"
-"esxi?no_verify=1' \\\n"
+"     -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1' \\\n"
 "     -it vddk \\\n"
 "     -io vddk-libdir=/путь/к/vmware-vix-disklib-distrib \\\n"
 "     \"Windows 2003\" \\\n"
@@ -2977,11 +3011,11 @@ msgid ""
 "hexadecimal ASCII code for backslash.)  Other punctuation may also have to "
 "be escaped."
 msgstr ""
-"Если имя пользователя содержит обратную косую черту (например, C<ДОМЕН\\П"
-"ОЛЬЗОВАТЕЛЬ>), вам нужно будет экранировать этот символ в URI с помощью "
-"C<%5c>: C<ДОМЕН%5cПОЛЬЗОВАТЕЛЬ> (5c — это шестнадцатеричный ASCII-код для "
-"обратной косой черты.) Другие знаки препинания также могут потребовать "
-"экранирования."
+"Если имя пользователя содержит обратную косую черту (например, "
+"C<ДОМЕН\\ПОЛЬЗОВАТЕЛЬ>), вам нужно будет экранировать этот символ в URI с "
+"помощью C<%5c>: C<ДОМЕН%5cПОЛЬЗОВАТЕЛЬ> (5c — это шестнадцатеричный ASCII-"
+"код для обратной косой черты.) Другие знаки препинания также могут "
+"потребовать экранирования."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:467
@@ -3108,8 +3142,7 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi' "
-"dumpxml \"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi' dumpxml \"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -3165,8 +3198,7 @@ msgid ""
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ virt-v2v -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/"
-"esxi?no_verify=1' \\\n"
+" $ virt-v2v -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1' \\\n"
 "   -ip файл_пароля \\\n"
 "   \"Windows 2003\" \\\n"
 "   -o local -os /var/tmp\n"
@@ -3423,8 +3455,8 @@ msgid ""
 "instead of C<vpx://11.22.33.44/...>"
 msgstr ""
 "Это может быть вызвано использованием IP-адреса вместо полного доменного "
-"имени DNS сервера vCenter, то есть используйте C<vpx://vcenter.example.com/"
-"...> вместо C<vpx://11.22.33.44/...>"
+"имени DNS сервера vCenter, то есть используйте C<vpx://"
+"vcenter.example.com/...> вместо C<vpx://11.22.33.44/...>"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:671
@@ -3559,9 +3591,10 @@ msgid ""
 "works from the virt-v2v server to the Xen host.  For example:"
 msgstr ""
 "Если вы не используете аутентификацию по паролю, альтернативой является "
-"использование ssh-agent и добавление вашего открытого SSH-ключа в F</root/"
-".ssh/authorized_keys> (на хосте Xen). После этого вам следует проверить, что "
-"доступ без пароля работает с сервера virt-v2v к хосту Xen. Например:"
+"использование ssh-agent и добавление вашего открытого SSH-ключа в F</"
+"root/.ssh/authorized_keys> (на хосте Xen). После этого вам следует "
+"проверить, что доступ без пароля работает с сервера virt-v2v к хосту Xen. "
+"Например:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:32
@@ -5409,8 +5442,8 @@ msgstr "Другие исправления"
 #: docs/virt-v2v-release-notes-1.42.pod:38
 msgid "In I<-o libvirt> mode, support Windows Server 2019 (Pino Toscano)."
 msgstr ""
-"В режиме I<-o libvirt> добавлена поддержка Windows Server 2019 (Pino Toscano)"
-"."
+"В режиме I<-o libvirt> добавлена поддержка Windows Server 2019 (Pino "
+"Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:40
@@ -5705,8 +5738,8 @@ msgid ""
 "Tests have been moved to the F<tests/> subdirectory, and manuals to the "
 "F<docs/> subdirectory."
 msgstr ""
-"Тесты перемещены в подкаталог F<tests/>, а руководства — в подкаталог "
-"F<docs/>."
+"Тесты перемещены в подкаталог F<tests/>, а руководства — в подкаталог F<docs/"
+">."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-1.42.pod:139
@@ -6297,7 +6330,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:134
 msgid "Weblate instead of Zanata is now used for translations (Pino Toscano)."
-msgstr "Теперь для переводов используется Weblate вместо Zanata (Pino Toscano)."
+msgstr ""
+"Теперь для переводов используется Weblate вместо Zanata (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:140
@@ -6575,7 +6609,8 @@ msgstr "L<https://bugzilla.redhat.com/1964324>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:232
 msgid "assertion failed at parse_ova.ml when ova directory ends with '/'"
-msgstr "сбой утверждения в parse_ova.ml, когда каталог ova заканчивается на '/'"
+msgstr ""
+"сбой утверждения в parse_ova.ml, когда каталог ova заканчивается на '/'"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:234
@@ -6980,7 +7015,8 @@ msgstr "L<https://bugzilla.redhat.com/1534644>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:356
 msgid "New way of parsing OVF from OVA that was created by VMware fails."
-msgstr "Новый способ разбора OVF из OVA, созданной VMware, завершается ошибкой."
+msgstr ""
+"Новый способ разбора OVF из OVA, созданной VMware, завершается ошибкой."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:362
@@ -6988,8 +7024,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
 "notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-notes-"
-"1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
+"notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:368
@@ -7199,7 +7235,8 @@ msgstr "Для установки драйверов virtio в Windows:"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.10.pod:93
 msgid "Fix this when there is a pending Windows Update (Vadim Rozenfeld)."
-msgstr "Исправлено при наличии ожидающего обновления Windows (Vadim Rozenfeld)."
+msgstr ""
+"Исправлено при наличии ожидающего обновления Windows (Vadim Rozenfeld)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.10.pod:97
@@ -7281,8 +7318,8 @@ msgid ""
 "Files\\Guestfs>>, it is now created read-only for non-Administrator accounts "
 "(Cole Robinson)."
 msgstr ""
-"Во время преобразования гостей Windows, если нам нужно создать S<F<C:\\P"
-"rogram Files\\Guestfs>>, теперь он создается только для чтения для не-"
+"Во время преобразования гостей Windows, если нам нужно создать S<F<C:"
+"\\Program Files\\Guestfs>>, теперь он создается только для чтения для не-"
 "администраторов (Cole Robinson)."
 
 #. type: textblock
@@ -7495,8 +7532,8 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-110742>"
 #: docs/virt-v2v-release-notes-2.10.pod:222
 msgid "RFE: Set boot order for guests in -o kubevirt output mode [rhel-10.1]"
 msgstr ""
-"RFE: Установка порядка загрузки для гостей в режиме вывода -o kubevirt [rhel-"
-"10.1]"
+"RFE: Установка порядка загрузки для гостей в режиме вывода -o kubevirt "
+"[rhel-10.1]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:224
@@ -7542,8 +7579,8 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-125116>"
 #: docs/virt-v2v-release-notes-2.10.pod:239
 msgid "setfiles runs out of memory in glibc fts_read [rhel-10.2 doc fix]"
 msgstr ""
-"setfiles исчерпывает память в glibc fts_read [исправление документации rhel-"
-"10.2]"
+"setfiles исчерпывает память в glibc fts_read [исправление документации "
+"rhel-10.2]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:241
@@ -7565,8 +7602,8 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-90175>"
 msgid ""
 "Should remove floppy device for the guest after v2v conversion [rhel-10.2]"
 msgstr ""
-"Следует удалить устройство дискеты для гостя после преобразования v2v [rhel-"
-"10.2]"
+"Следует удалить устройство дискеты для гостя после преобразования v2v "
+"[rhel-10.2]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.10.pod:250
@@ -8076,7 +8113,8 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-152939>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.12.pod:169
 msgid "Create sentinel file after all firstboot scripts have finished running"
-msgstr "Создание файла-сторожка после завершения всех сценариев первого запуска"
+msgstr ""
+"Создание файла-сторожка после завершения всех сценариев первого запуска"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.12.pod:171
@@ -8412,9 +8450,9 @@ msgid ""
 "addition, a semi-random guest CID is chosen in I<-o qemu> mode, avoiding an "
 "error."
 msgstr ""
-"Исправлено обнаружение поддержки virtio-socket в гостях Linux (Laszlo Ersek)"
-". Кроме того, в режиме I<-o qemu> выбирается полу-случайный CID гостя, что "
-"позволяет избежать ошибки."
+"Исправлено обнаружение поддержки virtio-socket в гостях Linux (Laszlo "
+"Ersek). Кроме того, в режиме I<-o qemu> выбирается полу-случайный CID гостя, "
+"что позволяет избежать ошибки."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:48
@@ -8429,8 +8467,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.2.pod:51
 msgid "Reject guests with snapshots when using -i vmx -it ssh (Laszlo Ersek)."
 msgstr ""
-"Отклонение гостей со снимками при использовании -i vmx -it ssh (Laszlo Ersek)"
-"."
+"Отклонение гостей со снимками при использовании -i vmx -it ssh (Laszlo "
+"Ersek)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:53
@@ -9032,8 +9070,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
 "notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-notes-"
-"1.42(1)>, L<guestfs-release-notes-1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
+"notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
@@ -9159,9 +9197,9 @@ msgid ""
 "localtime\"/E<gt>>.  (Thanks Lee Garrett, Laszlo Ersek)"
 msgstr ""
 "Несколько режимов вывода теперь генерируют метаданные, указывающие, требует "
-"ли гость установки RTC в UTC (Linux) или местное время (большинство Windows)"
-". Например, с I<-o libvirt> это генерирует S<E<lt>clock "
-"offset=\"utc|localtime\"/E<gt>>. (Спасибо Lee Garrett, Laszlo Ersek)"
+"ли гость установки RTC в UTC (Linux) или местное время (большинство "
+"Windows). Например, с I<-o libvirt> это генерирует S<E<lt>clock offset=\"utc|"
+"localtime\"/E<gt>>. (Спасибо Lee Garrett, Laszlo Ersek)"
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:55
@@ -9202,7 +9240,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:67
 msgid "I<-o libvirt> mode now supports Rocky Linux (thanks Ming Xie)."
-msgstr "Режим I<-o libvirt> теперь поддерживает Rocky Linux (спасибо Ming Xie)."
+msgstr ""
+"Режим I<-o libvirt> теперь поддерживает Rocky Linux (спасибо Ming Xie)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.4.pod:69
@@ -10063,8 +10102,8 @@ msgid ""
 "C<E<lt>nameE<gt>> element, rather than creating a guest name containing that "
 "whitespace."
 msgstr ""
-"При импорте из источников libvirt удалять пробелы вокруг элемента C<E<lt>"
-"nameE<gt>>, а не создавать имя гостя, содержащее эти пробелы."
+"При импорте из источников libvirt удалять пробелы вокруг элемента "
+"C<E<lt>nameE<gt>>, а не создавать имя гостя, содержащее эти пробелы."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.8.pod:111
@@ -10072,8 +10111,8 @@ msgid ""
 "We no longer overwrite the EFI grub2 wrapper file (F</boot/efi/EFI/"
 "E<lt>OSE<gt>/grub.cfg>) on Fedora E<ge> 34 and RHEL E<ge> 9.0."
 msgstr ""
-"Мы больше не перезаписываем файл-обертку EFI grub2 (F</boot/efi/EFI/E<lt>"
-"ОСE<gt>/grub.cfg>) в Fedora E<ge> 34 и RHEL E<ge> 9.0."
+"Мы больше не перезаписываем файл-обертку EFI grub2 (F</boot/efi/EFI/"
+"E<lt>ОСE<gt>/grub.cfg>) в Fedora E<ge> 34 и RHEL E<ge> 9.0."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.8.pod:115
@@ -10433,8 +10472,8 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-67836>"
 msgid ""
 "RFE: Get the uefi.secureBoot.enabled setting from VMware sources [rhel-9.6]"
 msgstr ""
-"RFE: Получение настройки uefi.secureBoot.enabled из источников VMware [rhel-"
-"9.6]"
+"RFE: Получение настройки uefi.secureBoot.enabled из источников VMware "
+"[rhel-9.6]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.8.pod:259
@@ -10834,8 +10873,8 @@ msgid ""
 "ordinary PC BIOS).  Virt-v2v can convert these guests, but requires that "
 "UEFI is supported by the target hypervisor."
 msgstr ""
-"VMware позволяет предоставить гостям прошивку UEFI (вместо обычного PC BIOS)"
-". Virt-v2v может преобразовывать таких гостей, но требует, чтобы UEFI "
+"VMware позволяет предоставить гостям прошивку UEFI (вместо обычного PC "
+"BIOS). Virt-v2v может преобразовывать таких гостей, но требует, чтобы UEFI "
 "поддерживался целевым гипервизором."
 
 #. type: textblock
@@ -10853,8 +10892,8 @@ msgid ""
 "Since OVMF support was only recently added to KVM (in 2014/2015), not all "
 "target environments support UEFI guests yet:"
 msgstr ""
-"Поскольку поддержка OVMF была добавлена в KVM относительно недавно (в 2014/"
-"2015), не все целевые среды пока поддерживают гостей UEFI:"
+"Поскольку поддержка OVMF была добавлена в KVM относительно недавно (в "
+"2014/2015), не все целевые среды пока поддерживают гостей UEFI:"
 
 #. type: =item
 #: docs/virt-v2v-support.pod:120
@@ -10931,12 +10970,12 @@ msgid ""
 "install virtio drivers so it will run quickly."
 msgstr ""
 "Virt-v2v преобразует одного гостя с иностранного гипервизора для работы на "
-"KVM. Он может читать гостей Linux и Windows, работающих на VMware, ifelse"
-"(ENABLE_XEN, yes, Xen,) Hyper-V и некоторых других гипервизорах, и "
-"преобразовывать их в KVM под управлением libvirt, OpenStack, ifelse"
-"(ENABLE_OVIRT, yes, oVirt,) или нескольких других целей. Он может изменять "
-"гостя, чтобы сделать его загружаемым на KVM, и устанавливать драйверы virtio "
-"для быстрой работы."
+"KVM. Он может читать гостей Linux и Windows, работающих на VMware, "
+"ifelse(ENABLE_XEN, yes, Xen,) Hyper-V и некоторых других гипервизорах, и "
+"преобразовывать их в KVM под управлением libvirt, OpenStack, "
+"ifelse(ENABLE_OVIRT, yes, oVirt,) или нескольких других целей. Он может "
+"изменять гостя, чтобы сделать его загружаемым на KVM, и устанавливать "
+"драйверы virtio для быстрой работы."
 
 #. type: textblock
 #: docs/virt-v2v.pod:22
@@ -11008,8 +11047,8 @@ msgid ""
 msgstr ""
 "Virt-v2v обычно копирует из ввода в вывод, что называется \"режимом "
 "копирования\". В этом случае исходный гость всегда остается неизменным. "
-"Преобразования на месте могут быть выполнены с помощью L<virt-v2v-in-place"
-"(1)>."
+"Преобразования на месте могут быть выполнены с помощью L<virt-v2v-in-"
+"place(1)>."
 
 #. type: =head2
 #: docs/virt-v2v.pod:48
@@ -11144,8 +11183,7 @@ msgid ""
 " virt-v2v -ic vpx://vcenter.example.com/Datacenter/esxi vmware_guest\n"
 "\n"
 msgstr ""
-" virt-v2v -ic vpx://vcenter.example.com/ЦентрОбработкиДанных/esxi "
-"vmware_guest\n"
+" virt-v2v -ic vpx://vcenter.example.com/ЦентрОбработкиДанных/esxi vmware_guest\n"
 "\n"
 
 #. type: textblock
@@ -11197,8 +11235,7 @@ msgid ""
 "   -oo ovirt-cafile=/tmp/ca.pem --bridge ovirtmgmt\n"
 "\n"
 msgstr ""
-" virt-v2v -ic vpx://vcenter.example.com/ЦентрОбработкиДанных/esxi "
-"vmware_guest \\\n"
+" virt-v2v -ic vpx://vcenter.example.com/ЦентрОбработкиДанных/esxi vmware_guest \\\n"
 "   -o ovirt-upload -oc https://ovirt-engine.example.com/ovirt-engine/api \\\n"
 "   -os ovirt-data -op /tmp/ovirt-admin-password -of raw \\\n"
 "   -oo ovirt-cafile=/tmp/ca.pem --bridge ovirtmgmt\n"
@@ -11245,8 +11282,7 @@ msgid ""
 msgstr ""
 " virt-v2v \\\n"
 "   -i vmx -it ssh \\\n"
-"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/гость/гость.vmx\" \\"
-"\n"
+"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/гость/гость.vmx\" \\\n"
 "   -o local -os /var/tmp\n"
 "\n"
 
@@ -11993,7 +12029,8 @@ msgstr "B<--mac> aa:bb:cc:dd:ee:ffB<:bridge:>выход"
 #. type: textblock
 #: docs/virt-v2v.pod:428 in-place/virt-v2v-in-place.pod:185
 msgid "Map source NIC MAC address to a network or bridge."
-msgstr "Сопоставить MAC-адрес сетевого интерфейса источника с сетью или мостом."
+msgstr ""
+"Сопоставить MAC-адрес сетевого интерфейса источника с сетью или мостом."
 
 #. type: textblock
 #: docs/virt-v2v.pod:430 docs/virt-v2v.pod:488
@@ -12279,8 +12316,8 @@ msgid ""
 "See L</Starting the libvirt system instance> below, and L<virt-v2v-output-"
 "local(1)>."
 msgstr ""
-"См. L</Запуск системного экземпляра libvirt> ниже и L<virt-v2v-output-local"
-"(1)>."
+"См. L</Запуск системного экземпляра libvirt> ниже и L<virt-v2v-output-"
+"local(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:541
@@ -13694,8 +13731,7 @@ msgid ""
 "\n"
 msgstr ""
 " $ df -h \"$(guestfish get-cachedir)\"\n"
-" Файловая система  Размер  Использовано  Доступно  Использовано%  "
-"Смонтировано в\n"
+" Файловая система  Размер  Использовано  Доступно  Использовано%  Смонтировано в\n"
 " /dev/mapper/root   50G   40G  6.8G  86% /\n"
 "\n"
 
@@ -13980,8 +14016,8 @@ msgid ""
 "learn.microsoft.com/en-gb/powershell/module/microsoft.powershell.security/"
 "set-executionpolicy> command:"
 msgstr ""
-"Чтобы узнать текущую политику, используйте команду L<Get-"
-"ExecutionPolicy|https://learn.microsoft.com/en-gb/powershell/module/"
+"Чтобы узнать текущую политику, используйте команду L<Get-ExecutionPolicy|"
+"https://learn.microsoft.com/en-gb/powershell/module/"
 "microsoft.powershell.security/set-executionpolicy>:"
 
 #. type: verbatim
@@ -14576,8 +14612,7 @@ msgid ""
 " virt-v2v: error: libguestfs error: command lines: rename: /sysroot/etc/resolv.conf to /sysroot/etc/lwdhuh36: Operation not permitted\n"
 "\n"
 msgstr ""
-" virt-v2v: ошибка: libguestfs error: command lines: rename: /sysroot/etc/"
-"resolv.conf в /sysroot/etc/lwdhuh36: Операция не разрешена\n"
+" virt-v2v: ошибка: libguestfs error: command lines: rename: /sysroot/etc/resolv.conf в /sysroot/etc/lwdhuh36: Операция не разрешена\n"
 "\n"
 
 #. type: textblock
@@ -14956,8 +14991,8 @@ msgid ""
 "before converting the guest."
 msgstr ""
 "Чтобы исправить это, вы должны применить поддержку подписей кода SHA-2 из: "
-"L<https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/2015/"
-"3033929> перед преобразованием гостя."
+"L<https://docs.microsoft.com/en-us/security-updates/SecurityAdvisories/"
+"2015/3033929> перед преобразованием гостя."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1600
@@ -15024,8 +15059,8 @@ msgid ""
 "trying to upgrade Windows.  This can be achieved using L<virt-win-reg(1)>."
 msgstr ""
 "Исправление заключается в удалении записей реестра после преобразования, но "
-"перед попыткой обновления Windows. Это можно сделать с помощью L<virt-win-reg"
-"(1)>."
+"перед попыткой обновления Windows. Это можно сделать с помощью L<virt-win-"
+"reg(1)>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1624
@@ -15847,10 +15882,8 @@ msgid ""
 " Failed to connect socket to '/var/run/libvirt/virtqemud-sock-ro': Connection refused\n"
 "\n"
 msgstr ""
-" Failed to connect socket to '/var/run/libvirt/virtqemud-sock': No such file "
-"or directory\n"
-" Failed to connect socket to '/var/run/libvirt/virtqemud-sock-ro': "
-"Connection refused\n"
+" Failed to connect socket to '/var/run/libvirt/virtqemud-sock': No such file or directory\n"
+" Failed to connect socket to '/var/run/libvirt/virtqemud-sock-ro': Connection refused\n"
 "\n"
 
 #. type: textblock
@@ -16094,7 +16127,8 @@ msgstr "См. L</Включение virtio>."
 #: docs/virt-v2v.pod:2030
 msgid ""
 "For other environment variables, see L<guestfs(3)/ENVIRONMENT VARIABLES>."
-msgstr "Для других переменных окружения см. L<guestfs(3)/ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ>."
+msgstr ""
+"Для других переменных окружения см. L<guestfs(3)/ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ>."
 
 #. type: =head1
 #: docs/virt-v2v.pod:2032
@@ -16157,10 +16191,11 @@ msgid ""
 msgstr ""
 "L<virt-p2v(1)>, L<virt-v2v-inspector(1)>, L<virt-v2v-in-place(1)>, L<virt-"
 "v2v-open(1)>, L<virt-customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, "
-"L<virt-inspector(1)>, L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<virt-win-reg"
-"(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-image-uploader"
-"(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-ovirt.git>, "
-"L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/>."
+"L<virt-inspector(1)>, L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<virt-win-"
+"reg(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-image-"
+"uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-"
+"ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
+">."
 
 #. type: textblock
 #: docs/virt-v2v.pod:2077 in-place/virt-v2v-in-place.pod:387
@@ -16195,7 +16230,8 @@ msgstr "Tingting Zheng"
 #. type: textblock
 #: in-place/virt-v2v-in-place.pod:3
 msgid "virt-v2v-in-place - Convert a guest to use KVM in-place"
-msgstr "virt-v2v-in-place - Преобразование гостя для использования KVM на месте"
+msgstr ""
+"virt-v2v-in-place - Преобразование гостя для использования KVM на месте"
 
 #. type: verbatim
 #: in-place/virt-v2v-in-place.pod:7
@@ -16307,8 +16343,8 @@ msgid ""
 "system and firmware was found inside the guest during conversion."
 msgstr ""
 "При желании используйте опцию I<-O> для записи метаданных о госте после "
-"преобразования в XML-файл. Это в том же формате, что и L<virt-v2v-inspector"
-"(1)>. Это можно использовать, например, для выяснения того, какая "
+"преобразования в XML-файл. Это в том же формате, что и L<virt-v2v-"
+"inspector(1)>. Это можно использовать, например, для выяснения того, какая "
 "операционная система и прошивка были обнаружены внутри гостя во время "
 "преобразования."
 
@@ -16568,7 +16604,8 @@ msgstr ""
 #: in-place/virt-v2v-in-place.pod:368 inspector/virt-v2v-inspector.pod:227
 #: open/virt-v2v-open.pod:134
 msgid "Files used are the same as for virt-v2v.  See L<virt-v2v(1)/FILES>."
-msgstr "Используемые файлы те же, что и для virt-v2v. См. L<virt-v2v(1)/ФАЙЛЫ>."
+msgstr ""
+"Используемые файлы те же, что и для virt-v2v. См. L<virt-v2v(1)/ФАЙЛЫ>."
 
 #. type: textblock
 #: in-place/virt-v2v-in-place.pod:372 inspector/virt-v2v-inspector.pod:231
@@ -16577,8 +16614,8 @@ msgid ""
 "Environment variables used are the same as for virt-v2v.  See L<virt-v2v(1)/"
 "ENVIRONMENT VARIABLES>."
 msgstr ""
-"Используемые переменные окружения те же, что и для virt-v2v. См. L<virt-v2v"
-"(1)/ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ>."
+"Используемые переменные окружения те же, что и для virt-v2v. См. L<virt-"
+"v2v(1)/ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ>."
 
 #. type: textblock
 #: in-place/virt-v2v-in-place.pod:377
@@ -16586,8 +16623,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-"
 "img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img"
-"(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-"
+"img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
 
 #. type: textblock
 #: inspector/virt-v2v-inspector.pod:3
@@ -17139,8 +17176,7 @@ msgid ""
 "\n"
 msgstr ""
 " virt-v2v-open [-i ...] гость \\\n"
-"               --run 'guestfish --ro --format=raw @@ run : list-"
-"filesystems'\n"
+"               --run 'guestfish --ro --format=raw @@ run : list-filesystems'\n"
 "\n"
 
 #. type: textblock
@@ -17175,6 +17211,6 @@ msgid ""
 "inspector(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, "
 "L<http://libguestfs.org/>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, L<virt-v2v-inspector"
-"(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, L<http://"
-"libguestfs.org/>."
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<virt-inspector(1)>, L<virt-v2v-"
+"inspector(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<nbdkit(1)>, "
+"L<http://libguestfs.org/>."
