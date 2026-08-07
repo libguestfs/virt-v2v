@@ -33,6 +33,22 @@ open Linux_kernels
 
 module G = Guestfs
 
+let fix_grub_uefi_commands g bootloader i_firmware =
+  match i_firmware with
+  | Firmware.I_UEFI _ ->
+      let grub_cfg = bootloader#get_config_file () in
+      if g#exists grub_cfg then (
+        try
+          ignore (g#sh (sprintf "sed -i 's/\\blinux16\\b/linuxefi/g;
+s/\\binitrd16\\b/initrdefi/g' %s"
+                          (Filename.quote grub_cfg)));
+          debug "Converted GRUB commands to UEFI format in %s" grub_cfg
+        with Guestfs.Error msg ->
+          warning "Failed to fix GRUB UEFI commands in %s: %s" grub_cfg msg
+      )
+  | I_BIOS ->
+      () (* No action needed for BIOS systems *)
+
 (* The conversion function. *)
 let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
   (*----------------------------------------------------------------------*)
@@ -1314,6 +1330,8 @@ fi
       (* Make sure the bootloader is up-to-date. *)
       bootloader#update ();
 
+      (* Fix GRUB commands for UEFI systems *)
+      fix_grub_uefi_commands g bootloader i_firmware;
       Linux.augeas_reload g
     );
 
