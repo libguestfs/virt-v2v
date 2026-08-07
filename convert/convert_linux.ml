@@ -1453,7 +1453,9 @@ fi
   and uninstall_packages_nonfatal pkgs =
     if pkgs <> [] then (
       let cmd =
-        try Guest_packages.uninstall_command pkgs inspect.i_package_management
+        try
+          Guest_packages.uninstall_command ~clean_requirements_on_remove:false
+            pkgs inspect.i_package_management
         with
         | Guest_packages.Unknown_package_manager msg
         | Guest_packages.Unimplemented_package_manager msg ->
