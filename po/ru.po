@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-21 09:17+0000\n"
+"PO-Revision-Date: 2026-08-08 08:23+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.7.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
@@ -675,10 +675,8 @@ msgid "Enable tracing of libguestfs calls"
 msgstr "Включить трассировку вызовов libguestfs"
 
 #: common/mlcustomize/customize_cmdline.ml:501
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "Exclude directories from SELinux relabelling"
-msgstr "Изменение меток SELinux"
+msgstr "Исключить каталоги из перемаркировки SELinux"
 
 #: output/output_ovirt.ml:77
 msgid "Export Storage Domain"
