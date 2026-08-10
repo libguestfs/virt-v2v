@@ -1573,11 +1573,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:392 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:418
+#: common/mlcustomize/firstboot.ml:419
 msgid "guest type %s/%s is not supported"
 msgstr ""
 

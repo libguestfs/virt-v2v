@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-08 08:23+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
@@ -1820,11 +1820,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr "glance: не удалось загрузить образ в glance, см. предыдущие ошибки"
 
-#: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:392 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "тип гостя %s не поддерживается"
 
-#: common/mlcustomize/firstboot.ml:418
+#: common/mlcustomize/firstboot.ml:419
 msgid "guest type %s/%s is not supported"
 msgstr "тип гостя %s/%s не поддерживается"
 

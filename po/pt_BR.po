@@ -1849,11 +1849,11 @@ msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 "glance: falha ao carregar a imagem para o glance, veja os erros anteriores"
 
-#: common/mlcustomize/firstboot.ml:391 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:392 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "O tipo de convidado %s não é suportado"
 
-#: common/mlcustomize/firstboot.ml:418
+#: common/mlcustomize/firstboot.ml:419
 msgid "guest type %s/%s is not supported"
 msgstr "O tipo de convidado %s/%s não é suportado"
 
