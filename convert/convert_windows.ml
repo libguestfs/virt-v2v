@@ -957,7 +957,7 @@ let post_convert (g : G.guestfs) inspect =
    * not worry about it.
    *)
   let path = "/Program Files/Guestfs" in
-  debug "info: fixing NTFS permissions on %s" path;
+  debug "fixing NTFS permissions on %S" path;
   try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
   with G.Error msg ->
     warning (f_"ntfs_chmod on %s failed: %s") path msg
