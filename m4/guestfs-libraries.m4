@@ -21,8 +21,8 @@ dnl Of course we need libguestfs.
 dnl
 dnl We need libguestfs 1.59.2 for guestfs_xfs_info2.
 dnl We need libguestfs 1.59.7 for text: and base64: prefix in LUKS funcs.
-dnl We need libguestfs 1.61.1 for guestfs_setfiles excludes parameter.
-PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.61.1])
+dnl We need libguestfs 1.60.1 for guestfs_setfiles excludes parameter.
+PKG_CHECK_MODULES([LIBGUESTFS], [libguestfs >= 1.60.1])
 printf "libguestfs version is "; $PKG_CONFIG --modversion libguestfs
 
 dnl And libnbd.
