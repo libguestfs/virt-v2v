@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-08-10 13:06+0100\n"
-"PO-Revision-Date: 2026-07-23 11:28+0000\n"
+"PO-Revision-Date: 2026-08-12 09:17+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ru/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.7.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -1145,16 +1145,14 @@ msgstr "Это опция совместимости, которая ничег�
 #. type: =item
 #: common/mlcustomize/customize-options.pod:389
 #: common/mlcustomize/v2v-customize-options.pod:335
-#, fuzzy
-#| msgid "B<--selinux-relabel>"
 msgid "B<--selinux-relabel-exclude> DIR"
-msgstr "B<--selinux-relabel>"
+msgstr "B<--selinux-relabel-exclude> КАТАЛОГ"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:391
 #: common/mlcustomize/v2v-customize-options.pod:337
 msgid "Exclude directories from being relabelled."
-msgstr ""
+msgstr "Исключить каталоги из перемаркировки SELinux."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:393
@@ -1167,14 +1165,18 @@ msgid ""
 "failures later, so you must be sure that the directories do not need "
 "relabelling."
 msgstr ""
+"Эта расширенная опция позволяет указать каталоги в гостевой системе, которые "
+"не должны подвергаться перемаркировке, даже если перемаркировка SELinux "
+"включена. Используйте её с осторожностью, поскольку любые изменения, "
+"вносимые в эти каталоги во время настройки, будут иметь неправильные метки "
+"SELinux, что может привести к потенциальным сбоям в дальнейшем. Поэтому вы "
+"должны быть уверены, что эти каталоги не нуждаются в перемаркировке."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:400
 #: common/mlcustomize/v2v-customize-options.pod:346
-#, fuzzy
-#| msgid "There are two ways to use this option."
 msgid "If in doubt, do not use this option."
-msgstr "Существует два способа использования этой опции."
+msgstr "Если сомневаетесь, не используйте эту опцию."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:402
@@ -1183,6 +1185,8 @@ msgid ""
 "You can pass the option multiple times, eg.  I<--selinux-relabel-exclude=/"
 "foo> I<--selinux-relabel-exclude=/bar>"
 msgstr ""
+"Вы можете указать эту опцию несколько раз, например: I<--selinux-relabel-"
+"exclude=/foo> I<--selinux-relabel-exclude=/bar>"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:405

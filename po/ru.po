@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-08-08 08:23+0000\n"
+"PO-Revision-Date: 2026-08-12 09:17+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
@@ -2189,10 +2189,8 @@ msgstr ""
 "ovirt-upload». См. справочную страницу virt-v2v-output-ovirt(1)."
 
 #: input/input_disk.ml:51
-#, fuzzy
-#| msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgid "nbdkit must be >= 1.44.0 for input from local files"
-msgstr "для ввода из VDDK требуется nbdkit >= 1.45.11"
+msgstr "для ввода из локальных файлов требуется nbdkit >= 1.44.0"
 
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
