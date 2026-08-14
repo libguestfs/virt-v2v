@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-12 09:17+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "%s\n"
 "Параметры:\n"
 
-#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:390
+#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:395
 msgid "%s (ignored)"
 msgstr "%s (игнорируется)"
 
@@ -101,7 +101,7 @@ msgstr ""
 "%s: Выход по сигналу %s\n"
 "%!"
 
-#: common/mlcustomize/inject_virtio_win.ml:402
+#: common/mlcustomize/inject_virtio_win.ml:98
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: не удалось открыть ISO-файл virtio-win: %s"
 
@@ -228,8 +228,8 @@ msgstr ""
 msgid "%s: warning: %s"
 msgstr "%s: предупреждение: %s"
 
-#. common/mlcustomize/customize_cmdline.ml:262
-#: common/mlcustomize/customize_cmdline.ml:371
+#. common/mlcustomize/customize_cmdline.ml:266
+#: common/mlcustomize/customize_cmdline.ml:375
 msgid "'CMD+ARGS'"
 msgstr "'КОМАНДА+АРГУМЕНТЫ'"
 
@@ -537,15 +537,15 @@ msgstr ""
 "причина — слишком старая версия libvirt, попробуйте обновить libvirt до ≥ "
 "3.7."
 
-#: common/mlcustomize/customize_cmdline.ml:309
+#: common/mlcustomize/customize_cmdline.ml:313
 msgid "Add package(s) to install"
 msgstr "Добавить пакеты для установки"
 
-#: common/mlcustomize/customize_cmdline.ml:274
+#: common/mlcustomize/customize_cmdline.ml:278
 msgid "Add package(s) to install at first boot"
 msgstr "Добавить пакеты для установки при первой загрузке"
 
-#: common/mlcustomize/customize_cmdline.ml:179
+#: common/mlcustomize/customize_cmdline.ml:183
 msgid "Append line(s) to the file"
 msgstr "Добавить строки в файл"
 
@@ -553,11 +553,11 @@ msgstr "Добавить строки в файл"
 msgid "Appending line to %s"
 msgstr "Добавление строки в %s"
 
-#: common/mlcustomize/customize_cmdline.ml:201
+#: common/mlcustomize/customize_cmdline.ml:205
 msgid "Change the owner user and group ID of a file or directory"
 msgstr "Изменить владельца и идентификатор группы файла или каталога"
 
-#: common/mlcustomize/customize_cmdline.ml:190
+#: common/mlcustomize/customize_cmdline.ml:194
 msgid "Change the permissions of a file"
 msgstr "Изменить права доступа к файлу"
 
@@ -581,19 +581,19 @@ msgstr "Собрать вывод в .tar.xz-файл"
 msgid "Collect pre-conversion information"
 msgstr "Собрать информацию до преобразования"
 
-#: common/mlcustomize/customize_cmdline.ml:492
+#: common/mlcustomize/customize_cmdline.ml:496
 msgid "Compatibility option doing nothing"
 msgstr "Параметр совместимости, ничего не делающий"
 
-#: common/mlcustomize/customize_cmdline.ml:223
+#: common/mlcustomize/customize_cmdline.ml:227
 msgid "Copy files in disk image"
 msgstr "Копировать файлы в образе диска"
 
-#: common/mlcustomize/customize_cmdline.ml:401
+#: common/mlcustomize/customize_cmdline.ml:405
 msgid "Copy local files or directories from a tarball into image"
 msgstr "Копировать локальные файлы или каталоги из tar-архива в образ"
 
-#: common/mlcustomize/customize_cmdline.ml:234
+#: common/mlcustomize/customize_cmdline.ml:238
 msgid "Copy local files or directories into image"
 msgstr "Копировать локальные файлы или каталоги в образ"
 
@@ -609,11 +609,11 @@ msgstr "Копирование диска %d/%d"
 msgid "Copying: %s to %s"
 msgstr "Копирование: %s в %s"
 
-#: common/mlcustomize/customize_cmdline.ml:326
+#: common/mlcustomize/customize_cmdline.ml:330
 msgid "Create a directory"
 msgstr "Создать каталог"
 
-#: common/mlcustomize/customize_cmdline.ml:320
+#: common/mlcustomize/customize_cmdline.ml:324
 msgid "Create symbolic links"
 msgstr "Создать символические ссылки"
 
@@ -621,12 +621,18 @@ msgstr "Создать символические ссылки"
 msgid "Creating output metadata"
 msgstr "Создание метаданных вывода"
 
-#. common/mlcustomize/customize_cmdline.ml:325
-#: common/mlcustomize/customize_cmdline.ml:498
+#. common/mlcustomize/customize_cmdline.ml:329
+#: common/mlcustomize/customize_cmdline.ml:502
 msgid "DIR"
 msgstr "КАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:240
+#: common/mlcustomize/customize_cmdline.ml:511
+#, fuzzy
+#| msgid "SELinux relabelling"
+msgid "Defer SELinux relabelling until boot"
+msgstr "Изменение меток SELinux"
+
+#: common/mlcustomize/customize_cmdline.ml:244
 msgid "Delete a file or directory"
 msgstr "Удалить файл или каталог"
 
@@ -642,7 +648,7 @@ msgstr "Показать краткую справку"
 msgid "Display version and exit"
 msgstr "Показать версию и выйти"
 
-#: common/mlcustomize/customize_cmdline.ml:486
+#: common/mlcustomize/customize_cmdline.ml:490
 msgid "Do not relabel files with correct SELinux labels"
 msgstr "Не изменять метки SELinux файлов"
 
@@ -658,7 +664,7 @@ msgstr "Не выводить сообщения о ходе выполнени�
 msgid "Don’t turn off echo for passphrases"
 msgstr "Не отключать эхо для парольных фраз"
 
-#: common/mlcustomize/customize_cmdline.ml:251
+#: common/mlcustomize/customize_cmdline.ml:255
 msgid "Edit file using Perl expression"
 msgstr "Редактировать файл с помощью Perl-выражения"
 
@@ -674,7 +680,7 @@ msgstr "Включить отладочные сообщения libguestfs"
 msgid "Enable tracing of libguestfs calls"
 msgstr "Включить трассировку вызовов libguestfs"
 
-#: common/mlcustomize/customize_cmdline.ml:501
+#: common/mlcustomize/customize_cmdline.ml:505
 msgid "Exclude directories from SELinux relabelling"
 msgstr "Исключить каталоги из перемаркировки SELinux"
 
@@ -686,29 +692,29 @@ msgstr "Экспортировать домен хранилища"
 msgid "External command to run"
 msgstr "Внешняя команда для запуска"
 
-#. common/mlcustomize/customize_cmdline.ml:412
-#. common/mlcustomize/customize_cmdline.ml:377
-#: common/mlcustomize/customize_cmdline.ml:418
+#. common/mlcustomize/customize_cmdline.ml:416
+#. common/mlcustomize/customize_cmdline.ml:381
+#: common/mlcustomize/customize_cmdline.ml:422
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: common/mlcustomize/customize_cmdline.ml:459
+#: common/mlcustomize/customize_cmdline.ml:463
 msgid "FILE:CONTENT"
 msgstr "ФАЙЛ:СОДЕРЖИМОЕ"
 
-#: common/mlcustomize/customize_cmdline.ml:448
+#: common/mlcustomize/customize_cmdline.ml:452
 msgid "FILE:DEST"
 msgstr "ФАЙЛ:НАЗНАЧЕНИЕ"
 
-#: common/mlcustomize/customize_cmdline.ml:246
+#: common/mlcustomize/customize_cmdline.ml:250
 msgid "FILE:EXPR"
 msgstr "ФАЙЛ:ВЫРАЖЕНИЕ"
 
-#: common/mlcustomize/customize_cmdline.ml:174
+#: common/mlcustomize/customize_cmdline.ml:178
 msgid "FILE:LINE"
 msgstr "ФАЙЛ:СТРОКА"
 
-#: common/mlcustomize/customize_cmdline.ml:207
+#: common/mlcustomize/customize_cmdline.ml:211
 msgid "FILENAME"
 msgstr "ИМЯ_ФАЙЛА"
 
@@ -717,7 +723,7 @@ msgstr "ИМЯ_ФАЙЛА"
 msgid "Finishing off"
 msgstr "Завершение"
 
-#: common/mlcustomize/customize_cmdline.ml:279
+#: common/mlcustomize/customize_cmdline.ml:283
 msgid "HOSTNAME"
 msgstr "ИМЯ_ХОСТА"
 
@@ -737,19 +743,19 @@ msgstr ""
 "\n"
 "  %s -v -x [...]"
 
-#: common/mlcustomize/customize_cmdline.ml:390
+#: common/mlcustomize/customize_cmdline.ml:394
 msgid "Inject a public key into the guest"
 msgstr "Внедрить открытый ключ в гостевую систему"
 
-#: common/mlcustomize/customize_cmdline.ml:286
+#: common/mlcustomize/customize_cmdline.ml:290
 msgid "Inject the Balloon Server into a Windows guest"
 msgstr "Внедрить Balloon Server в гостевую систему Windows"
 
-#: common/mlcustomize/customize_cmdline.ml:292
+#: common/mlcustomize/customize_cmdline.ml:296
 msgid "Inject the QEMU Guest Agent into a Windows guest"
 msgstr "Внедрить QEMU Guest Agent в гостевую систему Windows"
 
-#: common/mlcustomize/customize_cmdline.ml:298
+#: common/mlcustomize/customize_cmdline.ml:302
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr "Внедрить драйверы virtio-win в гостевую систему Windows"
 
@@ -823,7 +829,7 @@ msgstr "Установка скрипта firstboot: %s"
 msgid "Installing packages: %s"
 msgstr "Установка пакетов: %s"
 
-#: common/mlcustomize/customize_cmdline.ml:229
+#: common/mlcustomize/customize_cmdline.ml:233
 msgid "LOCALPATH:REMOTEDIR"
 msgstr "ЛОКАЛЬНЫЙ_ПУТЬ:УДАЛЁННЫЙ_КАТАЛОГ"
 
@@ -836,9 +842,9 @@ msgstr "URI-адрес Libvirt"
 msgid "Linking: %s -> %s"
 msgstr "Создание ссылки: %s -> %s"
 
-#. common/mlcustomize/customize_cmdline.ml:291
-#. common/mlcustomize/customize_cmdline.ml:285
-#: common/mlcustomize/customize_cmdline.ml:297
+#. common/mlcustomize/customize_cmdline.ml:295
+#. common/mlcustomize/customize_cmdline.ml:289
+#: common/mlcustomize/customize_cmdline.ml:301
 msgid "METHOD"
 msgstr "МЕТОД"
 
@@ -862,7 +868,7 @@ msgstr "Сопоставить мост «вход» с «выходом»"
 msgid "Map network ‘in’ to ‘out’"
 msgstr "Сопоставить сеть «вход» с «выходом»"
 
-#: common/mlcustomize/customize_cmdline.ml:337
+#: common/mlcustomize/customize_cmdline.ml:341
 msgid "Move files in disk image"
 msgstr "Переместить файлы в образе диска"
 
@@ -1018,18 +1024,18 @@ msgstr ""
 "\n"
 "  -oo compressed      Сжать выходной файл (используется только с -of qcow2)\n"
 
-#. common/mlcustomize/customize_cmdline.ml:239
-#: common/mlcustomize/customize_cmdline.ml:424
+#. common/mlcustomize/customize_cmdline.ml:243
+#: common/mlcustomize/customize_cmdline.ml:428
 msgid "PATH"
 msgstr "ПУТЬ"
 
-#: common/mlcustomize/customize_cmdline.ml:185
+#: common/mlcustomize/customize_cmdline.ml:189
 msgid "PERMISSIONS:FILE"
 msgstr "ПРАВА:ФАЙЛ"
 
-#. common/mlcustomize/customize_cmdline.ml:304
-#. common/mlcustomize/customize_cmdline.ml:269
-#: common/mlcustomize/customize_cmdline.ml:431
+#. common/mlcustomize/customize_cmdline.ml:308
+#. common/mlcustomize/customize_cmdline.ml:273
+#: common/mlcustomize/customize_cmdline.ml:435
 msgid "PKG,PKG.."
 msgstr "ПАКЕТ,ПАКЕТ.."
 
@@ -1041,7 +1047,7 @@ msgstr "Предпочитать 'virtio-blk' или 'virtio-scsi'"
 msgid "Print source and stop"
 msgstr "Вывести исходные данные и остановиться"
 
-#: common/mlcustomize/customize_cmdline.ml:212
+#: common/mlcustomize/customize_cmdline.ml:216
 msgid "Read customize commands from file"
 msgstr "Читать команды настройки из файла"
 
@@ -1049,7 +1055,7 @@ msgstr "Читать команды настройки из файла"
 msgid "Read passphrases from stdin"
 msgstr "Читать парольные фразы из stdin"
 
-#: common/mlcustomize/customize_cmdline.ml:425
+#: common/mlcustomize/customize_cmdline.ml:429
 msgid "Recursively truncate all files in directory"
 msgstr "Рекурсивно обрезать все файлы в каталоге"
 
@@ -1061,23 +1067,23 @@ msgstr "Рекурсивное обрезание: %s"
 msgid "Rename guest when converting"
 msgstr "Переименовать гостя при преобразовании"
 
-#: common/mlcustomize/customize_cmdline.ml:263
+#: common/mlcustomize/customize_cmdline.ml:267
 msgid "Run command at first guest boot"
 msgstr "Запустить команду при первой загрузке гостя"
 
-#: common/mlcustomize/customize_cmdline.ml:372
+#: common/mlcustomize/customize_cmdline.ml:376
 msgid "Run command in disk image"
 msgstr "Запустить команду в образе диска"
 
-#: common/mlcustomize/customize_cmdline.ml:257
+#: common/mlcustomize/customize_cmdline.ml:261
 msgid "Run script at first guest boot"
 msgstr "Запустить скрипт при первой загрузке гостя"
 
-#: common/mlcustomize/customize_cmdline.ml:366
+#: common/mlcustomize/customize_cmdline.ml:370
 msgid "Run script in disk image"
 msgstr "Запустить скрипт в образе диска"
 
-#: common/mlcustomize/customize_cmdline.ml:413
+#: common/mlcustomize/customize_cmdline.ml:417
 msgid "Run touch on a file"
 msgstr "Выполнить touch для файла"
 
@@ -1098,22 +1104,28 @@ msgstr "Выполнение touch: %s"
 msgid "Running: %s"
 msgstr "Запуск: %s"
 
-#. common/mlcustomize/customize_cmdline.ml:256
-#: common/mlcustomize/customize_cmdline.ml:365
+#. common/mlcustomize/customize_cmdline.ml:260
+#: common/mlcustomize/customize_cmdline.ml:369
 msgid "SCRIPT"
 msgstr "СКРИПТ"
 
 #: common/mltools/tools_utils.ml:425
-#: common/mlcustomize/customize_cmdline.ml:355
+#: common/mlcustomize/customize_cmdline.ml:359
 msgid "SELECTOR"
 msgstr "СЕЛЕКТОР"
 
-#: common/mlcustomize/customize_run.ml:363
+#: common/mlcustomize/customize_run.ml:365
 msgid "SELinux relabelling"
 msgstr "Изменение меток SELinux"
 
-#. common/mlcustomize/customize_cmdline.ml:218
-#: common/mlcustomize/customize_cmdline.ml:332
+#: common/mlcustomize/customize_run.ml:367
+#, fuzzy
+#| msgid "SELinux relabelling"
+msgid "SELinux relabelling deferred to first boot"
+msgstr "Изменение меток SELinux"
+
+#. common/mlcustomize/customize_cmdline.ml:222
+#: common/mlcustomize/customize_cmdline.ml:336
 msgid "SOURCE:DEST"
 msgstr "ИСТОЧНИК:НАЗНАЧЕНИЕ"
 
@@ -1125,15 +1137,15 @@ msgstr "Невозможно внедрить SSH-ключ для этого т�
 msgid "SSH key inject: %s"
 msgstr "Внедрение SSH-ключа: %s"
 
-#: common/mlcustomize/customize_cmdline.ml:378
+#: common/mlcustomize/customize_cmdline.ml:382
 msgid "Scrub a file"
 msgstr "Затереть файл"
 
-#: common/mlcustomize/customize_cmdline.ml:470
+#: common/mlcustomize/customize_cmdline.ml:474
 msgid "Scrub build log file"
 msgstr "Затереть файл журнала сборки"
 
-#: common/mlcustomize/customize_run.ml:374
+#: common/mlcustomize/customize_run.ml:379
 msgid "Scrubbing the log file"
 msgstr "Затирание файла журнала"
 
@@ -1187,7 +1199,7 @@ msgstr "Установить режим вывода (по умолчанию: l
 msgid "Set output storage location"
 msgstr "Установить расположение хранилища вывода"
 
-#: common/mlcustomize/customize_cmdline.ml:480
+#: common/mlcustomize/customize_cmdline.ml:484
 msgid "Set password crypto"
 msgstr "Установить шифрование пароля"
 
@@ -1195,15 +1207,15 @@ msgstr "Установить шифрование пароля"
 msgid "Set program name"
 msgstr "Установить имя программы"
 
-#: common/mlcustomize/customize_cmdline.ml:360
+#: common/mlcustomize/customize_cmdline.ml:364
 msgid "Set root password"
 msgstr "Установить пароль root"
 
-#: common/mlcustomize/customize_cmdline.ml:407
+#: common/mlcustomize/customize_cmdline.ml:411
 msgid "Set the default timezone"
 msgstr "Установить часовой пояс по умолчанию"
 
-#: common/mlcustomize/customize_cmdline.ml:280
+#: common/mlcustomize/customize_cmdline.ml:284
 msgid "Set the hostname"
 msgstr "Установить имя хоста"
 
@@ -1211,7 +1223,7 @@ msgstr "Установить имя хоста"
 msgid "Set the output filename"
 msgstr "Установить имя выходного файла"
 
-#: common/mlcustomize/customize_cmdline.ml:349
+#: common/mlcustomize/customize_cmdline.ml:353
 msgid "Set user password"
 msgstr "Установить пароль пользователя"
 
@@ -1256,15 +1268,15 @@ msgstr "Информация об исходной гостевой систем
 msgid "Specify a LUKS key"
 msgstr "Указать ключ LUKS"
 
-#: common/mlcustomize/customize_cmdline.ml:396
+#: common/mlcustomize/customize_cmdline.ml:400
 msgid "TARFILE:REMOTEDIR"
 msgstr "TAR-ФАЙЛ:УДАЛЁННЫЙ_КАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:315
+#: common/mlcustomize/customize_cmdline.ml:319
 msgid "TARGET:LINK[:LINK..]"
 msgstr "ЦЕЛЬ:ССЫЛКА[:ССЫЛКА..]"
 
-#: common/mlcustomize/customize_cmdline.ml:406
+#: common/mlcustomize/customize_cmdline.ml:410
 msgid "TIMEZONE"
 msgstr "ЧАСОВОЙ_ПОЯС"
 
@@ -1311,7 +1323,7 @@ msgstr ""
 "используйте один из альтернативных методов преобразования, описанных в "
 "разделе \"NOTES\" справочной страницы virt-v2v-input-vmware(1)."
 
-#: common/mlcustomize/customize_cmdline.ml:419
+#: common/mlcustomize/customize_cmdline.ml:423
 msgid "Truncate a file to zero size"
 msgstr "Обрезать файл до нулевого размера"
 
@@ -1319,19 +1331,19 @@ msgstr "Обрезать файл до нулевого размера"
 msgid "Truncating: %s"
 msgstr "Обрезание: %s"
 
-#: common/mlcustomize/customize_cmdline.ml:196
+#: common/mlcustomize/customize_cmdline.ml:200
 msgid "UID:GID:PATH"
 msgstr "UID:GID:ПУТЬ"
 
-#: common/mlcustomize/customize_cmdline.ml:343
+#: common/mlcustomize/customize_cmdline.ml:347
 msgid "USER:SELECTOR"
 msgstr "ПОЛЬЗОВАТЕЛЬ:СЕЛЕКТОР"
 
-#: common/mlcustomize/customize_cmdline.ml:384
+#: common/mlcustomize/customize_cmdline.ml:388
 msgid "USER[:SELECTOR]"
 msgstr "ПОЛЬЗОВАТЕЛЬ[:СЕЛЕКТОР]"
 
-#: common/mlcustomize/customize_cmdline.ml:436
+#: common/mlcustomize/customize_cmdline.ml:440
 msgid "Uninstall package(s)"
 msgstr "Удалить пакеты"
 
@@ -1343,7 +1355,7 @@ msgstr "Удаление пакетов: %s"
 msgid "Unpack tar file: %s to %s"
 msgstr "Распаковка tar-файла: %s в %s"
 
-#: common/mlcustomize/customize_cmdline.ml:442
+#: common/mlcustomize/customize_cmdline.ml:446
 msgid "Update packages"
 msgstr "Обновить пакеты"
 
@@ -1351,7 +1363,7 @@ msgstr "Обновить пакеты"
 msgid "Updating packages"
 msgstr "Обновление пакетов"
 
-#: common/mlcustomize/customize_cmdline.ml:453
+#: common/mlcustomize/customize_cmdline.ml:457
 msgid "Upload local file to destination"
 msgstr "Отправить локальный файл в назначение"
 
@@ -1380,7 +1392,7 @@ msgstr "Использовать virt-v2v-in-place вместо этого"
 msgid "Wrap log messages even if not tty"
 msgstr "Переносить сообщения журнала, даже если не tty"
 
-#: common/mlcustomize/customize_cmdline.ml:464
+#: common/mlcustomize/customize_cmdline.ml:468
 msgid "Write file"
 msgstr "Записать файл"
 
@@ -1532,12 +1544,12 @@ msgstr ""
 "не удаётся записать файлы на NFS-сервер от имени %d:%d. Возможно, вам стоит "
 "остановить virt-v2v (^C) и запустить его заново от root."
 
-#: common/mlcustomize/customize_cmdline.ml:521
+#: common/mlcustomize/customize_cmdline.ml:531
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 "команду «%s» нельзя использовать в файлах команд, см. справочную страницу"
 
-#: common/mlcustomize/customize_cmdline.ml:538
+#: common/mlcustomize/customize_cmdline.ml:548
 msgid "command '%s' not valid, see the man page"
 msgstr "команда «%s» недопустима, см. справочную страницу"
 
@@ -1961,9 +1973,9 @@ msgstr "недопустимый параметр -n/--network"
 msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr "недопустимое cpuid.coresPerSocket < количество vCPU"
 
-#. common/mlcustomize/customize_cmdline.ml:157
-#. common/mlcustomize/customize_cmdline.ml:149
-#: common/mlcustomize/customize_cmdline.ml:165
+#. common/mlcustomize/customize_cmdline.ml:161
+#. common/mlcustomize/customize_cmdline.ml:153
+#: common/mlcustomize/customize_cmdline.ml:169
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "недопустимый формат для параметра «--%s», см. справочную страницу"
 
@@ -2051,7 +2063,7 @@ msgstr ""
 "манифест содержит контрольную сумму для несуществующего файла %s "
 "(игнорируется)"
 
-#: common/mlcustomize/customize_cmdline.ml:476
+#: common/mlcustomize/customize_cmdline.ml:480
 msgid "md5|sha256|sha512"
 msgstr ""
 
@@ -2462,9 +2474,9 @@ msgstr "не удалось установить случайное началь
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr "удалённый vmx «%s» не удалось разобрать как URI"
 
-#. common/mlcustomize/inject_virtio_win.ml:348
-#. common/mlcustomize/inject_virtio_win.ml:343
-#: common/mlcustomize/inject_virtio_win.ml:353
+#. common/mlcustomize/inject_virtio_win.ml:395
+#. common/mlcustomize/inject_virtio_win.ml:390
+#: common/mlcustomize/inject_virtio_win.ml:400
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2672,7 +2684,7 @@ msgstr ""
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt %s?"
 msgstr "в %s (%s) нет UUID. Действительно ли это OVirt %s?"
 
-#: common/mlcustomize/inject_virtio_win.ml:144
+#: common/mlcustomize/inject_virtio_win.ml:188
 msgid ""
 "there are no virtio drivers available for this version of Windows (%d.%d %s "
 "%s %s).  virt-v2v looks for drivers in %s\n"
@@ -2685,7 +2697,7 @@ msgstr ""
 "Гостевая система будет настроена на использование более медленных "
 "эмулируемых устройств."
 
-#: common/mlcustomize/inject_virtio_win.ml:166
+#: common/mlcustomize/inject_virtio_win.ml:212
 msgid ""
 "there is no virtio block device driver for this version of Windows (%d.%d "
 "%s).  virt-v2v looks for this driver in %s\n"
@@ -2698,7 +2710,7 @@ msgstr ""
 "Гостевая система будет настроена на использование более медленного "
 "эмулируемого устройства."
 
-#: common/mlcustomize/inject_virtio_win.ml:197
+#: common/mlcustomize/inject_virtio_win.ml:243
 msgid ""
 "there is no virtio network driver for this version of Windows (%d.%d %s).  "
 "virt-v2v looks for this driver in %s\n"
