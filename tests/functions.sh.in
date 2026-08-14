@@ -77,6 +77,7 @@ virt_customize_options=\
 --run-command,\
 --scrub,\
 --selinux-relabel,\
+--selinux-relabel-at-boot,\
 --selinux-relabel-exclude,\
 --ssh-inject,\
 --tar-in,\
