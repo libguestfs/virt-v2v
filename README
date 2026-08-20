@@ -64,6 +64,7 @@ REQUIREMENTS
   + nbdkit-file-plugin
   + nbdkit-nbd-plugin
   + nbdkit-null-plugin
+  + nbdkit-pynfc-plugin (optional)
   + nbdkit-python-plugin
   + nbdkit-ssh-plugin
   + nbdkit-vddk-plugin

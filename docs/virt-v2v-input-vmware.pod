@@ -19,6 +19,12 @@ virt-v2v-input-vmware - Using virt-v2v to convert guests from VMware
     "GUEST NAME"
     [-o* options]
 
+ virt-v2v
+    -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'
+    -it pynfc
+    "GUEST NAME"
+    [-o* options]
+
  virt-v2v -i ova DISK.ova [-o* options]
 
  virt-v2v
@@ -41,13 +47,22 @@ If you either have a F<GUEST.vmx> file and one or more F<GUEST.vmdk>
 disk image files, or if you are able to NFS-mount the VMware storage,
 then you can use the I<-i vmx> method to read the source guest.
 
+=item B<-ic vpx://...> B<-it pynfc>
+
+=item B<-ic esx://...> B<-it pynfc>
+
+Full documentation: L</INPUT FROM PYNFC>
+
+Use the Python NFC port 902 implementation.  This is a free
+alternative to VDDK.
+
 =item B<-i vmx> B<-it ssh> ssh://...
 
 Full documentation: L</INPUT FROM VMWARE VMX>
 
-This is similar to the method above, except it uses an SSH connection
-to ESXi to read the F<GUEST.vmx> file and associated disks.  This
-requires that you have enabled SSH access to the VMware ESXi
+This is similar to the VNX method above, except it uses an SSH
+connection to ESXi to read the F<GUEST.vmx> file and associated disks.
+This requires that you have enabled SSH access to the VMware ESXi
 hypervisor - in the default ESXi configuration this is turned off.
 
 This transport is incompatible with guests that have snapshots; refer
@@ -64,7 +79,7 @@ access the VMware vCenter server or VMware ESXi hypervisor.
 
 If you have the proprietary library then this method is usually the
 fastest and most flexible.  If you don't have or don't want to use
-non-free software then the VMX or SSH methods above will be best.
+non-free software then the pynfc, VMX or SSH methods will be best.
 
 =item B<-i ova> DISKB<.ova>
 
@@ -360,6 +375,19 @@ If imports over VDDK are slow, and ‘virt-v2v -v -x’ shows many
 C<NBD_ClientOpen> messages, then you are hitting an apparent bug in
 S<VDDK 6.7> (https://bugzilla.redhat.com/1901489).  Upgrade to at
 least S<VDDK 7> to resolve the issue.
+
+=head1 INPUT FROM PYNFC
+
+Use the Python NFC port 902 implementation, which is a free
+alternative to VDDK.  It works similarly to F<-it vddk>
+
+Basic usage is:
+
+ $ virt-v2v \
+     -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \
+     -it pynfc \
+     "Windows 2003" \
+     -o local -os /var/tmp
 
 =head1 INPUT FROM VMWARE OVA
 

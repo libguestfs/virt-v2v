@@ -91,6 +91,10 @@ let select_input ?(allow_remote = true) input_mode input_conn input_transport =
         | Some server, Some ("esx"|"gsx"|"vpx"), Some Input.VDDK, true ->
            (module Input_vddk.VDDK)
 
+        (* vCenter or ESXi using nbdkit pynfc plugin *)
+        | Some server, Some ("esx"|"gsx"|"vpx"), Some Input.PyNFC, true ->
+           (module Input_pynfc.PyNFC)
+
         (* Xen over SSH *)
         | Some server, Some "xen+ssh", _, true ->
            if Config.enable_xen then (module Input_xen_ssh.XenSSH)
