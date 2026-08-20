@@ -1,5 +1,5 @@
-(* helper-v2v-input
- * Copyright (C) 2009-2025 Red Hat Inc.
+(* virt-v2v
+ * Copyright (C) 2009-2026 Red Hat Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-type input_transport = PyNFC | SSH | VDDK
+(** Input from vCenter or ESXi over PyNFC *)
 
-type options = {
-  input_conn : string option;
-  input_format : string option;
-  input_options : (string * string) list;
-  input_password : string option;
-  input_transport : input_transport option;
-  read_only : bool;
-}
-
-module type INPUT = sig
-  val to_string : options -> string list -> string
-  val query_input_options : unit -> unit
-  val setup : string -> options -> string list ->
-              Types.source * NBD_URI.t list
-end
+module PyNFC : Input.INPUT

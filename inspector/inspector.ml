@@ -242,6 +242,7 @@ read the man page virt-v2v-inspector(1).
   let input_transport =
     match !input_transport with
     | None -> None
+    | Some "pynfc" -> Some Input.PyNFC
     | Some "ssh" -> Some Input.SSH
     | Some "vddk" -> Some Input.VDDK
     | Some transport ->
