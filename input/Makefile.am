@@ -27,6 +27,7 @@ SOURCES_MLI = \
 	input_disk.mli \
 	input_libvirt.mli \
 	input_ova.mli \
+	input_pynfc.mli \
 	input_vcenter_https.mli \
 	input_vddk.mli \
 	input_vmx.mli \
@@ -59,6 +60,7 @@ SOURCES_ML = \
 	input_ova.ml \
 	input_vcenter_https.ml \
 	input_vddk.ml \
+	input_pynfc.ml \
 	input_vmx.ml \
 	input_xen_ssh.ml \
 	select_input.ml \

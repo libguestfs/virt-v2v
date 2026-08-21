@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-08-14 12:35+0100\n"
-"PO-Revision-Date: 2026-08-08 08:23+0000\n"
+"PO-Revision-Date: 2026-08-21 08:37+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ka/>\n"
@@ -1005,10 +1005,8 @@ msgstr ""
 #. type: =item
 #: common/mlcustomize/customize-options.pod:389
 #: common/mlcustomize/v2v-customize-options.pod:335
-#, fuzzy
-#| msgid "B<--selinux-relabel>"
 msgid "B<--selinux-relabel-at-boot>"
-msgstr "B<--selinux-relabel>"
+msgstr "B<--selinux-relabel-at-boot>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:391
@@ -1030,7 +1028,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:398
 #: common/mlcustomize/v2v-customize-options.pod:344
 msgid "The disadvantages are:"
-msgstr ""
+msgstr "ნაკლები:"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:404
