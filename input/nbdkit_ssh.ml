@@ -30,7 +30,7 @@ type password =
   | PasswordFile of string
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
-let create_ssh ?name ?bandwidth ?cor ?(retry=true)
+let create_ssh ?name ?cor ?(retry=true)
       ~server ?port ?user ?password path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
@@ -72,23 +72,6 @@ let create_ssh ?name ?bandwidth ?cor ?(retry=true)
    | Some cor ->
       if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
         Nbdkit.add_arg cmd "cow-on-read" cor
-  );
-
-  (* Add the rate filter.  This must be furthest away so that
-   * we don't end up rate-limiting internal nbdkit operations.
-   *)
-  if Nbdkit.probe_filter "rate" then (
-    match bandwidth with
-    | None -> ()
-    | Some bandwidth ->
-       Nbdkit.add_filter cmd "rate";
-       match bandwidth with
-       | StaticBandwidth rate ->
-          Nbdkit.add_arg cmd "rate" rate
-       | DynamicBandwidth (None, filename) ->
-          Nbdkit.add_arg cmd "rate-file" filename
-       | DynamicBandwidth (Some rate, filename) ->
-          Nbdkit.add_args cmd ["rate", rate; "rate-file", filename]
   );
 
   (* Handle the password parameter specially. *)

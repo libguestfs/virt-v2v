@@ -117,8 +117,7 @@ module VMX = struct
                          virt-v2v-input-vmware(1) section \"NOTES\".");
 
              let cor = dir // "convert" in
-             let bandwidth = options.bandwidth in
-             let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
+             let nbdkit = Nbdkit_ssh.create_ssh ~cor ?password
                             ~server ?port ?user flat_vmdk in
              let _, pid = Nbdkit.run_unix socket nbdkit in
              On_exit.kill pid;

@@ -46,8 +46,6 @@ let rec main () =
        optref := Some arg
   in
 
-  let bandwidth = ref None in
-  let bandwidth_file = ref None in
   let block_driver = ref None in
 
   let collect = ref [] in
@@ -207,10 +205,6 @@ let rec main () =
   in
 
   let argspec = ref [
-    [ L"bandwidth" ], Getopt.String ("bps", set_string_option_once "--bandwidth" bandwidth),
-                                    s_"Set bandwidth to bits per sec";
-    [ L"bandwidth-file" ], Getopt.String ("filename", set_string_option_once "--bandwidth-file" bandwidth_file),
-                                    s_"Set bandwidth dynamically from file";
     [ S 'b'; L"bridge" ], Getopt.String ("in:out", add_bridge),
       s_"Map bridge ‘in’ to ‘out’";
     [ L"collect" ],  Getopt.String ("collect", add_collect),
@@ -372,7 +366,6 @@ read the man page virt-v2v(1).
       pr "vdsm-compat-option\n";
       pr "io/oo\n";
       pr "mac-option\n";
-      pr "bandwidth-option\n";
       pr "mac-ip-option\n";
       pr "parallel-option\n";
       pr "customize-ops\n";
@@ -397,12 +390,7 @@ read the man page virt-v2v(1).
     Select_input.select_input input_mode input_conn input_transport in
 
   let input_options = {
-    Input.bandwidth =
-      (match !bandwidth, !bandwidth_file with
-       | None, None -> None
-       | Some rate, None -> Some (StaticBandwidth rate)
-       | rate, Some filename -> Some (DynamicBandwidth (rate, filename)));
-    input_conn = input_conn;
+    Input.input_conn = input_conn;
     input_format = !input_format;
     input_options = !input_options;
     input_password = !input_password;

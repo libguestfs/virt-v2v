@@ -136,7 +136,6 @@ module VCenterHTTPS = struct
            | LocalFile path ->
               let cor = dir // "convert" in
               let pid = VCenter.start_nbdkit_for_path
-                          ?bandwidth:options.bandwidth
                           ~cor ~password_file
                           dcPath uri server path socket in
               On_exit.kill pid
