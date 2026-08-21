@@ -525,10 +525,6 @@ let set_root_choice root_choice = function
 
 type output_allocation = Sparse | Preallocated
 
-type bandwidth =
-| StaticBandwidth of string
-| DynamicBandwidth of string option * string
-
 type static_ip = {
   if_mac_addr : string;
   if_ip_address : string;

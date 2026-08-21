@@ -18,11 +18,11 @@
 
 (** Functions for dealing with VMware vCenter. *)
 
-val start_nbdkit_for_path : ?bandwidth:Types.bandwidth -> ?cor:string ->
+val start_nbdkit_for_path : ?cor:string ->
                             ?password_file:string ->
                             string -> Xml.uri -> string -> string -> string ->
                             int
-(** [start_nbdkit_for_path ?bandwidth ?cor ?password_file dcPath uri server path socket]
+(** [start_nbdkit_for_path ?cor ?password_file dcPath uri server path socket]
     maps the [<source path=...>] string to an nbdkit instance pointing
     to the guest disk.
 

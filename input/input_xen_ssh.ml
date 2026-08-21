@@ -122,8 +122,7 @@ module XenSSH = struct
 
            | LocalFile path ->
               let cor = dir // "convert" in
-              let bandwidth = options.bandwidth in
-              let nbdkit = Nbdkit_ssh.create_ssh ?bandwidth ~cor ?password
+              let nbdkit = Nbdkit_ssh.create_ssh ~cor ?password
                              ?port ~server ?user path in
               let _, pid = Nbdkit.run_unix socket nbdkit in
               On_exit.kill pid

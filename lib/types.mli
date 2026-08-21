@@ -418,11 +418,6 @@ val set_root_choice : root_choice ref -> string -> unit
 type output_allocation = Sparse | Preallocated
 (** Type of [-oa] (output allocation) option. *)
 
-type bandwidth =
-| StaticBandwidth of string
-| DynamicBandwidth of string option * string
-(** [--bandwidth] and [--bandwidth-file] options. *)
-
 type static_ip = {
   if_mac_addr : string;
   if_ip_address : string;

@@ -23,7 +23,6 @@ type password =                 (** Use [None] for no password *)
   | PasswordFile of string      (** [password=+file] *)
 
 val create_ssh : ?name:string ->
-                 ?bandwidth:Types.bandwidth ->
                  ?cor:string ->
                  ?retry:bool ->
                  server:string ->

@@ -28,7 +28,7 @@ open Utils
 let source_re = PCRE.compile "^\\[(.*)\\] (.*)\\.vmdk$"
 let snapshot_re = PCRE.compile "^(.*)-\\d{6}(\\.vmdk)$"
 
-let rec start_nbdkit_for_path ?bandwidth ?cor ?password_file
+let rec start_nbdkit_for_path ?cor ?password_file
           dcPath uri server path
           socket =
   (* If no_verify=1 was passed in the libvirt URI, then we have to
@@ -116,7 +116,7 @@ let rec start_nbdkit_for_path ?bandwidth ?cor ?password_file
   let cookie_script_renew = 25*60 in
 
   let nbdkit =
-    Nbdkit_curl.create_curl ?bandwidth ?cor
+    Nbdkit_curl.create_curl ?cor
       ~cookie_script ~cookie_script_renew
       ~sslverify https_url in
   let _, pid = Nbdkit.run_unix socket nbdkit in

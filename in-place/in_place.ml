@@ -47,8 +47,6 @@ let rec main () =
        optref := Some arg
   in
 
-  let bandwidth = ref None in
-  let bandwidth_file = ref None in
   let block_driver = ref None in
 
   let collect = ref [] in
@@ -312,12 +310,7 @@ read the man page virt-v2v-in-place(1).
       None (* no -it option *) in
 
   let input_options = {
-    Input.bandwidth =
-      (match !bandwidth, !bandwidth_file with
-       | None, None -> None
-       | Some rate, None -> Some (StaticBandwidth rate)
-       | rate, Some filename -> Some (DynamicBandwidth (rate, filename)));
-    input_conn = input_conn;
+    Input.input_conn = input_conn;
     input_format = !input_format;
     input_options = !input_options;
     input_password = !input_password;

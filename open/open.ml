@@ -157,8 +157,7 @@ read the man page virt-v2v-open(1).
     Select_input.select_input input_mode input_conn input_transport in
 
   let input_options = {
-    Input.bandwidth = None;
-    input_conn = input_conn;
+    Input.input_conn = input_conn;
     input_format = !input_format;
     input_options = !input_options;
     input_password = !input_password;

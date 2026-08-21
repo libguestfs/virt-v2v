@@ -20,7 +20,6 @@ type input_transport = SSH | VDDK
 (** [-it] option on the command line *)
 
 type options = {
-  bandwidth : Types.bandwidth option;     (* [--bandwidth] option *)
   input_conn : string option;             (* [-ic] option *)
   input_format : string option;           (* [-if] option *)
   input_options : (string * string) list; (* [-io] options *)
