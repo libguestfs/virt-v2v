@@ -12,10 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-11 10:18+0000\n"
+"PO-Revision-Date: 2026-08-15 14:18+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.7.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
@@ -655,10 +655,8 @@ msgid "DIR"
 msgstr "КАТАЛОГ"
 
 #: common/mlcustomize/customize_cmdline.ml:511
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "Defer SELinux relabelling until boot"
-msgstr "Зміна міток SELinux"
+msgstr "Відкласти повторне встановлення міток SELinux до завантаження"
 
 #: common/mlcustomize/customize_cmdline.ml:244
 msgid "Delete a file or directory"
@@ -709,10 +707,8 @@ msgid "Enable tracing of libguestfs calls"
 msgstr "Увімкнути трасування викликів libguestfs"
 
 #: common/mlcustomize/customize_cmdline.ml:505
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "Exclude directories from SELinux relabelling"
-msgstr "Зміна міток SELinux"
+msgstr "Виключити каталоги з повторного встановлення міток SELinux"
 
 #: output/output_ovirt.ml:77
 msgid "Export Storage Domain"
@@ -1155,10 +1151,8 @@ msgid "SELinux relabelling"
 msgstr "Зміна міток SELinux"
 
 #: common/mlcustomize/customize_run.ml:367
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "SELinux relabelling deferred to first boot"
-msgstr "Зміна міток SELinux"
+msgstr "Повторне встановлення міток SELinux відкладено до першого завантаження"
 
 #. common/mlcustomize/customize_cmdline.ml:222
 #: common/mlcustomize/customize_cmdline.ml:336
@@ -2261,11 +2255,10 @@ msgstr ""
 "використання «-o ovirt-upload». Див. підручник virt-v2v-output-ovirt(1)."
 
 #: input/input_disk.ml:51
-#, fuzzy
-#| msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgid "nbdkit must be >= 1.44.0 for input from local files"
 msgstr ""
-"nbdkit має бути версії >= 1.45.11 для використання вхідних даних від VDDK"
+"nbdkit має бути версії >= 1.44.0 для використання вхідних даних з локальних "
+"файлів"
 
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
