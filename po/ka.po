@@ -2,6 +2,7 @@
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
 # Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2026.
+# Weblate <noreply-mt-weblate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
@@ -9,7 +10,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-21 08:37+0000\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
 "Language: ka\n"
@@ -709,7 +710,7 @@ msgstr "პირველი ჩატვირთვის პაკეტე�
 
 #: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
-msgstr ""
+msgstr "პირველი ჩატვირთვის პროგრამის დაყენება: %s"
 
 #: common/mlcustomize/customize_run.ml:248
 msgid "Installing packages: %s"
