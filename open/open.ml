@@ -126,6 +126,7 @@ read the man page virt-v2v-open(1).
   let input_transport =
     match !input_transport with
     | None -> None
+    | Some "nfc" -> Some Input.NFC
     | Some "ssh" -> Some Input.SSH
     | Some "vddk" -> Some Input.VDDK
     | Some transport ->

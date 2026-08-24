@@ -334,6 +334,7 @@ read the man page virt-v2v(1).
   let input_transport =
     match !input_transport with
     | None -> None
+    | Some "nfc" -> Some Input.NFC
     | Some "ssh" -> Some Input.SSH
     | Some "vddk" -> Some Input.VDDK
     | Some transport ->
@@ -366,6 +367,7 @@ read the man page virt-v2v(1).
       if Config.enable_xen then
         pr "xen-ssh\n";
       pr "vddk\n";
+      pr "nfc\n";
       pr "colours-option\n";
       pr "vdsm-compat-option\n";
       pr "io/oo\n";

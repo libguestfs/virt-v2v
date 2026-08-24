@@ -63,6 +63,7 @@ REQUIREMENTS
   + nbdkit-curl-plugin
   + nbdkit-file-plugin
   + nbdkit-nbd-plugin
+  + nbdkit-nfc-plugin (optional)
   + nbdkit-null-plugin
   + nbdkit-python-plugin
   + nbdkit-ssh-plugin

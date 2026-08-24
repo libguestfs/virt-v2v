@@ -53,8 +53,9 @@ module VMX = struct
            match options.input_transport with
            | None -> None
            | Some SSH -> Some `SSH
-           | Some VDDK ->
-              error (f_"-i vmx: cannot use -it vddk in this input mode") in
+           | Some (NFC | VDDK) ->
+              error (f_"-i vmx: cannot use -it nfc|vddk \
+                        in this input mode") in
          vmx_source_of_arg input_password input_transport arg
       | _ ->
          error (f_"-i vmx: expecting a VMX file or ssh:// URI") in
