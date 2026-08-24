@@ -16,7 +16,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
-type input_transport = SSH | VDDK
+type input_transport = NFC | SSH | VDDK
 (** [-it] option on the command line *)
 
 type options = {
