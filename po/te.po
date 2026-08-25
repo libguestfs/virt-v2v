@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-25 12:12+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
+#: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
 msgid "%s"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgid ""
 "Options:\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:395
+#: common/mltools/tools_utils.ml:703 common/mlcustomize/customize_run.ml:395
 msgid "%s (ignored)"
 msgstr ""
 
@@ -66,17 +66,17 @@ msgstr ""
 #. open/open.ml:39
 #. inspector/inspector.ml:157
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:169
+#. in-place/in_place.ml:167
 #. in-place/in_place.ml:45
-#: v2v/v2v.ml:199 v2v/v2v.ml:188 v2v/v2v.ml:164 v2v/v2v.ml:44 open/open.ml:68
+#: v2v/v2v.ml:197 v2v/v2v.ml:186 v2v/v2v.ml:162 v2v/v2v.ml:44 open/open.ml:68
 msgid "%s option used more than once on the command line"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:234 common/mltools/tools_utils.ml:202
+#: common/mltools/tools_utils.ml:235 common/mltools/tools_utils.ml:203
 msgid "%s: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:236
+#: common/mltools/tools_utils.ml:237
 msgid "%s: %s: %s"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "%s: command exited with an error"
 msgstr ""
 
-#: v2v/v2v.ml:286
+#: v2v/v2v.ml:280
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -112,7 +112,7 @@ msgid ""
 "read the man page virt-v2v(1).\n"
 msgstr ""
 
-#: in-place/in_place.ml:226
+#: in-place/in_place.ml:224
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -131,7 +131,7 @@ msgstr ""
 msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
-#: common/mltools/tools_utils.ml:172
+#: common/mltools/tools_utils.ml:173
 msgid "%s: error: %s"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgid ""
 "read the man page virt-v2v-open(1).\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:729
+#: common/mltools/tools_utils.ml:734
 msgid "%s: operation timed out"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgid ""
 "compress with gzip or xz), zip"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:191
+#: common/mltools/tools_utils.ml:192
 msgid "%s: warning: %s"
 msgstr ""
 
@@ -203,11 +203,11 @@ msgid ""
 "in the virtio-win source that you specified"
 msgstr ""
 
-#: v2v/v2v.ml:151 inspector/inspector.ml:140 in-place/in_place.ml:148
+#: v2v/v2v.ml:149 inspector/inspector.ml:140 in-place/in_place.ml:146
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 
-#: v2v/v2v.ml:351
+#: v2v/v2v.ml:346
 msgid "--parallel parameter must be >= 1"
 msgstr ""
 
@@ -261,10 +261,10 @@ msgid ""
 msgstr ""
 
 #: input/input_vmx.ml:57
-msgid "-i vmx: cannot use -it vddk in this input mode"
+msgid "-i vmx: cannot use -it nfc|vddk in this input mode"
 msgstr ""
 
-#: input/input_vmx.ml:60
+#: input/input_vmx.ml:61
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr ""
 
@@ -484,11 +484,11 @@ msgstr ""
 msgid "Checking %s checksum of disk %d/%d"
 msgstr ""
 
-#: v2v/v2v.ml:219 inspector/inspector.ml:167 in-place/in_place.ml:179
+#: v2v/v2v.ml:213 inspector/inspector.ml:167 in-place/in_place.ml:177
 msgid "Collect output to .tar.xz file"
 msgstr ""
 
-#: v2v/v2v.ml:217 inspector/inspector.ml:165 in-place/in_place.ml:177
+#: v2v/v2v.ml:211 inspector/inspector.ml:165 in-place/in_place.ml:175
 msgid "Collect pre-conversion information"
 msgstr ""
 
@@ -512,7 +512,7 @@ msgstr ""
 msgid "Copying (in image): %s to %s"
 msgstr ""
 
-#: v2v/v2v.ml:532
+#: v2v/v2v.ml:522
 msgid "Copying disk %d/%d"
 msgstr ""
 
@@ -528,16 +528,16 @@ msgstr ""
 msgid "Create symbolic links"
 msgstr ""
 
-#: v2v/v2v.ml:581
+#: v2v/v2v.ml:571
 msgid "Creating output metadata"
 msgstr ""
 
 #. common/mlcustomize/customize_cmdline.ml:329
-#: common/mlcustomize/customize_cmdline.ml:502
+#: common/mlcustomize/customize_cmdline.ml:508
 msgid "DIR"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:511
+#: common/mlcustomize/customize_cmdline.ml:502
 msgid "Defer SELinux relabelling until boot"
 msgstr ""
 
@@ -553,7 +553,7 @@ msgstr ""
 msgid "Display brief help"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:388
+#: common/mltools/tools_utils.ml:389
 msgid "Display version and exit"
 msgstr ""
 
@@ -561,15 +561,15 @@ msgstr ""
 msgid "Do not relabel files with correct SELinux labels"
 msgstr ""
 
-#: v2v/v2v.ml:257 inspector/inspector.ml:185 in-place/in_place.ml:199
+#: v2v/v2v.ml:251 inspector/inspector.ml:185 in-place/in_place.ml:197
 msgid "Don't trim filesystems before conversion"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:392
+#: common/mltools/tools_utils.ml:393
 msgid "Don’t print progress messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:423
+#: common/mltools/tools_utils.ml:428
 msgid "Don’t turn off echo for passphrases"
 msgstr ""
 
@@ -581,15 +581,15 @@ msgstr ""
 msgid "Editing: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:389
+#: common/mltools/tools_utils.ml:390
 msgid "Enable libguestfs debugging messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:390
+#: common/mltools/tools_utils.ml:391
 msgid "Enable tracing of libguestfs calls"
 msgstr ""
 
-#: common/mlcustomize/customize_cmdline.ml:505
+#: common/mlcustomize/customize_cmdline.ml:511
 msgid "Exclude directories from SELinux relabelling"
 msgstr ""
 
@@ -627,8 +627,8 @@ msgstr ""
 msgid "FILENAME"
 msgstr ""
 
-#. in-place/in_place.ml:392
-#: v2v/v2v.ml:585 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:385
+#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr ""
 
@@ -636,11 +636,11 @@ msgstr ""
 msgid "HOSTNAME"
 msgstr ""
 
-#: v2v/v2v.ml:263 inspector/inspector.ml:191 in-place/in_place.ml:203
+#: v2v/v2v.ml:257 inspector/inspector.ml:191 in-place/in_place.ml:201
 msgid "How to choose root filesystem"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:177
+#: common/mltools/tools_utils.ml:178
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -664,8 +664,8 @@ msgstr ""
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr ""
 
-#. in-place/in_place.ml:185
-#: v2v/v2v.ml:225 open/open.ml:80 inspector/inspector.ml:173
+#. in-place/in_place.ml:183
+#: v2v/v2v.ml:219 open/open.ml:80 inspector/inspector.ml:173
 msgid "Input format"
 msgstr ""
 
@@ -693,7 +693,7 @@ msgid ""
 "information on these settings.\n"
 msgstr ""
 
-#: v2v/v2v.ml:231 open/open.ml:86 inspector/inspector.ml:179
+#: v2v/v2v.ml:225 open/open.ml:86 inspector/inspector.ml:179
 msgid "Input transport"
 msgstr ""
 
@@ -717,8 +717,8 @@ msgstr ""
 msgid "LOCALPATH:REMOTEDIR"
 msgstr ""
 
-#. in-place/in_place.ml:183
-#: v2v/v2v.ml:223 open/open.ml:78 inspector/inspector.ml:171
+#. in-place/in_place.ml:181
+#: v2v/v2v.ml:217 open/open.ml:78 inspector/inspector.ml:171
 msgid "Libvirt URI"
 msgstr ""
 
@@ -732,7 +732,7 @@ msgstr ""
 msgid "METHOD"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:429
+#: common/mltools/tools_utils.ml:434
 msgid "Make output machine readable"
 msgstr ""
 
@@ -740,15 +740,15 @@ msgstr ""
 msgid "Making directory: %s"
 msgstr ""
 
-#: v2v/v2v.ml:235 inspector/inspector.ml:181 in-place/in_place.ml:191
+#: v2v/v2v.ml:229 inspector/inspector.ml:181 in-place/in_place.ml:189
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 
-#: v2v/v2v.ml:215 inspector/inspector.ml:163 in-place/in_place.ml:175
+#: v2v/v2v.ml:209 inspector/inspector.ml:163 in-place/in_place.ml:173
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr ""
 
-#: v2v/v2v.ml:239 inspector/inspector.ml:187 in-place/in_place.ml:195
+#: v2v/v2v.ml:233 inspector/inspector.ml:187 in-place/in_place.ml:193
 msgid "Map network ‘in’ to ‘out’"
 msgstr ""
 
@@ -785,7 +785,7 @@ msgid ""
 "building rhsrvany (https://github.com/rwmjones/rhsrvany)"
 msgstr ""
 
-#: v2v/v2v.ml:245
+#: v2v/v2v.ml:239
 msgid "Output hypervisor connection"
 msgstr ""
 
@@ -872,11 +872,11 @@ msgstr ""
 msgid "PKG,PKG.."
 msgstr ""
 
-#: v2v/v2v.ml:272 in-place/in_place.ml:212
+#: v2v/v2v.ml:266 in-place/in_place.ml:210
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
 msgstr ""
 
-#: v2v/v2v.ml:261 in-place/in_place.ml:201
+#: v2v/v2v.ml:255 in-place/in_place.ml:199
 msgid "Print source and stop"
 msgstr ""
 
@@ -884,7 +884,7 @@ msgstr ""
 msgid "Read customize commands from file"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:424
+#: common/mltools/tools_utils.ml:429
 msgid "Read passphrases from stdin"
 msgstr ""
 
@@ -896,7 +896,7 @@ msgstr ""
 msgid "Recursively truncating: %s"
 msgstr ""
 
-#: v2v/v2v.ml:249
+#: v2v/v2v.ml:243
 msgid "Rename guest when converting"
 msgstr ""
 
@@ -920,7 +920,7 @@ msgstr ""
 msgid "Run touch on a file"
 msgstr ""
 
-#: v2v/v2v.ml:259
+#: v2v/v2v.ml:253
 msgid "Run up to N instances of nbdcopy in parallel"
 msgstr ""
 
@@ -942,7 +942,7 @@ msgstr ""
 msgid "SCRIPT"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:425
+#: common/mltools/tools_utils.ml:430
 #: common/mlcustomize/customize_cmdline.ml:359
 msgid "SELECTOR"
 msgstr ""
@@ -984,49 +984,41 @@ msgstr ""
 msgid "Scrubbing: %s"
 msgstr ""
 
-#: v2v/v2v.ml:213
-msgid "Set bandwidth dynamically from file"
-msgstr ""
-
-#: v2v/v2v.ml:211
-msgid "Set bandwidth to bits per sec"
-msgstr ""
-
-#. in-place/in_place.ml:181
-#: v2v/v2v.ml:221 open/open.ml:76 inspector/inspector.ml:169
+#. in-place/in_place.ml:179
+#: v2v/v2v.ml:215 open/open.ml:76 inspector/inspector.ml:169
 msgid "Set input mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:237 inspector/inspector.ml:183 in-place/in_place.ml:193
+#: v2v/v2v.ml:231 inspector/inspector.ml:183 in-place/in_place.ml:191
 msgid "Set memory size"
 msgstr ""
 
-#: v2v/v2v.ml:265 inspector/inspector.ml:193 in-place/in_place.ml:205
+#: v2v/v2v.ml:259 inspector/inspector.ml:193 in-place/in_place.ml:203
 msgid "Set number of vCPUs"
 msgstr ""
 
-#. in-place/in_place.ml:187
-#: v2v/v2v.ml:227 open/open.ml:82 inspector/inspector.ml:175
+#. in-place/in_place.ml:185
+#: v2v/v2v.ml:221 open/open.ml:82 inspector/inspector.ml:175
 msgid "Set option for input mode"
 msgstr ""
 
-#: v2v/v2v.ml:251
+#: v2v/v2v.ml:245
 msgid "Set option for output mode"
 msgstr ""
 
-#: v2v/v2v.ml:243
+#: v2v/v2v.ml:237
 msgid "Set output allocation mode"
 msgstr ""
 
-#: v2v/v2v.ml:247
+#: v2v/v2v.ml:241
 msgid "Set output format"
 msgstr ""
 
-#: v2v/v2v.ml:241
+#: v2v/v2v.ml:235
 msgid "Set output mode (default: libvirt)"
 msgstr ""
 
-#: v2v/v2v.ml:255
+#: v2v/v2v.ml:249
 msgid "Set output storage location"
 msgstr ""
 
@@ -1034,7 +1026,7 @@ msgstr ""
 msgid "Set password crypto"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:433
+#: common/mltools/tools_utils.ml:438
 msgid "Set program name"
 msgstr ""
 
@@ -1050,7 +1042,7 @@ msgstr ""
 msgid "Set the hostname"
 msgstr ""
 
-#: inspector/inspector.ml:189 in-place/in_place.ml:197
+#: inspector/inspector.ml:189 in-place/in_place.ml:195
 msgid "Set the output filename"
 msgstr ""
 
@@ -1082,20 +1074,20 @@ msgstr ""
 msgid "Setting the timezone: %s"
 msgstr ""
 
-#: v2v/v2v.ml:495
+#: v2v/v2v.ml:485
 msgid "Setting up the destination: %s"
 msgstr ""
 
-#. in-place/in_place.ml:356
-#: v2v/v2v.ml:471 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:349
+#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
 msgstr ""
 
-#: v2v/v2v.ml:477 in-place/in_place.ml:362
+#: v2v/v2v.ml:467 in-place/in_place.ml:355
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:425
+#: common/mltools/tools_utils.ml:430
 msgid "Specify a LUKS key"
 msgstr ""
 
@@ -1111,7 +1103,7 @@ msgstr ""
 msgid "TIMEZONE"
 msgstr ""
 
-#: v2v/v2v.ml:205
+#: v2v/v2v.ml:203
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr ""
@@ -1135,7 +1127,7 @@ msgid ""
 "require a separate password to connect."
 msgstr ""
 
-#: input/input_vmx.ml:111
+#: input/input_vmx.ml:112
 msgid ""
 "This transport does not support guests with snapshots. Either collapse the "
 "snapshots for this guest and try the conversion again, or use one of the "
@@ -1191,24 +1183,24 @@ msgstr ""
 msgid "Uploading: %s to %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:394
+#: common/mltools/tools_utils.ml:395
 msgid "Use ANSI colour sequences even if not tty"
 msgstr ""
 
-#. in-place/in_place.ml:189
-#: v2v/v2v.ml:229 open/open.ml:84 inspector/inspector.ml:177
+#. in-place/in_place.ml:187
+#: v2v/v2v.ml:223 open/open.ml:84 inspector/inspector.ml:177
 msgid "Use password from file to connect to input hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:253
+#: v2v/v2v.ml:247
 msgid "Use password from file to connect to output hypervisor"
 msgstr ""
 
-#: v2v/v2v.ml:233
+#: v2v/v2v.ml:227
 msgid "Use virt-v2v-in-place instead"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:395
+#: common/mltools/tools_utils.ml:396
 msgid "Wrap log messages even if not tty"
 msgstr ""
 
@@ -1282,15 +1274,15 @@ msgstr ""
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr ""
 
-#: v2v/v2v.ml:110 inspector/inspector.ml:99 in-place/in_place.ml:107
+#: v2v/v2v.ml:108 inspector/inspector.ml:99 in-place/in_place.ml:105
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr ""
 
-#: v2v/v2v.ml:134 inspector/inspector.ml:123 in-place/in_place.ml:131
+#: v2v/v2v.ml:132 inspector/inspector.ml:123 in-place/in_place.ml:129
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr ""
 
-#: v2v/v2v.ml:148 inspector/inspector.ml:137 in-place/in_place.ml:145
+#: v2v/v2v.ml:146 inspector/inspector.ml:137 in-place/in_place.ml:143
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr ""
 
@@ -1486,11 +1478,11 @@ msgstr ""
 msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:251
+#: common/mltools/tools_utils.ml:252
 msgid "exception: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:458
+#: common/mltools/tools_utils.ml:463
 msgid "exited with error %d"
 msgstr ""
 
@@ -1504,7 +1496,7 @@ msgid ""
 "string: %s)"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:443
+#: common/mltools/tools_utils.ml:448
 msgid "external command"
 msgstr ""
 
@@ -1536,7 +1528,7 @@ msgstr ""
 msgid "failed vmchecks, see earlier errors"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:242
+#: common/mltools/tools_utils.ml:243
 msgid "failure: %s"
 msgstr ""
 
@@ -1550,7 +1542,7 @@ msgid ""
 "will not be removed"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:261
+#: common/mltools/tools_utils.ml:262
 msgid "generated by %s %s"
 msgstr ""
 
@@ -1577,7 +1569,7 @@ msgstr ""
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:752
+#: common/mltools/tools_utils.ml:757
 msgid ""
 "host (%s/%s) and guest (%s/%s) are not compatible, so you cannot use command "
 "line options that involve running commands in the guest.  Use --firstboot "
@@ -1633,8 +1625,8 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#. in-place/in_place.ml:411
-#: v2v/v2v.ml:604 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:404
+#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1647,15 +1639,15 @@ msgid ""
 "host\"."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:249
+#: common/mltools/tools_utils.ml:250
 msgid "internal error: Not_found exception was thrown"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:246
+#: common/mltools/tools_utils.ml:247
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:244
+#: common/mltools/tools_utils.ml:245
 msgid "internal error: invalid argument: %s"
 msgstr ""
 
@@ -1671,19 +1663,19 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:562
+#: v2v/v2v.ml:552
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 
-#: v2v/v2v.ml:119 inspector/inspector.ml:108 in-place/in_place.ml:116
+#: v2v/v2v.ml:117 inspector/inspector.ml:108 in-place/in_place.ml:114
 msgid "invalid --mac ip option"
 msgstr ""
 
-#: v2v/v2v.ml:103 inspector/inspector.ml:92 in-place/in_place.ml:100
+#: v2v/v2v.ml:101 inspector/inspector.ml:92 in-place/in_place.ml:98
 msgid "invalid -b/--bridge parameter"
 msgstr ""
 
-#: v2v/v2v.ml:95 inspector/inspector.ml:84 in-place/in_place.ml:92
+#: v2v/v2v.ml:93 inspector/inspector.ml:84 in-place/in_place.ml:90
 msgid "invalid -n/--network parameter"
 msgstr ""
 
@@ -1697,7 +1689,7 @@ msgstr ""
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:362
+#: common/mltools/tools_utils.ml:363
 msgid "invalid format string for --machine-readable: %s"
 msgstr ""
 
@@ -1709,15 +1701,15 @@ msgstr ""
 msgid "invalid offset returned by tar: %S"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:377
+#: common/mltools/tools_utils.ml:378
 msgid "invalid output fd for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:379
+#: common/mltools/tools_utils.ml:380
 msgid "invalid output for --machine-readable: %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:371
+#: common/mltools/tools_utils.ml:372
 msgid "invalid output stream for --machine-readable: %s"
 msgstr ""
 
@@ -1745,11 +1737,11 @@ msgstr ""
 msgid "kernel %s is not under grub tree %s"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
+#: common/mltools/tools_utils.ml:547 common/mltools/tools_utils.ml:466
 msgid "killed by signal %d"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:240
+#: common/mltools/tools_utils.ml:241
 msgid "libguestfs error: %s"
 msgstr ""
 
@@ -1985,7 +1977,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr ""
 
-#: input/select_input.ml:106
+#: input/select_input.ml:110
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -2112,32 +2104,33 @@ msgid ""
 "broken in some way.  Please report this as a bug with a full debug log."
 msgstr ""
 
-#: common/mltools/tools_utils.ml:420 common/options/keys.c:306
+#: common/mltools/tools_utils.ml:425 common/options/keys.c:310
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:412 common/options/keys.c:296
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:300
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:402 common/options/keys.c:274
+#: common/mltools/tools_utils.ml:403 common/options/keys.c:278
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:407 common/options/keys.c:287
+#: common/mltools/tools_utils.ml:408 common/options/keys.c:291
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:281
+#: common/mltools/tools_utils.ml:405 common/options/keys.c:285
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr ""
 
-#: common/mltools/tools_utils.ml:416 common/options/keys.c:304
+#: common/mltools/tools_utils.ml:421 common/mltools/tools_utils.ml:417
+#: common/options/keys.c:308
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr ""
@@ -2174,8 +2167,8 @@ msgstr ""
 msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr ""
 
-#. common/mltools/tools_utils.ml:464
-#: lib/utils.ml:36 common/mltools/tools_utils.ml:545
+#. common/mltools/tools_utils.ml:469
+#: lib/utils.ml:36 common/mltools/tools_utils.ml:550
 msgid "stopped by signal %d"
 msgstr ""
 
@@ -2367,7 +2360,7 @@ msgstr ""
 msgid "unknown -o option: %s"
 msgstr ""
 
-#: v2v/v2v.ml:169
+#: v2v/v2v.ml:167
 msgid "unknown -oa option: %s"
 msgstr ""
 
@@ -2383,7 +2376,7 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:328 in-place/in_place.ml:265
+#: v2v/v2v.ml:322 in-place/in_place.ml:263
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr ""
 
@@ -2395,7 +2388,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:340 open/open.ml:132 inspector/inspector.ml:248
+#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
@@ -2513,7 +2506,7 @@ msgstr ""
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr ""
 
-#: open/open.ml:136
+#: open/open.ml:137
 msgid "you must supply the --run parameter"
 msgstr ""
 
@@ -2663,7 +2656,12 @@ msgstr ""
 msgid "size_t overflow"
 msgstr ""
 
-#: common/options/keys.c:235
+#: common/options/keys.c:228
+#, c-format
+msgid "encrypted device %s matched --key ...:error"
+msgstr ""
+
+#: common/options/keys.c:239
 #, c-format
 msgid "could not read key from user"
 msgstr ""
