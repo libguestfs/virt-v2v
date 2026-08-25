@@ -1,4 +1,5 @@
 # Zdenek <chmelarz@gmail.com>, 2017. #zanata
+# Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
@@ -6,7 +7,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-25 12:16+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Czech <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/cs/>\n"
 "Language: cs\n"
