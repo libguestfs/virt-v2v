@@ -8,6 +8,7 @@
 # Kévin Raymond <shaiton@fedoraproject.org>, 2012
 # Αικατερίνη Χ. Καταπόδη <spanish.katerina@gmail.com>, 2013
 # Rafael Fontenelle <rafaelff@gnome.org>, 2026.
+# grimst <grimaitres@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
@@ -15,7 +16,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-25 12:09+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: grimst <grimaitres@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fr/>\n"
 "Language: fr\n"
