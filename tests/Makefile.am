@@ -92,6 +92,7 @@ TESTS = \
 	test-in-place-xml.sh \
 	test-inspector.sh \
 	test-it-vddk-io-query.sh \
+	test-key-error.sh \
 	test-mac.sh \
 	test-machine-readable.sh \
 	test-networks-and-bridges.sh \
@@ -292,6 +293,7 @@ EXTRA_DIST += \
 	test-in-place-xml.sh \
 	test-inspector.sh \
 	test-it-vddk-io-query.sh \
+	test-key-error.sh \
 	test-mac-expected.xml \
 	test-mac.sh \
 	test-machine-readable.sh \
