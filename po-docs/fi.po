@@ -1,15 +1,14 @@
 # SOME DESCRIPTIVE TITLE
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Jan Kuparinen <copper_fin@hotmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 1.43.1\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-08-14 12:35+0100\n"
 "PO-Revision-Date: 2026-08-25 12:33+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/fi/>\n"
 "Language: fi\n"
