@@ -5,9 +5,9 @@
 # Translators:
 # Mateusz Marzantowicz <mmarzantowicz@osdf.com.pl>, 2013
 # Mateusz Marzantowicz <mmarzantowicz@osdf.com.pl>, 2012
-# Piotr Drąg <piotrdrag@gmail.com>, 2011-2013
+# Piotr Drąg <piotrdrag@gmail.com>, 2011-2013, 2026.
 # rjones <rjones@redhat.com>, 2011
-# Piotr Drąg <piotrdrag@gmail.com>, 2016. #zanata
+# Piotr Drąg <piotrdrag@gmail.com>, 2016. #zanata, 2026.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-25 12:55+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/pl/>\n"
 "Language: pl\n"
