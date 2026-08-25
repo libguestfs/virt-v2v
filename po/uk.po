@@ -16,7 +16,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-25 12:16+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
 "Language: uk\n"
@@ -654,10 +654,8 @@ msgid "DIR"
 msgstr "КАТАЛОГ"
 
 #: common/mlcustomize/customize_cmdline.ml:511
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "Defer SELinux relabelling until boot"
-msgstr "Зміна міток SELinux"
+msgstr "Відкласти повторне встановлення міток SELinux до завантаження"
 
 #: common/mlcustomize/customize_cmdline.ml:244
 msgid "Delete a file or directory"
@@ -708,10 +706,8 @@ msgid "Enable tracing of libguestfs calls"
 msgstr "Увімкнути трасування викликів libguestfs"
 
 #: common/mlcustomize/customize_cmdline.ml:505
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "Exclude directories from SELinux relabelling"
-msgstr "Зміна міток SELinux"
+msgstr "Виключити каталоги з повторного встановлення міток SELinux"
 
 #: output/output_ovirt.ml:77
 msgid "Export Storage Domain"
@@ -1154,10 +1150,8 @@ msgid "SELinux relabelling"
 msgstr "Зміна міток SELinux"
 
 #: common/mlcustomize/customize_run.ml:367
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "SELinux relabelling deferred to first boot"
-msgstr "Зміна міток SELinux"
+msgstr "Повторне встановлення міток SELinux відкладено до першого завантаження"
 
 #. common/mlcustomize/customize_cmdline.ml:222
 #: common/mlcustomize/customize_cmdline.ml:336
@@ -2260,11 +2254,10 @@ msgstr ""
 "використання «-o ovirt-upload». Див. підручник virt-v2v-output-ovirt(1)."
 
 #: input/input_disk.ml:51
-#, fuzzy
-#| msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgid "nbdkit must be >= 1.44.0 for input from local files"
 msgstr ""
-"nbdkit має бути версії >= 1.45.11 для використання вхідних даних від VDDK"
+"nbdkit має бути версії >= 1.44.0 для використання вхідних даних з локальних "
+"файлів"
 
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
@@ -2485,10 +2478,10 @@ msgid ""
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
-"ovirt-upload: -of %s: передбачено підтримку лише форматів виведення «raw» і "
-"«qcow2». Якщо вхідні дані записано у іншому форматі, примусово вкажіть один "
-"з цих форматів виведення за допомогою додавання до командного рядка "
-"параметра «-of raw» або «-of qcow2»."
+"ovirt-upload: -of %s: передбачено підтримку лише форматів виведення «raw» і «"
+"qcow2». Якщо вхідні дані записано у іншому форматі, примусово вкажіть один з "
+"цих форматів виведення за допомогою додавання до командного рядка параметра "
+"«-of raw» або «-of qcow2»."
 
 #: common/mlcustomize/password.ml:51
 msgid ""
