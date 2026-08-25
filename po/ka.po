@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.1.1\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-07 09:18+0000\n"
+"PO-Revision-Date: 2026-08-25 12:09+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
 msgid "%s"
@@ -545,7 +545,7 @@ msgstr ""
 
 #: common/mlcustomize/customize_cmdline.ml:244
 msgid "Delete a file or directory"
-msgstr ""
+msgstr "ფაილის, ან საქაღალდის წაშლა"
 
 #: common/mlcustomize/customize_run.ml:176
 msgid "Deleting: %s"
@@ -709,7 +709,7 @@ msgstr "პირველი ჩატვირთვის პაკეტე�
 
 #: common/mlcustomize/customize_run.ml:202
 msgid "Installing firstboot script: %s"
-msgstr ""
+msgstr "პირველი ჩატვირთვის პროგრამის დაყენება: %s"
 
 #: common/mlcustomize/customize_run.ml:248
 msgid "Installing packages: %s"
