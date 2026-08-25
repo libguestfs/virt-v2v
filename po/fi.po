@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the virt-v2v package.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 # Ricky Tigg <ricky.tigg@gmail.com>, 2026.
+# GitHub webhook <noreply-webhook-github@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 1.43.4\n"
@@ -10,7 +11,7 @@ msgstr ""
 "enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-25 12:16+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"Last-Translator: GitHub webhook <noreply-webhook-github@weblate.org>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/fi/>\n"
 "Language: fi\n"
