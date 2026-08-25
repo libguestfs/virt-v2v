@@ -49,6 +49,7 @@ input/VMX.ml
 input/input.ml
 input/input_disk.ml
 input/input_libvirt.ml
+input/input_nfc.ml
 input/input_ova.ml
 input/input_vcenter_https.ml
 input/input_vddk.ml
