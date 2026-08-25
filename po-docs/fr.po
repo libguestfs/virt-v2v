@@ -5,13 +5,14 @@
 # Translators:
 # Jérôme Fenal <jfenal@gmail.com>, 2013
 # Kévin Raymond <shaiton@fedoraproject.org>, 2012
+# Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-08-14 12:35+0100\n"
 "PO-Revision-Date: 2026-08-25 12:42+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/fr/>\n"
 "Language: fr\n"

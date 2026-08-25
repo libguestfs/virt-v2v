@@ -1,15 +1,14 @@
 # SOME DESCRIPTIVE TITLE
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-08-14 12:35+0100\n"
 "PO-Revision-Date: 2026-08-25 12:41+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Hindi <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/hi/>\n"
 "Language: hi\n"
