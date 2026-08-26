@@ -9,14 +9,15 @@
 # Yuri Chornoivan <yurchor@ukr.net>, 2016. #zanata, 2026.
 # Yuri Chornoivan <yurchor@ukr.net>, 2017. #zanata, 2026.
 # Yuri Chornoivan <yurchor@ukr.net>, 2018. #zanata, 2026.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-07-11 10:18+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"PO-Revision-Date: 2026-08-25 12:16+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/uk/>\n"
 "Language: uk\n"
@@ -25,9 +26,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.7.1\n"
+"X-Generator: Weblate 2026.8.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:238
+#: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
 msgid "%s"
 msgstr "%s"
 
@@ -39,7 +40,7 @@ msgstr ""
 "%s\n"
 "Параметри:\n"
 
-#: common/mltools/tools_utils.ml:698 common/mlcustomize/customize_run.ml:395
+#: common/mltools/tools_utils.ml:703 common/mlcustomize/customize_run.ml:395
 msgid "%s (ignored)"
 msgstr "%s (проігноровано)"
 
@@ -86,17 +87,17 @@ msgstr "%s не є звичайним файлом у гостьовій сис�
 #. open/open.ml:39
 #. inspector/inspector.ml:157
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:169
+#. in-place/in_place.ml:167
 #. in-place/in_place.ml:45
-#: v2v/v2v.ml:199 v2v/v2v.ml:188 v2v/v2v.ml:164 v2v/v2v.ml:44 open/open.ml:68
+#: v2v/v2v.ml:197 v2v/v2v.ml:186 v2v/v2v.ml:162 v2v/v2v.ml:44 open/open.ml:68
 msgid "%s option used more than once on the command line"
 msgstr "у командному рядку параметр %s використано декілька разів"
 
-#: common/mltools/tools_utils.ml:234 common/mltools/tools_utils.ml:202
+#: common/mltools/tools_utils.ml:235 common/mltools/tools_utils.ml:203
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: common/mltools/tools_utils.ml:236
+#: common/mltools/tools_utils.ml:237
 msgid "%s: %s: %s"
 msgstr "%s: %s: %s"
 
@@ -116,7 +117,7 @@ msgstr "%s: не вдалося відкрити файл ISO virtio-win: %s"
 msgid "%s: command exited with an error"
 msgstr "%s: виконання команди завершилося повідомленням про помилку"
 
-#: v2v/v2v.ml:286
+#: v2v/v2v.ml:280
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -149,7 +150,7 @@ msgstr ""
 "на\n"
 "сторінці підручника virt-v2v(1).\n"
 
-#: in-place/in_place.ml:226
+#: in-place/in_place.ml:224
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -181,7 +182,7 @@ msgstr ""
 msgid "%s: enter password for ‘%s’: "
 msgstr "%s: введіть пароль до «%s»: "
 
-#: common/mltools/tools_utils.ml:172
+#: common/mltools/tools_utils.ml:173
 msgid "%s: error: %s"
 msgstr "%s: помилка: %s"
 
@@ -217,7 +218,7 @@ msgstr ""
 "Нижче наведено коротке резюме щодо параметрів. Докладні довідкові дані\n"
 "можна знайти на сторінці підручника (man) з virt-v2v-open(1).\n"
 
-#: common/mltools/tools_utils.ml:729
+#: common/mltools/tools_utils.ml:734
 msgid "%s: operation timed out"
 msgstr "%s: перевищено час виконання дії"
 
@@ -233,7 +234,7 @@ msgstr ""
 "У поточній версії передбачено підтримку таких форматів для «-i ova»: "
 "нестиснений tar (нестиснений, стиснений за допомогою gzip або xz), zip"
 
-#: common/mltools/tools_utils.ml:191
+#: common/mltools/tools_utils.ml:192
 msgid "%s: warning: %s"
 msgstr "%s: попередження: %s"
 
@@ -277,12 +278,12 @@ msgstr ""
 "--inject-virtio-win: не знайдено драйверів virtio для цієї версії Windows у "
 "вказаному вами джерелі virtio-win"
 
-#: v2v/v2v.ml:151 inspector/inspector.ml:140 in-place/in_place.ml:148
+#: v2v/v2v.ml:149 inspector/inspector.ml:140 in-place/in_place.ml:146
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 "поле довжини префікса IP-адреси --mac лежить поза припустимим діапазоном"
 
-#: v2v/v2v.ml:351
+#: v2v/v2v.ml:346
 msgid "--parallel parameter must be >= 1"
 msgstr "параметр --parallel має бути >= 1"
 
@@ -348,10 +349,12 @@ msgstr ""
 "-i ova: некоректний файл OVA: шлях «%s» посилається на файл поза архівом"
 
 #: input/input_vmx.ml:57
-msgid "-i vmx: cannot use -it vddk in this input mode"
+#, fuzzy
+#| msgid "-i vmx: cannot use -it vddk in this input mode"
+msgid "-i vmx: cannot use -it nfc|vddk in this input mode"
 msgstr "-i vmx: не можна використовувати -it vddk у цьому режимі вхідних даних"
 
-#: input/input_vmx.ml:60
+#: input/input_vmx.ml:61
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr "-i vmx: мало бути вказано файл VMX або адресу ssh://"
 
@@ -601,11 +604,11 @@ msgstr "Зміна прав доступу до %s на %s"
 msgid "Checking %s checksum of disk %d/%d"
 msgstr "Перевіряємо суму %s диска %d з %d"
 
-#: v2v/v2v.ml:219 inspector/inspector.ml:167 in-place/in_place.ml:179
+#: v2v/v2v.ml:213 inspector/inspector.ml:167 in-place/in_place.ml:177
 msgid "Collect output to .tar.xz file"
 msgstr "Зібрати виведені дані до файла .tar.xz"
 
-#: v2v/v2v.ml:217 inspector/inspector.ml:165 in-place/in_place.ml:177
+#: v2v/v2v.ml:211 inspector/inspector.ml:165 in-place/in_place.ml:175
 msgid "Collect pre-conversion information"
 msgstr "Зібрати відомості, отримані до перетворення"
 
@@ -629,7 +632,7 @@ msgstr "Копіювати локальні файли або каталоги �
 msgid "Copying (in image): %s to %s"
 msgstr "Копіюємо (на образ): %s у %s"
 
-#: v2v/v2v.ml:532
+#: v2v/v2v.ml:522
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
@@ -645,20 +648,18 @@ msgstr "Створити каталог"
 msgid "Create symbolic links"
 msgstr "Створювати символічні посилання"
 
-#: v2v/v2v.ml:581
+#: v2v/v2v.ml:571
 msgid "Creating output metadata"
 msgstr "Створюємо метадані результатів"
 
 #. common/mlcustomize/customize_cmdline.ml:329
-#: common/mlcustomize/customize_cmdline.ml:502
+#: common/mlcustomize/customize_cmdline.ml:508
 msgid "DIR"
 msgstr "КАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:511
-#, fuzzy
-#| msgid "SELinux relabelling"
+#: common/mlcustomize/customize_cmdline.ml:502
 msgid "Defer SELinux relabelling until boot"
-msgstr "Зміна міток SELinux"
+msgstr "Відкласти повторне встановлення міток SELinux до завантаження"
 
 #: common/mlcustomize/customize_cmdline.ml:244
 msgid "Delete a file or directory"
@@ -672,7 +673,7 @@ msgstr "Вилучаємо: %s"
 msgid "Display brief help"
 msgstr "Показати коротку довідку"
 
-#: common/mltools/tools_utils.ml:388
+#: common/mltools/tools_utils.ml:389
 msgid "Display version and exit"
 msgstr "Вивести версію та вийти"
 
@@ -680,15 +681,15 @@ msgstr "Вивести версію та вийти"
 msgid "Do not relabel files with correct SELinux labels"
 msgstr "Не змінити мітки файлів на коректні мітки SELinux"
 
-#: v2v/v2v.ml:257 inspector/inspector.ml:185 in-place/in_place.ml:199
+#: v2v/v2v.ml:251 inspector/inspector.ml:185 in-place/in_place.ml:197
 msgid "Don't trim filesystems before conversion"
 msgstr "Не обрізати файлові системи до перетворення"
 
-#: common/mltools/tools_utils.ml:392
+#: common/mltools/tools_utils.ml:393
 msgid "Don’t print progress messages"
 msgstr "Не виводити повідомлень щодо поступу"
 
-#: common/mltools/tools_utils.ml:423
+#: common/mltools/tools_utils.ml:428
 msgid "Don’t turn off echo for passphrases"
 msgstr "Не вимикати луна-повторення у паролях"
 
@@ -700,19 +701,17 @@ msgstr "Редагувати файл за допомогою виразу Perl"
 msgid "Editing: %s"
 msgstr "Редагування: %s"
 
-#: common/mltools/tools_utils.ml:389
+#: common/mltools/tools_utils.ml:390
 msgid "Enable libguestfs debugging messages"
 msgstr "Увімкнути діагностичні повідомлення libguestfs"
 
-#: common/mltools/tools_utils.ml:390
+#: common/mltools/tools_utils.ml:391
 msgid "Enable tracing of libguestfs calls"
 msgstr "Увімкнути трасування викликів libguestfs"
 
-#: common/mlcustomize/customize_cmdline.ml:505
-#, fuzzy
-#| msgid "SELinux relabelling"
+#: common/mlcustomize/customize_cmdline.ml:511
 msgid "Exclude directories from SELinux relabelling"
-msgstr "Зміна міток SELinux"
+msgstr "Виключити каталоги з повторного встановлення міток SELinux"
 
 #: output/output_ovirt.ml:77
 msgid "Export Storage Domain"
@@ -748,8 +747,8 @@ msgstr "ФАЙЛ:РЯДОК"
 msgid "FILENAME"
 msgstr "НАЗВА_ФАЙЛА"
 
-#. in-place/in_place.ml:392
-#: v2v/v2v.ml:585 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:385
+#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr "Завершуємо"
 
@@ -757,11 +756,11 @@ msgstr "Завершуємо"
 msgid "HOSTNAME"
 msgstr "НАЗВА_ВУЗЛА"
 
-#: v2v/v2v.ml:263 inspector/inspector.ml:191 in-place/in_place.ml:203
+#: v2v/v2v.ml:257 inspector/inspector.ml:191 in-place/in_place.ml:201
 msgid "How to choose root filesystem"
 msgstr "Як вибрати кореневу файлову систему"
 
-#: common/mltools/tools_utils.ml:177
+#: common/mltools/tools_utils.ml:178
 msgid ""
 "If reporting bugs, run %s with debugging enabled and include the complete "
 "output:\n"
@@ -789,8 +788,8 @@ msgstr "Вставити агент гостьової системи QEMU до 
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr "Вставити драйвери virtio-win до гостьової системи Windows"
 
-#. in-place/in_place.ml:185
-#: v2v/v2v.ml:225 open/open.ml:80 inspector/inspector.ml:173
+#. in-place/in_place.ml:183
+#: v2v/v2v.ml:219 open/open.ml:80 inspector/inspector.ml:173
 msgid "Input format"
 msgstr "Формат вхідних даних"
 
@@ -838,7 +837,7 @@ msgstr ""
 "більше\n"
 "про ці параметри.\n"
 
-#: v2v/v2v.ml:231 open/open.ml:86 inspector/inspector.ml:179
+#: v2v/v2v.ml:225 open/open.ml:86 inspector/inspector.ml:179
 msgid "Input transport"
 msgstr "Вхідне передавання"
 
@@ -862,8 +861,8 @@ msgstr "Встановлюємо пакунки: %s"
 msgid "LOCALPATH:REMOTEDIR"
 msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 
-#. in-place/in_place.ml:183
-#: v2v/v2v.ml:223 open/open.ml:78 inspector/inspector.ml:171
+#. in-place/in_place.ml:181
+#: v2v/v2v.ml:217 open/open.ml:78 inspector/inspector.ml:171
 msgid "Libvirt URI"
 msgstr "Адреса libvirt"
 
@@ -877,7 +876,7 @@ msgstr "Компонування: %s -> %s"
 msgid "METHOD"
 msgstr "МЕТОД"
 
-#: common/mltools/tools_utils.ml:429
+#: common/mltools/tools_utils.ml:434
 msgid "Make output machine readable"
 msgstr "Зробити машину виведення придатною до читання"
 
@@ -885,16 +884,16 @@ msgstr "Зробити машину виведення придатною до �
 msgid "Making directory: %s"
 msgstr "Створюємо каталог: %s"
 
-#: v2v/v2v.ml:235 inspector/inspector.ml:181 in-place/in_place.ml:191
+#: v2v/v2v.ml:229 inspector/inspector.ml:181 in-place/in_place.ml:189
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 "Пов'язати NIC із мережею або містком чи пов'язати із ним статичну IP-адресу"
 
-#: v2v/v2v.ml:215 inspector/inspector.ml:163 in-place/in_place.ml:175
+#: v2v/v2v.ml:209 inspector/inspector.ml:163 in-place/in_place.ml:173
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr "Відобразити місток «in» на «out»"
 
-#: v2v/v2v.ml:239 inspector/inspector.ml:187 in-place/in_place.ml:195
+#: v2v/v2v.ml:233 inspector/inspector.ml:187 in-place/in_place.ml:193
 msgid "Map network ‘in’ to ‘out’"
 msgstr "Пов'язати мережу «in» із мережею «out»"
 
@@ -935,7 +934,7 @@ msgstr ""
 "Windows. Отримати цей файл можна зібравши rhsrvany (https://github.com/"
 "rwmjones/rhsrvany)."
 
-#: v2v/v2v.ml:245
+#: v2v/v2v.ml:239
 msgid "Output hypervisor connection"
 msgstr "Вивести з'єднання гіпервізора"
 
@@ -1075,11 +1074,11 @@ msgstr "ПРАВА_ДОСТУПУ:ФАЙЛ"
 msgid "PKG,PKG.."
 msgstr "ПАКУНОК,ПАКУНОК.."
 
-#: v2v/v2v.ml:272 in-place/in_place.ml:212
+#: v2v/v2v.ml:266 in-place/in_place.ml:210
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
 msgstr "Перевага «virtio-blk» або «virtio-scsi»"
 
-#: v2v/v2v.ml:261 in-place/in_place.ml:201
+#: v2v/v2v.ml:255 in-place/in_place.ml:199
 msgid "Print source and stop"
 msgstr "Вивести джерело і припинити обробку"
 
@@ -1087,7 +1086,7 @@ msgstr "Вивести джерело і припинити обробку"
 msgid "Read customize commands from file"
 msgstr "Прочитати команди налаштовування з файла"
 
-#: common/mltools/tools_utils.ml:424
+#: common/mltools/tools_utils.ml:429
 msgid "Read passphrases from stdin"
 msgstr "Читати паролі зі стандартного введення (stdin)"
 
@@ -1099,7 +1098,7 @@ msgstr "Рекурсивно обрізати усі файли у катало�
 msgid "Recursively truncating: %s"
 msgstr "Рекурсивно обрізаємо: %s"
 
-#: v2v/v2v.ml:249
+#: v2v/v2v.ml:243
 msgid "Rename guest when converting"
 msgstr "Перейменувати гостьову систему під час перетворення"
 
@@ -1123,7 +1122,7 @@ msgstr "Виконати скрипт у образі диска"
 msgid "Run touch on a file"
 msgstr "Обробити файл за допомогою touch"
 
-#: v2v/v2v.ml:259
+#: v2v/v2v.ml:253
 msgid "Run up to N instances of nbdcopy in parallel"
 msgstr "Запускати паралельно до N екземплярів nbdcopy"
 
@@ -1145,7 +1144,7 @@ msgstr "Виконуємо: %s"
 msgid "SCRIPT"
 msgstr "СКРИПТ"
 
-#: common/mltools/tools_utils.ml:425
+#: common/mltools/tools_utils.ml:430
 #: common/mlcustomize/customize_cmdline.ml:359
 msgid "SELECTOR"
 msgstr "СЕЛЕКТОР"
@@ -1155,10 +1154,8 @@ msgid "SELinux relabelling"
 msgstr "Зміна міток SELinux"
 
 #: common/mlcustomize/customize_run.ml:367
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "SELinux relabelling deferred to first boot"
-msgstr "Зміна міток SELinux"
+msgstr "Повторне встановлення міток SELinux відкладено до першого завантаження"
 
 #. common/mlcustomize/customize_cmdline.ml:222
 #: common/mlcustomize/customize_cmdline.ml:336
@@ -1189,49 +1186,41 @@ msgstr "Витираємо файл журналу"
 msgid "Scrubbing: %s"
 msgstr "Витираємо: %s"
 
-#: v2v/v2v.ml:213
-msgid "Set bandwidth dynamically from file"
-msgstr "Встановити ширину каналу динамічно з файла"
-
-#: v2v/v2v.ml:211
-msgid "Set bandwidth to bits per sec"
-msgstr "Встановити ширину каналу у бітах за секунду"
-
-#. in-place/in_place.ml:181
-#: v2v/v2v.ml:221 open/open.ml:76 inspector/inspector.ml:169
+#. in-place/in_place.ml:179
+#: v2v/v2v.ml:215 open/open.ml:76 inspector/inspector.ml:169
 msgid "Set input mode (default: libvirt)"
 msgstr "Встановити режим введення даних (типовий: libvirt)"
 
-#: v2v/v2v.ml:237 inspector/inspector.ml:183 in-place/in_place.ml:193
+#: v2v/v2v.ml:231 inspector/inspector.ml:183 in-place/in_place.ml:191
 msgid "Set memory size"
 msgstr "Встановити розмір пам'яті"
 
-#: v2v/v2v.ml:265 inspector/inspector.ml:193 in-place/in_place.ml:205
+#: v2v/v2v.ml:259 inspector/inspector.ml:193 in-place/in_place.ml:203
 msgid "Set number of vCPUs"
 msgstr "Встановити кількість віртуальних процесорів"
 
-#. in-place/in_place.ml:187
-#: v2v/v2v.ml:227 open/open.ml:82 inspector/inspector.ml:175
+#. in-place/in_place.ml:185
+#: v2v/v2v.ml:221 open/open.ml:82 inspector/inspector.ml:175
 msgid "Set option for input mode"
 msgstr "Встановити варіант для режиму вхідних даних"
 
-#: v2v/v2v.ml:251
+#: v2v/v2v.ml:245
 msgid "Set option for output mode"
 msgstr "Встановити варіант для режиму виведення"
 
-#: v2v/v2v.ml:243
+#: v2v/v2v.ml:237
 msgid "Set output allocation mode"
 msgstr "Встановити режим отримання пам’яті для виведення даних"
 
-#: v2v/v2v.ml:247
+#: v2v/v2v.ml:241
 msgid "Set output format"
 msgstr "встановити формат виведення даних"
 
-#: v2v/v2v.ml:241
+#: v2v/v2v.ml:235
 msgid "Set output mode (default: libvirt)"
 msgstr "Встановити режим виведення (типовий: libvirt)"
 
-#: v2v/v2v.ml:255
+#: v2v/v2v.ml:249
 msgid "Set output storage location"
 msgstr "Встановити розташування сховища виведених даних"
 
@@ -1239,7 +1228,7 @@ msgstr "Встановити розташування сховища вивед�
 msgid "Set password crypto"
 msgstr "Встановити алгоритм шифрування пароля"
 
-#: common/mltools/tools_utils.ml:433
+#: common/mltools/tools_utils.ml:438
 msgid "Set program name"
 msgstr "Встановити назву програми"
 
@@ -1255,7 +1244,7 @@ msgstr "Встановити типовий часовий пояс"
 msgid "Set the hostname"
 msgstr "Встановити назву вузла"
 
-#: inspector/inspector.ml:189 in-place/in_place.ml:197
+#: inspector/inspector.ml:189 in-place/in_place.ml:195
 msgid "Set the output filename"
 msgstr "Встановити назву файла результатів"
 
@@ -1287,20 +1276,20 @@ msgstr "Встановлюємо ідентифікатор комп'ютера 
 msgid "Setting the timezone: %s"
 msgstr "Встановлюємо часовий пояс: %s"
 
-#: v2v/v2v.ml:495
+#: v2v/v2v.ml:485
 msgid "Setting up the destination: %s"
 msgstr "Налаштовуємо призначення: %s"
 
-#. in-place/in_place.ml:356
-#: v2v/v2v.ml:471 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:349
+#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
 msgstr "Налаштовуємо джерело: %s"
 
-#: v2v/v2v.ml:477 in-place/in_place.ml:362
+#: v2v/v2v.ml:467 in-place/in_place.ml:355
 msgid "Source guest information (--print-source option):\n"
 msgstr "Дані щодо гостьової системи джерела (параметр --print-source):\n"
 
-#: common/mltools/tools_utils.ml:425
+#: common/mltools/tools_utils.ml:430
 msgid "Specify a LUKS key"
 msgstr "Вказати ключ LUKS"
 
@@ -1316,7 +1305,7 @@ msgstr "ПРИЗНАЧЕННЯ:ПОСИЛАННЯ[:ПОСИЛАННЯ..]"
 msgid "TIMEZONE"
 msgstr "ЧАСОВИЙ_ПОЯС"
 
-#: v2v/v2v.ml:205
+#: v2v/v2v.ml:203
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr "Параметр --in-place замінено на програму «virt-v2v-in-place»"
@@ -1349,7 +1338,7 @@ msgstr ""
 "передавання паролів не передбачено в oVirt. Тому перетворений дисплей "
 "гостьової системи не вимагатиме окремого пароля для встановлення з’єднання."
 
-#: input/input_vmx.ml:111
+#: input/input_vmx.ml:112
 msgid ""
 "This transport does not support guests with snapshots. Either collapse the "
 "snapshots for this guest and try the conversion again, or use one of the "
@@ -1410,24 +1399,24 @@ msgstr "Вивантажити локальний файл у систему п�
 msgid "Uploading: %s to %s"
 msgstr "Вивантажуємо: %s до %s"
 
-#: common/mltools/tools_utils.ml:394
+#: common/mltools/tools_utils.ml:395
 msgid "Use ANSI colour sequences even if not tty"
 msgstr "Використовувати послідовності ANSI для кольорів, навіть якщо це не tty"
 
-#. in-place/in_place.ml:189
-#: v2v/v2v.ml:229 open/open.ml:84 inspector/inspector.ml:177
+#. in-place/in_place.ml:187
+#: v2v/v2v.ml:223 open/open.ml:84 inspector/inspector.ml:177
 msgid "Use password from file to connect to input hypervisor"
 msgstr "Скористатися паролем з файла для з'єднання із вхідним гіпервізором"
 
-#: v2v/v2v.ml:253
+#: v2v/v2v.ml:247
 msgid "Use password from file to connect to output hypervisor"
 msgstr "Скористатися паролем з файла для з'єднання із вихідним гіпервізором"
 
-#: v2v/v2v.ml:233
+#: v2v/v2v.ml:227
 msgid "Use virt-v2v-in-place instead"
 msgstr "Скористайтеся краще virt-v2v-in-place"
 
-#: common/mltools/tools_utils.ml:395
+#: common/mltools/tools_utils.ml:396
 msgid "Wrap log messages even if not tty"
 msgstr "Переносити рядки повідомлень журналу, навіть якщо це не tty"
 
@@ -1526,15 +1515,15 @@ msgstr "не вдалося отримати список можливостей
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr "не вдалося отримати список можливостей гіпервізора libvirt: %s"
 
-#: v2v/v2v.ml:110 inspector/inspector.ml:99 in-place/in_place.ml:107
+#: v2v/v2v.ml:108 inspector/inspector.ml:99 in-place/in_place.ml:105
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr "не вдалося обробити параметр --mac \"%s\""
 
-#: v2v/v2v.ml:134 inspector/inspector.ml:123 in-place/in_place.ml:131
+#: v2v/v2v.ml:132 inspector/inspector.ml:123 in-place/in_place.ml:129
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr "Не вдалося обробити --mac ip %s: здається, «%s» не є IP-адресою"
 
-#: v2v/v2v.ml:148 inspector/inspector.ml:137 in-place/in_place.ml:145
+#: v2v/v2v.ml:146 inspector/inspector.ml:137 in-place/in_place.ml:143
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr "не вдалося обробити поле довжини префікса --mac ip як ціле число: %s"
 
@@ -1782,11 +1771,11 @@ msgid "error unpacking %s, see earlier error messages"
 msgstr ""
 "помилка під час розпаковування %s, див. попередні повідомлення щодо помилок"
 
-#: common/mltools/tools_utils.ml:251
+#: common/mltools/tools_utils.ml:252
 msgid "exception: %s"
 msgstr "виключення: %s"
 
-#: common/mltools/tools_utils.ml:458
+#: common/mltools/tools_utils.ml:463
 msgid "exited with error %d"
 msgstr "завершено роботу з помилкою %d"
 
@@ -1801,7 +1790,7 @@ msgid ""
 msgstr ""
 "очікуємо, що вираз XML поверне ціле число (вираз: %s, відповідний рядок: %s)"
 
-#: common/mltools/tools_utils.ml:443
+#: common/mltools/tools_utils.ml:448
 msgid "external command"
 msgstr "зовнішня команда"
 
@@ -1843,7 +1832,7 @@ msgstr ""
 "не вдалося пройти перевірки віртуальної машини; див. попередні повідомлення "
 "про помилки"
 
-#: common/mltools/tools_utils.ml:242
+#: common/mltools/tools_utils.ml:243
 msgid "failure: %s"
 msgstr "помилка: %s"
 
@@ -1859,7 +1848,7 @@ msgstr ""
 "firstboot: невідома версія старого файла firstboot.service %s (md5=%s), його "
 "не буде вилучено"
 
-#: common/mltools/tools_utils.ml:261
+#: common/mltools/tools_utils.ml:262
 msgid "generated by %s %s"
 msgstr "створено за допомогою %s %s"
 
@@ -1892,7 +1881,7 @@ msgstr "підтримки типу гостьової системи %s не п
 msgid "guest type %s/%s is not supported"
 msgstr "підтримки типу гостьової системи %s/%s не передбачено"
 
-#: common/mltools/tools_utils.ml:752
+#: common/mltools/tools_utils.ml:757
 msgid ""
 "host (%s/%s) and guest (%s/%s) are not compatible, so you cannot use command "
 "line options that involve running commands in the guest.  Use --firstboot "
@@ -1958,8 +1947,8 @@ msgstr ""
 "дисків, які зберігаються на віддалених блокових пристроях. Див. підручник з "
 "virt-v2v-input-xen(1), розділ «Xen or ssh conversions from block devices»."
 
-#. in-place/in_place.ml:411
-#: v2v/v2v.ml:604 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:404
+#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1981,15 +1970,15 @@ msgstr ""
 "Також ознайомтеся із підручником з virt-v2v(1), розділ «Minimum free space "
 "check in the host» («Мінімальний розмір вільного місця у основній системі»)."
 
-#: common/mltools/tools_utils.ml:249
+#: common/mltools/tools_utils.ml:250
 msgid "internal error: Not_found exception was thrown"
 msgstr "внутрішня помилка: надіслано виключення Not_found"
 
-#: common/mltools/tools_utils.ml:246
+#: common/mltools/tools_utils.ml:247
 msgid "internal error: assertion failed at %s, line %d, char %d"
 msgstr "внутрішня помилка: помилка оцінки у %s, рядок %d, символ %d"
 
-#: common/mltools/tools_utils.ml:244
+#: common/mltools/tools_utils.ml:245
 msgid "internal error: invalid argument: %s"
 msgstr "внутрішня помилка: некоректний аргумент: %s"
 
@@ -2007,21 +1996,21 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "внутрішня помилка: формальний вираз не відповідає «%s»"
 
-#: v2v/v2v.ml:562
+#: v2v/v2v.ml:552
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 "внутрішня помилка: wait повернуто неочікуваний для ідентифікатора процесу %d "
 "стан «%s»"
 
-#: v2v/v2v.ml:119 inspector/inspector.ml:108 in-place/in_place.ml:116
+#: v2v/v2v.ml:117 inspector/inspector.ml:108 in-place/in_place.ml:114
 msgid "invalid --mac ip option"
 msgstr "некоректний параметр --mac ip"
 
-#: v2v/v2v.ml:103 inspector/inspector.ml:92 in-place/in_place.ml:100
+#: v2v/v2v.ml:101 inspector/inspector.ml:92 in-place/in_place.ml:98
 msgid "invalid -b/--bridge parameter"
 msgstr "некоректний параметр -b/--bridge"
 
-#: v2v/v2v.ml:95 inspector/inspector.ml:84 in-place/in_place.ml:92
+#: v2v/v2v.ml:93 inspector/inspector.ml:84 in-place/in_place.ml:90
 msgid "invalid -n/--network parameter"
 msgstr "некоректний параметр -n/--network"
 
@@ -2036,7 +2025,7 @@ msgstr ""
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "некоректний формат параметра «--%s», див. сторінку підручника"
 
-#: common/mltools/tools_utils.ml:362
+#: common/mltools/tools_utils.ml:363
 msgid "invalid format string for --machine-readable: %s"
 msgstr "некоректний рядок форматування для --machine-readable: %s"
 
@@ -2048,15 +2037,15 @@ msgstr "некоректна назва файла вхідних даних (%s
 msgid "invalid offset returned by tar: %S"
 msgstr "tar повернуто некоректний відступ: %S"
 
-#: common/mltools/tools_utils.ml:377
+#: common/mltools/tools_utils.ml:378
 msgid "invalid output fd for --machine-readable: %s"
 msgstr "некоректне виведення fd для --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:379
+#: common/mltools/tools_utils.ml:380
 msgid "invalid output for --machine-readable: %s"
 msgstr "некоректне виведення для --machine-readable: %s"
 
-#: common/mltools/tools_utils.ml:371
+#: common/mltools/tools_utils.ml:372
 msgid "invalid output stream for --machine-readable: %s"
 msgstr "некоректне потік виведення для --machine-readable: %s"
 
@@ -2084,11 +2073,11 @@ msgstr "некоректне значення vmw:CoresPerSocket < кілько�
 msgid "kernel %s is not under grub tree %s"
 msgstr "ядро %s перебуває поза ієрархією grub %s"
 
-#: common/mltools/tools_utils.ml:542 common/mltools/tools_utils.ml:461
+#: common/mltools/tools_utils.ml:547 common/mltools/tools_utils.ml:466
 msgid "killed by signal %d"
 msgstr "припинено за допомогою сигналу %d"
 
-#: common/mltools/tools_utils.ml:240
+#: common/mltools/tools_utils.ml:241
 msgid "libguestfs error: %s"
 msgstr "помилка libguestfs: %s"
 
@@ -2261,11 +2250,10 @@ msgstr ""
 "використання «-o ovirt-upload». Див. підручник virt-v2v-output-ovirt(1)."
 
 #: input/input_disk.ml:51
-#, fuzzy
-#| msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgid "nbdkit must be >= 1.44.0 for input from local files"
 msgstr ""
-"nbdkit має бути версії >= 1.45.11 для використання вхідних даних від VDDK"
+"nbdkit має бути версії >= 1.44.0 для використання вхідних даних з локальних "
+"файлів"
 
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
@@ -2389,7 +2377,7 @@ msgstr ""
 msgid "no python binary called ‘%s’ can be found on the $PATH"
 msgstr "не знайдено виконуваного файла python із назвою «%s» у $PATH"
 
-#: input/select_input.ml:106
+#: input/select_input.ml:110
 msgid ""
 "no support for remote libvirt connections to '-ic %s'.  The conversion may "
 "fail when it tries to read the source disks."
@@ -2563,32 +2551,33 @@ msgstr ""
 "virt-v2v певним чином працюють не так, як належить. Будь ласка, повідомте "
 "про цю ваду, надавши повний діагностичний журнал."
 
-#: common/mltools/tools_utils.ml:420 common/options/keys.c:306
+#: common/mltools/tools_utils.ml:425 common/options/keys.c:310
 #, c-format
 msgid "selector '%s': invalid TYPE"
 msgstr "вибір «%s»: некоректне значення TYPE"
 
-#: common/mltools/tools_utils.ml:412 common/options/keys.c:296
+#: common/mltools/tools_utils.ml:413 common/options/keys.c:300
 #, c-format
 msgid "selector '%s': missing FILENAME, or too many fields"
 msgstr "вибір «%s»: пропущено FILENAME або забагато полів"
 
-#: common/mltools/tools_utils.ml:402 common/options/keys.c:274
+#: common/mltools/tools_utils.ml:403 common/options/keys.c:278
 #, c-format
 msgid "selector '%s': missing ID"
 msgstr "вибір «%s»: пропущено ідентифікатор"
 
-#: common/mltools/tools_utils.ml:407 common/options/keys.c:287
+#: common/mltools/tools_utils.ml:408 common/options/keys.c:291
 #, c-format
 msgid "selector '%s': missing KEY_STRING, or too many fields"
 msgstr "вибір «%s»: пропущено KEY_STRING або забагато полів"
 
-#: common/mltools/tools_utils.ml:404 common/options/keys.c:281
+#: common/mltools/tools_utils.ml:405 common/options/keys.c:285
 #, c-format
 msgid "selector '%s': missing TYPE"
 msgstr "вибір «%s»: пропущено TYPE"
 
-#: common/mltools/tools_utils.ml:416 common/options/keys.c:304
+#: common/mltools/tools_utils.ml:421 common/mltools/tools_utils.ml:417
+#: common/options/keys.c:308
 #, c-format
 msgid "selector '%s': too many fields"
 msgstr "вибір «%s»: забагато полів"
@@ -2629,8 +2618,8 @@ msgstr "ssh-inject: файл відкритого ключа (%s) є порож�
 msgid "ssh-inject: the user %s does not exist on the guest"
 msgstr "ssh-inject: запису користувача %s у гостьовій системі не існує"
 
-#. common/mltools/tools_utils.ml:464
-#: lib/utils.ml:36 common/mltools/tools_utils.ml:545
+#. common/mltools/tools_utils.ml:469
+#: lib/utils.ml:36 common/mltools/tools_utils.ml:550
 msgid "stopped by signal %d"
 msgstr "завершено за допомогою сигналу %d"
 
@@ -2876,7 +2865,7 @@ msgstr "невідомий параметр -i: %s"
 msgid "unknown -o option: %s"
 msgstr "невідомий параметр -o: %s"
 
-#: v2v/v2v.ml:169
+#: v2v/v2v.ml:167
 msgid "unknown -oa option: %s"
 msgstr "невідомий параметр -oa: %s"
 
@@ -2892,7 +2881,7 @@ msgstr "невідоме значення Config:firmware %s (мало бути 
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr "невідомий варіант Windows 10: %s (%s)"
 
-#: v2v/v2v.ml:328 in-place/in_place.ml:265
+#: v2v/v2v.ml:322 in-place/in_place.ml:263
 msgid "unknown block driver ‘--block-driver %s’"
 msgstr "невідомий блоковий драйвер «--block-driver %s»"
 
@@ -2904,7 +2893,7 @@ msgstr "невідоме значення мікропрограми, «%s», п
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "невідома гостьова операційна система: %s %s %d.%d %s (%s)"
 
-#: v2v/v2v.ml:340 open/open.ml:132 inspector/inspector.ml:248
+#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
 msgid "unknown input transport ‘-it %s’"
 msgstr "невідомий вхідний канал передавання «-it %s»"
 
@@ -3057,7 +3046,7 @@ msgstr "зачекати на зміну стану тому cinder на «до�
 msgid "waiting for cinder volume %s to attach to the conversion appliance"
 msgstr "очікуємо на долучення тому cinder %s до базової системи перетворення"
 
-#: open/open.ml:136
+#: open/open.ml:137
 msgid "you must supply the --run parameter"
 msgstr "вам слід передати параметр --run"
 
@@ -3260,7 +3249,12 @@ msgstr "Введіть ключ або пароль («%s»): "
 msgid "size_t overflow"
 msgstr "переповнення size_t"
 
-#: common/options/keys.c:235
+#: common/options/keys.c:228
+#, c-format
+msgid "encrypted device %s matched --key ...:error"
+msgstr ""
+
+#: common/options/keys.c:239
 #, c-format
 msgid "could not read key from user"
 msgstr "не вдалося прочитати ключ з запису користувача"
@@ -3331,6 +3325,12 @@ msgstr "Роботу %s завершено за допомогою сигнал�
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "Роботу %s завершено з невідомої причини (стан %d)"
+
+#~ msgid "Set bandwidth dynamically from file"
+#~ msgstr "Встановити ширину каналу динамічно з файла"
+
+#~ msgid "Set bandwidth to bits per sec"
+#~ msgstr "Встановити ширину каналу у бітах за секунду"
 
 #~ msgid "disks on the command line have mixed formats"
 #~ msgstr "диски у командному рядку мають мішані формати"
