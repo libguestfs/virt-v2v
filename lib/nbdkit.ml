@@ -105,6 +105,7 @@ type cmd = {
   mutable env : (string * string) list;
   mutable debug_flags : (string * string) list;
   mutable readonly : bool;
+  mutable timeout : int; (* seconds *)
   mutable threads : int;
   verbose : bool;
 }
@@ -118,6 +119,7 @@ let create ?(quiet = false) ?name plugin = {
   debug_flags = [];
   readonly = false;
   threads = 16;
+  timeout = 30;
   verbose = not quiet && verbose ()
 }
 
@@ -126,6 +128,7 @@ let add_debug_flag cmd name value =
 
 let set_readonly cmd v = cmd.readonly <- v
 let set_threads cmd v = cmd.threads <- v
+let set_timeout cmd v = cmd.timeout <- v
 let add_filter cmd v = cmd.filters <- v :: cmd.filters
 let add_arg cmd key value = cmd.args <- (key, value) :: cmd.args
 let add_args cmd kvs = cmd.args <- List.rev kvs @ cmd.args
@@ -218,7 +221,7 @@ let run_unix socket cmd =
   (* Wait for the pidfile to appear so we know that nbdkit
    * is listening for requests.
    *)
-  if not (wait_for_file pidfile 30) then (
+  if not (wait_for_file pidfile cmd.timeout) then (
     if verbose () then
       error (f_"nbdkit did not start up.  See previous debugging messages for problems.")
     else
