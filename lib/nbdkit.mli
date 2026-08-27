@@ -94,6 +94,10 @@ val set_threads : cmd -> int -> unit
 (** Set the number of threads ([--threads] option).
     The default is 16. *)
 
+val set_timeout : cmd -> int -> unit
+(** Set the number of seconds to wait for nbdkit to start up.
+    The default is 30 seconds. *)
+
 val add_filter : cmd -> string -> unit
 (** Add a filter.  You may need to use {!probe_filter} first to check
     the filter is installed, otherwise nbdkit will fail to run.

@@ -154,11 +154,10 @@ these settings.
       match options.input_password with
       | None ->
          (* Because we will start nbdkit in the background and then wait
-          * for 30 seconds for it to start up, we cannot use the
-          * password=- feature of nbdkit to read the password
-          * interactively (since in the words of the movie the user has
-          * only "30 seconds to comply").  So in the
-          * AskForPassword case we read the password here.
+          * for it to start up, we cannot use the password=- feature of
+          * nbdkit to read the password interactively (since in the words
+          * of the movie the user has only "30 seconds to comply").  So
+          * in the AskForPassword case we read the password here.
           *)
          printf (f_"%s: enter password for ‘%s’: ") "nfc" user;
          let open Unix in
@@ -230,6 +229,12 @@ See also the virt-v2v-input-vmware(1) manual.")
     (* Helper to create an nbdkit command object. *)
     let create_nbdkit_nfc ?name () =
       let cmd = Nbdkit.create ?name "nfc" in
+
+      (* Work around the long time that nbdkit-nfc-plugin takes to
+       * start up when the server is distant.  Plan to fix this properly
+       * in the plugin sometime (RHEL-249752).
+       *)
+      Nbdkit.set_timeout cmd (5 * 60);
 
       Nbdkit.add_arg cmd "server" server;
       (* I'm pretty sure this was the default with the old transport mode.
