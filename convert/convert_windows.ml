@@ -215,6 +215,11 @@ let convert (g : G.guestfs) source inspect i_firmware
     let msifn s = if PCRE.matches re1 s then PCRE.replace re2 "/x" s else s in
     uninstallation_commands "VMware Tools" matchfn msifn "" in
 
+  (* Locate uninstallation commands for Nutanix VirtIO drivers. *)
+  let nutanix_uninsts =
+    let matchfn s = String.find s "Nutanix VirtIO" != -1 in
+    uninstallation_commands "Nutanix VirtIO" matchfn Fun.id "" in
+
   (*----------------------------------------------------------------------*)
   (* Perform the conversion of the Windows guest. *)
 
@@ -326,7 +331,8 @@ let convert (g : G.guestfs) source inspect i_firmware
 
     unconfigure_xenpv ();
     unconfigure_prltools ();
-    unconfigure_vmwaretools ()
+    unconfigure_vmwaretools ();
+    unconfigure_nutanix_virtio ()
 
   (* [set_reg_val_dword_1 path name] creates a registry key
    * called [name = dword:1] in the registry [path].
@@ -532,6 +538,22 @@ if errorlevel 3010 exit /b 0
         Firstboot.add_firstboot_script g inspect.i_root
           "uninstall VMware Tools" fb_script
     ) vmwaretools_uninst
+
+  and unconfigure_nutanix_virtio () =
+    List.iter (
+      fun uninst ->
+        let fb_script = sprintf
+                          {|@echo off
+
+echo uninstalling Nutanix VirtIO drivers
+rem ERROR_SUCCESS_REBOOT_REQUIRED (3010) is OK too
+%s
+if errorlevel 3010 exit /b 0
+|}
+                          uninst in
+        Firstboot.add_firstboot_script g inspect.i_root
+          "uninstall Nutanix VirtIO" fb_script
+    ) nutanix_uninsts
 
   and update_system_hive reg =
     (* Update the SYSTEM hive.  When this function is called the hive has
