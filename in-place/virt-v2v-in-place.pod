@@ -14,6 +14,11 @@ virt-v2v-in-place - Convert a guest to use KVM in-place
                    guest
                    [-O output.xml]
 
+ virt-v2v-in-place -i vmx [other -i* options]
+                   [virt-customize options]
+                   guest.vmx
+                   [-O output.xml]
+
 =head1 DESCRIPTION
 
 Virt-v2v-in-place converts a single guest from a foreign hypervisor to
@@ -36,6 +41,11 @@ This command will do an in-place conversion of F<filename.img>:
 If the guest has been copied to local libvirt then:
 
  virt-v2v-in-place -i libvirt guest
+
+If you have a VMware F<.vmx> file (and associated F<.vmdk> disk
+images) then:
+
+ virt-v2v-in-place -i vmx guest.vmx
 
 =head2 Output XML
 
@@ -137,6 +147,15 @@ In this mode you have to pass a libvirt XML file on the command line.
 This file is read in order to get metadata about the source guest
 (such as its name, amount of memory), and also to locate the input
 disks.  See L</Minimal XML for -i libvirtxml option> below.
+
+=item B<-i> B<vmx>
+
+Set the input method to I<vmx>.
+
+In this mode you can read a VMware F<.vmx> file directly.  This is
+useful when VMware VMs are stored on an NFS server which you can mount
+directly, or where you have access by SSH to an ESXi hypervisor.  See
+L<virt-v2v-input-vmware(1)>.
 
 =item B<-i> B<local>
 

@@ -39,9 +39,6 @@ module VMX = struct
     if options.input_options <> [] then
       error (f_"no -io (input options) are allowed here");
 
-    if not options.read_only then
-      error (f_"in-place mode does not work with VMX source");
-
     let vmx_source =
       match args with
       | [arg] ->
@@ -74,7 +71,7 @@ module VMX = struct
              let cmd = QemuNBD.create
                          (absolute_path_from_other_file vmx_filename
                             filename) in
-             QemuNBD.set_snapshot cmd true; (* protective overlay *)
+             QemuNBD.set_snapshot cmd options.read_only; (* protective overlay *)
              QemuNBD.set_format cmd (Some "vmdk");
              let _, pid = QemuNBD.run_unix socket cmd in
              On_exit.kill pid;
@@ -117,7 +114,7 @@ module VMX = struct
                          virt-v2v-input-vmware(1) section \"NOTES\".");
 
              let cor = dir // "convert" in
-             let nbdkit = Nbdkit_ssh.create_ssh ~cor ?password
+             let nbdkit = Nbdkit_ssh.create_ssh ~read_only:options.read_only ~cor ?password
                             ~server ?port ?user flat_vmdk in
              let _, pid = Nbdkit.run_unix socket nbdkit in
              On_exit.kill pid;

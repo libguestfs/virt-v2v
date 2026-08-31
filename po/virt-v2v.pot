@@ -1604,10 +1604,6 @@ msgstr ""
 msgid "in-place mode does not work with VDDK source"
 msgstr ""
 
-#: input/input_vmx.ml:43
-msgid "in-place mode does not work with VMX source"
-msgstr ""
-
 #: input/input_xen_ssh.ml:50
 msgid "in-place mode does not work with Xen over SSH source"
 msgstr ""
