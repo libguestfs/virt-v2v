@@ -211,12 +211,13 @@ these settings.
     if not (Nbdkit.probe_filter "cow") then
       error (f_"nbdkit-cow-filter is not installed or not working");
 
-    (* Check that nbdkit-nfc-plugin is installed and working.  We also
-     * check this later when calling common_create, but this version
-     * has better troubleshooting output.
+    (* Check that nbdkit-nfc-plugin is installed and working.  As a
+     * side effect dump plugin information into the debug output.
      *)
     let error_unless_nbdkit_nfc_working () =
-      let cmd = "nbdkit nfc --dump-plugin >/dev/null" in
+      let cmd =
+        sprintf "nbdkit nfc --dump-plugin >%s"
+          (if verbose () then "&2" else "/dev/null") in
       if Sys.command cmd <> 0 then (
           error (f_"nbdkit nfc plugin is not installed or not working.  It is required if you want to use ‘-it nfc’.
 
