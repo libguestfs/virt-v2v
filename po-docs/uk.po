@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
-"POT-Creation-Date: 2026-08-25 11:09+0100\n"
+"POT-Creation-Date: 2026-09-03 11:50+0100\n"
 "PO-Revision-Date: 2026-08-27 12:43+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Ukrainian <https://translate.fedoraproject.org/projects/"
@@ -124,10 +124,8 @@ msgid ""
 " (at your option) any later version.\n"
 "\n"
 msgstr ""
-" Ця програма є вільним програмним забезпеченням; ви можете поширювати та/"
-"або\n"
-" змінювати її за умов дотримання GNU General Public License утому вигляді, "
-"що\n"
+" Ця програма є вільним програмним забезпеченням; ви можете поширювати та/або\n"
+" змінювати її за умов дотримання GNU General Public License утому вигляді, що\n"
 " оприлюднений Free Software Foundation; версії 2 цієї Ліцензії, або (якщо\n"
 " забажаєте) будь-якої випущеної пізніше.\n"
 "\n"
@@ -160,8 +158,7 @@ msgid ""
 "\n"
 msgstr ""
 " Ви маєте отримати копію GNU General Public License разом з цією програмою;\n"
-" якщо це не так, повідомте про факт за адресою Free Software Foundation, "
-"Inc.,\n"
+" якщо це не так, повідомте про факт за адресою Free Software Foundation, Inc.,\n"
 " Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n"
 "\n"
 
@@ -679,8 +676,8 @@ msgid ""
 "For an overview on the different ways to install packages, see L<virt-"
 "builder(1)/INSTALLING PACKAGES>."
 msgstr ""
-"Огляд різних способів встановлення пакунків наведено у розділі L<virt-builder"
-"(1)/ВСТАНОВЛЕННЯ ПАКУНКІВ>."
+"Огляд різних способів встановлення пакунків наведено у розділі L<virt-"
+"builder(1)/ВСТАНОВЛЕННЯ ПАКУНКІВ>."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:185
@@ -696,8 +693,8 @@ msgid ""
 "hostname.domainname (FQDN) if you want."
 msgstr ""
 "Встановити як назву вузла гостьової системи значення C<НАЗВА_ВУЗЛА>. Якщо "
-"потрібно, можете скористатися форматом із крапкою, «назва_вузла.назва_домену"
-"» (FQDN)."
+"потрібно, можете скористатися форматом із крапкою, "
+"«назва_вузла.назва_домену» (FQDN)."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:190
@@ -1353,8 +1350,8 @@ msgid ""
 "Set the default timezone of the guest to C<TIMEZONE>.  Use a location string "
 "like C<Europe/London>"
 msgstr ""
-"Встановити типовий часовий пояс гостьової системи у значення C<ЧАСОВИЙ_ПОЯС>"
-". Скористайтеся рядком місця у форматі C<Europe/London>"
+"Встановити типовий часовий пояс гостьової системи у значення "
+"C<ЧАСОВИЙ_ПОЯС>. Скористайтеся рядком місця у форматі C<Europe/London>"
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:460
@@ -1535,8 +1532,8 @@ msgstr ""
 "Цей параметр встановлює розмір сектора образу диска. Ви стосується усіх "
 "явним чином доданих після цього параметра дисків. Використання I<--"
 "blocksize> без аргументів перемикає розмір сектора диска на типове значення, "
-"яким, зазвичай, є 512 байтів. Див. також L<guestfs(3)/guestfs_add_drive_opts>"
-"."
+"яким, зазвичай, є 512 байтів. Див. також L<guestfs(3)/"
+"guestfs_add_drive_opts>."
 
 #. type: =item
 #: common/options/key-option.pod:1
@@ -2399,8 +2396,7 @@ msgid ""
 " ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 msgstr ""
-" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/"
-"my%20guest.vmx\n"
+" ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 
 #. type: textblock
@@ -2510,8 +2506,7 @@ msgid ""
 msgstr ""
 " $ virt-v2v \\\n"
 "     -i vmx -it ssh \\\n"
-"     \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" "
-"\\\n"
+"     \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\\n"
 "     -o local -os /var/tmp\n"
 "\n"
 
@@ -2694,8 +2689,7 @@ msgid ""
 " nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.\n"
 "\n"
 msgstr ""
-" nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. "
-"VixError 1 at 1166.\n"
+" nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.\n"
 "\n"
 
 #. type: textblock
@@ -2747,8 +2741,9 @@ msgid ""
 "To verify that you have the correct URL, use the L<virsh(1)> command to list "
 "the guests on the server:"
 msgstr ""
-"Щоб перевірити, що у вас правильна адреса, скористайтеся командою L<virsh"
-"(1)> для отримання списку гостьових систем на сервері vCenter, ось так:"
+"Щоб перевірити, що у вас правильна адреса, скористайтеся командою "
+"L<virsh(1)> для отримання списку гостьових систем на сервері vCenter, ось "
+"так:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:302 docs/virt-v2v-input-vmware.pod:551
@@ -2798,8 +2793,7 @@ msgid ""
 " $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' list --all\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' "
-"list --all\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' list --all\n"
 "\n"
 
 #. type: textblock
@@ -2824,8 +2818,7 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml "
-"\"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml \"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -2968,8 +2961,8 @@ msgid ""
 "verbose messages.  Use ‘virt-v2v -v -x’ as usual to enable verbose messages."
 msgstr ""
 "З бібліотекою VDDK можна працювати у режимі докладних повідомлень, у якому "
-"бібліотека (дуже) докладно повідомляє про свої дії. Скористайтеся командою «"
-"virt-v2v -v -x» у звичний спосіб, щоб увімкнути режим докладних повідомлень."
+"бібліотека (дуже) докладно повідомляє про свої дії. Скористайтеся командою "
+"«virt-v2v -v -x» у звичний спосіб, щоб увімкнути режим докладних повідомлень."
 
 #. type: =head2
 #: docs/virt-v2v-input-vmware.pod:371
@@ -2984,10 +2977,10 @@ msgid ""
 "6.7> (https://bugzilla.redhat.com/1901489).  Upgrade to at least S<VDDK 7> "
 "to resolve the issue."
 msgstr ""
-"Якщо імпортування за допомогою VDDK є повільними, а у відповідь на «virt-"
-"v2v -v -x» система показує багато повідомлень C<NBD_ClientOpen>, ви "
-"зіткнулися із видимою вадою у S<VDDK 6.7> (https://bugzilla.redhat.com/"
-"1901489). Оновлення до S<VDDK 7> має усунути причину вади."
+"Якщо імпортування за допомогою VDDK є повільними, а у відповідь на «virt-v2v "
+"-v -x» система показує багато повідомлень C<NBD_ClientOpen>, ви зіткнулися "
+"із видимою вадою у S<VDDK 6.7> (https://bugzilla.redhat.com/1901489). "
+"Оновлення до S<VDDK 7> має усунути причину вади."
 
 #. type: =head1
 #: docs/virt-v2v-input-vmware.pod:378
@@ -3018,8 +3011,7 @@ msgid ""
 "     -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' "
-"\\\n"
+" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
 "      -ip файл_пароля \\\n"
 "      \"Windows 2003\" \\\n"
 "   -o local -os /var/tmp\n"
@@ -3437,8 +3429,7 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml "
-"\"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi' dumpxml \"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -3496,8 +3487,7 @@ msgid ""
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' "
-"\\\n"
+" $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
 "      -ip файл_пароля \\\n"
 "      \"Windows 2003\" \\\n"
 "   -o local -os /var/tmp\n"
@@ -3590,8 +3580,7 @@ msgid ""
 msgstr ""
 " Віртуальна машина:\n"
 "   Взаємодія:\n"
-"     - Керування гостьовими віртуальними машинами за допомогою програмного "
-"інтерфейсу VIX\n"
+"     - Керування гостьовими віртуальними машинами за допомогою програмного інтерфейсу VIX\n"
 "   Приготування:\n"
 "     - Дозволити доступ до дисків\n"
 "     - Дозволити доступ до дисків лише для читання\n"
@@ -3896,10 +3885,10 @@ msgid ""
 "works from the virt-v2v server to the Xen host.  For example:"
 msgstr ""
 "Якщо ви не використовуєте розпізнавання за паролем, альтернативою є "
-"використання ssh-agent і додавання вашого відкритого ключа ssh до F</root/"
-".ssh/authorized_keys> (у основній системі Xen). Після виконання цих дій вам "
-"слід перевірити, чи працює доступ без пароля з сервера virt-v2v до основної "
-"системи Xen. Приклад:"
+"використання ssh-agent і додавання вашого відкритого ключа ssh до F</"
+"root/.ssh/authorized_keys> (у основній системі Xen). Після виконання цих дій "
+"вам слід перевірити, чи працює доступ без пароля з сервера virt-v2v до "
+"основної системи Xen. Приклад:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-xen.pod:32
@@ -4512,9 +4501,9 @@ msgid ""
 "C<type='volume'>, and the C<E<lt>sourceE<gt>> element must be changed to "
 "include C<pool> and C<volume> attributes:"
 msgstr ""
-"і змініть дві речі: атрибут C<type='file'> слід замінити на C<type='volume'>"
-", а елемент C<E<lt>sourceE<gt>> слід змінити так, щоб у ньому були атрибути "
-"C<pool> і C<volume>:"
+"і змініть дві речі: атрибут C<type='file'> слід замінити на "
+"C<type='volume'>, а елемент C<E<lt>sourceE<gt>> слід змінити так, щоб у "
+"ньому були атрибути C<pool> і C<volume>:"
 
 #. type: verbatim
 #: docs/virt-v2v-output-local.pod:129
@@ -6033,7 +6022,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:65
 msgid "Support conversions to RHV in qcow2 format (Nir Soffer)."
-msgstr "Реалізовано підтримку перетворення до RHV у форматі qcow2 (Nir Soffer)."
+msgstr ""
+"Реалізовано підтримку перетворення до RHV у форматі qcow2 (Nir Soffer)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:67
@@ -6205,7 +6195,8 @@ msgstr "Тестові перетворення Debian 9 і Fedora 29 (Pino Tosc
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:122
 msgid "Various fixes to srcdir != builddir (Pino Toscano)."
-msgstr "Різноманітні виправлення для випадку srcdir != builddir (Pino Toscano)."
+msgstr ""
+"Різноманітні виправлення для випадку srcdir != builddir (Pino Toscano)."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:124
@@ -6437,7 +6428,8 @@ msgstr "L<https://bugzilla.redhat.com/1605242>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-1.42.pod:199
 msgid "Update nbdkit info for vddk in v2v man page"
-msgstr "Оновлено відомості щодо nbdkit для vddk на сторінці підручника щодо v2v"
+msgstr ""
+"Оновлено відомості щодо nbdkit для vddk на сторінці підручника щодо v2v"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-1.42.pod:201
@@ -7006,8 +6998,8 @@ msgid ""
 "nbdcopy command failed when using v2v to convert guest from ESXi6.5 via vddk "
 "> 6.5 + rhv-upload to rhv4.4"
 msgstr ""
-"nbdcopy command failed when using v2v to convert guest from ESXi6.5 via "
-"vddk > 6.5 + rhv-upload to rhv4.4"
+"nbdcopy command failed when using v2v to convert guest from ESXi6.5 via vddk "
+"> 6.5 + rhv-upload to rhv4.4"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:194
@@ -7503,8 +7495,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
 "notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-notes-"
-"1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
+"notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:368
@@ -9399,8 +9391,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
 "notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-notes-"
-"1.42(1)>, L<guestfs-release-notes-1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
+"notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
@@ -11062,8 +11054,8 @@ msgid ""
 "Since OVMF support was only recently added to KVM (in 2014/2015), not all "
 "target environments support UEFI guests yet:"
 msgstr ""
-"Оскільки підтримку OVMF було додано до KVM лише нещодавно (у 2014/2015 роках)"
-", підтримку гостьових систем UEFI передбачено ще не в усіх середовищах "
+"Оскільки підтримку OVMF було додано до KVM лише нещодавно (у 2014/2015 "
+"роках), підтримку гостьових систем UEFI передбачено ще не в усіх середовищах "
 "призначення:"
 
 #. type: =item
@@ -11483,8 +11475,7 @@ msgid ""
 msgstr ""
 " virt-v2v \\\n"
 "   -i vmx -it ssh \\\n"
-"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\"
-"\n"
+"   \"ssh://root@esxi.example.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\\n"
 "   -o local -os /var/tmp\n"
 "\n"
 
@@ -11526,8 +11517,8 @@ msgid ""
 "inside an OpenStack VM (called C<v2v-vm> below), and do:"
 msgstr ""
 "Нехай маємо образ диска з іншого гіпервізору, який слід перетворити для "
-"запуску на OpenStack (підтримку передбачено лише для OpenStack на основі KVM)"
-". Тоді можна запустити virt-v2v у віртуальній машині OpenStack (яку ми "
+"запуску на OpenStack (підтримку передбачено лише для OpenStack на основі "
+"KVM). Тоді можна запустити virt-v2v у віртуальній машині OpenStack (яку ми "
 "називатимемо нижче C<v2v-vm>) ось так:"
 
 #. type: verbatim
@@ -11589,8 +11580,8 @@ msgid ""
 msgstr ""
 "Складнішим способом є створення L<XML libvirt|http://libvirt.org/"
 "formatdomain.html> із описом вхідної гостьової системи (якщо можна якось "
-"отримати XML libvirt з початкового гіпервізора, все стає набагато простішим)"
-". Далі, можна зробити так:"
+"отримати XML libvirt з початкового гіпервізора, все стає набагато "
+"простішим). Далі, можна зробити так:"
 
 #. type: verbatim
 #: docs/virt-v2v.pod:169
@@ -11835,8 +11826,8 @@ msgid ""
 "line.  You may also specify a libvirt connection URI (see I<-ic>)."
 msgstr ""
 "У цьому режимі вам слід вказати назву гостьової системи libvirt або UUID у "
-"рядку команди. Ви також можете вказати адресу з'єднання libvirt (див. I<-ic>)"
-"."
+"рядку команди. Ви також можете вказати адресу з'єднання libvirt (див. I<-"
+"ic>)."
 
 #. type: textblock
 #: docs/virt-v2v.pod:254
@@ -11902,9 +11893,9 @@ msgid ""
 "vmware(1)>."
 msgstr ""
 "У цьому режимі ви можете читати файл OVA VMware. Virt-v2v прочитає файл "
-"маніфесту ova і перевірити томи vmdk на коректність (за контрольними сумами)"
-", а також проаналізує файл ovf, а потім виконає перетворення гостьової "
-"системи. Див. L<virt-v2v-input-vmware(1)>."
+"маніфесту ova і перевірити томи vmdk на коректність (за контрольними "
+"сумами), а також проаналізує файл ovf, а потім виконає перетворення "
+"гостьової системи. Див. L<virt-v2v-input-vmware(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:278
@@ -12231,7 +12222,8 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:395 in-place/virt-v2v-in-place.pod:199
 msgid "This option can be supplied zero or more times."
-msgstr "Цей параметр можна не вказувати або вказувати довільну кількість разів."
+msgstr ""
+"Цей параметр можна не вказувати або вказувати довільну кількість разів."
 
 #. type: textblock
 #: docs/virt-v2v.pod:397 in-place/virt-v2v-in-place.pod:201
@@ -12394,8 +12386,8 @@ msgid ""
 "is uploaded to Glance.  See L<virt-v2v-output-openstack(1)>.  ')"
 msgstr ""
 "Встановити метод виведення до OpenStack Glance. У цьому режимі перетворену "
-"гостьову систему буде вивантажено до Glance. Див. L<virt-v2v-output-openstack"
-"(1)>."
+"гостьову систему буде вивантажено до Glance. Див. L<virt-v2v-output-"
+"openstack(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:462
@@ -12560,8 +12552,8 @@ msgstr "B<-o> B<openstack>"
 msgid ""
 "Set the output method to OpenStack.  See L<virt-v2v-output-openstack(1)>."
 msgstr ""
-"Встановити метод виведення до OpenStack. Див. L<virt-v2v-output-openstack(1)>"
-"."
+"Встановити метод виведення до OpenStack. Див. L<virt-v2v-output-"
+"openstack(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:525
@@ -12811,9 +12803,9 @@ msgid ""
 "compressed qcow2 file.  It is the equivalent to the I<-c> option of L<qemu-"
 "img(1)>."
 msgstr ""
-"Для режимів виведення, де передбачено підтримку формату qcow2 (I<-of qcow2>)"
-", записує стиснений файл qcow2. Є еквівалентом параметра I<-c> у L<qemu-img"
-"(1)>."
+"Для режимів виведення, де передбачено підтримку формату qcow2 (I<-of "
+"qcow2>), записує стиснений файл qcow2. Є еквівалентом параметра I<-c> у "
+"L<qemu-img(1)>."
 
 #. type: =item
 #: docs/virt-v2v.pod:611
@@ -13845,9 +13837,9 @@ msgid ""
 "this happens to an overlay placed over the guest data, it does B<not> affect "
 "the source in any way."
 msgstr ""
-"Для виконання цього завдання virt-v2v використовує неруйнівну дію L<fstrim"
-"(8)>. Оскільки відповідна програма виконує дії із накладкою над даними "
-"гостьової системи, початкова система B<ніяким чином> не змінюється."
+"Для виконання цього завдання virt-v2v використовує неруйнівну дію "
+"L<fstrim(8)>. Оскільки відповідна програма виконує дії із накладкою над "
+"даними гостьової системи, початкова система B<ніяким чином> не змінюється."
 
 #. type: textblock
 #: docs/virt-v2v.pod:1003
@@ -14154,9 +14146,9 @@ msgid ""
 "Because of how Cinder volumes are presented as F</dev> block devices, using "
 "I<-o openstack> normally requires that virt-v2v is run as root."
 msgstr ""
-"Через спосіб, у який томи Cinder представляються як блокові пристрої F</dev>"
-", використання I<-o openstack> зазвичай потребує запуску virt-v2v від імені "
-"користувача root."
+"Через спосіб, у який томи Cinder представляються як блокові пристрої F</"
+"dev>, використання I<-o openstack> зазвичай потребує запуску virt-v2v від "
+"імені користувача root."
 
 #. type: =item
 #: docs/virt-v2v.pod:1122
@@ -14564,8 +14556,7 @@ msgid ""
 "                other x86-64: install \"kernel-default\"\n"
 " \n"
 msgstr ""
-" SLES 10        i586 з > 10 ГБ оперативної пам'яті: встановіть «kernel-bigsmp"
-"»\n"
+" SLES 10        i586 з > 10 ГБ оперативної пам'яті: встановіть «kernel-bigsmp»\n"
 "                i586 SMP: встановіть «kernel-smp»\n"
 "                інша i586: встановіть «kernel-default»\n"
 "                x86-64 SMP: встановіть «kernel-smp»\n"
@@ -15032,10 +15023,8 @@ msgid ""
 " to use virt-v2v.\n"
 "\n"
 msgstr ""
-" virtv2v: помилка: не вдалося змонтувати образ диска для запису. Ймовірно, "
-"це\n"
-" сталося через те, що у гостьовій системі використано Windows Hibernation "
-"або\n"
+" virtv2v: помилка: не вдалося змонтувати образ диска для запису. Ймовірно, це\n"
+" сталося через те, що у гостьовій системі використано Windows Hibernation або\n"
 " Fast Restart. Вам слід вимкнути ці можливості (у гостьовій системі), щоб\n"
 " скористатися virt-v2v.\n"
 "\n"
@@ -15193,9 +15182,10 @@ msgstr ""
 "OpenStack не надає гостьовим системам стабільних адрес пристроїв та каналів "
 "PCI. Кожного разу, коли створюється або запускається гостьова система, "
 "OpenStack повторно створює від початку XML libvirt для цієї гостьової "
-"системи. Створений таким чином XML libvirt не міститиме полів E<lt>"
-"addressE<gt>. Потім libvirt призначить адреси для пристроїв у передбачуваний "
-"спосіб. Адреси можуть змінитися, якщо буде виконано будь-яку з таких умов:"
+"системи. Створений таким чином XML libvirt не міститиме полів "
+"E<lt>addressE<gt>. Потім libvirt призначить адреси для пристроїв у "
+"передбачуваний спосіб. Адреси можуть змінитися, якщо буде виконано будь-яку "
+"з таких умов:"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1527
@@ -16388,8 +16378,8 @@ msgstr ""
 "customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, L<virt-sparsify(1)>, "
 "L<virt-sysprep(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-"
 "image-uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-"
-"ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/>"
-"."
+"ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
+">."
 
 #. type: textblock
 #: docs/virt-v2v.pod:2030 in-place/virt-v2v-in-place.pod:387
@@ -16817,8 +16807,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-"
 "img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img"
-"(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
+"L<virt-v2v(1)>, L<virt-p2v(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-"
+"img(1)>, L<nbdkit(1)>, L<http://libguestfs.org/>."
 
 #. type: textblock
 #: inspector/virt-v2v-inspector.pod:3

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-27 12:27+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
@@ -169,7 +169,7 @@ msgstr ""
 "Краткая сводка параметров приведена ниже. Подробную справку см.\n"
 "в справочной странице virt-v2v-in-place(1).\n"
 
-#: input/input_vddk.ml:207
+#: input/input_vddk.ml:207 input/input_nfc.ml:162
 msgid "%s: enter password for ‘%s’: "
 msgstr "%s: введите пароль для «%s»: "
 
@@ -285,6 +285,7 @@ msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr "-i libvirt: ожидается параметр -ic для подключения Xen через SSH"
 
 #: input/input_vddk.ml:142 input/input_vcenter_https.ml:88
+#: input/input_nfc.ml:99
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr "-i libvirt: ожидается параметр -ic для подключения к vCenter"
 
@@ -299,6 +300,7 @@ msgstr ""
 "-i libvirt: ожидается параметр -ip с файлом пароля для подключения к vCenter"
 
 #. input/input_vcenter_https.ml:70
+#. input/input_nfc.ml:89
 #. input/input_libvirt.ml:41
 #: input/input_xen_ssh.ml:57 input/input_vddk.ml:132
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
@@ -346,6 +348,12 @@ msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
 "Параметр -ip PASSWORD_FILE игнорируется, так как 'user@' не указан в URL"
+
+#: input/input_nfc.ml:76
+#, fuzzy
+#| msgid "-it vddk: ‘-io %s’ is not a valid input option"
+msgid "-it nfc: ‘-io %s’ is not a valid input option"
+msgstr "-it vddk: «-io %s» не является допустимым параметром ввода"
 
 #: input/input_vddk.ml:119
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
@@ -531,7 +539,7 @@ msgstr ""
 "<target dev='%s'> был проигнорирован, так как имя устройства не удалось "
 "распознать"
 
-#: input/input_vddk.ml:176
+#: input/input_vddk.ml:176 input/input_nfc.ml:133
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -768,6 +776,68 @@ msgstr "Внедрить драйверы virtio-win в гостевую сис�
 msgid "Input format"
 msgstr "Входной формат"
 
+#: input/input_nfc.ml:44
+#, fuzzy
+#| msgid ""
+#| "Input options (-io) which can be used with -it vddk\n"
+#| "(all settings are optional):\n"
+#| "\n"
+#| "  -io vddk-compression=COMPR   Set VDDK compression mode (see\n"
+#| "                                 nbdkit-vddk-plugin documentation)\n"
+#| "  -io vddk-config=FILE         VDDK configuration file\n"
+#| "  -io vddk-cookie=COOKIE       VDDK cookie\n"
+#| "  -io vddk-file=FILE           Override nbdkit-vddk-plugin file= "
+#| "parameter\n"
+#| "  -io vddk-libdir=LIBDIR       VDDK library parent directory\n"
+#| "  -io vddk-nfchostport=PORT    VDDK nfchostport\n"
+#| "  -io vddk-port=PORT           VDDK port\n"
+#| "  -io vddk-snapshot=SNAPSHOT-MOREF\n"
+#| "                               VDDK snapshot moref\n"
+#| "  -io vddk-thumbprint=xx:xx:xx:...\n"
+#| "                               VDDK server thumbprint\n"
+#| "  -io vddk-transports=MODE:MODE:..\n"
+#| "                               VDDK transports\n"
+#| "\n"
+#| "Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further\n"
+#| "information on these settings.\n"
+msgid ""
+"Input options (-io) which can be used with -it nfc\n"
+"(all settings are optional):\n"
+"\n"
+"  -io nfc-cookie=COOKIE        NFC cookie\n"
+"  -io nfc-file=FILE            Override nbdkit-nfc-plugin file= parameter\n"
+"  -io nfc-nfchostport=PORT     NFC nfchostport\n"
+"  -io nfc-port=PORT            NFC port\n"
+"  -io nfc-snapshot=SNAPSHOT-MOREF\n"
+"                               NFC snapshot moref\n"
+"  -io nfc-thumbprint=xx:xx:xx:...\n"
+"                               NFC server thumbprint\n"
+"\n"
+"Refer to nbdkit-nfc-plugin documentation for further information on\n"
+"these settings.\n"
+msgstr ""
+"Параметры ввода (-io), которые можно использовать с -it vddk\n"
+"(все настройки необязательны):\n"
+"\n"
+"  -io vddk-compression=СЖАТИЕ   Установить режим сжатия VDDK (см.\n"
+"                                 документацию nbdkit-vddk-plugin)\n"
+"  -io vddk-config=ФАЙЛ         Файл конфигурации VDDK\n"
+"  -io vddk-cookie=COOKIE       Cookie VDDK\n"
+"  -io vddk-file=ФАЙЛ           Переопределить параметр file= nbdkit-vddk-"
+"plugin\n"
+"  -io vddk-libdir=КАТАЛОГ      Родительский каталог библиотеки VDDK\n"
+"  -io vddk-nfchostport=ПОРТ    nfchostport VDDK\n"
+"  -io vddk-port=ПОРТ           Порт VDDK\n"
+"  -io vddk-snapshot=СНАПШОТ-MOREF\n"
+"                               moref снимка VDDK\n"
+"  -io vddk-thumbprint=xx:xx:xx:...\n"
+"                               Отпечаток сервера VDDK\n"
+"  -io vddk-transports=РЕЖИМ:РЕЖИМ:..\n"
+"                               Транспорты VDDK\n"
+"\n"
+"Обратитесь к nbdkit-vddk-plugin(1) и документации VDDK для получения\n"
+"дополнительной информации об этих настройках.\n"
+
 #: input/input_vddk.ml:77
 msgid ""
 "Input options (-io) which can be used with -it vddk\n"
@@ -931,8 +1001,8 @@ msgid ""
 msgstr ""
 "Параметры вывода (-oo), которые можно использовать с -o ovirt-upload:\n"
 "\n"
-"  -oo ovirt-cafile=CA.PEM       Установить имя файла набора сертификатов «"
-"ca.pem».\n"
+"  -oo ovirt-cafile=CA.PEM       Установить имя файла набора сертификатов "
+"«ca.pem».\n"
 "  -oo ovirt-cluster=ИМЯ_КЛАСТЕРА Установить имя кластера oVirt.\n"
 "  -oo ovirt-proxy               Подключаться через прокси oVirt Engine (по "
 "умолчанию: false).\n"
@@ -1457,8 +1527,8 @@ msgstr ""
 "Используйте «virsh pool-list --all» для вывода всех доступных пулов и «virsh "
 "pool-dumpxml <пул>» для отображения сведений о конкретном пуле.\n"
 "\n"
-"Чтобы указать пул, который использует virt-v2v, добавьте параметр «-os <пул>"
-"»."
+"Чтобы указать пул, который использует virt-v2v, добавьте параметр «-os "
+"<пул>»."
 
 #: lib/libvirt_utils.ml:110
 msgid "cannot find libvirt volume ‘%s’: %s"
@@ -1594,9 +1664,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"не удалось найти запись реестра HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\D"
-"eviceIds в этой гостевой системе Windows. Возможно, это очень старая или "
-"очень новая версия Windows, которую мы не можем обработать."
+"не удалось найти запись реестра "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds в этой гостевой "
+"системе Windows. Возможно, это очень старая или очень новая версия Windows, "
+"которую мы не можем обработать."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1607,6 +1678,7 @@ msgstr ""
 "завершилась с ошибкой: %s"
 
 #. input/input_vcenter_https.ml:94
+#. input/input_nfc.ml:108
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr "не удалось разобрать '-ic %s'. Исходное сообщение об ошибке: %s"
@@ -1802,8 +1874,8 @@ msgid ""
 "firstboot: unknown version for old firstboot.service file %s (md5=%s), it "
 "will not be removed"
 msgstr ""
-"firstboot: неизвестная версия для старого файла firstboot.service %s (md5=%s)"
-", он не будет удалён"
+"firstboot: неизвестная версия для старого файла firstboot.service %s "
+"(md5=%s), он не будет удалён"
 
 #: common/mltools/tools_utils.ml:262
 msgid "generated by %s %s"
@@ -1868,6 +1940,12 @@ msgstr "в метаданных XML libvirt отсутствует или пус
 #: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
 msgid "in-place mode does not work with HTTP source"
 msgstr "режим in-place не работает с источником HTTP"
+
+#: input/input_nfc.ml:103
+#, fuzzy
+#| msgid "in-place mode does not work with VMX source"
+msgid "in-place mode does not work with NFC (-it nfc) source"
+msgstr "режим in-place не работает с источником VMX"
 
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
@@ -2138,11 +2216,11 @@ msgstr ""
 "\n"
 "См. также справочную страницу virt-v2v-input-vmware(1)."
 
-#: lib/nbdkit.ml:223
+#: lib/nbdkit.ml:226
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr "nbdkit не запустился. См. предыдущие отладочные сообщения о проблемах."
 
-#: lib/nbdkit.ml:225
+#: lib/nbdkit.ml:228
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -2154,6 +2232,7 @@ msgstr ""
 "Если приведённых выше сообщений недостаточно для диагностики проблемы, "
 "добавьте параметры «virt-v2v -v -x» и внимательно изучите отладочный вывод."
 
+#. input/input_nfc.ml:208
 #: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:283
 msgid "nbdkit is not installed or not working"
 msgstr "nbdkit не установлен или не работает"
@@ -2162,8 +2241,8 @@ msgstr "nbdkit не установлен или не работает"
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
-"nbdkit не установлен или не работает. Он требуется для использования «-i disk"
-"»."
+"nbdkit не установлен или не работает. Он требуется для использования «-i "
+"disk»."
 
 #: input/input_libvirt.ml:68
 msgid ""
@@ -2177,15 +2256,15 @@ msgstr ""
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o disk’."
 msgstr ""
-"nbdkit не установлен или не работает. Он требуется для использования «-o disk"
-"»."
+"nbdkit не установлен или не работает. Он требуется для использования «-o "
+"disk»."
 
 #: output/output_null.ml:57
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-o null’."
 msgstr ""
-"nbdkit не установлен или не работает. Он требуется для использования «-o null"
-"»."
+"nbdkit не установлен или не работает. Он требуется для использования «-o "
+"null»."
 
 #: output/output_ovirt_upload.ml:163
 msgid ""
@@ -2202,6 +2281,24 @@ msgstr "для ввода из локальных файлов требуетс�
 #: input/input_vddk.ml:285
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgstr "для ввода из VDDK требуется nbdkit >= 1.45.11"
+
+#: input/input_nfc.ml:222
+#, fuzzy
+#| msgid ""
+#| "nbdkit python plugin is not installed or not working.  It is required if "
+#| "you want to use ‘-o ovirt-upload’.\n"
+#| "\n"
+#| "See also the virt-v2v-output-ovirt(1) manual."
+msgid ""
+"nbdkit nfc plugin is not installed or not working.  It is required if you "
+"want to use ‘-it nfc’.\n"
+"\n"
+"See also the virt-v2v-input-vmware(1) manual."
+msgstr ""
+"плагин python для nbdkit не установлен или не работает. Он требуется, если "
+"вы хотите использовать «-o ovirt-upload».\n"
+"\n"
+"См. также справочную страницу virt-v2v-output-ovirt(1)."
 
 #: output/output_ovirt_upload.ml:176
 msgid ""
@@ -2225,6 +2322,7 @@ msgstr ""
 "перекомпилировать nbdkit с установленным libselinux-devel, либо перевести "
 "SELinux в разрешающий режим во время преобразования."
 
+#. input/input_nfc.ml:212
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:55
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
@@ -2243,6 +2341,12 @@ msgstr "nbdkit-file-plugin не установлен или не работае�
 #: input/input_libvirt.ml:74 input/input_disk.ml:73
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin не установлен или не работает"
+
+#: input/input_nfc.ml:210
+#, fuzzy
+#| msgid "nbdkit-curl-plugin is not installed"
+msgid "nbdkit-nfc-plugin is not installed"
+msgstr "nbdkit-curl-plugin не установлен"
 
 #: output/output_null.ml:60
 msgid "nbdkit-null-plugin is not installed or not working"
@@ -2722,7 +2826,8 @@ msgstr ""
 #: input/parse_libvirt_xml.ml:545
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
-msgstr[0] "этот гость имеет прямой сетевой интерфейс, который будет проигнорирован"
+msgstr[0] ""
+"этот гость имеет прямой сетевой интерфейс, который будет проигнорирован"
 msgstr[1] ""
 "этот гость имеет прямые сетевые интерфейсы, которые будут проигнорированы"
 msgstr[2] ""
@@ -2735,7 +2840,8 @@ msgstr[0] ""
 "этот гость имеет сквозное хост-устройство, которое будет проигнорировано"
 msgstr[1] ""
 "этот гость имеет сквозные хост-устройства, которые будут проигнорированы"
-msgstr[2] "этот гость имеет сквозных хост-устройств, которые будут проигнорированы"
+msgstr[2] ""
+"этот гость имеет сквозных хост-устройств, которые будут проигнорированы"
 
 #: input/parse_libvirt_xml.ml:248
 msgid "this guest has no non-removable disks"
@@ -2748,8 +2854,8 @@ msgstr "этот модуль вывода не поддерживает коп�
 #: common/mlcustomize/timezone.ml:35
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
 msgstr ""
-"часовой пояс «%s» не существует, используйте местоположение, например, «"
-"Europe/Moscow»"
+"часовой пояс «%s» не существует, используйте местоположение, например, "
+"«Europe/Moscow»"
 
 #: common/mlcustomize/customize_run.ml:304
 msgid "timezone could not be set for this type of guest"
@@ -2968,9 +3074,15 @@ msgstr "ожидание подключения тома cinder %s к устро
 msgid "you must supply the --run parameter"
 msgstr "вы должны указать параметр --run"
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189 input/input_nfc.ml:146
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr "URL-адрес «-ic %s» не содержит поля имени хоста"
+
+#: input/input_nfc.ml:198
+#, fuzzy
+#| msgid "‘-io vddk-file=’ must be used exactly %d times"
+msgid "‘-io nfc-file=’ must be used exactly %d times"
+msgstr "«-io vddk-file=» должен использоваться ровно %d раз"
 
 #: input/input_vddk.ml:273
 msgid "‘-io vddk-file=’ must be used exactly %d times"
@@ -3135,7 +3247,8 @@ msgstr ""
 #: common/options/inspect.c:161
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
-msgstr "%s: некоторые файловые системы не удалось смонтировать (игнорируется)\n"
+msgstr ""
+"%s: некоторые файловые системы не удалось смонтировать (игнорируется)\n"
 
 #: common/options/inspect.c:178
 #, c-format
