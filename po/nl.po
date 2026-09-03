@@ -10,11 +10,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-08-25 12:11+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2026-08-27 12:33+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/nl/>\n"
 "Language: nl\n"
@@ -2696,8 +2696,7 @@ msgstr ""
 #: common/options/options.c:291
 #, c-format
 msgid "%s: Did you mean to mount one of these filesystems?\n"
-msgstr ""
-"%s: Bedoelde je het om een van deze bestandssystemen aan te koppelen?\n"
+msgstr "%s: Bedoelde je het om een van deze bestandssystemen aan te koppelen?\n"
 
 #: common/options/options.c:304
 #, c-format
