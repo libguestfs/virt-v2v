@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-27 12:35+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
@@ -164,8 +164,8 @@ msgid ""
 "A short summary of the options is given below.  For detailed help please\n"
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
-"%s: виконати перетворення гостьової системи для використання у KVM «на місці"
-"»\n"
+"%s: виконати перетворення гостьової системи для використання у KVM «на "
+"місці»\n"
 "\n"
 "Зауважте, що ця програма змінює гостьову систему на місці без резервного "
 "копіювання.\n"
@@ -178,7 +178,7 @@ msgstr ""
 "Нижче наведено коротке резюме щодо параметрів. Докладніший опис\n"
 "можна знайти на сторінці man virt-v2v-in-place(1).\n"
 
-#: input/input_vddk.ml:207
+#: input/input_vddk.ml:207 input/input_nfc.ml:162
 msgid "%s: enter password for ‘%s’: "
 msgstr "%s: введіть пароль до «%s»: "
 
@@ -289,7 +289,8 @@ msgstr "параметр --parallel має бути >= 1"
 
 #: input/input_disk.ml:43
 msgid "-i disk: expecting a disk image (filename) on the command line"
-msgstr "-i disk: у командному рядку мало бути вказано образ диска (назва файла)"
+msgstr ""
+"-i disk: у командному рядку мало бути вказано образ диска (назва файла)"
 
 #: input/input_xen_ssh.ml:65
 msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
@@ -298,6 +299,7 @@ msgstr ""
 "використанням SSH"
 
 #: input/input_vddk.ml:142 input/input_vcenter_https.ml:88
+#: input/input_nfc.ml:99
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
 "-i libvirt: мало бути вказано параметр -ic для встановлення з'єднання vcenter"
@@ -313,6 +315,7 @@ msgstr ""
 "з'єднання vCenter"
 
 #. input/input_vcenter_https.ml:70
+#. input/input_nfc.ml:89
 #. input/input_libvirt.ml:41
 #: input/input_xen_ssh.ml:57 input/input_vddk.ml:132
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
@@ -364,6 +367,12 @@ msgstr ""
 "параметр -ip ФАЙЛ_ПАРОЛЯ проігноровано, оскільки у адресі не вказано частини "
 "«користувач@»"
 
+#: input/input_nfc.ml:76
+#, fuzzy
+#| msgid "-it vddk: ‘-io %s’ is not a valid input option"
+msgid "-it nfc: ‘-io %s’ is not a valid input option"
+msgstr "-it vddk: «-io %s» не є коректним параметром вхідних даних"
+
 #: input/input_vddk.ml:119
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgstr "-it vddk: «-io %s» не є коректним параметром вхідних даних"
@@ -376,8 +385,8 @@ msgstr ""
 #: output/output_disk.ml:66
 msgid "-o disk: output directory was not specified, use '-os /dir'"
 msgstr ""
-"-o disk: не вказано каталогу для виведення даних, скористайтеся «-os /каталог"
-"»"
+"-o disk: не вказано каталогу для виведення даних, скористайтеся «-os /"
+"каталог»"
 
 #: output/output_libvirt.ml:59 output/output_disk.ml:56
 msgid "-o disk: unknown output option ‘-oo %s’"
@@ -481,8 +490,8 @@ msgstr "-o ovirt: не вказано параметр -os"
 #: output/output_qemu.ml:72
 msgid "-o qemu: output directory was not specified, use '-os /dir'"
 msgstr ""
-"-o qemu: не вказано каталогу для виведення даних, скористайтеся «-os /каталог"
-"»"
+"-o qemu: не вказано каталогу для виведення даних, скористайтеся «-os /"
+"каталог»"
 
 #: output/output_qemu.ml:63
 msgid "-o qemu: unknown output option ‘-oo %s’"
@@ -557,7 +566,7 @@ msgstr ""
 "<target dev='%s'> було проігноровано, оскільки не вдалося визначити назву "
 "пристрою"
 
-#: input/input_vddk.ml:176
+#: input/input_vddk.ml:176 input/input_nfc.ml:133
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -792,6 +801,67 @@ msgstr "Вставити драйвери virtio-win до гостьової с�
 msgid "Input format"
 msgstr "Формат вхідних даних"
 
+#: input/input_nfc.ml:44
+#, fuzzy
+#| msgid ""
+#| "Input options (-io) which can be used with -it vddk\n"
+#| "(all settings are optional):\n"
+#| "\n"
+#| "  -io vddk-compression=COMPR   Set VDDK compression mode (see\n"
+#| "                                 nbdkit-vddk-plugin documentation)\n"
+#| "  -io vddk-config=FILE         VDDK configuration file\n"
+#| "  -io vddk-cookie=COOKIE       VDDK cookie\n"
+#| "  -io vddk-file=FILE           Override nbdkit-vddk-plugin file= "
+#| "parameter\n"
+#| "  -io vddk-libdir=LIBDIR       VDDK library parent directory\n"
+#| "  -io vddk-nfchostport=PORT    VDDK nfchostport\n"
+#| "  -io vddk-port=PORT           VDDK port\n"
+#| "  -io vddk-snapshot=SNAPSHOT-MOREF\n"
+#| "                               VDDK snapshot moref\n"
+#| "  -io vddk-thumbprint=xx:xx:xx:...\n"
+#| "                               VDDK server thumbprint\n"
+#| "  -io vddk-transports=MODE:MODE:..\n"
+#| "                               VDDK transports\n"
+#| "\n"
+#| "Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further\n"
+#| "information on these settings.\n"
+msgid ""
+"Input options (-io) which can be used with -it nfc\n"
+"(all settings are optional):\n"
+"\n"
+"  -io nfc-cookie=COOKIE        NFC cookie\n"
+"  -io nfc-file=FILE            Override nbdkit-nfc-plugin file= parameter\n"
+"  -io nfc-nfchostport=PORT     NFC nfchostport\n"
+"  -io nfc-port=PORT            NFC port\n"
+"  -io nfc-snapshot=SNAPSHOT-MOREF\n"
+"                               NFC snapshot moref\n"
+"  -io nfc-thumbprint=xx:xx:xx:...\n"
+"                               NFC server thumbprint\n"
+"\n"
+"Refer to nbdkit-nfc-plugin documentation for further information on\n"
+"these settings.\n"
+msgstr ""
+"Параметри вхідних даних (-io), якими можна скористатися за допомогою -it "
+"vddk (усі інші параметри є необов'язковими):\n"
+"\n"
+"  -io vddk-config=ФАЙЛ         файл налаштувань VDDK\n"
+"  -io vddk-cookie=КУКА         кука VDDK\n"
+"  -io vddk-libdir=КАТ_БІБ      батьківський каталог бібліотек VDDK\n"
+"  -io vddk-nfchostport=ПОРТ    nfchostport VDDK\n"
+"  -io vddk-file=ФАЙД           перевизначити параметр nbdkit-vddk-plugin "
+"file=\n"
+"  -io vddk-port=ПОРТ           порт VDDK\n"
+"  -io vddk-snapshot=SNAPSHOT-MOREF\n"
+"                               moref знімка VDDK\n"
+"  -io vddk-thumbprint=xx:xx:xx:...\n"
+"                               відбиток сервера VDDK\n"
+"  -io vddk-transports=РЕЖИМ:РЕЖИМ:..\n"
+"                               способи передавання даних VDDK\n"
+"\n"
+"Зверніться до документації з nbdkit-vddk-plugin(1) та VDDK, щоб дізнатися "
+"більше\n"
+"про ці параметри.\n"
+
 #: input/input_vddk.ml:77
 msgid ""
 "Input options (-io) which can be used with -it vddk\n"
@@ -1025,8 +1095,8 @@ msgid ""
 msgstr ""
 "Параметри виведення, якими можна скористатися з -o disk:\n"
 "\n"
-"  -oo compressed      стиснути файл виведення (можна використовувати лише з -"
-"of qcow2)\n"
+"  -oo compressed      стиснути файл виведення (можна використовувати лише з "
+"-of qcow2)\n"
 
 #: output/output_kubevirt.ml:51
 msgid ""
@@ -1055,8 +1125,8 @@ msgid ""
 msgstr ""
 "Параметри виведення, якими можна скористатися з -o libvirt:\n"
 "\n"
-"  -oo compressed      стиснути файл виведення (можна використовувати лише з -"
-"of qcow2)\n"
+"  -oo compressed      стиснути файл виведення (можна використовувати лише з "
+"-of qcow2)\n"
 
 #. common/mlcustomize/customize_cmdline.ml:243
 #: common/mlcustomize/customize_cmdline.ml:428
@@ -1347,8 +1417,8 @@ msgstr ""
 "Для цього каналу передавання даних не передбачено підтримки гостьових систем "
 "зі знімками. Або згорніть усі знімки для цієї гостьової системи і повторіть "
 "спробу перетворення, або скористайтеся альтернативними способами "
-"перетворення, які описано у підручнику з virt-v2v-input-vmware(1), розділ «"
-"ПРИМІТКИ»."
+"перетворення, які описано у підручнику з virt-v2v-input-vmware(1), розділ "
+"«ПРИМІТКИ»."
 
 #: common/mlcustomize/customize_cmdline.ml:423
 msgid "Truncate a file to zero size"
@@ -1627,9 +1697,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"не вдалося знайти запис реєстру HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\D"
-"eviceIds у цій гостьовій системі Windows. Це може бути або дуже давня або "
-"дуже нова версія Windows, з якою ми не можемо працювати."
+"не вдалося знайти запис реєстру "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds у цій гостьовій "
+"системі Windows. Це може бути або дуже давня або дуже нова версія Windows, з "
+"якою ми не можемо працювати."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1640,6 +1711,7 @@ msgstr ""
 "оскільки виконання цієї команди завершилося повідомленням про помилку: %s"
 
 #. input/input_vcenter_https.ml:94
+#. input/input_nfc.ml:108
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
@@ -1915,6 +1987,12 @@ msgstr "у метаданих XML libvirt пропущено <name> або вк�
 msgid "in-place mode does not work with HTTP source"
 msgstr "режим «на місці» не працює із джерелами HTTP"
 
+#: input/input_nfc.ml:103
+#, fuzzy
+#| msgid "in-place mode does not work with VMX source"
+msgid "in-place mode does not work with NFC (-it nfc) source"
+msgstr "режим «на місці» не працює із джерелами VMX"
+
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
 msgstr "режим «на місці» не працює із джерелами VDDK"
@@ -2186,13 +2264,13 @@ msgstr ""
 "\n"
 "Див. також сторінку підручника virt-v2v-input-vmware(1)."
 
-#: lib/nbdkit.ml:223
+#: lib/nbdkit.ml:226
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 "nbdkit не запустилася. Див. попередні діагностичні повідомлення, щоб виявити "
 "джерело проблеми."
 
-#: lib/nbdkit.ml:225
+#: lib/nbdkit.ml:228
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -2206,6 +2284,7 @@ msgstr ""
 "проблеми, додайте параметри «virt-v2v -v -x» і уважно вивчіть виведені "
 "діагностичні дані."
 
+#. input/input_nfc.ml:208
 #: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:283
 msgid "nbdkit is not installed or not working"
 msgstr "nbdkit не встановлено або програма не працює"
@@ -2258,6 +2337,24 @@ msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgstr ""
 "nbdkit має бути версії >= 1.45.11 для використання вхідних даних від VDDK"
 
+#: input/input_nfc.ml:222
+#, fuzzy
+#| msgid ""
+#| "nbdkit python plugin is not installed or not working.  It is required if "
+#| "you want to use ‘-o ovirt-upload’.\n"
+#| "\n"
+#| "See also the virt-v2v-output-ovirt(1) manual."
+msgid ""
+"nbdkit nfc plugin is not installed or not working.  It is required if you "
+"want to use ‘-it nfc’.\n"
+"\n"
+"See also the virt-v2v-input-vmware(1) manual."
+msgstr ""
+"Не встановлено додаток nbdkit для python або додаток не працює. Цей додаток "
+"потрібне, якщо ви хочете скористатися «-o ovirt-upload».\n"
+"\n"
+"Див. також підручник virt-v2v-output-ovirt(1)."
+
 #: output/output_ovirt_upload.ml:176
 msgid ""
 "nbdkit python plugin is not installed or not working.  It is required if you "
@@ -2280,6 +2377,7 @@ msgstr ""
 "після встановлення пакунка libselinux-devel або встановити у SELinux режим "
 "допуску (Permissive) на час перетворення."
 
+#. input/input_nfc.ml:212
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:55
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
@@ -2298,6 +2396,12 @@ msgstr "nbdkit-file-plugin не встановлено або програма �
 #: input/input_libvirt.ml:74 input/input_disk.ml:73
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin не встановлено або програма не працює"
+
+#: input/input_nfc.ml:210
+#, fuzzy
+#| msgid "nbdkit-curl-plugin is not installed"
+msgid "nbdkit-nfc-plugin is not installed"
+msgstr "Додаток nbdkit-curl не встановлено"
 
 #: output/output_null.ml:60
 msgid "nbdkit-null-plugin is not installed or not working"
@@ -2472,10 +2576,10 @@ msgid ""
 "the input is in a different format then force one of these output formats by "
 "adding either ‘-of raw’ or ‘-of qcow2’ on the command line."
 msgstr ""
-"ovirt-upload: -of %s: передбачено підтримку лише форматів виведення «raw» і «"
-"qcow2». Якщо вхідні дані записано у іншому форматі, примусово вкажіть один з "
-"цих форматів виведення за допомогою додавання до командного рядка параметра "
-"«-of raw» або «-of qcow2»."
+"ovirt-upload: -of %s: передбачено підтримку лише форматів виведення «raw» і "
+"«qcow2». Якщо вхідні дані записано у іншому форматі, примусово вкажіть один "
+"з цих форматів виведення за допомогою додавання до командного рядка "
+"параметра «-of raw» або «-of qcow2»."
 
 #: common/mlcustomize/password.ml:51
 msgid ""
@@ -3048,9 +3152,15 @@ msgstr "очікуємо на долучення тому cinder %s до баз�
 msgid "you must supply the --run parameter"
 msgstr "вам слід передати параметр --run"
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189 input/input_nfc.ml:146
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr "У адресі «-ic %s» не міститься поля назви вузла"
+
+#: input/input_nfc.ml:198
+#, fuzzy
+#| msgid "‘-io vddk-file=’ must be used exactly %d times"
+msgid "‘-io nfc-file=’ must be used exactly %d times"
+msgstr "«-io vddk-file=» має бути використано рівно %d разів"
 
 #: input/input_vddk.ml:273
 msgid "‘-io vddk-file=’ must be used exactly %d times"

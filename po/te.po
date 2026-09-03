@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-27 12:56+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
@@ -127,7 +127,7 @@ msgid ""
 "read the man page virt-v2v-in-place(1).\n"
 msgstr ""
 
-#: input/input_vddk.ml:207
+#: input/input_vddk.ml:207 input/input_nfc.ml:162
 msgid "%s: enter password for ‘%s’: "
 msgstr ""
 
@@ -220,6 +220,7 @@ msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr ""
 
 #: input/input_vddk.ml:142 input/input_vcenter_https.ml:88
+#: input/input_nfc.ml:99
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr ""
 
@@ -232,6 +233,7 @@ msgid "-i libvirt: expecting -ip passwordfile parameter for vCenter connection"
 msgstr ""
 
 #. input/input_vcenter_https.ml:70
+#. input/input_nfc.ml:89
 #. input/input_libvirt.ml:41
 #: input/input_xen_ssh.ml:57 input/input_vddk.ml:132
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
@@ -271,6 +273,10 @@ msgstr ""
 #: input/vCenter.ml:159
 msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
+msgstr ""
+
+#: input/input_nfc.ml:76
+msgid "-it nfc: ‘-io %s’ is not a valid input option"
 msgstr ""
 
 #: input/input_vddk.ml:119
@@ -441,7 +447,7 @@ msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
 
-#: input/input_vddk.ml:176
+#: input/input_vddk.ml:176 input/input_nfc.ml:133
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -667,6 +673,24 @@ msgstr ""
 #. in-place/in_place.ml:183
 #: v2v/v2v.ml:219 open/open.ml:80 inspector/inspector.ml:173
 msgid "Input format"
+msgstr ""
+
+#: input/input_nfc.ml:44
+msgid ""
+"Input options (-io) which can be used with -it nfc\n"
+"(all settings are optional):\n"
+"\n"
+"  -io nfc-cookie=COOKIE        NFC cookie\n"
+"  -io nfc-file=FILE            Override nbdkit-nfc-plugin file= parameter\n"
+"  -io nfc-nfchostport=PORT     NFC nfchostport\n"
+"  -io nfc-port=PORT            NFC port\n"
+"  -io nfc-snapshot=SNAPSHOT-MOREF\n"
+"                               NFC snapshot moref\n"
+"  -io nfc-thumbprint=xx:xx:xx:...\n"
+"                               NFC server thumbprint\n"
+"\n"
+"Refer to nbdkit-nfc-plugin documentation for further information on\n"
+"these settings.\n"
 msgstr ""
 
 #: input/input_vddk.ml:77
@@ -1369,6 +1393,7 @@ msgid ""
 msgstr ""
 
 #. input/input_vcenter_https.ml:94
+#. input/input_nfc.ml:108
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
@@ -1600,6 +1625,10 @@ msgstr ""
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
+#: input/input_nfc.ml:103
+msgid "in-place mode does not work with NFC (-it nfc) source"
+msgstr ""
+
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
 msgstr ""
@@ -1824,11 +1853,11 @@ msgid ""
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
 
-#: lib/nbdkit.ml:223
+#: lib/nbdkit.ml:226
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 
-#: lib/nbdkit.ml:225
+#: lib/nbdkit.ml:228
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -1836,6 +1865,7 @@ msgid ""
 "the ‘virt-v2v -v -x’ options and examine the debugging output carefully."
 msgstr ""
 
+#. input/input_nfc.ml:208
 #: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:283
 msgid "nbdkit is not installed or not working"
 msgstr ""
@@ -1875,6 +1905,14 @@ msgstr ""
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgstr ""
 
+#: input/input_nfc.ml:222
+msgid ""
+"nbdkit nfc plugin is not installed or not working.  It is required if you "
+"want to use ‘-it nfc’.\n"
+"\n"
+"See also the virt-v2v-input-vmware(1) manual."
+msgstr ""
+
 #: output/output_ovirt_upload.ml:176
 msgid ""
 "nbdkit python plugin is not installed or not working.  It is required if you "
@@ -1890,6 +1928,7 @@ msgid ""
 "mode while doing the conversion."
 msgstr ""
 
+#. input/input_nfc.ml:212
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:55
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
@@ -1907,6 +1946,10 @@ msgstr ""
 
 #: input/input_libvirt.ml:74 input/input_disk.ml:73
 msgid "nbdkit-nbd-plugin is not installed or not working"
+msgstr ""
+
+#: input/input_nfc.ml:210
+msgid "nbdkit-nfc-plugin is not installed"
 msgstr ""
 
 #: output/output_null.ml:60
@@ -2510,8 +2553,12 @@ msgstr ""
 msgid "you must supply the --run parameter"
 msgstr ""
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189 input/input_nfc.ml:146
 msgid "‘-ic %s’ URL does not contain a host name field"
+msgstr ""
+
+#: input/input_nfc.ml:198
+msgid "‘-io nfc-file=’ must be used exactly %d times"
 msgstr ""
 
 #: input/input_vddk.ml:273

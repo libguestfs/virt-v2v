@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-08-27 12:43+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
@@ -176,7 +176,7 @@ msgstr ""
 "A continuación se ofrece un breve resumen de las opciones. Para obtener\n"
 "ayuda detallada, consulte la página man de virt-v2v-in-place(1).\n"
 
-#: input/input_vddk.ml:207
+#: input/input_vddk.ml:207 input/input_nfc.ml:162
 msgid "%s: enter password for ‘%s’: "
 msgstr "%s: introduzca la contraseña para ‘%s’: "
 
@@ -297,6 +297,7 @@ msgid "-i libvirt: expecting -ic parameter for Xen over SSH connection"
 msgstr "-i libvirt: esperaba el parámetro -ic para Xen sobre conexión SSH"
 
 #: input/input_vddk.ml:142 input/input_vcenter_https.ml:88
+#: input/input_nfc.ml:99
 msgid "-i libvirt: expecting -ic parameter for vcenter connection"
 msgstr "-i libvirt: esperaba el parámetro -ic para conexión vcenter"
 
@@ -312,6 +313,7 @@ msgstr ""
 "-i libvirt: esperaba el parámetro -ip passwordfile para conexión vCenter"
 
 #. input/input_vcenter_https.ml:70
+#. input/input_nfc.ml:89
 #. input/input_libvirt.ml:41
 #: input/input_xen_ssh.ml:57 input/input_vddk.ml:132
 msgid "-i libvirt: expecting a libvirt guest name on the command line"
@@ -364,6 +366,12 @@ msgid ""
 "-ip PASSWORD_FILE parameter ignored because 'user@' was not given in the URL"
 msgstr ""
 "-ip con parámetro PASSWORD_FILE ignorado porque 'user@' no fue dado en la URL"
+
+#: input/input_nfc.ml:76
+#, fuzzy
+#| msgid "-it vddk: ‘-io %s’ is not a valid input option"
+msgid "-it nfc: ‘-io %s’ is not a valid input option"
+msgstr "-it vddk: ‘-io %s’ no es una opción de entrada válida"
 
 #: input/input_vddk.ml:119
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
@@ -458,7 +466,8 @@ msgstr ""
 
 #: output/output_ovirt_upload.ml:83
 msgid "-o ovirt-upload: output storage was not specified, use ‘-os’"
-msgstr "-o ovirt-upload: no fue especificada la salida de almacén, utilce ‘-os’"
+msgstr ""
+"-o ovirt-upload: no fue especificada la salida de almacén, utilce ‘-os’"
 
 #: output/output_ovirt_upload.ml:116
 msgid "-o ovirt-upload: unknown output option ‘-oo %s’"
@@ -555,7 +564,7 @@ msgstr ""
 "<target dev='%s'> se hizo caso omiso porque el nombre del dispositivo no "
 "pudo ser reconocido"
 
-#: input/input_vddk.ml:176
+#: input/input_vddk.ml:176 input/input_nfc.ml:133
 msgid ""
 "<vmware:moref> was not found in the output of ‘virsh dumpxml \"%s\"’.  The "
 "most likely reason is that libvirt is too old, try upgrading libvirt to ≥ "
@@ -794,6 +803,68 @@ msgstr "Inyecta unidades de virtio-win en un invitado de Windows"
 #: v2v/v2v.ml:219 open/open.ml:80 inspector/inspector.ml:173
 msgid "Input format"
 msgstr "Formato de entrada"
+
+#: input/input_nfc.ml:44
+#, fuzzy
+#| msgid ""
+#| "Input options (-io) which can be used with -it vddk\n"
+#| "(all settings are optional):\n"
+#| "\n"
+#| "  -io vddk-compression=COMPR   Set VDDK compression mode (see\n"
+#| "                                 nbdkit-vddk-plugin documentation)\n"
+#| "  -io vddk-config=FILE         VDDK configuration file\n"
+#| "  -io vddk-cookie=COOKIE       VDDK cookie\n"
+#| "  -io vddk-file=FILE           Override nbdkit-vddk-plugin file= "
+#| "parameter\n"
+#| "  -io vddk-libdir=LIBDIR       VDDK library parent directory\n"
+#| "  -io vddk-nfchostport=PORT    VDDK nfchostport\n"
+#| "  -io vddk-port=PORT           VDDK port\n"
+#| "  -io vddk-snapshot=SNAPSHOT-MOREF\n"
+#| "                               VDDK snapshot moref\n"
+#| "  -io vddk-thumbprint=xx:xx:xx:...\n"
+#| "                               VDDK server thumbprint\n"
+#| "  -io vddk-transports=MODE:MODE:..\n"
+#| "                               VDDK transports\n"
+#| "\n"
+#| "Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further\n"
+#| "information on these settings.\n"
+msgid ""
+"Input options (-io) which can be used with -it nfc\n"
+"(all settings are optional):\n"
+"\n"
+"  -io nfc-cookie=COOKIE        NFC cookie\n"
+"  -io nfc-file=FILE            Override nbdkit-nfc-plugin file= parameter\n"
+"  -io nfc-nfchostport=PORT     NFC nfchostport\n"
+"  -io nfc-port=PORT            NFC port\n"
+"  -io nfc-snapshot=SNAPSHOT-MOREF\n"
+"                               NFC snapshot moref\n"
+"  -io nfc-thumbprint=xx:xx:xx:...\n"
+"                               NFC server thumbprint\n"
+"\n"
+"Refer to nbdkit-nfc-plugin documentation for further information on\n"
+"these settings.\n"
+msgstr ""
+"Opciones de entrada (-io) las cueles pueden ser utilizadas con -it vddk\n"
+"(todos los ajustes son opcionales):\n"
+"\n"
+"  -io vddk-compression=COMPR   Establece modo de compresión VDDK (consulte\n"
+"                                la documentación nbdkit-vddk-plugin)\n"
+"  -io vddk-config=ARCHIVO         Archivo de configuración VDDK\n"
+"  -io vddk-cookie=COOKIE       VDDK cookie\n"
+"  -io vddk-file=ARCHIVO           Anula el archivo file= del parámetro "
+"nbdkit-vddk-plugin \n"
+"  -io vddk-libdir=LIBDIR       biblioteca VDDK de directorio antecesor\n"
+"  -io vddk-nfchostport=PUERTO    VDDK nfchostport\n"
+"  -io vddk-port=PUERTO           puerto VDDK\n"
+"  -io vddk-snapshot=CAPTURA-MOREF\n"
+"                               VDDK captura moref\n"
+"  -io vddk-thumbprint=xx:xx:xx:…\n"
+"                               VDDK servidor thumbprint\n"
+"  -io vddk-transports=MODO:MODO:…\n"
+"                               VDDK transportes\n"
+"\n"
+"Refiérase a nbdkit-vddk-plugin(1) y la documentación de VDDK para más\n"
+"información en estos ajustes.\n"
 
 #: input/input_vddk.ml:77
 msgid ""
@@ -1614,7 +1685,8 @@ msgstr ""
 
 #: common/mldrivers/linux_bootloaders.ml:221
 msgid "could not determine a way to update the configuration of Grub2"
-msgstr "no se pudo determinar una forma de actualizar la configuración de Grub2"
+msgstr ""
+"no se pudo determinar una forma de actualizar la configuración de Grub2"
 
 #: input/input_vddk.ml:243
 msgid ""
@@ -1636,10 +1708,10 @@ msgid ""
 "guest.  It may be either a very old or very new version of Windows that we "
 "cannot process."
 msgstr ""
-"no se pudo encontrar la entrada de registro HKEY_LOCAL_MACHINE\\SYSTEM\\D"
-"riverDatabase\\DeviceIds en este sistema operativo Windows. Es posible que "
-"se trate de una versión muy antigua o muy reciente de Windows que no podemos "
-"procesar."
+"no se pudo encontrar la entrada de registro "
+"HKEY_LOCAL_MACHINE\\SYSTEM\\DriverDatabase\\DeviceIds en este sistema "
+"operativo Windows. Es posible que se trate de una versión muy antigua o muy "
+"reciente de Windows que no podemos procesar."
 
 #: common/mlcustomize/firstboot.ml:232
 msgid ""
@@ -1650,6 +1722,7 @@ msgstr ""
 "comando falló: %s"
 
 #. input/input_vcenter_https.ml:94
+#. input/input_nfc.ml:108
 #: input/select_input.ml:66 input/input_xen_ssh.ml:71 input/input_vddk.ml:151
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr "no se pudo interpretar '-ic %s'. El mensaje de error original fue: %s"
@@ -1817,7 +1890,8 @@ msgstr "ha fallado al crear máquina virtual, consulte errores anteriores"
 
 #: output/output_ovirt_upload.ml:479
 msgid "failed to finalize the transfers, see earlier errors"
-msgstr "incorrecto al finalizar las transferencias, consulte errores anteriores"
+msgstr ""
+"incorrecto al finalizar las transferencias, consulte errores anteriores"
 
 #: common/mldrivers/linux_bootloaders.ml:208
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
@@ -1917,6 +1991,12 @@ msgstr "dentro de los metadatos XML de libvirt, <nombre> está ausente o vacío"
 #: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
 msgid "in-place mode does not work with HTTP source"
 msgstr "el modo in-place no funciona con origen HTTP"
+
+#: input/input_nfc.ml:103
+#, fuzzy
+#| msgid "in-place mode does not work with VMX source"
+msgid "in-place mode does not work with NFC (-it nfc) source"
+msgstr "modo in-place no funciona con origen VMX"
 
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
@@ -2186,13 +2266,13 @@ msgstr ""
 "\n"
 "Consulte además el manual de virt-v2v-input-vmware(1)."
 
-#: lib/nbdkit.ml:223
+#: lib/nbdkit.ml:226
 msgid "nbdkit did not start up.  See previous debugging messages for problems."
 msgstr ""
 "nbdkit no ha arrancado.  Consulte los mensajes de depuración previos para "
 "problemas."
 
-#: lib/nbdkit.ml:225
+#: lib/nbdkit.ml:228
 msgid ""
 "nbdkit did not start up.  There may be errors printed by nbdkit above.\n"
 "\n"
@@ -2205,6 +2285,7 @@ msgstr ""
 "entonces añade las opciones 'virt-v2v -v -x' y examine la salida de "
 "depuración cuidadosamente."
 
+#. input/input_nfc.ml:208
 #: input/nbdkit_ssh.ml:36 input/nbdkit_curl.ml:32 input/input_vddk.ml:283
 msgid "nbdkit is not installed or not working"
 msgstr "nbdkit no está instalado o no funciona"
@@ -2256,6 +2337,24 @@ msgstr "nbdkit debe ser >= 1.45.11 para entrada desde VDDK"
 msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgstr "nbdkit debe ser >= 1.45.11 para entrada desde VDDK"
 
+#: input/input_nfc.ml:222
+#, fuzzy
+#| msgid ""
+#| "nbdkit python plugin is not installed or not working.  It is required if "
+#| "you want to use ‘-o ovirt-upload’.\n"
+#| "\n"
+#| "See also the virt-v2v-output-ovirt(1) manual."
+msgid ""
+"nbdkit nfc plugin is not installed or not working.  It is required if you "
+"want to use ‘-it nfc’.\n"
+"\n"
+"See also the virt-v2v-input-vmware(1) manual."
+msgstr ""
+"nbdkit con complemento en python no está instalado o no funciona.   Está "
+"requerido si desea utilizar ‘-o ovirt-upload'.\n"
+"\n"
+"Consulte también el manual de virt-v2v-output-ovirt(1)."
+
 #: output/output_ovirt_upload.ml:176
 msgid ""
 "nbdkit python plugin is not installed or not working.  It is required if you "
@@ -2278,6 +2377,7 @@ msgstr ""
 "nbdkit con libselinux-devel instalado, o por otra parte establezca SELinux a "
 "modo Permissive mientras haga la conversión."
 
+#. input/input_nfc.ml:212
 #. input/input_libvirt.ml:76
 #. input/input_disk.ml:55
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
@@ -2296,6 +2396,12 @@ msgstr "nbdkit-file-plugin no está instalado o no funciona"
 #: input/input_libvirt.ml:74 input/input_disk.ml:73
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin no está instalado o no funciona"
+
+#: input/input_nfc.ml:210
+#, fuzzy
+#| msgid "nbdkit-curl-plugin is not installed"
+msgid "nbdkit-nfc-plugin is not installed"
+msgstr "nbdkit-curl-plugin no está instalado"
 
 #: output/output_null.ml:60
 msgid "nbdkit-null-plugin is not installed or not working"
@@ -2440,8 +2546,8 @@ msgid ""
 "openstack: unknown volume status \"%s\": expected \"creating\" or "
 "\"available\""
 msgstr ""
-"openstack: estado de volumen «%s» desconocido: se esperaba «creating» o «"
-"available»"
+"openstack: estado de volumen «%s» desconocido: se esperaba «creating» o "
+"«available»"
 
 #: output/output.ml:133
 msgid "output mode only supports raw or qcow2 format (format: %s)"
@@ -2522,7 +2628,8 @@ msgstr "qemu-nbd: versión inesperada en --version: %s"
 
 #: common/mlcustomize/customize_run.ml:77
 msgid "random seed could not be set for this type of guest"
-msgstr "la semilla aleatoria no pudo ser establecida para este tipo de invitado"
+msgstr ""
+"la semilla aleatoria no pudo ser establecida para este tipo de invitado"
 
 #: input/parse_domain_from_vmx.ml:44
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
@@ -2775,8 +2882,8 @@ msgid ""
 "\n"
 "The guest will be configured to use a slower emulated device."
 msgstr ""
-"no hay ninguna unidad de red virtio para esta versión de Windows (%d.%d %s)"
-".  virt-v2v busca esta unidad en %s\n"
+"no hay ninguna unidad de red virtio para esta versión de Windows (%d.%d "
+"%s).  virt-v2v busca esta unidad en %s\n"
 "\n"
 "El invitado será configurado para utilizar una unidad emulada más lenta."
 
@@ -3029,9 +3136,15 @@ msgstr "esperando volumen ceniza %s para adjuntar al instrumento de conversión"
 msgid "you must supply the --run parameter"
 msgstr "debe proporcionar el parámetro --run"
 
-#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189
+#: input/input_xen_ssh.ml:87 input/input_vddk.ml:189 input/input_nfc.ml:146
 msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr "‘-ic %s’ de URL no contiene un campo de nombre del host"
+
+#: input/input_nfc.ml:198
+#, fuzzy
+#| msgid "‘-io vddk-file=’ must be used exactly %d times"
+msgid "‘-io nfc-file=’ must be used exactly %d times"
+msgstr "‘-io vddk-file=’ debe ser utilizado exactamente %d veces"
 
 #: input/input_vddk.ml:273
 msgid "‘-io vddk-file=’ must be used exactly %d times"
@@ -3198,8 +3311,8 @@ msgstr ""
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
 msgstr ""
-"%s: algunos sistemas de archivos no han podido ser montados (se descartaron)"
-"\n"
+"%s: algunos sistemas de archivos no han podido ser montados (se "
+"descartaron)\n"
 
 #: common/options/inspect.c:178
 #, c-format
