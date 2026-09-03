@@ -102,8 +102,8 @@ module OVA = struct
     (* Convert the disk hrefs into qemu URIs. *)
     let qemu_uris =
       List.map (
-        fun { OVF.href; compressed } ->
-          let file_ref = find_file_or_snapshot ova_t href manifest in
+        fun { OVF.href; compressed; chunked } ->
+          let file_ref = find_file_or_snapshot ova_t href manifest chunked in
 
           match compressed, file_ref with
           | false, OVA.LocalFile filename ->
@@ -203,7 +203,7 @@ module OVA = struct
 
     source, uris
 
-  and find_file_or_snapshot ova_t href manifest =
+  and find_file_or_snapshot ova_t href manifest chunked =
     match OVA.resolve_href ova_t href with
     | Some f -> f
     | None ->
@@ -217,15 +217,69 @@ module OVA = struct
              | OVA.TarFile (_, filename) ->
                 get_snapshot_if_matches href filename
          ) files in
-       (* Pick highest. *)
-       let snapshots = List.sort (fun a b -> compare b a) snapshots in
-       match snapshots with
-       | [] -> error_missing_href href
-       | snapshot::_ ->
-          let href = sprintf "%s.%s" href snapshot in
-          match OVA.resolve_href ova_t href with
-          | None -> error_missing_href href
+       if chunked then (
+         (* DSP0243 chunked disk (ovf:chunkSize was present): these
+          * must all be concatenated, in ascending order, to
+          * reconstruct the disk -- unlike a VMware snapshot chain
+          * (below) where only the highest-numbered file is wanted.
+          * The suffixes are fixed-width zero-padded decimal numbers,
+          * so plain string comparison already sorts them numerically.
+          *)
+         let snapshots = List.sort compare snapshots in
+         match snapshots with
+         | [] -> error_missing_href href
+         | _ -> concat_chunks ova_t href snapshots
+       )
+       else (
+         (* RHBZ#1570407: VMware-generated OVA files can reference a
+          * snapshot chain; the highest-numbered file is the current
+          * differencing disk and is the only one we want.
+          *)
+         let snapshots = List.sort (fun a b -> compare b a) snapshots in
+         match snapshots with
+         | [] -> error_missing_href href
+         | snapshot::_ ->
+            let href = sprintf "%s.%s" href snapshot in
+            match OVA.resolve_href ova_t href with
+            | None -> error_missing_href href
+            | Some f -> f
+       )
+
+  (* Concatenate the (already sorted, ascending) chunk files for
+   * [href] into a single temporary file and return it as a
+   * LocalFile.  This gives up the tar zero-copy optimization for
+   * chunked disks, the same tradeoff already made for compressed
+   * disks below.
+   *)
+  and concat_chunks ova_t href snapshots =
+    let chunk_files =
+      List.map (
+        fun snapshot ->
+          let chunk_href = sprintf "%s.%s" href snapshot in
+          match OVA.resolve_href ova_t chunk_href with
+          | None -> error_missing_href chunk_href
           | Some f -> f
+      ) snapshots in
+
+    let tmpfile =
+      Filename.temp_file ~temp_dir:Utils.large_tmpdir "ova-chunks" ".vmdk" in
+    On_exit.unlink tmpfile;
+
+    List.iter (
+      fun chunk ->
+        let cmd =
+          match chunk with
+          | OVA.LocalFile filename ->
+             sprintf "cat %s >> %s" (quote filename) (quote tmpfile)
+          | OVA.TarFile (tar, filename) ->
+             sprintf "tar -xf %s -O %s >> %s"
+               (quote tar) (quote filename) (quote tmpfile) in
+        if shell_command cmd <> 0 then
+          error (f_"-i ova: error reconstructing chunked disk ‘%s’, see \
+                    earlier error messages") href
+    ) chunk_files;
+
+    OVA.LocalFile tmpfile
 
   (* If [filename] matches [<href>.\d+] then return [Some snapshot]. *)
   and get_snapshot_if_matches href filename =
