@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: libguestfs 1.39.12\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-08-25 11:09+0100\n"
-"PO-Revision-Date: 2026-08-25 12:36+0000\n"
-"Last-Translator: GitHub webhook <noreply-webhook-github@weblate.org>\n"
+"PO-Revision-Date: 2026-08-27 12:51+0000\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/es/>\n"
 "Language: es\n"
@@ -121,7 +121,8 @@ msgid ""
 msgstr ""
 " Este programa es software libre; puede redistribuirlo y/o modificarlo\n"
 "bajo los términos de la Licencia Pública General GNU publicada por la\n"
-"Free Software Foundation; ya sea la versión 2 de la Licencia o (a su elección)\n"
+"Free Software Foundation; ya sea la versión 2 de la Licencia o (a su "
+"elección)\n"
 "cualquier versión posterior.\n"
 "\n"
 
@@ -153,7 +154,8 @@ msgid ""
 "\n"
 msgstr ""
 " Debería haber recibido una copia de la Licencia Pública General de GNU\n"
-" junto con este programa; de no ser así, escriba a la Free Software Foundation, Inc.,\n"
+" junto con este programa; de no ser así, escriba a la Free Software "
+"Foundation, Inc.,\n"
 " 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE. UU.\n"
 "\n"
 
@@ -559,8 +561,7 @@ msgstr ""
 #: common/mlcustomize/customize-options.pod:147
 #: common/mlcustomize/v2v-customize-options.pod:147
 msgid "Note that this option is only available when Perl 5 is installed."
-msgstr ""
-"Note que esta opción solo está disponible cunado esté instalado Perl 5."
+msgstr "Note que esta opción solo está disponible cunado esté instalado Perl 5."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:149
@@ -989,8 +990,8 @@ msgid ""
 "C<md5> will work with relatively old Linux guests (eg. RHEL 3), but is not "
 "secure against modern attacks."
 msgstr ""
-"C<md5> funcionará con invitados de Linux relativamente antiguos (p.e. RHEL "
-"3), pero no es seguro frente a ataques modernos."
+"C<md5> funcionará con invitados de Linux relativamente antiguos (p.e. RHEL 3)"
+", pero no es seguro frente a ataques modernos."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:314
@@ -1137,8 +1138,7 @@ msgstr "B<--scrub> ARCHIVO"
 #: common/mlcustomize/customize-options.pod:371
 #: common/mlcustomize/v2v-customize-options.pod:317
 msgid "Scrub a file from the guest.  This is like I<--delete> except that:"
-msgstr ""
-"Recorta un archivo desde el invitado. Es como I<--delete>, excepto que:"
+msgstr "Recorta un archivo desde el invitado. Es como I<--delete>, excepto que:"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:377
@@ -1507,8 +1507,8 @@ msgstr ""
 "Este parámetro establece el tamaño del sector de la imagen de disco. Afecta "
 "a todos los discos añadidos explícitamente después de este parámetro. Al "
 "usar I<--blocksize> sin argumentos, el tamaño del sector del disco se cambia "
-"al valor predeterminado, que suele ser de 512 bytes. Véase también "
-"L<guestfs(3)/guestfs_add_drive_opts>."
+"al valor predeterminado, que suele ser de 512 bytes. Véase también L<guestfs"
+"(3)/guestfs_add_drive_opts>."
 
 #. type: =item
 #: common/options/key-option.pod:1
@@ -1903,7 +1903,8 @@ msgstr ""
 " virt-v2v -i vmx\n"
 "    -lt ssh\n"
 "    -ip passwordfile\n"
-"     'ssh://root@esxi.example.com/vmfs/volúmenes/datastore1/invitado/invitado.vmx'\n"
+"     'ssh://root@esxi.example.com/vmfs/volúmenes/datastore1/invitado/"
+"invitado.vmx'\n"
 "    [-o* opciones]\n"
 "\n"
 
@@ -2315,7 +2316,8 @@ msgid ""
 "\n"
 msgstr ""
 " $ ssh root@esxi.ejemplo.com\n"
-" [ declara directamente al intérprete de consola, ninguna contraseña es requerida ]\n"
+" [ declara directamente al intérprete de consola, ninguna contraseña es "
+"requerida ]\n"
 "\n"
 
 #. type: textblock
@@ -2353,7 +2355,8 @@ msgid ""
 " ssh://root@esxi.example.com/vmfs/volumes/datastore1/my%20guest/my%20guest.vmx\n"
 "\n"
 msgstr ""
-" ssh://root@esxi.ejemplo.com/vmfs/volumes/datastore1/mi%20invitadot/mi%20invitado.vmx\n"
+" ssh://root@esxi.ejemplo.com/vmfs/volumes/datastore1/mi%20invitadot/"
+"mi%20invitado.vmx\n"
 "\n"
 
 #. type: textblock
@@ -2463,7 +2466,8 @@ msgid ""
 msgstr ""
 " $ virt-v2v \\\n"
 "     -i vmx -it ssh \\\n"
-"     \"ssh://root@esxi.ejemplo.com/vmfs/volumes/datastore1/guest/invitado.vmx\" \\\n"
+"     \"ssh://root@esxi.ejemplo.com/vmfs/volumes/datastore1/guest/"
+"invitado.vmx\" \\\n"
 "     -o local -os /var/tmp\n"
 "\n"
 
@@ -2644,7 +2648,8 @@ msgid ""
 " nbdkit: vddk[2]: error: VixDiskLibVim: Failed to open disk using NFC. VixError 1 at 1166.\n"
 "\n"
 msgstr ""
-" nbdkit: vddk[2]: error: VixDiskLibVim: Ha fallado al abrir el disco utilizando NFC. VixError 1 en 1166.\n"
+" nbdkit: vddk[2]: error: VixDiskLibVim: Ha fallado al abrir el disco "
+"utilizando NFC. VixError 1 en 1166.\n"
 "\n"
 
 #. type: textblock
@@ -2748,7 +2753,8 @@ msgid ""
 " $ virsh -c 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' list --all\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi?no_verify=1' list --all\n"
+" $ virsh -c 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi?no_verify=1' "
+"list --all\n"
 "\n"
 
 #. type: textblock
@@ -2773,7 +2779,8 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi' dumpxml \"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi' dumpxml "
+"\"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -3221,11 +3228,10 @@ msgid ""
 "hexadecimal ASCII code for backslash.)  Other punctuation may also have to "
 "be escaped."
 msgstr ""
-"Si el nombre‐usuario contiene un raya torcida hacia atrás (p.ej. "
-"C<DOMINIO\\USUARIO>) entonces necesitarás un carácter de escape de la URI "
-"utilizando C<%5c>: C<DOMINIO%5cUSUARIO> (5c es el código ASCII hexadecimal "
-"para raya torcida atrás.)  Otra puntuación también puede tener que ser "
-"escapada."
+"Si el nombre‐usuario contiene un raya torcida hacia atrás (p.ej. C<DOMINIO\\U"
+"SUARIO>) entonces necesitarás un carácter de escape de la URI utilizando "
+"C<%5c>: C<DOMINIO%5cUSUARIO> (5c es el código ASCII hexadecimal para raya "
+"torcida atrás.)  Otra puntuación también puede tener que ser escapada."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:493
@@ -3261,8 +3267,8 @@ msgstr "es el nombre del centro de datos."
 msgid ""
 "If the name contains a space, replace it with the URI-escape code C<%20>."
 msgstr ""
-"Si el nombre contiene un espacio, reemplázalo con el código URI-escape "
-"C<%20>."
+"Si el nombre contiene un espacio, reemplázalo con el código URI-escape C<%20>"
+"."
 
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:507
@@ -3357,7 +3363,8 @@ msgid ""
 " </domain>\n"
 "\n"
 msgstr ""
-" $ virsh -c 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi' dumpxml \"Windows 2003\"\n"
+" $ virsh -c 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi' dumpxml "
+"\"Windows 2003\"\n"
 " <domain type='vmware'>\n"
 "   <name>Windows 2003</name>\n"
 "   [...]\n"
@@ -3413,7 +3420,8 @@ msgid ""
 "   -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ virt-v2v -ic 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi?no_verify=1' \\\n"
+" $ virt-v2v -ic 'vpx://root@vcenter.ejemplo.com/Datacenter/esxi?no_verify=1' "
+"\\\n"
 "   -ip passwordfile \\\n"
 "   \"Windows 2003\" \\\n"
 "   -o local -os /var/tmp\n"
@@ -3825,7 +3833,8 @@ msgid ""
 "\n"
 msgstr ""
 " $ ssh root@xen.ejemplo.com\n"
-" [ accede directamente en el intérprete, no es requerida ninguna contraseña ]\n"
+" [ accede directamente en el intérprete, no es requerida ninguna contraseña "
+"]\n"
 "\n"
 
 #. type: textblock
@@ -4628,7 +4637,8 @@ msgid ""
 msgstr ""
 " $ openstack server list\n"
 " +--------------------------------------+-----------+--------+\n"
-" | ID                                                        | Nombre                          | Estado |\n"
+" | ID                                                        | Nombre"
+"                          | Estado |\n"
 " +--------------------------------------+-----------+--------+\n"
 " | bbb0147a-44b9-4d19-9a9d-10ca9a984744 | test1     | ACTIVO |\n"
 " +--------------------------------------+-----------+--------+\n"
@@ -7165,8 +7175,7 @@ msgstr "L<https://bugzilla.redhat.com/1837328>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:324
 msgid "Virt-v2v cannot convert guest from ESXI7.0 server without vddk"
-msgstr ""
-"Virt-v2v no se puede convertir invitado desde servidor ESXI7.0 sin vddk"
+msgstr "Virt-v2v no se puede convertir invitado desde servidor ESXI7.0 sin vddk"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.0.pod:326
@@ -7275,8 +7284,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
 "notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-"
-"notes-1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-1.42(1)>, L<guestfs-release-notes-"
+"1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.0.pod:368
@@ -7574,8 +7583,8 @@ msgid ""
 "Files\\Guestfs>>, it is now created read-only for non-Administrator accounts "
 "(Cole Robinson)."
 msgstr ""
-"Durante la conversión de invitados de Windows, si tenemos que crear S<F<C:"
-"\\Program Files\\Guestfs>>, ahora se crea en solo-lectura para cuentas no "
+"Durante la conversión de invitados de Windows, si tenemos que crear S<F<C:\\P"
+"rogram Files\\Guestfs>>, ahora se crea en solo-lectura para cuentas no "
 "administrador (Cole Robinson)."
 
 #. type: textblock
@@ -8627,8 +8636,7 @@ msgstr "Los invitados de Windows 11 ahora tienen mantenimiento."
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:34
 msgid "Rocky Linux guest support has been added (Andrey Drobyshev)."
-msgstr ""
-"Se ha añadido soporte para invitados de Rocky Linux (Andrey Drobyshev)."
+msgstr "Se ha añadido soporte para invitados de Rocky Linux (Andrey Drobyshev)."
 
 #. type: =head2
 #: docs/virt-v2v-release-notes-2.2.pod:36
@@ -8679,8 +8687,8 @@ msgid ""
 "server side when importing over SSH (Laszlo Ersek)."
 msgstr ""
 "Mejorar la documentación sobre la necesidad de habilitar la autenticación de "
-"contraseña en el lado del servidor al importar a través de SSH (Laszlo "
-"Ersek)."
+"contraseña en el lado del servidor al importar a través de SSH (Laszlo Ersek)"
+"."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:56
@@ -8775,8 +8783,8 @@ msgstr ""
 #: docs/virt-v2v-release-notes-2.2.pod:88
 msgid "Remove the LVM2 devices file during conversion (Laszlo Ersek)."
 msgstr ""
-"Eliminar el archivo de dispositivos LVM2 durante la conversión (Laszlo "
-"Ersek)."
+"Eliminar el archivo de dispositivos LVM2 durante la conversión (Laszlo Ersek)"
+"."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:90
@@ -9042,8 +9050,7 @@ msgstr "L<https://bugzilla.redhat.com/2089623>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:185
 msgid "Virt-v2v can't convert rhel8.6 guest from VMware on rhel8.6"
-msgstr ""
-"Virt-v2v no puede convertir invitado de rhel8.6 desde VMware en rhel8.6"
+msgstr "Virt-v2v no puede convertir invitado de rhel8.6 desde VMware en rhel8.6"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.2.pod:187
@@ -9291,8 +9298,8 @@ msgid ""
 "L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
 "notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 msgstr ""
-"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-"
-"notes-1.42(1)>, L<guestfs-release-notes-1.40(1)>."
+"L<virt-v2v(1)>, L<virt-v2v-release-notes-2.0(1)>, L<virt-v2v-release-notes-"
+"1.42(1)>, L<guestfs-release-notes-1.40(1)>."
 
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.2.pod:282
@@ -9569,8 +9576,8 @@ msgid ""
 "RFE: Virt-v2v should recognize partition names like '/dev/mapper/rhel "
 "boot--73--75--123-root' in related keys option"
 msgstr ""
-"RFE: Virt-v2v reconocería nombres de partición como '/dev/mapper/rhel "
-"boot--73--75--123-root' en opción de teclas relacionadas"
+"RFE: Virt-v2v reconocería nombres de partición como '/dev/mapper/rhel boot--"
+"73--75--123-root' en opción de teclas relacionadas"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.4.pod:120
@@ -9964,8 +9971,7 @@ msgstr "L<https://issues.redhat.com/browse/RHEL-55837>"
 #. type: textblock
 #: docs/virt-v2v-release-notes-2.6.pod:154
 msgid "Re-enable Windows disks post-live migration [rhel-9.4.z]"
-msgstr ""
-"Re-habilitar discos de Windows tras la migración post-live [rhel-9.4.z]"
+msgstr "Re-habilitar discos de Windows tras la migración post-live [rhel-9.4.z]"
 
 #. type: =item
 #: docs/virt-v2v-release-notes-2.6.pod:156
@@ -10776,8 +10782,8 @@ msgid ""
 "Not recently tested.  Requires that you export the disk or use L<virt-"
 "p2v(1)> on Hyper-V."
 msgstr ""
-"No probado recientemente. Requiere que exporte el disco o utilizar L<virt-"
-"p2v(1)> en Hyper-V."
+"No probado recientemente. Requiere que exporte el disco o utilizar L<virt-p2v"
+"(1)> en Hyper-V."
 
 #. type: =item
 #: docs/virt-v2v-support.pod:45
@@ -11237,8 +11243,7 @@ msgstr ""
 #. type: textblock
 #: docs/virt-v2v.pod:123
 msgid "For more information see L<virt-v2v-output-ovirt(1)>.  ')"
-msgstr ""
-"Para obtener más información, consulte L<virt-v2v-output-ovirt(1)>.  ')"
+msgstr "Para obtener más información, consulte L<virt-v2v-output-ovirt(1)>.  ')"
 
 #. type: =head2
 #: docs/virt-v2v.pod:126
@@ -11268,7 +11273,8 @@ msgid ""
 msgstr ""
 " virt-v2v \\\n"
 "   -i vmx -it ssh \\\n"
-"   \"ssh://root@esxi.ejemplo.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\\n"
+"   \"ssh://root@esxi.ejemplo.com/vmfs/volumes/datastore1/guest/guest.vmx\" \\"
+"\n"
 "   -o local -os /var/tmp\n"
 "\n"
 
@@ -14387,8 +14393,8 @@ msgstr ""
 #: docs/virt-v2v.pod:1616
 msgid "(See screenshot on L<https://issues.redhat.com/browse/RHEL-103915>)"
 msgstr ""
-"(Consulte la captura de pantalla en L<https://issues.redhat.com/browse/"
-"RHEL-103915>)"
+"(Consulte la captura de pantalla en L<https://issues.redhat.com/browse/RHEL-"
+"103915>)"
 
 #. type: textblock
 #: docs/virt-v2v.pod:1618
@@ -15172,11 +15178,10 @@ msgid ""
 msgstr ""
 "L<virt-p2v(1)>, L<virt-v2v-inspector(1)>, L<virt-v2v-in-place(1)>, L<virt-"
 "v2v-open(1)>, L<virt-customize(1)>, L<virt-df(1)>, L<virt-filesystems(1)>, "
-"L<virt-inspector(1)>, L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<virt-win-"
-"reg(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-image-"
-"uploader(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-"
-"ovirt.git>, L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/"
-">."
+"L<virt-inspector(1)>, L<virt-sparsify(1)>, L<virt-sysprep(1)>, L<virt-win-reg"
+"(1)>, L<guestfs(3)>, L<guestfish(1)>, L<qemu-img(1)>, L<engine-image-uploader"
+"(8)>, L<import-to-ovirt.pl|http://git.annexia.org/?p=import-to-ovirt.git>, "
+"L<nbdkit(1)>, L<nbdkit-vddk-plugin(1)>, L<http://libguestfs.org/>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:2030 in-place/virt-v2v-in-place.pod:387
