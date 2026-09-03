@@ -69,6 +69,22 @@ type file_ref =
 
 type mf_record = file_ref * Checksums.csum_t
 
+(* Normalize a path by removing "." and ".." components.
+ * This prevents mismatches when href contains "./" prefixes.
+ *)
+let normalize_path path =
+  let parts = String.split_on_char '/' path in
+  let rec loop acc = function
+    | [] -> String.concat "/" (List.rev acc)
+    | "." :: rest -> loop acc rest
+    | ".." :: rest ->
+       (match acc with
+        | [] -> loop [] rest   (* can't go above root, ignore *)
+        | _ :: tl -> loop tl rest)
+    | part :: rest -> loop (part :: acc) rest
+  in
+  loop [] parts
+
 let rec parse_ova ova =
   (* The spec allows a directory to be specified as an ova.  This
    * is also pretty convenient.
@@ -275,7 +291,8 @@ and get_ovf_file { orig_ova; top_dir } =
   | _ :: _ ->
      error (f_"more than one .ovf file was found in %s") orig_ova
 
-let rex = PCRE.compile "^(SHA1|SHA256)[[:space:]]*\\((.*)\\)[[:space:]]*= ([0-9a-fA-F]+)\r?$"
+(* Updated regex to accept both "SHA1" and "SHA-1" as well as "SHA256" and "SHA-256" *)
+let rex = PCRE.compile "^(SHA-?1|SHA-?256)[[:space:]]*\\((.*)\\)[[:space:]]*= ([0-9a-fA-F]+)\r?$"
 
 let get_manifest { top_dir; ova_type } =
   let mf_files = find_files top_dir ".mf" in
@@ -367,7 +384,7 @@ let resolve_href ({ top_dir; ova_type } as t) href =
 
   | TarOptimized tar ->
      (* Security: Since the only thing we will do with the computed
-      * filename is to call get_tar_offet_and_size, it doesn't
+      * filename is to call get_tar_offset_and_size, it doesn't
       * matter if the filename is bogus or references some file
       * on the filesystem outside the tarball.  Therefore we don't
       * need to do any sanity checking here.
@@ -382,9 +399,11 @@ let resolve_href ({ top_dir; ova_type } as t) href =
      let filename =
        if String.starts_with (top_dir // "") ovf_folder then ( (* 2 *)
          let len = String.length top_dir + 1 in
-         String.sub ovf_folder len (String.length ovf_folder - len) // href
+         let subdir = String.sub ovf_folder len (String.length ovf_folder - len) in
+         normalize_path (subdir // href)   (* Apply normalization *)
        )
-       else if top_dir = ovf_folder then href (* 1 *)
+       else if top_dir = ovf_folder then
+         normalize_path href                (* Apply normalization *)
        else assert false in
 
      (* Does the file exist in the tarball? *)
@@ -403,7 +422,7 @@ let resolve_href ({ top_dir; ova_type } as t) href =
 let ws = PCRE.compile "\\s+"
 let re_tar_message = PCRE.compile "\\*\\* [^*]+ \\*\\*$"
 
-let get_tar_offet_and_size tar filename =
+let get_tar_offset_and_size tar filename =
   let cmd =
     sprintf "LANG=C tar \
              --no-auto-compress --quoting-style=literal --numeric-owner \
