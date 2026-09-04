@@ -33,6 +33,8 @@ type disk = {
   source_disk : Types.source_disk;
   href : string;                (* The <File href> from the OVF file. *)
   compressed : bool;            (* If the file is gzip compressed. *)
+  chunked : bool;                (* If the file is split into DSP0243
+                                   * chunks (ovf:chunkSize present). *)
 }
 
 let xpathctx_of_ovf ovf_filename =
@@ -155,6 +157,16 @@ and parse_disks xpathctx =
         | Some "gzip" -> true
         | Some s -> error (f_"unsupported compression in OVF: %s") s in
 
+      (* DSP0243 clauses 542-556: a disk larger than a chunk boundary
+       * is split into sequential files named <href>.NNNNNNNNN which
+       * must be concatenated to reconstruct it.  The presence of the
+       * ovf:chunkSize attribute is what distinguishes this from a
+       * VMware CBT/snapshot delta chain, which has the same filename
+       * shape but a different meaning (RHBZ#1570407).
+       *)
+      let expr = sprintf "/ovf:Envelope/ovf:References/ovf:File[@ovf:id='%s']/@ovf:chunkSize" file_ref in
+      let chunked = xpath_string expr <> None in
+
       let disk = {
         source_disk = {
           s_disk_id = i;
@@ -162,6 +174,7 @@ and parse_disks xpathctx =
         };
         href = href;
         compressed = compressed;
+        chunked = chunked;
       } in
       List.push_front disk disks;
     ) else
