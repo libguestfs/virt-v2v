@@ -30,7 +30,7 @@ type password =
   | PasswordFile of string
 
 (* Create an nbdkit module specialized for reading from SSH sources. *)
-let create_ssh ?name ?cor ?(retry=true)
+let create_ssh ?name ?cor ?read_only:(read_only=true) ?(retry=true)
       ~server ?port ?user ?password path =
   if not (Nbdkit.is_installed ()) then
     error (f_"nbdkit is not installed or not working");
@@ -38,7 +38,7 @@ let create_ssh ?name ?cor ?(retry=true)
   if not (Nbdkit.probe_plugin "ssh") then
     error (f_"nbdkit-ssh-plugin is not installed");
 
-  if not (Nbdkit.probe_filter "cow") then
+  if read_only && not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
 
   (* Construct the nbdkit command. *)
@@ -61,19 +61,24 @@ let create_ssh ?name ?cor ?(retry=true)
    *)
   if verbose () then Nbdkit.add_filter_if_available cmd "count";
 
-  (* IMPORTANT! Add the COW filter.  It must be furthest away
-   * except for the rate filter.
-   *)
-  Nbdkit.add_filter cmd "cow";
+  if read_only then (
+    Nbdkit.add_filter cmd "cow";
 
-  (* Add the cow-on-read flag if supported. *)
-  (match cor with
-   | None -> ()
-   | Some cor ->
-      if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
-        Nbdkit.add_arg cmd "cow-on-read" cor
-  );
+    (* Add the cow-on-read flag if supported. *)
+    (match cor with
+     | None -> ()
+     | Some cor ->
+        if Nbdkit.probe_filter_parameter "cow" "cow-on-read=.*/PATH" then
+          Nbdkit.add_arg cmd "cow-on-read" cor
+    );
 
+    (* If the filter supports it, enable cow-block-size (added in
+     * nbdkit 1.27.6).  This helps to reduce fragmentated small
+     * extent and read requests.
+     *)
+    if Nbdkit.probe_filter_parameter "cow" "cow-block-size" then
+      Nbdkit.add_arg cmd "cow-block-size" "4096";
+  )
   (* Handle the password parameter specially. *)
   (match password with
    | None -> ()

@@ -24,6 +24,7 @@ type password =                 (** Use [None] for no password *)
 
 val create_ssh : ?name:string ->
                  ?cor:string ->
+                 ?read_only:bool ->
                  ?retry:bool ->
                  server:string ->
                  ?port:string ->
