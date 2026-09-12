@@ -31,7 +31,7 @@ open Utils
 module G = Guestfs
 
 type options = {
-  block_driver : guestcaps_block_type;
+  block_driver : Convert_types.block_driver_option;
   collect : (string * string) list;
   collect_file : string option;
   keep_serial_console : bool;

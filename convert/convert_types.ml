@@ -16,10 +16,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *)
 
+type block_driver_option = Block_driver_virtio_blk | Block_driver_virtio_scsi
+
 module type CONVERT = sig
   val name : string
   val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
-                Firmware.i_firmware -> Types.guestcaps_block_type ->
+                Firmware.i_firmware -> block_driver_option ->
                 bool -> Types.static_ip list ->
                 Types.guestcaps
   val post_convert : Guestfs.guestfs -> Types.inspect -> unit
