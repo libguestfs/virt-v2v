@@ -280,7 +280,7 @@ let convert (g : G.guestfs) source inspect i_firmware
   and of_virtio_win_block_type = function
     | Inject_virtio_win.Virtio_blk -> Virtio_blk
     | Virtio_SCSI -> Virtio_SCSI
-    | IDE -> IDE
+    | Emulated -> IDE
 
   and of_virtio_win_net_type = function
     | Inject_virtio_win.Virtio_net -> Virtio_net
@@ -704,7 +704,7 @@ if errorlevel 3010 exit /b 0
     let virtio_installed =
       match block_driver with
       | Inject_virtio_win.Virtio_blk | Virtio_SCSI -> true
-      | IDE -> false in
+      | Emulated -> false in
     let more_than_one_disk = List.length source.s_disks > 1 in
 
     if virtio_installed && more_than_one_disk then (
