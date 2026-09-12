@@ -70,51 +70,6 @@ conversion.
 
 Display help.
 
-=item B<-b> ...
-
-=item B<--bridge> ...
-
-See I<--network> below.
-
-ifelse(ENABLE_BLOCK_DRIVER, yes, `
-
-=item B<--block-driver> B<virtio-blk>
-
-=item B<--block-driver> B<virtio-scsi>
-
-When choosing a block driver for Windows guests, prefer C<virtio-blk> or
-C<virtio-scsi>.  The default is C<virtio-blk>.
-
-Note this has no effect for Linux guests at the moment.  That may be
-added in future.
-')
-
-=item B<--collect> GUEST[B<:>LOCAL]
-
-=item B<--collect-output> PATH/TO/OUTPUTB<.tar.xz>
-
-See L<virt-v2v(1)/Collecting files for later diagnostics>
-
-=item B<--colors>
-
-=item B<--colours>
-
-Use ANSI colour sequences to colourize messages.  This is the default
-when the output is a tty.  If the output of the program is redirected
-to a file, ANSI colour sequences are disabled unless you use this
-option.
-
-=item B<--echo-keys>
-
-When prompting for keys and passphrases, virt-v2v normally turns
-echoing off so you cannot see what you are typing.  If you are not
-worried about Tempest attacks and there is no one else in the room you
-can specify this flag to see what you are typing.
-
-Note this options only applies to keys and passphrases for encrypted
-devices and partitions, not for passwords used to connect to remote
-servers.
-
 =item B<-i> B<disk>
 
 Set the input method to I<disk>.
@@ -174,82 +129,6 @@ password interactively.  Note the file should contain the whole
 password, B<without any trailing newline>, and for security the file
 should have mode C<0600> so that others cannot read it.
 
-__INCLUDE:key-option.pod__
-
-__INCLUDE:keys-from-stdin-option.pod__
-
-Note I<--keys-from-stdin> only applies to keys and passphrases for
-encrypted devices and partitions, not for passwords used to connect to
-remote servers.
-
-=item B<--mac> aa:bb:cc:dd:ee:ffB<:network:>out
-
-=item B<--mac> aa:bb:cc:dd:ee:ffB<:bridge:>out
-
-Map source NIC MAC address to a network or bridge.
-
-See L<virt-v2v(1)/Networks and bridges>.
-
-=item B<--mac> aa:bb:cc:dd:ee:ffB<:ip:>ipaddr[,gw[,len[,ns,ns,...]]]
-
-Force a particular interface (controlled by its MAC address) to have a
-static IP address after boot.
-
-The fields in the parameter are: C<ipaddr> is the IP address.  C<gw>
-is the optional gateway IP address.  C<len> is the subnet mask length
-(an integer).  The final parameters are zero or more nameserver IP
-addresses.
-
-This option can be supplied zero or more times.
-
-You only need to use this option for certain broken guests such as
-Windows which are unable to preserve MAC to static IP address mappings
-automatically.  You don't need to use it if Windows is using DHCP.  It
-is currently ignored for Linux guests since they do not have this
-problem.
-
-=item B<--machine-readable>
-
-=item B<--machine-readable>=format
-
-This option is used to make the output more machine friendly
-when being parsed by other programs.  See
-L<virt-v2v(1)/Machine readable output>.
-
-=item B<-m> MB
-
-=item B<--memsize> MB
-
-Change the amount of memory allocated when doing the conversion.
-Virt-v2v-in-place will usually choose a suitable default.  Increase
-this if you see that the conversion step is running out of memory.
-
-=item B<-n> in:out
-
-=item B<-n> out
-
-=item B<--network> in:out
-
-=item B<--network> out
-
-=item B<-b> in:out
-
-=item B<-b> out
-
-=item B<--bridge> in:out
-
-=item B<--bridge> out
-
-Map network (or bridge) called C<in> to network (or bridge) called
-C<out>.  If no C<in:> prefix is given, all other networks (or bridges)
-are mapped to C<out>.
-
-See L<virt-v2v(1)/Networks and bridges>.
-
-=item B<--no-fstrim>
-
-Do not trim the filesystem.  See L<virt-v2v(1)/Trimming>.
-
 =item B<-O> output.xml
 
 =item B<-O ->
@@ -257,32 +136,6 @@ Do not trim the filesystem.  See L<virt-v2v(1)/Trimming>.
 If this option is present, write post-conversion metadata about the
 guest to the named XML file, or to stdout if I<-O -> is used.  This is
 in the same format as L<virt-v2v-inspector(1)>.
-
-=item B<--print-source>
-
-Print information about the source guest and stop.  This option is
-useful when you are setting up network and bridge maps.
-See L<virt-v2v(1)/Networks and bridges>.
-
-=item B<-q>
-
-=item B<--quiet>
-
-This disables progress bars and other unnecessary output.
-
-=item B<--root> ...
-
-Choose the root filesystem to be converted.  See the documentation of
-this option in L<virt-v2v(1)>.
-
-=item B<--smp> N
-
-Change the number of virtual CPUs used when doing the conversion.
-Virt-v2v-in-place will usually choose a suitable default.
-
-Increasing this beyond 8 may improve conversion performance, if your
-host has sufficient physical CPUs.  You may also need to increase the
-memory size (I<--memsize> option).
 
 =item B<-v>
 
@@ -296,15 +149,62 @@ Enable verbose messages for debugging.
 
 Display version number and exit.
 
-=item B<--wrap>
-
-Wrap error, warning, and informative messages.  This is the default
-when the output is a tty.  If the output of the program is redirected
-to a file, wrapping is disabled unless you use this option.
-
 =item B<-x>
 
 Enable tracing of libguestfs API calls.
+
+=item B<-b> ...
+
+=item B<--bridge> ...
+
+ifelse(ENABLE_BLOCK_DRIVER, yes, `
+
+=item B<--block-driver> ...
+')
+
+=item B<--collect> ...
+
+=item B<--collect-output> ...
+
+=item B<--colors>
+
+=item B<--colours>
+
+=item B<--echo-keys>
+
+=item B<--key> ...
+
+=item B<--keys-from-stdin>
+
+=item B<--mac> ...
+
+=item B<--machine-readable>
+
+=item B<--machine-readable>=format
+
+=item B<-m> MB
+
+=item B<--memsize> MB
+
+=item B<-n> ...
+
+=item B<--network> ...
+
+=item B<--no-fstrim>
+
+=item B<--print-source>
+
+=item B<-q>
+
+=item B<--quiet>
+
+=item B<--root> ...
+
+=item B<--smp> N
+
+=item B<--wrap>
+
+These options work in the same way as the equivalent virt-v2v options.
 
 =back
 
