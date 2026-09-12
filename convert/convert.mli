@@ -17,7 +17,7 @@
  *)
 
 type options = {
-  block_driver : Types.guestcaps_block_type; (** [--block-driver] option *)
+  block_driver : Convert_types.block_driver_option; (** [--block-driver] *)
   collect : (string * string) list;(** [--collect] options  *)
   collect_file : string option;    (** [--collect-output] option *)
   keep_serial_console : bool;

@@ -301,7 +301,7 @@ read the man page virt-v2v-inspector(1).
 
   (* Get the conversion options. *)
   let conv_options = {
-    Convert.block_driver = Virtio_blk;
+    Convert.block_driver = Convert_types.Block_driver_virtio_blk;
     collect;
     collect_file;
     keep_serial_console = true;

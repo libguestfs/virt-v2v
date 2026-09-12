@@ -49,12 +49,12 @@ let convert (g : G.guestfs) source inspect i_firmware
   let virtio_win =
     Inject_virtio_win.from_environment g inspect.i_root Config.datadir in
   (match block_driver with
-   | Virtio_blk -> () (* the default, no need to do anything *)
-   | Virtio_SCSI ->
+   | Convert_types.Block_driver_virtio_blk ->
+      () (* the default, no need to do anything *)
+   | Block_driver_virtio_scsi ->
       let drivers = Inject_virtio_win.get_block_driver_priority virtio_win in
       let drivers = "vioscsi" :: drivers in
       Inject_virtio_win.set_block_driver_priority virtio_win drivers
-   | IDE -> assert false (* not possible - but maybe ...? *)
   );
 
   (* If the Windows guest has AV installed. *)
