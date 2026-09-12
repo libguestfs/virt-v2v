@@ -30,7 +30,7 @@ open Utils
 open Output
 
 module Openstack = struct
-  type poptions = string option * string * string *
+  type poptions = string option * string * string * string option *
                   string option * string option *
                   (string list -> int) * (string list -> JSON.json_t option)
 
@@ -53,7 +53,7 @@ module Openstack = struct
        | Some id -> sprintf " -oo server-id=%s" id)
 
   let query_output_options () =
-    printf (f_"virt-v2v -oo server-id=<NAME|UUID> [os-*=...]
+    printf (f_"virt-v2v -oo server-id=<NAME|UUID> [availability_zone=<NAME>] [os-*=...]
 
 Specify the name or UUID of the conversion appliance using
 
@@ -62,6 +62,11 @@ Specify the name or UUID of the conversion appliance using
 When virt-v2v runs it will attach the Cinder volumes to the
 conversion appliance, so this name or UUID must be the name
 of the virtual machine on OpenStack where virt-v2v is running.
+
+If an availability zone should be passed to Cinder when creating volumes,
+this can be done with ”-oo availability-zone=<NAME>”. If the OpenStack cloud
+does not support cross-zone volume attachments, this must be the same AZ
+as the conversion appliance Nova instance.
 
 In addition, all usual OpenStack “os-*” parameters or “OS_*”
 environment variables can be used.
@@ -88,6 +93,7 @@ The os-* parameters and environment variables are optional.
       error (f_"-o openstack mode only supports -oa sparse -of raw");
 
     let server_id = ref None in
+    let availability_zone = ref None in
     let dev_disk_by_id = ref None in
     let verify_server_certificate = ref true in
     let guest_id = ref None in
@@ -96,6 +102,8 @@ The os-* parameters and environment variables are optional.
       function
       | "server-id", v ->
          server_id := Some v
+      | "availability-zone", v ->
+         availability_zone := Some v
       | "dev-disk-by-id", v ->
          dev_disk_by_id := Some v
       | "verify-server-certificate", "" ->
@@ -119,6 +127,7 @@ The os-* parameters and environment variables are optional.
       | None ->
          error (f_"openstack: -oo server-id=<NAME|UUID> not present");
       | Some server_id -> server_id in
+    let availability_zone = !availability_zone in
     let authentication = List.rev !authentication in
     let verify_server_certificate = !verify_server_certificate in
     let guest_id = !guest_id in
@@ -202,14 +211,14 @@ The os-* parameters and environment variables are optional.
     let output_name = Option.value ~default:source.s_name options.output_name in
 
     (options.output_storage, output_name,
-     server_id, guest_id, dev_disk_by_id,
+     server_id, availability_zone, guest_id, dev_disk_by_id,
      run_openstack_command,
      run_openstack_command_capture_json)
 
   let setup dir options source input_disks =
     let input_sizes = get_disk_sizes input_disks in
     let output_storage, output_name,
-        server_id, guest_id, dev_disk_by_id,
+        server_id, availability_zone, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
 
     (* Timeout waiting for Cinder volumes to attach to the appliance. *)
@@ -226,7 +235,7 @@ The os-* parameters and environment variables are optional.
      * some kind of garbage collection for unfinished conversions
      * in the case that virt-v2v crashes.
      *)
-    let description = sprintf "virt-v2v temporary volume for %s" output_name in
+    let description = sprintf "'virt-v2v temporary volume for %s'" output_name in
 
     (* The list of volume IDs that we create as we go along. *)
     let volume_ids = ref [] in
@@ -283,6 +292,11 @@ The os-* parameters and environment variables are optional.
       Option.iter (
         fun os -> List.push_back_list args [ "--type"; os ]
       ) output_storage;
+
+      Option.iter (
+        fun az -> List.push_back_list args [ "--availability-zone"; az ]
+      ) availability_zone;
+
       List.push_back args name;
 
       let json =
@@ -398,7 +412,7 @@ The os-* parameters and environment variables are optional.
   let rec finalize dir options volume_ids output_disks
             source inspect target_meta =
     let output_storage, output_name,
-        server_id, guest_id, dev_disk_by_id,
+        server_id, availability_zone, guest_id, dev_disk_by_id,
         run_openstack_command, run_openstack_command_capture_json = options in
     let nr_disks = List.length volume_ids in
 
@@ -423,7 +437,7 @@ The os-* parameters and environment variables are optional.
       let image_properties =
         List.flatten (
             List.map (
-                fun (k, v) -> [ "--image-property"; sprintf "%s=%s" k v ]
+                fun (k, v) -> [ "--image-property"; sprintf "%s='%s'" k v ]
               ) image_properties
         ) in
       List.push_back_list args image_properties;
@@ -431,7 +445,7 @@ The os-* parameters and environment variables are optional.
       let volume_properties =
         List.flatten (
             List.map (
-                fun (k, v) -> [ "--property"; sprintf "%s=%s" k v ]
+                fun (k, v) -> [ "--property"; sprintf "%s='%s'" k v ]
             ) volume_properties
         ) in
       List.push_back_list args volume_properties;
@@ -459,7 +473,7 @@ The os-* parameters and environment variables are optional.
     List.iteri (
       fun i id ->
         let description =
-          sprintf "%s disk %d/%d converted by virt-v2v"
+          sprintf "'%s disk %d/%d converted by virt-v2v'"
             output_name (i+1) nr_disks in
 
         let volume_properties = ref [
