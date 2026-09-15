@@ -94,7 +94,6 @@ jobs:
           # Install a bunch of bits to enable more tests
           dnf install -y \
             git kernel sqlite perl-hivex \
-            libnbd-devel nbdkit-devel \
             mingw-srvany-redistributable nbdkit-\* virt-v2v \
             guestfs-tools\*
 

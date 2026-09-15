@@ -61,7 +61,7 @@ let create_ssh ?name ?cor ?(read_only=true) ?(retry=true)
    *)
   if verbose () then Nbdkit.add_filter_if_available cmd "count";
 
-  if read_only then begin
+  if read_only then (
     Nbdkit.add_filter cmd "cow";
 
     (* Add the cow-on-read flag if supported. *)
@@ -78,7 +78,7 @@ let create_ssh ?name ?cor ?(read_only=true) ?(retry=true)
      *)
     if Nbdkit.probe_filter_parameter "cow" "cow-block-size" then
       Nbdkit.add_arg cmd "cow-block-size" "4096";
-  end
+  )
   (* Handle the password parameter specially. *)
   (match password with
    | None -> ()
