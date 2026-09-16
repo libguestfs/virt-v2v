@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-09-03 11:50+0100\n"
-"PO-Revision-Date: 2026-08-27 12:41+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-09-11 03:17+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ru/>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -1602,24 +1602,18 @@ msgstr ""
 
 #. type: =item
 #: common/options/key-option.pod:41
-#, fuzzy
-#| msgid "B<--key> NAMEB<:clevis>"
 msgid "B<--key> NAMEB<:error>"
-msgstr "B<--key> ИМЯB<:clevis>"
+msgstr "B<--key> ИМЯB<:error>"
 
 #. type: =item
 #: common/options/key-option.pod:43
-#, fuzzy
-#| msgid "B<--key> UUIDB<:clevis>"
 msgid "B<--key> UUIDB<:error>"
-msgstr "B<--key> UUIDB<:clevis>"
+msgstr "B<--key> UUIDB<:error>"
 
 #. type: =item
 #: common/options/key-option.pod:45
-#, fuzzy
-#| msgid "B<--key> B<all:clevis>"
 msgid "B<--key> B<all:error>"
-msgstr "B<--key> B<all:clevis>"
+msgstr "B<--key> B<all:error>"
 
 #. type: textblock
 #: common/options/key-option.pod:47
@@ -1627,6 +1621,9 @@ msgid ""
 "Any encrypted device matching will cause an error.  S<I<--key all:error>> "
 "can be used to reject any disk image that contains an encrypted partition."
 msgstr ""
+"Любое совпадение с зашифрованным устройством вызовет ошибку. S<I<--key "
+"all:error>> можно использовать для отклонения любого образа диска, "
+"содержащего зашифрованный раздел."
 
 #. type: =item
 #: common/options/keys-from-stdin-option.pod:1
@@ -1916,13 +1913,7 @@ msgstr ""
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:22
-#, fuzzy, no-wrap
-#| msgid ""
-#| " virt-v2v\n"
-#| "    -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'\n"
-#| "    -ip passwordfile\n"
-#| "    \"GUEST NAME\" [-o* options]\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " virt-v2v\n"
 "    -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'\n"
@@ -1932,9 +1923,10 @@ msgid ""
 "\n"
 msgstr ""
 " virt-v2v\n"
-"    -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1'\n"
-"    -ip файл_пароля\n"
-"    \"ИМЯ ГОСТЯ\" [-o* опции]\n"
+"    -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1'\n"
+"    -it nfc\n"
+"    \"ИМЯ ГОСТЯ\"\n"
+"    [-o* опции]\n"
 "\n"
 
 #. type: verbatim
@@ -1996,29 +1988,23 @@ msgstr ""
 
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:50
-#, fuzzy
-#| msgid "B<-ic vpx://...> B<-it vddk>"
 msgid "B<-ic vpx://...> B<-it nfc>"
-msgstr "B<-ic vpx://...> B<-it vddk>"
+msgstr "B<-ic vpx://...> B<-it nfc>"
 
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:52
-#, fuzzy
-#| msgid "B<-ic esx://...> B<-it vddk>"
 msgid "B<-ic esx://...> B<-it nfc>"
-msgstr "B<-ic esx://...> B<-it vddk>"
+msgstr "B<-ic esx://...> B<-it nfc>"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:54
-#, fuzzy
-#| msgid "Full documentation: L</INPUT FROM VDDK>"
 msgid "Full documentation: L</INPUT FROM NFC>"
-msgstr "Полная документация: L</ВВОД ИЗ VDDK>"
+msgstr "Полная документация: L</ВВОД ИЗ NFC>"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:56 docs/virt-v2v-input-vmware.pod:380
 msgid "Use the nbdkit-nfc-plugin to connect to NFC port 902."
-msgstr ""
+msgstr "Используйте nbdkit-nfc-plugin для подключения к порту NFC 902."
 
 #. type: =item
 #: docs/virt-v2v-input-vmware.pod:58
@@ -2027,21 +2013,15 @@ msgstr "B<-i vmx> B<-it ssh> ssh://..."
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:62
-#, fuzzy
-#| msgid ""
-#| "This is similar to the method above, except it uses an SSH connection to "
-#| "ESXi to read the F<GUEST.vmx> file and associated disks.  This requires "
-#| "that you have enabled SSH access to the VMware ESXi hypervisor - in the "
-#| "default ESXi configuration this is turned off."
 msgid ""
 "This is similar to the VMX method above, except it uses an SSH connection to "
 "ESXi to read the F<GUEST.vmx> file and associated disks.  This requires that "
 "you have enabled SSH access to the VMware ESXi hypervisor - in the default "
 "ESXi configuration this is turned off."
 msgstr ""
-"Это похоже на метод выше, за исключением того, что он использует SSH-"
-"соединение с ESXi для чтения файла F<ГОСТЬ.vmx> и связанных дисков. Для "
-"этого требуется, чтобы вы включили SSH-доступ к гипервизору VMware ESXi - в "
+"Это похоже на метод VMX выше, за исключением того, что он использует SSH-"
+"соединение с ESXi для чтения файла F<GUEST.vmx> и связанных дисков. Для "
+"этого требуется, чтобы вы включили SSH-доступ к гипервизору VMware ESXi — в "
 "конфигурации ESXi по умолчанию это отключено."
 
 #. type: textblock
@@ -2079,19 +2059,14 @@ msgstr ""
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:79
-#, fuzzy
-#| msgid ""
-#| "If you have the proprietary library then this method is usually the "
-#| "fastest and most flexible.  If you don't have or don't want to use non-"
-#| "free software then the VMX or SSH methods above will be best."
 msgid ""
 "If you have the proprietary library then this method is usually the fastest "
 "and most flexible.  If you don't have or don't want to use non-free software "
 "then the nfc, VMX or SSH methods above will be best."
 msgstr ""
 "Если у вас есть проприетарная библиотека, то этот метод обычно является "
-"самым быстрым и гибким. Если у вас нет или вы не хотите использовать "
-"несвободное программное обеспечение, то методы VMX или SSH выше будут "
+"самым быстрым и гибким. Если у вас её нет или вы не хотите использовать "
+"несвободное программное обеспечение, то методы nfc, VMX или SSH выше будут "
 "лучшими."
 
 #. type: =item
@@ -2902,27 +2877,17 @@ msgstr ""
 
 #. type: =head1
 #: docs/virt-v2v-input-vmware.pod:378
-#, fuzzy
-#| msgid "INPUT FROM XEN"
 msgid "INPUT FROM NFC"
-msgstr "ВВОД ИЗ XEN"
+msgstr "ВВОД ИЗ NFC"
 
 #. type: textblock
 #: docs/virt-v2v-input-vmware.pod:382
-#, fuzzy
-#| msgid "Typical usage is:"
 msgid "Basic usage is:"
-msgstr "Типичное использование:"
+msgstr "Базовое использование:"
 
 #. type: verbatim
 #: docs/virt-v2v-input-vmware.pod:384
-#, fuzzy, no-wrap
-#| msgid ""
-#| " $ virt-v2v -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
-#| "   -ip passwordfile \\\n"
-#| "   \"Windows 2003\" \\\n"
-#| "   -o local -os /var/tmp\n"
-#| "\n"
+#, no-wrap
 msgid ""
 " $ virt-v2v \\\n"
 "     -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
@@ -2931,10 +2896,11 @@ msgid ""
 "     -o local -os /var/tmp\n"
 "\n"
 msgstr ""
-" $ virt-v2v -ic 'vpx://root@vcenter.example.com/ЦентрОбработкиДанных/esxi?no_verify=1' \\\n"
-"   -ip файл_пароля \\\n"
-"   \"Windows 2003\" \\\n"
-"   -o local -os /var/tmp\n"
+" $ virt-v2v \\\n"
+"     -ic 'vpx://root@vcenter.example.com/Datacenter/esxi?no_verify=1' \\\n"
+"     -it nfc \\\n"
+"     \"Windows 2003\" \\\n"
+"     -o local -os /var/tmp\n"
 "\n"
 
 #. type: =head1
