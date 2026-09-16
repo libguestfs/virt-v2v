@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-09-12 09:16+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
@@ -272,7 +272,7 @@ msgstr ""
 msgid "--mac ip prefix length field is out of range"
 msgstr "поле длины префикса --mac ip выходит за допустимый диапазон"
 
-#: v2v/v2v.ml:346
+#: v2v/v2v.ml:344
 msgid "--parallel parameter must be >= 1"
 msgstr "параметр --parallel должен быть >= 1"
 
@@ -609,7 +609,7 @@ msgstr "Копировать локальные файлы или каталог
 msgid "Copying (in image): %s to %s"
 msgstr "Копирование (в образе): %s в %s"
 
-#: v2v/v2v.ml:522
+#: v2v/v2v.ml:520
 msgid "Copying disk %d/%d"
 msgstr "Копирование диска %d/%d"
 
@@ -625,7 +625,7 @@ msgstr "Создать каталог"
 msgid "Create symbolic links"
 msgstr "Создать символические ссылки"
 
-#: v2v/v2v.ml:571
+#: v2v/v2v.ml:569
 msgid "Creating output metadata"
 msgstr "Создание метаданных вывода"
 
@@ -724,8 +724,8 @@ msgstr "ФАЙЛ:СТРОКА"
 msgid "FILENAME"
 msgstr "ИМЯ_ФАЙЛА"
 
-#. in-place/in_place.ml:385
-#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:383
+#: v2v/v2v.ml:573 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr "Завершение"
 
@@ -1280,16 +1280,16 @@ msgstr "Установка идентификатора машины в %s"
 msgid "Setting the timezone: %s"
 msgstr "Установка часового пояса: %s"
 
-#: v2v/v2v.ml:485
+#: v2v/v2v.ml:483
 msgid "Setting up the destination: %s"
 msgstr "Настройка назначения: %s"
 
-#. in-place/in_place.ml:349
-#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:347
+#: v2v/v2v.ml:459 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
 msgstr "Настройка источника: %s"
 
-#: v2v/v2v.ml:467 in-place/in_place.ml:355
+#: v2v/v2v.ml:465 in-place/in_place.ml:353
 msgid "Source guest information (--print-source option):\n"
 msgstr "Информация об исходной гостевой системе (параметр --print-source):\n"
 
@@ -1938,8 +1938,8 @@ msgstr ""
 "устройствах. См. раздел «Xen or ssh conversions from block devices» "
 "справочной страницы virt-v2v-input-xen(1)."
 
-#. in-place/in_place.ml:404
-#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:402
+#: v2v/v2v.ml:592 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1985,7 +1985,7 @@ msgstr "внутренняя ошибка: is_file_owned: неожиданный
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "внутренняя ошибка: регулярное выражение не соответствует «%s»"
 
-#: v2v/v2v.ml:552
+#: v2v/v2v.ml:550
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 "внутренняя ошибка: wait вернул неожиданный идентификатор процесса %d со "
@@ -2858,10 +2858,6 @@ msgstr "неизвестное значение Config:firmware %s (ожидал
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr "неизвестный вариант Windows 10: %s (%s)"
 
-#: v2v/v2v.ml:322 in-place/in_place.ml:263
-msgid "unknown block driver ‘--block-driver %s’"
-msgstr "неизвестный драйвер блочных устройств «--block-driver %s»"
-
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "неизвестное значение прошивки «%s», предполагается BIOS"
@@ -2870,7 +2866,7 @@ msgstr "неизвестное значение прошивки «%s», пре�
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "неизвестная гостевая операционная система: %s %s %d.%d %s (%s)"
 
-#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
+#: v2v/v2v.ml:333 open/open.ml:133 inspector/inspector.ml:249
 msgid "unknown input transport ‘-it %s’"
 msgstr "неизвестный транспорт ввода «-it %s»"
 
@@ -3297,6 +3293,9 @@ msgstr "%s остановлен сигналом %d (%s)"
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "%s завершился по неизвестной причине (состояние %d)"
+
+#~ msgid "unknown block driver ‘--block-driver %s’"
+#~ msgstr "неизвестный драйвер блочных устройств «--block-driver %s»"
 
 #~ msgid "Set bandwidth dynamically from file"
 #~ msgstr "Установить пропускную способность динамически из файла"
