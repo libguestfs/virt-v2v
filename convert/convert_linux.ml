@@ -180,6 +180,7 @@ let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
 
     configure_display_driver ();
     remap_block_devices block_type;
+    replace_rhel7_grub_directives ();
     configure_kernel_modules block_type net_type;
     rebuild_initrd kernel;
 
@@ -1004,6 +1005,34 @@ fi
       warning (f_"The display driver was updated to ‘%s’, but X11 does not \
                   seem to be installed in the guest.  X may not function \
                   correctly.") video_driver
+
+  and replace_rhel7_grub_directives () =
+    match family, inspect.i_major_version with
+    | `RHEL_family, 7 ->
+        (match i_firmware with
+         | Firmware.I_BIOS ->
+           debug "detected BIOS mode firmware, skipping UEFI bootloader fix"
+         | Firmware.I_UEFI _ ->
+           let grub_cfg = bootloader#get_config_file () in
+           if g#exists grub_cfg then (
+             let content = g#read_file grub_cfg in
+             debug "checking %s for linux16/initrd16 directives" grub_cfg;
+             let rex_linux16 =
+               PCRE.compile ~multiline:true "\\blinux16\\b" in
+             let rex_initrd16 =
+               PCRE.compile ~multiline:true "\\binitrd16\\b" in
+             let new_content =
+               content
+               |> PCRE.replace ~global:true rex_linux16 "linuxefi"
+               |> PCRE.replace ~global:true rex_initrd16 "initrdefi" in
+             if content <> new_content then (
+               debug "converting linux16/initrd16 to linuxefi/initrdefi in %s"
+                 grub_cfg;
+               g#write grub_cfg new_content
+             )
+           )
+        )
+    | _ -> ()
 
   and configure_kernel_modules block_type net_type =
     (* This function modifies modules.conf (and its various aliases). *)
