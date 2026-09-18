@@ -1386,7 +1386,7 @@ fi
                   g inspect.i_root "fix uefi boot" fix_script)
               else
                 cant_fix_uefi ()
-            | ("ubuntu", 14) | ("debian", 12)->
+            | ("ubuntu", 14) | ("debian", 11) | ("debian", 12) ->
               (* to make a bootable uefi ubuntu 14 we need to
                * copy shim<arch>.efi to UEFI fallback path
                * and rename it to BOOT<arch>.efi, also we copy
