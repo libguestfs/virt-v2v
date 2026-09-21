@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-08-27 12:27+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-09-12 09:16+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 
 #: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
 msgid "%s"
@@ -334,10 +334,8 @@ msgstr ""
 "архива"
 
 #: input/input_vmx.ml:57
-#, fuzzy
-#| msgid "-i vmx: cannot use -it vddk in this input mode"
 msgid "-i vmx: cannot use -it nfc|vddk in this input mode"
-msgstr "-i vmx: нельзя использовать -it vddk в этом режиме ввода"
+msgstr "-i vmx: нельзя использовать -it nfc|vddk в этом режиме ввода"
 
 #: input/input_vmx.ml:61
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
@@ -350,10 +348,8 @@ msgstr ""
 "Параметр -ip PASSWORD_FILE игнорируется, так как 'user@' не указан в URL"
 
 #: input/input_nfc.ml:76
-#, fuzzy
-#| msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgid "-it nfc: ‘-io %s’ is not a valid input option"
-msgstr "-it vddk: «-io %s» не является допустимым параметром ввода"
+msgstr "-it nfc: «-io %s» не является допустимым параметром ввода"
 
 #: input/input_vddk.ml:119
 msgid "-it vddk: ‘-io %s’ is not a valid input option"
@@ -639,10 +635,8 @@ msgid "DIR"
 msgstr "КАТАЛОГ"
 
 #: common/mlcustomize/customize_cmdline.ml:502
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "Defer SELinux relabelling until boot"
-msgstr "Изменение меток SELinux"
+msgstr "Отложить изменение меток SELinux до загрузки"
 
 #: common/mlcustomize/customize_cmdline.ml:244
 msgid "Delete a file or directory"
@@ -777,29 +771,6 @@ msgid "Input format"
 msgstr "Входной формат"
 
 #: input/input_nfc.ml:44
-#, fuzzy
-#| msgid ""
-#| "Input options (-io) which can be used with -it vddk\n"
-#| "(all settings are optional):\n"
-#| "\n"
-#| "  -io vddk-compression=COMPR   Set VDDK compression mode (see\n"
-#| "                                 nbdkit-vddk-plugin documentation)\n"
-#| "  -io vddk-config=FILE         VDDK configuration file\n"
-#| "  -io vddk-cookie=COOKIE       VDDK cookie\n"
-#| "  -io vddk-file=FILE           Override nbdkit-vddk-plugin file= "
-#| "parameter\n"
-#| "  -io vddk-libdir=LIBDIR       VDDK library parent directory\n"
-#| "  -io vddk-nfchostport=PORT    VDDK nfchostport\n"
-#| "  -io vddk-port=PORT           VDDK port\n"
-#| "  -io vddk-snapshot=SNAPSHOT-MOREF\n"
-#| "                               VDDK snapshot moref\n"
-#| "  -io vddk-thumbprint=xx:xx:xx:...\n"
-#| "                               VDDK server thumbprint\n"
-#| "  -io vddk-transports=MODE:MODE:..\n"
-#| "                               VDDK transports\n"
-#| "\n"
-#| "Refer to nbdkit-vddk-plugin(1) and the VDDK documentation for further\n"
-#| "information on these settings.\n"
 msgid ""
 "Input options (-io) which can be used with -it nfc\n"
 "(all settings are optional):\n"
@@ -816,26 +787,20 @@ msgid ""
 "Refer to nbdkit-nfc-plugin documentation for further information on\n"
 "these settings.\n"
 msgstr ""
-"Параметры ввода (-io), которые можно использовать с -it vddk\n"
+"Параметры ввода (-io), которые можно использовать с -it nfc\n"
 "(все настройки необязательны):\n"
 "\n"
-"  -io vddk-compression=СЖАТИЕ   Установить режим сжатия VDDK (см.\n"
-"                                 документацию nbdkit-vddk-plugin)\n"
-"  -io vddk-config=ФАЙЛ         Файл конфигурации VDDK\n"
-"  -io vddk-cookie=COOKIE       Cookie VDDK\n"
-"  -io vddk-file=ФАЙЛ           Переопределить параметр file= nbdkit-vddk-"
+"  -io nfc-cookie=COOKIE        Cookie NFC\n"
+"  -io nfc-file=ФАЙЛ            Переопределить параметр file= nbdkit-nfc-"
 "plugin\n"
-"  -io vddk-libdir=КАТАЛОГ      Родительский каталог библиотеки VDDK\n"
-"  -io vddk-nfchostport=ПОРТ    nfchostport VDDK\n"
-"  -io vddk-port=ПОРТ           Порт VDDK\n"
-"  -io vddk-snapshot=СНАПШОТ-MOREF\n"
-"                               moref снимка VDDK\n"
-"  -io vddk-thumbprint=xx:xx:xx:...\n"
-"                               Отпечаток сервера VDDK\n"
-"  -io vddk-transports=РЕЖИМ:РЕЖИМ:..\n"
-"                               Транспорты VDDK\n"
+"  -io nfc-nfchostport=ПОРТ     nfchostport NFC\n"
+"  -io nfc-port=ПОРТ            Порт NFC\n"
+"  -io nfc-snapshot=SNAPSHOT-MOREF\n"
+"                               moref снимка NFC\n"
+"  -io nfc-thumbprint=xx:xx:xx:...\n"
+"                               Отпечаток сервера NFC\n"
 "\n"
-"Обратитесь к nbdkit-vddk-plugin(1) и документации VDDK для получения\n"
+"Обратитесь к документации nbdkit-nfc-plugin для получения\n"
 "дополнительной информации об этих настройках.\n"
 
 #: input/input_vddk.ml:77
@@ -1193,10 +1158,8 @@ msgid "SELinux relabelling"
 msgstr "Изменение меток SELinux"
 
 #: common/mlcustomize/customize_run.ml:367
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "SELinux relabelling deferred to first boot"
-msgstr "Изменение меток SELinux"
+msgstr "Изменение меток SELinux отложено до первой загрузки"
 
 #. common/mlcustomize/customize_cmdline.ml:222
 #: common/mlcustomize/customize_cmdline.ml:336
@@ -1942,10 +1905,8 @@ msgid "in-place mode does not work with HTTP source"
 msgstr "режим in-place не работает с источником HTTP"
 
 #: input/input_nfc.ml:103
-#, fuzzy
-#| msgid "in-place mode does not work with VMX source"
 msgid "in-place mode does not work with NFC (-it nfc) source"
-msgstr "режим in-place не работает с источником VMX"
+msgstr "режим in-place не работает с источником NFC (-it nfc)"
 
 #: input/input_vddk.ml:146
 msgid "in-place mode does not work with VDDK source"
@@ -2283,22 +2244,16 @@ msgid "nbdkit must be >= 1.45.11 for input from VDDK"
 msgstr "для ввода из VDDK требуется nbdkit >= 1.45.11"
 
 #: input/input_nfc.ml:222
-#, fuzzy
-#| msgid ""
-#| "nbdkit python plugin is not installed or not working.  It is required if "
-#| "you want to use ‘-o ovirt-upload’.\n"
-#| "\n"
-#| "See also the virt-v2v-output-ovirt(1) manual."
 msgid ""
 "nbdkit nfc plugin is not installed or not working.  It is required if you "
 "want to use ‘-it nfc’.\n"
 "\n"
 "See also the virt-v2v-input-vmware(1) manual."
 msgstr ""
-"плагин python для nbdkit не установлен или не работает. Он требуется, если "
-"вы хотите использовать «-o ovirt-upload».\n"
+"плагин nfc для nbdkit не установлен или не работает. Он требуется, если вы "
+"хотите использовать «-it nfc».\n"
 "\n"
-"См. также справочную страницу virt-v2v-output-ovirt(1)."
+"См. также справочную страницу virt-v2v-input-vmware(1)."
 
 #: output/output_ovirt_upload.ml:176
 msgid ""
@@ -2343,10 +2298,8 @@ msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin не установлен или не работает"
 
 #: input/input_nfc.ml:210
-#, fuzzy
-#| msgid "nbdkit-curl-plugin is not installed"
 msgid "nbdkit-nfc-plugin is not installed"
-msgstr "nbdkit-curl-plugin не установлен"
+msgstr "nbdkit-nfc-plugin не установлен"
 
 #: output/output_null.ml:60
 msgid "nbdkit-null-plugin is not installed or not working"
@@ -3079,10 +3032,8 @@ msgid "‘-ic %s’ URL does not contain a host name field"
 msgstr "URL-адрес «-ic %s» не содержит поля имени хоста"
 
 #: input/input_nfc.ml:198
-#, fuzzy
-#| msgid "‘-io vddk-file=’ must be used exactly %d times"
 msgid "‘-io nfc-file=’ must be used exactly %d times"
-msgstr "«-io vddk-file=» должен использоваться ровно %d раз"
+msgstr "«-io nfc-file=» должен использоваться ровно %d раз"
 
 #: input/input_vddk.ml:273
 msgid "‘-io vddk-file=’ must be used exactly %d times"
@@ -3273,7 +3224,7 @@ msgstr "переполнение size_t"
 #: common/options/keys.c:228
 #, c-format
 msgid "encrypted device %s matched --key ...:error"
-msgstr ""
+msgstr "зашифрованное устройство %s сопоставлено --key ...:error"
 
 #: common/options/keys.c:239
 #, c-format
