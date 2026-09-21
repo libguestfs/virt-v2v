@@ -217,7 +217,7 @@ msgstr ""
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 
-#: v2v/v2v.ml:346
+#: v2v/v2v.ml:344
 msgid "--parallel parameter must be >= 1"
 msgstr ""
 
@@ -538,7 +538,7 @@ msgstr "Lokale Dateien oder Verzeichnisse in das Abbild kopieren"
 msgid "Copying (in image): %s to %s"
 msgstr "Festplatte %d/%d wird kopiert"
 
-#: v2v/v2v.ml:522
+#: v2v/v2v.ml:520
 msgid "Copying disk %d/%d"
 msgstr "Festplatte %d/%d wird kopiert"
 
@@ -556,7 +556,7 @@ msgstr "Ein Verzeichnis erstellen"
 msgid "Create symbolic links"
 msgstr "Symbolische Verknüpfungen erstellen"
 
-#: v2v/v2v.ml:571
+#: v2v/v2v.ml:569
 msgid "Creating output metadata"
 msgstr "Ausgabe-Metadaten erstellen"
 
@@ -661,8 +661,8 @@ msgstr "DATEI:ZEILE"
 msgid "FILENAME"
 msgstr "DATEINAME"
 
-#. in-place/in_place.ml:385
-#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:383
+#: v2v/v2v.ml:573 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr ""
 
@@ -1178,20 +1178,20 @@ msgstr "Standardzeitzone festlegen"
 msgid "Setting the timezone: %s"
 msgstr "Standardzeitzone festlegen"
 
-#: v2v/v2v.ml:485
+#: v2v/v2v.ml:483
 #, fuzzy
 #| msgid "Set the default timezone"
 msgid "Setting up the destination: %s"
 msgstr "Standardzeitzone festlegen"
 
-#. in-place/in_place.ml:349
-#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:347
+#: v2v/v2v.ml:459 open/open.ml:184 inspector/inspector.ml:323
 #, fuzzy
 #| msgid "Set the default timezone"
 msgid "Setting up the source: %s"
 msgstr "Standardzeitzone festlegen"
 
-#: v2v/v2v.ml:467 in-place/in_place.ml:355
+#: v2v/v2v.ml:465 in-place/in_place.ml:353
 msgid "Source guest information (--print-source option):\n"
 msgstr ""
 
@@ -1758,8 +1758,8 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#. in-place/in_place.ml:404
-#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:402
+#: v2v/v2v.ml:592 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1796,7 +1796,7 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:552
+#: v2v/v2v.ml:550
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 
@@ -2535,10 +2535,6 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:322 in-place/in_place.ml:263
-msgid "unknown block driver ‘--block-driver %s’"
-msgstr ""
-
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
@@ -2547,7 +2543,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
+#: v2v/v2v.ml:333 open/open.ml:133 inspector/inspector.ml:249
 msgid "unknown input transport ‘-it %s’"
 msgstr ""
 
