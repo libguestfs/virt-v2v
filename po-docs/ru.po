@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-09-16 13:43+0100\n"
-"PO-Revision-Date: 2026-09-11 03:17+0000\n"
+"PO-Revision-Date: 2026-09-21 08:29+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ru/>\n"
@@ -1621,9 +1621,9 @@ msgid ""
 "Any encrypted device matching will cause an error.  S<I<--key all:error>> "
 "can be used to reject any disk image that contains an encrypted partition."
 msgstr ""
-"Любое совпадение с зашифрованным устройством вызовет ошибку. S<I<--key "
-"all:error>> можно использовать для отклонения любого образа диска, "
-"содержащего зашифрованный раздел."
+"Любое совпадение с зашифрованным устройством вызовет ошибку.  S<I<--key "
+"all:error>> можно использовать, чтобы отклонить любой образ диска, "
+"содержащий зашифрованный раздел."
 
 #. type: =item
 #: common/options/keys-from-stdin-option.pod:1
@@ -11618,10 +11618,8 @@ msgstr "ifelse(ENABLE_BLOCK_DRIVER, yes, `"
 
 #. type: =item
 #: docs/virt-v2v.pod:196
-#, fuzzy
-#| msgid "B<--block-driver> B<virtio-blk>"
 msgid "B<--block-driver> B<none>"
-msgstr "B<--block-driver> B<virtio-blk>"
+msgstr "B<--block-driver> B<none>"
 
 #. type: =item
 #: docs/virt-v2v.pod:198
@@ -11635,22 +11633,18 @@ msgstr "B<--block-driver> B<virtio-scsi>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:202
-#, fuzzy
-#| msgid ""
-#| "When choosing a block driver for Windows guests, prefer C<virtio-blk> or "
-#| "C<virtio-scsi>.  The default is C<virtio-blk>."
 msgid ""
 "When choosing a block driver for Windows guests, prefer C<virtio-blk> or "
 "C<virtio-scsi>, or do not pre-install any storage driver."
 msgstr ""
-"При выборе драйвера блочного устройства для гостей Windows предпочтение "
-"отдается C<virtio-blk> или C<virtio-scsi>. По умолчанию используется "
-"C<virtio-blk>."
+"При выборе драйвера блочного устройства для гостей Windows предпочтите "
+"C<virtio-blk> или C<virtio-scsi> либо не устанавливайте заранее никакой "
+"драйвер хранилища."
 
 #. type: textblock
 #: docs/virt-v2v.pod:205
 msgid "The default is C<virtio-blk>."
-msgstr ""
+msgstr "По умолчанию используется C<virtio-blk>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:207
@@ -11659,17 +11653,14 @@ msgid ""
 "If virtio-win drivers are available, they will still be copied into the "
 "guest, even if C<none> is selected here."
 msgstr ""
+"Это влияет только на предварительную установку драйверов хранилища для "
+"гостей Windows.  Если драйверы virtio-win доступны, они всё равно будут "
+"скопированы в гостя, даже если здесь выбрано C<none>."
 
 #. type: textblock
 #: docs/virt-v2v.pod:211
-#, fuzzy
-#| msgid ""
-#| "Note this has no effect for Linux guests at the moment.  That may be "
-#| "added in future.  ')"
 msgid "This has no effect for Linux guests.  ')"
-msgstr ""
-"Обратите внимание, что на данный момент это не влияет на гостей Linux. Это "
-"может быть добавлено в будущем. ')"
+msgstr "Это не влияет на гостей Linux.  ')"
 
 #. type: =item
 #: docs/virt-v2v.pod:214
@@ -16566,10 +16557,8 @@ msgstr ""
 
 #. type: =item
 #: in-place/virt-v2v-in-place.pod:158
-#, fuzzy
-#| msgid "B<--bridge> ..."
 msgid "B<--block-driver> ...  ')"
-msgstr "B<--bridge> ..."
+msgstr "B<--block-driver> ...  ')"
 
 #. type: =item
 #: in-place/virt-v2v-in-place.pod:161 inspector/virt-v2v-inspector.pod:181
