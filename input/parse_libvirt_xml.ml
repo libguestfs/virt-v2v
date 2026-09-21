@@ -315,8 +315,10 @@ let parse_libvirt_xml ?conn xml =
                 xpath_int "source/host/@port") with
         | None, _, _ ->
            warning (f_"<disk type='%s'> was ignored") "network"
-        | Some "nbd", Some ("localhost" as host), Some port when port > 0 ->
-           (* <source protocol="nbd"> with host localhost is used by virt-p2v *)
+        | Some "nbd", Some host, Some port when port > 0 ->
+           (* <source protocol="nbd"> with host localhost is used by virt-p2v
+            * or host exposing disk as with NBD.
+            *)
            add_disk format controller (NBD (host, port)) checksum
         | Some ("http"|"https" as driver), Some (_ as host), port ->
            (* This is for testing curl, eg for testing VMware conversions
