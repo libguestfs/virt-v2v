@@ -283,7 +283,7 @@ msgid "--mac ip prefix length field is out of range"
 msgstr ""
 "поле довжини префікса IP-адреси --mac лежить поза припустимим діапазоном"
 
-#: v2v/v2v.ml:346
+#: v2v/v2v.ml:344
 msgid "--parallel parameter must be >= 1"
 msgstr "параметр --parallel має бути >= 1"
 
@@ -640,7 +640,7 @@ msgstr "Копіювати локальні файли або каталоги �
 msgid "Copying (in image): %s to %s"
 msgstr "Копіюємо (на образ): %s у %s"
 
-#: v2v/v2v.ml:522
+#: v2v/v2v.ml:520
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
@@ -656,7 +656,7 @@ msgstr "Створити каталог"
 msgid "Create symbolic links"
 msgstr "Створювати символічні посилання"
 
-#: v2v/v2v.ml:571
+#: v2v/v2v.ml:569
 msgid "Creating output metadata"
 msgstr "Створюємо метадані результатів"
 
@@ -755,8 +755,8 @@ msgstr "ФАЙЛ:РЯДОК"
 msgid "FILENAME"
 msgstr "НАЗВА_ФАЙЛА"
 
-#. in-place/in_place.ml:385
-#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:383
+#: v2v/v2v.ml:573 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr "Завершуємо"
 
@@ -1345,16 +1345,16 @@ msgstr "Встановлюємо ідентифікатор комп'ютера 
 msgid "Setting the timezone: %s"
 msgstr "Встановлюємо часовий пояс: %s"
 
-#: v2v/v2v.ml:485
+#: v2v/v2v.ml:483
 msgid "Setting up the destination: %s"
 msgstr "Налаштовуємо призначення: %s"
 
-#. in-place/in_place.ml:349
-#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:347
+#: v2v/v2v.ml:459 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
 msgstr "Налаштовуємо джерело: %s"
 
-#: v2v/v2v.ml:467 in-place/in_place.ml:355
+#: v2v/v2v.ml:465 in-place/in_place.ml:353
 msgid "Source guest information (--print-source option):\n"
 msgstr "Дані щодо гостьової системи джерела (параметр --print-source):\n"
 
@@ -2023,8 +2023,8 @@ msgstr ""
 "дисків, які зберігаються на віддалених блокових пристроях. Див. підручник з "
 "virt-v2v-input-xen(1), розділ «Xen or ssh conversions from block devices»."
 
-#. in-place/in_place.ml:404
-#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:402
+#: v2v/v2v.ml:592 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -2072,7 +2072,7 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "внутрішня помилка: формальний вираз не відповідає «%s»"
 
-#: v2v/v2v.ml:552
+#: v2v/v2v.ml:550
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 "внутрішня помилка: wait повернуто неочікуваний для ідентифікатора процесу %d "
@@ -2983,10 +2983,6 @@ msgstr "невідоме значення Config:firmware %s (мало бути 
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr "невідомий варіант Windows 10: %s (%s)"
 
-#: v2v/v2v.ml:322 in-place/in_place.ml:263
-msgid "unknown block driver ‘--block-driver %s’"
-msgstr "невідомий блоковий драйвер «--block-driver %s»"
-
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "невідоме значення мікропрограми, «%s», припускаємо BIOS"
@@ -2995,7 +2991,7 @@ msgstr "невідоме значення мікропрограми, «%s», п
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "невідома гостьова операційна система: %s %s %d.%d %s (%s)"
 
-#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
+#: v2v/v2v.ml:333 open/open.ml:133 inspector/inspector.ml:249
 msgid "unknown input transport ‘-it %s’"
 msgstr "невідомий вхідний канал передавання «-it %s»"
 
@@ -3433,6 +3429,9 @@ msgstr "Роботу %s завершено за допомогою сигнал�
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "Роботу %s завершено з невідомої причини (стан %d)"
+
+#~ msgid "unknown block driver ‘--block-driver %s’"
+#~ msgstr "невідомий блоковий драйвер «--block-driver %s»"
 
 #~ msgid "Set bandwidth dynamically from file"
 #~ msgstr "Встановити ширину каналу динамічно з файла"
