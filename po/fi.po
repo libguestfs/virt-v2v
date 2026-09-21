@@ -322,7 +322,7 @@ msgstr ""
 msgid "--mac ip prefix length field is out of range"
 msgstr "--mac IP-etuliitepituuskenttä on alueen ulkopuolella"
 
-#: v2v/v2v.ml:346
+#: v2v/v2v.ml:344
 msgid "--parallel parameter must be >= 1"
 msgstr "--parallel-parametrin on oltava >= 1"
 
@@ -698,7 +698,7 @@ msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 msgid "Copying (in image): %s to %s"
 msgstr "Kopioidaan (kuvassa): %s %s:een"
 
-#: v2v/v2v.ml:522
+#: v2v/v2v.ml:520
 #, fuzzy
 #| msgid "Copying: %s to %s"
 msgid "Copying disk %d/%d"
@@ -716,7 +716,7 @@ msgstr "Luo hakemisto"
 msgid "Create symbolic links"
 msgstr "Luo symbolisia linkkejä"
 
-#: v2v/v2v.ml:571
+#: v2v/v2v.ml:569
 msgid "Creating output metadata"
 msgstr "Tulosteen metatietojen luominen"
 
@@ -827,8 +827,8 @@ msgstr "TIEDOSTO"
 msgid "FILENAME"
 msgstr "TIEDOSTO"
 
-#. in-place/in_place.ml:385
-#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:383
+#: v2v/v2v.ml:573 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr "Viimeistellään"
 
@@ -1317,16 +1317,16 @@ msgstr "Konetunnuksen asettaminen %s:ssa"
 msgid "Setting the timezone: %s"
 msgstr "Aikavyöhykkeen asettaminen: %s"
 
-#: v2v/v2v.ml:485
+#: v2v/v2v.ml:483
 msgid "Setting up the destination: %s"
 msgstr "Asetetaan määränpäätä: %s"
 
-#. in-place/in_place.ml:349
-#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:347
+#: v2v/v2v.ml:459 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
 msgstr "Asetetaan lähdettä: %s"
 
-#: v2v/v2v.ml:467 in-place/in_place.ml:355
+#: v2v/v2v.ml:465 in-place/in_place.ml:353
 msgid "Source guest information (--print-source option):\n"
 msgstr "Vieraan lähdetiedot (--print-source option):\n"
 
@@ -1917,8 +1917,8 @@ msgid ""
 "block devices\"."
 msgstr ""
 
-#. in-place/in_place.ml:404
-#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:402
+#: v2v/v2v.ml:592 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -1955,7 +1955,7 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
-#: v2v/v2v.ml:552
+#: v2v/v2v.ml:550
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 
@@ -2711,10 +2711,6 @@ msgstr ""
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:322 in-place/in_place.ml:263
-msgid "unknown block driver ‘--block-driver %s’"
-msgstr ""
-
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr ""
@@ -2723,7 +2719,7 @@ msgstr ""
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr ""
 
-#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
+#: v2v/v2v.ml:333 open/open.ml:133 inspector/inspector.ml:249
 #, fuzzy
 #| msgid "-o disk: unknown output option ‘-oo %s’"
 msgid "unknown input transport ‘-it %s’"
