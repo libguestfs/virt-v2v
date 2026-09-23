@@ -73,7 +73,10 @@ let create_kubevirt_yaml source inspect
     | TargetBIOS ->
        "bios", Assoc []
     | TargetUEFI ->
-       "efi", Assoc ["persistent", Bool true] in
+       let efi_config = ref ["persistent", Bool true] in
+       if source.s_uefi_secureboot then
+         List.push_back efi_config ("secureBoot", Bool true);
+       "efi", Assoc !efi_config in
   List.push_back firmware ("bootloader", Assoc [bootloader]);
 
   (* Clock, and eventually utc vs localtime.  We could include
