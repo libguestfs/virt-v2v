@@ -81,7 +81,12 @@ let choose_root root_choice g =
                   handles this.")
 
       | FirstRoot ->
-        let root = List.hd roots in
+        (* Prefer non-btrfs-subvolume roots when the
+         * source vm contains multiple btrfs subvolumes (container
+         * image layers)
+         *)
+        let btrfs, non_btrfs = List.partition (is_btrfs_subvolume g) roots in
+        let root = List.hd (non_btrfs @ btrfs) in
         info (f_"Picked %s because '--root first' was used.") root;
         root
 
