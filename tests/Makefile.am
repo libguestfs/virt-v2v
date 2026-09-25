@@ -76,6 +76,8 @@ TESTS = \
 	test-i-disk-parallel.sh \
 	test-i-ova-bad-sha1.sh \
 	test-i-ova-bad-sha256.sh \
+	test-i-ova-chunked-gap.sh \
+	test-i-ova-chunked.sh \
 	test-i-ova-directory.sh \
 	test-i-ova-formats.sh \
 	test-i-ova-good-checksums.sh \
@@ -245,6 +247,8 @@ EXTRA_DIST += \
 	test-i-ova-bad-sha1.sh \
 	test-i-ova-bad-sha256.sh \
 	test-i-ova-checksums.ovf \
+	test-i-ova-chunked-gap.sh \
+	test-i-ova-chunked.sh \
 	test-i-ova-directory.sh \
 	test-i-ova-formats.expected \
 	test-i-ova-formats.ovf \
