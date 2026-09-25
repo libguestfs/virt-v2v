@@ -222,13 +222,34 @@ module OVA = struct
           * must all be concatenated, in ascending order, to
           * reconstruct the disk -- unlike a VMware snapshot chain
           * (below) where only the highest-numbered file is wanted.
-          * The suffixes are fixed-width zero-padded decimal numbers,
-          * so plain string comparison already sorts them numerically.
+          *
+          * Sort numerically (not as strings, since the suffix is
+          * only matched as \d+ and might not be zero-padded), and
+          * check that the chunks are contiguous starting from 0, so
+          * a missing chunk is an error rather than a silently
+          * corrupt disk.
           *)
-         let snapshots = List.sort compare snapshots in
-         match snapshots with
+         let numbered =
+           List.map (
+             fun snapshot ->
+               match int_of_string_opt snapshot with
+               | Some n -> (n, snapshot)
+               | None ->
+                  error (f_"-i ova: chunk number ‘%s’ of disk ‘%s’ is \
+                            too large") snapshot href
+           ) snapshots in
+         let numbered = List.sort compare numbered in
+         match numbered with
          | [] -> error_missing_href href
-         | _ -> concat_chunks ova_t href snapshots
+         | _ ->
+            List.iteri (
+              fun i (n, snapshot) ->
+                if n <> i then
+                  error (f_"-i ova: chunked disk ‘%s’ is missing chunk \
+                            %d (or has duplicate chunks, found ‘%s’)")
+                    href i snapshot
+            ) numbered;
+            concat_chunks ova_t href (List.map snd numbered)
        )
        else (
          (* RHBZ#1570407: VMware-generated OVA files can reference a
