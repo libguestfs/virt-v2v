@@ -41,6 +41,12 @@ module OVA = struct
    *)
   let re_snapshot = PCRE.compile "\\.(\\d+)$"
 
+  (* What a disk href resolved to: a file in the OVA, or a ready-made
+   * qemu URI (used for chunked disks that we can present without
+   * copying them).
+   *)
+  type resolved = File of OVA.file_ref | Uri of string
+
   let rec setup dir options args =
     if options.input_options <> [] then
       error (f_"no -io (input options) are allowed here");
@@ -103,64 +109,66 @@ module OVA = struct
     let qemu_uris =
       List.map (
         fun { OVF.href; compressed; chunked } ->
-          let file_ref = find_file_or_snapshot ova_t href manifest chunked in
+          match find_file_or_snapshot ova_t href manifest chunked
+                  compressed with
+          | Uri uri -> uri
+          | File file_ref ->
+             match compressed, file_ref with
+             | false, OVA.LocalFile filename ->
+                filename
 
-          match compressed, file_ref with
-          | false, OVA.LocalFile filename ->
-             filename
+             | true, OVA.LocalFile filename ->
+                (* The spec allows the file to be gzip-compressed, in
+                 * which case we must uncompress it into a temporary.
+                 *)
+                let new_filename =
+                  Filename.temp_file ~temp_dir:Utils.large_tmpdir
+                    "ova" ".vmdk" in
+                On_exit.unlink new_filename;
+                let cmd =
+                  sprintf "zcat %s > %s"
+                    (quote filename) (quote new_filename) in
+                if shell_command cmd <> 0 then
+                  error (f_"error uncompressing %s, see earlier error messages")
+                    filename;
+                new_filename
 
-          | true, OVA.LocalFile filename ->
-             (* The spec allows the file to be gzip-compressed, in
-              * which case we must uncompress it into a temporary.
-              *)
-             let new_filename =
-               Filename.temp_file ~temp_dir:Utils.large_tmpdir
-                 "ova" ".vmdk" in
-             On_exit.unlink new_filename;
-             let cmd =
-               sprintf "zcat %s > %s"
-                 (quote filename) (quote new_filename) in
-             if shell_command cmd <> 0 then
-               error (f_"error uncompressing %s, see earlier error messages")
-                 filename;
-             new_filename
+             | false, OVA.TarFile (tar, filename) ->
+                (* This is the tar optimization. *)
+                let offset, size =
+                  try OVA.get_tar_offet_and_size tar filename
+                  with
+                  | Not_found ->
+                     error (f_"file ‘%s’ not found in the ova") filename
+                  | Failure msg -> error (f_"%s") msg in
+                (* QEMU requires size aligned to 512 bytes. This is safe because
+                 * tar also works with 512 byte blocks.
+                 *)
+                let size = roundup64 size 512L in
 
-          | false, OVA.TarFile (tar, filename) ->
-             (* This is the tar optimization. *)
-             let offset, size =
-               try OVA.get_tar_offet_and_size tar filename
-               with
-               | Not_found ->
-                  error (f_"file ‘%s’ not found in the ova") filename
-               | Failure msg -> error (f_"%s") msg in
-             (* QEMU requires size aligned to 512 bytes. This is safe because
-              * tar also works with 512 byte blocks.
-              *)
-             let size = roundup64 size 512L in
+                (* Workaround for libvirt bug RHBZ#1431652. *)
+                let tar_path = absolute_path tar in
 
-             (* Workaround for libvirt bug RHBZ#1431652. *)
-             let tar_path = absolute_path tar in
+                let doc = [
+                    "file", JSON.Dict [
+                                "driver", JSON.String "raw";
+                                "offset", JSON.Int offset;
+                                "size", JSON.Int size;
+                                "file", JSON.Dict [
+                                            "driver", JSON.String "file";
+                                            "filename", JSON.String tar_path]
+                              ]
+                  ] in
+                let uri =
+                  sprintf "json:%s"
+                    (JSON.string_of_doc ~fmt:JSON.Compact doc) in
+                uri
 
-             let doc = [
-                 "file", JSON.Dict [
-                             "driver", JSON.String "raw";
-                             "offset", JSON.Int offset;
-                             "size", JSON.Int size;
-                             "file", JSON.Dict [
-                                         "driver", JSON.String "file";
-                                         "filename", JSON.String tar_path]
-                           ]
-               ] in
-             let uri =
-               sprintf "json:%s"
-                 (JSON.string_of_doc ~fmt:JSON.Compact doc) in
-             uri
-
-          | true, OVA.TarFile _ ->
-             (* This should not happen since {!OVA} knows that
-              * qemu cannot handle compressed files here.
-              *)
-             assert false
+             | true, OVA.TarFile _ ->
+                (* This should not happen since {!OVA} knows that
+                 * qemu cannot handle compressed files here.
+                 *)
+                assert false
       ) disks in
 
     (* Create the source metadata. *)
@@ -203,9 +211,9 @@ module OVA = struct
 
     source, uris
 
-  and find_file_or_snapshot ova_t href manifest chunked =
+  and find_file_or_snapshot ova_t href manifest chunked compressed =
     match OVA.resolve_href ova_t href with
-    | Some f -> f
+    | Some f -> File f
     | None ->
        (* Find all files in the OVA called [<href>.\d+] *)
        let files = OVA.get_file_list ova_t in
@@ -249,7 +257,7 @@ module OVA = struct
                             %d (or has duplicate chunks, found ‘%s’)")
                     href i snapshot
             ) numbered;
-            concat_chunks ova_t href (List.map snd numbered)
+            chunked_disk ova_t href compressed (List.map snd numbered)
        )
        else (
          (* RHBZ#1570407: VMware-generated OVA files can reference a
@@ -263,16 +271,15 @@ module OVA = struct
             let href = sprintf "%s.%s" href snapshot in
             match OVA.resolve_href ova_t href with
             | None -> error_missing_href href
-            | Some f -> f
+            | Some f -> File f
        )
 
-  (* Concatenate the (already sorted, ascending) chunk files for
-   * [href] into a single temporary file and return it as a
-   * LocalFile.  This gives up the tar zero-copy optimization for
-   * chunked disks, the same tradeoff already made for compressed
-   * disks below.
+  (* Present the (already sorted, contiguous) chunks of [href] as a
+   * single disk.  Wherever possible this is done without copying any
+   * data (see [flat_chunks_uri]), otherwise the chunks are
+   * concatenated into a temporary file.
    *)
-  and concat_chunks ova_t href snapshots =
+  and chunked_disk ova_t href compressed snapshots =
     let chunk_files =
       List.map (
         fun snapshot ->
@@ -282,6 +289,105 @@ module OVA = struct
           | Some f -> f
       ) snapshots in
 
+    (* A compressed disk needs the whole stream, so it must be
+     * concatenated and then uncompressed.
+     *)
+    let uri = if compressed then None else flat_chunks_uri chunk_files in
+    match uri with
+    | Some uri ->
+       debug "-i ova: presenting chunked disk %s as %d extents \
+              without copying" href (List.length chunk_files);
+       Uri uri
+    | None ->
+       debug "-i ova: concatenating %d chunks of disk %s into a \
+              temporary file" (List.length chunk_files) href;
+       File (concat_chunks href chunk_files)
+
+  (* Describe the chunks as one disk using a small VMDK descriptor
+   * with one FLAT extent per chunk, pointing straight into the OVA
+   * (or into the chunk files), so no disk data is copied.  The
+   * descriptor exposes the chunks back to back as a raw block
+   * device holding the disk image (usually a streamOptimized VMDK),
+   * which is then opened on top of the descriptor as usual.
+   *
+   * Extents are counted in 512 byte sectors, so this only works if
+   * every chunk except the last is a whole number of sectors.
+   * DSP0243 does not require that, so return [None] when it is not
+   * the case (or if anything looks unusual) and let the caller fall
+   * back to copying.
+   *)
+  and flat_chunks_uri chunk_files =
+    try
+      let n = List.length chunk_files in
+      let extents =
+        List.mapi (
+          fun i chunk ->
+            let path, offset, size, in_tar =
+              match chunk with
+              | OVA.LocalFile filename ->
+                 let size = (LargeFile.stat filename).LargeFile.st_size in
+                 (absolute_path filename, 0L, size, false)
+              | OVA.TarFile (tar, filename) ->
+                 let offset, size = OVA.get_tar_offet_and_size tar filename in
+                 (absolute_path tar, offset, size, true) in
+            (* Tar pads the last member to a whole block, which is
+             * what the tar optimization above relies on too.
+             *)
+            let size =
+              if i = n-1 && in_tar then roundup64 size 512L else size in
+            (path, offset, size)
+        ) chunk_files in
+      let usable (path, offset, size) =
+        size > 0L &&
+        Int64.rem size 512L = 0L &&
+        Int64.rem offset 512L = 0L &&
+        not (String.contains path '"' || String.contains path '\n') in
+      if not (List.for_all usable extents) then None
+      else (
+        let descriptor = Buffer.create 1024 in
+        bprintf descriptor "# Disk DescriptorFile\n\
+                            version=1\n\
+                            CID=fffffffe\n\
+                            parentCID=ffffffff\n\
+                            createType=\"monolithicFlat\"\n\
+                            \n\
+                            # Extent description\n";
+        List.iter (
+          fun (path, offset, size) ->
+            bprintf descriptor "RW %Ld FLAT \"%s\" %Ld\n"
+              (Int64.div size 512L) path (Int64.div offset 512L)
+        ) extents;
+
+        let tmpfile =
+          Filename.temp_file ~temp_dir:Utils.large_tmpdir
+            "ova-chunks" ".vmdk" in
+        On_exit.unlink tmpfile;
+        let chan = open_out tmpfile in
+        output_string chan (Buffer.contents descriptor);
+        close_out chan;
+
+        (* No outer "driver": the payload format is probed as for any
+         * other disk.
+         *)
+        let doc = [
+            "file", JSON.Dict [
+                        "driver", JSON.String "vmdk";
+                        "file", JSON.Dict [
+                                    "driver", JSON.String "file";
+                                    "filename", JSON.String tmpfile]
+                      ]
+          ] in
+        Some (sprintf "json:%s" (JSON.string_of_doc ~fmt:JSON.Compact doc))
+      )
+    with Not_found | Failure _ | Unix_error _ -> None
+
+  (* Fallback: concatenate the chunk files for [href] into a single
+   * temporary file and return it as a LocalFile.  This needs
+   * roughly the size of the disk in temporary space and gives up the
+   * tar zero-copy optimization, the same tradeoff already made for
+   * compressed disks below.
+   *)
+  and concat_chunks href chunk_files =
     let tmpfile =
       Filename.temp_file ~temp_dir:Utils.large_tmpdir "ova-chunks" ".vmdk" in
     On_exit.unlink tmpfile;
@@ -314,7 +420,7 @@ module OVA = struct
     )
     else None
 
-  and error_missing_href href =
+  and error_missing_href : 'a. string -> 'a = fun href ->
     error (f_"-i ova: OVF references file ‘%s’ which was not found \
               in the OVA archive") href
 end
