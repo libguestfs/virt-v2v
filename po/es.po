@@ -282,7 +282,7 @@ msgstr ""
 msgid "--mac ip prefix length field is out of range"
 msgstr "--mac ip prefijo de campo de longitud está fuera del intervalo"
 
-#: v2v/v2v.ml:346
+#: v2v/v2v.ml:344
 msgid "--parallel parameter must be >= 1"
 msgstr "el parámetro --parallel debe ser >= 1"
 
@@ -639,7 +639,7 @@ msgstr "Copia archivos o directorios locales en una imagen"
 msgid "Copying (in image): %s to %s"
 msgstr "Copiando (en imagen): %s a %s"
 
-#: v2v/v2v.ml:522
+#: v2v/v2v.ml:520
 msgid "Copying disk %d/%d"
 msgstr "Copiando disco %d/%d"
 
@@ -655,7 +655,7 @@ msgstr "Crea un directorio"
 msgid "Create symbolic links"
 msgstr "Crea enlaces simbólicos"
 
-#: v2v/v2v.ml:571
+#: v2v/v2v.ml:569
 msgid "Creating output metadata"
 msgstr "Creando metadatos de salida"
 
@@ -758,8 +758,8 @@ msgstr "ARCHIVO:LÍNEA"
 msgid "FILENAME"
 msgstr "NOMBRE-ARCHIVO"
 
-#. in-place/in_place.ml:385
-#: v2v/v2v.ml:575 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:383
+#: v2v/v2v.ml:573 open/open.ml:220 inspector/inspector.ml:347
 msgid "Finishing off"
 msgstr "Terminando"
 
@@ -1349,16 +1349,16 @@ msgstr "Establece el ID de máquina en %s"
 msgid "Setting the timezone: %s"
 msgstr "Establece la zona horaria: %s"
 
-#: v2v/v2v.ml:485
+#: v2v/v2v.ml:483
 msgid "Setting up the destination: %s"
 msgstr "Configura el destino: %s"
 
-#. in-place/in_place.ml:349
-#: v2v/v2v.ml:461 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:347
+#: v2v/v2v.ml:459 open/open.ml:184 inspector/inspector.ml:323
 msgid "Setting up the source: %s"
 msgstr "Configura el origen: %s"
 
-#: v2v/v2v.ml:467 in-place/in_place.ml:355
+#: v2v/v2v.ml:465 in-place/in_place.ml:353
 msgid "Source guest information (--print-source option):\n"
 msgstr "Información del invitado origen (opción --print-source):\n"
 
@@ -2028,8 +2028,8 @@ msgstr ""
 "bloque remoto.  Consulte virt-v2v-input-xen(1) en la sección \"Xen or ssh "
 "conversions fron block devices\"."
 
-#. in-place/in_place.ml:404
-#: v2v/v2v.ml:594 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:402
+#: v2v/v2v.ml:592 open/open.ml:238 inspector/inspector.ml:366
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -2076,7 +2076,7 @@ msgstr "error interno: is_file_owned: salida inesperada desde comando dpkg: %s"
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "error interno: expresión regular no coincidió con «%s»"
 
-#: v2v/v2v.ml:552
+#: v2v/v2v.ml:550
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 "error interno: wait devolvió ID %d con estado «%s» el cual no es esperado"
@@ -2966,10 +2966,6 @@ msgstr "valor %s de Config:firmware desconocida (esperaba \"bios\" o \"efi\")"
 msgid "unknown Windows 10 variant: %s (%s)"
 msgstr "variante de Windows 10 desconocida: %s (%s)"
 
-#: v2v/v2v.ml:322 in-place/in_place.ml:263
-msgid "unknown block driver ‘--block-driver %s’"
-msgstr "bloque de unidad '--block-driver %s' desconocida"
-
 #: input/parse_domain_from_vmx.ml:415
 msgid "unknown firmware value '%s', assuming BIOS"
 msgstr "valor desconocido del firmware '%s', se asume BIOS"
@@ -2978,7 +2974,7 @@ msgstr "valor desconocido del firmware '%s', se asume BIOS"
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "sistema operativo de invitado desconocido: %s %s %d.%d %s (%s)"
 
-#: v2v/v2v.ml:335 open/open.ml:133 inspector/inspector.ml:249
+#: v2v/v2v.ml:333 open/open.ml:133 inspector/inspector.ml:249
 msgid "unknown input transport ‘-it %s’"
 msgstr "transporte de entrada desconocido ‘-it %s'"
 
@@ -3409,6 +3405,9 @@ msgstr "%s detenido por señal %d (%s)"
 #, c-format
 msgid "%s exited for an unknown reason (status %d)"
 msgstr "%s salió por una razón desconocida (estado %d)"
+
+#~ msgid "unknown block driver ‘--block-driver %s’"
+#~ msgstr "bloque de unidad '--block-driver %s' desconocida"
 
 #~ msgid "Set bandwidth dynamically from file"
 #~ msgstr "Establezca el ancho de banda dinámicamente desde el archivo"
