@@ -25,7 +25,7 @@ type disk = {
   source_disk : Types.source_disk;
   href : string;                (** The <File href> from the OVF file. *)
   compressed : bool;            (** If the href is gzip compressed. *)
-  chunked : bool;                (** If the href is split into DSP0243
+  chunked : bool;               (** If the href is split into DSP0243
                                     chunks (ovf:chunkSize present on the
                                     ovf:File element). *)
 }

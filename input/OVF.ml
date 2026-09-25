@@ -33,8 +33,8 @@ type disk = {
   source_disk : Types.source_disk;
   href : string;                (* The <File href> from the OVF file. *)
   compressed : bool;            (* If the file is gzip compressed. *)
-  chunked : bool;                (* If the file is split into DSP0243
-                                   * chunks (ovf:chunkSize present). *)
+  chunked : bool;               (* If the file is split into DSP0243
+                                 * chunks (ovf:chunkSize present). *)
 }
 
 let xpathctx_of_ovf ovf_filename =
