@@ -27,6 +27,16 @@ open Types
 
 module G = Guestfs
 
+(* We need to remember to chmod some paths, which can only be done after
+ * we have unmounted the filesystems in post-convert.  Save the paths
+ * in this list.
+ *)
+let add_ntfs_chmod_path, get_ntfs_chmod_paths =
+  let paths = ref [] in
+  let add_ntfs_chmod_path path = List.push_front path paths in
+  let get_ntfs_chmod_paths () = !paths in
+  add_ntfs_chmod_path, get_ntfs_chmod_paths
+
 (* Convert Windows guests.
  *
  * This only does a "pre-conversion", the steps needed to get the
@@ -268,6 +278,12 @@ let convert (g : G.guestfs) source inspect i_firmware
                     (resulting in a 7B boot error).  If this happens, try \
                     disabling AV before doing the conversion.");
     );
+
+    (* Remember to chmod /Program Files/Guestfs (created by Firstboot). *)
+    let () =
+      let dir = Firstboot.firstboot_dir g inspect.i_root
+                |> fst |> sprintf "%s/.." |> g#realpath in
+      add_ntfs_chmod_path dir in
 
     (* Return guest capabilities from the convert () function. *)
     let guestcaps = {
@@ -559,7 +575,11 @@ if errorlevel 3010 exit /b 0
     disable_xenpv_win_drivers reg;
     disable_prl_drivers reg;
     disable_autoreboot reg;
-    Inject_virtio_win.inject_virtio_win_drivers virtio_win reg
+    let installed =
+      Inject_virtio_win.inject_virtio_win_drivers virtio_win reg in
+    (* Remember to chmod virtio driver dir (created by Inject_virtio_win). *)
+    add_ntfs_chmod_path (Inject_virtio_win.get_driverdir virtio_win);
+    installed
 
   and disable_xenpv_win_drivers reg =
     (* Disable xenpv-win service (RHBZ#809273). *)
@@ -968,18 +988,15 @@ if errorlevel 3010 exit /b 0
 
 (* Post-conversion steps that run with filesystems unmounted *)
 let post_convert (g : G.guestfs) inspect =
-  (* Lock down firstboot dir permissions for windows guests *)
   message (f_"Fixing NTFS permissions");
-  (* XXX It would be more correct to use g#case_sensitive_path
-   * here, but we cannot do that since the guest filesystem is
-   * not mounted.  As fixing permissions is best-effort, let's
-   * not worry about it.
-   *)
-  let path = "/Program Files/Guestfs" in
-  debug "fixing NTFS permissions on %S" path;
-  try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
-  with G.Error msg ->
-    warning (f_"ntfs_chmod on %s failed: %s") path msg
+  let paths = get_ntfs_chmod_paths () in
+  List.iter (
+    fun path ->
+      debug "fixing NTFS permissions on %S" path;
+      try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
+      with G.Error msg ->
+        warning (f_"ntfs_chmod on %s failed: %s") path msg
+  ) paths
 
 (* The module name. *)
 let name = "windows"
