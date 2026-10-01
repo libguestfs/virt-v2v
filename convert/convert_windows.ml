@@ -961,6 +961,20 @@ if errorlevel 3010 exit /b 0
 
 (* Post-conversion steps that run with filesystems unmounted *)
 let post_convert (g : G.guestfs) inspect =
+  let virtio_driverdir =
+    let path = sprintf "%s/Drivers/VirtIO" inspect.i_windows_systemroot in
+    try
+      Some (
+        Fun.protect ~finally:g#umount_all (
+          fun () ->
+            g#mount_ro inspect.i_root "/";
+            g#case_sensitive_path path
+        )
+      )
+  with G.Error msg ->
+    warning (f_"cannot resolve NTFS path %s: %s") path msg;
+    None in
+
   (* Lock down firstboot dir permissions for windows guests *)
   message (f_"Fixing NTFS permissions");
   (* XXX It would be more correct to use g#case_sensitive_path
@@ -970,9 +984,18 @@ let post_convert (g : G.guestfs) inspect =
    *)
   let path = "/Program Files/Guestfs" in
   debug "fixing NTFS permissions on %S" path;
-  try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
+  (try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
   with G.Error msg ->
-    warning (f_"ntfs_chmod on %s failed: %s") path msg
+    warning (f_"ntfs_chmod on %s failed: %s") path msg);
+
+  (match virtio_driverdir with
+   | None -> ()
+   | Some path ->
+      debug "fixing NTFS permissions on %S" path;
+      (try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
+       with G.Error msg ->
+         warning (f_"ntfs_chmod on %s failed: %s") path msg)
+  )
 
 module Convert_windows = struct
   let name = "windows"
