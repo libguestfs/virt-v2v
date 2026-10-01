@@ -316,8 +316,9 @@ let parse_libvirt_xml ?conn xml =
         | None, _, _ ->
            warning (f_"<disk type='%s'> was ignored") "network"
         | Some "nbd", Some host, Some port when port > 0 ->
-           (* <source protocol="nbd"> with host localhost is used by virt-p2v
-            * or host exposing disk as with NBD.
+           (* <source protocol="nbd"> — virt-p2v uses localhost; remote
+            * hosts are also allowed.  Optional TLS via
+            * -io nbd-tls-certificates=DIR.
             *)
            add_disk format controller (NBD (host, port)) checksum
         | Some ("http"|"https" as driver), Some (_ as host), port ->
