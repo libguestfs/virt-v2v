@@ -75,6 +75,21 @@ and setup_servers options dir disks =
   if options.read_only && not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
 
+  (* -io nbd-tls-certificates=DIR enables TLS for NBD network disks.
+   * (Only -i libvirtxml may pass -io; -i libvirt rejects them earlier.)
+   *)
+  let nbd_tls_certificates = ref None in
+  List.iter (
+    fun (key, value) ->
+      match key with
+      | "nbd-tls-certificates" ->
+         if value = "" then
+           error (f_"-io nbd-tls-certificates: missing directory path");
+         nbd_tls_certificates := Some value
+      | _ ->
+         error (f_"-i libvirtxml: ‘-io %s’ is not a valid input option") key
+  ) options.input_options;
+
   let nr_disks = List.length disks in
 
   List.mapi (
@@ -92,6 +107,13 @@ and setup_servers options dir disks =
           Nbdkit.add_arg cmd "hostname" hostname;
           Nbdkit.add_arg cmd "port" (string_of_int port);
           Nbdkit.add_arg cmd "shared" "true";
+          Option.iter (
+            fun dir ->
+              Nbdkit.add_arg cmd "tls" "require";
+              Nbdkit.add_arg cmd "tls-certificates" dir;
+              (* Cert CN may not match the connect address. *)
+              Nbdkit.add_arg cmd "tls-verify" "false"
+          ) !nbd_tls_certificates;
           let _, pid = Nbdkit.run_unix socket cmd in
 
           (* --exit-with-parent should ensure nbdkit is cleaned
@@ -230,7 +252,13 @@ module LibvirtXML = struct
   let to_string options args = String.concat " " ("-i libvirtxml" :: args)
 
   let query_input_options () =
-    printf (f_"No input options can be used in this mode.\n")
+    printf (f_"Input options (-io) which can be used with -i libvirtxml:
+
+  -io nbd-tls-certificates=DIR
+                               Enable TLS for NBD network disks
+                               (ca-cert.pem, client-cert.pem,
+                               client-key.pem).  See nbdkit-nbd-plugin(1).
+")
 
   let setup dir options args =
     let source, data = get_source_from_libvirt_xml options args in
