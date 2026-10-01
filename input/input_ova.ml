@@ -41,6 +41,11 @@ module OVA = struct
    *)
   let re_snapshot = PCRE.compile "\\.(\\d+)$"
 
+  (* What a disk href resolved to.  For now this is always a file in
+   * the OVA.
+   *)
+  type resolved = File of OVA.file_ref
+
   let rec setup dir options args =
     if options.input_options <> [] then
       error (f_"no -io (input options) are allowed here");
@@ -103,7 +108,8 @@ module OVA = struct
     let qemu_uris =
       List.map (
         fun { OVF.href; compressed; chunked } ->
-          let file_ref = find_file_or_snapshot ova_t href manifest chunked in
+          let File file_ref =
+            find_file_or_snapshot ova_t href manifest chunked in
 
           match compressed, file_ref with
           | false, OVA.LocalFile filename ->
@@ -205,7 +211,7 @@ module OVA = struct
 
   and find_file_or_snapshot ova_t href manifest chunked =
     match OVA.resolve_href ova_t href with
-    | Some f -> f
+    | Some f -> File f
     | None ->
        (* Find all files in the OVA called [<href>.\d+] *)
        let files = OVA.get_file_list ova_t in
@@ -249,7 +255,7 @@ module OVA = struct
                             %d (or has duplicate chunks, found ‘%s’)")
                     href i snapshot
             ) numbered;
-            concat_chunks ova_t href (List.map snd numbered)
+            File (concat_chunks ova_t href (List.map snd numbered))
        )
        else (
          (* RHBZ#1570407: VMware-generated OVA files can reference a
@@ -263,7 +269,7 @@ module OVA = struct
             let href = sprintf "%s.%s" href snapshot in
             match OVA.resolve_href ova_t href with
             | None -> error_missing_href href
-            | Some f -> f
+            | Some f -> File f
        )
 
   (* Concatenate the (already sorted, ascending) chunk files for
@@ -314,7 +320,10 @@ module OVA = struct
     )
     else None
 
-  and error_missing_href href =
+  (* This is used at more than one result type, so inside this recursive
+   * group it needs an explicit polymorphic type.
+   *)
+  and error_missing_href : 'a. string -> 'a = fun href ->
     error (f_"-i ova: OVF references file ‘%s’ which was not found \
               in the OVA archive") href
 end
