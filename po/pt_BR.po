@@ -21,7 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
+#. common/mltools/tools_utils.ml:239
+#: input/input_ova.ml:340 input/input_ova.ml:145
 msgid "%s"
 msgstr "%s"
 
@@ -314,13 +315,23 @@ msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr ""
 "-i libvirtxml: esperava um nome de arquivo XML do libvirt na linha de comando"
 
-#: input/input_ova.ml:243
+#: input/input_ova.ml:437
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
 "-i ova: OVF faz referência ao arquivo ‘%s’, que não foi encontrado no "
 "arquivo OVA"
 
-#: input/input_ova.ml:78
+#: input/input_ova.ml:248
+msgid "-i ova: chunk number ‘%s’ of disk ‘%s’ is too large"
+msgstr ""
+
+#: input/input_ova.ml:258
+msgid ""
+"-i ova: chunked disk ‘%s’ is missing chunk %d (or has duplicate chunks, "
+"found ‘%s’)"
+msgstr ""
+
+#: input/input_ova.ml:86
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
@@ -328,7 +339,14 @@ msgstr ""
 "-i ova: OVA corrompido: a soma de verificação do disco %s não corresponde ao "
 "manifesto (real = %s, esperado = %s)"
 
-#: input/input_ova.ml:52
+#: input/input_ova.ml:415
+#, fuzzy
+#| msgid "error unpacking %s, see earlier error messages"
+msgid ""
+"-i ova: error reconstructing chunked disk ‘%s’, see earlier error messages"
+msgstr "erro ao desempacotar %s, veja as mensagens de erro anteriores"
+
+#: input/input_ova.ml:60
 msgid "-i ova: expecting an OVA file name on the command line"
 msgstr "-i ova: esperava um nome de arquivo OVA na linha de comando"
 
@@ -521,15 +539,15 @@ msgstr "<checksum> não tem atributo 'method', ignorando"
 msgid "<checksum> unknown fail='%s' attribute, ignoring"
 msgstr "<checksum> com falha desconhecida no atributo '%s', ignorando"
 
-#: input/parse_libvirt_xml.ml:370 input/parse_libvirt_xml.ml:317
+#: input/parse_libvirt_xml.ml:372 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
 msgstr "<disk type='%s'> foi ignorado"
 
-#: input/parse_libvirt_xml.ml:338
+#: input/parse_libvirt_xml.ml:340
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr "<disk type='network'> com <source protocol='%s'> foi ignorado"
 
-#: input/parse_libvirt_xml.ml:365
+#: input/parse_libvirt_xml.ml:367
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr "<disk type='volume'> com <volume type='%s'> foi ignorado"
 
@@ -541,7 +559,7 @@ msgstr "elemento <disk> sem atributo type ignorado"
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr "a linha <listen type='%s'> no XML de entrada do libvirt foi ignorada"
 
-#: input/parse_libvirt_xml.ml:414
+#: input/parse_libvirt_xml.ml:416
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -1707,19 +1725,19 @@ msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 "não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
 
-#: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
+#: input/parse_libvirt_xml.ml:409 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 "não foi possível analisar o nome do dispositivo '%s' do XML de origem do "
 "libvirt"
 
-#: input/OVF.ml:168
+#: input/OVF.ml:181
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 "não foi possível analisar o recurso de disco rasd:HostResource do documento "
 "OVF"
 
-#: input/input_ova.ml:98
+#: input/input_ova.ml:106
 msgid "could not parse ovf:Name from OVF document"
 msgstr "não foi possível analisar ovf:Name do documento OVF"
 
@@ -1822,11 +1840,11 @@ msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
 "parâmetro -n/--network duplicado. Apenas um mapeamento padrão é permitido."
 
-#: input/OVF.ml:143
+#: input/OVF.ml:145
 msgid "error parsing disk fileRef"
 msgstr "erro ao analisar fileRef do disco"
 
-#: input/input_ova.ml:124
+#: input/input_ova.ml:134
 msgid "error uncompressing %s, see earlier error messages"
 msgstr "erro ao descompactar %s, veja as mensagens de erro anteriores"
 
@@ -1892,7 +1910,7 @@ msgstr "falha nas vmchecks; consulte os erros anteriores"
 msgid "failure: %s"
 msgstr "falha: %s"
 
-#: input/input_ova.ml:134
+#: input/input_ova.ml:339 input/input_ova.ml:144
 msgid "file ‘%s’ not found in the ova"
 msgstr "arquivo ‘%s’ não encontrado no ova"
 
@@ -2118,11 +2136,11 @@ msgstr "tamanho inválido retornado por tar: %S"
 msgid "invalid ssh-inject selector ‘%s’; see the man page"
 msgstr "seletor de ssh-inject inválido ‘%s’; consulte a página man"
 
-#: input/OVF.ml:82
+#: input/OVF.ml:84
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
 msgstr "vmw:CoresPerSocket inválido (%d) ignorado"
 
-#: input/OVF.ml:88
+#: input/OVF.ml:90
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr "vmw:CoresPerSocket inválido < número de núcleos"
 
@@ -2160,7 +2178,7 @@ msgstr ""
 "tornando o diretório OVA público e legível para contornar o bug do libvirt "
 "https://bugzilla.redhat.com/1045069"
 
-#: input/input_ova.ml:86
+#: input/input_ova.ml:94
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 "o manifesto tem uma soma de verificação para um arquivo não existente %s "
@@ -2400,7 +2418,7 @@ msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr "nbdkit: versão inesperada em --dump-config: %s"
 
 #. input/input_vcenter_https.ml:49
-#. input/input_ova.ml:46
+#. input/input_ova.ml:54
 #. input/input_libvirt.ml:35
 #. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
@@ -2424,7 +2442,7 @@ msgstr "nenhum carregador de inicialização detectado"
 msgid "no displayName key found in VMX file"
 msgstr "nenhuma chave displayName encontrada no arquivo VMX"
 
-#: input/OVF.ml:148
+#: input/OVF.ml:150
 msgid "no href in ovf:File (id=%s)"
 msgstr "nenhum href em ovf:File (id=%s)"
 
@@ -2532,7 +2550,7 @@ msgstr ""
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr "o modo de saída só suporta os formatos raw ou qcow2 (formato: %s)"
 
-#: input/OVF.ml:263
+#: input/OVF.ml:276
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
@@ -2540,7 +2558,7 @@ msgstr ""
 "o disco ova tem um tipo de controlador VMware desconhecido (%d), relate isso "
 "como um bug fornecendo o arquivo *.ovf extraído do ova"
 
-#: input/OVF.ml:259
+#: input/OVF.ml:272
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
@@ -2867,13 +2885,13 @@ msgstr ""
 "O sistema convidado será configurado para usar um dispositivo emulado mais "
 "lento."
 
-#: input/parse_libvirt_xml.ml:545
+#: input/parse_libvirt_xml.ml:547
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] "este convidado tem uma interface de rede direta que será ignorada"
 msgstr[1] "este convidado tem interfaces de rede diretas que serão ignoradas"
 
-#: input/parse_libvirt_xml.ml:527
+#: input/parse_libvirt_xml.ml:529
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
@@ -2933,7 +2951,7 @@ msgstr "opção -oa desconhecida: %s"
 msgid "unknown <checksum> method='%s'"
 msgstr "method=‘%s’ de <checksum> desconhecido"
 
-#: input/OVF.ml:103
+#: input/OVF.ml:105
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 "valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
@@ -2962,7 +2980,7 @@ msgstr "desconhecido de som desconhecido '%s' ignorado"
 msgid "unknown sound model %s ignored"
 msgstr "modelo de som desconhecido %s ignorado"
 
-#: input/OVF.ml:156
+#: input/OVF.ml:158
 msgid "unsupported compression in OVF: %s"
 msgstr "compactação não suportada por OVF: %s"
 
