@@ -970,9 +970,15 @@ let post_convert (g : G.guestfs) inspect =
    *)
   let path = "/Program Files/Guestfs" in
   debug "fixing NTFS permissions on %S" path;
-  try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
+  (try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
   with G.Error msg ->
-    warning (f_"ntfs_chmod on %s failed: %s") path msg
+    warning (f_"ntfs_chmod on %s failed: %s") path msg);
+
+  let path = sprintf "%s/Drivers/VirtIO" inspect.i_windows_systemroot in
+  debug "fixing NTFS permissions on %S" path;
+  (try g#ntfs_chmod inspect.i_root 0o755 path ~recursive:true
+  with G.Error msg ->
+    warning (f_"ntfs_chmod on %s failed: %s") path msg)
 
 module Convert_windows = struct
   let name = "windows"
