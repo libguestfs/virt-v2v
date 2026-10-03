@@ -396,15 +396,22 @@ exit /b 249
 echo No pending reboot detected.
 )
 
+set FAILED=
 for %%f in ("%inf_dir%*.inf") do (
 echo Installing: %%~nxf.
 %systemroot%\Sysnative\PnPutil -i -a "%%f"
 if !errorlevel! neq 0 if !errorlevel! neq 259 (
-echo Failed to install %%~nxf.
-exit /b 249
+echo Failed to install %%~nxf ^(pnputil exit code !errorlevel!^).
+set FAILED=!FAILED! %%~nxf
 ) else (
 echo Successfully installed %%~nxf.
 )
+)
+if defined FAILED (
+echo The following drivers could not be installed:!FAILED!
+echo The guest has already booted from its virtio disk, so a driver that
+echo fails deterministically must not block the remaining firstboot scripts.
+exit /b 0
 )
 echo All drivers installed successfully.
 exit /b 0
