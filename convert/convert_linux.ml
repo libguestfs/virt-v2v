@@ -33,6 +33,65 @@ open Linux_kernels
 
 module G = Guestfs
 
+(* Checks for EFI directives {linuxefi, initrdefi} - specific to RHEL7 *)
+let grub_has_efi_directives g bootloader i_firmware =
+  match i_firmware with
+  | Firmware.I_UEFI _ ->
+      let grub_cfg = bootloader#get_config_file () in
+      if g#exists grub_cfg then (
+        let content = g#read_file grub_cfg in
+        let rex = PCRE.compile ~multiline:true "^\\s*(linuxefi|initrdefi)\\s+" in
+        let matchflag = PCRE.matches rex content in
+        debug "Source VM GRUB configuration has EFI directives -> %b" matchflag;
+        matchflag
+      ) else false
+  | Firmware.I_BIOS -> false
+
+(* Does in-place replacement of GRUB directives if needed *)
+let restore_grub_efi_directives g bootloader i_firmware had_efi_directives =
+  if not had_efi_directives then ()
+  else
+    match i_firmware with
+    | Firmware.I_UEFI _ ->
+        let grub_cfg = bootloader#get_config_file () in
+        if g#exists grub_cfg then (
+          let post_content = g#read_file grub_cfg in
+          let rex_linux16 = PCRE.compile ~multiline:true "^(\\s*)linux16(\\s+.*)" in
+          let rex_initrd16 = PCRE.compile ~multiline:true "^(\\s*)initrd16(\\s+.*)" in
+
+          let replace_preserving_whitespace rex replacement subj =
+            if PCRE.matches rex subj then (
+              let pre = PCRE.sub 1 in
+              let post = PCRE.sub 2 in
+              let result = pre ^ replacement ^ post in
+              debug "Replacing directive %s with %s" pre replacement;
+              result
+            ) else
+              subj
+          in
+
+          let modified_config = ref false in
+          let updated_content =
+            let lines = String.nsplit "\n" post_content in
+            let lines =
+              List.map (fun line ->
+                let replace_line = replace_preserving_whitespace rex_linux16 "linuxefi" line in
+                let final_line = replace_preserving_whitespace rex_initrd16 "initrdefi" replace_line in
+                if line <> final_line then modified_config := true;
+                final_line
+              ) lines
+            in
+            String.concat "\n" lines
+          in
+
+          if !modified_config then (
+            g#write grub_cfg updated_content;
+            debug "GRUB configuration has been restored with EFI directives"
+          )
+        )
+    | Firmware.I_BIOS -> ()
+
+
 (* The conversion function. *)
 let convert (g : G.guestfs) source inspect i_firmware _ keep_serial_console _ =
   (*----------------------------------------------------------------------*)
@@ -1275,6 +1334,8 @@ fi
         value
     in
 
+    let had_efi_directives = grub_has_efi_directives g bootloader i_firmware in
+
     let changed = ref false in
     List.iter (
       fun path ->
@@ -1313,6 +1374,11 @@ fi
 
       (* Make sure the bootloader is up-to-date. *)
       bootloader#update ();
+
+      (* Fix GRUB commands for UEFI systems - if needed *)
+      debug "Verified for EFI directives: %b" had_efi_directives;
+
+      restore_grub_efi_directives g bootloader i_firmware had_efi_directives;
 
       Linux.augeas_reload g
     );
