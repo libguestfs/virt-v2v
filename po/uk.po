@@ -28,7 +28,8 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
+#. common/mltools/tools_utils.ml:239
+#: input/input_ova.ml:340 input/input_ova.ml:145
 msgid "%s"
 msgstr "%s"
 
@@ -328,11 +329,21 @@ msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr ""
 "-i libvirtxml: у командному рядку мало бути вказано назву файла XML libvirt"
 
-#: input/input_ova.ml:243
+#: input/input_ova.ml:437
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr "-i ova: файл посилань OVF «%s», якого не було знайдено в архіві OVA"
 
-#: input/input_ova.ml:78
+#: input/input_ova.ml:248
+msgid "-i ova: chunk number ‘%s’ of disk ‘%s’ is too large"
+msgstr ""
+
+#: input/input_ova.ml:258
+msgid ""
+"-i ova: chunked disk ‘%s’ is missing chunk %d (or has duplicate chunks, "
+"found ‘%s’)"
+msgstr ""
+
+#: input/input_ova.ml:86
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
@@ -340,7 +351,15 @@ msgstr ""
 "-i ova: пошкоджений OVA: контрольна сума диска %s не відповідає маніфесту "
 "(маємо %s, мало бути %s)"
 
-#: input/input_ova.ml:52
+#: input/input_ova.ml:415
+#, fuzzy
+#| msgid "error unpacking %s, see earlier error messages"
+msgid ""
+"-i ova: error reconstructing chunked disk ‘%s’, see earlier error messages"
+msgstr ""
+"помилка під час розпаковування %s, див. попередні повідомлення щодо помилок"
+
+#: input/input_ova.ml:60
 msgid "-i ova: expecting an OVA file name on the command line"
 msgstr "-i ova: у командному рядку мало бути вказано назву файла OVA"
 
@@ -539,15 +558,15 @@ msgstr "у <checksum> пропущено атрибут «method», ігнору
 msgid "<checksum> unknown fail='%s' attribute, ignoring"
 msgstr "невідомий атрибут <checksum> fail='%s', ігноруємо"
 
-#: input/parse_libvirt_xml.ml:370 input/parse_libvirt_xml.ml:317
+#: input/parse_libvirt_xml.ml:372 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
 msgstr "<disk type='%s'> проігноровано"
 
-#: input/parse_libvirt_xml.ml:338
+#: input/parse_libvirt_xml.ml:340
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr "<disk type='network'> з <source protocol='%s'> проігноровано"
 
-#: input/parse_libvirt_xml.ml:365
+#: input/parse_libvirt_xml.ml:367
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr "<disk type='volume'> з <volume type='%s'> проігноровано"
 
@@ -559,7 +578,7 @@ msgstr "проігноровано елемент <disk> без атрибута
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr "<listen type='%s'> у вхідних даних XML libvirt було проігноровано"
 
-#: input/parse_libvirt_xml.ml:414
+#: input/parse_libvirt_xml.ml:416
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -1718,15 +1737,15 @@ msgstr ""
 "не вдалося обробити параметр «-ic %s». Початкове повідомлення щодо помилки: "
 "%s"
 
-#: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
+#: input/parse_libvirt_xml.ml:409 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr "не вдалося обробити назву пристрою «%s» XML libvirt джерела"
 
-#: input/OVF.ml:168
+#: input/OVF.ml:181
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr "не вдалося обробити значення rasd:HostResource диска з документа OVF"
 
-#: input/input_ova.ml:98
+#: input/input_ova.ml:106
 msgid "could not parse ovf:Name from OVF document"
 msgstr "не вдалося обробити значення ovf:Name з документа OVF"
 
@@ -1827,11 +1846,11 @@ msgstr ""
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr "дублювання параметра -n/--network. Можлива лише одна типова прив’язка."
 
-#: input/OVF.ml:143
+#: input/OVF.ml:145
 msgid "error parsing disk fileRef"
 msgstr "помилка під час спроби обробити fileRef диска"
 
-#: input/input_ova.ml:124
+#: input/input_ova.ml:134
 msgid "error uncompressing %s, see earlier error messages"
 msgstr ""
 "помилка під час розпаковування %s, див. попередні повідомлення щодо помилок"
@@ -1906,7 +1925,7 @@ msgstr ""
 msgid "failure: %s"
 msgstr "помилка: %s"
 
-#: input/input_ova.ml:134
+#: input/input_ova.ml:339 input/input_ova.ml:144
 msgid "file ‘%s’ not found in the ova"
 msgstr "файл «%s» не знайдено в ova"
 
@@ -2137,11 +2156,11 @@ msgstr "tar повернуто некоректний розмір: %S"
 msgid "invalid ssh-inject selector ‘%s’; see the man page"
 msgstr "некоректний варіант ssh-inject «%s»; див. сторінку man"
 
-#: input/OVF.ml:82
+#: input/OVF.ml:84
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
 msgstr "некоректне значення vmw:CoresPerSocket (%d) проігноровано"
 
-#: input/OVF.ml:88
+#: input/OVF.ml:90
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr "некоректне значення vmw:CoresPerSocket < кількості ядер"
 
@@ -2179,7 +2198,7 @@ msgstr ""
 "робимо каталог OVA загальнодоступним для читання, щоб обійти ваду у libvirt: "
 "https://bugzilla.redhat.com/1045069"
 
-#: input/input_ova.ml:86
+#: input/input_ova.ml:94
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr "у маніфесті є контрольна сума файла, якого не існує %s (проігноровано)"
 
@@ -2420,7 +2439,7 @@ msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr "nbdkit: неочікувана версія у --dump-config: %s"
 
 #. input/input_vcenter_https.ml:49
-#. input/input_ova.ml:46
+#. input/input_ova.ml:54
 #. input/input_libvirt.ml:35
 #. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
@@ -2444,7 +2463,7 @@ msgstr "не виявлено завантажувача"
 msgid "no displayName key found in VMX file"
 msgstr "у файлі VMX не виявлено ключа displayName"
 
-#: input/OVF.ml:148
+#: input/OVF.ml:150
 msgid "no href in ovf:File (id=%s)"
 msgstr "немає href у ovf:File (id=%s)"
 
@@ -2554,7 +2573,7 @@ msgstr ""
 "для режиму введення передбачено підтримку лише форматів raw і qcow2 (формат: "
 "%s)"
 
-#: input/OVF.ml:263
+#: input/OVF.ml:276
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
@@ -2562,7 +2581,7 @@ msgstr ""
 "Диск ova має невідомий тип контролера VMware (%d). Будь ласка, повідомте про "
 "цю ваду, додавши файл *.ovf, видобутий з ova"
 
-#: input/OVF.ml:259
+#: input/OVF.ml:272
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
@@ -2894,7 +2913,7 @@ msgstr ""
 "Гостьову систему буде налаштовано на використання повільнішого емульованого "
 "пристрою."
 
-#: input/parse_libvirt_xml.ml:545
+#: input/parse_libvirt_xml.ml:547
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
@@ -2907,7 +2926,7 @@ msgstr[2] ""
 "ця гостьова система має безпосередні інтерфейси мережі, які буде "
 "проігноровано"
 
-#: input/parse_libvirt_xml.ml:527
+#: input/parse_libvirt_xml.ml:529
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
@@ -2975,7 +2994,7 @@ msgstr "невідомий параметр -oa: %s"
 msgid "unknown <checksum> method='%s'"
 msgstr "невідомий метод <checksum> '%s'"
 
-#: input/OVF.ml:103
+#: input/OVF.ml:105
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr "невідоме значення Config:firmware %s (мало бути «bios» або «efi»)"
 
@@ -3003,7 +3022,7 @@ msgstr "невідомий звуковий пристрій «%s» проігн
 msgid "unknown sound model %s ignored"
 msgstr "невідому звукову модель %s проігноровано"
 
-#: input/OVF.ml:156
+#: input/OVF.ml:158
 msgid "unsupported compression in OVF: %s"
 msgstr "непідтримуване стискання у OVF: %s"
 
