@@ -21,7 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
+#. common/mltools/tools_utils.ml:239
+#: input/input_ova.ml:340 input/input_ova.ml:145
 msgid "%s"
 msgstr "%s"
 
@@ -314,13 +315,29 @@ msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr ""
 "-i libvirtxml: esperava um nome de arquivo XML do libvirt na linha de comando"
 
-#: input/input_ova.ml:243
+#: input/input_libvirt.ml:90
+#, fuzzy
+#| msgid "-it vddk: ‘-io %s’ is not a valid input option"
+msgid "-i libvirtxml: ‘-io %s’ is not a valid input option"
+msgstr "-it vddk: ‘-io %s’ não é uma opção de entrada válida"
+
+#: input/input_ova.ml:437
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
 "-i ova: OVF faz referência ao arquivo ‘%s’, que não foi encontrado no "
 "arquivo OVA"
 
-#: input/input_ova.ml:78
+#: input/input_ova.ml:248
+msgid "-i ova: chunk number ‘%s’ of disk ‘%s’ is too large"
+msgstr ""
+
+#: input/input_ova.ml:258
+msgid ""
+"-i ova: chunked disk ‘%s’ is missing chunk %d (or has duplicate chunks, "
+"found ‘%s’)"
+msgstr ""
+
+#: input/input_ova.ml:86
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
@@ -328,7 +345,14 @@ msgstr ""
 "-i ova: OVA corrompido: a soma de verificação do disco %s não corresponde ao "
 "manifesto (real = %s, esperado = %s)"
 
-#: input/input_ova.ml:52
+#: input/input_ova.ml:415
+#, fuzzy
+#| msgid "error unpacking %s, see earlier error messages"
+msgid ""
+"-i ova: error reconstructing chunked disk ‘%s’, see earlier error messages"
+msgstr "erro ao desempacotar %s, veja as mensagens de erro anteriores"
+
+#: input/input_ova.ml:60
 msgid "-i ova: expecting an OVA file name on the command line"
 msgstr "-i ova: esperava um nome de arquivo OVA na linha de comando"
 
@@ -348,6 +372,10 @@ msgstr "-i vmx: não é possível usar -it vddk neste modo de entrada"
 #: input/input_vmx.ml:61
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr "-i vmx: esperava um arquivo VMX ou URI ssh://"
+
+#: input/input_libvirt.ml:87
+msgid "-io nbd-tls-certificates: missing directory path"
+msgstr ""
 
 #: input/vCenter.ml:159
 msgid ""
@@ -521,15 +549,15 @@ msgstr "<checksum> não tem atributo 'method', ignorando"
 msgid "<checksum> unknown fail='%s' attribute, ignoring"
 msgstr "<checksum> com falha desconhecida no atributo '%s', ignorando"
 
-#: input/parse_libvirt_xml.ml:370 input/parse_libvirt_xml.ml:317
+#: input/parse_libvirt_xml.ml:373 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
 msgstr "<disk type='%s'> foi ignorado"
 
-#: input/parse_libvirt_xml.ml:338
+#: input/parse_libvirt_xml.ml:341
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr "<disk type='network'> com <source protocol='%s'> foi ignorado"
 
-#: input/parse_libvirt_xml.ml:365
+#: input/parse_libvirt_xml.ml:368
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr "<disk type='volume'> com <volume type='%s'> foi ignorado"
 
@@ -541,7 +569,7 @@ msgstr "elemento <disk> sem atributo type ignorado"
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr "a linha <listen type='%s'> no XML de entrada do libvirt foi ignorada"
 
-#: input/parse_libvirt_xml.ml:414
+#: input/parse_libvirt_xml.ml:417
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -590,7 +618,7 @@ msgstr "Alterando o dono de %s para %d:%d"
 msgid "Changing permissions of %s to %s"
 msgstr "Alterando permissões de %s para %s"
 
-#: input/input_libvirt.ml:174 input/input_libvirt.ml:157
+#: input/input_libvirt.ml:196 input/input_libvirt.ml:179
 msgid "Checking %s checksum of disk %d/%d"
 msgstr "Verificando a soma de verificação %s do disco %d/%d"
 
@@ -787,6 +815,16 @@ msgstr "Injeta drivers virtio-win em um convidado Windows"
 msgid "Input format"
 msgstr "Formato de entrada"
 
+#: input/input_libvirt.ml:255
+msgid ""
+"Input options (-io) which can be used with -i libvirtxml:\n"
+"\n"
+"  -io nbd-tls-certificates=DIR\n"
+"                               Enable TLS for NBD network disks\n"
+"                               (ca-cert.pem, client-cert.pem,\n"
+"                               client-key.pem).  See nbdkit-nbd-plugin(1).\n"
+msgstr ""
+
 #: input/input_nfc.ml:44
 #, fuzzy
 #| msgid ""
@@ -963,8 +1001,7 @@ msgstr "Movendo: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
-#. input/input_libvirt.ml:233
-#. input/input_libvirt.ml:221
+#. input/input_libvirt.ml:243
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -1514,7 +1551,7 @@ msgstr ""
 msgid "append_line: %s is not a file"
 msgstr "append_line: %s não é um arquivo"
 
-#: input/input_libvirt.ml:206
+#: input/input_libvirt.ml:228
 msgid ""
 "bad checksum for disk %d/%d\n"
 "Expected checksum: %s\n"
@@ -1707,19 +1744,19 @@ msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 "não foi possível analisar '-ic %s'. A mensagem de erro original foi: %s"
 
-#: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
+#: input/parse_libvirt_xml.ml:410 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 "não foi possível analisar o nome do dispositivo '%s' do XML de origem do "
 "libvirt"
 
-#: input/OVF.ml:168
+#: input/OVF.ml:181
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 "não foi possível analisar o recurso de disco rasd:HostResource do documento "
 "OVF"
 
-#: input/input_ova.ml:98
+#: input/input_ova.ml:106
 msgid "could not parse ovf:Name from OVF document"
 msgstr "não foi possível analisar ovf:Name do documento OVF"
 
@@ -1822,11 +1859,11 @@ msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
 "parâmetro -n/--network duplicado. Apenas um mapeamento padrão é permitido."
 
-#: input/OVF.ml:143
+#: input/OVF.ml:145
 msgid "error parsing disk fileRef"
 msgstr "erro ao analisar fileRef do disco"
 
-#: input/input_ova.ml:124
+#: input/input_ova.ml:134
 msgid "error uncompressing %s, see earlier error messages"
 msgstr "erro ao descompactar %s, veja as mensagens de erro anteriores"
 
@@ -1892,7 +1929,7 @@ msgstr "falha nas vmchecks; consulte os erros anteriores"
 msgid "failure: %s"
 msgstr "falha: %s"
 
-#: input/input_ova.ml:134
+#: input/input_ova.ml:339 input/input_ova.ml:144
 msgid "file ‘%s’ not found in the ova"
 msgstr "arquivo ‘%s’ não encontrado no ova"
 
@@ -1928,11 +1965,11 @@ msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 "glance: falha ao carregar a imagem para o glance, veja os erros anteriores"
 
-#: common/mlcustomize/firstboot.ml:392 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:409 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr "O tipo de convidado %s não é suportado"
 
-#: common/mlcustomize/firstboot.ml:419
+#: common/mlcustomize/firstboot.ml:436
 msgid "guest type %s/%s is not supported"
 msgstr "O tipo de convidado %s/%s não é suportado"
 
@@ -1968,7 +2005,7 @@ msgstr ""
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr "nos metadados do XML do libvirt, <name> está em falta ou vazio"
 
-#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:129
 msgid "in-place mode does not work with HTTP source"
 msgstr "o modo in-place não funciona com a fonte HTTP"
 
@@ -2118,11 +2155,11 @@ msgstr "tamanho inválido retornado por tar: %S"
 msgid "invalid ssh-inject selector ‘%s’; see the man page"
 msgstr "seletor de ssh-inject inválido ‘%s’; consulte a página man"
 
-#: input/OVF.ml:82
+#: input/OVF.ml:84
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
 msgstr "vmw:CoresPerSocket inválido (%d) ignorado"
 
-#: input/OVF.ml:88
+#: input/OVF.ml:90
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr "vmw:CoresPerSocket inválido < número de núcleos"
 
@@ -2160,7 +2197,7 @@ msgstr ""
 "tornando o diretório OVA público e legível para contornar o bug do libvirt "
 "https://bugzilla.redhat.com/1045069"
 
-#: input/input_ova.ml:86
+#: input/input_ova.ml:94
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 "o manifesto tem uma soma de verificação para um arquivo não existente %s "
@@ -2400,7 +2437,7 @@ msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr "nbdkit: versão inesperada em --dump-config: %s"
 
 #. input/input_vcenter_https.ml:49
-#. input/input_ova.ml:46
+#. input/input_ova.ml:54
 #. input/input_libvirt.ml:35
 #. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
@@ -2424,7 +2461,7 @@ msgstr "nenhum carregador de inicialização detectado"
 msgid "no displayName key found in VMX file"
 msgstr "nenhuma chave displayName encontrada no arquivo VMX"
 
-#: input/OVF.ml:148
+#: input/OVF.ml:150
 msgid "no href in ovf:File (id=%s)"
 msgstr "nenhum href em ovf:File (id=%s)"
 
@@ -2532,7 +2569,7 @@ msgstr ""
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr "o modo de saída só suporta os formatos raw ou qcow2 (formato: %s)"
 
-#: input/OVF.ml:263
+#: input/OVF.ml:276
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
@@ -2540,7 +2577,7 @@ msgstr ""
 "o disco ova tem um tipo de controlador VMware desconhecido (%d), relate isso "
 "como um bug fornecendo o arquivo *.ovf extraído do ova"
 
-#: input/OVF.ml:259
+#: input/OVF.ml:272
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
@@ -2867,13 +2904,13 @@ msgstr ""
 "O sistema convidado será configurado para usar um dispositivo emulado mais "
 "lento."
 
-#: input/parse_libvirt_xml.ml:545
+#: input/parse_libvirt_xml.ml:548
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] "este convidado tem uma interface de rede direta que será ignorada"
 msgstr[1] "este convidado tem interfaces de rede diretas que serão ignoradas"
 
-#: input/parse_libvirt_xml.ml:527
+#: input/parse_libvirt_xml.ml:530
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
@@ -2905,7 +2942,7 @@ msgstr "não foi possível analisar a linha do arquivo de manifesto: %S"
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr "fim de arquivo inesperado ao ler /dev/urandom"
 
-#: input/input_libvirt.ml:196
+#: input/input_libvirt.ml:218
 msgid "unexpected output from the %s command"
 msgstr "saída inesperada do comando %s"
 
@@ -2929,11 +2966,11 @@ msgstr "opção -o desconhecida: %s"
 msgid "unknown -oa option: %s"
 msgstr "opção -oa desconhecida: %s"
 
-#: input/input_libvirt.ml:189
+#: input/input_libvirt.ml:211
 msgid "unknown <checksum> method='%s'"
 msgstr "method=‘%s’ de <checksum> desconhecido"
 
-#: input/OVF.ml:103
+#: input/OVF.ml:105
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 "valor de Config:firmware desconhecido %s (esperava \"bios\" ou \"efi\")"
@@ -2962,7 +2999,7 @@ msgstr "desconhecido de som desconhecido '%s' ignorado"
 msgid "unknown sound model %s ignored"
 msgstr "modelo de som desconhecido %s ignorado"
 
-#: input/OVF.ml:156
+#: input/OVF.ml:158
 msgid "unsupported compression in OVF: %s"
 msgstr "compactação não suportada por OVF: %s"
 
