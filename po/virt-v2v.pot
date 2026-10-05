@@ -6,7 +6,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: virt-v2v 2.13.7\n"
+"Project-Id-Version: virt-v2v 2.13.8\n"
 "Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
 "component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
@@ -244,6 +244,10 @@ msgstr ""
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr ""
 
+#: input/input_libvirt.ml:90
+msgid "-i libvirtxml: ‘-io %s’ is not a valid input option"
+msgstr ""
+
 #: input/input_ova.ml:437
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
@@ -284,6 +288,10 @@ msgstr ""
 
 #: input/input_vmx.ml:61
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
+msgstr ""
+
+#: input/input_libvirt.ml:87
+msgid "-io nbd-tls-certificates: missing directory path"
 msgstr ""
 
 #: input/vCenter.ml:159
@@ -438,15 +446,15 @@ msgstr ""
 msgid "<checksum> unknown fail='%s' attribute, ignoring"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:372 input/parse_libvirt_xml.ml:317
+#: input/parse_libvirt_xml.ml:373 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:340
+#: input/parse_libvirt_xml.ml:341
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:367
+#: input/parse_libvirt_xml.ml:368
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr ""
 
@@ -458,7 +466,7 @@ msgstr ""
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:416
+#: input/parse_libvirt_xml.ml:417
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -502,7 +510,7 @@ msgstr ""
 msgid "Changing permissions of %s to %s"
 msgstr ""
 
-#: input/input_libvirt.ml:174 input/input_libvirt.ml:157
+#: input/input_libvirt.ml:196 input/input_libvirt.ml:179
 msgid "Checking %s checksum of disk %d/%d"
 msgstr ""
 
@@ -691,6 +699,16 @@ msgstr ""
 msgid "Input format"
 msgstr ""
 
+#: input/input_libvirt.ml:255
+msgid ""
+"Input options (-io) which can be used with -i libvirtxml:\n"
+"\n"
+"  -io nbd-tls-certificates=DIR\n"
+"                               Enable TLS for NBD network disks\n"
+"                               (ca-cert.pem, client-cert.pem,\n"
+"                               client-key.pem).  See nbdkit-nbd-plugin(1).\n"
+msgstr ""
+
 #: input/input_nfc.ml:44
 msgid ""
 "Input options (-io) which can be used with -it nfc\n"
@@ -802,8 +820,7 @@ msgstr ""
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
-#. input/input_libvirt.ml:233
-#. input/input_libvirt.ml:221
+#. input/input_libvirt.ml:243
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -1274,7 +1291,7 @@ msgstr ""
 msgid "append_line: %s is not a file"
 msgstr ""
 
-#: input/input_libvirt.ml:206
+#: input/input_libvirt.ml:228
 msgid ""
 "bad checksum for disk %d/%d\n"
 "Expected checksum: %s\n"
@@ -1414,7 +1431,7 @@ msgstr ""
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:409 input/parse_libvirt_xml.ml:54
+#: input/parse_libvirt_xml.ml:410 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
@@ -1602,11 +1619,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:392 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:409 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:419
+#: common/mlcustomize/firstboot.ml:436
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
@@ -1637,7 +1654,7 @@ msgstr ""
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr ""
 
-#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:129
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
@@ -2363,13 +2380,13 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:547
+#: input/parse_libvirt_xml.ml:548
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
 msgstr[1] ""
 
-#: input/parse_libvirt_xml.ml:529
+#: input/parse_libvirt_xml.ml:530
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
@@ -2399,7 +2416,7 @@ msgstr ""
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr ""
 
-#: input/input_libvirt.ml:196
+#: input/input_libvirt.ml:218
 msgid "unexpected output from the %s command"
 msgstr ""
 
@@ -2423,7 +2440,7 @@ msgstr ""
 msgid "unknown -oa option: %s"
 msgstr ""
 
-#: input/input_libvirt.ml:189
+#: input/input_libvirt.ml:211
 msgid "unknown <checksum> method='%s'"
 msgstr ""
 
