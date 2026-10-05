@@ -21,7 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2026.8.1\n"
 
-#: input/input_ova.ml:135 common/mltools/tools_utils.ml:239
+#. common/mltools/tools_utils.ml:239
+#: input/input_ova.ml:340 input/input_ova.ml:145
 msgid "%s"
 msgstr "%s"
 
@@ -368,17 +369,36 @@ msgstr "-i disk: odotetaan levykuvan (tiedostonimen) komentorivillä"
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr "-i disk: odotetaan levykuvan (tiedostonimen) komentorivillä"
 
-#: input/input_ova.ml:243
+#: input/input_libvirt.ml:90
+msgid "-i libvirtxml: ‘-io %s’ is not a valid input option"
+msgstr ""
+
+#: input/input_ova.ml:437
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
 msgstr ""
 
-#: input/input_ova.ml:78
+#: input/input_ova.ml:248
+msgid "-i ova: chunk number ‘%s’ of disk ‘%s’ is too large"
+msgstr ""
+
+#: input/input_ova.ml:258
+msgid ""
+"-i ova: chunked disk ‘%s’ is missing chunk %d (or has duplicate chunks, "
+"found ‘%s’)"
+msgstr ""
+
+#: input/input_ova.ml:86
 msgid ""
 "-i ova: corrupt OVA: checksum of disk %s does not match manifest (actual = "
 "%s, expected = %s)"
 msgstr ""
 
-#: input/input_ova.ml:52
+#: input/input_ova.ml:415
+msgid ""
+"-i ova: error reconstructing chunked disk ‘%s’, see earlier error messages"
+msgstr ""
+
+#: input/input_ova.ml:60
 #, fuzzy
 #| msgid "-i disk: expecting a disk image (filename) on the command line"
 msgid "-i ova: expecting an OVA file name on the command line"
@@ -397,6 +417,10 @@ msgstr "-o %s: %s-vaihtoehtoa ei voi käyttää tässä lähtötilassa"
 
 #: input/input_vmx.ml:61
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
+msgstr ""
+
+#: input/input_libvirt.ml:87
+msgid "-io nbd-tls-certificates: missing directory path"
 msgstr ""
 
 #: input/vCenter.ml:159
@@ -599,15 +623,15 @@ msgstr ""
 msgid "<checksum> unknown fail='%s' attribute, ignoring"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:370 input/parse_libvirt_xml.ml:317
+#: input/parse_libvirt_xml.ml:373 input/parse_libvirt_xml.ml:317
 msgid "<disk type='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:338
+#: input/parse_libvirt_xml.ml:341
 msgid "<disk type='network'> with <source protocol='%s'> was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:365
+#: input/parse_libvirt_xml.ml:368
 msgid "<disk type='volume'> with <volume type='%s'> was ignored"
 msgstr ""
 
@@ -619,7 +643,7 @@ msgstr ""
 msgid "<listen type='%s'> in the input libvirt XML was ignored"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:414
+#: input/parse_libvirt_xml.ml:417
 msgid ""
 "<target dev='%s'> was ignored because the device name could not be recognized"
 msgstr ""
@@ -665,7 +689,7 @@ msgstr "Muuta %s:n käyttöoikeuksia %s:ksi"
 msgid "Changing permissions of %s to %s"
 msgstr "Muuta %s:n käyttöoikeuksia %s:ksi"
 
-#: input/input_libvirt.ml:174 input/input_libvirt.ml:157
+#: input/input_libvirt.ml:196 input/input_libvirt.ml:179
 msgid "Checking %s checksum of disk %d/%d"
 msgstr ""
 
@@ -873,6 +897,16 @@ msgstr "Sisällytä virtio-win-ajurit Windows-vieraaseen"
 msgid "Input format"
 msgstr "Syöttömuoto"
 
+#: input/input_libvirt.ml:255
+msgid ""
+"Input options (-io) which can be used with -i libvirtxml:\n"
+"\n"
+"  -io nbd-tls-certificates=DIR\n"
+"                               Enable TLS for NBD network disks\n"
+"                               (ca-cert.pem, client-cert.pem,\n"
+"                               client-key.pem).  See nbdkit-nbd-plugin(1).\n"
+msgstr ""
+
 #: input/input_nfc.ml:44
 msgid ""
 "Input options (-io) which can be used with -it nfc\n"
@@ -984,8 +1018,7 @@ msgstr "Siirretään: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
-#. input/input_libvirt.ml:233
-#. input/input_libvirt.ml:221
+#. input/input_libvirt.ml:243
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -1501,7 +1534,7 @@ msgstr ""
 msgid "append_line: %s is not a file"
 msgstr "Liitä tiedostoon rivit"
 
-#: input/input_libvirt.ml:206
+#: input/input_libvirt.ml:228
 msgid ""
 "bad checksum for disk %d/%d\n"
 "Expected checksum: %s\n"
@@ -1651,15 +1684,15 @@ msgstr ""
 msgid "could not parse '-ic %s'.  Original error message was: %s"
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:407 input/parse_libvirt_xml.ml:54
+#: input/parse_libvirt_xml.ml:410 input/parse_libvirt_xml.ml:54
 msgid "could not parse device name ‘%s’ from the source libvirt XML"
 msgstr ""
 
-#: input/OVF.ml:168
+#: input/OVF.ml:181
 msgid "could not parse disk rasd:HostResource from OVF document"
 msgstr ""
 
-#: input/input_ova.ml:98
+#: input/input_ova.ml:106
 msgid "could not parse ovf:Name from OVF document"
 msgstr ""
 
@@ -1744,11 +1777,11 @@ msgstr ""
 msgid "duplicate -n/--network parameter.  Only one default mapping is allowed."
 msgstr ""
 
-#: input/OVF.ml:143
+#: input/OVF.ml:145
 msgid "error parsing disk fileRef"
 msgstr ""
 
-#: input/input_ova.ml:124
+#: input/input_ova.ml:134
 msgid "error uncompressing %s, see earlier error messages"
 msgstr ""
 
@@ -1814,7 +1847,7 @@ msgstr ""
 msgid "failure: %s"
 msgstr "epäonnistuminen: %s"
 
-#: input/input_ova.ml:134
+#: input/input_ova.ml:339 input/input_ova.ml:144
 msgid "file ‘%s’ not found in the ova"
 msgstr ""
 
@@ -1844,11 +1877,11 @@ msgstr ""
 msgid "glance: image upload to glance failed, see earlier errors"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:392 common/mlcustomize/firstboot.ml:164
+#: common/mlcustomize/firstboot.ml:409 common/mlcustomize/firstboot.ml:164
 msgid "guest type %s is not supported"
 msgstr ""
 
-#: common/mlcustomize/firstboot.ml:419
+#: common/mlcustomize/firstboot.ml:436
 msgid "guest type %s/%s is not supported"
 msgstr ""
 
@@ -1884,7 +1917,7 @@ msgstr ""
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr ""
 
-#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:107
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:129
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
@@ -2025,11 +2058,11 @@ msgstr ""
 msgid "invalid ssh-inject selector ‘%s’; see the man page"
 msgstr ""
 
-#: input/OVF.ml:82
+#: input/OVF.ml:84
 msgid "invalid vmw:CoresPerSocket (%d) ignored"
 msgstr ""
 
-#: input/OVF.ml:88
+#: input/OVF.ml:90
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr ""
 
@@ -2066,7 +2099,7 @@ msgid ""
 "bugzilla.redhat.com/1045069"
 msgstr ""
 
-#: input/input_ova.ml:86
+#: input/input_ova.ml:94
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr ""
 
@@ -2244,7 +2277,7 @@ msgid "nbdkit: unexpected version in --dump-config: %s"
 msgstr ""
 
 #. input/input_vcenter_https.ml:49
-#. input/input_ova.ml:46
+#. input/input_ova.ml:54
 #. input/input_libvirt.ml:35
 #. input/input_disk.ml:39
 #: input/input_xen_ssh.ml:47 input/input_vmx.ml:40
@@ -2268,7 +2301,7 @@ msgstr ""
 msgid "no displayName key found in VMX file"
 msgstr ""
 
-#: input/OVF.ml:148
+#: input/OVF.ml:150
 msgid "no href in ovf:File (id=%s)"
 msgstr ""
 
@@ -2351,13 +2384,13 @@ msgstr ""
 msgid "output mode only supports raw or qcow2 format (format: %s)"
 msgstr ""
 
-#: input/OVF.ml:263
+#: input/OVF.ml:276
 msgid ""
 "ova disk has an unknown VMware controller type (%d), please report this as a "
 "bug supplying the *.ovf file extracted from the ova"
 msgstr ""
 
-#: input/OVF.ml:259
+#: input/OVF.ml:272
 msgid ""
 "ova disk has no parent controller, please report this as a bug supplying the "
 "*.ovf file extracted from the ova"
@@ -2637,13 +2670,13 @@ msgid ""
 "The guest will be configured to use a slower emulated device."
 msgstr ""
 
-#: input/parse_libvirt_xml.ml:545
+#: input/parse_libvirt_xml.ml:548
 msgid "this guest has a direct network interface which will be ignored"
 msgid_plural "this guest has direct network interfaces which will be ignored"
 msgstr[0] ""
 msgstr[1] ""
 
-#: input/parse_libvirt_xml.ml:527
+#: input/parse_libvirt_xml.ml:530
 msgid "this guest has a passthrough host device which will be ignored"
 msgid_plural "this guest has passthrough host devices which will be ignored"
 msgstr[0] ""
@@ -2675,7 +2708,7 @@ msgstr ""
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr ""
 
-#: input/input_libvirt.ml:196
+#: input/input_libvirt.ml:218
 msgid "unexpected output from the %s command"
 msgstr ""
 
@@ -2699,11 +2732,11 @@ msgstr "tuntematon -o vaihtoehto: %s"
 msgid "unknown -oa option: %s"
 msgstr "tuntematon -oa vaihtoehto: %s"
 
-#: input/input_libvirt.ml:189
+#: input/input_libvirt.ml:211
 msgid "unknown <checksum> method='%s'"
 msgstr ""
 
-#: input/OVF.ml:103
+#: input/OVF.ml:105
 msgid "unknown Config:firmware value %s (expected \"bios\" or \"efi\")"
 msgstr ""
 
@@ -2733,7 +2766,7 @@ msgstr ""
 msgid "unknown sound model %s ignored"
 msgstr ""
 
-#: input/OVF.ml:156
+#: input/OVF.ml:158
 msgid "unsupported compression in OVF: %s"
 msgstr ""
 
