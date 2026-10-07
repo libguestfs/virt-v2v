@@ -2,14 +2,15 @@
 # Copyright (C) YEAR Red Hat Inc.
 # This file is distributed under the same license as the virt-v2v package.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2026.
+# Kung Kun <kun17.kung317@silomails.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-08-27 12:21+0000\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"PO-Revision-Date: 2026-10-06 15:18+0000\n"
+"Last-Translator: Kung Kun <kun17.kung317@silomails.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
 "projects/libguestfs/virt-v2v-master/zh_CN/>\n"
 "Language: zh_CN\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.10\n"
 
 #. common/mltools/tools_utils.ml:239
 #: input/input_ova.ml:340 input/input_ova.ml:145
@@ -2708,7 +2709,7 @@ msgstr ""
 #: common/options/inspect.c:161
 #, c-format
 msgid "%s: some filesystems could not be mounted (ignored)\n"
-msgstr ""
+msgstr "%s: 某些文件系统无法挂载(已忽略)\n"
 
 #: common/options/inspect.c:178
 #, c-format

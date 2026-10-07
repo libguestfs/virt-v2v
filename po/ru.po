@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-09-12 09:16+0000\n"
+"PO-Revision-Date: 2026-10-06 15:18+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.9.1\n"
+"X-Generator: Weblate 2026.10\n"
 
 #. common/mltools/tools_utils.ml:239
 #: input/input_ova.ml:340 input/input_ova.ml:145
@@ -312,10 +312,8 @@ msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr "-i libvirtxml: ожидается имя XML-файла libvirt в командной строке"
 
 #: input/input_libvirt.ml:90
-#, fuzzy
-#| msgid "-it vddk: ‘-io %s’ is not a valid input option"
 msgid "-i libvirtxml: ‘-io %s’ is not a valid input option"
-msgstr "-it vddk: «-io %s» не является допустимым параметром ввода"
+msgstr "-i libvirtxml: «-io %s» не является допустимым параметром ввода"
 
 #: input/input_ova.ml:437
 msgid "-i ova: OVF references file ‘%s’ which was not found in the OVA archive"
@@ -323,13 +321,15 @@ msgstr "-i ova: OVF ссылается на файл «%s», который не
 
 #: input/input_ova.ml:248
 msgid "-i ova: chunk number ‘%s’ of disk ‘%s’ is too large"
-msgstr ""
+msgstr "-i ova: номер фрагмента «%s» диска «%s» слишком велик"
 
 #: input/input_ova.ml:258
 msgid ""
 "-i ova: chunked disk ‘%s’ is missing chunk %d (or has duplicate chunks, "
 "found ‘%s’)"
 msgstr ""
+"-i ova: в разбитом на фрагменты диске «%s» отсутствует фрагмент %d (или "
+"имеются повторяющиеся фрагменты, найден «%s»)"
 
 #: input/input_ova.ml:86
 msgid ""
@@ -340,11 +340,11 @@ msgstr ""
 "манифестом (фактическая = %s, ожидаемая = %s)"
 
 #: input/input_ova.ml:415
-#, fuzzy
-#| msgid "error unpacking %s, see earlier error messages"
 msgid ""
 "-i ova: error reconstructing chunked disk ‘%s’, see earlier error messages"
-msgstr "ошибка распаковки %s, см. предыдущие сообщения об ошибках"
+msgstr ""
+"-i ova: ошибка восстановления разбитого на фрагменты диска «%s», см. "
+"предыдущие сообщения об ошибках"
 
 #: input/input_ova.ml:60
 msgid "-i ova: expecting an OVA file name on the command line"
@@ -367,7 +367,7 @@ msgstr "-i vmx: ожидается VMX-файл или URI ssh://"
 
 #: input/input_libvirt.ml:87
 msgid "-io nbd-tls-certificates: missing directory path"
-msgstr ""
+msgstr "-io nbd-tls-certificates: отсутствует путь к каталогу"
 
 #: input/vCenter.ml:159
 msgid ""
@@ -807,6 +807,12 @@ msgid ""
 "                               (ca-cert.pem, client-cert.pem,\n"
 "                               client-key.pem).  See nbdkit-nbd-plugin(1).\n"
 msgstr ""
+"Параметры ввода (-io), которые можно использовать с -i libvirtxml:\n"
+"\n"
+"  -io nbd-tls-certificates=DIR\n"
+"                               Включить TLS для сетевых дисков NBD\n"
+"                               (ca-cert.pem, client-cert.pem,\n"
+"                               client-key.pem).  См. nbdkit-nbd-plugin(1).\n"
 
 #: input/input_nfc.ml:44
 msgid ""
