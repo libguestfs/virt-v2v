@@ -18,6 +18,16 @@
 
 (** Convert a Windows guest to run on KVM.
 
-    This module converts a Windows guest to run on KVM. *)
+    This module converts a Windows guest to run on KVM.
 
-module Convert_windows : Convert_types.CONVERT
+    The type of this module must be compatible with
+    {!Convert_types.CONVERT} *)
+
+val name : string
+
+val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
+              Firmware.i_firmware -> Convert_types.block_driver_option ->
+              bool -> Types.static_ip list ->
+              Types.guestcaps
+
+val post_convert : Guestfs.guestfs -> Types.inspect -> unit
