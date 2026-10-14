@@ -981,8 +981,5 @@ let post_convert (g : G.guestfs) inspect =
   with G.Error msg ->
     warning (f_"ntfs_chmod on %s failed: %s") path msg
 
-module Convert_windows = struct
-  let name = "windows"
-  let convert = convert
-  let post_convert = post_convert
-end
+(* The module name. *)
+let name = "windows"

@@ -134,9 +134,9 @@ let rec convert input_disks options source =
                     | "altlinux"
                     | "debian" | "ubuntu" | "linuxmint" | "kalilinux"
                     | "kylin" | "neokylin" | "anolis" ) } ->
-       (module Convert_linux.Convert_linux : Convert_types.CONVERT)
+       (module Convert_linux : Convert_types.CONVERT)
     | { i_type = "windows" } ->
-       (module Convert_windows.Convert_windows : Convert_types.CONVERT)
+       (module Convert_windows : Convert_types.CONVERT)
     | _ ->
        error (f_"virt-v2v is unable to convert this guest type (%s/%s)")
          inspect.i_type inspect.i_distro in

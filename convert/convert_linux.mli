@@ -20,6 +20,16 @@
 
     This module converts certain Enterprise Linux guests to run on
     KVM.  RHEL, SuSE, Fedora, CentOS, OracleLinux, ALT, Debian, Ubuntu,
-    Mint and Kali are supported by this module. *)
+    Mint and Kali are supported by this module.
 
-module Convert_linux : Convert_types.CONVERT
+    The type of this module must be compatible with
+    {!Convert_types.CONVERT} *)
+
+val name : string
+
+val convert : Guestfs.guestfs -> Types.source -> Types.inspect ->
+              Firmware.i_firmware -> Convert_types.block_driver_option ->
+              bool -> Types.static_ip list ->
+              Types.guestcaps
+
+val post_convert : Guestfs.guestfs -> Types.inspect -> unit
