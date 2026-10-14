@@ -1474,8 +1474,8 @@ fi
 
   do_convert ()
 
-module Convert_linux = struct
-  let name = "linux"
-  let convert = convert
-  let post_convert _ _ = ()
-end
+(* There is no post-conversion step for Linux. *)
+let post_convert _ _ = ()
+
+(* The module name. *)
+let name = "linux"
