@@ -79,6 +79,7 @@ virt_customize_options=\
 --selinux-relabel,\
 --selinux-relabel-at-boot,\
 --selinux-relabel-exclude,\
+--selinux-relabel-fhs,\
 --ssh-inject,\
 --tar-in,\
 --timezone,\
