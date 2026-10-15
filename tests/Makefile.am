@@ -118,6 +118,7 @@ TESTS = \
 	test-print-source.sh \
 	test-reject-blank-disk.sh \
 	test-rhbz1232192.sh \
+	test-selinux-relabel-fhs.sh \
 	test-sound.sh \
 	test-virtio-win-iso.sh \
 	test-windows-conversion.sh \
@@ -334,6 +335,7 @@ EXTRA_DIST += \
 	test-phony-winxp-32-ls.txt \
 	test-reject-blank-disk.sh \
 	test-rhbz1232192.sh \
+	test-selinux-relabel-fhs.sh \
 	test-sound.sh \
 	test-trim.sh \
 	test-virtio-win-iso.sh \
