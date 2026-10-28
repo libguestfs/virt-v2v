@@ -237,6 +237,23 @@ Note this options only applies to keys and passphrases for encrypted
 devices and partitions, not for passwords used to connect to remote
 servers.
 
+=item B<--fsck>
+
+Enable filesystem checks before and after conversion.  If you suspect
+filesystem corruption is causing a conversion failure, or that
+conversion causes filesystem corruption, use this option.  The default
+is not to do explicit checks, but the tool will still check for
+corruption when mounting or modifying filesystems during conversion.
+
+Note even with this option enabled, the filesystems are not fixed
+(since by policy, virt-v2v does not try to fix broken guests).  Any
+corruption detected causes the conversion to fail and you have to fix
+it yourself on the source.
+
+Filesystem checks were added and defaulted to enabled in
+S<virt-v2v 2.12>.  This flag was added and the default was changed to
+off in S<virt-v2v 2.14>.
+
 =item B<-i> B<disk> disk [disk ...]
 
 Set the input method to I<disk>.

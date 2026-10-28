@@ -52,6 +52,8 @@ let rec main () =
   let add_collect dir = String.split ":" dir |> List.push_back collect in
   let collect_file = ref None in
 
+  let fsck = ref false in
+
   let input_conn = ref None in
   let input_format = ref None in
   let input_password = ref None in
@@ -165,6 +167,8 @@ let rec main () =
                                     s_"Collect pre-conversion information";
     [ L"collect-output" ],  Getopt.String ("collect-output", set_string_option_once "--collect-output" collect_file),
                                     s_"Collect output to .tar.xz file";
+    [ L"fsck" ],     Getopt.Set fsck,
+                                    s_"Check filesystems before and after conversion";
     [ S 'i' ],       Getopt.String (input_modes, set_input_mode),
                                     s_"Set input mode (default: libvirt)";
     [ M"ic" ],       Getopt.String ("uri", set_string_option_once "-ic" input_conn),
@@ -236,6 +240,7 @@ read the man page virt-v2v-inspector(1).
   let collect = !collect in
   let collect_file = !collect_file in
   let customize_ops = get_customize_ops () in
+  let fsck = !fsck in
   let output_file = !output_file in
   let input_conn = !input_conn in
   let input_mode = !input_mode in
@@ -303,6 +308,7 @@ read the man page virt-v2v-inspector(1).
     Convert.block_driver = Convert_types.Block_driver_virtio_blk;
     collect;
     collect_file;
+    fsck;
     keep_serial_console = true;
     ks = opthandle.ks;
     memsize;

@@ -188,6 +188,8 @@ virt-v2v-inspector.
 
 =item B<--echo-keys>
 
+=item B<--fsck>
+
 =item B<--key> ...
 
 =item B<--keys-from-stdin>
