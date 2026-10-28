@@ -34,6 +34,7 @@ type options = {
   block_driver : Convert_types.block_driver_option;
   collect : (string * string) list;
   collect_file : string option;
+  fsck : bool;
   keep_serial_console : bool;
   ks : key_store;
   memsize : int option;
@@ -104,8 +105,10 @@ let rec convert input_disks options source =
   inspect_decrypt g options.ks;
 
   (* Check (fsck) the filesystems before conversion. *)
-  message (f_"Checking filesystem integrity before conversion");
-  do_fsck ~before:true g;
+  if options.fsck then (
+    message (f_"Checking filesystem integrity before conversion");
+    do_fsck ~before:true g
+  );
 
   (* Detect firmware. *)
   message (f_"Detecting if this guest uses BIOS or UEFI to boot");
@@ -185,13 +188,14 @@ let rec convert input_disks options source =
    * Skip this on RHEL 7 because of incompatibility issues with
    * XFS in later kernels.
    *)
-  (match inspect.i_distro, inspect.i_major_version with
-   | ("rhel" | "centos"), 7 ->
-      ()
-   | _ ->
-      g#umount_all ();
-      message (f_"Checking filesystem integrity after conversion");
-      do_fsck g;
+  if options.fsck then (
+    match inspect.i_distro, inspect.i_major_version with
+    | ("rhel" | "centos"), 7 ->
+       ()
+    | _ ->
+       g#umount_all ();
+       message (f_"Checking filesystem integrity after conversion");
+       do_fsck g;
   );
 
   message (f_"Closing the overlay");
