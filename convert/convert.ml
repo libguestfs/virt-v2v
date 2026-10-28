@@ -38,11 +38,11 @@ type options = {
   ks : key_store;
   memsize : int option;
   network_map : Networks.t;
+  no_fstrim : bool;
   root_choice : root_choice;
   smp : int option;
   static_ips : static_ip list;
   customize_ops : Customize_cmdline.ops;
-  no_fstrim : bool;
 }
 
 (* Mountpoint stats, used for free space estimation. *)
