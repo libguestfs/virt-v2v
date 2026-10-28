@@ -1412,12 +1412,38 @@ fi
                  * at UEFI fallback path for simplicity
                  *)
                 if String.find shim (sprintf "/boot/efi/EFI/%s/shim" distro) >= 0 then
+                  (* The script runs as root, and the guest may have no
+                   * sudo.  efibootmgr is only recommended by grub on
+                   * Debian, and without -d/-p it uses /dev/sda partition 1,
+                   * so the disk and partition are taken from the mounted
+                   * ESP (the test -d triggers an automount).  The temp
+                   * loader is removed only once the boot entry exists,
+                   * otherwise the guest would not boot again.
+                   *)
                   let fix_script =
-                    sprintf
-                      "#!/bin/bash\n\
-                       sudo efibootmgr -c -L %s \
-                         -l \\\\EFI\\\\%s\\\\shim%s.efi\n\
-                       rm -rf %s"
+                    sprintf {|#!/bin/bash
+keep='keeping the removable-media loader %s'
+if ! command -v efibootmgr >/dev/null; then
+  echo "efibootmgr not available, $keep"
+  exit 0
+fi
+test -d /boot/efi/EFI
+esp=$(awk '$2 == "/boot/efi" { dev = $1 } END { print dev }' /proc/mounts)
+name=$(basename "$(readlink -f "$esp")")
+if ! test -f "/sys/class/block/$name/partition"; then
+  echo "ESP partition not found, $keep"
+  exit 0
+fi
+disk=/dev/$(basename "$(readlink -f "/sys/class/block/$name/..")")
+part=$(cat "/sys/class/block/$name/partition")
+if efibootmgr -c -d "$disk" -p "$part" -L %s \
+     -l '\EFI\%s\shim%s.efi'; then
+  rm -rf %s
+else
+  echo "efibootmgr failed, $keep"
+fi
+|}
+                      uefi_fallback_path
                       distro distro arch_suffix uefi_fallback_path in
                   Firstboot.add_firstboot_script
                     g inspect.i_root "fix uefi boot" fix_script
