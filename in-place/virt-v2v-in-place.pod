@@ -172,6 +172,8 @@ ifelse(ENABLE_BLOCK_DRIVER, yes, `
 
 =item B<--echo-keys>
 
+=item B<--fsck>
+
 =item B<--key> ...
 
 =item B<--keys-from-stdin>

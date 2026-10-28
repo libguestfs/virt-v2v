@@ -20,6 +20,7 @@ type options = {
   block_driver : Convert_types.block_driver_option; (** [--block-driver] *)
   collect : (string * string) list;(** [--collect] options  *)
   collect_file : string option;    (** [--collect-output] option *)
+  fsck : bool;                     (** [--fsck] option *)
   keep_serial_console : bool;
   ks : Tools_utils.key_store;      (** [--key] option *)
   memsize : int option;            (** [--memsize] option *)

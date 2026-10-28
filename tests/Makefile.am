@@ -70,6 +70,7 @@ TESTS = \
 	test-fedora-lvm-on-luks-conversion.sh \
 	test-fedora-md-conversion.sh \
 	test-floppy.sh \
+	test-fsck.sh \
 	test-i-disk.sh \
 	test-i-disk-nbd.sh \
 	test-i-disk-parallel.sh \
@@ -236,6 +237,7 @@ EXTRA_DIST += \
 	test-fedora-md-conversion.sh \
 	test-floppy.expected \
 	test-floppy.sh \
+	test-fsck.sh \
 	test-i-disk.sh \
 	test-i-disk-nbd.sh \
 	test-i-disk-parallel.sh \
