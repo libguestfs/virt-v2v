@@ -24,11 +24,11 @@ type options = {
   ks : Tools_utils.key_store;      (** [--key] option *)
   memsize : int option;            (** [--memsize] option *)
   network_map : Networks.t;        (** [-b] and [-n] options *)
+  no_fstrim : bool;                (** [--no-fstrim] option *)
   root_choice : Types.root_choice; (** [--root] option *)
   smp : int option;                (** [--smp] option *)
   static_ips : Types.static_ip list; (** [--mac :ip:] option *)
   customize_ops : Customize_cmdline.ops; (** virt-customize options *)
-  no_fstrim : bool;                (** [--no-fstrim] option *)
 }
 (** Command line options that get passed through to the conversion code. *)
 

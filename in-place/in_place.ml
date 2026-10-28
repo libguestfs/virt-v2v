@@ -331,11 +331,11 @@ read the man page virt-v2v-in-place(1).
     ks = opthandle.ks;
     memsize;
     network_map;
+    no_fstrim;
     root_choice;
     smp;
     static_ips;
     customize_ops;
-    no_fstrim;
   } in
 
   (* Before starting the input module, check there is sufficient
