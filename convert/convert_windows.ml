@@ -387,19 +387,26 @@ set inf_dir=%systemroot%\Drivers\Virtio\
 echo Installing drivers from %inf_dir%
 set REBOOT_PENDING=0
 
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired"
+rem The first-boot service that runs this script is a 32-bit program, so
+rem on 64-bit Windows a plain "reg query HKLM\SOFTWARE\..." would read
+rem WOW6432Node and never see the keys below.  Use the 64-bit reg.exe
+rem when there is one, as for PnPutil.
+set REG=reg
+if exist %systemroot%\Sysnative\reg.exe set REG=%systemroot%\Sysnative\reg.exe
+
+%REG% query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired"
 if %errorlevel%==0 (
 echo Windows Update: Reboot required.
 set REBOOT_PENDING=1
 )
 
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending"
+%REG% query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending"
 if %errorlevel%==0 (
 echo CBS: Reboot required.
 set REBOOT_PENDING=1
 )
 
-reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager" /v PendingFileRenameOperations
+%REG% query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager" /v PendingFileRenameOperations
 if %errorlevel%==0 (
 echo Session Manager: Reboot required.
 set REBOOT_PENDING=1
