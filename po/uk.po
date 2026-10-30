@@ -41,7 +41,7 @@ msgstr ""
 "%s\n"
 "Параметри:\n"
 
-#: common/mltools/tools_utils.ml:703 common/mlcustomize/customize_run.ml:395
+#: common/mltools/tools_utils.ml:703 common/mlcustomize/customize_run.ml:397
 msgid "%s (ignored)"
 msgstr "%s (проігноровано)"
 
@@ -86,11 +86,11 @@ msgid "%s is not a regular file in the guest"
 msgstr "%s не є звичайним файлом у гостьовій системі"
 
 #. open/open.ml:39
-#. inspector/inspector.ml:157
+#. inspector/inspector.ml:159
 #. inspector/inspector.ml:40
-#. in-place/in_place.ml:167
+#. in-place/in_place.ml:169
 #. in-place/in_place.ml:45
-#: v2v/v2v.ml:197 v2v/v2v.ml:186 v2v/v2v.ml:162 v2v/v2v.ml:44 open/open.ml:68
+#: v2v/v2v.ml:199 v2v/v2v.ml:188 v2v/v2v.ml:164 v2v/v2v.ml:44 open/open.ml:68
 msgid "%s option used more than once on the command line"
 msgstr "у командному рядку параметр %s використано декілька разів"
 
@@ -118,7 +118,7 @@ msgstr "%s: не вдалося відкрити файл ISO virtio-win: %s"
 msgid "%s: command exited with an error"
 msgstr "%s: виконання команди завершилося повідомленням про помилку"
 
-#: v2v/v2v.ml:280
+#: v2v/v2v.ml:284
 msgid ""
 "%s: convert a guest to use KVM\n"
 "\n"
@@ -151,7 +151,7 @@ msgstr ""
 "на\n"
 "сторінці підручника virt-v2v(1).\n"
 
-#: in-place/in_place.ml:224
+#: in-place/in_place.ml:228
 msgid ""
 "%s: convert a guest to use KVM in-place\n"
 "\n"
@@ -187,7 +187,7 @@ msgstr "%s: введіть пароль до «%s»: "
 msgid "%s: error: %s"
 msgstr "%s: помилка: %s"
 
-#: inspector/inspector.ml:206
+#: inspector/inspector.ml:210
 msgid ""
 "%s: estimate disk space needed before virt-v2v conversion\n"
 "\n"
@@ -239,8 +239,8 @@ msgstr ""
 msgid "%s: warning: %s"
 msgstr "%s: попередження: %s"
 
-#. common/mlcustomize/customize_cmdline.ml:266
-#: common/mlcustomize/customize_cmdline.ml:375
+#. common/mlcustomize/customize_cmdline.ml:270
+#: common/mlcustomize/customize_cmdline.ml:379
 msgid "'CMD+ARGS'"
 msgstr "'КОМАНДА+ПАРАМЕТРИ'"
 
@@ -279,12 +279,12 @@ msgstr ""
 "--inject-virtio-win: не знайдено драйверів virtio для цієї версії Windows у "
 "вказаному вами джерелі virtio-win"
 
-#: v2v/v2v.ml:149 inspector/inspector.ml:140 in-place/in_place.ml:146
+#: v2v/v2v.ml:151 inspector/inspector.ml:142 in-place/in_place.ml:148
 msgid "--mac ip prefix length field is out of range"
 msgstr ""
 "поле довжини префікса IP-адреси --mac лежить поза припустимим діапазоном"
 
-#: v2v/v2v.ml:344
+#: v2v/v2v.ml:349
 msgid "--parallel parameter must be >= 1"
 msgstr "параметр --parallel має бути >= 1"
 
@@ -605,15 +605,15 @@ msgstr ""
 "Найімовірнішою причиною є те, що встановлена версія libvirt є застарілою. "
 "Спробуйте оновити libvirt до ≥ 3.7."
 
-#: common/mlcustomize/customize_cmdline.ml:313
+#: common/mlcustomize/customize_cmdline.ml:317
 msgid "Add package(s) to install"
 msgstr "Додати пакунки для встановлення"
 
-#: common/mlcustomize/customize_cmdline.ml:278
+#: common/mlcustomize/customize_cmdline.ml:282
 msgid "Add package(s) to install at first boot"
 msgstr "Додати пакунки для встановлення під час першого завантаження"
 
-#: common/mlcustomize/customize_cmdline.ml:183
+#: common/mlcustomize/customize_cmdline.ml:187
 msgid "Append line(s) to the file"
 msgstr "Дописати рядки до файла"
 
@@ -621,11 +621,11 @@ msgstr "Дописати рядки до файла"
 msgid "Appending line to %s"
 msgstr "Дописуємо рядок до %s"
 
-#: common/mlcustomize/customize_cmdline.ml:205
+#: common/mlcustomize/customize_cmdline.ml:209
 msgid "Change the owner user and group ID of a file or directory"
 msgstr "Змінити ідентифікатор користувача і групи власника файла або каталогу"
 
-#: common/mlcustomize/customize_cmdline.ml:194
+#: common/mlcustomize/customize_cmdline.ml:198
 msgid "Change the permissions of a file"
 msgstr "Змінити права доступу до файла"
 
@@ -637,31 +637,37 @@ msgstr "Змінюємо власника %s на %d:%d"
 msgid "Changing permissions of %s to %s"
 msgstr "Зміна прав доступу до %s на %s"
 
+#: v2v/v2v.ml:217 inspector/inspector.ml:171 in-place/in_place.ml:181
+#, fuzzy
+#| msgid "Don't trim filesystems before conversion"
+msgid "Check filesystems before and after conversion"
+msgstr "Не обрізати файлові системи до перетворення"
+
 #: input/input_libvirt.ml:196 input/input_libvirt.ml:179
 msgid "Checking %s checksum of disk %d/%d"
 msgstr "Перевіряємо суму %s диска %d з %d"
 
-#: v2v/v2v.ml:213 inspector/inspector.ml:167 in-place/in_place.ml:177
+#: v2v/v2v.ml:215 inspector/inspector.ml:169 in-place/in_place.ml:179
 msgid "Collect output to .tar.xz file"
 msgstr "Зібрати виведені дані до файла .tar.xz"
 
-#: v2v/v2v.ml:211 inspector/inspector.ml:165 in-place/in_place.ml:175
+#: v2v/v2v.ml:213 inspector/inspector.ml:167 in-place/in_place.ml:177
 msgid "Collect pre-conversion information"
 msgstr "Зібрати відомості, отримані до перетворення"
 
-#: common/mlcustomize/customize_cmdline.ml:496
+#: common/mlcustomize/customize_cmdline.ml:500
 msgid "Compatibility option doing nothing"
 msgstr "Параметр сумісності ні на що не впливає"
 
-#: common/mlcustomize/customize_cmdline.ml:227
+#: common/mlcustomize/customize_cmdline.ml:231
 msgid "Copy files in disk image"
 msgstr "Копіювати файли на образ диска"
 
-#: common/mlcustomize/customize_cmdline.ml:405
+#: common/mlcustomize/customize_cmdline.ml:409
 msgid "Copy local files or directories from a tarball into image"
 msgstr "Копіювати локальні файли або каталоги з архіву tar до образу"
 
-#: common/mlcustomize/customize_cmdline.ml:238
+#: common/mlcustomize/customize_cmdline.ml:242
 msgid "Copy local files or directories into image"
 msgstr "Копіювати локальні файли або каталоги до образу"
 
@@ -669,7 +675,7 @@ msgstr "Копіювати локальні файли або каталоги �
 msgid "Copying (in image): %s to %s"
 msgstr "Копіюємо (на образ): %s у %s"
 
-#: v2v/v2v.ml:520
+#: v2v/v2v.ml:526
 msgid "Copying disk %d/%d"
 msgstr "Копіювання диска %d з %d"
 
@@ -677,28 +683,28 @@ msgstr "Копіювання диска %d з %d"
 msgid "Copying: %s to %s"
 msgstr "Копіюємо %s до %s"
 
-#: common/mlcustomize/customize_cmdline.ml:330
+#: common/mlcustomize/customize_cmdline.ml:334
 msgid "Create a directory"
 msgstr "Створити каталог"
 
-#: common/mlcustomize/customize_cmdline.ml:324
+#: common/mlcustomize/customize_cmdline.ml:328
 msgid "Create symbolic links"
 msgstr "Створювати символічні посилання"
 
-#: v2v/v2v.ml:569
+#: v2v/v2v.ml:575
 msgid "Creating output metadata"
 msgstr "Створюємо метадані результатів"
 
-#. common/mlcustomize/customize_cmdline.ml:329
-#: common/mlcustomize/customize_cmdline.ml:508
+#. common/mlcustomize/customize_cmdline.ml:333
+#: common/mlcustomize/customize_cmdline.ml:512
 msgid "DIR"
 msgstr "КАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:502
+#: common/mlcustomize/customize_cmdline.ml:506
 msgid "Defer SELinux relabelling until boot"
 msgstr "Відкласти повторне встановлення міток SELinux до завантаження"
 
-#: common/mlcustomize/customize_cmdline.ml:244
+#: common/mlcustomize/customize_cmdline.ml:248
 msgid "Delete a file or directory"
 msgstr "Вилучити файл або каталог"
 
@@ -714,11 +720,11 @@ msgstr "Показати коротку довідку"
 msgid "Display version and exit"
 msgstr "Вивести версію та вийти"
 
-#: common/mlcustomize/customize_cmdline.ml:490
+#: common/mlcustomize/customize_cmdline.ml:494
 msgid "Do not relabel files with correct SELinux labels"
 msgstr "Не змінити мітки файлів на коректні мітки SELinux"
 
-#: v2v/v2v.ml:251 inspector/inspector.ml:185 in-place/in_place.ml:197
+#: v2v/v2v.ml:255 inspector/inspector.ml:189 in-place/in_place.ml:201
 msgid "Don't trim filesystems before conversion"
 msgstr "Не обрізати файлові системи до перетворення"
 
@@ -730,7 +736,7 @@ msgstr "Не виводити повідомлень щодо поступу"
 msgid "Don’t turn off echo for passphrases"
 msgstr "Не вимикати луна-повторення у паролях"
 
-#: common/mlcustomize/customize_cmdline.ml:255
+#: common/mlcustomize/customize_cmdline.ml:259
 msgid "Edit file using Perl expression"
 msgstr "Редагувати файл за допомогою виразу Perl"
 
@@ -746,7 +752,7 @@ msgstr "Увімкнути діагностичні повідомлення lib
 msgid "Enable tracing of libguestfs calls"
 msgstr "Увімкнути трасування викликів libguestfs"
 
-#: common/mlcustomize/customize_cmdline.ml:511
+#: common/mlcustomize/customize_cmdline.ml:515
 msgid "Exclude directories from SELinux relabelling"
 msgstr "Виключити каталоги з повторного встановлення міток SELinux"
 
@@ -758,42 +764,42 @@ msgstr "Експортувати домен сховища"
 msgid "External command to run"
 msgstr "Зовнішня команда"
 
-#. common/mlcustomize/customize_cmdline.ml:416
-#. common/mlcustomize/customize_cmdline.ml:381
-#: common/mlcustomize/customize_cmdline.ml:422
+#. common/mlcustomize/customize_cmdline.ml:420
+#. common/mlcustomize/customize_cmdline.ml:385
+#: common/mlcustomize/customize_cmdline.ml:426
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: common/mlcustomize/customize_cmdline.ml:463
+#: common/mlcustomize/customize_cmdline.ml:467
 msgid "FILE:CONTENT"
 msgstr "ФАЙЛ:ВМІСТ"
 
-#: common/mlcustomize/customize_cmdline.ml:452
+#: common/mlcustomize/customize_cmdline.ml:456
 msgid "FILE:DEST"
 msgstr "ФАЙЛ:ПРИЗНАЧЕННЯ"
 
-#: common/mlcustomize/customize_cmdline.ml:250
+#: common/mlcustomize/customize_cmdline.ml:254
 msgid "FILE:EXPR"
 msgstr "ФАЙЛ:ВИРАЗ"
 
-#: common/mlcustomize/customize_cmdline.ml:178
+#: common/mlcustomize/customize_cmdline.ml:182
 msgid "FILE:LINE"
 msgstr "ФАЙЛ:РЯДОК"
 
-#: common/mlcustomize/customize_cmdline.ml:211
+#: common/mlcustomize/customize_cmdline.ml:215
 msgid "FILENAME"
 msgstr "НАЗВА_ФАЙЛА"
 
-#. in-place/in_place.ml:383
-#: v2v/v2v.ml:573 open/open.ml:220 inspector/inspector.ml:347
+#. in-place/in_place.ml:389
+#: v2v/v2v.ml:579 open/open.ml:220 inspector/inspector.ml:353
 msgid "Finishing off"
 msgstr "Завершуємо"
 
-#: common/mlcustomize/customize_cmdline.ml:283
+#: common/mlcustomize/customize_cmdline.ml:287
 msgid "HOSTNAME"
 msgstr "НАЗВА_ВУЗЛА"
 
-#: v2v/v2v.ml:257 inspector/inspector.ml:191 in-place/in_place.ml:201
+#: v2v/v2v.ml:261 inspector/inspector.ml:195 in-place/in_place.ml:205
 msgid "How to choose root filesystem"
 msgstr "Як вибрати кореневу файлову систему"
 
@@ -809,24 +815,24 @@ msgstr ""
 "\n"
 "  %s -v -x [...]"
 
-#: common/mlcustomize/customize_cmdline.ml:394
+#: common/mlcustomize/customize_cmdline.ml:398
 msgid "Inject a public key into the guest"
 msgstr "Вставити відкритий ключ до гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:290
+#: common/mlcustomize/customize_cmdline.ml:294
 msgid "Inject the Balloon Server into a Windows guest"
 msgstr "Вставити Balloon Server до гостьової системи Windows"
 
-#: common/mlcustomize/customize_cmdline.ml:296
+#: common/mlcustomize/customize_cmdline.ml:300
 msgid "Inject the QEMU Guest Agent into a Windows guest"
 msgstr "Вставити агент гостьової системи QEMU до гостьової системи Windows"
 
-#: common/mlcustomize/customize_cmdline.ml:302
+#: common/mlcustomize/customize_cmdline.ml:306
 msgid "Inject virtio-win drivers into a Windows guest"
 msgstr "Вставити драйвери virtio-win до гостьової системи Windows"
 
-#. in-place/in_place.ml:183
-#: v2v/v2v.ml:219 open/open.ml:80 inspector/inspector.ml:173
+#. in-place/in_place.ml:187
+#: v2v/v2v.ml:223 open/open.ml:80 inspector/inspector.ml:177
 msgid "Input format"
 msgstr "Формат вхідних даних"
 
@@ -945,7 +951,7 @@ msgstr ""
 "більше\n"
 "про ці параметри.\n"
 
-#: v2v/v2v.ml:225 open/open.ml:86 inspector/inspector.ml:179
+#: v2v/v2v.ml:229 open/open.ml:86 inspector/inspector.ml:183
 msgid "Input transport"
 msgstr "Вхідне передавання"
 
@@ -965,12 +971,12 @@ msgstr "Встановлюємо скрипт firstboot: %s"
 msgid "Installing packages: %s"
 msgstr "Встановлюємо пакунки: %s"
 
-#: common/mlcustomize/customize_cmdline.ml:233
+#: common/mlcustomize/customize_cmdline.ml:237
 msgid "LOCALPATH:REMOTEDIR"
 msgstr "ЛОКАЛЬНИЙШЛЯХ:ВІДДАЛЕНИЙКАТАЛОГ"
 
-#. in-place/in_place.ml:181
-#: v2v/v2v.ml:217 open/open.ml:78 inspector/inspector.ml:171
+#. in-place/in_place.ml:185
+#: v2v/v2v.ml:221 open/open.ml:78 inspector/inspector.ml:175
 msgid "Libvirt URI"
 msgstr "Адреса libvirt"
 
@@ -978,9 +984,9 @@ msgstr "Адреса libvirt"
 msgid "Linking: %s -> %s"
 msgstr "Компонування: %s -> %s"
 
-#. common/mlcustomize/customize_cmdline.ml:295
-#. common/mlcustomize/customize_cmdline.ml:289
-#: common/mlcustomize/customize_cmdline.ml:301
+#. common/mlcustomize/customize_cmdline.ml:299
+#. common/mlcustomize/customize_cmdline.ml:293
+#: common/mlcustomize/customize_cmdline.ml:305
 msgid "METHOD"
 msgstr "МЕТОД"
 
@@ -992,20 +998,20 @@ msgstr "Зробити машину виведення придатною до �
 msgid "Making directory: %s"
 msgstr "Створюємо каталог: %s"
 
-#: v2v/v2v.ml:229 inspector/inspector.ml:181 in-place/in_place.ml:189
+#: v2v/v2v.ml:233 inspector/inspector.ml:185 in-place/in_place.ml:193
 msgid "Map NIC to network or bridge or assign static IP"
 msgstr ""
 "Пов'язати NIC із мережею або містком чи пов'язати із ним статичну IP-адресу"
 
-#: v2v/v2v.ml:209 inspector/inspector.ml:163 in-place/in_place.ml:173
+#: v2v/v2v.ml:211 inspector/inspector.ml:165 in-place/in_place.ml:175
 msgid "Map bridge ‘in’ to ‘out’"
 msgstr "Відобразити місток «in» на «out»"
 
-#: v2v/v2v.ml:233 inspector/inspector.ml:187 in-place/in_place.ml:193
+#: v2v/v2v.ml:237 inspector/inspector.ml:191 in-place/in_place.ml:197
 msgid "Map network ‘in’ to ‘out’"
 msgstr "Пов'язати мережу «in» із мережею «out»"
 
-#: common/mlcustomize/customize_cmdline.ml:341
+#: common/mlcustomize/customize_cmdline.ml:345
 msgid "Move files in disk image"
 msgstr "Пересунути файли на образ диска"
 
@@ -1041,7 +1047,13 @@ msgstr ""
 "Windows. Отримати цей файл можна зібравши rhsrvany (https://github.com/"
 "rwmjones/rhsrvany)."
 
-#: v2v/v2v.ml:239
+#: common/mlcustomize/customize_cmdline.ml:521
+#, fuzzy
+#| msgid "Create a directory"
+msgid "Only relabel FHS directories"
+msgstr "Створити каталог"
+
+#: v2v/v2v.ml:243
 msgid "Output hypervisor connection"
 msgstr "Вивести з'єднання гіпервізора"
 
@@ -1166,30 +1178,30 @@ msgstr ""
 "  -oo compressed      стиснути файл виведення (можна використовувати лише з "
 "-of qcow2)\n"
 
-#. common/mlcustomize/customize_cmdline.ml:243
-#: common/mlcustomize/customize_cmdline.ml:428
+#. common/mlcustomize/customize_cmdline.ml:247
+#: common/mlcustomize/customize_cmdline.ml:432
 msgid "PATH"
 msgstr "ШЛЯХ"
 
-#: common/mlcustomize/customize_cmdline.ml:189
+#: common/mlcustomize/customize_cmdline.ml:193
 msgid "PERMISSIONS:FILE"
 msgstr "ПРАВА_ДОСТУПУ:ФАЙЛ"
 
-#. common/mlcustomize/customize_cmdline.ml:308
-#. common/mlcustomize/customize_cmdline.ml:273
-#: common/mlcustomize/customize_cmdline.ml:435
+#. common/mlcustomize/customize_cmdline.ml:312
+#. common/mlcustomize/customize_cmdline.ml:277
+#: common/mlcustomize/customize_cmdline.ml:439
 msgid "PKG,PKG.."
 msgstr "ПАКУНОК,ПАКУНОК.."
 
-#: v2v/v2v.ml:266 in-place/in_place.ml:210
+#: v2v/v2v.ml:270 in-place/in_place.ml:214
 msgid "Prefer 'virtio-blk' or 'virtio-scsi'"
 msgstr "Перевага «virtio-blk» або «virtio-scsi»"
 
-#: v2v/v2v.ml:255 in-place/in_place.ml:199
+#: v2v/v2v.ml:259 in-place/in_place.ml:203
 msgid "Print source and stop"
 msgstr "Вивести джерело і припинити обробку"
 
-#: common/mlcustomize/customize_cmdline.ml:216
+#: common/mlcustomize/customize_cmdline.ml:220
 msgid "Read customize commands from file"
 msgstr "Прочитати команди налаштовування з файла"
 
@@ -1197,7 +1209,7 @@ msgstr "Прочитати команди налаштовування з фай
 msgid "Read passphrases from stdin"
 msgstr "Читати паролі зі стандартного введення (stdin)"
 
-#: common/mlcustomize/customize_cmdline.ml:429
+#: common/mlcustomize/customize_cmdline.ml:433
 msgid "Recursively truncate all files in directory"
 msgstr "Рекурсивно обрізати усі файли у каталозі"
 
@@ -1205,31 +1217,31 @@ msgstr "Рекурсивно обрізати усі файли у катало�
 msgid "Recursively truncating: %s"
 msgstr "Рекурсивно обрізаємо: %s"
 
-#: v2v/v2v.ml:243
+#: v2v/v2v.ml:247
 msgid "Rename guest when converting"
 msgstr "Перейменувати гостьову систему під час перетворення"
 
-#: common/mlcustomize/customize_cmdline.ml:267
+#: common/mlcustomize/customize_cmdline.ml:271
 msgid "Run command at first guest boot"
 msgstr "Виконати команду під час першого завантаження гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:376
+#: common/mlcustomize/customize_cmdline.ml:380
 msgid "Run command in disk image"
 msgstr "Виконати команду у образі диска"
 
-#: common/mlcustomize/customize_cmdline.ml:261
+#: common/mlcustomize/customize_cmdline.ml:265
 msgid "Run script at first guest boot"
 msgstr "Виконати скрипт під час першого завантаження гостьової системи"
 
-#: common/mlcustomize/customize_cmdline.ml:370
+#: common/mlcustomize/customize_cmdline.ml:374
 msgid "Run script in disk image"
 msgstr "Виконати скрипт у образі диска"
 
-#: common/mlcustomize/customize_cmdline.ml:417
+#: common/mlcustomize/customize_cmdline.ml:421
 msgid "Run touch on a file"
 msgstr "Обробити файл за допомогою touch"
 
-#: v2v/v2v.ml:253
+#: v2v/v2v.ml:257
 msgid "Run up to N instances of nbdcopy in parallel"
 msgstr "Запускати паралельно до N екземплярів nbdcopy"
 
@@ -1246,26 +1258,32 @@ msgstr "Виконуємо touch: %s"
 msgid "Running: %s"
 msgstr "Виконуємо: %s"
 
-#. common/mlcustomize/customize_cmdline.ml:260
-#: common/mlcustomize/customize_cmdline.ml:369
+#. common/mlcustomize/customize_cmdline.ml:264
+#: common/mlcustomize/customize_cmdline.ml:373
 msgid "SCRIPT"
 msgstr "СКРИПТ"
 
 #: common/mltools/tools_utils.ml:430
-#: common/mlcustomize/customize_cmdline.ml:359
+#: common/mlcustomize/customize_cmdline.ml:363
 msgid "SELECTOR"
 msgstr "СЕЛЕКТОР"
 
-#: common/mlcustomize/customize_run.ml:365
+#: common/mlcustomize/customize_run.ml:367
 msgid "SELinux relabelling"
 msgstr "Зміна міток SELinux"
 
-#: common/mlcustomize/customize_run.ml:367
+#: common/mlcustomize/customize_run.ml:369
 msgid "SELinux relabelling deferred to first boot"
 msgstr "Повторне встановлення міток SELinux відкладено до першого завантаження"
 
-#. common/mlcustomize/customize_cmdline.ml:222
-#: common/mlcustomize/customize_cmdline.ml:336
+#: common/mlcustomize/customize_run.ml:368
+#, fuzzy
+#| msgid "SELinux relabelling"
+msgid "SELinux relabelling only FHS"
+msgstr "Зміна міток SELinux"
+
+#. common/mlcustomize/customize_cmdline.ml:226
+#: common/mlcustomize/customize_cmdline.ml:340
 msgid "SOURCE:DEST"
 msgstr "ДЖЕРЕЛО:ПРИЗНАЧЕННЯ"
 
@@ -1277,15 +1295,15 @@ msgstr "Ключ SSH не можна вставляти до цього типу
 msgid "SSH key inject: %s"
 msgstr "Вставлення ключа SSH: %s"
 
-#: common/mlcustomize/customize_cmdline.ml:382
+#: common/mlcustomize/customize_cmdline.ml:386
 msgid "Scrub a file"
 msgstr "Витерти файл"
 
-#: common/mlcustomize/customize_cmdline.ml:474
+#: common/mlcustomize/customize_cmdline.ml:478
 msgid "Scrub build log file"
 msgstr "Витерти файл журналу збирання"
 
-#: common/mlcustomize/customize_run.ml:379
+#: common/mlcustomize/customize_run.ml:381
 msgid "Scrubbing the log file"
 msgstr "Витираємо файл журналу"
 
@@ -1293,45 +1311,45 @@ msgstr "Витираємо файл журналу"
 msgid "Scrubbing: %s"
 msgstr "Витираємо: %s"
 
-#. in-place/in_place.ml:179
-#: v2v/v2v.ml:215 open/open.ml:76 inspector/inspector.ml:169
+#. in-place/in_place.ml:183
+#: v2v/v2v.ml:219 open/open.ml:76 inspector/inspector.ml:173
 msgid "Set input mode (default: libvirt)"
 msgstr "Встановити режим введення даних (типовий: libvirt)"
 
-#: v2v/v2v.ml:231 inspector/inspector.ml:183 in-place/in_place.ml:191
+#: v2v/v2v.ml:235 inspector/inspector.ml:187 in-place/in_place.ml:195
 msgid "Set memory size"
 msgstr "Встановити розмір пам'яті"
 
-#: v2v/v2v.ml:259 inspector/inspector.ml:193 in-place/in_place.ml:203
+#: v2v/v2v.ml:263 inspector/inspector.ml:197 in-place/in_place.ml:207
 msgid "Set number of vCPUs"
 msgstr "Встановити кількість віртуальних процесорів"
 
-#. in-place/in_place.ml:185
-#: v2v/v2v.ml:221 open/open.ml:82 inspector/inspector.ml:175
+#. in-place/in_place.ml:189
+#: v2v/v2v.ml:225 open/open.ml:82 inspector/inspector.ml:179
 msgid "Set option for input mode"
 msgstr "Встановити варіант для режиму вхідних даних"
 
-#: v2v/v2v.ml:245
+#: v2v/v2v.ml:249
 msgid "Set option for output mode"
 msgstr "Встановити варіант для режиму виведення"
 
-#: v2v/v2v.ml:237
+#: v2v/v2v.ml:241
 msgid "Set output allocation mode"
 msgstr "Встановити режим отримання пам’яті для виведення даних"
 
-#: v2v/v2v.ml:241
+#: v2v/v2v.ml:245
 msgid "Set output format"
 msgstr "встановити формат виведення даних"
 
-#: v2v/v2v.ml:235
+#: v2v/v2v.ml:239
 msgid "Set output mode (default: libvirt)"
 msgstr "Встановити режим виведення (типовий: libvirt)"
 
-#: v2v/v2v.ml:249
+#: v2v/v2v.ml:253
 msgid "Set output storage location"
 msgstr "Встановити розташування сховища виведених даних"
 
-#: common/mlcustomize/customize_cmdline.ml:484
+#: common/mlcustomize/customize_cmdline.ml:488
 msgid "Set password crypto"
 msgstr "Встановити алгоритм шифрування пароля"
 
@@ -1339,23 +1357,23 @@ msgstr "Встановити алгоритм шифрування пароля"
 msgid "Set program name"
 msgstr "Встановити назву програми"
 
-#: common/mlcustomize/customize_cmdline.ml:364
+#: common/mlcustomize/customize_cmdline.ml:368
 msgid "Set root password"
 msgstr "Встановити пароль root"
 
-#: common/mlcustomize/customize_cmdline.ml:411
+#: common/mlcustomize/customize_cmdline.ml:415
 msgid "Set the default timezone"
 msgstr "Встановити типовий часовий пояс"
 
-#: common/mlcustomize/customize_cmdline.ml:284
+#: common/mlcustomize/customize_cmdline.ml:288
 msgid "Set the hostname"
 msgstr "Встановити назву вузла"
 
-#: inspector/inspector.ml:189 in-place/in_place.ml:195
+#: inspector/inspector.ml:193 in-place/in_place.ml:199
 msgid "Set the output filename"
 msgstr "Встановити назву файла результатів"
 
-#: common/mlcustomize/customize_cmdline.ml:353
+#: common/mlcustomize/customize_cmdline.ml:357
 msgid "Set user password"
 msgstr "Встановити пароль користувача"
 
@@ -1383,16 +1401,16 @@ msgstr "Встановлюємо ідентифікатор комп'ютера 
 msgid "Setting the timezone: %s"
 msgstr "Встановлюємо часовий пояс: %s"
 
-#: v2v/v2v.ml:483
+#: v2v/v2v.ml:489
 msgid "Setting up the destination: %s"
 msgstr "Налаштовуємо призначення: %s"
 
-#. in-place/in_place.ml:347
-#: v2v/v2v.ml:459 open/open.ml:184 inspector/inspector.ml:323
+#. in-place/in_place.ml:353
+#: v2v/v2v.ml:465 open/open.ml:184 inspector/inspector.ml:329
 msgid "Setting up the source: %s"
 msgstr "Налаштовуємо джерело: %s"
 
-#: v2v/v2v.ml:465 in-place/in_place.ml:353
+#: v2v/v2v.ml:471 in-place/in_place.ml:359
 msgid "Source guest information (--print-source option):\n"
 msgstr "Дані щодо гостьової системи джерела (параметр --print-source):\n"
 
@@ -1400,19 +1418,19 @@ msgstr "Дані щодо гостьової системи джерела (па
 msgid "Specify a LUKS key"
 msgstr "Вказати ключ LUKS"
 
-#: common/mlcustomize/customize_cmdline.ml:400
+#: common/mlcustomize/customize_cmdline.ml:404
 msgid "TARFILE:REMOTEDIR"
 msgstr "ФАЙЛTAR:ВІДДАЛЕНИЙКАТАЛОГ"
 
-#: common/mlcustomize/customize_cmdline.ml:319
+#: common/mlcustomize/customize_cmdline.ml:323
 msgid "TARGET:LINK[:LINK..]"
 msgstr "ПРИЗНАЧЕННЯ:ПОСИЛАННЯ[:ПОСИЛАННЯ..]"
 
-#: common/mlcustomize/customize_cmdline.ml:410
+#: common/mlcustomize/customize_cmdline.ml:414
 msgid "TIMEZONE"
 msgstr "ЧАСОВИЙ_ПОЯС"
 
-#: v2v/v2v.ml:203
+#: v2v/v2v.ml:205
 msgid ""
 "The --in-place option has been replaced by the ‘virt-v2v-in-place’ program"
 msgstr "Параметр --in-place замінено на програму «virt-v2v-in-place»"
@@ -1458,7 +1476,7 @@ msgstr ""
 "перетворення, які описано у підручнику з virt-v2v-input-vmware(1), розділ "
 "«ПРИМІТКИ»."
 
-#: common/mlcustomize/customize_cmdline.ml:423
+#: common/mlcustomize/customize_cmdline.ml:427
 msgid "Truncate a file to zero size"
 msgstr "Обрізати файл до нульового розміру"
 
@@ -1466,19 +1484,19 @@ msgstr "Обрізати файл до нульового розміру"
 msgid "Truncating: %s"
 msgstr "Обрізаємо: %s"
 
-#: common/mlcustomize/customize_cmdline.ml:200
+#: common/mlcustomize/customize_cmdline.ml:204
 msgid "UID:GID:PATH"
 msgstr "UID:GID:ШЛЯХ"
 
-#: common/mlcustomize/customize_cmdline.ml:347
+#: common/mlcustomize/customize_cmdline.ml:351
 msgid "USER:SELECTOR"
 msgstr "КОРИСТУВАЧ:ВАРІАНТ"
 
-#: common/mlcustomize/customize_cmdline.ml:388
+#: common/mlcustomize/customize_cmdline.ml:392
 msgid "USER[:SELECTOR]"
 msgstr "КОРИСТУВАЧ[:СЕЛЕКТОР]"
 
-#: common/mlcustomize/customize_cmdline.ml:440
+#: common/mlcustomize/customize_cmdline.ml:444
 msgid "Uninstall package(s)"
 msgstr "Вилучити пакунки"
 
@@ -1490,7 +1508,7 @@ msgstr "Вилучаємо пакунки: %s"
 msgid "Unpack tar file: %s to %s"
 msgstr "Розпаковування файла tar: %s до %s"
 
-#: common/mlcustomize/customize_cmdline.ml:446
+#: common/mlcustomize/customize_cmdline.ml:450
 msgid "Update packages"
 msgstr "Оновити пакунки"
 
@@ -1498,7 +1516,7 @@ msgstr "Оновити пакунки"
 msgid "Updating packages"
 msgstr "Оновлюємо пакунки"
 
-#: common/mlcustomize/customize_cmdline.ml:457
+#: common/mlcustomize/customize_cmdline.ml:461
 msgid "Upload local file to destination"
 msgstr "Вивантажити локальний файл у систему призначення"
 
@@ -1510,16 +1528,16 @@ msgstr "Вивантажуємо: %s до %s"
 msgid "Use ANSI colour sequences even if not tty"
 msgstr "Використовувати послідовності ANSI для кольорів, навіть якщо це не tty"
 
-#. in-place/in_place.ml:187
-#: v2v/v2v.ml:223 open/open.ml:84 inspector/inspector.ml:177
+#. in-place/in_place.ml:191
+#: v2v/v2v.ml:227 open/open.ml:84 inspector/inspector.ml:181
 msgid "Use password from file to connect to input hypervisor"
 msgstr "Скористатися паролем з файла для з'єднання із вхідним гіпервізором"
 
-#: v2v/v2v.ml:247
+#: v2v/v2v.ml:251
 msgid "Use password from file to connect to output hypervisor"
 msgstr "Скористатися паролем з файла для з'єднання із вихідним гіпервізором"
 
-#: v2v/v2v.ml:227
+#: v2v/v2v.ml:231
 msgid "Use virt-v2v-in-place instead"
 msgstr "Скористайтеся краще virt-v2v-in-place"
 
@@ -1527,7 +1545,7 @@ msgstr "Скористайтеся краще virt-v2v-in-place"
 msgid "Wrap log messages even if not tty"
 msgstr "Переносити рядки повідомлень журналу, навіть якщо це не tty"
 
-#: common/mlcustomize/customize_cmdline.ml:468
+#: common/mlcustomize/customize_cmdline.ml:472
 msgid "Write file"
 msgstr "Записати файл"
 
@@ -1622,15 +1640,15 @@ msgstr "не вдалося отримати список можливостей
 msgid "cannot get libvirt hypervisor capabilities: %s"
 msgstr "не вдалося отримати список можливостей гіпервізора libvirt: %s"
 
-#: v2v/v2v.ml:108 inspector/inspector.ml:99 in-place/in_place.ml:105
+#: v2v/v2v.ml:110 inspector/inspector.ml:101 in-place/in_place.ml:107
 msgid "cannot parse --mac \"%s\" parameter"
 msgstr "не вдалося обробити параметр --mac \"%s\""
 
-#: v2v/v2v.ml:132 inspector/inspector.ml:123 in-place/in_place.ml:129
+#: v2v/v2v.ml:134 inspector/inspector.ml:125 in-place/in_place.ml:131
 msgid "cannot parse --mac ip %s: doesn’t look like “%s” is an IP address"
 msgstr "Не вдалося обробити --mac ip %s: здається, «%s» не є IP-адресою"
 
-#: v2v/v2v.ml:146 inspector/inspector.ml:137 in-place/in_place.ml:143
+#: v2v/v2v.ml:148 inspector/inspector.ml:139 in-place/in_place.ml:145
 msgid "cannot parse --mac ip prefix length field as an integer: %s"
 msgstr "не вдалося обробити поле довжини префікса --mac ip як ціле число: %s"
 
@@ -1681,16 +1699,16 @@ msgstr ""
 "роботу virt-v2v (^C), а потім повторно запустити програму від імені "
 "користувача root."
 
-#: common/mlcustomize/customize_cmdline.ml:531
+#: common/mlcustomize/customize_cmdline.ml:541
 msgid "command '%s' cannot be used in command files, see the man page"
 msgstr ""
 "у командних файлах не можна використовувати команду «%s», див. сторінку man"
 
-#: common/mlcustomize/customize_cmdline.ml:548
+#: common/mlcustomize/customize_cmdline.ml:558
 msgid "command '%s' not valid, see the man page"
 msgstr "команда «%s» є некоректною, див. сторінку man"
 
-#: common/mldrivers/linux_bootloaders.ml:318
+#: common/mldrivers/linux_bootloaders.ml:329
 msgid "could not add grub2 serial console (ignored)"
 msgstr "не вдалося додати послідовну консоль grub2 (проігноровано)"
 
@@ -1724,7 +1742,7 @@ msgstr ""
 "не вдалося отримати відбиток з сервера, вам слід скористатися «‘-io vddk-"
 "thumbprint=XX:XX...»"
 
-#: common/mldrivers/linux_bootloaders.ml:376
+#: common/mldrivers/linux_bootloaders.ml:387
 msgid "could not find bootloader mount point (%s): %s"
 msgstr "не вдалося виявити точки монтування завантажувача (%s): %s"
 
@@ -1747,6 +1765,11 @@ msgid ""
 msgstr ""
 "не вдалося завершити встановлення firstboot за допомогою команди «%s», "
 "оскільки виконання цієї команди завершилося повідомленням про помилку: %s"
+
+#: common/mldrivers/linux_bootloaders.ml:271
+msgid ""
+"could not get the default kernel using Perl Bootloader::Tools, ignoring: %s"
+msgstr ""
 
 #. input/input_vcenter_https.ml:94
 #. input/input_nfc.ml:108
@@ -1777,7 +1800,7 @@ msgstr ""
 "командному рядку. Чи справді це %s OVirt? Початкове повідомлення щодо "
 "помилки: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:336
+#: common/mldrivers/linux_bootloaders.ml:347
 msgid ""
 "could not rebuild grub2 configuration file (%s).  This may mean that grub "
 "output will not be sent to the serial port, but otherwise should be "
@@ -1791,9 +1814,14 @@ msgstr ""
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr "не вдалося оновити буфер libvirt «%s»: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:320
+#: common/mldrivers/linux_bootloaders.ml:331
 msgid "could not remove grub2 serial console (ignored)"
 msgstr "не вдалося вилучити послідовну консоль grub2 (проігноровано)"
+
+#: common/mldrivers/linux_bootloaders.ml:311
+msgid ""
+"could not set the default kernel using Perl Bootloader::Tools, ignoring: %s"
+msgstr ""
 
 #: common/mltools/registry.ml:93
 msgid ""
@@ -2061,8 +2089,8 @@ msgstr ""
 "дисків, які зберігаються на віддалених блокових пристроях. Див. підручник з "
 "virt-v2v-input-xen(1), розділ «Xen or ssh conversions from block devices»."
 
-#. in-place/in_place.ml:402
-#: v2v/v2v.ml:592 open/open.ml:238 inspector/inspector.ml:366
+#. in-place/in_place.ml:408
+#: v2v/v2v.ml:598 open/open.ml:238 inspector/inspector.ml:372
 msgid ""
 "insufficient free space in the conversion server temporary directory %s "
 "(%s).\n"
@@ -2110,21 +2138,21 @@ msgstr ""
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "внутрішня помилка: формальний вираз не відповідає «%s»"
 
-#: v2v/v2v.ml:550
+#: v2v/v2v.ml:556
 msgid "internal error: wait returned unexpected process ID %d status \"%s\""
 msgstr ""
 "внутрішня помилка: wait повернуто неочікуваний для ідентифікатора процесу %d "
 "стан «%s»"
 
-#: v2v/v2v.ml:117 inspector/inspector.ml:108 in-place/in_place.ml:114
+#: v2v/v2v.ml:119 inspector/inspector.ml:110 in-place/in_place.ml:116
 msgid "invalid --mac ip option"
 msgstr "некоректний параметр --mac ip"
 
-#: v2v/v2v.ml:101 inspector/inspector.ml:92 in-place/in_place.ml:98
+#: v2v/v2v.ml:103 inspector/inspector.ml:94 in-place/in_place.ml:100
 msgid "invalid -b/--bridge parameter"
 msgstr "некоректний параметр -b/--bridge"
 
-#: v2v/v2v.ml:93 inspector/inspector.ml:84 in-place/in_place.ml:90
+#: v2v/v2v.ml:95 inspector/inspector.ml:86 in-place/in_place.ml:92
 msgid "invalid -n/--network parameter"
 msgstr "некоректний параметр -n/--network"
 
@@ -2133,9 +2161,9 @@ msgid "invalid cpuid.coresPerSocket < number of vCPUs"
 msgstr ""
 "некоректне значення cpuid.coresPerSocket < кількості віртуальних процесорів"
 
-#. common/mlcustomize/customize_cmdline.ml:161
-#. common/mlcustomize/customize_cmdline.ml:153
-#: common/mlcustomize/customize_cmdline.ml:169
+#. common/mlcustomize/customize_cmdline.ml:165
+#. common/mlcustomize/customize_cmdline.ml:157
+#: common/mlcustomize/customize_cmdline.ml:173
 msgid "invalid format for '--%s' parameter, see the man page"
 msgstr "некоректний формат параметра «--%s», див. сторінку підручника"
 
@@ -2221,7 +2249,7 @@ msgstr ""
 msgid "manifest has a checksum for non-existent file %s (ignored)"
 msgstr "у маніфесті є контрольна сума файла, якого не існує %s (проігноровано)"
 
-#: common/mlcustomize/customize_cmdline.ml:480
+#: common/mlcustomize/customize_cmdline.ml:484
 msgid "md5|sha256|sha512"
 msgstr "md5|sha256|sha512"
 
@@ -2474,7 +2502,7 @@ msgstr "тут не можна використовувати -oo (параме�
 msgid "no .ovf file was found in %s"
 msgstr "у %s не знайдено файла .ovf"
 
-#: common/mldrivers/linux_bootloaders.ml:402
+#: common/mldrivers/linux_bootloaders.ml:413
 msgid "no bootloader detected"
 msgstr "не виявлено завантажувача"
 
@@ -2676,9 +2704,9 @@ msgstr ""
 msgid "remote vmx ‘%s’ could not be parsed as a URI"
 msgstr "«%s» для віддаленого vmx не вдалося обробити як адресу"
 
-#. common/mlcustomize/inject_virtio_win.ml:395
-#. common/mlcustomize/inject_virtio_win.ml:390
-#: common/mlcustomize/inject_virtio_win.ml:400
+#. common/mlcustomize/inject_virtio_win.ml:399
+#. common/mlcustomize/inject_virtio_win.ml:394
+#: common/mlcustomize/inject_virtio_win.ml:404
 msgid ""
 "root directory ‘/’ is missing from the virtio-win directory or ISO.\n"
 "\n"
@@ -2893,7 +2921,7 @@ msgstr ""
 msgid "there are no UUIDs in the %s (%s).  Is it really an OVirt %s?"
 msgstr "у %s (%s) немає UUID. Це справді OVirt %s?"
 
-#: common/mlcustomize/inject_virtio_win.ml:188
+#: common/mlcustomize/inject_virtio_win.ml:194
 msgid ""
 "there are no virtio drivers available for this version of Windows (%d.%d %s "
 "%s %s).  virt-v2v looks for drivers in %s\n"
@@ -2906,7 +2934,7 @@ msgstr ""
 "Гостьову систему буде налаштовано на використання повільніших емульованих "
 "пристроїв."
 
-#: common/mlcustomize/inject_virtio_win.ml:212
+#: common/mlcustomize/inject_virtio_win.ml:218
 msgid ""
 "there is no virtio block device driver for this version of Windows (%d.%d "
 "%s).  virt-v2v looks for this driver in %s\n"
@@ -2919,7 +2947,7 @@ msgstr ""
 "Гостьову систему буде налаштовано на використання повільнішого емульованого "
 "пристрою."
 
-#: common/mlcustomize/inject_virtio_win.ml:243
+#: common/mlcustomize/inject_virtio_win.ml:249
 msgid ""
 "there is no virtio network driver for this version of Windows (%d.%d %s).  "
 "virt-v2v looks for this driver in %s\n"
@@ -3005,7 +3033,7 @@ msgstr "невідомий параметр -i: %s"
 msgid "unknown -o option: %s"
 msgstr "невідомий параметр -o: %s"
 
-#: v2v/v2v.ml:167
+#: v2v/v2v.ml:169
 msgid "unknown -oa option: %s"
 msgstr "невідомий параметр -oa: %s"
 
@@ -3029,7 +3057,7 @@ msgstr "невідоме значення мікропрограми, «%s», п
 msgid "unknown guest operating system: %s %s %d.%d %s (%s)"
 msgstr "невідома гостьова операційна система: %s %s %d.%d %s (%s)"
 
-#: v2v/v2v.ml:333 open/open.ml:133 inspector/inspector.ml:249
+#: v2v/v2v.ml:338 open/open.ml:133 inspector/inspector.ml:254
 msgid "unknown input transport ‘-it %s’"
 msgstr "невідомий вхідний канал передавання «-it %s»"
 
