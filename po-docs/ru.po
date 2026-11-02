@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
 "Report-Msgid-Bugs-To: guestfs@lists.libguestfs.org\n"
 "POT-Creation-Date: 2026-10-30 14:43+0000\n"
-"PO-Revision-Date: 2026-10-06 15:18+0000\n"
+"PO-Revision-Date: 2026-11-02 23:18+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-docs-master/ru/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.10\n"
+"X-Generator: Weblate 2026.11\n"
 
 #. type: =end
 #: common/mlcustomize/customize-options.pod:1
@@ -1270,10 +1270,8 @@ msgstr ""
 #. type: =item
 #: common/mlcustomize/customize-options.pod:443
 #: common/mlcustomize/v2v-customize-options.pod:389
-#, fuzzy
-#| msgid "B<--selinux-relabel>"
 msgid "B<--selinux-relabel-fhs>"
-msgstr "B<--selinux-relabel>"
+msgstr "B<--selinux-relabel-fhs>"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:445
@@ -1283,6 +1281,9 @@ msgid ""
 "(FHS) mountpoints (L<https://en.wikipedia.org/wiki/"
 "Filesystem_Hierarchy_Standard>)."
 msgstr ""
+"Этот параметр позволяет перемаркировать только точки монтирования согласно "
+"стандарту иерархии файловой системы Linux (FHS) (L<https://en.wikipedia.org/"
+"wiki/Filesystem_Hierarchy_Standard>)."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:449
@@ -1291,6 +1292,9 @@ msgid ""
 "Specifically this means that a separate mountpoint which does not match a "
 "directory from the FHS is ignored.  For example if F</etc/fstab> contained:"
 msgstr ""
+"В частности, это означает, что отдельная точка монтирования, не "
+"соответствующая каталогу из FHS, игнорируется.  Например, если F</etc/fstab> "
+"содержал:"
 
 #. type: verbatim
 #: common/mlcustomize/customize-options.pod:453
@@ -1300,6 +1304,8 @@ msgid ""
 " /dev/sdb /database xfs defaults 0 0\n"
 "\n"
 msgstr ""
+" /dev/sdb /database xfs defaults 0 0\n"
+"\n"
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:455
@@ -1308,6 +1314,8 @@ msgid ""
 "then F</database> would not be relabelled since that directory is not one "
 "listed in the FHS."
 msgstr ""
+"то F</database> не был бы перемаркирован, поскольку этот каталог не указан в "
+"FHS."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:458
@@ -1317,6 +1325,9 @@ msgid ""
 "mountpoint then everything underneath would still be relabelled even if not "
 "an FHS directory."
 msgstr ""
+"Этот параметр работает только на уровне точек монтирования из fstab.  Если "
+"F</> был единственной точкой монтирования, то всё, что под ней, всё равно "
+"будет перемаркировано, даже если это не каталог из FHS."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:462
@@ -1325,12 +1336,14 @@ msgid ""
 "Use this option with care, since incorrectly labelled files even outside the "
 "FHS may cause the guest to fail to boot."
 msgstr ""
+"Используйте этот параметр осторожно, поскольку неправильно помеченные файлы "
+"даже вне FHS могут привести к тому, что гостевая система не загрузится."
 
 #. type: textblock
 #: common/mlcustomize/customize-options.pod:465
 #: common/mlcustomize/v2v-customize-options.pod:411
 msgid "The default is to relabel the whole filesystem."
-msgstr ""
+msgstr "По умолчанию перемаркируется вся файловая система."
 
 #. type: =item
 #: common/mlcustomize/customize-options.pod:467
@@ -11815,10 +11828,8 @@ msgstr ""
 #. type: =item
 #: docs/virt-v2v.pod:240 in-place/virt-v2v-in-place.pod:171
 #: inspector/virt-v2v-inspector.pod:191
-#, fuzzy
-#| msgid "B<--root ask>"
 msgid "B<--fsck>"
-msgstr "B<--root ask>"
+msgstr "B<--fsck>"
 
 #. type: textblock
 #: docs/virt-v2v.pod:242
@@ -11829,6 +11840,12 @@ msgid ""
 "explicit checks, but the tool will still check for corruption when mounting "
 "or modifying filesystems during conversion."
 msgstr ""
+"Включает проверки файловой системы до и после преобразования.  Если вы "
+"подозреваете, что повреждение файловой системы вызывает сбой преобразования, "
+"или что преобразование вызывает повреждение файловой системы, используйте "
+"этот параметр.  По умолчанию явные проверки не выполняются, но инструмент "
+"всё равно проверяет на повреждения при монтировании или изменении файловых "
+"систем во время преобразования."
 
 #. type: textblock
 #: docs/virt-v2v.pod:248
@@ -11838,6 +11855,11 @@ msgid ""
 "detected causes the conversion to fail and you have to fix it yourself on "
 "the source."
 msgstr ""
+"Обратите внимание: даже при включённом параметре файловые системы не "
+"исправляются (поскольку по правилам virt-v2v не пытается исправлять "
+"повреждённые гостевые системы).  Любое обнаруженное повреждение приводит к "
+"сбою преобразования, и вам придётся исправить его самостоятельно в исходной "
+"системе."
 
 #. type: textblock
 #: docs/virt-v2v.pod:253
@@ -11845,6 +11867,9 @@ msgid ""
 "Filesystem checks were added and defaulted to enabled in S<virt-v2v 2.12>.  "
 "This flag was added and the default was changed to off in S<virt-v2v 2.14>."
 msgstr ""
+"Проверки файловой системы были добавлены и по умолчанию включены в S<virt-"
+"v2v 2.12>.  Этот флаг был добавлен, а значение по умолчанию изменено на "
+"выключенное в S<virt-v2v 2.14>."
 
 #. type: =item
 #: docs/virt-v2v.pod:257
