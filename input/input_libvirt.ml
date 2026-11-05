@@ -63,18 +63,6 @@ and get_source_from_libvirt_xml _ args =
   source, disks
 
 and setup_servers options dir disks =
-  (* Check nbdkit is installed. *)
-  if not (Nbdkit.is_installed ()) then
-    error (f_"nbdkit is not installed or not working.  It is required to \
-              use ‘-i libvirt|libvirtxml’.");
-
-  if not (Nbdkit.probe_plugin "file") then
-    error (f_"nbdkit-file-plugin is not installed or not working");
-  if not (Nbdkit.probe_plugin "nbd") then
-    error (f_"nbdkit-nbd-plugin is not installed or not working");
-  if options.read_only && not (Nbdkit.probe_filter "cow") then
-    error (f_"nbdkit-cow-filter is not installed or not working");
-
   (* -io nbd-tls-certificates=DIR enables TLS for NBD network disks.
    * (Only -i libvirtxml may pass -io; -i libvirt rejects them earlier.)
    *)
@@ -89,6 +77,18 @@ and setup_servers options dir disks =
       | _ ->
          error (f_"-i libvirtxml: ‘-io %s’ is not a valid input option") key
   ) options.input_options;
+
+  (* Check nbdkit is installed. *)
+  if not (Nbdkit.is_installed ()) then
+    error (f_"nbdkit is not installed or not working.  It is required to \
+              use ‘-i libvirt|libvirtxml’.");
+
+  if not (Nbdkit.probe_plugin "file") then
+    error (f_"nbdkit-file-plugin is not installed or not working");
+  if not (Nbdkit.probe_plugin "nbd") then
+    error (f_"nbdkit-nbd-plugin is not installed or not working");
+  if options.read_only && not (Nbdkit.probe_filter "cow") then
+    error (f_"nbdkit-cow-filter is not installed or not working");
 
   let nr_disks = List.length disks in
 
