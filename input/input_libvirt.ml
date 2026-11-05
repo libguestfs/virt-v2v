@@ -83,10 +83,21 @@ and setup_servers options dir disks =
     error (f_"nbdkit is not installed or not working.  It is required to \
               use ‘-i libvirt|libvirtxml’.");
 
-  if not (Nbdkit.probe_plugin "file") then
-    error (f_"nbdkit-file-plugin is not installed or not working");
-  if not (Nbdkit.probe_plugin "nbd") then
-    error (f_"nbdkit-nbd-plugin is not installed or not working");
+  (* Check we have the right plugins for these disks. *)
+  let () =
+    let file_needed = ref false in
+    let nbd_needed = ref false in
+    List.iter (
+      function
+      | { d_type = BlockDev _ | LocalFile _ } -> file_needed := true
+      | { d_type = HTTP _ } -> (* Nbdkit_curl checks this *) ()
+      | { d_type = NBD _ } -> nbd_needed := true
+    ) disks;
+    if !file_needed && not (Nbdkit.probe_plugin "file") then
+      error (f_"nbdkit-file-plugin is not installed or not working");
+    if !nbd_needed && not (Nbdkit.probe_plugin "nbd") then
+      error (f_"nbdkit-nbd-plugin is not installed or not working") in
+
   if options.read_only && not (Nbdkit.probe_filter "cow") then
     error (f_"nbdkit-cow-filter is not installed or not working");
 
