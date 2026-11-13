@@ -274,23 +274,24 @@ module QEMU = struct
                             virt-v2v(1) section \"BUGS\".")
     );
 
+    let bootindex_of disk_id =
+      match target_boot_device with
+      | None -> disk_id+1
+      | Some disk_index when disk_index = disk_id -> 1
+      | Some _ -> disk_id+2
+    in
+
     let add_disk_backend disk_id backend_name =
       (* Add a drive (back-end) for a "virtio-blk-pci", "ide-hd", or "scsi-hd"
        * device (front-end). The drive has a backing file, identified by
        * "disk_id".
        *)
       let outdisk = disk_path output_storage output_name disk_id in
-      let bootindex =
-         match target_boot_device with
-         | None -> disk_id+1
-         | Some disk_index when disk_index = disk_id -> 1
-         | Some _ -> disk_id+2 in
       arg_list "-drive" [ "file=" ^ outdisk;
                           "format=" ^ output_format;
                           "if=none";
                           "id=" ^ backend_name;
-                          "media=disk";
-                          sprintf "bootindex=%d" bootindex ]
+                          "media=disk" ]
 
     and add_cdrom_backend backend_name =
       (* Add a drive (back-end) for an "ide-cd" or "scsi-cd" device (front-end).
@@ -310,7 +311,8 @@ module QEMU = struct
        *)
       let backend_name = sprintf "drive-vblk-%d" frontend_ctr in
       add_disk_backend disk_id backend_name;
-      arg_list "-device" [ "virtio-blk-pci"; "drive=" ^ backend_name ]
+      arg_list "-device" [ "virtio-blk-pci"; "drive=" ^ backend_name;
+                           sprintf "bootindex=%d" (bootindex_of disk_id) ]
 
     and add_ide disk_id frontend_ctr =
       (* Create an "ide-hd" or "ide-cd" device (front-end), together with its
@@ -330,7 +332,8 @@ module QEMU = struct
       (match disk_id with
        | Some id ->
            add_disk_backend id backend_name;
-           arg_list "-device" ("ide-hd" :: common_props)
+           arg_list "-device" ("ide-hd" :: common_props @
+                               [sprintf "bootindex=%d" (bootindex_of id)])
        | None ->
            add_cdrom_backend backend_name;
            arg_list "-device" ("ide-cd" :: common_props))
@@ -348,7 +351,8 @@ module QEMU = struct
       (match disk_id with
        | Some id ->
            add_disk_backend id backend_name;
-           arg_list "-device" ("scsi-hd" :: common_props)
+           arg_list "-device" ("scsi-hd" :: common_props @
+                               [sprintf "bootindex=%d" (bootindex_of id)])
        | None ->
            add_cdrom_backend backend_name;
            arg_list "-device" ("scsi-cd" :: common_props))
