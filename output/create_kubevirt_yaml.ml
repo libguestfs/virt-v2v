@@ -120,7 +120,7 @@ let create_kubevirt_yaml source inspect
       List.push_back_list cpu [
          "sockets", Int s_cpu_sockets;
          "cores", Int s_cpu_cores;
-         "thread", Int s_cpu_threads
+         "threads", Int s_cpu_threads
       ]
   );
 
