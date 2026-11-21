@@ -34,7 +34,7 @@ msgstr ""
 "%s\n"
 "Vaihtoehdot:\n"
 
-#: common/mltools/tools_utils.ml:703 common/mlcustomize/customize_run.ml:397
+#: common/mltools/tools_utils.ml:703
 msgid "%s (ignored)"
 msgstr "%s (ohitettu)"
 
@@ -42,7 +42,7 @@ msgstr "%s (ohitettu)"
 msgid "%s did not return any output"
 msgstr "%s ei palauttanut mitään ulostuloa"
 
-#: common/mlcustomize/customize_run.ml:183
+#: common/mlcustomize/customize_run.ml:188
 msgid "%s does not exist in the guest"
 msgstr "%s:ta ei ole olemassa vieraassa"
 
@@ -82,11 +82,11 @@ msgstr ""
 "Jos et tiedä mikä %s-liitoskohdan pitäisi olla, voit selvittää tämän myös "
 "RHV-M-käyttöliittymän kautta."
 
-#: common/mlcustomize/customize_run.ml:113
+#: common/mlcustomize/customize_run.ml:118
 msgid "%s ignored for non-Windows guest"
 msgstr "%s jätettiin huomioimatta ei-Windows-vieraille"
 
-#: common/mlcustomize/customize_run.ml:186
+#: common/mlcustomize/customize_run.ml:191
 msgid "%s is not a regular file in the guest"
 msgstr "%s ei ole tavallinen tiedosto vieraassa"
 
@@ -119,7 +119,7 @@ msgstr ""
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: ei voi avata virtio-win ISO -tiedostoa: %s"
 
-#: common/mlcustomize/customize_run.ml:64
+#: common/mlcustomize/customize_run.ml:66
 msgid "%s: command exited with an error"
 msgstr "%s: komento poistui virheellä"
 
@@ -284,7 +284,7 @@ msgstr "%s: varoitus: %s"
 msgid "'CMD+ARGS'"
 msgstr "'CMD+ARGS'"
 
-#: common/mlcustomize/customize_run.ml:133
+#: common/mlcustomize/customize_run.ml:138
 msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
@@ -292,18 +292,18 @@ msgstr ""
 "--append-line: rivi ei saa sisältää uuden rivin merkkejä. Käytä '--append-"
 "line' -vaihtoehtoa useita kertoja lisätäksesi useita rivejä."
 
-#: common/mlcustomize/customize_run.ml:152
+#: common/mlcustomize/customize_run.ml:157
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
 msgstr "--chown: numeerista UID:GID:tä ei voitu jäsentää %s:%s:sta"
 
-#: common/mlcustomize/customize_run.ml:216
+#: common/mlcustomize/customize_run.ml:221
 msgid ""
 "--inject-blnsvr: blnsvr.exe not found in virtio-win source that you specified"
 msgstr ""
 "--inject-blnsvr: blnsvr.exe:ta ei löytynyt määrittämästäsi virtio-win-"
 "lähteestä"
 
-#: common/mlcustomize/customize_run.ml:225
+#: common/mlcustomize/customize_run.ml:230
 msgid ""
 "--inject-qemu-ga: QEMU Guest Agent MSI not found in virtio-win source that "
 "you specified"
@@ -311,7 +311,7 @@ msgstr ""
 "--inject-qemu-ga: QEMU Vierasagentin MSI:ta ei löytynyt määrittämästäsi "
 "virtio-win-lähteestä"
 
-#: common/mlcustomize/customize_run.ml:241
+#: common/mlcustomize/customize_run.ml:246
 msgid ""
 "--inject-virtio-win: virtio drivers were not found for this Windows version "
 "in the virtio-win source that you specified"
@@ -369,7 +369,7 @@ msgstr "-i disk: odotetaan levykuvan (tiedostonimen) komentorivillä"
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr "-i disk: odotetaan levykuvan (tiedostonimen) komentorivillä"
 
-#: input/input_libvirt.ml:90
+#: input/input_libvirt.ml:78
 msgid "-i libvirtxml: ‘-io %s’ is not a valid input option"
 msgstr ""
 
@@ -419,7 +419,7 @@ msgstr "-o %s: %s-vaihtoehtoa ei voi käyttää tässä lähtötilassa"
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr ""
 
-#: input/input_libvirt.ml:87
+#: input/input_libvirt.ml:75
 msgid "-io nbd-tls-certificates: missing directory path"
 msgstr ""
 
@@ -667,7 +667,7 @@ msgstr "Lisää ensimmäisen käynnistyksen yhteydessä asennettavat paketit"
 msgid "Append line(s) to the file"
 msgstr "Liitä tiedostoon rivit"
 
-#: common/mlcustomize/customize_run.ml:137
+#: common/mlcustomize/customize_run.ml:142
 msgid "Appending line to %s"
 msgstr "Liitetään rivi %s:een"
 
@@ -679,13 +679,13 @@ msgstr ""
 msgid "Change the permissions of a file"
 msgstr "Muuta tiedoston käyttöoikeuksia"
 
-#: common/mlcustomize/customize_run.ml:155
+#: common/mlcustomize/customize_run.ml:160
 #, fuzzy
 #| msgid "Changing permissions of %s to %s"
 msgid "Changing owner of %s to %d:%d"
 msgstr "Muuta %s:n käyttöoikeuksia %s:ksi"
 
-#: common/mlcustomize/customize_run.ml:141
+#: common/mlcustomize/customize_run.ml:146
 msgid "Changing permissions of %s to %s"
 msgstr "Muuta %s:n käyttöoikeuksia %s:ksi"
 
@@ -693,7 +693,7 @@ msgstr "Muuta %s:n käyttöoikeuksia %s:ksi"
 msgid "Check filesystems before and after conversion"
 msgstr ""
 
-#: input/input_libvirt.ml:196 input/input_libvirt.ml:179
+#: input/input_libvirt.ml:207 input/input_libvirt.ml:190
 msgid "Checking %s checksum of disk %d/%d"
 msgstr ""
 
@@ -722,7 +722,7 @@ msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 msgid "Copy local files or directories into image"
 msgstr "Kopioi paikalliset tiedostot tai hakemistot kuvaan"
 
-#: common/mlcustomize/customize_run.ml:168
+#: common/mlcustomize/customize_run.ml:173
 msgid "Copying (in image): %s to %s"
 msgstr "Kopioidaan (kuvassa): %s %s:een"
 
@@ -732,7 +732,7 @@ msgstr "Kopioidaan (kuvassa): %s %s:een"
 msgid "Copying disk %d/%d"
 msgstr "Kopioidaan: %s %s:een"
 
-#: common/mlcustomize/customize_run.ml:172
+#: common/mlcustomize/customize_run.ml:177
 msgid "Copying: %s to %s"
 msgstr "Kopioidaan: %s %s:een"
 
@@ -763,7 +763,7 @@ msgstr "SELinuxin nimiön uudelleenmäärittäminen"
 msgid "Delete a file or directory"
 msgstr "Poista tiedosto tai hakemisto"
 
-#: common/mlcustomize/customize_run.ml:176
+#: common/mlcustomize/customize_run.ml:181
 msgid "Deleting: %s"
 msgstr "Poistetaan: %s"
 
@@ -795,7 +795,7 @@ msgstr "Älä poista tunnuslauseiden kaikua käytöstä"
 msgid "Edit file using Perl expression"
 msgstr "Muokkaa tiedostoa käyttämällä Perl-lauseketta"
 
-#: common/mlcustomize/customize_run.ml:180
+#: common/mlcustomize/customize_run.ml:185
 msgid "Editing: %s"
 msgstr "Muokkaus: %s"
 
@@ -901,7 +901,7 @@ msgstr "Sisällytä virtio-win-ajurit Windows-vieraaseen"
 msgid "Input format"
 msgstr "Syöttömuoto"
 
-#: input/input_libvirt.ml:255
+#: input/input_libvirt.ml:266
 msgid ""
 "Input options (-io) which can be used with -i libvirtxml:\n"
 "\n"
@@ -957,19 +957,19 @@ msgstr ""
 msgid "Input transport"
 msgstr "Syöttökuljetus"
 
-#: common/mlcustomize/customize_run.ml:191
+#: common/mlcustomize/customize_run.ml:196
 msgid "Installing firstboot command: %s"
 msgstr "firstboot-komennon asentaminen: %s"
 
-#: common/mlcustomize/customize_run.ml:195
+#: common/mlcustomize/customize_run.ml:200
 msgid "Installing firstboot packages: %s"
 msgstr "Firstboot-pakettien asentaminen: %s"
 
-#: common/mlcustomize/customize_run.ml:202
+#: common/mlcustomize/customize_run.ml:207
 msgid "Installing firstboot script: %s"
 msgstr "Firstboot-skriptin asentaminen: %s"
 
-#: common/mlcustomize/customize_run.ml:248
+#: common/mlcustomize/customize_run.ml:253
 msgid "Installing packages: %s"
 msgstr "Asennetaan paketteja: %s"
 
@@ -982,7 +982,7 @@ msgstr ""
 msgid "Libvirt URI"
 msgstr "Libvirt:n URI"
 
-#: common/mlcustomize/customize_run.ml:255
+#: common/mlcustomize/customize_run.ml:260
 msgid "Linking: %s -> %s"
 msgstr "Linkittäminen: %s -> %s"
 
@@ -996,7 +996,7 @@ msgstr ""
 msgid "Make output machine readable"
 msgstr "Tee tulosteesta koneella luettava"
 
-#: common/mlcustomize/customize_run.ml:260
+#: common/mlcustomize/customize_run.ml:265
 msgid "Making directory: %s"
 msgstr "Luodaan hakemistoa: %s"
 
@@ -1016,13 +1016,13 @@ msgstr ""
 msgid "Move files in disk image"
 msgstr "Siirrä levykuvassa olevia tiedostoja"
 
-#: common/mlcustomize/customize_run.ml:264
+#: common/mlcustomize/customize_run.ml:269
 msgid "Moving: %s -> %s"
 msgstr "Siirretään: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
-#. input/input_libvirt.ml:243
+#. input/input_libvirt.ml:254
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -1163,7 +1163,7 @@ msgstr ""
 msgid "Recursively truncate all files in directory"
 msgstr "Poista tiedosto tai hakemisto"
 
-#: common/mlcustomize/customize_run.ml:298
+#: common/mlcustomize/customize_run.ml:303
 #, fuzzy
 msgid "Recursively truncating: %s"
 msgstr "%s: varoitus: %s"
@@ -1200,14 +1200,14 @@ msgstr ""
 msgid "Running external command"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:307
+#: common/mlcustomize/customize_run.ml:312
 #, fuzzy
 #| msgid "Running: %s"
 msgid "Running touch: %s"
 msgstr "Suoritetaan: %s"
 
-#. common/mlcustomize/customize_run.ml:159
-#: common/mlcustomize/customize_run.ml:274
+#. common/mlcustomize/customize_run.ml:164
+#: common/mlcustomize/customize_run.ml:279
 msgid "Running: %s"
 msgstr "Suoritetaan: %s"
 
@@ -1221,17 +1221,17 @@ msgstr "KOMENTOSARJA"
 msgid "SELECTOR"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:367
+#: common/mlcustomize/customize_run.ml:372
 msgid "SELinux relabelling"
 msgstr "SELinuxin nimiön uudelleenmäärittäminen"
 
-#: common/mlcustomize/customize_run.ml:369
+#: common/mlcustomize/customize_run.ml:374
 #, fuzzy
 #| msgid "SELinux relabelling"
 msgid "SELinux relabelling deferred to first boot"
 msgstr "SELinuxin nimiön uudelleenmäärittäminen"
 
-#: common/mlcustomize/customize_run.ml:368
+#: common/mlcustomize/customize_run.ml:373
 #, fuzzy
 #| msgid "SELinux relabelling"
 msgid "SELinux relabelling only FHS"
@@ -1242,11 +1242,11 @@ msgstr "SELinuxin nimiön uudelleenmäärittäminen"
 msgid "SOURCE:DEST"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:287
+#: common/mlcustomize/customize_run.ml:292
 msgid "SSH key could not be injected for this type of guest"
 msgstr "SSH-avainta ei voitu sisällyttää tämän tyyppiselle vieraalle"
 
-#: common/mlcustomize/customize_run.ml:284
+#: common/mlcustomize/customize_run.ml:289
 msgid "SSH key inject: %s"
 msgstr "SSH-avaimen sisällyttäminen: %s"
 
@@ -1258,11 +1258,11 @@ msgstr ""
 msgid "Scrub build log file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:381
+#: common/mlcustomize/customize_run.ml:386
 msgid "Scrubbing the log file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:279
+#: common/mlcustomize/customize_run.ml:284
 #, fuzzy
 #| msgid "Running: %s"
 msgid "Scrubbing: %s"
@@ -1342,11 +1342,11 @@ msgstr "Aseta tulostetiedoston nimi"
 msgid "Set user password"
 msgstr "Aseta käyttäjän salasana"
 
-#: common/mlcustomize/customize_run.ml:75
+#: common/mlcustomize/customize_run.ml:77
 msgid "Setting a random seed"
 msgstr "Satunnaisen siemenen asettaminen"
 
-#: common/mlcustomize/customize_run.ml:354
+#: common/mlcustomize/customize_run.ml:359
 msgid "Setting passwords"
 msgstr "Salasanojen asettaminen"
 
@@ -1354,15 +1354,15 @@ msgstr "Salasanojen asettaminen"
 msgid "Setting random password of %s to %s"
 msgstr "Asetetaan %s:n satunnainen salasana %s:ksi"
 
-#: common/mlcustomize/customize_run.ml:207
+#: common/mlcustomize/customize_run.ml:212
 msgid "Setting the hostname: %s"
 msgstr "Isäntänimen asettaminen: %s"
 
-#: common/mlcustomize/customize_run.ml:90
+#: common/mlcustomize/customize_run.ml:95
 msgid "Setting the machine ID in %s"
 msgstr "Konetunnuksen asettaminen %s:ssa"
 
-#: common/mlcustomize/customize_run.ml:302
+#: common/mlcustomize/customize_run.ml:307
 msgid "Setting the timezone: %s"
 msgstr "Aikavyöhykkeen asettaminen: %s"
 
@@ -1447,7 +1447,7 @@ msgstr ""
 msgid "Truncate a file to zero size"
 msgstr "Katkaise tiedosto nollakokoon"
 
-#: common/mlcustomize/customize_run.ml:294
+#: common/mlcustomize/customize_run.ml:299
 #, fuzzy
 msgid "Truncating: %s"
 msgstr "%s: varoitus: %s"
@@ -1468,12 +1468,12 @@ msgstr ""
 msgid "Uninstall package(s)"
 msgstr "Poista paketteja"
 
-#: common/mlcustomize/customize_run.ml:311
+#: common/mlcustomize/customize_run.ml:316
 #, fuzzy
 msgid "Uninstalling packages: %s"
 msgstr "Poista paketteja"
 
-#: common/mlcustomize/customize_run.ml:290
+#: common/mlcustomize/customize_run.ml:295
 msgid "Unpack tar file: %s to %s"
 msgstr ""
 
@@ -1482,7 +1482,7 @@ msgstr ""
 msgid "Update packages"
 msgstr "Poista paketteja"
 
-#: common/mlcustomize/customize_run.ml:316
+#: common/mlcustomize/customize_run.ml:321
 #, fuzzy
 msgid "Updating packages"
 msgstr "Poista paketteja"
@@ -1491,7 +1491,7 @@ msgstr "Poista paketteja"
 msgid "Upload local file to destination"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:321
+#: common/mlcustomize/customize_run.ml:326
 #, fuzzy
 #| msgid "Copying: %s to %s"
 msgid "Uploading: %s to %s"
@@ -1522,7 +1522,7 @@ msgstr ""
 msgid "Write file"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:346
+#: common/mlcustomize/customize_run.ml:351
 #, fuzzy
 msgid "Writing: %s"
 msgstr "%s: varoitus: %s"
@@ -1550,7 +1550,7 @@ msgstr ""
 msgid "append_line: %s is not a file"
 msgstr "Liitä tiedostoon rivit"
 
-#: input/input_libvirt.ml:228
+#: input/input_libvirt.ml:239
 msgid ""
 "bad checksum for disk %d/%d\n"
 "Expected checksum: %s\n"
@@ -1647,7 +1647,7 @@ msgstr "komentoa '%s' ei voi käyttää komentotiedostoissa, katso man-sivu"
 msgid "command '%s' not valid, see the man page"
 msgstr "komentoa '%s'ei kelpaa, katso man-sivua"
 
-#: common/mldrivers/linux_bootloaders.ml:329
+#: common/mldrivers/linux_bootloaders.ml:333
 msgid "could not add grub2 serial console (ignored)"
 msgstr ""
 
@@ -1664,7 +1664,7 @@ msgid ""
 "%s’ yourself instead."
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:221
+#: common/mldrivers/linux_bootloaders.ml:225
 msgid "could not determine a way to update the configuration of Grub2"
 msgstr ""
 
@@ -1674,7 +1674,7 @@ msgid ""
 "thumbprint=XX:XX...’"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:387
+#: common/mldrivers/linux_bootloaders.ml:391
 msgid "could not find bootloader mount point (%s): %s"
 msgstr ""
 
@@ -1694,7 +1694,7 @@ msgstr ""
 "firstboot-asennusta ei voitu suorittaa loppuun suorittamalla '%s', koska "
 "komento epäonnistui: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:271
+#: common/mldrivers/linux_bootloaders.ml:275
 msgid ""
 "could not get the default kernel using Perl Bootloader::Tools, ignoring: %s"
 msgstr ""
@@ -1723,7 +1723,7 @@ msgid ""
 "line.  Is it really an OVirt %s?  The original error is: %s"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:347
+#: common/mldrivers/linux_bootloaders.ml:351
 msgid ""
 "could not rebuild grub2 configuration file (%s).  This may mean that grub "
 "output will not be sent to the serial port, but otherwise should be "
@@ -1734,11 +1734,11 @@ msgstr ""
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:331
+#: common/mldrivers/linux_bootloaders.ml:335
 msgid "could not remove grub2 serial console (ignored)"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:311
+#: common/mldrivers/linux_bootloaders.ml:315
 msgid ""
 "could not set the default kernel using Perl Bootloader::Tools, ignoring: %s"
 msgstr ""
@@ -1755,7 +1755,7 @@ msgid ""
 "This could be a bug in %s."
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:126
+#: common/mldrivers/linux_bootloaders.ml:130
 msgid "didn't find grub entry for kernel %s"
 msgstr ""
 
@@ -1853,7 +1853,7 @@ msgstr ""
 msgid "failed to finalize the transfers, see earlier errors"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:208
+#: common/mldrivers/linux_bootloaders.ml:212
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
 
@@ -1918,7 +1918,7 @@ msgid ""
 "scripts instead."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:209
+#: common/mlcustomize/customize_run.ml:214
 #, fuzzy
 #| msgid "SSH key could not be injected for this type of guest"
 msgid "hostname could not be set for this type of guest"
@@ -1943,7 +1943,7 @@ msgstr ""
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr ""
 
-#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:129
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:140
 msgid "in-place mode does not work with HTTP source"
 msgstr ""
 
@@ -2010,7 +2010,7 @@ msgstr ""
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:130
+#: common/mldrivers/linux_bootloaders.ml:134
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr ""
 
@@ -2092,7 +2092,7 @@ msgstr ""
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:114
+#: common/mldrivers/linux_bootloaders.ml:118
 msgid "kernel %s is not under grub tree %s"
 msgstr ""
 
@@ -2114,7 +2114,7 @@ msgid ""
 "snapshot"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:47
+#: common/mlcustomize/customize_run.ml:49
 #, fuzzy
 msgid "log file %s: %s (ignored)"
 msgstr "%s (ohitettu)"
@@ -2133,7 +2133,7 @@ msgstr ""
 msgid "md5|sha256|sha512"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:119
+#: common/mlcustomize/customize_run.ml:124
 msgid "method '%s' is no longer supported"
 msgstr ""
 
@@ -2157,7 +2157,7 @@ msgid ""
 "you need to rerun virt-v2v as root."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:103
+#: common/mlcustomize/customize_run.ml:108
 msgid ""
 "multiple --root-password/--password options set the password for user ‘%s’ "
 "twice"
@@ -2209,7 +2209,7 @@ msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i disk’."
 msgstr ""
 
-#: input/input_libvirt.ml:68
+#: input/input_libvirt.ml:83
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i libvirt|"
 "libvirtxml’."
@@ -2263,7 +2263,7 @@ msgid ""
 msgstr ""
 
 #. input/input_nfc.ml:212
-#. input/input_libvirt.ml:76
+#. input/input_libvirt.ml:102
 #. input/input_disk.ml:55
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
@@ -2274,11 +2274,11 @@ msgid "nbdkit-curl-plugin is not installed"
 msgstr ""
 
 #. input/input_disk.ml:53
-#: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
+#: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:97
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr ""
 
-#: input/input_libvirt.ml:74 input/input_disk.ml:73
+#: input/input_libvirt.ml:99 input/input_disk.ml:73
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr ""
 
@@ -2319,7 +2319,7 @@ msgstr ""
 msgid "no .ovf file was found in %s"
 msgstr ""
 
-#: common/mldrivers/linux_bootloaders.ml:413
+#: common/mldrivers/linux_bootloaders.ml:417
 msgid "no bootloader detected"
 msgstr ""
 
@@ -2444,7 +2444,7 @@ msgid ""
 "If this is incorrect, use --password-crypto option and file a bug."
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:359
+#: common/mlcustomize/customize_run.ml:364
 #, fuzzy
 #| msgid "SSH key could not be injected for this type of guest"
 msgid "passwords could not be set for this type of guest"
@@ -2467,7 +2467,7 @@ msgstr ""
 msgid "qemu-nbd: unexpected version in --version: %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:77
+#: common/mlcustomize/customize_run.ml:79
 #, fuzzy
 #| msgid "SSH key could not be injected for this type of guest"
 msgid "random seed could not be set for this type of guest"
@@ -2590,7 +2590,7 @@ msgstr ""
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:59
+#: common/mlcustomize/customize_run.ml:61
 msgid ""
 "the command may have failed because the network is disabled.  Try either "
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
@@ -2720,7 +2720,7 @@ msgstr ""
 msgid "timezone '%s' does not exist, use a location like 'Europe/London'"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:304
+#: common/mlcustomize/customize_run.ml:309
 #, fuzzy
 #| msgid "SSH key could not be injected for this type of guest"
 msgid "timezone could not be set for this type of guest"
@@ -2734,7 +2734,7 @@ msgstr ""
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr ""
 
-#: input/input_libvirt.ml:218
+#: input/input_libvirt.ml:229
 msgid "unexpected output from the %s command"
 msgstr ""
 
@@ -2758,7 +2758,7 @@ msgstr "tuntematon -o vaihtoehto: %s"
 msgid "unknown -oa option: %s"
 msgstr "tuntematon -oa vaihtoehto: %s"
 
-#: input/input_libvirt.ml:211
+#: input/input_libvirt.ml:222
 msgid "unknown <checksum> method='%s'"
 msgstr ""
 

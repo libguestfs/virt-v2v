@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
-"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
+"component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
 "PO-Revision-Date: 2026-11-02 23:18+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "%s\n"
 "Параметры:\n"
 
-#: common/mltools/tools_utils.ml:703 common/mlcustomize/customize_run.ml:397
+#: common/mltools/tools_utils.ml:703
 msgid "%s (ignored)"
 msgstr "%s (игнорируется)"
 
@@ -43,7 +43,7 @@ msgstr "%s (игнорируется)"
 msgid "%s did not return any output"
 msgstr "%s не вернул никакого вывода"
 
-#: common/mlcustomize/customize_run.ml:183
+#: common/mlcustomize/customize_run.ml:188
 msgid "%s does not exist in the guest"
 msgstr "%s не существует в гостевой системе"
 
@@ -71,11 +71,11 @@ msgstr ""
 "Если вы не знаете, какой должна быть точка монтирования %s, вы также можете "
 "узнать это через пользовательский интерфейс oVirt."
 
-#: common/mlcustomize/customize_run.ml:113
+#: common/mlcustomize/customize_run.ml:118
 msgid "%s ignored for non-Windows guest"
 msgstr "%s игнорируется для гостевой системы не Windows"
 
-#: common/mlcustomize/customize_run.ml:186
+#: common/mlcustomize/customize_run.ml:191
 msgid "%s is not a regular file in the guest"
 msgstr "%s не является обычным файлом в гостевой системе"
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "%s: cannot open virtio-win ISO file: %s"
 msgstr "%s: не удалось открыть ISO-файл virtio-win: %s"
 
-#: common/mlcustomize/customize_run.ml:64
+#: common/mlcustomize/customize_run.ml:66
 msgid "%s: command exited with an error"
 msgstr "%s: команда завершилась с ошибкой"
 
@@ -236,7 +236,7 @@ msgstr "%s: предупреждение: %s"
 msgid "'CMD+ARGS'"
 msgstr "'КОМАНДА+АРГУМЕНТЫ'"
 
-#: common/mlcustomize/customize_run.ml:133
+#: common/mlcustomize/customize_run.ml:138
 msgid ""
 "--append-line: line must not contain newline characters.  Use the --append-"
 "line option multiple times to add several lines."
@@ -244,16 +244,16 @@ msgstr ""
 "--append-line: строка не должна содержать символы новой строки. Используйте "
 "параметр --append-line несколько раз, чтобы добавить несколько строк."
 
-#: common/mlcustomize/customize_run.ml:152
+#: common/mlcustomize/customize_run.ml:157
 msgid "--chown: could not parse numeric UID:GID from %s:%s"
 msgstr "--chown: не удалось разобрать числовой UID:GID из %s:%s"
 
-#: common/mlcustomize/customize_run.ml:216
+#: common/mlcustomize/customize_run.ml:221
 msgid ""
 "--inject-blnsvr: blnsvr.exe not found in virtio-win source that you specified"
 msgstr "--inject-blnsvr: blnsvr.exe не найден в указанном источнике virtio-win"
 
-#: common/mlcustomize/customize_run.ml:225
+#: common/mlcustomize/customize_run.ml:230
 msgid ""
 "--inject-qemu-ga: QEMU Guest Agent MSI not found in virtio-win source that "
 "you specified"
@@ -261,7 +261,7 @@ msgstr ""
 "--inject-qemu-ga: MSI-файл QEMU Guest Agent не найден в указанном источнике "
 "virtio-win"
 
-#: common/mlcustomize/customize_run.ml:241
+#: common/mlcustomize/customize_run.ml:246
 msgid ""
 "--inject-virtio-win: virtio drivers were not found for this Windows version "
 "in the virtio-win source that you specified"
@@ -311,7 +311,7 @@ msgstr "-i libvirt: ожидается имя гостя libvirt в команд
 msgid "-i libvirtxml: expecting a libvirt XML filename on the command line"
 msgstr "-i libvirtxml: ожидается имя XML-файла libvirt в командной строке"
 
-#: input/input_libvirt.ml:90
+#: input/input_libvirt.ml:78
 msgid "-i libvirtxml: ‘-io %s’ is not a valid input option"
 msgstr "-i libvirtxml: «-io %s» не является допустимым параметром ввода"
 
@@ -365,7 +365,7 @@ msgstr "-i vmx: нельзя использовать -it nfc|vddk в этом �
 msgid "-i vmx: expecting a VMX file or ssh:// URI"
 msgstr "-i vmx: ожидается VMX-файл или URI ssh://"
 
-#: input/input_libvirt.ml:87
+#: input/input_libvirt.ml:75
 msgid "-io nbd-tls-certificates: missing directory path"
 msgstr "-io nbd-tls-certificates: отсутствует путь к каталогу"
 
@@ -585,7 +585,7 @@ msgstr "Добавить пакеты для установки при перв�
 msgid "Append line(s) to the file"
 msgstr "Добавить строки в файл"
 
-#: common/mlcustomize/customize_run.ml:137
+#: common/mlcustomize/customize_run.ml:142
 msgid "Appending line to %s"
 msgstr "Добавление строки в %s"
 
@@ -597,11 +597,11 @@ msgstr "Изменить владельца и идентификатор гру
 msgid "Change the permissions of a file"
 msgstr "Изменить права доступа к файлу"
 
-#: common/mlcustomize/customize_run.ml:155
+#: common/mlcustomize/customize_run.ml:160
 msgid "Changing owner of %s to %d:%d"
 msgstr "Изменение владельца %s на %d:%d"
 
-#: common/mlcustomize/customize_run.ml:141
+#: common/mlcustomize/customize_run.ml:146
 msgid "Changing permissions of %s to %s"
 msgstr "Изменение прав доступа %s на %s"
 
@@ -609,7 +609,7 @@ msgstr "Изменение прав доступа %s на %s"
 msgid "Check filesystems before and after conversion"
 msgstr "Проверять файловые системы до и после преобразования"
 
-#: input/input_libvirt.ml:196 input/input_libvirt.ml:179
+#: input/input_libvirt.ml:207 input/input_libvirt.ml:190
 msgid "Checking %s checksum of disk %d/%d"
 msgstr "Проверка контрольной суммы %s диска %d/%d"
 
@@ -637,7 +637,7 @@ msgstr "Копировать локальные файлы или каталог
 msgid "Copy local files or directories into image"
 msgstr "Копировать локальные файлы или каталоги в образ"
 
-#: common/mlcustomize/customize_run.ml:168
+#: common/mlcustomize/customize_run.ml:173
 msgid "Copying (in image): %s to %s"
 msgstr "Копирование (в образе): %s в %s"
 
@@ -645,7 +645,7 @@ msgstr "Копирование (в образе): %s в %s"
 msgid "Copying disk %d/%d"
 msgstr "Копирование диска %d/%d"
 
-#: common/mlcustomize/customize_run.ml:172
+#: common/mlcustomize/customize_run.ml:177
 msgid "Copying: %s to %s"
 msgstr "Копирование: %s в %s"
 
@@ -674,7 +674,7 @@ msgstr "Отложить изменение меток SELinux до загруз
 msgid "Delete a file or directory"
 msgstr "Удалить файл или каталог"
 
-#: common/mlcustomize/customize_run.ml:176
+#: common/mlcustomize/customize_run.ml:181
 msgid "Deleting: %s"
 msgstr "Удаление: %s"
 
@@ -706,7 +706,7 @@ msgstr "Не отключать эхо для парольных фраз"
 msgid "Edit file using Perl expression"
 msgstr "Редактировать файл с помощью Perl-выражения"
 
-#: common/mlcustomize/customize_run.ml:180
+#: common/mlcustomize/customize_run.ml:185
 msgid "Editing: %s"
 msgstr "Редактирование: %s"
 
@@ -802,7 +802,7 @@ msgstr "Внедрить драйверы virtio-win в гостевую сис�
 msgid "Input format"
 msgstr "Входной формат"
 
-#: input/input_libvirt.ml:255
+#: input/input_libvirt.ml:266
 msgid ""
 "Input options (-io) which can be used with -i libvirtxml:\n"
 "\n"
@@ -900,19 +900,19 @@ msgstr ""
 msgid "Input transport"
 msgstr "Транспорт ввода"
 
-#: common/mlcustomize/customize_run.ml:191
+#: common/mlcustomize/customize_run.ml:196
 msgid "Installing firstboot command: %s"
 msgstr "Установка команды firstboot: %s"
 
-#: common/mlcustomize/customize_run.ml:195
+#: common/mlcustomize/customize_run.ml:200
 msgid "Installing firstboot packages: %s"
 msgstr "Установка пакетов firstboot: %s"
 
-#: common/mlcustomize/customize_run.ml:202
+#: common/mlcustomize/customize_run.ml:207
 msgid "Installing firstboot script: %s"
 msgstr "Установка скрипта firstboot: %s"
 
-#: common/mlcustomize/customize_run.ml:248
+#: common/mlcustomize/customize_run.ml:253
 msgid "Installing packages: %s"
 msgstr "Установка пакетов: %s"
 
@@ -925,7 +925,7 @@ msgstr "ЛОКАЛЬНЫЙ_ПУТЬ:УДАЛЁННЫЙ_КАТАЛОГ"
 msgid "Libvirt URI"
 msgstr "URI-адрес Libvirt"
 
-#: common/mlcustomize/customize_run.ml:255
+#: common/mlcustomize/customize_run.ml:260
 msgid "Linking: %s -> %s"
 msgstr "Создание ссылки: %s -> %s"
 
@@ -939,7 +939,7 @@ msgstr "МЕТОД"
 msgid "Make output machine readable"
 msgstr "Сделать вывод машиночитаемым"
 
-#: common/mlcustomize/customize_run.ml:260
+#: common/mlcustomize/customize_run.ml:265
 msgid "Making directory: %s"
 msgstr "Создание каталога: %s"
 
@@ -959,13 +959,13 @@ msgstr "Сопоставить сеть «вход» с «выходом»"
 msgid "Move files in disk image"
 msgstr "Переместить файлы в образе диска"
 
-#: common/mlcustomize/customize_run.ml:264
+#: common/mlcustomize/customize_run.ml:269
 msgid "Moving: %s -> %s"
 msgstr "Перемещение: %s -> %s"
 
 #. input/input_vcenter_https.ml:45
 #. input/input_ova.ml:35
-#. input/input_libvirt.ml:243
+#. input/input_libvirt.ml:254
 #. input/input_disk.ml:35
 #: input/input_xen_ssh.ml:43 input/input_vmx.ml:36
 msgid "No input options can be used in this mode.\n"
@@ -1149,7 +1149,7 @@ msgstr "Читать парольные фразы из stdin"
 msgid "Recursively truncate all files in directory"
 msgstr "Рекурсивно обрезать все файлы в каталоге"
 
-#: common/mlcustomize/customize_run.ml:298
+#: common/mlcustomize/customize_run.ml:303
 msgid "Recursively truncating: %s"
 msgstr "Рекурсивное обрезание: %s"
 
@@ -1185,12 +1185,12 @@ msgstr "Запустить до N экземпляров nbdcopy паралле�
 msgid "Running external command"
 msgstr "Запуск внешней команды"
 
-#: common/mlcustomize/customize_run.ml:307
+#: common/mlcustomize/customize_run.ml:312
 msgid "Running touch: %s"
 msgstr "Выполнение touch: %s"
 
-#. common/mlcustomize/customize_run.ml:159
-#: common/mlcustomize/customize_run.ml:274
+#. common/mlcustomize/customize_run.ml:164
+#: common/mlcustomize/customize_run.ml:279
 msgid "Running: %s"
 msgstr "Запуск: %s"
 
@@ -1204,15 +1204,15 @@ msgstr "СКРИПТ"
 msgid "SELECTOR"
 msgstr "СЕЛЕКТОР"
 
-#: common/mlcustomize/customize_run.ml:367
+#: common/mlcustomize/customize_run.ml:372
 msgid "SELinux relabelling"
 msgstr "Изменение меток SELinux"
 
-#: common/mlcustomize/customize_run.ml:369
+#: common/mlcustomize/customize_run.ml:374
 msgid "SELinux relabelling deferred to first boot"
 msgstr "Изменение меток SELinux отложено до первой загрузки"
 
-#: common/mlcustomize/customize_run.ml:368
+#: common/mlcustomize/customize_run.ml:373
 msgid "SELinux relabelling only FHS"
 msgstr "Перемаркировка SELinux только для FHS"
 
@@ -1221,11 +1221,11 @@ msgstr "Перемаркировка SELinux только для FHS"
 msgid "SOURCE:DEST"
 msgstr "ИСТОЧНИК:НАЗНАЧЕНИЕ"
 
-#: common/mlcustomize/customize_run.ml:287
+#: common/mlcustomize/customize_run.ml:292
 msgid "SSH key could not be injected for this type of guest"
 msgstr "Невозможно внедрить SSH-ключ для этого типа гостя"
 
-#: common/mlcustomize/customize_run.ml:284
+#: common/mlcustomize/customize_run.ml:289
 msgid "SSH key inject: %s"
 msgstr "Внедрение SSH-ключа: %s"
 
@@ -1237,11 +1237,11 @@ msgstr "Затереть файл"
 msgid "Scrub build log file"
 msgstr "Затереть файл журнала сборки"
 
-#: common/mlcustomize/customize_run.ml:381
+#: common/mlcustomize/customize_run.ml:386
 msgid "Scrubbing the log file"
 msgstr "Затирание файла журнала"
 
-#: common/mlcustomize/customize_run.ml:279
+#: common/mlcustomize/customize_run.ml:284
 msgid "Scrubbing: %s"
 msgstr "Затирание: %s"
 
@@ -1311,11 +1311,11 @@ msgstr "Установить имя выходного файла"
 msgid "Set user password"
 msgstr "Установить пароль пользователя"
 
-#: common/mlcustomize/customize_run.ml:75
+#: common/mlcustomize/customize_run.ml:77
 msgid "Setting a random seed"
 msgstr "Установка случайного начального числа"
 
-#: common/mlcustomize/customize_run.ml:354
+#: common/mlcustomize/customize_run.ml:359
 msgid "Setting passwords"
 msgstr "Установка паролей"
 
@@ -1323,15 +1323,15 @@ msgstr "Установка паролей"
 msgid "Setting random password of %s to %s"
 msgstr "Установка случайного пароля %s на %s"
 
-#: common/mlcustomize/customize_run.ml:207
+#: common/mlcustomize/customize_run.ml:212
 msgid "Setting the hostname: %s"
 msgstr "Установка имени хоста: %s"
 
-#: common/mlcustomize/customize_run.ml:90
+#: common/mlcustomize/customize_run.ml:95
 msgid "Setting the machine ID in %s"
 msgstr "Установка идентификатора машины в %s"
 
-#: common/mlcustomize/customize_run.ml:302
+#: common/mlcustomize/customize_run.ml:307
 msgid "Setting the timezone: %s"
 msgstr "Установка часового пояса: %s"
 
@@ -1411,7 +1411,7 @@ msgstr ""
 msgid "Truncate a file to zero size"
 msgstr "Обрезать файл до нулевого размера"
 
-#: common/mlcustomize/customize_run.ml:294
+#: common/mlcustomize/customize_run.ml:299
 msgid "Truncating: %s"
 msgstr "Обрезание: %s"
 
@@ -1431,11 +1431,11 @@ msgstr "ПОЛЬЗОВАТЕЛЬ[:СЕЛЕКТОР]"
 msgid "Uninstall package(s)"
 msgstr "Удалить пакеты"
 
-#: common/mlcustomize/customize_run.ml:311
+#: common/mlcustomize/customize_run.ml:316
 msgid "Uninstalling packages: %s"
 msgstr "Удаление пакетов: %s"
 
-#: common/mlcustomize/customize_run.ml:290
+#: common/mlcustomize/customize_run.ml:295
 msgid "Unpack tar file: %s to %s"
 msgstr "Распаковка tar-файла: %s в %s"
 
@@ -1443,7 +1443,7 @@ msgstr "Распаковка tar-файла: %s в %s"
 msgid "Update packages"
 msgstr "Обновить пакеты"
 
-#: common/mlcustomize/customize_run.ml:316
+#: common/mlcustomize/customize_run.ml:321
 msgid "Updating packages"
 msgstr "Обновление пакетов"
 
@@ -1451,7 +1451,7 @@ msgstr "Обновление пакетов"
 msgid "Upload local file to destination"
 msgstr "Отправить локальный файл в назначение"
 
-#: common/mlcustomize/customize_run.ml:321
+#: common/mlcustomize/customize_run.ml:326
 msgid "Uploading: %s to %s"
 msgstr "Отправка: %s в %s"
 
@@ -1480,7 +1480,7 @@ msgstr "Переносить сообщения журнала, даже есл�
 msgid "Write file"
 msgstr "Записать файл"
 
-#: common/mlcustomize/customize_run.ml:346
+#: common/mlcustomize/customize_run.ml:351
 msgid "Writing: %s"
 msgstr "Запись: %s"
 
@@ -1517,7 +1517,7 @@ msgstr ""
 msgid "append_line: %s is not a file"
 msgstr "append_line: %s не является файлом"
 
-#: input/input_libvirt.ml:228
+#: input/input_libvirt.ml:239
 msgid ""
 "bad checksum for disk %d/%d\n"
 "Expected checksum: %s\n"
@@ -1637,7 +1637,7 @@ msgstr ""
 msgid "command '%s' not valid, see the man page"
 msgstr "команда «%s» недопустима, см. справочную страницу"
 
-#: common/mldrivers/linux_bootloaders.ml:329
+#: common/mldrivers/linux_bootloaders.ml:333
 msgid "could not add grub2 serial console (ignored)"
 msgstr "не удалось добавить последовательную консоль grub2 (игнорируется)"
 
@@ -1659,7 +1659,7 @@ msgstr ""
 "XML libvirt по-прежнему доступен в «%s». Попробуйте выполнить «virsh -c %s "
 "define %s» самостоятельно."
 
-#: common/mldrivers/linux_bootloaders.ml:221
+#: common/mldrivers/linux_bootloaders.ml:225
 msgid "could not determine a way to update the configuration of Grub2"
 msgstr "не удалось определить способ обновления конфигурации Grub2"
 
@@ -1671,7 +1671,7 @@ msgstr ""
 "не удалось получить отпечаток с сервера, вы должны использовать «-io vddk-"
 "thumbprint=XX:XX...»"
 
-#: common/mldrivers/linux_bootloaders.ml:387
+#: common/mldrivers/linux_bootloaders.ml:391
 msgid "could not find bootloader mount point (%s): %s"
 msgstr "не удалось найти точку монтирования загрузчика (%s): %s"
 
@@ -1695,7 +1695,7 @@ msgstr ""
 "не удалось завершить установку firstboot путём запуска «%s», так как команда "
 "завершилась с ошибкой: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:271
+#: common/mldrivers/linux_bootloaders.ml:275
 msgid ""
 "could not get the default kernel using Perl Bootloader::Tools, ignoring: %s"
 msgstr ""
@@ -1728,7 +1728,7 @@ msgstr ""
 "не удалось прочитать %s, указанный параметром '-os %s' в командной строке. "
 "Действительно ли это OVirt %s? Исходная ошибка: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:347
+#: common/mldrivers/linux_bootloaders.ml:351
 msgid ""
 "could not rebuild grub2 configuration file (%s).  This may mean that grub "
 "output will not be sent to the serial port, but otherwise should be "
@@ -1742,11 +1742,11 @@ msgstr ""
 msgid "could not refresh libvirt pool ‘%s’: %s"
 msgstr "не удалось обновить пул libvirt «%s»: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:331
+#: common/mldrivers/linux_bootloaders.ml:335
 msgid "could not remove grub2 serial console (ignored)"
 msgstr "не удалось удалить последовательную консоль grub2 (игнорируется)"
 
-#: common/mldrivers/linux_bootloaders.ml:311
+#: common/mldrivers/linux_bootloaders.ml:315
 msgid ""
 "could not set the default kernel using Perl Bootloader::Tools, ignoring: %s"
 msgstr ""
@@ -1769,7 +1769,7 @@ msgstr ""
 "decode_utf16le: строка Windows, по-видимому, не в кодировке UTF16-LE. Это "
 "может быть ошибкой в %s."
 
-#: common/mldrivers/linux_bootloaders.ml:126
+#: common/mldrivers/linux_bootloaders.ml:130
 msgid "didn't find grub entry for kernel %s"
 msgstr "не найдена запись grub для ядра %s"
 
@@ -1875,7 +1875,7 @@ msgstr "не удалось создать виртуальную машину, 
 msgid "failed to finalize the transfers, see earlier errors"
 msgstr "не удалось завершить передачу, см. предыдущие ошибки"
 
-#: common/mldrivers/linux_bootloaders.ml:208
+#: common/mldrivers/linux_bootloaders.ml:212
 msgid "failed to find grub2-mkconfig binary (but Grub2 was detected on guest)"
 msgstr ""
 "не удалось найти двоичный файл grub2-mkconfig (но Grub2 обнаружен в гостевой "
@@ -1949,7 +1949,7 @@ msgstr ""
 "параметры командной строки, включающие выполнение команд в гостевой системе. "
 "Используйте скрипты --firstboot."
 
-#: common/mlcustomize/customize_run.ml:209
+#: common/mlcustomize/customize_run.ml:214
 msgid "hostname could not be set for this type of guest"
 msgstr "не удалось установить имя хоста для этого типа гостя"
 
@@ -1969,7 +1969,7 @@ msgstr "в метаданных XML libvirt отсутствует или пус
 msgid "in the libvirt XML metadata, <name> is missing or empty"
 msgstr "в метаданных XML libvirt отсутствует или пуст <name>"
 
-#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:129
+#: input/input_vcenter_https.ml:52 input/input_libvirt.ml:140
 msgid "in-place mode does not work with HTTP source"
 msgstr "режим in-place не работает с источником HTTP"
 
@@ -2050,7 +2050,7 @@ msgstr "внутренняя ошибка: is_file_owned: команда dpkg н
 msgid "internal error: is_file_owned: unexpected output from dpkg command: %s"
 msgstr "внутренняя ошибка: is_file_owned: неожиданный вывод команды dpkg: %s"
 
-#: common/mldrivers/linux_bootloaders.ml:130
+#: common/mldrivers/linux_bootloaders.ml:134
 msgid "internal error: regular expression did not match ‘%s’"
 msgstr "внутренняя ошибка: регулярное выражение не соответствует «%s»"
 
@@ -2126,7 +2126,7 @@ msgstr "недопустимый vmw:CoresPerSocket (%d) проигнориро�
 msgid "invalid vmw:CoresPerSocket < number of cores"
 msgstr "недопустимый vmw:CoresPerSocket < количество ядер"
 
-#: common/mldrivers/linux_bootloaders.ml:114
+#: common/mldrivers/linux_bootloaders.ml:118
 msgid "kernel %s is not under grub tree %s"
 msgstr "ядро %s не находится в дереве grub %s"
 
@@ -2148,7 +2148,7 @@ msgstr ""
 "гостевой системы приведёт к повреждению вывода. Однако это безопасно, если "
 "вы выполняете преобразование из снимка"
 
-#: common/mlcustomize/customize_run.ml:47
+#: common/mlcustomize/customize_run.ml:49
 msgid "log file %s: %s (ignored)"
 msgstr "файл журнала %s: %s (игнорируется)"
 
@@ -2170,7 +2170,7 @@ msgstr ""
 msgid "md5|sha256|sha512"
 msgstr ""
 
-#: common/mlcustomize/customize_run.ml:119
+#: common/mlcustomize/customize_run.ml:124
 msgid "method '%s' is no longer supported"
 msgstr "метод «%s» больше не поддерживается"
 
@@ -2198,7 +2198,7 @@ msgstr ""
 "Вероятно, вы не указали правильный путь %s [-os %s], или вам нужно запустить "
 "virt-v2v от root."
 
-#: common/mlcustomize/customize_run.ml:103
+#: common/mlcustomize/customize_run.ml:108
 msgid ""
 "multiple --root-password/--password options set the password for user ‘%s’ "
 "twice"
@@ -2274,7 +2274,7 @@ msgstr ""
 "nbdkit не установлен или не работает. Он требуется для использования «-i "
 "disk»."
 
-#: input/input_libvirt.ml:68
+#: input/input_libvirt.ml:83
 msgid ""
 "nbdkit is not installed or not working.  It is required to use ‘-i libvirt|"
 "libvirtxml’."
@@ -2347,7 +2347,7 @@ msgstr ""
 "SELinux в разрешающий режим во время преобразования."
 
 #. input/input_nfc.ml:212
-#. input/input_libvirt.ml:76
+#. input/input_libvirt.ml:102
 #. input/input_disk.ml:55
 #: input/nbdkit_ssh.ml:42 input/nbdkit_curl.ml:38 input/input_vddk.ml:289
 msgid "nbdkit-cow-filter is not installed or not working"
@@ -2358,11 +2358,11 @@ msgid "nbdkit-curl-plugin is not installed"
 msgstr "nbdkit-curl-plugin не установлен"
 
 #. input/input_disk.ml:53
-#: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:72
+#: output/output.ml:181 output/output.ml:80 input/input_libvirt.ml:97
 msgid "nbdkit-file-plugin is not installed or not working"
 msgstr "nbdkit-file-plugin не установлен или не работает"
 
-#: input/input_libvirt.ml:74 input/input_disk.ml:73
+#: input/input_libvirt.ml:99 input/input_disk.ml:73
 msgid "nbdkit-nbd-plugin is not installed or not working"
 msgstr "nbdkit-nbd-plugin не установлен или не работает"
 
@@ -2403,7 +2403,7 @@ msgstr "здесь не допускаются -oo (параметры выво�
 msgid "no .ovf file was found in %s"
 msgstr "в %s не найден файл .ovf"
 
-#: common/mldrivers/linux_bootloaders.ml:413
+#: common/mldrivers/linux_bootloaders.ml:417
 msgid "no bootloader detected"
 msgstr "загрузчик не обнаружен"
 
@@ -2561,7 +2561,7 @@ msgstr ""
 "Если это неверно, используйте параметр --password-crypto и сообщите об "
 "ошибке."
 
-#: common/mlcustomize/customize_run.ml:359
+#: common/mlcustomize/customize_run.ml:364
 msgid "passwords could not be set for this type of guest"
 msgstr "не удалось установить пароли для этого типа гостя"
 
@@ -2587,7 +2587,7 @@ msgstr ""
 msgid "qemu-nbd: unexpected version in --version: %s"
 msgstr "qemu-nbd: неожиданная версия в --version: %s"
 
-#: common/mlcustomize/customize_run.ml:77
+#: common/mlcustomize/customize_run.ml:79
 msgid "random seed could not be set for this type of guest"
 msgstr "не удалось установить случайное начальное число для этого типа гостя"
 
@@ -2713,7 +2713,7 @@ msgstr ""
 msgid "the cluster ‘%s’ does not support the architecture %s but %s"
 msgstr "кластер «%s» не поддерживает архитектуру %s, а не %s"
 
-#: common/mlcustomize/customize_run.ml:59
+#: common/mlcustomize/customize_run.ml:61
 msgid ""
 "the command may have failed because the network is disabled.  Try either "
 "removing ‘--no-network’ or adding ‘--network’ on the command line."
@@ -2879,7 +2879,7 @@ msgstr ""
 "часовой пояс «%s» не существует, используйте местоположение, например, "
 "«Europe/Moscow»"
 
-#: common/mlcustomize/customize_run.ml:304
+#: common/mlcustomize/customize_run.ml:309
 msgid "timezone could not be set for this type of guest"
 msgstr "не удалось установить часовой пояс для этого типа гостя"
 
@@ -2891,7 +2891,7 @@ msgstr "не удалось разобрать строку из файла ма
 msgid "unexpected end of file while reading /dev/urandom"
 msgstr "неожиданный конец файла при чтении /dev/urandom"
 
-#: input/input_libvirt.ml:218
+#: input/input_libvirt.ml:229
 msgid "unexpected output from the %s command"
 msgstr "неожиданный вывод команды %s"
 
@@ -2915,7 +2915,7 @@ msgstr "неизвестный параметр -o: %s"
 msgid "unknown -oa option: %s"
 msgstr "неизвестный параметр -oa: %s"
 
-#: input/input_libvirt.ml:211
+#: input/input_libvirt.ml:222
 msgid "unknown <checksum> method='%s'"
 msgstr "неизвестный метод <checksum>='%s'"
 
