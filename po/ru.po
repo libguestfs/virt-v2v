@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: virt-v2v 2.7.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/enter_bug.cgi?"
-"component=libguestfs&product=Virtualization+Tools\n"
+"Report-Msgid-Bugs-To: https://bugzilla.redhat.com/"
+"enter_bug.cgi?component=libguestfs&product=Virtualization+Tools\n"
 "POT-Creation-Date: 2026-04-29 12:01+0100\n"
-"PO-Revision-Date: 2026-10-06 15:18+0000\n"
+"PO-Revision-Date: 2026-11-02 23:18+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "libguestfs/virt-v2v-master/ru/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2026.10\n"
+"X-Generator: Weblate 2026.11\n"
 
 #. common/mltools/tools_utils.ml:239
 #: input/input_ova.ml:340 input/input_ova.ml:145
@@ -606,10 +606,8 @@ msgid "Changing permissions of %s to %s"
 msgstr "Изменение прав доступа %s на %s"
 
 #: v2v/v2v.ml:217 inspector/inspector.ml:171 in-place/in_place.ml:181
-#, fuzzy
-#| msgid "Don't trim filesystems before conversion"
 msgid "Check filesystems before and after conversion"
-msgstr "Не обрезать файловые системы перед преобразованием"
+msgstr "Проверять файловые системы до и после преобразования"
 
 #: input/input_libvirt.ml:196 input/input_libvirt.ml:179
 msgid "Checking %s checksum of disk %d/%d"
@@ -993,10 +991,8 @@ msgstr ""
 "его, собрав rhsrvany (https://github.com/rwmjones/rhsrvany)"
 
 #: common/mlcustomize/customize_cmdline.ml:521
-#, fuzzy
-#| msgid "Create a directory"
 msgid "Only relabel FHS directories"
-msgstr "Создать каталог"
+msgstr "Перемаркировать только каталоги FHS"
 
 #: v2v/v2v.ml:243
 msgid "Output hypervisor connection"
@@ -1217,10 +1213,8 @@ msgid "SELinux relabelling deferred to first boot"
 msgstr "Изменение меток SELinux отложено до первой загрузки"
 
 #: common/mlcustomize/customize_run.ml:368
-#, fuzzy
-#| msgid "SELinux relabelling"
 msgid "SELinux relabelling only FHS"
-msgstr "Изменение меток SELinux"
+msgstr "Перемаркировка SELinux только для FHS"
 
 #. common/mlcustomize/customize_cmdline.ml:226
 #: common/mlcustomize/customize_cmdline.ml:340
@@ -1705,6 +1699,8 @@ msgstr ""
 msgid ""
 "could not get the default kernel using Perl Bootloader::Tools, ignoring: %s"
 msgstr ""
+"не удалось получить ядро по умолчанию с помощью Perl Bootloader::Tools, "
+"игнорируется: %s"
 
 #. input/input_vcenter_https.ml:94
 #. input/input_nfc.ml:108
@@ -1754,6 +1750,8 @@ msgstr "не удалось удалить последовательную ко
 msgid ""
 "could not set the default kernel using Perl Bootloader::Tools, ignoring: %s"
 msgstr ""
+"не удалось задать ядро по умолчанию с помощью Perl Bootloader::Tools, "
+"игнорируется: %s"
 
 #: common/mltools/registry.ml:93
 msgid ""
